@@ -19,27 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="计算机科学基本知识参考资料 https:&#x2F;&#x2F;missing-semester-cn.github.io&#x2F;2020&#x2F;course-shell&#x2F;  手册    man 命令 导航    pwd 显示当前所在目录    cd 进入文件夹  ‘..’ 上级目录    ‘.’ 当前目录    ‘&#x2F;‘开头的是绝对路径 查看文件    ls 列出所有文件    ls -l 查看文件权限信息 创建文件夹">
+    <meta name="description" content="命令篇1. man 加&#x2F;词 可以搜索你需要的词汇 2. &#x2F;usr&#x2F;share&#x2F;doc 有安装软件的信息 1. shutdown -h how shutdown命令需要 2. 除了使用cat看文件，还有tac（从最后一行开始显示），more（可以翻页，好用） 3. alias 设置别名（如 ll 命令代表 ls -l） 4. 压缩一整个目录，使用tar，压缩单个文件bzip2 gzip（-d解压）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Shell命令行使用">
-<meta property="og:url" content="http://example.com/2023/11/09/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="鸟哥 linux笔记">
+<meta property="og:url" content="http://example.com/2023/11/09/ComputerScience_Blog/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
-<meta property="og:description" content="计算机科学基本知识参考资料 https:&#x2F;&#x2F;missing-semester-cn.github.io&#x2F;2020&#x2F;course-shell&#x2F;  手册    man 命令 导航    pwd 显示当前所在目录    cd 进入文件夹  ‘..’ 上级目录    ‘.’ 当前目录    ‘&#x2F;‘开头的是绝对路径 查看文件    ls 列出所有文件    ls -l 查看文件权限信息 创建文件夹">
+<meta property="og:description" content="命令篇1. man 加&#x2F;词 可以搜索你需要的词汇 2. &#x2F;usr&#x2F;share&#x2F;doc 有安装软件的信息 1. shutdown -h how shutdown命令需要 2. 除了使用cat看文件，还有tac（从最后一行开始显示），more（可以翻页，好用） 3. alias 设置别名（如 ll 命令代表 ls -l） 4. 压缩一整个目录，使用tar，压缩单个文件bzip2 gzip（-d解压）">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-09T07:31:22.381Z">
+<meta property="article:modified_time" content="2023-11-10T05:53:56.283Z">
 <meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2023/11/09/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/">
+<link rel="canonical" href="http://example.com/2023/11/09/ComputerScience_Blog/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/11/09/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/","path":"2023/11/09/ComputerScience/基本操作/Shell命令行使用/","title":"Shell命令行使用"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/11/09/ComputerScience_Blog/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/","path":"2023/11/09/ComputerScience_Blog/鸟哥 linux笔记/","title":"鸟哥 linux笔记"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Shell命令行使用 | SMULET's BLOG</title>
+<title>鸟哥 linux笔记 | SMULET's BLOG</title>
   
 
 
@@ -104,7 +105,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">计算机科学基本知识</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E7%AF%87"><span class="nav-number">1.</span> <span class="nav-text">命令篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bash-Shell"><span class="nav-number">2.</span> <span class="nav-text">Bash Shell</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -117,12 +118,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -149,7 +150,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -162,12 +163,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Shell命令行使用 | SMULET's BLOG">
+      <meta itemprop="name" content="鸟哥 linux笔记 | SMULET's BLOG">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Shell命令行使用
+          鸟哥 linux笔记
         </h1>
 
         <div class="post-meta-container">
@@ -177,9 +178,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-11-09 00:00:00 / 修改时间：15:31:22" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-10 13:53:56" itemprop="dateModified" datetime="2023-11-10T13:53:56+08:00">2023-11-10</time>
     </span>
 
   
@@ -191,16 +198,38 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h5 id="计算机科学基本知识"><a href="#计算机科学基本知识" class="headerlink" title="计算机科学基本知识"></a>计算机科学基本知识</h5><pre><code>参考资料 https://missing-semester-cn.github.io/2020/course-shell/
+    <div class="post-body" itemprop="articleBody"><h2 id="命令篇"><a href="#命令篇" class="headerlink" title="命令篇"></a>命令篇</h2><pre><code>1. man 加/词 可以搜索你需要的词汇
+2. /usr/share/doc 有安装软件的信息
+1. shutdown -h how shutdown命令需要
+2. 除了使用cat看文件，还有tac（从最后一行开始显示），more（可以翻页，好用）
+3. alias 设置别名（如 ll 命令代表 ls -l）
+4. 压缩一整个目录，使用tar，压缩单个文件bzip2 gzip（-d解压）
+   tar -cvf 目标名 文件名 压缩 ， tar -xvf解压
+1. grep用法 grep &quot;word&quot; filename
 </code></pre>
-<p>手册<br>    man 命令</p>
-<p>导航<br>    pwd 显示当前所在目录<br>    cd 进入文件夹  ‘..’ 上级目录    ‘.’ 当前目录    ‘&#x2F;‘开头的是绝对路径</p>
-<p>查看文件<br>    ls 列出所有文件<br>    ls -l 查看文件权限信息</p>
-<p>创建文件夹<br>    mkdir 文件夹名<br>    rmdir 删除文件夹</p>
-<p>没有vim的时候如何创建、编辑、查看文件<br>    touch 文件 创建文件<br>    echo 文本 &gt; 文件  echo+重定向输入文件（会把原来内容覆盖）<br>    echo 文本 &gt;&gt; 文件 追加输入（在原来内容的结尾另起一行输入）<br>    cat 文件 查看文件</p>
-<p>chmod用法<br>    chmod uoga +-&#x3D; wxrXst 文件   w写r读x执行<br>    chmod 777 文件 中间的7：4读 2写 1执行</p>
-<p>grep用法（文件内容）<br>    grep 字段 搜索字段<br>    -c 显示上下文<br>    -v 反选</p>
-<p>find用法（文件）<br>    find 文件</p>
+<h2 id="Bash-Shell"><a href="#Bash-Shell" class="headerlink" title="Bash Shell"></a>Bash Shell</h2><ol>
+<li><p>格式<br> #!&#x2F;bin&#x2F;bash<br> value&#x3D;”string”（不要有空格）<br> echo $value</p>
+<p> 执行使用sh filename.sh</p>
+</li>
+<li><p>“%d”输出变量， ‘%d’输出%d（不转义）</p>
+</li>
+<li><p>declare -afirx 定义变量为数组函数整数只读环境（默认为字符串）</p>
+</li>
+<li><p>read value 读取变量</p>
+</li>
+<li><p>$0 $1 $2 表示命令行参数sh file.sh $0 $1</p>
+</li>
+<li><p>if then<br> if [ “$yn” &#x3D; “y” ] &amp;&amp; [ 条件二 ]（注意空格）; then<br> 语句<br> else<br> 语句<br> fi 结束</p>
+</li>
+<li><p>case<br> case $value in<br> one)<br> 语句<br> value)<br> 语句<br> exit 1<br> esac</p>
+</li>
+<li><p>for<br> for (( i&#x3D;1；条件2；i&#x3D;i+1 ))<br> do<br> 语句<br> done</p>
+</li>
+<li><p>while<br> while [条件] || [条件]<br> do<br> 语句<br> done</p>
+</li>
+<li><p>调试脚本<br>sh -nvx<br>n 检查脚本错误<br>v 执行脚本，并把脚本内容打印<br>x 与v稍微不同(折叠显示)</p>
+</li>
+</ol>
 
     </div>
 
@@ -209,18 +238,21 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/11/09/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/gdb%E4%BD%BF%E7%94%A8/" rel="prev" title="gdb使用">
-                  <i class="fa fa-angle-left"></i> gdb使用
+                <a href="/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/" rel="prev" title="Shell命令行使用">
+                  <i class="fa fa-angle-left"></i> Shell命令行使用
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/11/09/ComputerScience/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/" rel="next" title="鸟哥 linux笔记">
-                  鸟哥 linux笔记 <i class="fa fa-angle-right"></i>
+                <a href="/2023/11/09/ComputerScience_Blog/LFS%E7%AC%94%E8%AE%B0/" rel="next" title="LFS笔记">
+                  LFS笔记 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
