@@ -837,7 +837,7 @@ git checkout -b pa0 转到（创建）pa0分支
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-21 13:14:55" itemprop="dateModified" datetime="2023-11-21T13:14:55+08:00">2023-11-21</time>
+      <time title="修改时间：2023-11-25 17:37:11" itemprop="dateModified" datetime="2023-11-25T17:37:11+08:00">2023-11-25</time>
     </span>
 
   
@@ -855,7 +855,7 @@ git checkout -b pa0 转到（创建）pa0分支
 gdb main    开始debug
 list 列出代码
 break 行    设置断点
-    info brak    断点信息
+    info break    断点信息
 run   运行程序
 next或step  进行单步编译(next跳过函数)
 print &lt;value&gt;    打印变量的值
@@ -863,14 +863,32 @@ continue    跳到下一个断点位置
 quit     退出
 </code></pre>
 <h3 id="2-0-LinuxC一站式编程"><a href="#2-0-LinuxC一站式编程" class="headerlink" title="2.0 LinuxC一站式编程"></a>2.0 LinuxC一站式编程</h3><p>参考网址： <a target="_blank" rel="noopener" href="https://docs.huihoo.com/c/linux-c-programming/ch10.html">https://docs.huihoo.com/c/linux-c-programming/ch10.html</a></p>
-<pre><code>backtrace 查看调用帧命令（可以列出当前执行代码行，并且把变量替换为你传入的数字
-gcc main.c -g -o main 即可开始编译，-Wall生成所有警告
-start 开始执行函数
+<pre><code>gcc main.c -g -o main 即可开始编译，-Wall生成所有警告
+
+start 开始执行函数（执行到main函数第一句）
+run 像./程序一样执行程序（除非遇到断点才会停下）
+finish 让函数执行到返回值为止
+backtrace 查看调用帧命令（可以列出当前执行代码行，并且把变量替换为你传入的数字
 info locals 查看局部变量的值, local（a. 局部的）
 frame 1 | i locals 查看1号栈帧函数（如main）的局部变量
-finish 让函数执行到返回值为止
+
 set var sum=0 把sum的值设置为0
 print result[2]=33 把result[2]的值修改为33
+pirnt sum 打印sum的值
+display sum 每次执行都打印sum的值
+undisplay 1 取消跟踪编号为1的变量（如1：sum）
+
+break 9 在第九行设置断点（和continue搭配使用）
+break 9 if sum != 0 仅当sum不为0时才中断
+info breakpoint 查看已经设置的断点
+delete breakpoints 2 删除断点2（去掉2表示删除全部断点） 
+disable breakpoints 2 禁用编号为2的断点
+enable 2 开启编号为2的断点
+
+watch input[5] 在input[5]处设置观察点（搭配continue使用）
+info watchpoints 查看当前观察点
+x(/7bx) input 从input第一个字节开始，打印7个字节；\
+7表示打印7组，b表示每个字节一组，x表示按16进制打印（括号内可以不用，但只能打印一组）
 </code></pre>
 
       
