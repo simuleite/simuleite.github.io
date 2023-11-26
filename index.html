@@ -117,7 +117,7 @@
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
@@ -173,7 +173,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-11-26 00:00:00 / 修改时间：10:30:08" itemprop="dateCreated datePublished" datetime="2023-11-26T00:00:00+08:00">2023-11-26</time>
+      <time title="创建时间：2023-11-26 00:00:00 / 修改时间：11:08:35" itemprop="dateCreated datePublished" datetime="2023-11-26T00:00:00+08:00">2023-11-26</time>
     </span>
 
   
@@ -195,40 +195,25 @@ simplify 化简命令
 exp(x) 指数
 log2(x) 以2为底数的对数
 </code></pre>
-<h3 id="2-0-求极限"><a href="#2-0-求极限" class="headerlink" title="2.0 求极限"></a>2.0 求极限</h3><pre><code>syms x y % 用来声明所用变量x, y
-limit(x* log(1+ x)/sin(x^2), x, 0)  求x-&gt;0时，左边的函数的极限
-</code></pre>
-<h3 id="2-1-求极限"><a href="#2-1-求极限" class="headerlink" title="2.1 求极限"></a>2.1 求极限</h3><pre><code>syms x y
-y= (x* exp(x)- 1)/sin(x);
-dy= diff(y, x, 3)  求三阶导数
-pretty(dy)
-simplify(dy)
-</code></pre>
+<h3 id="2-0-求极限"><a href="#2-0-求极限" class="headerlink" title="2.0 求极限"></a>2.0 求极限</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">syms x y % 用来声明所用变量x, y</span><br><span class="line">limit(x* log(1+ x)/sin(x^2), x, 0)  求x-&gt;0时，左边的函数的极限</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-1-求极限"><a href="#2-1-求极限" class="headerlink" title="2.1 求极限"></a>2.1 求极限</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">syms x y</span><br><span class="line">y= (x* exp(x)- 1)/sin(x);</span><br><span class="line">dy= diff(y, x, 3)  求三阶导数</span><br><span class="line">pretty(dy)</span><br><span class="line">simplify(dy)</span><br></pre></td></tr></table></figure>
+
 <h3 id="3-0-作图"><a href="#3-0-作图" class="headerlink" title="3.0 作图"></a>3.0 作图</h3><pre><code>新建一个文件，F5运行即可
-
-ezplot
-ezplot(&#39;y^2- x&#39;)
-hold on; % 不使用hold on则只显示最后绘制的图形
-ezplot(&#39;x- 2&#39;) % &#39;%&#39;表示注释
-axis off % 去掉坐标轴
-
-plot
-x = -6: 0.01: 6;  % 表示在-6, 6区间里以0.01为间隔作图
-y = x.^(4/3) - 2. * x.^(1/3)  % 注意2.0表示浮点数
-plot(x, y)
-
-画两个函数
-x = 0: 0.01: 2 * pi;
-y1 = sin(x);
-y2 = cos(x);
-plot(x, y1, x, y2, &#39;r&#39;)  % r表示红色
-legend(&#39;sin(x)&#39;, &#39;cos(x)&#39;)  % 标注函数
-
-散点图
-x = [12 25 52 27 86];
-y = [24 23 34 53 67];
-plot(x, y, &#39;*&#39;)
 </code></pre>
+<ol>
+<li><p><strong>ezplot</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ezplot(&#x27;y^2- x&#x27;)</span><br><span class="line">hold on; % 不使用hold on则只显示最后绘制的图形</span><br><span class="line">ezplot(&#x27;x- 2&#x27;) % &#x27;%&#x27;表示注释</span><br><span class="line">axis off % 去掉坐标轴</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>plot</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = -6: 0.01: 6;  % 表示在-6, 6区间里以0.01为间隔作图</span><br><span class="line">y = x.^(4/3) - 2. * x.^(1/3)  % 注意2.0表示浮点数</span><br><span class="line">plot(x, y)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>画两个函数</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = 0: 0.01: 2 * pi;</span><br><span class="line">y1 = sin(x);</span><br><span class="line">y2 = cos(x);</span><br><span class="line">plot(x, y1, x, y2, &#x27;r&#x27;)  % r表示红色</span><br><span class="line">legend(&#x27;sin(x)&#x27;, &#x27;cos(x)&#x27;)  % 标注函数</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>散点图</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = [12 25 52 27 86];</span><br><span class="line">y = [24 23 34 53 67];</span><br><span class="line">plot(x, y, &#x27;*&#x27;)</span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
     </div>
@@ -291,7 +276,7 @@ plot(x, y, &#39;*&#39;)
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-26 10:30:24" itemprop="dateModified" datetime="2023-11-26T10:30:24+08:00">2023-11-26</time>
+      <time title="修改时间：2023-11-26 11:04:31" itemprop="dateModified" datetime="2023-11-26T11:04:31+08:00">2023-11-26</time>
     </span>
 
   
@@ -305,13 +290,13 @@ plot(x, y, &#39;*&#39;)
     
     <div class="post-body" itemprop="articleBody">
           <pre><code>参考教程： https://www.ruanyifeng.com/blog/2019/10/tmux.html
-ctrl+b,
-%  分成左右两栏
-&quot;  分成上下两栏
-up  选择上边的窗口
-
-ctrl+d 删除窗口
 </code></pre>
+<ul>
+<li><p><strong><code>ctrl+b</code> 前缀键</strong><br>  <code>%</code>  分成左右两栏<br>  <code>&quot;</code>  分成上下两栏<br>  <code>up</code>  选择上边的窗口</p>
+</li>
+<li><p><strong><code>ctrl+d</code> 删除窗口</strong></p>
+</li>
+</ul>
 
       
     </div>
@@ -338,7 +323,7 @@ ctrl+d 删除窗口
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/21/ComputerScience_Blog/LinuxC/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/21/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/LinuxC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -356,7 +341,7 @@ ctrl+d 删除窗口
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/11/21/ComputerScience_Blog/LinuxC/" class="post-title-link" itemprop="url">LinuxC</a>
+          <a href="/2023/11/21/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/LinuxC/" class="post-title-link" itemprop="url">LinuxC</a>
         </h2>
 
         <div class="post-meta-container">
@@ -412,7 +397,7 @@ ctrl+d 删除窗口
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -430,7 +415,7 @@ ctrl+d 删除窗口
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/11/09/ComputerScience_Blog/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">数据结构</a>
+          <a href="/2023/11/09/ComputerScience_Blog/%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">数据结构</a>
         </h2>
 
         <div class="post-meta-container">
@@ -448,7 +433,7 @@ ctrl+d 删除窗口
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-10 13:52:56" itemprop="dateModified" datetime="2023-11-10T13:52:56+08:00">2023-11-10</time>
+      <time title="修改时间：2023-11-26 11:24:49" itemprop="dateModified" datetime="2023-11-26T11:24:49+08:00">2023-11-26</time>
     </span>
 
   
@@ -462,291 +447,21 @@ ctrl+d 删除窗口
     
     <div class="post-body" itemprop="articleBody">
           <ul>
-<li>数组：<ol>
+<li><strong>数组：</strong><ol>
 <li>不灵活</li>
 </ol>
 </li>
-<li>动态数组<ol>
+<li><strong>动态数组：</strong><ol>
 <li>使用malloc，在程序运行时（而不是一开始）分配内存</li>
 <li>内存不一定连续，每次调用malloc都需要新的指针</li>
 </ol>
 </li>
-<li>链表：<ol>
+<li><strong>链表：</strong><ol>
 <li>解决malloc需要太多指针的问题，每个链表指向下一个指针</li>
 <li>没有链表指向第一项的地址，因此需要头指针</li>
 </ol>
 </li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/Hello%20%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/11/09/ComputerScience_Blog/Hello%20%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">Hello 算法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-10 13:06:01" itemprop="dateModified" datetime="2023-11-10T13:06:01+08:00">2023-11-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ul>
-<li><strong>复杂度分析</strong>：数据结构和算法的评价维度与方法。时间复杂度、空间复杂度的推算方法、常见类型、示例等。</li>
-<li><strong>数据结构</strong>：基本数据类型，数据结构的分类方法。数组、链表、栈、队列、哈希表、树、堆、图等数据结构的定义、优缺点、常用操作、常见类型、典型应用、实现方法等。</li>
-<li><strong>算法</strong>：搜索、排序、分治、回溯、动态规划、贪心等算法的定义、优缺点、效率、应用场景、解题步骤、示例题目等。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/LFS%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/11/09/ComputerScience_Blog/LFS%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">LFS笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-10 13:52:06" itemprop="dateModified" datetime="2023-11-10T13:52:06+08:00">2023-11-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="LFS"><a href="#LFS" class="headerlink" title="LFS"></a><strong>LFS</strong></h2><pre><code>https://www.linuxfromscratch.org/lfs/
-</code></pre>
-<p>Linux From Scratch，搭建你自己的Linux</p>
-<pre><code>bision  bison是属于 GNU 项目的一个语法分析器生成器
-gawk  linux下查找替换文本工具
-texinfo Texinfo是一种用于创建文档的格式和工具集。它最初是为GNU项目开发的，用于编写GNU的软件文档。Texinfo使用简单的文本文件格式，可以生成各种格式的输出，如HTML、PDF、Info格式等。
-sudo ln -sf bash /bin/sh 令shell脚本指向bash
-</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/11/09/ComputerScience_Blog/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">鸟哥 linux笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-10 13:53:56" itemprop="dateModified" datetime="2023-11-10T13:53:56+08:00">2023-11-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="命令篇"><a href="#命令篇" class="headerlink" title="命令篇"></a>命令篇</h2><pre><code>1. man 加/词 可以搜索你需要的词汇
-2. /usr/share/doc 有安装软件的信息
-1. shutdown -h how shutdown命令需要
-2. 除了使用cat看文件，还有tac（从最后一行开始显示），more（可以翻页，好用）
-3. alias 设置别名（如 ll 命令代表 ls -l）
-4. 压缩一整个目录，使用tar，压缩单个文件bzip2 gzip（-d解压）
-   tar -cvf 目标名 文件名 压缩 ， tar -xvf解压
-1. grep用法 grep &quot;word&quot; filename
-</code></pre>
-<h2 id="Bash-Shell"><a href="#Bash-Shell" class="headerlink" title="Bash Shell"></a>Bash Shell</h2><ol>
-<li><p>格式<br> #!&#x2F;bin&#x2F;bash<br> value&#x3D;”string”（不要有空格）<br> echo $value</p>
-<p> 执行使用sh filename.sh</p>
-</li>
-<li><p>“%d”输出变量， ‘%d’输出%d（不转义）</p>
-</li>
-<li><p>declare -afirx 定义变量为数组函数整数只读环境（默认为字符串）</p>
-</li>
-<li><p>read value 读取变量</p>
-</li>
-<li><p>$0 $1 $2 表示命令行参数sh file.sh $0 $1</p>
-</li>
-<li><p>if then<br> if [ “$yn” &#x3D; “y” ] &amp;&amp; [ 条件二 ]（注意空格）; then<br> 语句<br> else<br> 语句<br> fi 结束</p>
-</li>
-<li><p>case<br> case $value in<br> one)<br> 语句<br> value)<br> 语句<br> exit 1<br> esac</p>
-</li>
-<li><p>for<br> for (( i&#x3D;1；条件2；i&#x3D;i+1 ))<br> do<br> 语句<br> done</p>
-</li>
-<li><p>while<br> while [条件] || [条件]<br> do<br> 语句<br> done</p>
-</li>
-<li><p>调试脚本<br>sh -nvx<br>n 检查脚本错误<br>v 执行脚本，并把脚本内容打印<br>x 与v稍微不同(折叠显示)</p>
-</li>
-</ol>
 
       
     </div>
@@ -809,7 +524,7 @@ sudo ln -sf bash /bin/sh 令shell脚本指向bash
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-26 09:53:36" itemprop="dateModified" datetime="2023-11-26T09:53:36+08:00">2023-11-26</time>
+      <time title="修改时间：2023-11-26 10:51:13" itemprop="dateModified" datetime="2023-11-26T10:51:13+08:00">2023-11-26</time>
     </span>
 
   
@@ -824,14 +539,24 @@ sudo ln -sf bash /bin/sh 令shell脚本指向bash
     <div class="post-body" itemprop="articleBody">
           <h5 id="计算机科学基本知识"><a href="#计算机科学基本知识" class="headerlink" title="计算机科学基本知识"></a>计算机科学基本知识</h5><pre><code>参考资料 https://missing-semester-cn.github.io/2020/course-shell/
 </code></pre>
-<p>手册<br>    man 命令</p>
-<p>导航<br>    pwd 显示当前所在目录<br>    cd 进入文件夹  ‘..’ 上级目录    ‘.’ 当前目录    ‘&#x2F;‘开头的是绝对路径</p>
-<p>查看文件<br>    ls 列出所有文件<br>    ls -l 查看文件权限信息</p>
-<p>创建文件夹<br>    mkdir 文件夹名<br>    rmdir 删除文件夹</p>
-<p>没有vim的时候如何创建、编辑、查看文件<br>    touch 文件 创建文件<br>    echo 文本 &gt; 文件  echo+重定向输入文件（会把原来内容覆盖）<br>    echo 文本 &gt;&gt; 文件 追加输入（在原来内容的结尾另起一行输入）<br>    cat 文件 查看文件</p>
-<p>chmod用法<br>    chmod uoga +-&#x3D; wxrXst 文件   w写r读x执行<br>    chmod 777 文件 中间的7：4读 2写 1执行</p>
-<p>grep用法（文件内容）<br>    grep 字段 搜索字段<br>    -c 显示上下文<br>    -v 反选</p>
-<p>find用法（文件）<br>    find 文件</p>
+<ul>
+<li><p>手册<br>  <code>man</code> 命令</p>
+</li>
+<li><p>导航<br>  <code>pwd 显示当前所在目录</code><br>  <code>cd</code> 进入文件夹  <code>&#39;..&#39;</code> 上级目录   <code>&#39;.&#39;</code>当前目录   <code>&#39;/&#39;</code>开头的是绝对路径&#96;</p>
+</li>
+<li><p>查看文件<br>  <code>ls</code> 列出所有文件<br>  <code>ls -l</code> 查看文件权限信息</p>
+</li>
+<li><p>创建文件夹<br>  <code>mkdir</code> 文件夹名<br>  <code>rmdir</code> 删除文件夹</p>
+</li>
+<li><p>没有vim的时候如何创建、编辑、查看文件<br>  <code>touch 文件</code> 创建文件<br>  <code>echo 文本 &gt; 文件</code>  echo+重定向输入文件（会把原来内容覆盖）<br>  <code>echo 文本 &gt;&gt; 文件</code> 追加输入（在原来内容的结尾另起一行输入）<br>  <code>cat 文件</code> 查看文件</p>
+</li>
+<li><p>chmod用法<br>  <code>chmod uoga +-= wxrXst 文件</code>   w写r读x执行<br>  <code>chmod 777 文件</code> 中间的7：4读 2写 1执行</p>
+</li>
+<li><p>grep用法（文件内容）<br>  <code>grep 字段</code> 搜索字段<br>  <code>-c</code> 显示上下文<br>  <code>-v </code>反选</p>
+</li>
+<li><p>find用法（文件）<br>  <code>find</code> 文件</p>
+</li>
+</ul>
 
       
     </div>
@@ -894,7 +619,7 @@ sudo ln -sf bash /bin/sh 令shell脚本指向bash
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-26 09:53:32" itemprop="dateModified" datetime="2023-11-26T09:53:32+08:00">2023-11-26</time>
+      <time title="修改时间：2023-11-26 11:02:31" itemprop="dateModified" datetime="2023-11-26T11:02:31+08:00">2023-11-26</time>
     </span>
 
   
@@ -907,18 +632,25 @@ sudo ln -sf bash /bin/sh 令shell脚本指向bash
     
     
     <div class="post-body" itemprop="articleBody">
-          <pre><code>git clone 克隆项目
-git config 修改设置
-git branch 展示项目分支
-git checkout &lt;name&gt; 转到分支 -b 创建新分支
-git status 查看处于哪个分支
-git diff 展示修改
-git log 查看日志
-
-
-git add .
-git commit --allow-empty 提交代码更改
-</code></pre>
+          <ul>
+<li><p><code>git clone</code> 克隆项目</p>
+</li>
+<li><p><code>git config</code> 修改设置</p>
+</li>
+<li><p><code>git branch</code> 展示项目分支</p>
+</li>
+<li><p><code>git checkout name</code> 转到分支name， <code>-b</code>创建新分支name</p>
+</li>
+<li><p><code>git status</code> 查看处于哪个分支</p>
+</li>
+<li><p><code>git diff</code> 展示修改</p>
+</li>
+<li><p><code>git log</code> 查看日志</p>
+</li>
+<li><p>提交代码更改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit --allow-empty</span><br></pre></td></tr></table></figure></li>
+</ul>
+<hr>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><pre><code>git clone -b 2020 https://github.com/NJU-ProjectN/ics-pa.git ics2020    克隆项目
 git config --global user.name &quot;191220000-Zhang San&quot;   全局设置
 git branch 查看当前分支
@@ -1091,6 +823,291 @@ info watchpoints 查看当前观察点
 x(/7bx) input 从input第一个字节开始，打印7个字节；
  7表示打印7组，b表示每个字节一组，x表示按16进制打印（括号内可以不用，但只能打印一组）
 </code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">vim基本操作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-26 09:53:42" itemprop="dateModified" datetime="2023-11-26T09:53:42+08:00">2023-11-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li><p>词： <code>w</code> （下一个词）， <code>b</code> （词初）， <code>e</code> （词尾）</p>
+</li>
+<li><p>行： <code>0</code> （行初）， <code>^</code> （第一个非空格字符）， <code>$</code> （行尾）</p>
+</li>
+<li><p>文件： <code>gg</code> （文件头）， <code>G</code> （文件尾）</p>
+</li>
+<li><p>搜索: <code>/&#123;正则表达式&#125;</code>, <code>n</code> &#x2F; <code>N</code> 用于导航匹配</p>
+</li>
+<li><p><code>x</code> 删除字符（等同于 <code>dl</code>）</p>
+</li>
+<li><p><code>s</code> 替换字符（等同于 <code>xi</code>）</p>
+</li>
+<li><p>可视化模式 + 操作</p>
+<ul>
+<li>选中文字, <code>d</code> 删除 或者 <code>c</code> 改变</li>
+</ul>
+</li>
+<li><p><code>u</code> 撤销, <code>&lt;C-r&gt;</code> 重做</p>
+</li>
+<li><p><code>y</code> 复制 &#x2F; “yank” （其他一些命令比如 <code>d</code> 也会复制）</p>
+</li>
+<li><p><code>p</code> 粘贴</p>
+</li>
+<li><p>更多值得学习的: 比如 <code>~</code> 改变字符的大小写</p>
+</li>
+</ul>
+<p><code>3w</code> 向前移动三个词</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Github使用指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-10 13:13:57" itemprop="dateModified" datetime="2023-11-10T13:13:57+08:00">2023-11-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>github trending 热门软件</p>
+<pre><code>项目含金量 stars 1k+
+fork 拷贝项目到自己的仓库
+pull request 合并分支
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">Hexo博客教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-10 13:13:53" itemprop="dateModified" datetime="2023-11-10T13:13:53+08:00">2023-11-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="待办事项"><a href="#待办事项" class="headerlink" title="待办事项"></a>待办事项</h3><ul>
+<li>给网站添加全局目录！</li>
+</ul>
+<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><pre><code>hexo new &quot;postName&quot; #新建文章
+hexo new page &quot;pageName&quot; #新建页面
+hexo generate #生成静态页面至public目录
+hexo server #开启预览访问端口（默认端口4000，&#39;ctrl + c&#39;关闭server）
+hexo deploy #部署到GitHub
+hexo help  # 查看帮助
+hexo version  #查看Hexo的版本
+</code></pre>
+<p>背景设置<br>    把你挑选的背景图片命名为：background.jpg，放在blog\themes\next\source\images里，在blog\themes\next\source\css_custom文件的custom.styl首部添加</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">/images/background.jpg</span>);</span><br><span class="line">  <span class="attribute">background-attachment</span>: fixed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
     </div>
