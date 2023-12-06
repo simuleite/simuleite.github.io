@@ -21,18 +21,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha256-CTSx/A06dm1B063156EVh15m6Y67pAjZZaQc89LLSrU=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="SMULET&#39;s BLOG">
-<meta property="og:url" content="http://example.com/page/2/index.html">
+<meta property="og:url" content="https://simuleite.github.io/page/2/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="SIMULEITE">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/page/2/">
+<link rel="canonical" href="https://simuleite.github.io/page/2/">
 
 
 
@@ -147,7 +147,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/CSAPP&Foundation/">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/CSAPP&Foundation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -183,7 +183,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-06 09:02:00" itemprop="dateModified" datetime="2023-12-06T09:02:00+08:00">2023-12-06</time>
+      <time title="修改时间：2023-12-06 10:59:14" itemprop="dateModified" datetime="2023-12-06T10:59:14+08:00">2023-12-06</time>
     </span>
 
   
@@ -318,6 +318,18 @@
 <li>机器0：尾数为0或落在下溢区的数(下溢区太小取近似为0)</li>
 <li>早期，不同体系结构计算机所用的浮点数表示格式是不一样的，在不同计算机之间进行程序移植时，需要考虑浮点数格式之间的转换。</li>
 </ul>
+<h4 id="2-4-2-IEEE-754标准的规格化数"><a href="#2-4-2-IEEE-754标准的规格化数" class="headerlink" title="2.4.2 IEEE 754标准的规格化数"></a>2.4.2 IEEE 754标准的规格化数</h4><ul>
+<li>阶码没有全0和全1，只有00..01和11..10 (-126~127)</li>
+<li>S(single)P: (-1)^S * (1+Significand) * 2(Exponent - 127)(用127那么最大254-127&#x3D;127范围更大，用128就成了最大为126)</li>
+<li>D(double)P: Exponent - 1023</li>
+<li><strong>例子：float变量x机器数为BEE00000H，求x的真值</strong><br>  1|0011 1101| 110 0000 0000 0000 0000<br>  &#x3D; (-1)^S * (1+Significand) * 2^Exponent-127<ul>
+<li>阶码：0111 1101B &#x3D; 125</li>
+<li>阶码的值：125-127&#x3D;-2</li>
+<li>尾数部分的值：<br>  1 + 1* 2^-1 + 1* 2^-2 + 0* 2^-3…<br>  &#x3D; 1 + 2^-1 + 2^-2<br>  &#x3D; 1.75</li>
+<li>真值：-1.75 * 2^-2 &#x3D; -0.4375</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -344,87 +356,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Github使用指南</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-10 13:13:57" itemprop="dateModified" datetime="2023-11-10T13:13:57+08:00">2023-11-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>github trending 热门软件</p>
-<pre><code>项目含金量 stars 1k+
-fork 拷贝项目到自己的仓库
-pull request 合并分支
-</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -526,92 +458,7 @@ hexo version  #查看Hexo的版本
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/11/09/ComputerScience_Blog/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">算法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-26 12:11:08" itemprop="dateModified" datetime="2023-11-26T12:11:08+08:00">2023-11-26</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ul>
-<li><strong>复杂度分析</strong>：数据结构和算法的评价维度与方法。时间复杂度、空间复杂度的推算方法、常见类型、示例等。</li>
-<li><strong>数据结构</strong>：基本数据类型，数据结构的分类方法。数组、链表、栈、队列、哈希表、树、堆、图等数据结构的定义、优缺点、常用操作、常见类型、典型应用、实现方法等。</li>
-<li><strong>算法</strong>：搜索、排序、分治、回溯、动态规划、贪心等算法的定义、优缺点、效率、应用场景、解题步骤、示例题目等。</li>
-</ul>
-<h3 id="1-0-排序算法"><a href="#1-0-排序算法" class="headerlink" title="1.0 排序算法"></a>1.0 排序算法</h3><ul>
-<li><strong>插入排序：</strong><br>对于一段数组，从a[1]开始依次插入到前面<strong>已经排序好的数组</strong>里。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">key = a[j];  <span class="comment">//待排序数组</span></span><br><span class="line">i = j - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (i &gt;= <span class="number">0</span> &amp;&amp; a[i] &gt; key) &#123;  <span class="comment">//比较大小</span></span><br><span class="line">    a[i+<span class="number">1</span>] = a[i];  <span class="comment">//比key大的往后挪</span></span><br><span class="line">    i--;</span><br><span class="line">&#125;</span><br><span class="line">a[i+<span class="number">1</span>] = key;</span><br></pre></td></tr></table></figure></li>
-<li><strong>选择排序：</strong><br>第一次从数组a[0..LEN-1]中找出最小值，与a[0]交换，第二次从a[1..LEN-1]找最小值与a[1]交换，等等。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">key = a[i];</span><br><span class="line"><span class="keyword">for</span> (j = i+<span class="number">1</span>; j &lt; LEN; j++) &#123;  <span class="comment">//遍历数组i到末尾</span></span><br><span class="line">    <span class="keyword">if</span> (a[j] &lt; key) &#123;  <span class="comment">//找出最小值并储存值和索引</span></span><br><span class="line">	key = a[j];</span><br><span class="line">	tag = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">a[tag] = a[i];</span><br><span class="line">a[i] = key;</span><br></pre></td></tr></table></figure></li>
-<li></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/LFS%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/LFS%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -695,7 +542,87 @@ hexo version  #查看Hexo的版本
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Github使用指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-10 13:13:57" itemprop="dateModified" datetime="2023-11-10T13:13:57+08:00">2023-11-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>github trending 热门软件</p>
+<pre><code>项目含金量 stars 1k+
+fork 拷贝项目到自己的仓库
+pull request 合并分支
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -765,6 +692,91 @@ hexo version  #查看Hexo的版本
 <li>while<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while [条件] || [条件]</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure></li>
 <li>调试脚本<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sh -nvx</span><br><span class="line">n 检查脚本错误</span><br><span class="line">v 执行脚本，并把脚本内容打印</span><br><span class="line">x 与v稍微不同(折叠显示)</span><br></pre></td></tr></table></figure></li>
 </ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/09/ComputerScience_Blog/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-26 12:11:08" itemprop="dateModified" datetime="2023-11-26T12:11:08+08:00">2023-11-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li><strong>复杂度分析</strong>：数据结构和算法的评价维度与方法。时间复杂度、空间复杂度的推算方法、常见类型、示例等。</li>
+<li><strong>数据结构</strong>：基本数据类型，数据结构的分类方法。数组、链表、栈、队列、哈希表、树、堆、图等数据结构的定义、优缺点、常用操作、常见类型、典型应用、实现方法等。</li>
+<li><strong>算法</strong>：搜索、排序、分治、回溯、动态规划、贪心等算法的定义、优缺点、效率、应用场景、解题步骤、示例题目等。</li>
+</ul>
+<h3 id="1-0-排序算法"><a href="#1-0-排序算法" class="headerlink" title="1.0 排序算法"></a>1.0 排序算法</h3><ul>
+<li><strong>插入排序：</strong><br>对于一段数组，从a[1]开始依次插入到前面<strong>已经排序好的数组</strong>里。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">key = a[j];  <span class="comment">//待排序数组</span></span><br><span class="line">i = j - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (i &gt;= <span class="number">0</span> &amp;&amp; a[i] &gt; key) &#123;  <span class="comment">//比较大小</span></span><br><span class="line">    a[i+<span class="number">1</span>] = a[i];  <span class="comment">//比key大的往后挪</span></span><br><span class="line">    i--;</span><br><span class="line">&#125;</span><br><span class="line">a[i+<span class="number">1</span>] = key;</span><br></pre></td></tr></table></figure></li>
+<li><strong>选择排序：</strong><br>第一次从数组a[0..LEN-1]中找出最小值，与a[0]交换，第二次从a[1..LEN-1]找最小值与a[1]交换，等等。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">key = a[i];</span><br><span class="line"><span class="keyword">for</span> (j = i+<span class="number">1</span>; j &lt; LEN; j++) &#123;  <span class="comment">//遍历数组i到末尾</span></span><br><span class="line">    <span class="keyword">if</span> (a[j] &lt; key) &#123;  <span class="comment">//找出最小值并储存值和索引</span></span><br><span class="line">	key = a[j];</span><br><span class="line">	tag = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">a[tag] = a[i];</span><br><span class="line">a[i] = key;</span><br></pre></td></tr></table></figure></li>
+<li></li>
+</ul>
 
       
     </div>
