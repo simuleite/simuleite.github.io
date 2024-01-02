@@ -183,7 +183,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-01-01 15:56:25" itemprop="dateModified" datetime="2024-01-01T15:56:25+08:00">2024-01-01</time>
+      <time title="修改时间：2024-01-02 21:25:16" itemprop="dateModified" datetime="2024-01-02T21:25:16+08:00">2024-01-02</time>
     </span>
 
   
@@ -503,7 +503,7 @@
 <li>正确项：当两个加数的符号相同且不同于和的符号，则溢出标志OF&#x3D;1。符号标志SF与和的符号位Fn-1相同。在整数加&#x2F;减运算器中的加法器是n位带标志加法器。</li>
 </ul>
 </li>
-<li>举例</li>
+<li>举例<br>![[..&#x2F;Source&#x2F;Photo&#x2F;ICS&#x2F;3.4 整数加法运算举例.png]]</li>
 </ul>
 </li>
 </ul>
@@ -514,6 +514,23 @@
 </li>
 <li>判断带符号数相加有没有发生溢出<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int tadd_ok(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">	int sum = x+y;</span><br><span class="line">	int neg_over = x&lt;0 &amp;&amp; y&lt;0 &amp;&amp; sum&gt;= 0</span><br><span class="line">	int pos_over = x&gt;=0 &amp;&amp; y&gt;= 0 &amp;&amp; sum&lt;0</span><br><span class="line">	return !neg_over &amp;&amp; !pos_over;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>上面的函数改成判断相减有没有溢出<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int tsub_ok(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">	return tadd_ok(x, -y)</span><br><span class="line">	// 当x=0，y=0x8000 0000时错误,最大负数不能表示</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="4-2-整数除法运算"><a href="#4-2-整数除法运算" class="headerlink" title="4.2 整数除法运算"></a>4.2 整数除法运算</h3><ul>
+<li>带符号整数，n位整数除以n位整数，只有-2^(n-1)&#x2F;-1 &#x3D; 2^(n-1)会溢出（正数表示范围比负数小）</li>
+<li>整数除法舍入：整数向下取（floor），负数向上取（ceiling）</li>
+<li>整除0：无法表示，发生异常；操作系统异常处理</li>
+<li>0x8000 0000 &#x2F; -1 和 &#x2F; b(b&#x3D;-1)，后者检测到异常（floating point exception），前者不会，因为-1被编译器优化为neg</li>
+<li>除法指令比乘法指令还要长（30+时钟周期），无法用流水线实现，<strong>尽量别做除法（编译器优化neg的原因）</strong><ul>
+<li>可以整除，用&gt;&gt;右移计算</li>
+<li>不能整除，右移的位有非0，做相应处理</li>
+</ul>
+</li>
+<li>不能整除，朝零舍入（截断）<ul>
+<li>无符号、带符号正整数：移出位直接丢弃</li>
+<li>带符号负整数：加偏移量（2^k-1），再右移、低位截断（k是右移位数）</li>
+</ul>
+</li>
+<li>举例<br>![[..&#x2F;Source&#x2F;Photo&#x2F;ICS&#x2F;4.2 整数除法运算.png]]</li>
 </ul>
 
       
