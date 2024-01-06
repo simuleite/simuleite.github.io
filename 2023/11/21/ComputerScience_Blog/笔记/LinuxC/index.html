@@ -23,12 +23,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="9.0 代码风格 函数最好保持简单，只实现一种功能 (5-10个变量， 4个缩进以内) 函数命名包括动词，如get_current 使用下划线、详细地命名">
+    <meta name="description" content="9.0 代码风格  函数最好保持简单，只实现一种功能 (5-10个变量， 4个缩进以内) 函数命名包括动词，如get_current 使用下划线、详细地命名">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LinuxC">
 <meta property="og:url" content="https://simuleite.github.io/2023/11/21/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/LinuxC/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
-<meta property="og:description" content="9.0 代码风格 函数最好保持简单，只实现一种功能 (5-10个变量， 4个缩进以内) 函数命名包括动词，如get_current 使用下划线、详细地命名">
+<meta property="og:description" content="9.0 代码风格  函数最好保持简单，只实现一种功能 (5-10个变量， 4个缩进以内) 函数命名包括动词，如get_current 使用下划线、详细地命名">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-20T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-11-21T05:30:49.336Z">
@@ -57,7 +57,9 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -109,7 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-0-%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC"><span class="nav-number">1.</span> <span class="nav-text">9.0 代码风格</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#90-%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC"><span class="nav-number">1.</span> <span class="nav-text"> 9.0 代码风格</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -196,7 +198,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="9-0-代码风格"><a href="#9-0-代码风格" class="headerlink" title="9.0 代码风格"></a>9.0 代码风格</h3><ol>
+    <div class="post-body" itemprop="articleBody"><h3 id="90-代码风格"><a class="markdownIt-Anchor" href="#90-代码风格"></a> 9.0 代码风格</h3>
+<ol>
 <li>函数最好保持简单，只实现一种功能 (5-10个变量， 4个缩进以内)</li>
 <li>函数命名包括动词，如get_current</li>
 <li>使用下划线、详细地命名</li>

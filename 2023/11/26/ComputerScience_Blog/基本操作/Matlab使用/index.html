@@ -23,12 +23,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="1.0 编辑% 表示注释 ; 表示不显示结果，只执行语句 clear 清除内存变量 clc 清除全部 pretty 用分式表示公式 simplify 化简命令 exp(x) 指数 log2(x) 以2为底数的对数  2.0 求极限12syms x y % 用来声明所用变量x, ylimit(x* log(1+ x)&#x2F;sin(x^2), x, 0)  求x-&gt;0时，左边的函数的极限  2.1">
+    <meta name="description" content="1.0 编辑 % 表示注释 ; 表示不显示结果，只执行语句 clear 清除内存变量 clc 清除全部 pretty 用分式表示公式 simplify 化简命令 exp(x) 指数 log2(x) 以2为底数的对数   2.0 求极限 12syms x y % 用来声明所用变量x, ylimit(x* log(1+ x)&#x2F;sin(x^2), x, 0)  求x-&gt;0时，左边的函数的极限">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Matlab使用">
 <meta property="og:url" content="https://simuleite.github.io/2023/11/26/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Matlab%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
-<meta property="og:description" content="1.0 编辑% 表示注释 ; 表示不显示结果，只执行语句 clear 清除内存变量 clc 清除全部 pretty 用分式表示公式 simplify 化简命令 exp(x) 指数 log2(x) 以2为底数的对数  2.0 求极限12syms x y % 用来声明所用变量x, ylimit(x* log(1+ x)&#x2F;sin(x^2), x, 0)  求x-&gt;0时，左边的函数的极限  2.1">
+<meta property="og:description" content="1.0 编辑 % 表示注释 ; 表示不显示结果，只执行语句 clear 清除内存变量 clc 清除全部 pretty 用分式表示公式 simplify 化简命令 exp(x) 指数 log2(x) 以2为底数的对数   2.0 求极限 12syms x y % 用来声明所用变量x, ylimit(x* log(1+ x)&#x2F;sin(x^2), x, 0)  求x-&gt;0时，左边的函数的极限">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-25T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-11-26T03:08:35.366Z">
@@ -57,7 +57,9 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -109,7 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-0-%E7%BC%96%E8%BE%91"><span class="nav-number">1.</span> <span class="nav-text">1.0 编辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-0-%E6%B1%82%E6%9E%81%E9%99%90"><span class="nav-number">2.</span> <span class="nav-text">2.0 求极限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E6%B1%82%E6%9E%81%E9%99%90"><span class="nav-number">3.</span> <span class="nav-text">2.1 求极限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-0-%E4%BD%9C%E5%9B%BE"><span class="nav-number">4.</span> <span class="nav-text">3.0 作图</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E7%BC%96%E8%BE%91"><span class="nav-number">1.</span> <span class="nav-text"> 1.0 编辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#20-%E6%B1%82%E6%9E%81%E9%99%90"><span class="nav-number">2.</span> <span class="nav-text"> 2.0 求极限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-%E6%B1%82%E6%9E%81%E9%99%90"><span class="nav-number">3.</span> <span class="nav-text"> 2.1 求极限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#30-%E4%BD%9C%E5%9B%BE"><span class="nav-number">4.</span> <span class="nav-text"> 3.0 作图</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -196,7 +198,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="1-0-编辑"><a href="#1-0-编辑" class="headerlink" title="1.0 编辑"></a>1.0 编辑</h3><pre><code>% 表示注释
+    <div class="post-body" itemprop="articleBody"><h3 id="10-编辑"><a class="markdownIt-Anchor" href="#10-编辑"></a> 1.0 编辑</h3>
+<pre><code>% 表示注释
 ; 表示不显示结果，只执行语句
 clear 清除内存变量
 clc 清除全部
@@ -205,26 +208,29 @@ simplify 化简命令
 exp(x) 指数
 log2(x) 以2为底数的对数
 </code></pre>
-<h3 id="2-0-求极限"><a href="#2-0-求极限" class="headerlink" title="2.0 求极限"></a>2.0 求极限</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">syms x y % 用来声明所用变量x, y</span><br><span class="line">limit(x* log(1+ x)/sin(x^2), x, 0)  求x-&gt;0时，左边的函数的极限</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-1-求极限"><a href="#2-1-求极限" class="headerlink" title="2.1 求极限"></a>2.1 求极限</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">syms x y</span><br><span class="line">y= (x* exp(x)- 1)/sin(x);</span><br><span class="line">dy= diff(y, x, 3)  求三阶导数</span><br><span class="line">pretty(dy)</span><br><span class="line">simplify(dy)</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-0-作图"><a href="#3-0-作图" class="headerlink" title="3.0 作图"></a>3.0 作图</h3><pre><code>新建一个文件，F5运行即可
+<h3 id="20-求极限"><a class="markdownIt-Anchor" href="#20-求极限"></a> 2.0 求极限</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">syms x y % 用来声明所用变量x, y</span><br><span class="line">limit(x* log(1+ x)/sin(x^2), x, 0)  求x-&gt;0时，左边的函数的极限</span><br></pre></td></tr></table></figure>
+<h3 id="21-求极限"><a class="markdownIt-Anchor" href="#21-求极限"></a> 2.1 求极限</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">syms x y</span><br><span class="line">y= (x* exp(x)- 1)/sin(x);</span><br><span class="line">dy= diff(y, x, 3)  求三阶导数</span><br><span class="line">pretty(dy)</span><br><span class="line">simplify(dy)</span><br></pre></td></tr></table></figure>
+<h3 id="30-作图"><a class="markdownIt-Anchor" href="#30-作图"></a> 3.0 作图</h3>
+<pre><code>新建一个文件，F5运行即可
 </code></pre>
 <ol>
-<li><p><strong>ezplot</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ezplot(&#x27;y^2- x&#x27;)</span><br><span class="line">hold on; % 不使用hold on则只显示最后绘制的图形</span><br><span class="line">ezplot(&#x27;x- 2&#x27;) % &#x27;%&#x27;表示注释</span><br><span class="line">axis off % 去掉坐标轴</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>plot</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = -6: 0.01: 6;  % 表示在-6, 6区间里以0.01为间隔作图</span><br><span class="line">y = x.^(4/3) - 2. * x.^(1/3)  % 注意2.0表示浮点数</span><br><span class="line">plot(x, y)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>画两个函数</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = 0: 0.01: 2 * pi;</span><br><span class="line">y1 = sin(x);</span><br><span class="line">y2 = cos(x);</span><br><span class="line">plot(x, y1, x, y2, &#x27;r&#x27;)  % r表示红色</span><br><span class="line">legend(&#x27;sin(x)&#x27;, &#x27;cos(x)&#x27;)  % 标注函数</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>散点图</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = [12 25 52 27 86];</span><br><span class="line">y = [24 23 34 53 67];</span><br><span class="line">plot(x, y, &#x27;*&#x27;)</span><br></pre></td></tr></table></figure></li>
+<li><strong>ezplot</strong></li>
 </ol>
-
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ezplot(&#x27;y^2- x&#x27;)</span><br><span class="line">hold on; % 不使用hold on则只显示最后绘制的图形</span><br><span class="line">ezplot(&#x27;x- 2&#x27;) % &#x27;%&#x27;表示注释</span><br><span class="line">axis off % 去掉坐标轴</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li><strong>plot</strong></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = -6: 0.01: 6;  % 表示在-6, 6区间里以0.01为间隔作图</span><br><span class="line">y = x.^(4/3) - 2. * x.^(1/3)  % 注意2.0表示浮点数</span><br><span class="line">plot(x, y)</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><strong>画两个函数</strong></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x = 0: 0.01: 2 * pi;</span><br><span class="line">y1 = sin(x);</span><br><span class="line">y2 = cos(x);</span><br><span class="line">plot(x, y1, x, y2, &#x27;r&#x27;)  % r表示红色</span><br><span class="line">legend(&#x27;sin(x)&#x27;, &#x27;cos(x)&#x27;)  % 标注函数</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><strong>散点图</strong></li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = [12 25 52 27 86];</span><br><span class="line">y = [24 23 34 53 67];</span><br><span class="line">plot(x, y, &#x27;*&#x27;)</span><br></pre></td></tr></table></figure>
     </div>
 
     

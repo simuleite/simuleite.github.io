@@ -23,12 +23,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="计算机科学基本知识参考资料 https:&#x2F;&#x2F;missing-semester-cn.github.io&#x2F;2020&#x2F;course-shell&#x2F;   手册  man 命令  导航  pwd 显示当前所在目录  cd 进入文件夹  &#39;..&#39; 上级目录   &#39;.&#39;当前目录   &#39;&#x2F;&#39;开头的是绝对路径&#96;  查看文件  ls 列出所有文件  ls -l">
+    <meta name="description" content="计算机科学基本知识 参考资料 https:&#x2F;&#x2F;missing-semester-cn.github.io&#x2F;2020&#x2F;course-shell&#x2F;    手册 man 命令   导航 pwd 显示当前所在目录 cd 进入文件夹  &#39;..&#39; 上级目录   &#39;.&#39;当前目录   &#39;&#x2F;&#39;开头的是绝对路径&#96;   查看文件 ls 列出所有文件 ls -l 查看文件权限信息   创建文件夹 mkdir 文件夹名">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Shell命令行使用">
 <meta property="og:url" content="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
-<meta property="og:description" content="计算机科学基本知识参考资料 https:&#x2F;&#x2F;missing-semester-cn.github.io&#x2F;2020&#x2F;course-shell&#x2F;   手册  man 命令  导航  pwd 显示当前所在目录  cd 进入文件夹  &#39;..&#39; 上级目录   &#39;.&#39;当前目录   &#39;&#x2F;&#39;开头的是绝对路径&#96;  查看文件  ls 列出所有文件  ls -l">
+<meta property="og:description" content="计算机科学基本知识 参考资料 https:&#x2F;&#x2F;missing-semester-cn.github.io&#x2F;2020&#x2F;course-shell&#x2F;    手册 man 命令   导航 pwd 显示当前所在目录 cd 进入文件夹  &#39;..&#39; 上级目录   &#39;.&#39;当前目录   &#39;&#x2F;&#39;开头的是绝对路径&#96;   查看文件 ls 列出所有文件 ls -l 查看文件权限信息   创建文件夹 mkdir 文件夹名">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-08T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-11-26T02:51:13.933Z">
@@ -57,7 +57,9 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -109,7 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">计算机科学基本知识</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text"> 计算机科学基本知识</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -202,24 +204,50 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h5 id="计算机科学基本知识"><a href="#计算机科学基本知识" class="headerlink" title="计算机科学基本知识"></a>计算机科学基本知识</h5><pre><code>参考资料 https://missing-semester-cn.github.io/2020/course-shell/
+    <div class="post-body" itemprop="articleBody"><h5 id="计算机科学基本知识"><a class="markdownIt-Anchor" href="#计算机科学基本知识"></a> 计算机科学基本知识</h5>
+<pre><code>参考资料 https://missing-semester-cn.github.io/2020/course-shell/
 </code></pre>
 <ul>
-<li><p>手册<br>  <code>man</code> 命令</p>
+<li>
+<p>手册<br />
+<code>man</code> 命令</p>
 </li>
-<li><p>导航<br>  <code>pwd 显示当前所在目录</code><br>  <code>cd</code> 进入文件夹  <code>&#39;..&#39;</code> 上级目录   <code>&#39;.&#39;</code>当前目录   <code>&#39;/&#39;</code>开头的是绝对路径&#96;</p>
+<li>
+<p>导航<br />
+<code>pwd 显示当前所在目录</code><br />
+<code>cd</code> 进入文件夹  <code>'..'</code> 上级目录   <code>'.'</code>当前目录   <code>'/'</code>开头的是绝对路径`</p>
 </li>
-<li><p>查看文件<br>  <code>ls</code> 列出所有文件<br>  <code>ls -l</code> 查看文件权限信息</p>
+<li>
+<p>查看文件<br />
+<code>ls</code> 列出所有文件<br />
+<code>ls -l</code> 查看文件权限信息</p>
 </li>
-<li><p>创建文件夹<br>  <code>mkdir</code> 文件夹名<br>  <code>rmdir</code> 删除文件夹</p>
+<li>
+<p>创建文件夹<br />
+<code>mkdir</code> 文件夹名<br />
+<code>rmdir</code> 删除文件夹</p>
 </li>
-<li><p>没有vim的时候如何创建、编辑、查看文件<br>  <code>touch 文件</code> 创建文件<br>  <code>echo 文本 &gt; 文件</code>  echo+重定向输入文件（会把原来内容覆盖）<br>  <code>echo 文本 &gt;&gt; 文件</code> 追加输入（在原来内容的结尾另起一行输入）<br>  <code>cat 文件</code> 查看文件</p>
+<li>
+<p>没有vim的时候如何创建、编辑、查看文件<br />
+<code>touch 文件</code> 创建文件<br />
+<code>echo 文本 &gt; 文件</code>  echo+重定向输入文件（会把原来内容覆盖）<br />
+<code>echo 文本 &gt;&gt; 文件</code> 追加输入（在原来内容的结尾另起一行输入）<br />
+<code>cat 文件</code> 查看文件</p>
 </li>
-<li><p>chmod用法<br>  <code>chmod uoga +-= wxrXst 文件</code>   w写r读x执行<br>  <code>chmod 777 文件</code> 中间的7：4读 2写 1执行</p>
+<li>
+<p>chmod用法<br />
+<code>chmod uoga +-= wxrXst 文件</code>   w写r读x执行<br />
+<code>chmod 777 文件</code> 中间的7：4读 2写 1执行</p>
 </li>
-<li><p>grep用法（文件内容）<br>  <code>grep 字段</code> 搜索字段<br>  <code>-c</code> 显示上下文<br>  <code>-v </code>反选</p>
+<li>
+<p>grep用法（文件内容）<br />
+<code>grep 字段</code> 搜索字段<br />
+<code>-c</code> 显示上下文<br />
+<code>-v </code>反选</p>
 </li>
-<li><p>find用法（文件）<br>  <code>find</code> 文件</p>
+<li>
+<p>find用法（文件）<br />
+<code>find</code> 文件</p>
 </li>
 </ul>
 
@@ -238,13 +266,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" rel="prev" title="vim基本操作">
-                  <i class="fa fa-angle-left"></i> vim基本操作
+                <a href="/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/" rel="prev" title="git使用">
+                  <i class="fa fa-angle-left"></i> git使用
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/" rel="next" title="git使用">
-                  git使用 <i class="fa fa-angle-right"></i>
+                <a href="/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/gdb%E4%BD%BF%E7%94%A8/" rel="next" title="gdb使用">
+                  gdb使用 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

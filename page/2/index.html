@@ -52,7 +52,9 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -147,6 +149,412 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/gdb%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/gdb%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">gdb使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-26 09:53:28" itemprop="dateModified" datetime="2023-11-26T09:53:28+08:00">2023-11-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="10-cprograming"><a class="markdownIt-Anchor" href="#10-cprograming"></a> 1.0 Cprograming</h3>
+<p>原网址： <a target="_blank" rel="noopener" href="https://www.cprogramming.com/gdb.html">https://www.cprogramming.com/gdb.html</a></p>
+<pre><code>gcc main.c -g -Wall -Werror -o main    启动编译
+gdb main    开始debug
+list 列出代码
+break 行    设置断点
+	info break    断点信息
+run   运行程序
+next或step  进行单步编译(next跳过函数)
+print &lt;value&gt;    打印变量的值
+continue    跳到下一个断点位置
+quit     退出
+</code></pre>
+<h3 id="20-linuxc一站式编程"><a class="markdownIt-Anchor" href="#20-linuxc一站式编程"></a> 2.0 LinuxC一站式编程</h3>
+<p>参考网址： <a target="_blank" rel="noopener" href="https://docs.huihoo.com/c/linux-c-programming/ch10.html">https://docs.huihoo.com/c/linux-c-programming/ch10.html</a></p>
+<pre><code>gcc main.c -g -o main 即可开始编译，-Wall生成所有警告
+
+start 开始执行函数（执行到main函数第一句）
+run 像./程序一样执行程序（除非遇到断点才会停下）
+finish 让函数执行到返回值为止
+backtrace 查看调用帧命令（可以列出当前执行代码行，并且把变量替换为你传入的数字
+info locals 查看局部变量的值, local（a. 局部的）
+frame 1 | i locals 查看1号栈帧函数（如main）的局部变量
+
+set var sum=0 把sum的值设置为0
+print result[2]=33 把result[2]的值修改为33
+pirnt sum 打印sum的值
+display sum 每次执行都打印sum的值
+undisplay 1 取消跟踪编号为1的变量（如1：sum）
+
+break 9 在第九行设置断点（和continue搭配使用）
+break 9 if sum != 0 仅当sum不为0时才中断
+info breakpoint 查看已经设置的断点
+delete breakpoints 2 删除断点2（去掉2表示删除全部断点） 
+disable breakpoints 2 禁用编号为2的断点
+enable 2 开启编号为2的断点
+
+watch input[5] 在input[5]处设置观察点（搭配continue使用）
+info watchpoints 查看当前观察点
+x(/7bx) input 从input第一个字节开始，打印7个字节；
+ 7表示打印7组，b表示每个字节一组，x表示按16进制打印（括号内可以不用，但只能打印一组）
+</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Shell命令行使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-26 10:51:13" itemprop="dateModified" datetime="2023-11-26T10:51:13+08:00">2023-11-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h5 id="计算机科学基本知识"><a class="markdownIt-Anchor" href="#计算机科学基本知识"></a> 计算机科学基本知识</h5>
+<pre><code>参考资料 https://missing-semester-cn.github.io/2020/course-shell/
+</code></pre>
+<ul>
+<li>
+<p>手册<br />
+<code>man</code> 命令</p>
+</li>
+<li>
+<p>导航<br />
+<code>pwd 显示当前所在目录</code><br />
+<code>cd</code> 进入文件夹  <code>'..'</code> 上级目录   <code>'.'</code>当前目录   <code>'/'</code>开头的是绝对路径`</p>
+</li>
+<li>
+<p>查看文件<br />
+<code>ls</code> 列出所有文件<br />
+<code>ls -l</code> 查看文件权限信息</p>
+</li>
+<li>
+<p>创建文件夹<br />
+<code>mkdir</code> 文件夹名<br />
+<code>rmdir</code> 删除文件夹</p>
+</li>
+<li>
+<p>没有vim的时候如何创建、编辑、查看文件<br />
+<code>touch 文件</code> 创建文件<br />
+<code>echo 文本 &gt; 文件</code>  echo+重定向输入文件（会把原来内容覆盖）<br />
+<code>echo 文本 &gt;&gt; 文件</code> 追加输入（在原来内容的结尾另起一行输入）<br />
+<code>cat 文件</code> 查看文件</p>
+</li>
+<li>
+<p>chmod用法<br />
+<code>chmod uoga +-= wxrXst 文件</code>   w写r读x执行<br />
+<code>chmod 777 文件</code> 中间的7：4读 2写 1执行</p>
+</li>
+<li>
+<p>grep用法（文件内容）<br />
+<code>grep 字段</code> 搜索字段<br />
+<code>-c</code> 显示上下文<br />
+<code>-v </code>反选</p>
+</li>
+<li>
+<p>find用法（文件）<br />
+<code>find</code> 文件</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">git使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-26 11:02:31" itemprop="dateModified" datetime="2023-11-26T11:02:31+08:00">2023-11-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li>
+<p><code>git clone</code> 克隆项目</p>
+</li>
+<li>
+<p><code>git config</code> 修改设置</p>
+</li>
+<li>
+<p><code>git branch</code> 展示项目分支</p>
+</li>
+<li>
+<p><code>git checkout name</code> 转到分支name， <code>-b</code>创建新分支name</p>
+</li>
+<li>
+<p><code>git status</code> 查看处于哪个分支</p>
+</li>
+<li>
+<p><code>git diff</code> 展示修改</p>
+</li>
+<li>
+<p><code>git log</code> 查看日志</p>
+</li>
+<li>
+<p>提交代码更改</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit --allow-empty</span><br></pre></td></tr></table></figure>
+<hr />
+<h2 id="例子"><a class="markdownIt-Anchor" href="#例子"></a> 例子</h2>
+<pre><code>git clone -b 2020 https://github.com/NJU-ProjectN/ics-pa.git ics2020    克隆项目
+git config --global user.name &quot;191220000-Zhang San&quot;   全局设置
+git branch 查看当前分支
+git checkout -b pa0 转到（创建）pa0分支
+</code></pre>
+<h2 id="基础"><a class="markdownIt-Anchor" href="#基础"></a> 基础</h2>
+<ul>
+<li><code>git help &lt;command&gt;</code>: 获取 git 命令的帮助信息</li>
+<li><code>git init</code>: 创建一个新的 git 仓库，其数据会存放在一个名为 <code>.git</code> 的目录下</li>
+<li><code>git status</code>: 显示当前的仓库状态</li>
+<li><code>git add &lt;filename&gt;</code>: 添加文件到暂存区</li>
+<li><code>git commit</code>: 创建一个新的提交
+<ul>
+<li>如何编写 <a target="_blank" rel="noopener" href="https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">良好的提交信息</a>!</li>
+<li>为何要 <a target="_blank" rel="noopener" href="https://chris.beams.io/posts/git-commit/">编写良好的提交信息</a></li>
+</ul>
+</li>
+<li><code>git log</code>: 显示历史日志</li>
+<li><code>git log --all --graph --decorate</code>: 可视化历史记录（有向无环图）</li>
+<li><code>git diff &lt;filename&gt;</code>: 显示与暂存区文件的差异</li>
+<li><code>git diff &lt;revision&gt; &lt;filename&gt;</code>: 显示某个文件两个版本之间的差异</li>
+<li><code>git checkout &lt;revision&gt;</code>: 更新 HEAD 和目前的分支</li>
+</ul>
+<h2 id="分支和合并"><a class="markdownIt-Anchor" href="#分支和合并"></a> 分支和合并</h2>
+<ul>
+<li><code>git branch</code>: 显示分支</li>
+<li><code>git branch &lt;name&gt;</code>: 创建分支</li>
+<li><code>git checkout -b &lt;name&gt;</code>: 创建分支并切换到该分支
+<ul>
+<li>相当于 <code>git branch &lt;name&gt;; git checkout &lt;name&gt;</code></li>
+</ul>
+</li>
+<li><code>git merge &lt;revision&gt;</code>: 合并到当前分支</li>
+<li><code>git mergetool</code>: 使用工具来处理合并冲突</li>
+<li><code>git rebase</code>: 将一系列补丁变基（rebase）为新的基线</li>
+</ul>
+<h2 id="远端操作"><a class="markdownIt-Anchor" href="#远端操作"></a> 远端操作</h2>
+<ul>
+<li><code>git remote</code>: 列出远端</li>
+<li><code>git remote add &lt;name&gt; &lt;url&gt;</code>: 添加一个远端</li>
+<li><code>git push &lt;remote&gt; &lt;local branch&gt;:&lt;remote branch&gt;</code>: 将对象传送至远端并更新远端引用</li>
+<li><code>git branch --set-upstream-to=&lt;remote&gt;/&lt;remote branch&gt;</code>: 创建本地和远端分支的关联关系</li>
+<li><code>git fetch</code>: 从远端获取对象/索引</li>
+<li><code>git pull</code>: 相当于 <code>git fetch; git merge</code></li>
+<li><code>git clone</code>: 从远端下载仓库</li>
+</ul>
+<h2 id="撤销"><a class="markdownIt-Anchor" href="#撤销"></a> 撤销</h2>
+<ul>
+<li><code>git commit --amend</code>: 编辑提交的内容或信息</li>
+<li><code>git reset HEAD &lt;file&gt;</code>: 恢复暂存的文件</li>
+<li><code>git checkout -- &lt;file&gt;</code>: 丢弃修改</li>
+<li><code>git restore</code>: git2.32版本后取代git reset 进行许多撤销操作</li>
+</ul>
+<h1 id="git-高级操作"><a class="markdownIt-Anchor" href="#git-高级操作"></a> Git 高级操作</h1>
+<ul>
+<li><code>git config</code>: Git 是一个 <a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-config">高度可定制的</a> 工具</li>
+<li><code>git clone --depth=1</code>: 浅克隆（shallow clone），不包括完整的版本历史信息</li>
+<li><code>git add -p</code>: 交互式暂存</li>
+<li><code>git rebase -i</code>: 交互式变基</li>
+<li><code>git blame</code>: 查看最后修改某行的人</li>
+<li><code>git stash</code>: 暂时移除工作目录下的修改内容</li>
+<li><code>git bisect</code>: 通过二分查找搜索历史记录</li>
+<li><code>.gitignore</code>: <a target="_blank" rel="noopener" href="https://git-scm.com/docs/gitignore">指定</a> 故意不追踪的文件</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -197,316 +605,44 @@
     
     <div class="post-body" itemprop="articleBody">
           <ul>
-<li><p>词： <code>w</code> （下一个词）， <code>b</code> （词初）， <code>e</code> （词尾）</p>
+<li>
+<p>词： <code>w</code> （下一个词）， <code>b</code> （词初）， <code>e</code> （词尾）</p>
 </li>
-<li><p>行： <code>0</code> （行初）， <code>^</code> （第一个非空格字符）， <code>$</code> （行尾）</p>
+<li>
+<p>行： <code>0</code> （行初）， <code>^</code> （第一个非空格字符）， <code>$</code> （行尾）</p>
 </li>
-<li><p>文件： <code>gg</code> （文件头）， <code>G</code> （文件尾）</p>
+<li>
+<p>文件： <code>gg</code> （文件头）， <code>G</code> （文件尾）</p>
 </li>
-<li><p>搜索: <code>/&#123;正则表达式&#125;</code>, <code>n</code> &#x2F; <code>N</code> 用于导航匹配</p>
+<li>
+<p>搜索: <code>/&#123;正则表达式&#125;</code>, <code>n</code> / <code>N</code> 用于导航匹配</p>
 </li>
-<li><p><code>x</code> 删除字符（等同于 <code>dl</code>）</p>
+<li>
+<p><code>x</code> 删除字符（等同于 <code>dl</code>）</p>
 </li>
-<li><p><code>s</code> 替换字符（等同于 <code>xi</code>）</p>
+<li>
+<p><code>s</code> 替换字符（等同于 <code>xi</code>）</p>
 </li>
-<li><p>可视化模式 + 操作</p>
+<li>
+<p>可视化模式 + 操作</p>
 <ul>
 <li>选中文字, <code>d</code> 删除 或者 <code>c</code> 改变</li>
 </ul>
 </li>
-<li><p><code>u</code> 撤销, <code>&lt;C-r&gt;</code> 重做</p>
+<li>
+<p><code>u</code> 撤销, <code>&lt;C-r&gt;</code> 重做</p>
 </li>
-<li><p><code>y</code> 复制 &#x2F; “yank” （其他一些命令比如 <code>d</code> 也会复制）</p>
+<li>
+<p><code>y</code> 复制 / “yank” （其他一些命令比如 <code>d</code> 也会复制）</p>
 </li>
-<li><p><code>p</code> 粘贴</p>
+<li>
+<p><code>p</code> 粘贴</p>
 </li>
-<li><p>更多值得学习的: 比如 <code>~</code> 改变字符的大小写</p>
+<li>
+<p>更多值得学习的: 比如 <code>~</code> 改变字符的大小写</p>
 </li>
 </ul>
 <p><code>3w</code> 向前移动三个词</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/CSAPP%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/CSAPP%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">CSAPP阅读指南</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-12-09 17:11:06" itemprop="dateModified" datetime="2023-12-09T17:11:06+08:00">2023-12-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="1-0-CSAPP-阅读指南"><a href="#1-0-CSAPP-阅读指南" class="headerlink" title="1.0 CSAPP 阅读指南"></a>1.0 CSAPP 阅读指南</h1><pre><code>参考：https://book.douban.com/review/3150951/
-</code></pre>
-<ul>
-<li><p>这本书的简介（引言）部分简介明了：一个简单的hello world程序在计算机上的执行过程，预处理-&gt;编译-&gt;汇编-&gt;链接-&gt;生成可执行目标文件-&gt;载入内存-&gt;数据流-&gt;屏幕输出显示，没有一句废话，简介扼要，总结成一句：计算机系统&#x3D;位+上下文。</p>
-</li>
-<li><p>关于二进制的内容个人感觉有些冗余，这部分内容偶基本是一扫而过，毕竟从小到大这些内容学了都快有十多遍了，而平时编程真能用到的二进制技巧基本也就移位和bit flag这两招。不过这章里有不少small tricks值得一耍（最经典的就是不用临时变量交换两个数）。话说回来，真要想在二进制上玩出花来，参考Hacker’s delight会有更大的惊喜。</p>
-</li>
-<li><p>程序的机器级表示这一章偶花了不少时间阅读，毕竟偶没学过汇编，基础基本为0。不过这本书里出现的汇编指令绝大多数都由运算、取数存数、跳转这三种指令所组成，所以在阅读上不会存在任何难度。 　　这部分融合了程序员所需了解的编译和汇编这两样课程中的基础知识：想知道for、do..while、while三种循环的实质性区别？想知道多重if和 switch的本质区别？想知道数组的存储方式？想知道数组下标读取和指针读取的区别？想知道递归过程调用的背后实现机理？看看这一章，相信你会对C语言乃至程序设计语言有更深的理解。</p>
-</li>
-<li><p>指令集&amp;体系结构这一章，两位作者为了让读者更好的理解指令集（X86），别具一格的搞出了一个简化版的Y86指令集，并用其表示基本的运算和控制，甚至连数字电路的HCL都来了一笔（暴汗）。数据流、组合逻辑和流水线，图示+详细的讲解，一目了然。国内的计组教科书应该多借鉴一下。</p>
-</li>
-<li><p>程序性能优化这一章对程序员尤其实用，毕竟，正如TDD和XP的开创者Kent Beck所说，make it run, make it right, make it fast。而第三步又是最麻烦的一步，确认和消除性能的瓶颈，有时比Debug还要恐怖，所以Knuth大神说：Premature optimization is the source of evil。 　　 CSAPP通过展示一个简单的连续数求和和求积运算的小程序，通过性能监测，一步步的优化性能：减少过程调用、消除无关存储器引用、将下标引用切换到指针这些还是比较好理解的，然而后面的根据指令集展开循环、通过指令集来编写更具并行性的代码以及转移预测代价这些机器相关的优化的东东就开始颠覆我的世界观了，原来程序还可以这么搞，I服了U。 　　 唯一的遗憾就是这章的篇幅有些短小，对程序员最为重要的机器无关的程序优化介绍的也并不充分，与此相比，偶感觉programming pearls和practice of programming里面对性能优化的介绍更胜一筹。</p>
-</li>
-<li><p>存储器体系结构的内容用五个字概括就是：利用局部性。 　　只有了解了计算机的梯形存储器体系结构，才能体会到为什么同样逻辑的程序会产生如此之大的性能差距，虽然计算机设计者的初衷是把存储器当成一个巨型数组。然而这个大号数组的不同体位的差距还是非常大地，搞不好就郁闷鸟。尤其是DRAM-Disk这一段，足足10的六次方的差距，所以CSAPP专门开了VM 一章来详细讲述。</p>
-</li>
-<li><p>链接这部分内容篇幅不多，原理上讲的很简洁，文件节和符号解析表只是给出了几个图示，并没有过多的关注其实现。CSAPP把重点放在了链接对源代码产生的影响，同时也让偶再次理解到了全局变量很邪恶。动态链接部分让偶恍然大悟，.net里面的反射和程序集，放到C里面就是动态调用和共享库，都是相通的，无非C的代码更诡异一些。</p>
-</li>
-<li><p>异常控制流这一章的名字比较囧，以至于我刚开始认为它会介绍点诸如try…catch的异常处理机制。然而看了才明白，它介绍的是更为广义的exception，既包括硬件中断，也包括故障中断，比如说陷入（trap）和故障（fault）。 　　这一章做的比较绝的是，通过讲述异常流，引入了OS中最核心的概念：进程。然而它并不在进程的具体特性上下文章，而是通过讲述unix下进程相关的api 及使用，从一种程序员的角度告诉你，进程是这么用的，进程之间是这么交换信息的。到最后捎带介绍了一下C里面的非局部跳转（更加强大的Goto，也就是 setjmp和longjmp），别以为只有C++和Java才有异常处理机制，C一样可以做到。</p>
-</li>
-<li><p>程序的时间度量这一章感觉用处不大，遂跳过 </p>
-</li>
-<li><p>虚拟内存这一章从原理和实现两个不同的层面介绍了存储器体系结构的核心部分：VM。说实话，之前学习VM顶多就是冲着局部性去的，但没想到VM可以做的事有这么多，无论是存储器磁盘映射，还是malloc在磁盘上分配空间返回地址至PTE，都让偶对VM有了一个崭新的认识，原来VM还可以这么用。为了帮助读者深入理解内存的分配机制，作者甚至搞出了一个malloc的实现，从源代码来讲解内存分配、碎片合并、垃圾回收这些概念，帅气。</p>
-</li>
-<li><p>系统级IO，网络编程以及并发编程这些东东打算之后再慢慢研究，遂跳过</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Github使用指南</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-10 13:13:57" itemprop="dateModified" datetime="2023-11-10T13:13:57+08:00">2023-11-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>github trending 热门软件</p>
-<pre><code>项目含金量 stars 1k+
-fork 拷贝项目到自己的仓库
-pull request 合并分支
-</code></pre>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/11/09/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">Hexo博客教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-10 13:13:53" itemprop="dateModified" datetime="2023-11-10T13:13:53+08:00">2023-11-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="待办事项"><a href="#待办事项" class="headerlink" title="待办事项"></a>待办事项</h3><ul>
-<li>给网站添加全局目录！</li>
-</ul>
-<h3 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h3><pre><code>hexo new &quot;postName&quot; #新建文章
-hexo new page &quot;pageName&quot; #新建页面
-hexo generate #生成静态页面至public目录
-hexo server #开启预览访问端口（默认端口4000，&#39;ctrl + c&#39;关闭server）
-hexo deploy #部署到GitHub
-hexo help  # 查看帮助
-hexo version  #查看Hexo的版本
-</code></pre>
-<p>背景设置<br>    把你挑选的背景图片命名为：background.jpg，放在blog\themes\next\source\images里，在blog\themes\next\source\css_custom文件的custom.styl首部添加</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">/images/background.jpg</span>);</span><br><span class="line">  <span class="attribute">background-attachment</span>: fixed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
       
     </div>
@@ -587,13 +723,28 @@ hexo version  #查看Hexo的版本
 <li><strong>数据结构</strong>：基本数据类型，数据结构的分类方法。数组、链表、栈、队列、哈希表、树、堆、图等数据结构的定义、优缺点、常用操作、常见类型、典型应用、实现方法等。</li>
 <li><strong>算法</strong>：搜索、排序、分治、回溯、动态规划、贪心等算法的定义、优缺点、效率、应用场景、解题步骤、示例题目等。</li>
 </ul>
-<h3 id="1-0-排序算法"><a href="#1-0-排序算法" class="headerlink" title="1.0 排序算法"></a>1.0 排序算法</h3><ul>
-<li><strong>插入排序：</strong><br>对于一段数组，从a[1]开始依次插入到前面<strong>已经排序好的数组</strong>里。<br>实现：比较大小，把比待排序元素key大的元素往后移。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">key = a[j];  <span class="comment">// 待排序数组</span></span><br><span class="line">i = j - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (i &gt;= <span class="number">0</span> &amp;&amp; a[i] &gt; key) &#123;  <span class="comment">// 比较大小</span></span><br><span class="line">    a[i+<span class="number">1</span>] = a[i];  <span class="comment">// 比key大的往后挪</span></span><br><span class="line">    i--;</span><br><span class="line">&#125;</span><br><span class="line">a[i+<span class="number">1</span>] = key;</span><br></pre></td></tr></table></figure></li>
-<li><strong>选择排序：</strong><br>第一次从数组a[0..LEN-1]中找出最小值，与a[0]交换，第二次从a[1..LEN-1]找最小值与a[1]交换，等等。<br>实现：遍历数组，记录最小值及其下标，与a[0~LEN-1]交换<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">key = a[i];</span><br><span class="line"><span class="keyword">for</span> (j = i+<span class="number">1</span>; j &lt; LEN; j++) &#123;  <span class="comment">// 遍历数组i到末尾</span></span><br><span class="line">    <span class="keyword">if</span> (a[j] &lt; key) &#123;  <span class="comment">// 找出最小值并储存值和索引</span></span><br><span class="line">	key = a[j];</span><br><span class="line">	tag = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">a[tag] = a[i];</span><br><span class="line">a[i] = key;</span><br></pre></td></tr></table></figure></li>
+<h3 id="10-排序算法"><a class="markdownIt-Anchor" href="#10-排序算法"></a> 1.0 排序算法</h3>
+<ul>
+<li><strong>插入排序：</strong><br />
+对于一段数组，从a[1]开始依次插入到前面<strong>已经排序好的数组</strong>里。<br />
+实现：比较大小，把比待排序元素key大的元素往后移。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">key = a[j];  <span class="comment">// 待排序数组</span></span><br><span class="line">i = j - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (i &gt;= <span class="number">0</span> &amp;&amp; a[i] &gt; key) &#123;  <span class="comment">// 比较大小</span></span><br><span class="line">    a[i+<span class="number">1</span>] = a[i];  <span class="comment">// 比key大的往后挪</span></span><br><span class="line">    i--;</span><br><span class="line">&#125;</span><br><span class="line">a[i+<span class="number">1</span>] = key;</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>选择排序：</strong><br />
+第一次从数组a[0…LEN-1]中找出最小值，与a[0]交换，第二次从a[1…LEN-1]找最小值与a[1]交换，等等。<br />
+实现：遍历数组，记录最小值及其下标，与a[0~LEN-1]交换<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">key = a[i];</span><br><span class="line"><span class="keyword">for</span> (j = i+<span class="number">1</span>; j &lt; LEN; j++) &#123;  <span class="comment">// 遍历数组i到末尾</span></span><br><span class="line">    <span class="keyword">if</span> (a[j] &lt; key) &#123;  <span class="comment">// 找出最小值并储存值和索引</span></span><br><span class="line">	key = a[j];</span><br><span class="line">	tag = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">a[tag] = a[i];</span><br><span class="line">a[i] = key;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <ul>
-<li><strong>归并排序：</strong><br>把数组分成前后两半，直到不可再分；然后对已排序好的小数组排序。<br>实现：将原数组复制成左右两份，比较左右数组每一项的大小，并给原数组重新赋值。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">merge(<span class="type">int</span> start, <span class="type">int</span> mid, <span class="type">int</span> end)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> n1 = mid - start + <span class="number">1</span>;  <span class="comment">// 9/2 = 4, 0-4共5个元素</span></span><br><span class="line">	<span class="type">int</span> n2 = end - mid;  <span class="comment">// 9 - 9/2 = 5, 刚好5个元素</span></span><br><span class="line">	<span class="type">int</span> left[n1], right[n2];</span><br><span class="line">	<span class="type">int</span> i, j, k;</span><br><span class="line">		</span><br><span class="line">	<span class="comment">// 复制数组</span></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n1; i++)</span><br><span class="line">		left[i] = a[start+i];</span><br><span class="line">	<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n2; j++)</span><br><span class="line">		right[j] = a[mid+<span class="number">1</span>+j];</span><br><span class="line"></span><br><span class="line">	i = j = <span class="number">0</span>;</span><br><span class="line">	k = start;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; n1 &amp;&amp; j &lt; n2) &#123;</span><br><span class="line">		<span class="keyword">if</span> (left[i] &lt; right[j])  <span class="comment">// 已排序好的小数组再排序</span></span><br><span class="line">			a[k++] = left[i++];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			a[k++] = right[j++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; n1)  <span class="comment">// 处理剩余项（已排序好无需比较）</span></span><br><span class="line">		a[k++] = left[i++];</span><br><span class="line">	<span class="keyword">while</span> (j &lt; n2)</span><br><span class="line">		a[k++] = right[j++];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sort(<span class="type">int</span> start, <span class="type">int</span> end)  </span><br><span class="line"><span class="comment">// start, end应为数组下标范围; a[10]传入0, 9</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(start &lt; end) &#123;</span><br><span class="line">		<span class="type">int</span> mid = (start+end) / <span class="number">2</span>;</span><br><span class="line">		sort(start, mid);  <span class="comment">// 分割数组为两半</span></span><br><span class="line">		sort(mid+<span class="number">1</span>, end);</span><br><span class="line">		merge(start, mid, end);  <span class="comment">// 对已排序好的数组排序</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><strong>快速排序：</strong><br>找到一个标兵pivot，并把数组按左小右大顺序排到pivot两侧，对左右两侧再排序。<br>实现：两个索引从数组前后向中间遍历，每找到一组“左大右小”就交换，直到索引重合（排序完毕）。将pivot与索引位置交换，对左右两组再次排序。和冒泡排序一样属于交换排序。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// end在数组下标取值范围里  </span></span><br><span class="line"><span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> end)</span>  &#123;  </span><br><span class="line">    <span class="type">int</span> i = start, j = end;  </span><br><span class="line">    <span class="comment">// 完全遍历数组，将组内全部元素排序成“左小右大”  </span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;  </span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; a[j] &gt;= a[start])  </span><br><span class="line">            j--;  </span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; a[i] &lt;= a[start])  </span><br><span class="line">            i++;  </span><br><span class="line">        <span class="comment">// 找到一组“左大右小”就交换</span></span><br><span class="line">        swap(&amp;a[i], &amp;a[j]);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">// 交换pivot到组中间  </span></span><br><span class="line">    swap(&amp;a[start], &amp;a[i]);  </span><br><span class="line">    <span class="keyword">return</span> a[i];  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="type">void</span> <span class="title function_">quick_sort</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> end)</span>  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">if</span> (end &gt; start) &#123;  </span><br><span class="line">        <span class="type">int</span> pivot = partition(start, end);  </span><br><span class="line">        <span class="comment">// 如果把pivot变成pivot-1，pivot+1变成pivot就会死循环，为什么？  </span></span><br><span class="line">        quick_sort(start, pivot);          quick_sort(pivot+<span class="number">1</span>, end);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>归并排序：</strong><br />
+把数组分成前后两半，直到不可再分；然后对已排序好的小数组排序。<br />
+实现：将原数组复制成左右两份，比较左右数组每一项的大小，并给原数组重新赋值。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">merge(<span class="type">int</span> start, <span class="type">int</span> mid, <span class="type">int</span> end)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> n1 = mid - start + <span class="number">1</span>;  <span class="comment">// 9/2 = 4, 0-4共5个元素</span></span><br><span class="line">	<span class="type">int</span> n2 = end - mid;  <span class="comment">// 9 - 9/2 = 5, 刚好5个元素</span></span><br><span class="line">	<span class="type">int</span> left[n1], right[n2];</span><br><span class="line">	<span class="type">int</span> i, j, k;</span><br><span class="line">		</span><br><span class="line">	<span class="comment">// 复制数组</span></span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n1; i++)</span><br><span class="line">		left[i] = a[start+i];</span><br><span class="line">	<span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n2; j++)</span><br><span class="line">		right[j] = a[mid+<span class="number">1</span>+j];</span><br><span class="line"></span><br><span class="line">	i = j = <span class="number">0</span>;</span><br><span class="line">	k = start;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; n1 &amp;&amp; j &lt; n2) &#123;</span><br><span class="line">		<span class="keyword">if</span> (left[i] &lt; right[j])  <span class="comment">// 已排序好的小数组再排序</span></span><br><span class="line">			a[k++] = left[i++];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			a[k++] = right[j++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; n1)  <span class="comment">// 处理剩余项（已排序好无需比较）</span></span><br><span class="line">		a[k++] = left[i++];</span><br><span class="line">	<span class="keyword">while</span> (j &lt; n2)</span><br><span class="line">		a[k++] = right[j++];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sort(<span class="type">int</span> start, <span class="type">int</span> end)  </span><br><span class="line"><span class="comment">// start, end应为数组下标范围; a[10]传入0, 9</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span>(start &lt; end) &#123;</span><br><span class="line">		<span class="type">int</span> mid = (start+end) / <span class="number">2</span>;</span><br><span class="line">		sort(start, mid);  <span class="comment">// 分割数组为两半</span></span><br><span class="line">		sort(mid+<span class="number">1</span>, end);</span><br><span class="line">		merge(start, mid, end);  <span class="comment">// 对已排序好的数组排序</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>快速排序：</strong><br />
+找到一个标兵pivot，并把数组按左小右大顺序排到pivot两侧，对左右两侧再排序。<br />
+实现：两个索引从数组前后向中间遍历，每找到一组“左大右小”就交换，直到索引重合（排序完毕）。将pivot与索引位置交换，对左右两组再次排序。和冒泡排序一样属于交换排序。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// end在数组下标取值范围里  </span></span><br><span class="line"><span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> end)</span>  &#123;  </span><br><span class="line">    <span class="type">int</span> i = start, j = end;  </span><br><span class="line">    <span class="comment">// 完全遍历数组，将组内全部元素排序成“左小右大”  </span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;  </span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; a[j] &gt;= a[start])  </span><br><span class="line">            j--;  </span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; a[i] &lt;= a[start])  </span><br><span class="line">            i++;  </span><br><span class="line">        <span class="comment">// 找到一组“左大右小”就交换</span></span><br><span class="line">        swap(&amp;a[i], &amp;a[j]);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">// 交换pivot到组中间  </span></span><br><span class="line">    swap(&amp;a[start], &amp;a[i]);  </span><br><span class="line">    <span class="keyword">return</span> a[i];  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="type">void</span> <span class="title function_">quick_sort</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> end)</span>  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">if</span> (end &gt; start) &#123;  </span><br><span class="line">        <span class="type">int</span> pivot = partition(start, end);  </span><br><span class="line">        <span class="comment">// 如果把pivot变成pivot-1，pivot+1变成pivot就会死循环，为什么？  </span></span><br><span class="line">        quick_sort(start, pivot);          quick_sort(pivot+<span class="number">1</span>, end);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 
       
@@ -670,14 +821,17 @@ hexo version  #查看Hexo的版本
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="LFS"><a href="#LFS" class="headerlink" title="LFS"></a><strong>LFS</strong></h2><pre><code>参考网站：https://www.linuxfromscratch.org/lfs/
+          <h2 id="lfs"><a class="markdownIt-Anchor" href="#lfs"></a> <strong>LFS</strong></h2>
+<pre><code>参考网站：https://www.linuxfromscratch.org/lfs/
 </code></pre>
 <p>Linux From Scratch，搭建你自己的Linux</p>
 <ul>
 <li><strong>bision：</strong> bison是属于 GNU 项目的一个语法分析器生成器</li>
 <li><strong>gawk：</strong> linux下查找替换文本工具</li>
-<li><strong>texinfo：</strong> Texinfo是一种用于创建文档的格式和工具集。<br>它最初是为GNU项目开发的，用于编写GNU的软件文档。<br>Texinfo使用简单的文本文件格式，可以生成各种格式的输出，如HTML、PDF、Info格式等。</li>
-<li><strong>sudo ln -sf bash &#x2F;bin&#x2F;sh：</strong> 令shell脚本指向bash</li>
+<li><strong>texinfo：</strong> Texinfo是一种用于创建文档的格式和工具集。<br />
+它最初是为GNU项目开发的，用于编写GNU的软件文档。<br />
+Texinfo使用简单的文本文件格式，可以生成各种格式的输出，如HTML、PDF、Info格式等。</li>
+<li><strong>sudo ln -sf bash /bin/sh：</strong> 令shell脚本指向bash</li>
 </ul>
 
       
@@ -754,28 +908,46 @@ hexo version  #查看Hexo的版本
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="1-0-命令篇"><a href="#1-0-命令篇" class="headerlink" title="1.0 命令篇"></a>1.0 命令篇</h2><ol>
-<li><code>man</code> 加&#x2F;词 可以搜索你需要的词汇</li>
+          <h2 id="10-命令篇"><a class="markdownIt-Anchor" href="#10-命令篇"></a> 1.0 命令篇</h2>
+<ol>
+<li><code>man</code> 加/词 可以搜索你需要的词汇</li>
 <li><code>/usr/share/doc</code> 有安装软件的信息</li>
 <li><code>shutdown -h how</code> shutdown命令需要</li>
 <li>除了使用<code>cat</code>看文件，还有<code>tac</code>（从最后一行开始显示），<code>more, less</code>（可以翻页，好用）</li>
 <li><code>alias</code> 设置别名（如 <code>ll</code> 命令代表 <code>ls -l</code>）</li>
-<li>压缩一整个目录，使用<code>tar</code>，压缩单个文件<code>bzip2 gzip（-d解压）</code><br><code>tar -cvf 目标名 文件名</code> 压缩 ， <code>tar -xvf</code>解压</li>
+<li>压缩一整个目录，使用<code>tar</code>，压缩单个文件<code>bzip2 gzip（-d解压）</code><br />
+<code>tar -cvf 目标名 文件名</code> 压缩 ， <code>tar -xvf</code>解压</li>
 <li><code>grep</code>用法 <code>grep &quot;word&quot; filename</code></li>
 </ol>
-<h2 id="2-0-Bash-Shell"><a href="#2-0-Bash-Shell" class="headerlink" title="2.0 Bash Shell"></a>2.0 Bash Shell</h2><ol>
-<li>格式<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">value=&quot;string&quot;（不要有空格）</span><br><span class="line">echo $value</span><br><span class="line">	</span><br><span class="line">执行使用sh filename.sh</span><br></pre></td></tr></table></figure></li>
-<li>“%d”输出变量， ‘%d’输出%d（不转义）</li>
+<h2 id="20-bash-shell"><a class="markdownIt-Anchor" href="#20-bash-shell"></a> 2.0 Bash Shell</h2>
+<ol>
+<li>格式</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">value=&quot;string&quot;（不要有空格）</span><br><span class="line">echo $value</span><br><span class="line">	</span><br><span class="line">执行使用sh filename.sh</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>&quot;%d&quot;输出变量， '%d’输出%d（不转义）</li>
 <li>declare -afirx 定义变量为数组函数整数只读环境（默认为字符串）</li>
 <li>read value 读取变量</li>
-<li>$0 $1 $2 表示命令行参数sh file.sh $0 $1</li>
-<li>if then<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;$yn&quot; = &quot;y&quot; ] &amp;&amp; [ 条件二 ]（注意空格）; then</span><br><span class="line">语句</span><br><span class="line">else</span><br><span class="line">语句</span><br><span class="line">fi 结束</span><br></pre></td></tr></table></figure></li>
-<li>case<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">case $value in</span><br><span class="line">one)</span><br><span class="line">语句</span><br><span class="line">value)</span><br><span class="line">语句</span><br><span class="line">exit 1</span><br><span class="line">esac</span><br></pre></td></tr></table></figure></li>
-<li>for<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (( i=1；条件2；i=i+1 ))</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure></li>
-<li>while<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while [条件] || [条件]</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure></li>
-<li>调试脚本<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sh -nvx</span><br><span class="line">n 检查脚本错误</span><br><span class="line">v 执行脚本，并把脚本内容打印</span><br><span class="line">x 与v稍微不同(折叠显示)</span><br></pre></td></tr></table></figure></li>
+<li>$0 $1 $2 表示命令行参数sh <a target="_blank" rel="noopener" href="http://file.sh">file.sh</a> $0 $1</li>
+<li>if then</li>
 </ol>
-
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;$yn&quot; = &quot;y&quot; ] &amp;&amp; [ 条件二 ]（注意空格）; then</span><br><span class="line">语句</span><br><span class="line">else</span><br><span class="line">语句</span><br><span class="line">fi 结束</span><br></pre></td></tr></table></figure>
+<ol>
+<li>case</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">case $value in</span><br><span class="line">one)</span><br><span class="line">语句</span><br><span class="line">value)</span><br><span class="line">语句</span><br><span class="line">exit 1</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>for</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (( i=1；条件2；i=i+1 ))</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>while</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while [条件] || [条件]</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>调试脚本</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sh -nvx</span><br><span class="line">n 检查脚本错误</span><br><span class="line">v 执行脚本，并把脚本内容打印</span><br><span class="line">x 与v稍微不同(折叠显示)</span><br></pre></td></tr></table></figure>
       
     </div>
 

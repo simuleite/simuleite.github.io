@@ -23,12 +23,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="1.0 命令篇 man 加&#x2F;词 可以搜索你需要的词汇 &#x2F;usr&#x2F;share&#x2F;doc 有安装软件的信息 shutdown -h how shutdown命令需要 除了使用cat看文件，还有tac（从最后一行开始显示），more, less（可以翻页，好用） alias 设置别名（如 ll 命令代表 ls -l） 压缩一整个目录，使用tar，压缩单个文件bzip2 gzip（-d解压）tar">
+    <meta name="description" content="1.0 命令篇  man 加&#x2F;词 可以搜索你需要的词汇 &#x2F;usr&#x2F;share&#x2F;doc 有安装软件的信息 shutdown -h how shutdown命令需要 除了使用cat看文件，还有tac（从最后一行开始显示），more, less（可以翻页，好用） alias 设置别名（如 ll 命令代表 ls -l） 压缩一整个目录，使用tar，压缩单个文件bzip2 gzip（-d解压） tar -">
 <meta property="og:type" content="article">
 <meta property="og:title" content="鸟哥 linux笔记">
 <meta property="og:url" content="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
-<meta property="og:description" content="1.0 命令篇 man 加&#x2F;词 可以搜索你需要的词汇 &#x2F;usr&#x2F;share&#x2F;doc 有安装软件的信息 shutdown -h how shutdown命令需要 除了使用cat看文件，还有tac（从最后一行开始显示），more, less（可以翻页，好用） alias 设置别名（如 ll 命令代表 ls -l） 压缩一整个目录，使用tar，压缩单个文件bzip2 gzip（-d解压）tar">
+<meta property="og:description" content="1.0 命令篇  man 加&#x2F;词 可以搜索你需要的词汇 &#x2F;usr&#x2F;share&#x2F;doc 有安装软件的信息 shutdown -h how shutdown命令需要 除了使用cat看文件，还有tac（从最后一行开始显示），more, less（可以翻页，好用） alias 设置别名（如 ll 命令代表 ls -l） 压缩一整个目录，使用tar，压缩单个文件bzip2 gzip（-d解压） tar -">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-08T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-11-26T02:58:26.695Z">
@@ -57,7 +57,9 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -109,7 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-0-%E5%91%BD%E4%BB%A4%E7%AF%87"><span class="nav-number">1.</span> <span class="nav-text">1.0 命令篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-0-Bash-Shell"><span class="nav-number">2.</span> <span class="nav-text">2.0 Bash Shell</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%91%BD%E4%BB%A4%E7%AF%87"><span class="nav-number">1.</span> <span class="nav-text"> 1.0 命令篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-bash-shell"><span class="nav-number">2.</span> <span class="nav-text"> 2.0 Bash Shell</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -202,28 +204,46 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="1-0-命令篇"><a href="#1-0-命令篇" class="headerlink" title="1.0 命令篇"></a>1.0 命令篇</h2><ol>
-<li><code>man</code> 加&#x2F;词 可以搜索你需要的词汇</li>
+    <div class="post-body" itemprop="articleBody"><h2 id="10-命令篇"><a class="markdownIt-Anchor" href="#10-命令篇"></a> 1.0 命令篇</h2>
+<ol>
+<li><code>man</code> 加/词 可以搜索你需要的词汇</li>
 <li><code>/usr/share/doc</code> 有安装软件的信息</li>
 <li><code>shutdown -h how</code> shutdown命令需要</li>
 <li>除了使用<code>cat</code>看文件，还有<code>tac</code>（从最后一行开始显示），<code>more, less</code>（可以翻页，好用）</li>
 <li><code>alias</code> 设置别名（如 <code>ll</code> 命令代表 <code>ls -l</code>）</li>
-<li>压缩一整个目录，使用<code>tar</code>，压缩单个文件<code>bzip2 gzip（-d解压）</code><br><code>tar -cvf 目标名 文件名</code> 压缩 ， <code>tar -xvf</code>解压</li>
+<li>压缩一整个目录，使用<code>tar</code>，压缩单个文件<code>bzip2 gzip（-d解压）</code><br />
+<code>tar -cvf 目标名 文件名</code> 压缩 ， <code>tar -xvf</code>解压</li>
 <li><code>grep</code>用法 <code>grep &quot;word&quot; filename</code></li>
 </ol>
-<h2 id="2-0-Bash-Shell"><a href="#2-0-Bash-Shell" class="headerlink" title="2.0 Bash Shell"></a>2.0 Bash Shell</h2><ol>
-<li>格式<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">value=&quot;string&quot;（不要有空格）</span><br><span class="line">echo $value</span><br><span class="line">	</span><br><span class="line">执行使用sh filename.sh</span><br></pre></td></tr></table></figure></li>
-<li>“%d”输出变量， ‘%d’输出%d（不转义）</li>
+<h2 id="20-bash-shell"><a class="markdownIt-Anchor" href="#20-bash-shell"></a> 2.0 Bash Shell</h2>
+<ol>
+<li>格式</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">value=&quot;string&quot;（不要有空格）</span><br><span class="line">echo $value</span><br><span class="line">	</span><br><span class="line">执行使用sh filename.sh</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>&quot;%d&quot;输出变量， '%d’输出%d（不转义）</li>
 <li>declare -afirx 定义变量为数组函数整数只读环境（默认为字符串）</li>
 <li>read value 读取变量</li>
-<li>$0 $1 $2 表示命令行参数sh file.sh $0 $1</li>
-<li>if then<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;$yn&quot; = &quot;y&quot; ] &amp;&amp; [ 条件二 ]（注意空格）; then</span><br><span class="line">语句</span><br><span class="line">else</span><br><span class="line">语句</span><br><span class="line">fi 结束</span><br></pre></td></tr></table></figure></li>
-<li>case<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">case $value in</span><br><span class="line">one)</span><br><span class="line">语句</span><br><span class="line">value)</span><br><span class="line">语句</span><br><span class="line">exit 1</span><br><span class="line">esac</span><br></pre></td></tr></table></figure></li>
-<li>for<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (( i=1；条件2；i=i+1 ))</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure></li>
-<li>while<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while [条件] || [条件]</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure></li>
-<li>调试脚本<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sh -nvx</span><br><span class="line">n 检查脚本错误</span><br><span class="line">v 执行脚本，并把脚本内容打印</span><br><span class="line">x 与v稍微不同(折叠显示)</span><br></pre></td></tr></table></figure></li>
+<li>$0 $1 $2 表示命令行参数sh <a target="_blank" rel="noopener" href="http://file.sh">file.sh</a> $0 $1</li>
+<li>if then</li>
 </ol>
-
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;$yn&quot; = &quot;y&quot; ] &amp;&amp; [ 条件二 ]（注意空格）; then</span><br><span class="line">语句</span><br><span class="line">else</span><br><span class="line">语句</span><br><span class="line">fi 结束</span><br></pre></td></tr></table></figure>
+<ol>
+<li>case</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">case $value in</span><br><span class="line">one)</span><br><span class="line">语句</span><br><span class="line">value)</span><br><span class="line">语句</span><br><span class="line">exit 1</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>for</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (( i=1；条件2；i=i+1 ))</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>while</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while [条件] || [条件]</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>调试脚本</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sh -nvx</span><br><span class="line">n 检查脚本错误</span><br><span class="line">v 执行脚本，并把脚本内容打印</span><br><span class="line">x 与v稍微不同(折叠显示)</span><br></pre></td></tr></table></figure>
     </div>
 
     

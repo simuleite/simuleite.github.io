@@ -23,12 +23,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="LFS参考网站：https:&#x2F;&#x2F;www.linuxfromscratch.org&#x2F;lfs&#x2F;  Linux From Scratch，搭建你自己的Linux  bision： bison是属于 GNU 项目的一个语法分析器生成器 gawk： linux下查找替换文本工具 texinfo： Texinfo是一种用于创建文档的格式和工具集。它最初是为GNU项目开发的，用于编写GNU的软件文档。Texin">
+    <meta name="description" content="LFS 参考网站：https:&#x2F;&#x2F;www.linuxfromscratch.org&#x2F;lfs&#x2F;  Linux From Scratch，搭建你自己的Linux  bision： bison是属于 GNU 项目的一个语法分析器生成器 gawk： linux下查找替换文本工具 texinfo： Texinfo是一种用于创建文档的格式和工具集。 它最初是为GNU项目开发的，用于编写GNU的软件文档。 T">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LFS笔记">
 <meta property="og:url" content="https://simuleite.github.io/2023/11/09/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/LFS%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
-<meta property="og:description" content="LFS参考网站：https:&#x2F;&#x2F;www.linuxfromscratch.org&#x2F;lfs&#x2F;  Linux From Scratch，搭建你自己的Linux  bision： bison是属于 GNU 项目的一个语法分析器生成器 gawk： linux下查找替换文本工具 texinfo： Texinfo是一种用于创建文档的格式和工具集。它最初是为GNU项目开发的，用于编写GNU的软件文档。Texin">
+<meta property="og:description" content="LFS 参考网站：https:&#x2F;&#x2F;www.linuxfromscratch.org&#x2F;lfs&#x2F;  Linux From Scratch，搭建你自己的Linux  bision： bison是属于 GNU 项目的一个语法分析器生成器 gawk： linux下查找替换文本工具 texinfo： Texinfo是一种用于创建文档的格式和工具集。 它最初是为GNU项目开发的，用于编写GNU的软件文档。 T">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-08T16:00:00.000Z">
 <meta property="article:modified_time" content="2023-11-26T03:12:35.457Z">
@@ -57,7 +57,9 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -109,7 +111,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#LFS"><span class="nav-number">1.</span> <span class="nav-text">LFS</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lfs"><span class="nav-number">1.</span> <span class="nav-text"> LFS</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -202,14 +204,17 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="LFS"><a href="#LFS" class="headerlink" title="LFS"></a><strong>LFS</strong></h2><pre><code>参考网站：https://www.linuxfromscratch.org/lfs/
+    <div class="post-body" itemprop="articleBody"><h2 id="lfs"><a class="markdownIt-Anchor" href="#lfs"></a> <strong>LFS</strong></h2>
+<pre><code>参考网站：https://www.linuxfromscratch.org/lfs/
 </code></pre>
 <p>Linux From Scratch，搭建你自己的Linux</p>
 <ul>
 <li><strong>bision：</strong> bison是属于 GNU 项目的一个语法分析器生成器</li>
 <li><strong>gawk：</strong> linux下查找替换文本工具</li>
-<li><strong>texinfo：</strong> Texinfo是一种用于创建文档的格式和工具集。<br>它最初是为GNU项目开发的，用于编写GNU的软件文档。<br>Texinfo使用简单的文本文件格式，可以生成各种格式的输出，如HTML、PDF、Info格式等。</li>
-<li><strong>sudo ln -sf bash &#x2F;bin&#x2F;sh：</strong> 令shell脚本指向bash</li>
+<li><strong>texinfo：</strong> Texinfo是一种用于创建文档的格式和工具集。<br />
+它最初是为GNU项目开发的，用于编写GNU的软件文档。<br />
+Texinfo使用简单的文本文件格式，可以生成各种格式的输出，如HTML、PDF、Info格式等。</li>
+<li><strong>sudo ln -sf bash /bin/sh：</strong> 令shell脚本指向bash</li>
 </ul>
 
     </div>
