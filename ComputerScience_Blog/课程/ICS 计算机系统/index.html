@@ -31,7 +31,7 @@
 <meta property="og:description" content="参考MOOC：NJU-1001625001   1.0 计算机系统概述  1.3 程序开发和执行过程  hello.c程序用ascii文本表示 首先.c文件预处理为.i文件（把预处理指令翻译过来），然后.i文件编译成.s文件（汇编程序文本）,接着.s文件汇编成.o文件（二进制），与printf等函数的.o文件共同连接成可执行文件（二进制） 高级语言编写程序所需环境：（1）语言处理程序； （2）语言">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-12-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-11T08:45:50.493Z">
+<meta property="article:modified_time" content="2024-01-12T13:07:43.096Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="课程">
 <meta name="twitter:card" content="summary">
@@ -192,7 +192,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-01-11 16:45:50" itemprop="dateModified" datetime="2024-01-11T16:45:50+08:00">2024-01-11</time>
+      <time title="修改时间：2024-01-12 21:07:43" itemprop="dateModified" datetime="2024-01-12T21:07:43+08:00">2024-01-12</time>
     </span>
 
   
@@ -849,7 +849,18 @@ IEEE 754规定中间结果需要在右边加两个附加位</li>
 </ol>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// p1.c</span></span><br><span class="line"><span class="type">double</span> d;</span><br><span class="line"><span class="type">void</span> <span class="title function_">p1</span><span class="params">( )</span></span><br><span class="line">&#123;</span><br><span class="line">    d=<span class="number">1.0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.c</span></span><br><span class="line"><span class="type">int</span> d=<span class="number">100</span>;</span><br><span class="line"><span class="type">int</span> x=<span class="number">200</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    p1( );</span><br><span class="line">    <span class="built_in">printf</span> (“d=%d, x=%d\n”, d, x );</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在p1中，d变成了double类型，占8个字节；而在全局变量里d和x各占4字节，在d转成浮点数的过程中发生了溢出，而溢出的值影响到了后面的x。<br />
-<code>(double)1.0D = 0000 0000 0000 F03FH, 1 072 693 248D = 3f f0 00 00H</code></p>
+<code>(double)1.0D = 0000 0000 0000 F03FH, 1 072 693 248D = 3f f0 00 00H</code><br />
+4. float类型机器数和真值转换<br />
+- 机器数转真值<br />
+1. <code>1| 011 11101| 110 0000 0000 0000 0000</code>先划分符号位、阶码和尾数<br />
+2. 阶码转10进制，减去127，<code>127-2-127 = -2</code><br />
+3. 尾数转10进制，记得加1，<code>0.5+0.25+1 = 1.75</code><br />
+4. 真值 = 尾数 * 2^阶码，<code>-1.75 * 2^-2 = -0.4375</code><br />
+- 真值转机器数<br />
+1. <code>24.678</code>转二进制，并划分整数部分和小数部分<br />
+2. <code>1 1000.101</code>整数部分用科学计数法表示<code>1.1000 101 * 2^4</code><br />
+3. 计算阶码，<code>4+127=3+128</code><br />
+4. 小数部分就是尾数，照抄，<code>0| 100 00011| 100 0101 0000 0000 0000</code></p>
 
     </div>
 
