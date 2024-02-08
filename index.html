@@ -180,6 +180,292 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Shell命令行使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-08 15:24:55" itemprop="dateModified" datetime="2024-02-08T15:24:55+08:00">2024-02-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="计算机科学基本知识"><a class="markdownIt-Anchor" href="#计算机科学基本知识"></a> 计算机科学基本知识</h1>
+<pre><code>参考资料 https://missing-semester-cn.github.io/2020/course-shell/
+</code></pre>
+<ul>
+<li>
+<p>手册<br />
+<code>man</code> 命令</p>
+</li>
+<li>
+<p>导航<br />
+<code>pwd 显示当前所在目录</code><br />
+<code>cd</code> 进入文件夹  <code>'..'</code> 上级目录   <code>'.'</code>当前目录   <code>'/'</code>开头的是绝对路径`</p>
+</li>
+<li>
+<p>查看文件<br />
+<code>ls</code> 列出所有文件<br />
+<code>ls -l</code> 查看文件权限信息</p>
+</li>
+<li>
+<p>创建文件夹<br />
+<code>mkdir</code> 文件夹名<br />
+<code>rmdir</code> 删除文件夹</p>
+</li>
+<li>
+<p>没有vim的时候如何创建、编辑、查看文件<br />
+<code>touch 文件</code> 创建文件<br />
+<code>echo 文本 &gt; 文件</code>  echo+重定向输入文件（会把原来内容覆盖）<br />
+<code>echo 文本 &gt;&gt; 文件</code> 追加输入（在原来内容的结尾另起一行输入）<br />
+<code>cat 文件</code> 查看文件</p>
+</li>
+<li>
+<p>chmod用法<br />
+<code>chmod uoga +-= wxrXst 文件</code>   w写r读x执行<br />
+<code>chmod 777 文件</code> 中间的7：4读 2写 1执行</p>
+</li>
+<li>
+<p>grep用法（文件内容）<br />
+<code>grep 字段</code> 搜索字段<br />
+<code>-c</code> 显示上下文<br />
+<code>-v </code>反选</p>
+</li>
+<li>
+<p>find用法（文件）<br />
+<code>find</code> 文件</p>
+</li>
+</ul>
+<h1 id="bash-prompt-string配置"><a class="markdownIt-Anchor" href="#bash-prompt-string配置"></a> Bash prompt string配置</h1>
+<ul>
+<li>PS(prompt string): 是命令行的默认显示文本，如：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username@hostname /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以在<code>~/.bash_profile</code>中修改默认显示</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Windows Git Bash默认配置，其中\007前面的$TITLEPREFIX和$PWD是标签栏的内容，git_ps1会显示git工作分支</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&quot;\[\e]0;<span class="variable">$TITLEPREFIX</span>:<span class="variable">$PWD</span>\007\]\n\[\e[32m\]\u@\h \[\e[35m\]<span class="variable">$MSYSTEM</span> \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &quot;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@hostname MINGW /work_directory</span><br><span class="line">$ </span><br><span class="line"></span><br><span class="line"><span class="comment"># 简洁配置，将\h换成了指定文本，保留了命令行前的换行，将标签名改为当前目录</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&quot;\[\e]0;\W\007\] \n\[\e[32m\]\u@Host \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &quot;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@Host /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">syntax</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\u</td>
+<td>username</td>
+</tr>
+<tr>
+<td style="text-align:center">\h</td>
+<td>hostname</td>
+</tr>
+<tr>
+<td style="text-align:center">\e</td>
+<td>set colors</td>
+</tr>
+<tr>
+<td style="text-align:center">\w</td>
+<td>work directory</td>
+</tr>
+<tr>
+<td style="text-align:center">\W</td>
+<td>current diretory</td>
+</tr>
+<tr>
+<td style="text-align:center">\n</td>
+<td>line feed</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">鸟哥 linux笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-02-08 14:59:05" itemprop="dateModified" datetime="2024-02-08T14:59:05+08:00">2024-02-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="基本配置"><a class="markdownIt-Anchor" href="#基本配置"></a> 基本配置</h2>
+<ul>
+<li>sudo: 修改<code>/etc/sudoers</code></li>
+<li>apt软件包管理系统：<code>/etc/apt/sources.list</code>修改软件发布源<br />
+<code>deb http://站点/目录名/stretch版本名 main contrib non-free三类软件包</code><br />
+Debian官方软件源：官网/mirror/list</li>
+</ul>
+<h2 id="10-命令篇"><a class="markdownIt-Anchor" href="#10-命令篇"></a> 1.0 命令篇</h2>
+<ol>
+<li><code>man</code> 加/词 可以搜索你需要的词汇</li>
+<li><code>/usr/share/doc</code> 有安装软件的信息</li>
+<li><code>shutdown -h how</code> shutdown命令需要</li>
+<li>除了使用<code>cat</code>看文件，还有<code>tac</code>（从最后一行开始显示），<code>more, less</code>（可以翻页，好用）</li>
+<li><code>alias</code> 设置别名（如 <code>ll</code> 命令代表 <code>ls -l</code>）</li>
+<li>压缩一整个目录，使用<code>tar</code>，压缩单个文件<code>bzip2 gzip（-d解压）</code><br />
+<code>tar -cvf 目标名 文件名</code> 压缩 ， <code>tar -xvf</code>解压</li>
+<li><code>grep</code>用法 <code>grep &quot;word&quot; filename</code></li>
+</ol>
+<h2 id="20-bash-shell"><a class="markdownIt-Anchor" href="#20-bash-shell"></a> 2.0 Bash Shell</h2>
+<ol>
+<li>格式</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">value=&quot;string&quot;（不要有空格）</span><br><span class="line">echo $value</span><br><span class="line">    </span><br><span class="line">执行使用sh filename.sh</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>&quot;%d&quot;输出变量， '%d’输出%d（不转义）</li>
+<li>declare -afirx 定义变量为数组函数整数只读环境（默认为字符串）</li>
+<li>read value 读取变量</li>
+<li>$0 $1 $2 表示命令行参数sh <a target="_blank" rel="noopener" href="http://file.sh">file.sh</a> $0 $1</li>
+<li>if then</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;$yn&quot; = &quot;y&quot; ] &amp;&amp; [ 条件二 ]（注意空格）; then</span><br><span class="line">语句</span><br><span class="line">else</span><br><span class="line">语句</span><br><span class="line">fi 结束</span><br></pre></td></tr></table></figure>
+<ol>
+<li>case</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">case $value in</span><br><span class="line">one)</span><br><span class="line">语句</span><br><span class="line">value)</span><br><span class="line">语句</span><br><span class="line">exit 1</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>for</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (( i=1；条件2；i=i+1 ))</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>while</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while [条件] || [条件]</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>调试脚本</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sh -nvx</span><br><span class="line">n 检查脚本错误</span><br><span class="line">v 执行脚本，并把脚本内容打印</span><br><span class="line">x 与v稍微不同(折叠显示)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Matlab%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -216,7 +502,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-02-07 11:31:08" itemprop="dateModified" datetime="2024-02-07T11:31:08+08:00">2024-02-07</time>
+      <time title="修改时间：2024-02-07 11:39:49" itemprop="dateModified" datetime="2024-02-07T11:39:49+08:00">2024-02-07</time>
     </span>
 
   
@@ -666,127 +952,6 @@ quit     退出
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/%E9%B8%9F%E5%93%A5%20linux%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">鸟哥 linux笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-01-17 17:14:08" itemprop="dateModified" datetime="2024-01-17T17:14:08+08:00">2024-01-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="基本配置"><a class="markdownIt-Anchor" href="#基本配置"></a> 基本配置</h2>
-<ul>
-<li>sudo: 修改<code>/etc/sudoers</code></li>
-<li>apt软件包管理系统：<code>/etc/apt/sources.list</code>修改软件发布源<br />
-<code>deb http://站点/目录名/stretch版本名 main contrib non-free三类软件包</code><br />
-Debian官方软件源：官网/mirror/list</li>
-</ul>
-<h2 id="10-命令篇"><a class="markdownIt-Anchor" href="#10-命令篇"></a> 1.0 命令篇</h2>
-<ol>
-<li><code>man</code> 加/词 可以搜索你需要的词汇</li>
-<li><code>/usr/share/doc</code> 有安装软件的信息</li>
-<li><code>shutdown -h how</code> shutdown命令需要</li>
-<li>除了使用<code>cat</code>看文件，还有<code>tac</code>（从最后一行开始显示），<code>more, less</code>（可以翻页，好用）</li>
-<li><code>alias</code> 设置别名（如 <code>ll</code> 命令代表 <code>ls -l</code>）</li>
-<li>压缩一整个目录，使用<code>tar</code>，压缩单个文件<code>bzip2 gzip（-d解压）</code><br />
-<code>tar -cvf 目标名 文件名</code> 压缩 ， <code>tar -xvf</code>解压</li>
-<li><code>grep</code>用法 <code>grep &quot;word&quot; filename</code></li>
-</ol>
-<h2 id="20-bash-shell"><a class="markdownIt-Anchor" href="#20-bash-shell"></a> 2.0 Bash Shell</h2>
-<ol>
-<li>格式</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">value=&quot;string&quot;（不要有空格）</span><br><span class="line">echo $value</span><br><span class="line">    </span><br><span class="line">执行使用sh filename.sh</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>&quot;%d&quot;输出变量， '%d’输出%d（不转义）</li>
-<li>declare -afirx 定义变量为数组函数整数只读环境（默认为字符串）</li>
-<li>read value 读取变量</li>
-<li>$0 $1 $2 表示命令行参数sh <a target="_blank" rel="noopener" href="http://file.sh">file.sh</a> $0 $1</li>
-<li>if then</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;$yn&quot; = &quot;y&quot; ] &amp;&amp; [ 条件二 ]（注意空格）; then</span><br><span class="line">语句</span><br><span class="line">else</span><br><span class="line">语句</span><br><span class="line">fi 结束</span><br></pre></td></tr></table></figure>
-<ol>
-<li>case</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">case $value in</span><br><span class="line">one)</span><br><span class="line">语句</span><br><span class="line">value)</span><br><span class="line">语句</span><br><span class="line">exit 1</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
-<ol start="8">
-<li>for</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for (( i=1；条件2；i=i+1 ))</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<ol start="9">
-<li>while</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">while [条件] || [条件]</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-<ol start="10">
-<li>调试脚本</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sh -nvx</span><br><span class="line">n 检查脚本错误</span><br><span class="line">v 执行脚本，并把脚本内容打印</span><br><span class="line">x 与v稍微不同(折叠显示)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1072,177 +1237,6 @@ tags: Data Center, Linux, Open Source
 <li>精选精读论文</li>
 <li>STFW：比百度更高效的办法</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/LinuxC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/LinuxC/" class="post-title-link" itemprop="url">LinuxC</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-21T00:00:00+08:00">2023-11-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-01-12 20:34:21" itemprop="dateModified" datetime="2024-01-12T20:34:21+08:00">2024-01-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="90-代码风格"><a class="markdownIt-Anchor" href="#90-代码风格"></a> 9.0 代码风格</h3>
-<ol>
-<li>函数最好保持简单，只实现一种功能 (5-10个变量， 4个缩进以内)</li>
-<li>函数命名包括动词，如get_current</li>
-<li>使用下划线、详细地命名</li>
-</ol>
-<h2 id="第一阶段总结"><a class="markdownIt-Anchor" href="#第一阶段总结"></a> 第一阶段总结</h2>
-<p>（Kimi AI生成）在C语言中，源文件中的语法元素和规则如下：</p>
-<ol>
-<li>
-<p><strong>源文件中所有函数定义之外可以出现的语法元素</strong>：</p>
-<ul>
-<li>预处理指令（如<code>#include</code>, <code>#define</code>, <code>#ifdef</code>等）</li>
-<li>全局变量声明</li>
-<li>类型定义（如<code>typedef</code>）</li>
-<li>函数原型声明（函数声明）</li>
-<li>静态变量声明</li>
-<li>静态函数声明</li>
-<li>枚举类型声明</li>
-<li>结构体和联合体声明</li>
-<li>宏定义</li>
-</ul>
-</li>
-<li>
-<p><strong>函数定义之中可以出现的语法元素</strong>：</p>
-<ul>
-<li>局部变量声明</li>
-<li>语句（如赋值语句、控制流语句等）</li>
-<li>函数调用</li>
-<li>表达式</li>
-<li>语句块（由花括号<code>&#123;&#125;</code>包围的语句集合）</li>
-</ul>
-</li>
-<li>
-<p><strong>语句的种类</strong>：</p>
-<ul>
-<li>表达式语句</li>
-<li>复合语句（由花括号<code>&#123;&#125;</code>包围的语句集合）</li>
-<li>空语句（由分号<code>;</code>表示）</li>
-<li>标签语句（由标签标识符和冒号<code>:</code>组成）</li>
-<li>选择语句（<code>if</code>, <code>switch</code>）</li>
-<li>迭代语句（<code>while</code>, <code>do-while</code>, <code>for</code>）</li>
-<li>跳转语句（<code>break</code>, <code>continue</code>, <code>goto</code>, <code>return</code>）</li>
-</ul>
-</li>
-<li>
-<p><strong>需要遵循标识符命名规则的语法元素</strong>：</p>
-<ul>
-<li>变量名</li>
-<li>函数名</li>
-<li>类型名</li>
-<li>枚举常量名</li>
-<li>结构体和联合体成员名</li>
-<li>宏名</li>
-</ul>
-</li>
-<li>
-<p><strong>表达式由哪些语法元素组成</strong>：</p>
-<ul>
-<li>常量</li>
-<li>变量</li>
-<li>函数调用</li>
-<li>算术运算符和表达式</li>
-<li>逻辑运算符和表达式</li>
-<li>条件运算符和表达式</li>
-<li>逗号运算符和表达式</li>
-<li>位运算符和表达式</li>
-<li>赋值运算符和表达式</li>
-<li>地址运算符和表达式</li>
-<li>指针运算符和表达式</li>
-</ul>
-</li>
-<li>
-<p><strong>运算符的左值、整型操作数和Side Effect</strong>：</p>
-<ul>
-<li>取操作数的左值的运算符：赋值运算符（<code>=</code>, <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code>, <code>&amp;=</code>, <code>^=</code>, <code>|=</code>, <code>&lt;&lt;=</code>, <code>&gt;&gt;=</code>）</li>
-<li>操作数必须是整型的运算符：位移运算符（<code>&lt;&lt;</code>, <code>&gt;&gt;</code>）</li>
-<li>有Side Effect的运算符：赋值运算符，自增/自减运算符（<code>++</code>, <code>--</code>），递增/递减运算符（<code>++</code>, <code>--</code>），取地址运算符（<code>&amp;</code>），解引用运算符（<code>*</code>）</li>
-</ul>
-</li>
-<li>
-<p><strong>左值和右值</strong>：</p>
-<ul>
-<li>可以做左值的表达式：变量、数组元素、解引用指针、结构体成员、联合体成员</li>
-<li>只能做右值的表达式：字面量、函数调用、算术运算、逻辑运算、条件运算、逗号运算等</li>
-</ul>
-</li>
-<li>
-<p><strong>常量表达式和整数常量表达式</strong>：</p>
-<ul>
-<li>必须用常量表达式的地方：数组大小、枚举常量、类型定义、宏定义中的常量参数等</li>
-<li>必须用整数常量表达式的地方：数组大小、枚举常量等</li>
-</ul>
-</li>
-</ol>
-<p>请注意，C语言的语法规则可能会随着不同的编译器和标准（如C89, C90, C99, C11等）有所不同。上述信息基于C语言的一般规则。</p>
 
       
     </div>
