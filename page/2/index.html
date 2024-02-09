@@ -149,7 +149,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,216 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">ICS 计算机系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-09T00:00:00+08:00">2023-12-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-17 17:03:57" itemprop="dateModified" datetime="2024-01-17T17:03:57+08:00">2024-01-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="第一阶段-程序的表示-转换与链接"><a class="markdownIt-Anchor" href="#第一阶段-程序的表示-转换与链接"></a> 第一阶段 程序的表示、转换与链接</h1>
+<pre><code>参考MOOC：NJU-1001625001
+</code></pre>
+<h2 id="10-计算机系统概述"><a class="markdownIt-Anchor" href="#10-计算机系统概述"></a> 1.0 计算机系统概述</h2>
+<h3 id="13-程序开发和执行过程"><a class="markdownIt-Anchor" href="#13-程序开发和执行过程"></a> 1.3 程序开发和执行过程</h3>
+<ol>
+<li>hello.c程序用ascii文本表示</li>
+<li>首先.c文件预处理为.i文件（把预处理指令翻译过来），然后.i文件编译成.s文件（汇编程序文本）,接着.s文件汇编成.o文件（二进制），与printf等函数的.o文件共同连接成可执行文件（二进制）</li>
+<li>高级语言编写程序所需环境：（1）语言处理程序； （2）语言处理系统； （3）语言运行时的系统； （4）操作系统内核； （5）操作系统； （6）指令集体系结构； （7）人机接口</li>
+</ol>
+<h3 id="14-计算机系统层次结构"><a class="markdownIt-Anchor" href="#14-计算机系统层次结构"></a> 1.4 计算机系统层次结构</h3>
+<ul>
+<li>过程式语言：如何做； 非过程化语言：做什么；语言发展是不断抽象的过程</li>
+<li>应用-&gt;算法-&gt;语言-&gt;操作系统-&gt;(软件)ISA指令集（硬件）-&gt;微体系、功能部件、电路和器件<br />
+非预期结果是硬件层次造成的。上层是下层的抽象，下层是上层的实现，底层为上层提供支撑环境</li>
+<li>题目：由机器语言编程的早期计算机系统中，没有ISA这一层次（F）；一直都有ISA，因此<strong>ISA是计算机体系层次中最重要的层次</strong>。<br />
+<strong>ISA， Instruction Set Architecture（结构）规定了如何使用硬件，是可以执行的指令的集合</strong>，包括指令格式、操作种类及操作数的类型的规定…<br />
+<strong>没有ISA，软件无法使用计算机硬件，一台计算机就不能成为“通用”计算机</strong></li>
+<li>计算机组成必须能够实现ISA规定的功能；同一种ISA可以由不同的计算机（硬件）组成，如乘法指令用ALU或乘法器都可以实现</li>
+<li>题目：有没有乘法指令是ISA考虑的问题，如何实现乘法指令是微体系结构考虑的问题</li>
+</ul>
+<h3 id="15-计算机系统基础学习目标"><a class="markdownIt-Anchor" href="#15-计算机系统基础学习目标"></a> 1.5 计算机系统基础学习目标</h3>
+<ul>
+<li>编写高效程序必须了解计算机底层结构</li>
+<li>必须掌握并行程序设计技术和工具</li>
+<li>课程目标：理解计算机如何生成和运行可执行文件</li>
+<li>涉及层次：C语言设计层，ISA和汇编层，微体系结构和硬件层</li>
+<li>第一部分 程序表示与转换；第二部分 执行控制流</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Read%20Origin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Read%20Origin/" class="post-title-link" itemprop="url">Read Origin</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-11 00:00:00" itemprop="dateCreated datePublished" datetime="2024-01-11T00:00:00+08:00">2024-01-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-01-17 13:10:31" itemprop="dateModified" datetime="2024-01-17T13:10:31+08:00">2024-01-17</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="技术博主"><a class="markdownIt-Anchor" href="#技术博主"></a> 技术博主</h1>
+<ul>
+<li>多看开发者大会！</li>
+</ul>
+<ol>
+<li>ThePrimeTime</li>
+<li>CodeAesthetic</li>
+<li>Molly Rocket</li>
+</ol>
+<h1 id="a-idarticle1whats-so-special-about-2147483648a"><a class="markdownIt-Anchor" href="#a-idarticle1whats-so-special-about-2147483648a"></a> <a id="article1">What’s so special about 2147483648?</a></h1>
+<pre><code>by Sandra Henry-Stocker, Unix Dweeb, from NetWorkWorld 945870
+tags: Data Center, Linux, Open Source
+难度：EASY
+</code></pre>
+<p>First of all, it’s a power of 2. That’s undoubtedly not the most obvious thing unless you’re some kind of mathematical genius. And, to be exact, it’s 2^31. That’s significant — as you’ll see in a minute.</p>
+<p>In binary, 2147483647 is 01111111111111111111111111111111 and it’s the biggest positive number that will fit in 32 bits when using the “two’s complement” notation (补码) — the way of representing numbers that allows for negative values. If we could use that leftmost (high order) bit, the largest possible number would be twice as large since every extra bit doubles the range of numbers that a binary number can represent.</p>
+<p>And 2147483648 just happens to be the number you’d get if you multiplied 256 * 256 * 256 * 256 and then divided the result by 2.  Not excited yet? Give me a moment.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Read%20Origin/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1013,210 +1223,8 @@ Texinfo使用简单的文本文件格式，可以生成各种格式的输出，�
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">tmux使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-25T00:00:00+08:00">2023-11-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-26 11:04:31" itemprop="dateModified" datetime="2023-11-26T11:04:31+08:00">2023-11-26</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <pre><code>参考教程： https://www.ruanyifeng.com/blog/2019/10/tmux.html
-</code></pre>
-<ul>
-<li>
-<p><strong><code>ctrl+b</code> 前缀键</strong><br />
-<code>%</code>  分成左右两栏<br />
-<code>&quot;</code>  分成上下两栏<br />
-<code>up</code>  选择上边的窗口</p>
-</li>
-<li>
-<p><strong><code>ctrl+d</code> 删除窗口</strong></p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">vim基本操作</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-26 09:53:42" itemprop="dateModified" datetime="2023-11-26T09:53:42+08:00">2023-11-26</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ul>
-<li>
-<p>词： <code>w</code> （下一个词）， <code>b</code> （词初）， <code>e</code> （词尾）</p>
-</li>
-<li>
-<p>行： <code>0</code> （行初）， <code>^</code> （第一个非空格字符）， <code>$</code> （行尾）</p>
-</li>
-<li>
-<p>文件： <code>gg</code> （文件头）， <code>G</code> （文件尾）</p>
-</li>
-<li>
-<p>搜索: <code>/&#123;正则表达式&#125;</code>, <code>n</code> / <code>N</code> 用于导航匹配</p>
-</li>
-<li>
-<p><code>x</code> 删除字符（等同于 <code>dl</code>）</p>
-</li>
-<li>
-<p><code>s</code> 替换字符（等同于 <code>xi</code>）</p>
-</li>
-<li>
-<p>可视化模式 + 操作</p>
-<ul>
-<li>选中文字, <code>d</code> 删除 或者 <code>c</code> 改变</li>
-</ul>
-</li>
-<li>
-<p><code>u</code> 撤销, <code>&lt;C-r&gt;</code> 重做</p>
-</li>
-<li>
-<p><code>y</code> 复制 / “yank” （其他一些命令比如 <code>d</code> 也会复制）</p>
-</li>
-<li>
-<p><code>p</code> 粘贴</p>
-</li>
-<li>
-<p>更多值得学习的: 比如 <code>~</code> 改变字符的大小写</p>
-</li>
-</ul>
-<p><code>3w</code> 向前移动三个词</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
