@@ -1900,6 +1900,8 @@ IEEE 754规定中间结果需要在右边加两个附加位</li>
 <li>使用反向代理时，<code>git</code>相关命令会出问题</li>
 <li>实验前，创建新分支<code>pa号</code>，在其中做修改，完成以后合并pa到master中，并转回master分支</li>
 </ol>
+<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># PA</span></span><br><span class="line"><span class="section">## notification</span></span><br><span class="line"><span class="bullet">-</span> </span><br><span class="line"><span class="section">## difficulties</span></span><br><span class="line"><span class="bullet">1.</span> </span><br><span class="line"><span class="section">## summary</span></span><br></pre></td></tr></table></figure>
 <h1 id="pa0"><a class="markdownIt-Anchor" href="#pa0"></a> PA0</h1>
 <h2 id="notification"><a class="markdownIt-Anchor" href="#notification"></a> notification</h2>
 <ul>
@@ -1933,6 +1935,22 @@ IEEE 754规定中间结果需要在右边加两个附加位</li>
 <ul>
 <li>Read the source code and the mannual, Search the web and AI, and Keep grit.</li>
 </ul>
+<h1 id="pa1"><a class="markdownIt-Anchor" href="#pa1"></a> PA1</h1>
+<p>2024/02/10 成功运行马里奥.nes</p>
+<h2 id="notification-2"><a class="markdownIt-Anchor" href="#notification-2"></a> notification</h2>
+<ul>
+<li></li>
+</ul>
+<h2 id="difficulties-2"><a class="markdownIt-Anchor" href="#difficulties-2"></a> difficulties</h2>
+<ol>
+<li>运行ALSA时Terminus的显示问题。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Power on</span><br><span class="line">Initializing video...                  </span><br><span class="line">ALSA lib confmisc.c:855:(parse_card) cannot find card <span class="string">&#x27;0&#x27;</span> <span class="comment"># ALSA在Terminus中显示不出来</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>没有GUI界面，<code>make ARCH=native run mainargs=mario</code>显示如下：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Power on</span><br><span class="line">Initializingyideo</span><br><span class="line">system time: 8s) FPS = 59</span><br><span class="line">System time: 9s) FPS = 59</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>最后安装了LXDE，过程中需要安装lightdm（相比gdm3更轻的显示管理器），用<code>cat /etc/X11/default-display-manager</code>命令查看当前使用的显示管理器<br />
+3. 磁盘爆了。<code>/dev/mapper/ubuntu--vg-ubuntu--lv 9.8G 9.8G 0 100% /</code>用完了分区的10G存储空间，扩展分区时也提示<code>No space left on device</code>，连拓展分区的命令都写不下了:)，最后<code>apt-get autoclean</code>拯救了我，为我清除了0.8G的内容。</p>
+<h2 id="summary-2"><a class="markdownIt-Anchor" href="#summary-2"></a> summary</h2>
 ]]></content>
       <tags>
         <tag>课程</tag>
