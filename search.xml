@@ -108,7 +108,7 @@ clear 清除内存变量
 clc 清除全部
 pretty 用分式表示公式
 simplify 化简命令
-exp(x) 指数
+exp(x) 指数, e^x
 log2(x) 以2为底数的对数
 </code></pre>
 <span id="more"></span>
@@ -443,48 +443,49 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
     <content><![CDATA[<h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
 <ul>
 <li>
-<p>词： <code>w</code> （下一个词）， <code>b</code> （词初）， <code>e</code> （词尾）</p>
+<p>词：<code>w</code>（下一个词），<code>b</code>（词初），<code>e</code>（词尾）</p>
 </li>
 <li>
-<p>行： <code>0</code> （行初）， <code>^</code> （第一个非空格字符）， <code>$</code> （行尾）</p>
+<p>行：<code>0</code>（行初），<code>^</code>（第一个非空格字符），<code>$</code>（行尾）</p>
 </li>
 <li>
-<p>文件： <code>gg</code> （文件头）， <code>G</code> （文件尾）</p>
+<p>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</p>
 </li>
 <li>
-<p>搜索: <code>/&#123;正则表达式&#125;</code>, <code>n</code> / <code>N</code> 用于导航匹配</p>
+<p>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</p>
 </li>
 <li>
-<p><code>x</code> 删除字符（等同于 <code>dl</code>）</p>
+<p><code>x</code>删除字符（等同于<code>dl</code>）</p>
 </li>
 <li>
-<p><code>s</code> 替换字符（等同于 <code>xi</code>）</p>
+<p><code>s</code>替换字符（等同于<code>xi</code>）</p>
 </li>
 <li>
 <p>可视化模式 + 操作</p>
 <ul>
-<li>选中文字, <code>d</code> 删除 或者 <code>c</code> 改变</li>
+<li>选中文字,<code>d</code>删除 或者<code>c</code>改变</li>
 </ul>
 </li>
 <li>
-<p><code>u</code> 撤销, <code>&lt;C-r&gt;</code> 重做</p>
+<p><code>u</code>撤销，<code>&lt;C-r&gt;</code>重做</p>
 </li>
 <li>
-<p><code>y</code> 复制 / “yank” （其他一些命令比如 <code>d</code> 也会复制）</p>
+<p><code>y</code>复制 / “yank” （其他一些命令比如<code>d</code>也会复制）</p>
 </li>
 <li>
-<p><code>p</code> 粘贴</p>
+<p><code>p</code>粘贴</p>
 </li>
 <li>
-<p>更多值得学习的: 比如 <code>~</code> 改变字符的大小写</p>
-</li>
-</ul>
-<p><code>3w</code> 向前移动三个词</p>
-<h1 id="切换文件"><a class="markdownIt-Anchor" href="#切换文件"></a> 切换文件</h1>
+<p>更多值得学习的:</p>
 <ul>
-<li><code>:e filename</code> 切换到filename文件</li>
-<li><code>:n/N</code> 切换到下/上个文件</li>
+<li><code>~</code>改变字符的大小写</li>
+<li><code>3w</code>向前移动三个词</li>
 </ul>
+</li>
+</ul>
+<h1 id="切换文件"><a class="markdownIt-Anchor" href="#切换文件"></a> 切换文件</h1>
+<p>-<code>:e filename</code>切换到filename文件<br />
+-<code>:n/N</code>切换到下/上个文件</p>
 ]]></content>
       <tags>
         <tag>基本操作</tag>
@@ -1859,6 +1860,7 @@ IEEE 754规定中间结果需要在右边加两个附加位</li>
 <li>全程使用git</li>
 <li><code>git commit --allow-empty</code>可以使git空（无更改的）提交</li>
 </ul>
+<span id="more"></span>
 <h2 id="difficulties"><a class="markdownIt-Anchor" href="#difficulties"></a> difficulties</h2>
 <ol>
 <li>第一个坑，<code>make menuconfig</code>时提示<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Makefile:18: *** NEMU_HOME= is not a NEMU repo.  Stop.   </span><br></pre></td></tr></table></figure>
@@ -1914,8 +1916,8 @@ IEEE 754规定中间结果需要在右边加两个附加位</li>
 <p>但是我没有搞懂prepend yo your PATH的含义。（没想到就是添加到$PATH，字面意思，PATH不指代其他路径）最终AI帮了我：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># echo $PATH结果</span></span><br><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改~/.bashrc</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/usr/lib/ccache:<span class="variable">$PATH</span>&quot;</span> <span class="comment"># 双引号里的PATH是上面的旧的PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#echo $PATH结果</span></span><br><span class="line">/usr/lib/ccache:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br></pre></td></tr></table></figure>
 <p>可以看到在$PATH最前面加上了ccache（即PATH=ccache:$PATH(oringin)的含义）<br />
-附：[[…/笔记/linux笔记#环境变量|常见环境变量]]<br />
-5. 不知道如何使用<code>grep</code>命令查找。不知道main函数在哪，找到main函数了不知道main执行的函数在哪。[[…/笔记/linux笔记#^0608f3|grep教程]]<br />
+附：[[…/笔记/Linux笔记#环境变量|常见环境变量]]<br />
+5. 不知道如何使用<code>grep</code>命令查找。不知道main函数在哪，找到main函数了不知道main执行的函数在哪。[[…/笔记/Linux笔记#^0608f3|grep教程]]<br />
 6.</p>
 <h2 id="summary-2"><a class="markdownIt-Anchor" href="#summary-2"></a> summary</h2>
 ]]></content>
@@ -1925,7 +1927,7 @@ IEEE 754规定中间结果需要在右边加两个附加位</li>
   </entry>
   <entry>
     <title>linux笔记</title>
-    <url>/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/linux%E7%AC%94%E8%AE%B0/</url>
+    <url>/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h2 id="基本配置"><a class="markdownIt-Anchor" href="#基本配置"></a> 基本配置</h2>
 <ol>
 <li>sudox权限: 修改<code>/etc/sudoers</code></li>
@@ -1945,6 +1947,7 @@ Debian官方软件源：官网/mirror/list</li>
 <li><code>grep</code>用法 <code>grep &quot;word&quot; filename</code> ^0608f3</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep <span class="string">&quot;string&quot;</span> * <span class="comment"># 在所有文件中搜索string</span></span><br><span class="line">grep -r <span class="string">&quot;string&quot;</span> <span class="comment"># 递归搜索</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 <h2 id="20-bash-shell"><a class="markdownIt-Anchor" href="#20-bash-shell"></a> 2.0 Bash Shell</h2>
 <ol>
 <li>格式</li>
