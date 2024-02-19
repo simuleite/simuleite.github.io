@@ -442,44 +442,25 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
     <url>/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
 <ul>
-<li>
-<p>词：<code>w</code>（下一个词），<code>b</code>（词初），<code>e</code>（词尾）</p>
-</li>
-<li>
-<p>行：<code>0</code>（行初），<code>^</code>（第一个非空格字符），<code>$</code>（行尾）</p>
-</li>
-<li>
-<p>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</p>
-</li>
-<li>
-<p>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</p>
-</li>
-<li>
-<p><code>x</code>删除字符（等同于<code>dl</code>）</p>
-</li>
-<li>
-<p><code>s</code>替换字符（等同于<code>xi</code>）</p>
-</li>
-<li>
-<p>可视化模式 + 操作</p>
+<li>词：<code>w</code>（下一个词），<code>b</code>（词初），<code>e</code>（词尾）</li>
+<li>行：<code>0</code>（行初），<code>^</code>（第一个非空格字符），<code>$</code>（行尾）</li>
+<li>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</li>
+<li>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</li>
+<li><code>x</code>删除字符（等同于<code>dl</code>）</li>
+<li><code>s</code>替换字符（等同于<code>xi</code>）</li>
+<li>可视化模式 + 操作
 <ul>
-<li>选中文字,<code>d</code>删除 或者<code>c</code>改变</li>
+<li>选中文字,<code>d</code>删除（剪切） 或者<code>c</code>改变</li>
 </ul>
 </li>
-<li>
-<p><code>u</code>撤销，<code>&lt;C-r&gt;</code>重做</p>
-</li>
-<li>
-<p><code>y</code>复制 / “yank” （其他一些命令比如<code>d</code>也会复制）</p>
-</li>
-<li>
-<p><code>p</code>粘贴</p>
-</li>
-<li>
-<p>更多值得学习的:</p>
+<li><code>u</code>撤销，<code>&lt;C-r&gt;</code>重做</li>
+<li><code>y</code>复制 / “yank” （其他一些命令比如<code>d</code>也会复制）</li>
+<li><code>p</code>粘贴</li>
+<li><strong>更多值得学习的</strong>:
 <ul>
 <li><code>~</code>改变字符的大小写</li>
 <li><code>3w</code>向前移动三个词</li>
+<li><code>A</code>（大写）可以迅速定位到行尾进行修改</li>
 </ul>
 </li>
 </ul>
