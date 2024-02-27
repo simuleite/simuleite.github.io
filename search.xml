@@ -1921,4 +1921,18 @@ IEEE 754规定中间结果需要在右边加两个附加位</li>
         <tag>课程</tag>
       </tags>
   </entry>
+  <entry>
+    <title>make使用</title>
+    <url>/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/make%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="makefile文件的格式"><a class="markdownIt-Anchor" href="#makefile文件的格式"></a> Makefile文件的格式</h1>
+<pre><code>[廖雪峰](http://ruanyifeng.com/blog/2015/02/make.html)
+</code></pre>
+<p>Makefile文件由一系列规则（rules）构成。每条规则的形式如下。</p>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">&lt;target&gt;: &lt;prerequisites&gt; </span></span><br><span class="line">[tab]  &lt;commands&gt;</span><br></pre></td></tr></table></figure>
+<p>上面第一行冒号前面的部分，叫做&quot;目标&quot;（target），冒号后面的部分叫做&quot;前置条件&quot;（prerequisites）；第二行必须由一个tab键起首，后面跟着&quot;命令&quot;（commands）。</p>
+]]></content>
+      <tags>
+        <tag>基本操作</tag>
+      </tags>
+  </entry>
 </search>
