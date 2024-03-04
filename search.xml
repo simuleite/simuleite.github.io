@@ -914,87 +914,6 @@ tags: Data Center, Linux, Open Source
       </tags>
   </entry>
   <entry>
-    <title>ICS PA实验课</title>
-    <url>/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/</url>
-    <content><![CDATA[<h1 id="tips"><a class="markdownIt-Anchor" href="#tips"></a> Tips</h1>
-<ol>
-<li>使用反向代理时，<code>git</code>相关命令会出问题</li>
-<li>实验前，创建新分支<code>pa号</code>，在其中做修改，完成以后合并pa到master中，并转回master分支</li>
-</ol>
-<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># PA</span></span><br><span class="line"><span class="section">## notification</span></span><br><span class="line"><span class="bullet">-</span> </span><br><span class="line"><span class="section">## difficulties</span></span><br><span class="line"><span class="bullet">1.</span> </span><br><span class="line"><span class="section">## summary</span></span><br></pre></td></tr></table></figure>
-<h1 id="pa0"><a class="markdownIt-Anchor" href="#pa0"></a> PA0</h1>
-<h2 id="notification"><a class="markdownIt-Anchor" href="#notification"></a> notification</h2>
-<ul>
-<li>全程使用git</li>
-<li><code>git commit --allow-empty</code>可以使git空（无更改的）提交</li>
-</ul>
-<span id="more"></span>
-<h2 id="difficulties"><a class="markdownIt-Anchor" href="#difficulties"></a> difficulties</h2>
-<ol>
-<li>第一个坑，<code>make menuconfig</code>时提示<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Makefile:18: *** NEMU_HOME= is not a NEMU repo.  Stop.   </span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>原因：用了tmux分割窗口，上窗口<code>source .bashrc</code>更新了，下窗口没有，所以$NEMU_HOME没有定义<br />
-2. 运行<code>make menuconfig</code>提示</p>
-   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make[1]: bison: No such file or directory <span class="comment"># 没有安装bison</span></span><br><span class="line">make[1]: flex: No such file or directory <span class="comment"># lack of &#x27;flex&#x27;</span></span><br></pre></td></tr></table></figure>
-<h2 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> summary</h2>
-<ul>
-<li>今天，2024年2月9日，除夕，我终于完成了PA0。在这个过程中，我主要遇到了几个困难：</li>
-</ul>
-<ol>
-<li>VMware断网。先是弃用了Debian，装了ics2023指定的Ubuntu 22.04版本，才发现仍然没有网络，是VMware的问题，初始化网络后得以解决。</li>
-<li>环境问题。Ubuntu desktop版apt-get使用有问题，换成了server版。死磕最小安装，最后在安装man的过程中不得不unminimize，联网下载了很久，<strong>聪明误把聪明误</strong>。看到课程要求必须使用GUI，又非常笨蛋地下回了desktop版；最后才想到使用server并安装gnome图形界面。</li>
-<li>ssh终端问题。Mobaxterm右对齐窗口溢出、无法调整窗口大小的bug，几经周折换成了Terminus。</li>
-<li>反向代理问题。git clone过程中因为开启了github反向代理，一直被拒绝连接。</li>
-<li>缺乏linux使用经验。看到nemu提示<code>No such file or directory</code>不知道是没有安装工具。</li>
-</ol>
-<ul>
-<li>最后我想说，我终于做到了。英语、按要求debug c程序、看懂命令行回显、搞懂git的使用方式，在接触ICS PA的215天后，我做到了。</li>
-<li>Where there is a will, there is a wall. The wall only blocks those who don’t really want to get closer to their will. That is it.</li>
-</ul>
-<h2 id="to-do"><a class="markdownIt-Anchor" href="#to-do"></a> To-do</h2>
-<ul>
-<li>Read the source code and the mannual, Search the web and AI, and Keep grit.</li>
-</ul>
-<h1 id="pa1"><a class="markdownIt-Anchor" href="#pa1"></a> PA1</h1>
-<p>2024/02/10 成功运行马里奥.nes</p>
-<h2 id="notification-2"><a class="markdownIt-Anchor" href="#notification-2"></a> notification</h2>
-<ul>
-<li>独立解决问题。即使是一个小bug，也能<strong>顺带</strong>学到许多</li>
-<li>多看篮框题</li>
-<li><code>make ... -j2</code>使用两个CPU编译</li>
-<li>ccache：节省编译时间的工具。会把目标文件保存，即使<code>make clean</code>了也能保持非常快的编译速度（跳过了重复编译的过程，发挥加速作用）</li>
-<li>NEMU：NES Emulator</li>
-<li>“程序是代码”视角（整体）：ICS PA中期会介绍，抽象了细节，更容易理解整个程序</li>
-<li>“程序是状态机”视角（局部）：ICS第三章专门分析状态机视角（单步执行程序，进入细节部分）</li>
-<li>阅读源代码：从main()开始。</li>
-<li><strong>kconfig：配置系统。</strong><code>make menuconfig</code>时生成conf文件，解析kconfig，二者结合生成宏定义，存储在<code>nemu/include/generated/autoconf.h</code>, 阅读C代码时使用;<code>nemu/include/config/auto.conf</code>, 阅读Makefile时使用</li>
-</ul>
-<h2 id="difficulties-2"><a class="markdownIt-Anchor" href="#difficulties-2"></a> difficulties</h2>
-<ol>
-<li>运行ALSA时Terminus的显示问题。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Power on</span><br><span class="line">Initializing video...                  </span><br><span class="line">ALSA lib confmisc.c:855:(parse_card) cannot find card <span class="string">&#x27;0&#x27;</span> <span class="comment"># ALSA在Terminus中显示不出来</span></span><br></pre></td></tr></table></figure>
-</li>
-<li>没有GUI界面，<code>make ARCH=native run mainargs=mario</code>显示如下：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Power on</span><br><span class="line">Initializingyideo</span><br><span class="line">system time: 8s) FPS = 59</span><br><span class="line">System time: 9s) FPS = 59</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>最后安装了LXDE，过程中需要安装lightdm（相比gdm3更轻的显示管理器），用<code>cat /etc/X11/default-display-manager</code>命令查看当前使用的显示管理器<br />
-3. 磁盘爆了。<code>/dev/mapper/ubuntu--vg-ubuntu--lv 9.8G 9.8G 0 100% /</code>用完了分区的10G存储空间，扩展分区时也提示<code>No space left on device</code>，连拓展分区的命令都写不下了:)，最后<code>apt-get autoclean</code>拯救了我，为我清除了0.8G的内容。<br />
-4. manual理解问题。配置<code>ccache</code>时，手册提示</p>
-   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">To use the second method on a Debian system, it’s easiest to just prepend /usr/lib/ccache to your PATH.</span><br></pre></td></tr></table></figure>
-<p>但是我没有搞懂prepend yo your PATH的含义。（没想到就是添加到$PATH，字面意思，PATH不指代其他路径）最终AI帮了我：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># echo $PATH结果</span></span><br><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改~/.bashrc</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/usr/lib/ccache:<span class="variable">$PATH</span>&quot;</span> <span class="comment"># 双引号里的PATH是上面的旧的PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#echo $PATH结果</span></span><br><span class="line">/usr/lib/ccache:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br></pre></td></tr></table></figure>
-<p>可以看到在$PATH最前面加上了ccache（即PATH=ccache:$PATH(oringin)的含义）<br />
-附：[[…/笔记/Linux笔记#环境变量|常见环境变量]]<br />
-5. 不知道如何使用<code>grep</code>命令查找。不知道main函数在哪，找到main函数了不知道main执行的函数在哪。[[…/笔记/Linux笔记#^0608f3|grep教程]]<br />
-6.</p>
-<h2 id="summary-2"><a class="markdownIt-Anchor" href="#summary-2"></a> summary</h2>
-]]></content>
-      <tags>
-        <tag>课程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>DD 数字逻辑</title>
     <url>/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/DD%20%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/</url>
     <content><![CDATA[<h3 id="30-数据选择器分配器"><a class="markdownIt-Anchor" href="#30-数据选择器分配器"></a> 3.0 数据选择器&amp;分配器</h3>
@@ -1933,6 +1852,118 @@ IEEE 754规定中间结果需要在右边加两个附加位</li>
 ]]></content>
       <tags>
         <tag>基本操作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Django动态网页 Python项目</title>
+    <url>/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<h1 id="10-创建环境"><a class="markdownIt-Anchor" href="#10-创建环境"></a> 1.0 创建环境</h1>
+<h2 id="11-创建虚拟环境"><a class="markdownIt-Anchor" href="#11-创建虚拟环境"></a> 1.1 创建虚拟环境</h2>
+<p>在独立的项目文件夹下运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m venv ll_env</span><br></pre></td></tr></table></figure>
+<p>将会创造一个<code>ll_env</code>文件夹<br />
+可以使用下面的命令激活虚拟环境。激活虚拟环境后，安装的模组将只在虚拟环境中生效，而不干扰到电脑上Python的模组</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ll_env/bin/activate <span class="comment"># Linux系统</span></span><br><span class="line"><span class="built_in">source</span> ll_env/Scripts/activate <span class="comment"># Windows系统</span></span><br><span class="line"></span><br><span class="line">(ll_env)</span><br><span class="line">work_directory$ <span class="comment"># 命令提示符前会显示(ll_env)</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>deactive</code>取消激活虚拟环境</p>
+<h2 id="12-安装配置django"><a class="markdownIt-Anchor" href="#12-安装配置django"></a> 1.2 安装配置Django</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install django <span class="comment"># 安装Django</span></span><br><span class="line">django-admin startproject ll_project . <span class="comment"># 初始化Django</span></span><br><span class="line">python manage.py migrate <span class="comment"># 生成数据库</span></span><br><span class="line">python manage.py runserver <span class="comment"># 生成预览，可以在本地8000端口看到网页</span></span><br></pre></td></tr></table></figure>
+<pre><code>Django手册： https://docs.djangoproject.com/en/4.1/ref/models/fields/
+</code></pre>
+<ul>
+<li>保存更改</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 更改了.py文件就要重新执行下面的命令保存，否则会出错</span></span><br><span class="line">python manage.py makemigrations learning_logs(app name)</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建管理员</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python manage.py createsuperuser</span><br><span class="line">ll_admin, Abc123</span><br></pre></td></tr></table></figure>
+<ul>
+<li>shell</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">python manage.py shell</span><br><span class="line"><span class="keyword">from</span> learning_logs.models <span class="keyword">import</span> Topic</span><br><span class="line">Topic.objects.<span class="built_in">all</span>()</span><br><span class="line"></span><br><span class="line">topics = Topic.objects.<span class="built_in">all</span>()</span><br><span class="line"><span class="keyword">for</span> topic <span class="keyword">in</span> topics:</span><br><span class="line">    <span class="built_in">print</span>(topic.<span class="built_in">id</span>, topic)</span><br><span class="line"></span><br><span class="line">t = Topic.objects.get(<span class="built_in">id</span>=<span class="number">1</span>)</span><br><span class="line">t.text</span><br><span class="line">t.date_added</span><br><span class="line"></span><br><span class="line">t.entry_set.<span class="built_in">all</span>()</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>项目</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ICS PA实验课</title>
+    <url>/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/</url>
+    <content><![CDATA[<h1 id="tips"><a class="markdownIt-Anchor" href="#tips"></a> Tips</h1>
+<ol>
+<li>使用反向代理时，<code>git</code>相关命令会出问题</li>
+<li>实验前，创建新分支<code>pa号</code>，在其中做修改，完成以后合并pa到master中，并转回master分支</li>
+</ol>
+<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># PA</span></span><br><span class="line"><span class="section">## notification</span></span><br><span class="line"><span class="bullet">-</span> </span><br><span class="line"><span class="section">## difficulties</span></span><br><span class="line"><span class="bullet">1.</span> </span><br><span class="line"><span class="section">## summary</span></span><br></pre></td></tr></table></figure>
+<h1 id="pa0"><a class="markdownIt-Anchor" href="#pa0"></a> PA0</h1>
+<h2 id="notification"><a class="markdownIt-Anchor" href="#notification"></a> notification</h2>
+<ul>
+<li>全程使用git</li>
+<li><code>git commit --allow-empty</code>可以使git空（无更改的）提交</li>
+</ul>
+<span id="more"></span>
+<h2 id="difficulties"><a class="markdownIt-Anchor" href="#difficulties"></a> difficulties</h2>
+<ol>
+<li>第一个坑，<code>make menuconfig</code>时提示<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Makefile:18: *** NEMU_HOME= is not a NEMU repo.  Stop.   </span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>原因：用了tmux分割窗口，上窗口<code>source .bashrc</code>更新了，下窗口没有，所以$NEMU_HOME没有定义<br />
+2. 运行<code>make menuconfig</code>提示</p>
+   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">make[1]: bison: No such file or directory <span class="comment"># 没有安装bison</span></span><br><span class="line">make[1]: flex: No such file or directory <span class="comment"># lack of &#x27;flex&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> summary</h2>
+<ul>
+<li>今天，2024年2月9日，除夕，我终于完成了PA0。在这个过程中，我主要遇到了几个困难：</li>
+</ul>
+<ol>
+<li>VMware断网。先是弃用了Debian，装了ics2023指定的Ubuntu 22.04版本，才发现仍然没有网络，是VMware的问题，初始化网络后得以解决。</li>
+<li>环境问题。Ubuntu desktop版apt-get使用有问题，换成了server版。死磕最小安装，最后在安装man的过程中不得不unminimize，联网下载了很久，<strong>聪明误把聪明误</strong>。看到课程要求必须使用GUI，又非常笨蛋地下回了desktop版；最后才想到使用server并安装gnome图形界面。</li>
+<li>ssh终端问题。Mobaxterm右对齐窗口溢出、无法调整窗口大小的bug，几经周折换成了Terminus。</li>
+<li>反向代理问题。git clone过程中因为开启了github反向代理，一直被拒绝连接。</li>
+<li>缺乏linux使用经验。看到nemu提示<code>No such file or directory</code>不知道是没有安装工具。</li>
+</ol>
+<ul>
+<li>最后我想说，我终于做到了。英语、按要求debug c程序、看懂命令行回显、搞懂git的使用方式，在接触ICS PA的215天后，我做到了。</li>
+<li>Where there is a will, there is a wall. The wall only blocks those who don’t really want to get closer to their will. That is it.</li>
+</ul>
+<h2 id="to-do"><a class="markdownIt-Anchor" href="#to-do"></a> To-do</h2>
+<ul>
+<li>Read the source code and the mannual, Search the web and AI, and Keep grit.</li>
+</ul>
+<h1 id="pa1"><a class="markdownIt-Anchor" href="#pa1"></a> PA1</h1>
+<p>2024/02/10 成功运行马里奥.nes</p>
+<h2 id="notification-2"><a class="markdownIt-Anchor" href="#notification-2"></a> notification</h2>
+<ul>
+<li>独立解决问题。即使是一个小bug，也能<strong>顺带</strong>学到许多</li>
+<li>多看篮框题</li>
+<li><code>make ... -j2</code>使用两个CPU编译</li>
+<li>ccache：节省编译时间的工具。会把目标文件保存，即使<code>make clean</code>了也能保持非常快的编译速度（跳过了重复编译的过程，发挥加速作用）</li>
+<li>NEMU：NES Emulator</li>
+<li>“程序是代码”视角（整体）：ICS PA中期会介绍，抽象了细节，更容易理解整个程序</li>
+<li>“程序是状态机”视角（局部）：ICS第三章专门分析状态机视角（单步执行程序，进入细节部分）</li>
+<li>阅读源代码：从main()开始。</li>
+<li><strong>kconfig：配置系统。</strong><code>make menuconfig</code>时生成conf文件，解析kconfig，二者结合生成宏定义，存储在<code>nemu/include/generated/autoconf.h</code>, 阅读C代码时使用;<code>nemu/include/config/auto.conf</code>, 阅读Makefile时使用</li>
+</ul>
+<h2 id="difficulties-2"><a class="markdownIt-Anchor" href="#difficulties-2"></a> difficulties</h2>
+<ol>
+<li>运行ALSA时Terminus的显示问题。<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Power on</span><br><span class="line">Initializing video...                  </span><br><span class="line">ALSA lib confmisc.c:855:(parse_card) cannot find card <span class="string">&#x27;0&#x27;</span> <span class="comment"># ALSA在Terminus中显示不出来</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>没有GUI界面，<code>make ARCH=native run mainargs=mario</code>显示如下：<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Power on</span><br><span class="line">Initializingyideo</span><br><span class="line">system time: 8s) FPS = 59</span><br><span class="line">System time: 9s) FPS = 59</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>最后安装了LXDE，过程中需要安装lightdm（相比gdm3更轻的显示管理器），用<code>cat /etc/X11/default-display-manager</code>命令查看当前使用的显示管理器<br />
+3. 磁盘爆了。<code>/dev/mapper/ubuntu--vg-ubuntu--lv 9.8G 9.8G 0 100% /</code>用完了分区的10G存储空间，扩展分区时也提示<code>No space left on device</code>，连拓展分区的命令都写不下了:)，最后<code>apt-get autoclean</code>拯救了我，为我清除了0.8G的内容。<br />
+4. manual理解问题。配置<code>ccache</code>时，手册提示</p>
+   <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">To use the second method on a Debian system, it’s easiest to just prepend /usr/lib/ccache to your PATH.</span><br></pre></td></tr></table></figure>
+<p>但是我没有搞懂prepend yo your PATH的含义。（没想到就是添加到$PATH，字面意思，PATH不指代其他路径）最终AI帮了我：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># echo $PATH结果</span></span><br><span class="line">/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改~/.bashrc</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/usr/lib/ccache:<span class="variable">$PATH</span>&quot;</span> <span class="comment"># 双引号里的PATH是上面的旧的PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#echo $PATH结果</span></span><br><span class="line">/usr/lib/ccache:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span><br></pre></td></tr></table></figure>
+<p>可以看到在$PATH最前面加上了ccache（即PATH=ccache:$PATH(oringin)的含义）<br />
+附：[[…/笔记/Linux笔记#环境变量|常见环境变量]]<br />
+5. 不知道如何使用<code>grep</code>命令查找。不知道main函数在哪，找到main函数了不知道main执行的函数在哪。[[…/笔记/Linux笔记#^0608f3|grep教程]]<br />
+6.</p>
+<h2 id="summary-2"><a class="markdownIt-Anchor" href="#summary-2"></a> summary</h2>
+]]></content>
+      <tags>
+        <tag>项目</tag>
       </tags>
   </entry>
 </search>
