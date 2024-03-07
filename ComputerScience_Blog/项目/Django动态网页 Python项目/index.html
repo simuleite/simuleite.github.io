@@ -31,7 +31,7 @@
 <meta property="og:description" content="1.0 创建环境  1.1 创建虚拟环境 在独立的项目文件夹下运行 1python -m venv ll_env 将会创造一个ll_env文件夹 可以使用下面的命令激活虚拟环境。激活虚拟环境后，安装的模组将只在虚拟环境中生效，而不干扰到电脑上Python的模组 12345source ll_env&#x2F;bin&#x2F;activate # Linux系统source ll_env&#x2F;Scripts&#x2F;activ">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-03T03:34:52.802Z">
+<meta property="article:modified_time" content="2024-03-06T10:26:47.363Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="项目">
 <meta name="twitter:card" content="summary">
@@ -142,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E5%88%9B%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="nav-text"> 1.0 创建环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-text"> 1.1 创建虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEdjango"><span class="nav-text"> 1.2 安装配置Django</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E5%88%9B%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="nav-text"> 1.0 创建环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-text"> 1.1 创建虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEdjango"><span class="nav-text"> 1.2 安装配置Django</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E5%88%9B%E5%BB%BA%E5%92%8C%E9%85%8D%E7%BD%AEapp"><span class="nav-text"> 1.3 创建和配置App</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-%E5%88%9B%E5%BB%BA%E7%AE%A1%E7%90%86%E5%91%98%E5%8F%8A%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9E%8B%E5%88%B0admin%E9%A1%B5%E9%9D%A2"><span class="nav-text"> 1.4 创建管理员及注册模型到admin页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8Bmodels"><span class="nav-text"> 1.5 定义模型Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-%E6%BF%80%E6%B4%BB%E6%A8%A1%E5%9E%8B"><span class="nav-text"> 1.6 激活模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-shell%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-text"> 1.7 Shell命令行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20-%E5%88%B6%E4%BD%9C%E4%B8%BB%E9%A1%B5"><span class="nav-text"> 2.0 制作主页</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -215,9 +215,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-03-03 00:00:00 / 修改时间：11:34:52" itemprop="dateCreated datePublished" datetime="2024-03-03T00:00:00+08:00">2024-03-03</time>
+      <time title="创建时间：2024-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-03T00:00:00+08:00">2024-03-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-06 18:26:47" itemprop="dateModified" datetime="2024-03-06T18:26:47+08:00">2024-03-06</time>
     </span>
 
   
@@ -241,18 +247,38 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip install django <span class="comment"># 安装Django</span></span><br><span class="line">django-admin startproject ll_project . <span class="comment"># 初始化Django</span></span><br><span class="line">python manage.py migrate <span class="comment"># 生成数据库</span></span><br><span class="line">python manage.py runserver <span class="comment"># 生成预览，可以在本地8000端口看到网页</span></span><br></pre></td></tr></table></figure>
 <pre><code>Django手册： https://docs.djangoproject.com/en/4.1/ref/models/fields/
 </code></pre>
+<h2 id="13-创建和配置app"><a class="markdownIt-Anchor" href="#13-创建和配置app"></a> 1.3 创建和配置App</h2>
+<ul>
+<li>创建app</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python manage.py startapp learning_logs(app_name)</span><br></pre></td></tr></table></figure>
 <ul>
 <li>保存更改</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更改了.py文件就要重新执行下面的命令保存，否则会出错</span></span><br><span class="line">python manage.py makemigrations learning_logs(app name)</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+<h2 id="14-创建管理员及注册模型到admin页面"><a class="markdownIt-Anchor" href="#14-创建管理员及注册模型到admin页面"></a> 1.4 创建管理员及注册模型到admin页面</h2>
 <ul>
 <li>创建管理员</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python manage.py createsuperuser</span><br><span class="line">ll_admin, Abc123</span><br></pre></td></tr></table></figure>
 <ul>
-<li>shell</li>
+<li>注册模型，打开<code>admin.py</code>并注册模型</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">python manage.py shell</span><br><span class="line"><span class="keyword">from</span> learning_logs.models <span class="keyword">import</span> Topic</span><br><span class="line">Topic.objects.<span class="built_in">all</span>()</span><br><span class="line"></span><br><span class="line">topics = Topic.objects.<span class="built_in">all</span>()</span><br><span class="line"><span class="keyword">for</span> topic <span class="keyword">in</span> topics:</span><br><span class="line">    <span class="built_in">print</span>(topic.<span class="built_in">id</span>, topic)</span><br><span class="line"></span><br><span class="line">t = Topic.objects.get(<span class="built_in">id</span>=<span class="number">1</span>)</span><br><span class="line">t.text</span><br><span class="line">t.date_added</span><br><span class="line"></span><br><span class="line">t.entry_set.<span class="built_in">all</span>()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Model1, Model2 <span class="comment"># improt models with their name</span></span><br><span class="line"></span><br><span class="line">admin.site.register(Model1)</span><br></pre></td></tr></table></figure>
+<h2 id="15-定义模型models"><a class="markdownIt-Anchor" href="#15-定义模型models"></a> 1.5 定义模型Models</h2>
+<ol>
+<li>打开<code>app_name/models.py</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># your models:</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Model_name1</span>(models.Model):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Document&quot;&quot;&quot;</span></span><br><span class="line">    text = models.TextField() <span class="comment"># field attribute</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Return a string representation of the model.&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.text</span><br><span class="line">        <span class="comment"># will be used as output</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Model_name2</span>(models.Model):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Document&quot;&quot;&quot;</span></span><br><span class="line">    content = models.TextField(max_length=<span class="number">200</span>) <span class="comment"># parameter is optional</span></span><br><span class="line">    something_else = models.ForeignKey(Model_name1, on_delete=models.CASCADE)</span><br><span class="line">    <span class="comment"># foreign key, cascading delete级联删除</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Return a string representation of the model.&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> self.content</span><br></pre></td></tr></table></figure>
+<h2 id="16-激活模型"><a class="markdownIt-Anchor" href="#16-激活模型"></a> 1.6 激活模型</h2>
+<ul>
+<li>在<code>settings.py</code>下找到<code>INSTALLED_APPS</code>并添加App名称</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="comment"># My apps.</span></span><br><span class="line">    <span class="string">&#x27;app_name&#x27;</span>, <span class="comment"># the app&#x27;s file name</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Default django apps.</span></span><br><span class="line">    <span class="string">&#x27;django.contrib.admin&#x27;</span>,</span><br><span class="line">    --snip--</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="17-shell命令行"><a class="markdownIt-Anchor" href="#17-shell命令行"></a> 1.7 Shell命令行</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ python manage.py shell</span><br><span class="line"><span class="keyword">from</span> learning_logs.models <span class="keyword">import</span> Topic</span><br><span class="line">Topic.objects.<span class="built_in">all</span>() <span class="comment"># 返回Queryset， 查询结果集</span></span><br><span class="line"></span><br><span class="line">topics = Topic.objects.<span class="built_in">all</span>()</span><br><span class="line"><span class="comment"># 列出topic的id与名称</span></span><br><span class="line"><span class="keyword">for</span> topic <span class="keyword">in</span> topics:</span><br><span class="line">    <span class="built_in">print</span>(topic.<span class="built_in">id</span>, topic)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 知道id后可以调用方法查看相应内容</span></span><br><span class="line">t = Topic.objects.get(<span class="built_in">id</span>=<span class="number">1</span>)</span><br><span class="line">t.text</span><br><span class="line">t.date_added</span><br><span class="line"></span><br><span class="line">t.entry_set.<span class="built_in">all</span>() <span class="comment"># 查看entries具体内容</span></span><br></pre></td></tr></table></figure>
+<h1 id="20-制作主页"><a class="markdownIt-Anchor" href="#20-制作主页"></a> 2.0 制作主页</h1>
+
     </div>
 
     

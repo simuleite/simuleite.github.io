@@ -31,7 +31,7 @@
 <meta property="og:description" content="第一阶段 程序的表示、转换与链接 参考MOOC：NJU-1001625001   1.0 计算机系统概述  1.3 程序开发和执行过程  hello.c程序用ascii文本表示 首先.c文件预处理为.i文件（把预处理指令翻译过来），然后.i文件编译成.s文件（汇编程序文本）,接着.s文件汇编成.o文件（二进制），与printf等函数的.o文件共同连接成可执行文件（二进制） 高级语言编写程序所需环">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-12-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-27T11:32:34.297Z">
+<meta property="article:modified_time" content="2024-03-07T00:12:51.335Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="课程">
 <meta name="twitter:card" content="summary">
@@ -142,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5-%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%A1%A8%E7%A4%BA-%E8%BD%AC%E6%8D%A2%E4%B8%8E%E9%93%BE%E6%8E%A5"><span class="nav-text"> 第一阶段 程序的表示、转换与链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="nav-text"> 1.0 计算机系统概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%92%8C%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-text"> 1.3 程序开发和执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-text"> 1.4 计算机系统层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87"><span class="nav-text"> 1.5 计算机系统基础学习目标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%AD%98%E5%82%A8"><span class="nav-text"> 2.0 数据表示和存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#20-%E9%94%99%E9%A2%98"><span class="nav-text"> 2.0 错题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-%E7%BC%96%E7%A0%81%E5%92%8C%E6%95%B0%E5%88%B6"><span class="nav-text"> 2.1 编码和数制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.2 定点数的编码表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#221-%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.2.1 定点数的编码表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#222-%E6%A8%A1%E8%BF%90%E7%AE%97%E7%B3%BB%E7%BB%9F%E5%92%8C%E8%A1%A5%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.2.2 模运算系统和补码表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#223-%E8%A1%A5%E7%A0%81%E5%92%8C%E7%9C%9F%E5%80%BC%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="nav-text"> 2.2.3 补码和真值的对应关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B4%E6%95%B0"><span class="nav-text"> 2.3 C语言中的整数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#231-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0%E4%B8%8E%E5%B8%A6%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0"><span class="nav-text"> 2.3.1 无符号整数与带符号整数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#232-c%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E6%95%B4%E6%95%B0%E4%B8%BE%E4%BE%8B"><span class="nav-text"> 2.3.2 C语言程序中的整数举例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.4 浮点数的编码表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#241-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E8%8C%83%E5%9B%B4"><span class="nav-text"> 2.4.1 浮点数的表示范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#242-ieee-754%E6%A0%87%E5%87%86%E7%9A%84%E8%A7%84%E6%A0%BC%E5%8C%96%E6%95%B0"><span class="nav-text"> 2.4.2 IEEE 754标准的规格化数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#243-ieee-754%E7%89%B9%E6%AE%8A%E6%95%B0%E8%A7%84%E6%A0%BC%E5%8C%96%E4%BB%A5%E5%A4%96"><span class="nav-text"> 2.4.3 IEEE 754特殊数（规格化以外）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-%E9%9D%9E%E6%95%B0%E5%80%BC%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.5 非数值数据的编码表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6%E5%92%8C%E5%AD%98%E5%82%A8%E5%AE%B9%E9%87%8F%E7%9A%84%E5%8D%95%E4%BD%8D"><span class="nav-text"> 2.6 数据宽度和存储容量的单位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%97%B6%E7%9A%84%E5%AD%97%E8%8A%82%E6%8E%92%E5%88%97%E5%A4%A7%E5%B0%8F%E7%AB%AF"><span class="nav-text"> 2.7 数据存储时的字节排列（大小端）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-%E8%BF%90%E7%AE%97%E7%94%B5%E8%B7%AF%E5%9F%BA%E7%A1%80"><span class="nav-text"> 3.0 运算电路基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#30-%E9%94%99%E9%A2%98"><span class="nav-text"> 3.0 错题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31-%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E5%9F%BA%E7%A1%80"><span class="nav-text"> 3.1 数字逻辑电路基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#311-%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0%E5%92%8C%E5%9F%BA%E6%9C%AC%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF"><span class="nav-text"> 3.1.1 布尔代数和基本逻辑电路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#312-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="nav-text"> 3.1.2 无符号数加法器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#313-%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97%E5%99%A8%E5%92%8Calu"><span class="nav-text"> 3.1.3 整数加&#x2F;减运算器和ALU</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-%E4%BB%8Ec%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%B0%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF"><span class="nav-text"> 3.2 从C表达式到逻辑电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%90%84%E7%B1%BB%E8%BF%90%E7%AE%97"><span class="nav-text"> 3.3 C语言中的各类运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34-%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-text"> 3.4 整数加减运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#341-%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97%E7%94%9F%E6%88%90%E7%9A%84%E6%A0%87%E5%BF%97%E4%BF%A1%E6%81%AF"><span class="nav-text"> 3.4.1 加减运算生成的标志信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#342-%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97%E6%BA%A2%E5%87%BA%E5%85%AC%E5%BC%8F%E5%8F%8A%E4%B8%BE%E4%BE%8B"><span class="nav-text"> 3.4.2 加减运算溢出公式及举例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-%E4%B9%98%E9%99%A4%E8%BF%90%E7%AE%97%E5%8F%8A%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.0 乘除运算及浮点数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#41-%E6%95%B4%E6%95%B0%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.1 整数乘法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#42-%E6%95%B4%E6%95%B0%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.2 整数除法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#43-%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.3 浮点数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#431-%E6%B5%AE%E7%82%B9%E6%95%B0%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.3.1 浮点数加减运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#432-%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97%E7%9A%84%E7%B2%BE%E5%BA%A6"><span class="nav-text"> 4.3.2 浮点数运算的精度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#433-%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97%E7%B2%BE%E5%BA%A6%E4%B8%BE%E4%BE%8B"><span class="nav-text"> 4.3.3 浮点数运算精度举例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E6%8B%BE%E9%81%97"><span class="nav-text"> 第一阶段拾遗</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%89%A7%E8%A1%8C%E5%92%8C%E5%AD%98%E5%82%A8%E8%AE%BF%E9%97%AE"><span class="nav-text"> 第二阶段 程序的执行和存储访问</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%A6%82%E8%BF%B0"><span class="nav-text"> 1.0 程序执行概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E7%A8%8B%E5%BA%8F%E5%92%8C%E6%8C%87%E4%BB%A4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text"> 1.1 程序和指令的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E4%B8%80%E6%9D%A1%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-text"> 1.2 一条指令的执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-ia-32%E6%8C%87%E4%BB%A4%E7%9A%84%E5%A4%A7%E8%87%B4%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-text"> 1.3 IA-32指令的大致执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-cpu%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD%E4%B8%8E%E7%BB%93%E6%9E%84"><span class="nav-text"> 1.4 CPU的基本功能与结构</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5-%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%A1%A8%E7%A4%BA-%E8%BD%AC%E6%8D%A2%E4%B8%8E%E9%93%BE%E6%8E%A5"><span class="nav-text"> 第一阶段 程序的表示、转换与链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="nav-text"> 1.0 计算机系统概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%92%8C%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-text"> 1.3 程序开发和执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-text"> 1.4 计算机系统层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87"><span class="nav-text"> 1.5 计算机系统基础学习目标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%AD%98%E5%82%A8"><span class="nav-text"> 2.0 数据表示和存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#20-%E9%94%99%E9%A2%98"><span class="nav-text"> 2.0 错题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-%E7%BC%96%E7%A0%81%E5%92%8C%E6%95%B0%E5%88%B6"><span class="nav-text"> 2.1 编码和数制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.2 定点数的编码表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#221-%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.2.1 定点数的编码表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#222-%E6%A8%A1%E8%BF%90%E7%AE%97%E7%B3%BB%E7%BB%9F%E5%92%8C%E8%A1%A5%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.2.2 模运算系统和补码表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#223-%E8%A1%A5%E7%A0%81%E5%92%8C%E7%9C%9F%E5%80%BC%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="nav-text"> 2.2.3 补码和真值的对应关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B4%E6%95%B0"><span class="nav-text"> 2.3 C语言中的整数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#231-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0%E4%B8%8E%E5%B8%A6%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0"><span class="nav-text"> 2.3.1 无符号整数与带符号整数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#232-c%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E6%95%B4%E6%95%B0%E4%B8%BE%E4%BE%8B"><span class="nav-text"> 2.3.2 C语言程序中的整数举例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.4 浮点数的编码表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#241-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E8%8C%83%E5%9B%B4"><span class="nav-text"> 2.4.1 浮点数的表示范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#242-ieee-754%E6%A0%87%E5%87%86%E7%9A%84%E8%A7%84%E6%A0%BC%E5%8C%96%E6%95%B0"><span class="nav-text"> 2.4.2 IEEE 754标准的规格化数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#243-ieee-754%E7%89%B9%E6%AE%8A%E6%95%B0%E8%A7%84%E6%A0%BC%E5%8C%96%E4%BB%A5%E5%A4%96"><span class="nav-text"> 2.4.3 IEEE 754特殊数（规格化以外）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-%E9%9D%9E%E6%95%B0%E5%80%BC%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.5 非数值数据的编码表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6%E5%92%8C%E5%AD%98%E5%82%A8%E5%AE%B9%E9%87%8F%E7%9A%84%E5%8D%95%E4%BD%8D"><span class="nav-text"> 2.6 数据宽度和存储容量的单位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%97%B6%E7%9A%84%E5%AD%97%E8%8A%82%E6%8E%92%E5%88%97%E5%A4%A7%E5%B0%8F%E7%AB%AF"><span class="nav-text"> 2.7 数据存储时的字节排列（大小端）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-%E8%BF%90%E7%AE%97%E7%94%B5%E8%B7%AF%E5%9F%BA%E7%A1%80"><span class="nav-text"> 3.0 运算电路基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#30-%E9%94%99%E9%A2%98"><span class="nav-text"> 3.0 错题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31-%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E5%9F%BA%E7%A1%80"><span class="nav-text"> 3.1 数字逻辑电路基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#311-%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0%E5%92%8C%E5%9F%BA%E6%9C%AC%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF"><span class="nav-text"> 3.1.1 布尔代数和基本逻辑电路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#312-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="nav-text"> 3.1.2 无符号数加法器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#313-%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97%E5%99%A8%E5%92%8Calu"><span class="nav-text"> 3.1.3 整数加&#x2F;减运算器和ALU</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-%E4%BB%8Ec%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%B0%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF"><span class="nav-text"> 3.2 从C表达式到逻辑电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%90%84%E7%B1%BB%E8%BF%90%E7%AE%97"><span class="nav-text"> 3.3 C语言中的各类运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34-%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-text"> 3.4 整数加减运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#341-%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97%E7%94%9F%E6%88%90%E7%9A%84%E6%A0%87%E5%BF%97%E4%BF%A1%E6%81%AF"><span class="nav-text"> 3.4.1 加减运算生成的标志信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#342-%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97%E6%BA%A2%E5%87%BA%E5%85%AC%E5%BC%8F%E5%8F%8A%E4%B8%BE%E4%BE%8B"><span class="nav-text"> 3.4.2 加减运算溢出公式及举例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-%E4%B9%98%E9%99%A4%E8%BF%90%E7%AE%97%E5%8F%8A%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.0 乘除运算及浮点数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#41-%E6%95%B4%E6%95%B0%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.1 整数乘法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#42-%E6%95%B4%E6%95%B0%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.2 整数除法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#43-%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.3 浮点数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#431-%E6%B5%AE%E7%82%B9%E6%95%B0%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.3.1 浮点数加减运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#432-%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97%E7%9A%84%E7%B2%BE%E5%BA%A6"><span class="nav-text"> 4.3.2 浮点数运算的精度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#433-%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97%E7%B2%BE%E5%BA%A6%E4%B8%BE%E4%BE%8B"><span class="nav-text"> 4.3.3 浮点数运算精度举例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E6%8B%BE%E9%81%97"><span class="nav-text"> 第一阶段拾遗</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%89%A7%E8%A1%8C%E5%92%8C%E5%AD%98%E5%82%A8%E8%AE%BF%E9%97%AE"><span class="nav-text"> 第二阶段 程序的执行和存储访问</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%A6%82%E8%BF%B0"><span class="nav-text"> 1.0 程序执行概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E7%A8%8B%E5%BA%8F%E5%92%8C%E6%8C%87%E4%BB%A4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text"> 1.1 程序和指令的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E4%B8%80%E6%9D%A1%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-text"> 1.2 一条指令的执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-ia-32%E6%8C%87%E4%BB%A4%E7%9A%84%E5%A4%A7%E8%87%B4%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-text"> 1.3 IA-32指令的大致执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-cpu%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD%E4%B8%8E%E7%BB%93%E6%9E%84"><span class="nav-text"> 1.4 CPU的基本功能与结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E7%BB%84%E7%BB%87"><span class="nav-text"> 2.0 主存储器组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#21-%E5%AD%98%E5%82%A8%E5%99%A8%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text"> 2.1 存储器基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#211-%E8%AE%BF%E5%AD%98%E6%93%8D%E4%BD%9C%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD"><span class="nav-text"> 2.1.1 访存操作与基本术语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#212-%E5%AD%98%E5%82%A8%E5%99%A8%E5%88%86%E7%B1%BB"><span class="nav-text"> 2.1.2 存储器分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-%E4%B8%BB%E5%AD%98%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-text"> 2.2 主存基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-%E4%B8%BB%E5%AD%98%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-text"> 2.3 主存的性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%AD%98%E5%82%A8%E5%99%A8%E7%BB%84%E7%BB%87"><span class="nav-text"> 2.4 半导体存储器组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-%E5%86%85%E5%AD%98%E6%9D%A1%E7%BB%84%E7%BB%87%E4%B8%8E%E6%80%BB%E7%BA%BF%E5%AE%BD%E5%BA%A6"><span class="nav-text"> 2.5 内存条组织与总线宽度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#251-sparcstation%E5%B7%A5%E4%BD%9C%E7%AB%99-20%E7%9A%84%E5%86%85%E5%AD%98%E6%9D%A1"><span class="nav-text"> 2.5.1 SPARCstation（工作站） 20的内存条</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#252-pc%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E6%9D%A1"><span class="nav-text"> 2.5.2 PC中的内存条</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -223,7 +223,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-02-27 19:32:34" itemprop="dateModified" datetime="2024-02-27T19:32:34+08:00">2024-02-27</time>
+      <time title="修改时间：2024-03-07 08:12:51" itemprop="dateModified" datetime="2024-03-07T08:12:51+08:00">2024-03-07</time>
     </span>
 
   
@@ -932,35 +932,35 @@ IEEE 754规定中间结果需要在右边加两个附加位</li>
 <h3 id="12-一条指令的执行过程"><a class="markdownIt-Anchor" href="#12-一条指令的执行过程"></a> 1.2 一条指令的执行过程</h3>
 <ul>
 <li>取指令-&gt;算操作数-&gt;取操作数-&gt;操作-&gt;计算下条指令地址</li>
-<li><strong>每一步都会检测异常</strong>，若有异常，自动切换异常处理程序。如越界（第6章）、非法译码、缺页（没取到）、除0/溢出</li>
+<li><strong>每一步都会检测异常</strong>，若有异常，自动切换操作系统异常处理程序。如越界（第6章）、非法译码、缺页（没取到）、除0/溢出</li>
 <li><strong>问题：“取指令”一定在最开始做吗？PC+&quot;1&quot;一定在译码前做吗?“译码”必须在指令执行前做吗？</strong> 	- 取指令一定在最开始做；
 <ul>
 <li>PC+1随便在哪里做，在下条取指令之前做就行了；</li>
-<li>译码一定在指令前做</li>
+<li>译码一定在指令执行前做</li>
 </ul>
 </li>
 <li><strong>异常和中断的差别</strong>
 <ul>
-<li>异常是程序性中断，和指令相关</li>
-<li>中断是IO发出的外部中断</li>
+<li>异常是<strong>程序性中断</strong>，和指令相关</li>
+<li>中断是IO发出的<strong>外部中断</strong>，如Ctrl^c，打印机缺纸</li>
 </ul>
 </li>
-<li>取指令：从PC所指单元取指令发送到IR（指令寄存器），并增加PC；一般按最长的指令取</li>
+<li>取指令：从PC所指单元取指令发送到IR（指令寄存器），并增加PC；<strong>一般按最长的指令取</strong>；或先取一个字节，看看是什么指令，再决定是否继续取</li>
 <li>取操作数：如果在寄存器，不用访存；在存储器需要一次或多次访存</li>
 </ul>
 <h3 id="13-ia-32指令的大致执行过程"><a class="markdownIt-Anchor" href="#13-ia-32指令的大致执行过程"></a> 1.3 IA-32指令的大致执行过程</h3>
 <ul>
 <li>四种基本操作
 <ul>
-<li>取指令、操作数 LOAD</li>
-<li>算术逻辑运算</li>
-<li>存储</li>
-<li>寄存器、ALU间传送</li>
+<li><strong>取</strong>指令、操作数 LOAD</li>
+<li>算术逻辑<strong>运算</strong></li>
+<li><strong>存</strong>储（数字、结果）</li>
+<li>寄存器、ALU间<strong>传送</strong></li>
 </ul>
 </li>
 <li>IA-32体系结构
 <ul>
-<li>8个GPR（0~7）</li>
+<li>8个GPR（通用寄存器，标号0~7）</li>
 <li>可寻址空间4GB</li>
 <li>取指令格式变长、操作码变长</li>
 <li>由若干字段（OP、Mod、SIB）组成</li>
@@ -974,10 +974,97 @@ IEEE 754规定中间结果需要在右边加两个附加位</li>
 </ul>
 <h3 id="14-cpu的基本功能与结构"><a class="markdownIt-Anchor" href="#14-cpu的基本功能与结构"></a> 1.4 CPU的基本功能与结构</h3>
 <ul>
-<li>取指令<br />
-24.1.17目前还听不懂</li>
-<li>指令译码</li>
-<li>指令执行、EIP增量</li>
+<li>起始EIP（扩展指令指针） = 第一条指令的地址</li>
+<li>指令执行结果
+<ol>
+<li>取指令：EIP -&gt; MAR -&gt; 地址线 -&gt; 控制线 -&gt; 数据线 -&gt; MDR -&gt; IR（指令寄存器） -&gt; 控制器译码</li>
+<li>译码，指令执行：ESP-4， EBP送到MDR（EBP是数据）,ESP送到MAR（ESP是地址）（指令内容），写入内存。最后PC+1</li>
+</ol>
+</li>
+<li>ALU结构原理：多路选择器选择加减乘除其中一路输入（所有门电路都会运算！）</li>
+</ul>
+<h2 id="20-主存储器组织"><a class="markdownIt-Anchor" href="#20-主存储器组织"></a> 2.0 主存储器组织</h2>
+<h3 id="21-存储器基本概念"><a class="markdownIt-Anchor" href="#21-存储器基本概念"></a> 2.1 存储器基本概念</h3>
+<h4 id="211-访存操作与基本术语"><a class="markdownIt-Anchor" href="#211-访存操作与基本术语"></a> 2.1.1 访存操作与基本术语</h4>
+<ul>
+<li>许多指令都要访存，是一个非常重要的概念</li>
+<li>栈是主存中的一个区域</li>
+<li>术语
+<ol>
+<li>Cell单元，表示0/1</li>
+<li>Addressing Unit</li>
+<li>Bank</li>
+<li>Addressing Mode</li>
+<li>MAR, MBR</li>
+</ol>
+</li>
+</ul>
+<h4 id="212-存储器分类"><a class="markdownIt-Anchor" href="#212-存储器分类"></a> 2.1.2 存储器分类</h4>
+<ul>
+<li>分类
+<ol>
+<li>RAM，如内存。每个单元读写时间一样，与各单元所在位置无关（不考虑roll buffer）。</li>
+<li>SAM（顺序），如磁带。按顺序读写，存储时间长短与信息位置有关。</li>
+<li>DAM，如磁盘。直接定位到读写数据块，读写数据时按顺序进行。</li>
+<li>©AM，如快表。按内容检索到存储位置进行读写。<strong>不需要根据位置、地址，而是根据内容检索。</strong></li>
+</ol>
+</li>
+<li>内存与外存关系、比较
+<ol>
+<li>外存 -&gt; 内存，程序、数据成批传送</li>
+<li>内存 -&gt; CPU，CPU逐条读取指令、数据</li>
+<li>CPU -&gt; 内存，指令处理结果送回内存</li>
+<li>内存 -&gt; 外存，处理结果成批送到外存（回写）</li>
+</ol>
+</li>
+</ul>
+<h3 id="22-主存基本结构"><a class="markdownIt-Anchor" href="#22-主存基本结构"></a> 2.2 主存基本结构</h3>
+<ul>
+<li>8个cell（记忆单元）构成一个存储单元，从全0开始编号，同一个存储单元字线连在一起，同时读整个存储单元</li>
+<li>问题：主存中存放的是？指令和数据；CPU何时访问主存？取指令、取数据、存数据的时候</li>
+</ul>
+<h3 id="23-主存的性能指标"><a class="markdownIt-Anchor" href="#23-主存的性能指标"></a> 2.3 主存的性能指标</h3>
+<ul>
+<li>存储时间（Access）： 读取时间和写入时间</li>
+<li>存储周期（Memory Cycle）：连续两次访问存储器所需的最小时间间隔，比Access Time更长，有一个预充电（预处理）的时间<br />
+![[…/Source/Photo/ICS/课程/Part II/2.2 单位.png]]</li>
+</ul>
+<h3 id="24-半导体存储器组织"><a class="markdownIt-Anchor" href="#24-半导体存储器组织"></a> 2.4 半导体存储器组织</h3>
+<ul>
+<li>六管静态MOS管电路（SRAM，集成度低）
+<ul>
+<li>相当于带时钟的RS触发器，无需刷新</li>
+</ul>
+</li>
+<li>动态单管记忆单元电路（DRAM）
+<ul>
+<li>对电容充电，所以速度慢。元件少、集成高。破坏性读出，会漏电（但是CPU速度比漏电速度快），需要刷新。</li>
+</ul>
+</li>
+<li>半导体的RAM组织
+<ul>
+<li>Cell -&gt; Chip -&gt; Memory</li>
+<li>相同字的Cell字线连在一起，SRAM与ROM，字片式</li>
+<li>二维位片式，DRAM<br />
+-DRAM芯片举例</li>
+<li>16Mb = 4Mb*4 = 2048*2048 *4 = 2^11 * 2^11 * 4</li>
+<li>问题：为什么每一代DDR都会扩大四倍内存？<strong>行列分时复用</strong>，每一代DDR都会增加至少一根地址线，即行、列各增一位，所以容量至少提升4倍。用行、列地址选通信号（RAS\CAS）决定传送的是行、列地址</li>
+</ul>
+</li>
+</ul>
+<h3 id="25-内存条组织与总线宽度"><a class="markdownIt-Anchor" href="#25-内存条组织与总线宽度"></a> 2.5 内存条组织与总线宽度</h3>
+<h4 id="251-sparcstation工作站-20的内存条"><a class="markdownIt-Anchor" href="#251-sparcstation工作站-20的内存条"></a> 2.5.1 SPARCstation（工作站） 20的内存条</h4>
+<ul>
+<li>存储器总线宽度为128，内存条可以一次读取128bits</li>
+<li>2Mb = 256K * 8 = 2^9 * 2^9 * 8，即8行8列</li>
+<li>行缓存roll buffer是SRAM做的，保持了速度！</li>
+<li>各个芯片同一行同时读取到roll buffer</li>
+</ul>
+<h4 id="252-pc中的内存条"><a class="markdownIt-Anchor" href="#252-pc中的内存条"></a> 2.5.2 PC中的内存条</h4>
+<ul>
+<li>主存地址27位，片内地址24位与高24位主存地址相同，低3位用来选片（一般不用，整个读取），确定8个字节中的哪个。<strong>片内地址不是连续的，而是交叉编址（如0, 8, 16），可以同时读写</strong></li>
+<li>Core i7北桥直接做到CPU里</li>
+<li>行与列相等，引脚越少；如不能相等，尽量行比列少，这样可以减少刷新次数（按行刷新）</li>
 </ul>
 
     </div>
