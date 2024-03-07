@@ -180,117 +180,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">ICS 计算机系统</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-12-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-09T00:00:00+08:00">2023-12-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-07 08:12:51" itemprop="dateModified" datetime="2024-03-07T08:12:51+08:00">2024-03-07</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="第一阶段-程序的表示-转换与链接"><a class="markdownIt-Anchor" href="#第一阶段-程序的表示-转换与链接"></a> 第一阶段 程序的表示、转换与链接</h1>
-<pre><code>参考MOOC：NJU-1001625001
-</code></pre>
-<h2 id="10-计算机系统概述"><a class="markdownIt-Anchor" href="#10-计算机系统概述"></a> 1.0 计算机系统概述</h2>
-<h3 id="13-程序开发和执行过程"><a class="markdownIt-Anchor" href="#13-程序开发和执行过程"></a> 1.3 程序开发和执行过程</h3>
-<ol>
-<li>hello.c程序用ascii文本表示</li>
-<li>首先.c文件预处理为.i文件（把预处理指令翻译过来），然后.i文件编译成.s文件（汇编程序文本）,接着.s文件汇编成.o文件（二进制），与printf等函数的.o文件共同连接成可执行文件（二进制）</li>
-<li>高级语言编写程序所需环境：（1）语言处理程序； （2）语言处理系统； （3）语言运行时的系统； （4）操作系统内核； （5）操作系统； （6）指令集体系结构； （7）人机接口</li>
-</ol>
-<h3 id="14-计算机系统层次结构"><a class="markdownIt-Anchor" href="#14-计算机系统层次结构"></a> 1.4 计算机系统层次结构</h3>
-<ul>
-<li>过程式语言：如何做； 非过程化语言：做什么；语言发展是不断抽象的过程</li>
-<li>应用-&gt;算法-&gt;语言-&gt;操作系统-&gt;(软件)ISA指令集（硬件）-&gt;微体系、功能部件、电路和器件<br />
-非预期结果是硬件层次造成的。上层是下层的抽象，下层是上层的实现，底层为上层提供支撑环境</li>
-<li>题目：由机器语言编程的早期计算机系统中，没有ISA这一层次（F）；一直都有ISA，因此<strong>ISA是计算机体系层次中最重要的层次</strong>。<br />
-<strong>ISA， Instruction Set Architecture（结构）规定了如何使用硬件，是可以执行的指令的集合</strong>，包括指令格式、操作种类及操作数的类型的规定…<br />
-<strong>没有ISA，软件无法使用计算机硬件，一台计算机就不能成为“通用”计算机</strong></li>
-<li>计算机组成必须能够实现ISA规定的功能；同一种ISA可以由不同的计算机（硬件）组成，如乘法指令用ALU或乘法器都可以实现</li>
-<li>题目：有没有乘法指令是ISA考虑的问题，如何实现乘法指令是微体系结构考虑的问题</li>
-</ul>
-<h3 id="15-计算机系统基础学习目标"><a class="markdownIt-Anchor" href="#15-计算机系统基础学习目标"></a> 1.5 计算机系统基础学习目标</h3>
-<ul>
-<li>编写高效程序必须了解计算机底层结构</li>
-<li>必须掌握并行程序设计技术和工具</li>
-<li>课程目标：理解计算机如何生成和运行可执行文件</li>
-<li>涉及层次：C语言设计层，ISA和汇编层，微体系结构和硬件层</li>
-<li>第一部分 程序表示与转换；第二部分 执行控制流</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -327,7 +216,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-06 18:26:47" itemprop="dateModified" datetime="2024-03-06T18:26:47+08:00">2024-03-06</time>
+      <time title="修改时间：2024-03-07 20:48:26" itemprop="dateModified" datetime="2024-03-07T20:48:26+08:00">2024-03-07</time>
     </span>
 
   
@@ -382,8 +271,140 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="comment"># My apps.</span></span><br><span class="line">    <span class="string">&#x27;app_name&#x27;</span>, <span class="comment"># the app&#x27;s file name</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Default django apps.</span></span><br><span class="line">    <span class="string">&#x27;django.contrib.admin&#x27;</span>,</span><br><span class="line">    --snip--</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <h2 id="17-shell命令行"><a class="markdownIt-Anchor" href="#17-shell命令行"></a> 1.7 Shell命令行</h2>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ python manage.py shell</span><br><span class="line"><span class="keyword">from</span> learning_logs.models <span class="keyword">import</span> Topic</span><br><span class="line">Topic.objects.<span class="built_in">all</span>() <span class="comment"># 返回Queryset， 查询结果集</span></span><br><span class="line"></span><br><span class="line">topics = Topic.objects.<span class="built_in">all</span>()</span><br><span class="line"><span class="comment"># 列出topic的id与名称</span></span><br><span class="line"><span class="keyword">for</span> topic <span class="keyword">in</span> topics:</span><br><span class="line">    <span class="built_in">print</span>(topic.<span class="built_in">id</span>, topic)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 知道id后可以调用方法查看相应内容</span></span><br><span class="line">t = Topic.objects.get(<span class="built_in">id</span>=<span class="number">1</span>)</span><br><span class="line">t.text</span><br><span class="line">t.date_added</span><br><span class="line"></span><br><span class="line">t.entry_set.<span class="built_in">all</span>() <span class="comment"># 查看entries具体内容</span></span><br></pre></td></tr></table></figure>
-<h1 id="20-制作主页"><a class="markdownIt-Anchor" href="#20-制作主页"></a> 2.0 制作主页</h1>
+<h1 id="20-制作网页"><a class="markdownIt-Anchor" href="#20-制作网页"></a> 2.0 制作网页</h1>
+<h2 id="21-制作主页"><a class="markdownIt-Anchor" href="#21-制作主页"></a> 2.1 制作主页</h2>
+<ol>
+<li>增加配置文件，在<code>ll_project</code>中编辑<code>urls.py</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> include <span class="comment"># 导入方法</span></span><br><span class="line"></span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;admin/&#x27;</span>, admin.site.urls),</span><br><span class="line">    path(<span class="string">&#x27;&#x27;</span>, include(<span class="string">&#x27;app_folder_name.urls&#x27;</span>)), <span class="comment"># 添加app文件夹的名称</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建并编辑<code>app_folder_name/urls.</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;Defines URL patterns for learning_logs.&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">app_name = <span class="string">&#x27;learning_logs&#x27;</span> <span class="comment"># app文件夹名称</span></span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment"># Home page</span></span><br><span class="line">    path(<span class="string">&#x27;&#x27;</span>, views.index, name=<span class="string">&#x27;index&#x27;</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>编写<code>views.py</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;The home page for Learning Log.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;app_floder_name/index.html&#x27;</span>) <span class="comment"># template路径</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>创建<code>tmplates/app_floder_name</code>文件夹，并创建<code>index.html</code>文件</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Learning Log<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Learning Log helps you keep track of your learning, for any topic you&#x27;re</span><br><span class="line">interested in.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="制作网页模板"><a class="markdownIt-Anchor" href="#制作网页模板"></a> 制作网页模板</h2>
+<ol>
+<li>创建<code>base.html</code></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;learning_logs:index&#x27; %&#125;&quot;</span>&gt;</span>Learning Log<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123;% block content %&#125;&#123;% endblock content %&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
 
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">ICS 计算机系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-09T00:00:00+08:00">2023-12-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-07 09:20:48" itemprop="dateModified" datetime="2024-03-07T09:20:48+08:00">2024-03-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="第一阶段-程序的表示-转换与链接"><a class="markdownIt-Anchor" href="#第一阶段-程序的表示-转换与链接"></a> 第一阶段 程序的表示、转换与链接</h1>
+<pre><code>参考MOOC：NJU-1001625001
+</code></pre>
+<h2 id="10-计算机系统概述"><a class="markdownIt-Anchor" href="#10-计算机系统概述"></a> 1.0 计算机系统概述</h2>
+<h3 id="13-程序开发和执行过程"><a class="markdownIt-Anchor" href="#13-程序开发和执行过程"></a> 1.3 程序开发和执行过程</h3>
+<ol>
+<li>hello.c程序用ascii文本表示</li>
+<li>首先.c文件预处理为.i文件（把预处理指令翻译过来），然后.i文件编译成.s文件（汇编程序文本）,接着.s文件汇编成.o文件（二进制），与printf等函数的.o文件共同连接成可执行文件（二进制）</li>
+<li>高级语言编写程序所需环境：（1）语言处理程序； （2）语言处理系统； （3）语言运行时的系统； （4）操作系统内核； （5）操作系统； （6）指令集体系结构； （7）人机接口</li>
+</ol>
+<h3 id="14-计算机系统层次结构"><a class="markdownIt-Anchor" href="#14-计算机系统层次结构"></a> 1.4 计算机系统层次结构</h3>
+<ul>
+<li>过程式语言：如何做； 非过程化语言：做什么；语言发展是不断抽象的过程</li>
+<li>应用-&gt;算法-&gt;语言-&gt;操作系统-&gt;(软件)ISA指令集（硬件）-&gt;微体系、功能部件、电路和器件<br />
+非预期结果是硬件层次造成的。上层是下层的抽象，下层是上层的实现，底层为上层提供支撑环境</li>
+<li>题目：由机器语言编程的早期计算机系统中，没有ISA这一层次（F）；一直都有ISA，因此<strong>ISA是计算机体系层次中最重要的层次</strong>。<br />
+<strong>ISA， Instruction Set Architecture（结构）规定了如何使用硬件，是可以执行的指令的集合</strong>，包括指令格式、操作种类及操作数的类型的规定…<br />
+<strong>没有ISA，软件无法使用计算机硬件，一台计算机就不能成为“通用”计算机</strong></li>
+<li>计算机组成必须能够实现ISA规定的功能；同一种ISA可以由不同的计算机（硬件）组成，如乘法指令用ALU或乘法器都可以实现</li>
+<li>题目：有没有乘法指令是ISA考虑的问题，如何实现乘法指令是微体系结构考虑的问题</li>
+</ul>
+<h3 id="15-计算机系统基础学习目标"><a class="markdownIt-Anchor" href="#15-计算机系统基础学习目标"></a> 1.5 计算机系统基础学习目标</h3>
+<ul>
+<li>编写高效程序必须了解计算机底层结构</li>
+<li>必须掌握并行程序设计技术和工具</li>
+<li>课程目标：理解计算机如何生成和运行可执行文件</li>
+<li>涉及层次：C语言设计层，ISA和汇编层，微体系结构和硬件层</li>
+<li>第一部分 程序表示与转换；第二部分 执行控制流</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
