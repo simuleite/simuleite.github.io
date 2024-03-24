@@ -2287,6 +2287,50 @@ T = 1 + 12 + [0.5(半圈)*60*1000/5400] + 0.5KB/4MB*1000（实际上局部性会
 </ol>
 </li>
 </ul>
+<h2 id="50-cache替换算法"><a class="markdownIt-Anchor" href="#50-cache替换算法"></a> 5.0 Cache替换算法</h2>
+<h3 id="51-cache替换策略"><a class="markdownIt-Anchor" href="#51-cache替换策略"></a> 5.1 Cache替换策略</h3>
+<ul>
+<li>先进先出FIFO
+<ul>
+<li>如果每组4个，循环读取1,2,3,4,5，每次都不命中（颠簸现象，或抖动，乒乓现象）</li>
+</ul>
+</li>
+<li>最近最少用LRU
+<ul>
+<li>栈算法，命中率随着组的增大而提高</li>
+<li>每个槽加一位LRU位（计数值）。如4个槽，两位LRU，每次被访问的槽的LRU位置0，其余槽位+1；每次淘汰LRU值最大的那个</li>
+</ul>
+</li>
+</ul>
+<h3 id="52-写策略cache一致性"><a class="markdownIt-Anchor" href="#52-写策略cache一致性"></a> 5.2 写策略（cache一致性）</h3>
+<ul>
+<li>cache里的内容是主存块的副本</li>
+<li>直写（Write Through）：
+<ul>
+<li>直接写入内存，无一致性问题，但是慢</li>
+<li>写缓存：增加速度，并行。但是write buffer写满就会饱和，很慢、阻塞。</li>
+<li>解决buffer缓冲饱和：加一个二级cache（比buffer大）</li>
+</ul>
+</li>
+<li>写回（Write Back）：
+<ul>
+<li>block被淘汰替换的时候，一次性写回。</li>
+<li>需要锁死内存或cache的数据（修改位 dirty bit）</li>
+<li>一定是写分配</li>
+</ul>
+</li>
+<li>写不命中：
+<ul>
+<li>写分配：装入cache再写（需要读取主存的block）</li>
+<li>非写分配：直接写入主存</li>
+</ul>
+</li>
+</ul>
+<h3 id="53-cache实现的几个因素"><a class="markdownIt-Anchor" href="#53-cache实现的几个因素"></a> 5.3 cache实现的几个因素</h3>
+<ul>
+<li>L1 Cache的数据和指令是分开的，可以一边读数据一边取指令 ；L1的命中时间比命中率更重要，因为不命中还有L2也很快</li>
+<li>L2, L3, L4是联合Cache，指令数据放一起；L2命中率更重要</li>
+</ul>
 ]]></content>
       <tags>
         <tag>课程</tag>
