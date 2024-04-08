@@ -180,6 +180,405 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">ICS 计算机系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-09T00:00:00+08:00">2023-12-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-08 17:58:30" itemprop="dateModified" datetime="2024-04-08T17:58:30+08:00">2024-04-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="第一阶段-程序的表示-转换与链接"><a class="markdownIt-Anchor" href="#第一阶段-程序的表示-转换与链接"></a> 第一阶段 程序的表示、转换与链接</h1>
+<pre><code>参考MOOC：NJU-1001625001
+</code></pre>
+<h2 id="10-计算机系统概述"><a class="markdownIt-Anchor" href="#10-计算机系统概述"></a> 1.0 计算机系统概述</h2>
+<h3 id="13-程序开发和执行过程"><a class="markdownIt-Anchor" href="#13-程序开发和执行过程"></a> 1.3 程序开发和执行过程</h3>
+<ol>
+<li>hello.c程序用ascii文本表示</li>
+<li>首先.c文件预处理为.i文件（把预处理指令翻译过来），然后.i文件编译成.s文件（汇编程序文本）,接着.s文件汇编成.o文件（二进制），与printf等函数的.o文件共同连接成可执行文件（二进制）</li>
+<li>高级语言编写程序所需环境：（1）语言处理程序； （2）语言处理系统； （3）语言运行时的系统； （4）操作系统内核； （5）操作系统； （6）指令集体系结构； （7）人机接口</li>
+</ol>
+<h3 id="14-计算机系统层次结构"><a class="markdownIt-Anchor" href="#14-计算机系统层次结构"></a> 1.4 计算机系统层次结构</h3>
+<ul>
+<li>过程式语言：如何做； 非过程化语言：做什么；语言发展是不断抽象的过程</li>
+<li>应用-&gt;算法-&gt;语言-&gt;操作系统-&gt;(软件)ISA指令集（硬件）-&gt;微体系、功能部件、电路和器件<br />
+非预期结果是硬件层次造成的。上层是下层的抽象，下层是上层的实现，底层为上层提供支撑环境</li>
+<li>题目：由机器语言编程的早期计算机系统中，没有ISA这一层次（F）；一直都有ISA，因此<strong>ISA是计算机体系层次中最重要的层次</strong>。<br />
+<strong>ISA， Instruction Set Architecture（结构）规定了如何使用硬件，是可以执行的指令的集合</strong>，包括指令格式、操作种类及操作数的类型的规定…<br />
+<strong>没有ISA，软件无法使用计算机硬件，一台计算机就不能成为“通用”计算机</strong></li>
+<li>计算机组成必须能够实现ISA规定的功能；同一种ISA可以由不同的计算机（硬件）组成，如乘法指令用ALU或乘法器都可以实现</li>
+<li>题目：有没有乘法指令是ISA考虑的问题，如何实现乘法指令是微体系结构考虑的问题</li>
+</ul>
+<h3 id="15-计算机系统基础学习目标"><a class="markdownIt-Anchor" href="#15-计算机系统基础学习目标"></a> 1.5 计算机系统基础学习目标</h3>
+<ul>
+<li>编写高效程序必须了解计算机底层结构</li>
+<li>必须掌握并行程序设计技术和工具</li>
+<li>课程目标：理解计算机如何生成和运行可执行文件</li>
+<li>涉及层次：C语言设计层，ISA和汇编层，微体系结构和硬件层</li>
+<li>第一部分 程序表示与转换；第二部分 执行控制流</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/" class="post-title-link" itemprop="url">ICS PA实验课</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2024-02-09T00:00:00+08:00">2024-02-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-08 17:52:33" itemprop="dateModified" datetime="2024-04-08T17:52:33+08:00">2024-04-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="tips"><a class="markdownIt-Anchor" href="#tips"></a> Tips</h1>
+<ul>
+<li>参考资料：<a target="_blank" rel="noopener" href="https://note.tonycrane.cc/cs/system/pa/">https://note.tonycrane.cc/cs/system/pa/</a></li>
+</ul>
+<ol>
+<li>使用反向代理时，<code>git</code>相关命令会出问题</li>
+<li>实验前，创建新分支<code>pa号</code>，在其中做修改，完成以后合并pa到master中，并转回master分支</li>
+</ol>
+<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># PA</span></span><br><span class="line"><span class="section">## notification</span></span><br><span class="line"><span class="bullet">-</span> </span><br><span class="line"><span class="section">## difficulties</span></span><br><span class="line"><span class="bullet">1.</span> </span><br><span class="line"><span class="section">## summary</span></span><br></pre></td></tr></table></figure>
+<h1 id="pa0"><a class="markdownIt-Anchor" href="#pa0"></a> PA0</h1>
+<h2 id="notification"><a class="markdownIt-Anchor" href="#notification"></a> notification</h2>
+<ul>
+<li>全程使用git</li>
+<li><code>git commit --allow-empty</code>可以使git空（无更改的）提交</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">数据结构与算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-08 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-08T00:00:00+08:00">2024-03-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-08 17:52:20" itemprop="dateModified" datetime="2024-04-08T17:52:20+08:00">2024-04-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="00-pta实录"><a class="markdownIt-Anchor" href="#00-pta实录"></a> 0.0 PTA实录</h1>
+<h2 id="011-最大子列和plus"><a class="markdownIt-Anchor" href="#011-最大子列和plus"></a> 0.1.1 最大子列和plus</h2>
+<ul>
+<li>如何利用语句先后顺序记录上一条信息<code>pre_start_tag</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">sum_max_sequence</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> this_sum, max_sum;</span><br><span class="line">    <span class="type">int</span> start_tag, end_tag, pre_start_tag, neg_tag;</span><br><span class="line">    </span><br><span class="line">    start_tag = pre_start_tag = end_tag = <span class="number">0</span>;</span><br><span class="line">    this_sum = max_sum = <span class="number">0</span>;</span><br><span class="line">    neg_tag = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">list</span>[i] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            neg_tag = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        this_sum += <span class="built_in">list</span>[i];</span><br><span class="line">        <span class="keyword">if</span> (this_sum &gt; max_sum)</span><br><span class="line">        &#123;</span><br><span class="line">            max_sum = this_sum;</span><br><span class="line">            end_tag = i;</span><br><span class="line">            pre_start_tag = start_tag; <span class="comment">// 我没有想到的代码！</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (this_sum &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            this_sum = <span class="number">0</span>;</span><br><span class="line">            start_tag = i+<span class="number">1</span>;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(neg_tag) <span class="comment">// 输出0，第一个和最后一个数</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld %d %d\n&quot;</span>, max_sum, <span class="built_in">list</span>[<span class="number">0</span>], <span class="built_in">list</span>[num<span class="number">-1</span>]);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (max_sum == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;0 0 0\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld %d %d\n&quot;</span>, max_sum, <span class="built_in">list</span>[pre_start_tag], <span class="built_in">list</span>[end_tag]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">git使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-05 22:25:17" itemprop="dateModified" datetime="2024-04-05T22:25:17+08:00">2024-04-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="10-第一件事git-config"><a class="markdownIt-Anchor" href="#10-第一件事git-config"></a> 1.0 第一件事git config</h1>
+<ul>
+<li><code>git config --list --show-origin</code>查看所有git配置以及所在文件</li>
+<li>使用<code>git config --global</code>可以设置git的基本信息（如用户名、邮箱），使用<code>--unset</code>取消设置
+<ol>
+<li>配置你的名称、邮箱以及编辑器</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;191220000-Zhang San&quot;</span> </span><br><span class="line"><span class="comment"># 全局设置名称</span></span><br><span class="line">git config --global user.email <span class="string">&quot;zhang3@email.com&quot;</span></span><br><span class="line">git config --global core.editor vim</span><br></pre></td></tr></table></figure>
+<h1 id="20-初始化仓库"><a class="markdownIt-Anchor" href="#20-初始化仓库"></a> 2.0 初始化仓库</h1>
+<ol>
+<li>本地仓库：<code>git init</code>创建一个新的 git 仓库，其数据会存放在一个名为 <code>.git</code> 的目录下<br />
+删除仓库：删除 .git 文件夹</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;文件名字，*表示全部&gt;</span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span> </span><br><span class="line"><span class="comment"># 提交到暂存区，并附上注释</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>远程仓库：<code>git clone</code>克隆远端仓库</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &lt;网址&gt; &lt;仓库存放文件夹名&gt;</span><br><span class="line"><span class="comment"># 使用http克隆</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -486,205 +885,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">ICS 计算机系统</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-12-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-09T00:00:00+08:00">2023-12-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-24 10:05:28" itemprop="dateModified" datetime="2024-03-24T10:05:28+08:00">2024-03-24</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="第一阶段-程序的表示-转换与链接"><a class="markdownIt-Anchor" href="#第一阶段-程序的表示-转换与链接"></a> 第一阶段 程序的表示、转换与链接</h1>
-<pre><code>参考MOOC：NJU-1001625001
-</code></pre>
-<h2 id="10-计算机系统概述"><a class="markdownIt-Anchor" href="#10-计算机系统概述"></a> 1.0 计算机系统概述</h2>
-<h3 id="13-程序开发和执行过程"><a class="markdownIt-Anchor" href="#13-程序开发和执行过程"></a> 1.3 程序开发和执行过程</h3>
-<ol>
-<li>hello.c程序用ascii文本表示</li>
-<li>首先.c文件预处理为.i文件（把预处理指令翻译过来），然后.i文件编译成.s文件（汇编程序文本）,接着.s文件汇编成.o文件（二进制），与printf等函数的.o文件共同连接成可执行文件（二进制）</li>
-<li>高级语言编写程序所需环境：（1）语言处理程序； （2）语言处理系统； （3）语言运行时的系统； （4）操作系统内核； （5）操作系统； （6）指令集体系结构； （7）人机接口</li>
-</ol>
-<h3 id="14-计算机系统层次结构"><a class="markdownIt-Anchor" href="#14-计算机系统层次结构"></a> 1.4 计算机系统层次结构</h3>
-<ul>
-<li>过程式语言：如何做； 非过程化语言：做什么；语言发展是不断抽象的过程</li>
-<li>应用-&gt;算法-&gt;语言-&gt;操作系统-&gt;(软件)ISA指令集（硬件）-&gt;微体系、功能部件、电路和器件<br />
-非预期结果是硬件层次造成的。上层是下层的抽象，下层是上层的实现，底层为上层提供支撑环境</li>
-<li>题目：由机器语言编程的早期计算机系统中，没有ISA这一层次（F）；一直都有ISA，因此<strong>ISA是计算机体系层次中最重要的层次</strong>。<br />
-<strong>ISA， Instruction Set Architecture（结构）规定了如何使用硬件，是可以执行的指令的集合</strong>，包括指令格式、操作种类及操作数的类型的规定…<br />
-<strong>没有ISA，软件无法使用计算机硬件，一台计算机就不能成为“通用”计算机</strong></li>
-<li>计算机组成必须能够实现ISA规定的功能；同一种ISA可以由不同的计算机（硬件）组成，如乘法指令用ALU或乘法器都可以实现</li>
-<li>题目：有没有乘法指令是ISA考虑的问题，如何实现乘法指令是微体系结构考虑的问题</li>
-</ul>
-<h3 id="15-计算机系统基础学习目标"><a class="markdownIt-Anchor" href="#15-计算机系统基础学习目标"></a> 1.5 计算机系统基础学习目标</h3>
-<ul>
-<li>编写高效程序必须了解计算机底层结构</li>
-<li>必须掌握并行程序设计技术和工具</li>
-<li>课程目标：理解计算机如何生成和运行可执行文件</li>
-<li>涉及层次：C语言设计层，ISA和汇编层，微体系结构和硬件层</li>
-<li>第一部分 程序表示与转换；第二部分 执行控制流</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">数据结构与算法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-08 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-08T00:00:00+08:00">2024-03-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-23 11:37:31" itemprop="dateModified" datetime="2024-03-23T11:37:31+08:00">2024-03-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="00-pta实录"><a class="markdownIt-Anchor" href="#00-pta实录"></a> 0.0 PTA实录</h1>
-<h2 id="011-最大子列和plus"><a class="markdownIt-Anchor" href="#011-最大子列和plus"></a> 0.1.1 最大子列和plus</h2>
-<ul>
-<li>如何利用语句先后顺序记录上一条信息<code>pre_start_tag</code></li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">sum_max_sequence</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> this_sum, max_sum;</span><br><span class="line">    <span class="type">int</span> start_tag, end_tag, pre_start_tag, neg_tag;</span><br><span class="line">    </span><br><span class="line">    start_tag = pre_start_tag = end_tag = <span class="number">0</span>;</span><br><span class="line">    this_sum = max_sum = <span class="number">0</span>;</span><br><span class="line">    neg_tag = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">list</span>[i] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            neg_tag = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        this_sum += <span class="built_in">list</span>[i];</span><br><span class="line">        <span class="keyword">if</span> (this_sum &gt; max_sum)</span><br><span class="line">        &#123;</span><br><span class="line">            max_sum = this_sum;</span><br><span class="line">            end_tag = i;</span><br><span class="line">            pre_start_tag = start_tag; <span class="comment">// 我没有想到的代码！</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (this_sum &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            this_sum = <span class="number">0</span>;</span><br><span class="line">            start_tag = i+<span class="number">1</span>;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(neg_tag) <span class="comment">// 输出0，第一个和最后一个数</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld %d %d\n&quot;</span>, max_sum, <span class="built_in">list</span>[<span class="number">0</span>], <span class="built_in">list</span>[num<span class="number">-1</span>]);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (max_sum == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;0 0 0\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld %d %d\n&quot;</span>, max_sum, <span class="built_in">list</span>[pre_start_tag], <span class="built_in">list</span>[end_tag]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1091,176 +1291,6 @@
 <h1 id="切换文件"><a class="markdownIt-Anchor" href="#切换文件"></a> 切换文件</h1>
 <p>-<code>:e filename</code>切换到filename文件<br />
 -<code>:n/N</code>切换到下/上个文件</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/" class="post-title-link" itemprop="url">ICS PA实验课</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2024-02-09T00:00:00+08:00">2024-02-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-03 10:11:29" itemprop="dateModified" datetime="2024-03-03T10:11:29+08:00">2024-03-03</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="tips"><a class="markdownIt-Anchor" href="#tips"></a> Tips</h1>
-<ol>
-<li>使用反向代理时，<code>git</code>相关命令会出问题</li>
-<li>实验前，创建新分支<code>pa号</code>，在其中做修改，完成以后合并pa到master中，并转回master分支</li>
-</ol>
-<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># PA</span></span><br><span class="line"><span class="section">## notification</span></span><br><span class="line"><span class="bullet">-</span> </span><br><span class="line"><span class="section">## difficulties</span></span><br><span class="line"><span class="bullet">1.</span> </span><br><span class="line"><span class="section">## summary</span></span><br></pre></td></tr></table></figure>
-<h1 id="pa0"><a class="markdownIt-Anchor" href="#pa0"></a> PA0</h1>
-<h2 id="notification"><a class="markdownIt-Anchor" href="#notification"></a> notification</h2>
-<ul>
-<li>全程使用git</li>
-<li><code>git commit --allow-empty</code>可以使git空（无更改的）提交</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/make%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/make%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">make使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-02-27 00:00:00 / 修改时间：22:05:01" itemprop="dateCreated datePublished" datetime="2024-02-27T00:00:00+08:00">2024-02-27</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="makefile文件的格式"><a class="markdownIt-Anchor" href="#makefile文件的格式"></a> Makefile文件的格式</h1>
-<pre><code>[廖雪峰](http://ruanyifeng.com/blog/2015/02/make.html)
-</code></pre>
-<p>Makefile文件由一系列规则（rules）构成。每条规则的形式如下。</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;target&gt;: &lt;prerequisites&gt; </span></span><br><span class="line">[tab]  &lt;commands&gt;</span><br></pre></td></tr></table></figure>
-<p>上面第一行冒号前面的部分，叫做&quot;目标&quot;（target），冒号后面的部分叫做&quot;前置条件&quot;（prerequisites）；第二行必须由一个tab键起首，后面跟着&quot;命令&quot;（commands）。</p>
 
       
     </div>
