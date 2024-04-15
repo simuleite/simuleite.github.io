@@ -344,7 +344,10 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 <ul>
 <li>键入<code>make -nB</code>, 它会让<code>make</code>程序以&quot;只输出命令但不执行&quot;的方式强制构建目标。</li>
 </ul>
-]]></content>
+<h1 id="文件名匹配"><a class="markdownIt-Anchor" href="#文件名匹配"></a> 文件名匹配</h1>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">%.o: %.c # 所有.o/.c结尾的文件</span></span><br></pre></td></tr></table></figure>
+<h1 id="变量"><a class="markdownIt-Anchor" href="#变量"></a> 变量</h1>
+<figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">txt = Hello World</span><br><span class="line"><span class="section">test:</span></span><br><span class="line">    @echo <span class="variable">$(txt)</span> <span class="comment"># 变量放在$()中，@表示不打印直接执行</span></span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>基本操作</tag>
       </tags>
@@ -2481,6 +2484,11 @@ T = 1 + 12 + [0.5(半圈)*60*1000/5400] + 0.5KB/4MB*1000（实际上局部性会
 <ol>
 <li>5步：初始化、rear做下标、比较赋值（不需要新增项，只需要指向目标项！记得更新下标，非常重要hh）、处理剩余项，free()</li>
 </ol>
+<h2 id="031-树的同构"><a class="markdownIt-Anchor" href="#031-树的同构"></a> 0.3.1 树的同构</h2>
+<ol>
+<li>“最大N，层序遍历结果相同，但树不同”测试不通过：程序逻辑有问题，先判断了是否空，再判断是否值不同。把确认树是同构的代码<code>return 1</code>放在排除树是同构的代码<code>return 0</code>后面，即可解决问题。</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">Isomorphic</span><span class="params">(Tree R1, Tree R2)</span> <span class="comment">// R1、R2是两个下标</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> ((R1 == Null &amp;&amp; R2 != Null) || (R2 == Null &amp;&amp; R1 != Null) ) <span class="comment">// 一个空一个非空，不一样</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (T1[R1].Element != T2[R2].Element) <span class="comment">// 值不一样</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span> (R1 == Null &amp;&amp; R2 == Null) </span><br><span class="line">    <span class="comment">// 排除法，前面的树都没返回0，直到叶节点才返回1</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="comment">/* 记得加return！ */</span></span><br><span class="line">    <span class="keyword">if</span> (T1[R1].Left == Null &amp;&amp; T2[R2].Left == Null) <span class="comment">// 左子树空，看右子树</span></span><br><span class="line">        <span class="keyword">return</span> Isomorphic(T1[R1].Right, T2[R2].Right);</span><br><span class="line">    <span class="keyword">if</span> ( ((T1[R1].Left!=Null) &amp;&amp; (T2[R2].Left!=Null)) &amp;&amp; </span><br><span class="line">        (T1[T1[R1].Left].Element) == (T2[T2[R2].Left].Element)) &#123;</span><br><span class="line">        <span class="comment">// 左子树都不空，且左子树是同一棵树</span></span><br><span class="line">        <span class="keyword">return</span> Isomorphic(T1[R1].Left, T2[R2].Left);</span><br><span class="line">        <span class="keyword">return</span> Isomorphic(T1[R1].Right, T2[R2].Right);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 左子树都不空，但两边交换了</span></span><br><span class="line">        <span class="keyword">return</span> Isomorphic(T1[R1].Left, T2[R2].Right);</span><br><span class="line">        <span class="keyword">return</span> Isomorphic(T1[R1].Right, T2[R2].Right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="10-基本概念"><a class="markdownIt-Anchor" href="#10-基本概念"></a> 1.0 基本概念</h1>
 <h2 id="11-什么是数据结构"><a class="markdownIt-Anchor" href="#11-什么是数据结构"></a> 1.1 什么是数据结构</h2>
 <ul>
@@ -2770,6 +2778,8 @@ T = 1 + 12 + [0.5(半圈)*60*1000/5400] + 0.5KB/4MB*1000（实际上局部性会
 附：[[…/笔记/Linux笔记#环境变量|常见环境变量]]<br />
 5. 不知道如何使用<code>grep</code>命令查找。不知道main函数在哪，找到main函数了不知道main执行的函数在哪。[[…/笔记/Linux笔记#^0608f3|grep教程]]</p>
 <h2 id="rtfs"><a class="markdownIt-Anchor" href="#rtfs"></a> RTFS</h2>
+<h3 id="to-do-2"><a class="markdownIt-Anchor" href="#to-do-2"></a> to-do</h3>
+<p>[ ] 记得学习gdb调试，并且修正直接退出的makefile bug</p>
 <h3 id="notification-3"><a class="markdownIt-Anchor" href="#notification-3"></a> notification</h3>
 <ul>
 <li>在<code>cmd_c()</code>函数中, 调用<code>cpu_exec()</code>的时候传入了参数<code>-1</code>, 你知道这是什么意思吗?</li>
@@ -2789,6 +2799,12 @@ main function returns a value of 0. If the return type is not compatible with in
 termination status returned to the host environment is unspecified.<br />
 Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</p>
 </blockquote>
+<ul>
+<li>
+<p>为了测试大家是否已经理解框架代码, 我们给大家设置一个练习: 如果在运行NEMU之后直接键入<code>q</code>退出, 你会发现终端输出了一些错误信息. 请分析这个错误信息是什么原因造成的, 然后尝试在NEMU中修复它.</p>
+</li>
+<li></li>
+</ul>
 <h3 id="difficulties-3"><a class="markdownIt-Anchor" href="#difficulties-3"></a> difficulties</h3>
 <ol>
 <li>不知道<code>sdb_mainloop()</code>怎么就跳到<code>cpu_exec()</code>去了。vim搜索后发现在<code>cmd_c</code>函数里哈哈</li>
@@ -3196,5 +3212,38 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
       <tags>
         <tag>项目</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>PHP ADTP后台管理</title>
+    <url>/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="信息系统架构"><a class="markdownIt-Anchor" href="#信息系统架构"></a> 信息系统架构</h1>
+<ul>
+<li>信息化系统：前台 + 后台 + 数据库</li>
+<li>B/S 模式</li>
+<li>前端 -&gt; Server[Apache-&gt;PHP(TP6.0)] -&gt; SQL DataBase</li>
+<li>运行逻辑：
+<ul>
+<li>Client发送require请求(http协议)，包含header（length、refer信息）、body（数据）</li>
+<li>Apache接受请求，给PHP做处理</li>
+<li>PHP读取、处理数据；判断数据是否损毁、是否需要退回</li>
+<li>数据更新到前端，并返回结果(success/fail)</li>
+</ul>
+</li>
+</ul>
+<h1 id="think-php-60-mvc模式"><a class="markdownIt-Anchor" href="#think-php-60-mvc模式"></a> Think Php 6.0 MVC模式</h1>
+<ul>
+<li>MVC模式: Model View Controller</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">      后台            数据交互  组织查询语句</span><br><span class="line"> | Controller | ---&gt; | Model | ---&gt; | DataBase |</span><br><span class="line">    ↓   ↖ ------------------------------ ↙</span><br><span class="line">决定数据处理</span><br><span class="line"> | View |</span><br><span class="line">   前端</span><br></pre></td></tr></table></figure>
+<h2 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h2>
+<ul>
+<li>加载页面，产生一个require请求<code>https://website.net/app_name/class_name/method_name</code></li>
+<li>在<code>project_floder/app_name/class_name.php</code>可以找到<code>method_name</code>方法</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">method_name</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 接收数据、构造请求</span></span><br><span class="line">    <span class="variable">$attribute1</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;attribute1&#x27;</span>, <span class="number">0</span>);  <span class="comment">// body中的内容</span></span><br><span class="line">    <span class="variable">$attribute2</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;attribute2&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    <span class="comment">// 处理逻辑</span></span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$attribute1</span>))&#123;</span><br><span class="line">        <span class="variable">$attribute</span> = <span class="title class_">ShopLib</span>::<span class="title function_ invoke__">wxAppLogin</span>(<span class="variable">$attribute1</span>);</span><br><span class="line">        <span class="keyword">if</span>(!<span class="variable">$attribute</span>) &#123;</span><br><span class="line">            <span class="variable">$errData</span> = [</span><br><span class="line">                <span class="string">&#x27;errcode&#x27;</span> =&gt; -<span class="number">2</span>, <span class="comment">// 相当于字典，errData[&#x27;errcode&#x27;] = -2</span></span><br><span class="line">                <span class="string">&#x27;msg&#x27;</span> =&gt; <span class="string">&#x27;error message&#x27;</span></span><br><span class="line">            ];</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">json</span>(<span class="variable">$errData</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 到Model中查找数据</span></span><br><span class="line">    <span class="variable">$Model</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">getModel</span>(); <span class="comment">// getModel()默认使用定义的主模型</span></span><br><span class="line">    <span class="variable">$where</span>[<span class="string">&#x27;key&#x27;</span>] = [</span><br><span class="line">        <span class="string">&#x27;key_name&#x27;</span> =&gt; <span class="variable">$value</span>,</span><br><span class="line">    ];</span><br><span class="line">    <span class="comment">// 处理逻辑</span></span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$attribute</span>))&#123;</span><br><span class="line">        <span class="variable">$where</span>[<span class="string">&#x27;key&#x27;</span>] = [</span><br><span class="line">            <span class="string">&#x27;key_name&#x27;</span> =&gt; <span class="variable">$attribute</span>[<span class="string">&#x27;key_name&#x27;</span>],</span><br><span class="line">        ];</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$Result</span> = <span class="variable">$Model</span>::<span class="title function_ invoke__">getDetail</span>(<span class="variable">$where</span>[<span class="string">&#x27;key&#x27;</span>], <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 组装数据</span></span><br><span class="line">    <span class="variable">$result</span> = [</span><br><span class="line">        <span class="string">&#x27;errcode&#x27;</span> =&gt; <span class="number">0</span>,</span><br><span class="line">        <span class="string">&#x27;data&#x27;</span> =&gt; <span class="variable">$Result</span></span><br><span class="line">    ];</span><br><span class="line">    <span class="comment">// 返回前台</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">json_encode</span>(<span class="variable">$result</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>app_name/class_name/method_name?attribute1=1&amp;attribute2=10</code>’?'后面的内容是参数</li>
+</ul>
+]]></content>
   </entry>
 </search>

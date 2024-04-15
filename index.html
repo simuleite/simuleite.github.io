@@ -149,7 +149,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,278 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">PHP ADTP后台管理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-15 00:00:00 / 修改时间：17:27:45" itemprop="dateCreated datePublished" datetime="2024-04-15T00:00:00+08:00">2024-04-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="信息系统架构"><a class="markdownIt-Anchor" href="#信息系统架构"></a> 信息系统架构</h1>
+<ul>
+<li>信息化系统：前台 + 后台 + 数据库</li>
+<li>B/S 模式</li>
+<li>前端 -&gt; Server[Apache-&gt;PHP(TP6.0)] -&gt; SQL DataBase</li>
+<li>运行逻辑：
+<ul>
+<li>Client发送require请求(http协议)，包含header（length、refer信息）、body（数据）</li>
+<li>Apache接受请求，给PHP做处理</li>
+<li>PHP读取、处理数据；判断数据是否损毁、是否需要退回</li>
+<li>数据更新到前端，并返回结果(success/fail)</li>
+</ul>
+</li>
+</ul>
+<h1 id="think-php-60-mvc模式"><a class="markdownIt-Anchor" href="#think-php-60-mvc模式"></a> Think Php 6.0 MVC模式</h1>
+<ul>
+<li>MVC模式: Model View Controller</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">      后台            数据交互  组织查询语句</span><br><span class="line"> | Controller | ---&gt; | Model | ---&gt; | DataBase |</span><br><span class="line">    ↓   ↖ ------------------------------ ↙</span><br><span class="line">决定数据处理</span><br><span class="line"> | View |</span><br><span class="line">   前端</span><br></pre></td></tr></table></figure>
+<h2 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h2>
+<ul>
+<li>加载页面，产生一个require请求<code>https://website.net/app_name/class_name/method_name</code></li>
+<li>在<code>project_floder/app_name/class_name.php</code>可以找到<code>method_name</code>方法</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">method_name</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 接收数据、构造请求</span></span><br><span class="line">    <span class="variable">$attribute1</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;attribute1&#x27;</span>, <span class="number">0</span>);  <span class="comment">// body中的内容</span></span><br><span class="line">    <span class="variable">$attribute2</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;attribute2&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    <span class="comment">// 处理逻辑</span></span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$attribute1</span>))&#123;</span><br><span class="line">        <span class="variable">$attribute</span> = <span class="title class_">ShopLib</span>::<span class="title function_ invoke__">wxAppLogin</span>(<span class="variable">$attribute1</span>);</span><br><span class="line">        <span class="keyword">if</span>(!<span class="variable">$attribute</span>) &#123;</span><br><span class="line">            <span class="variable">$errData</span> = [</span><br><span class="line">                <span class="string">&#x27;errcode&#x27;</span> =&gt; -<span class="number">2</span>, <span class="comment">// 相当于字典，errData[&#x27;errcode&#x27;] = -2</span></span><br><span class="line">                <span class="string">&#x27;msg&#x27;</span> =&gt; <span class="string">&#x27;error message&#x27;</span></span><br><span class="line">            ];</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">json</span>(<span class="variable">$errData</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 到Model中查找数据</span></span><br><span class="line">    <span class="variable">$Model</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">getModel</span>(); <span class="comment">// getModel()默认使用定义的主模型</span></span><br><span class="line">    <span class="variable">$where</span>[<span class="string">&#x27;key&#x27;</span>] = [</span><br><span class="line">        <span class="string">&#x27;key_name&#x27;</span> =&gt; <span class="variable">$value</span>,</span><br><span class="line">    ];</span><br><span class="line">    <span class="comment">// 处理逻辑</span></span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$attribute</span>))&#123;</span><br><span class="line">        <span class="variable">$where</span>[<span class="string">&#x27;key&#x27;</span>] = [</span><br><span class="line">            <span class="string">&#x27;key_name&#x27;</span> =&gt; <span class="variable">$attribute</span>[<span class="string">&#x27;key_name&#x27;</span>],</span><br><span class="line">        ];</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$Result</span> = <span class="variable">$Model</span>::<span class="title function_ invoke__">getDetail</span>(<span class="variable">$where</span>[<span class="string">&#x27;key&#x27;</span>], <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 组装数据</span></span><br><span class="line">    <span class="variable">$result</span> = [</span><br><span class="line">        <span class="string">&#x27;errcode&#x27;</span> =&gt; <span class="number">0</span>,</span><br><span class="line">        <span class="string">&#x27;data&#x27;</span> =&gt; <span class="variable">$Result</span></span><br><span class="line">    ];</span><br><span class="line">    <span class="comment">// 返回前台</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">json_encode</span>(<span class="variable">$result</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>app_name/class_name/method_name?attribute1=1&amp;attribute2=10</code>’?'后面的内容是参数</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">数据结构与算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-08 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-08T00:00:00+08:00">2024-03-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-09 19:56:47" itemprop="dateModified" datetime="2024-04-09T19:56:47+08:00">2024-04-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="00-pta实录"><a class="markdownIt-Anchor" href="#00-pta实录"></a> 0.0 PTA实录</h1>
+<h2 id="011-最大子列和plus"><a class="markdownIt-Anchor" href="#011-最大子列和plus"></a> 0.1.1 最大子列和plus</h2>
+<ul>
+<li>如何利用语句先后顺序记录上一条信息<code>pre_start_tag</code></li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">sum_max_sequence</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> this_sum, max_sum;</span><br><span class="line">    <span class="type">int</span> start_tag, end_tag, pre_start_tag, neg_tag;</span><br><span class="line">    </span><br><span class="line">    start_tag = pre_start_tag = end_tag = <span class="number">0</span>;</span><br><span class="line">    this_sum = max_sum = <span class="number">0</span>;</span><br><span class="line">    neg_tag = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">list</span>[i] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            neg_tag = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        this_sum += <span class="built_in">list</span>[i];</span><br><span class="line">        <span class="keyword">if</span> (this_sum &gt; max_sum)</span><br><span class="line">        &#123;</span><br><span class="line">            max_sum = this_sum;</span><br><span class="line">            end_tag = i;</span><br><span class="line">            pre_start_tag = start_tag; <span class="comment">// 我没有想到的代码！</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (this_sum &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            this_sum = <span class="number">0</span>;</span><br><span class="line">            start_tag = i+<span class="number">1</span>;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(neg_tag) <span class="comment">// 输出0，第一个和最后一个数</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld %d %d\n&quot;</span>, max_sum, <span class="built_in">list</span>[<span class="number">0</span>], <span class="built_in">list</span>[num<span class="number">-1</span>]);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (max_sum == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;0 0 0\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld %d %d\n&quot;</span>, max_sum, <span class="built_in">list</span>[pre_start_tag], <span class="built_in">list</span>[end_tag]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/make%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/make%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">make使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-02-27T00:00:00+08:00">2024-02-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-09 19:09:10" itemprop="dateModified" datetime="2024-04-09T19:09:10+08:00">2024-04-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="makefile文件的格式"><a class="markdownIt-Anchor" href="#makefile文件的格式"></a> Makefile文件的格式</h1>
+<pre><code>[廖雪峰](http://ruanyifeng.com/blog/2015/02/make.html)
+</code></pre>
+<p>Makefile文件由一系列规则（rules）构成。每条规则的形式如下。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;target&gt;: &lt;prerequisites&gt; </span></span><br><span class="line">[tab]  &lt;commands&gt;</span><br></pre></td></tr></table></figure>
+<p>上面第一行冒号前面的部分，叫做&quot;目标&quot;（target），冒号后面的部分叫做&quot;前置条件&quot;（prerequisites）；第二行必须由一个tab键起首，后面跟着&quot;命令&quot;（commands）。</p>
+<ul>
+<li>键入<code>make -nB</code>, 它会让<code>make</code>程序以&quot;只输出命令但不执行&quot;的方式强制构建目标。</li>
+</ul>
+<h1 id="文件名匹配"><a class="markdownIt-Anchor" href="#文件名匹配"></a> 文件名匹配</h1>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">%.o: %.c # 所有.o/.c结尾的文件</span></span><br></pre></td></tr></table></figure>
+<h1 id="变量"><a class="markdownIt-Anchor" href="#变量"></a> 变量</h1>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">txt = Hello World</span><br><span class="line"><span class="section">test:</span></span><br><span class="line">    @echo <span class="variable">$(txt)</span> <span class="comment"># 变量放在$()中，@表示不打印直接执行</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -216,7 +488,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-09 17:14:32" itemprop="dateModified" datetime="2024-04-09T17:14:32+08:00">2024-04-09</time>
+      <time title="修改时间：2024-04-09 17:39:03" itemprop="dateModified" datetime="2024-04-09T17:39:03+08:00">2024-04-09</time>
     </span>
 
   
@@ -385,90 +657,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/make%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/make%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">make使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-02-27T00:00:00+08:00">2024-02-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-09 15:50:40" itemprop="dateModified" datetime="2024-04-09T15:50:40+08:00">2024-04-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="makefile文件的格式"><a class="markdownIt-Anchor" href="#makefile文件的格式"></a> Makefile文件的格式</h1>
-<pre><code>[廖雪峰](http://ruanyifeng.com/blog/2015/02/make.html)
-</code></pre>
-<p>Makefile文件由一系列规则（rules）构成。每条规则的形式如下。</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;target&gt;: &lt;prerequisites&gt; </span></span><br><span class="line">[tab]  &lt;commands&gt;</span><br></pre></td></tr></table></figure>
-<p>上面第一行冒号前面的部分，叫做&quot;目标&quot;（target），冒号后面的部分叫做&quot;前置条件&quot;（prerequisites）；第二行必须由一个tab键起首，后面跟着&quot;命令&quot;（commands）。</p>
-<ul>
-<li>键入<code>make -nB</code>, 它会让<code>make</code>程序以&quot;只输出命令但不执行&quot;的方式强制构建目标。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -550,94 +738,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">数据结构与算法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-08 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-08T00:00:00+08:00">2024-03-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-08 17:52:20" itemprop="dateModified" datetime="2024-04-08T17:52:20+08:00">2024-04-08</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="00-pta实录"><a class="markdownIt-Anchor" href="#00-pta实录"></a> 0.0 PTA实录</h1>
-<h2 id="011-最大子列和plus"><a class="markdownIt-Anchor" href="#011-最大子列和plus"></a> 0.1.1 最大子列和plus</h2>
-<ul>
-<li>如何利用语句先后顺序记录上一条信息<code>pre_start_tag</code></li>
-</ul>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">sum_max_sequence</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> this_sum, max_sum;</span><br><span class="line">    <span class="type">int</span> start_tag, end_tag, pre_start_tag, neg_tag;</span><br><span class="line">    </span><br><span class="line">    start_tag = pre_start_tag = end_tag = <span class="number">0</span>;</span><br><span class="line">    this_sum = max_sum = <span class="number">0</span>;</span><br><span class="line">    neg_tag = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">list</span>[i] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            neg_tag = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        this_sum += <span class="built_in">list</span>[i];</span><br><span class="line">        <span class="keyword">if</span> (this_sum &gt; max_sum)</span><br><span class="line">        &#123;</span><br><span class="line">            max_sum = this_sum;</span><br><span class="line">            end_tag = i;</span><br><span class="line">            pre_start_tag = start_tag; <span class="comment">// 我没有想到的代码！</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (this_sum &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            this_sum = <span class="number">0</span>;</span><br><span class="line">            start_tag = i+<span class="number">1</span>;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(neg_tag) <span class="comment">// 输出0，第一个和最后一个数</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld %d %d\n&quot;</span>, max_sum, <span class="built_in">list</span>[<span class="number">0</span>], <span class="built_in">list</span>[num<span class="number">-1</span>]);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (max_sum == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;0 0 0\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld %d %d\n&quot;</span>, max_sum, <span class="built_in">list</span>[pre_start_tag], <span class="built_in">list</span>[end_tag]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience_Blog/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1163,100 +1263,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience_Blog/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">Django动态网页 Python项目</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-03T00:00:00+08:00">2024-03-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-19 08:46:30" itemprop="dateModified" datetime="2024-03-19T08:46:30+08:00">2024-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="10-创建环境"><a class="markdownIt-Anchor" href="#10-创建环境"></a> 1.0 创建环境</h1>
-<h2 id="11-创建虚拟环境"><a class="markdownIt-Anchor" href="#11-创建虚拟环境"></a> 1.1 创建虚拟环境</h2>
-<p>在独立的项目文件夹下运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m venv ll_env</span><br></pre></td></tr></table></figure>
-<p>将会创造一个<code>ll_env</code>文件夹<br />
-可以使用下面的命令激活虚拟环境。激活虚拟环境后，安装的模组将只在虚拟环境中生效，而不干扰到电脑上Python的模组</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ll_env/bin/activate <span class="comment"># Linux系统</span></span><br><span class="line"><span class="built_in">source</span> ll_env/Scripts/activate <span class="comment"># Windows系统</span></span><br><span class="line"></span><br><span class="line">(ll_env)</span><br><span class="line">work_directory$ <span class="comment"># 命令提示符前会显示(ll_env)</span></span><br></pre></td></tr></table></figure>
-<p>使用<code>deactive</code>取消激活虚拟环境</p>
-<h2 id="12-安装配置django"><a class="markdownIt-Anchor" href="#12-安装配置django"></a> 1.2 安装配置Django</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip install django <span class="comment"># 安装Django</span></span><br><span class="line">django-admin startproject ll_project . <span class="comment"># 初始化Django</span></span><br><span class="line">python manage.py migrate <span class="comment"># 生成数据库</span></span><br><span class="line">python manage.py runserver <span class="comment"># 生成预览，可以在本地8000端口看到网页</span></span><br></pre></td></tr></table></figure>
-<pre><code>Django手册： https://docs.djangoproject.com/en/4.1/ref/models/fields/
-</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
