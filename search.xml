@@ -2694,6 +2694,22 @@ T = 1 + 12 + [0.5(半圈)*60*1000/5400] + 0.5KB/4MB*1000（实际上局部性会
 <li>题目：已知有颗5个结点的二又树，其前序遍历序列是a???？，中序遍历序列是a？??？，可以断定 A.该树根结点是a，且没有左子树<br />
 前序遍历：根-&gt;左-&gt;右；中序：左-&gt;根-&gt;右；由此可判断</li>
 </ul>
+<h1 id="二叉搜索树"><a class="markdownIt-Anchor" href="#二叉搜索树"></a> 二叉搜索树</h1>
+<ul>
+<li>二分查找：事先有效组织数据</li>
+<li>二叉树：比线性结构更好组织；所有的左子节点要比根节点小，右子节点要比根节点大</li>
+<li>删除：右子树最小元素替代或左子树最大元素替代（这两个元素一定只有1个节点）</li>
+</ul>
+<h1 id="平衡二叉树"><a class="markdownIt-Anchor" href="#平衡二叉树"></a> 平衡二叉树</h1>
+<ul>
+<li>左右两边节点、高度差不多</li>
+<li>平衡因子Balace Factor: <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi><mi>F</mi><mo stretchy="false">(</mo><mi>T</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>h</mi><mi>L</mi></msub><mo>−</mo><msub><mi>h</mi><mi>R</mi></msub></mrow><annotation encoding="application/x-tex">BF(T) = h_L - h_R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.13889em;">T</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">L</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></li>
+<li>最少几个节点才能构造一个4层平衡二叉树？7个（保持高度差=1）</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">    A</span><br><span class="line">   / \</span><br><span class="line">  B   C</span><br><span class="line"> / \  /</span><br><span class="line"> D  E F</span><br><span class="line">/</span><br><span class="line">G</span><br></pre></td></tr></table></figure>
+<ul>
+<li></li>
+</ul>
 ]]></content>
       <tags>
         <tag>课程</tag>
@@ -3141,8 +3157,42 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
       </tags>
   </entry>
   <entry>
-    <title>微信小程序</title>
-    <url>/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</url>
+    <title>PHP ADTP后台管理</title>
+    <url>/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="信息系统架构"><a class="markdownIt-Anchor" href="#信息系统架构"></a> 信息系统架构</h1>
+<ul>
+<li>信息化系统：前台 + 后台 + 数据库</li>
+<li>B/S 模式</li>
+<li>前端 -&gt; Server[Apache-&gt;PHP(TP6.0)] -&gt; SQL DataBase</li>
+<li>运行逻辑：
+<ul>
+<li>Client发送require请求(http协议)，包含header（length、refer信息）、body（数据）</li>
+<li>Apache接受请求，给PHP做处理</li>
+<li>PHP读取、处理数据；判断数据是否损毁、是否需要退回</li>
+<li>数据更新到前端，并返回结果(success/fail)</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<h1 id="think-php-60-mvc模式"><a class="markdownIt-Anchor" href="#think-php-60-mvc模式"></a> Think Php 6.0 MVC模式</h1>
+<ul>
+<li>MVC模式: Model View Controller</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">      后台            数据交互  组织查询语句</span><br><span class="line"> | Controller | ---&gt; | Model | ---&gt; | DataBase |</span><br><span class="line">    ↓   ↖ ------------------------------ ↙</span><br><span class="line">决定数据处理</span><br><span class="line"> | View |</span><br><span class="line">   前端</span><br></pre></td></tr></table></figure>
+<h2 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h2>
+<ul>
+<li>加载页面，产生一个require请求<code>https://website.net/app_name/class_name/method_name</code></li>
+<li>在<code>project_floder/app_name/class_name.php</code>可以找到<code>method_name</code>方法</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">method_name</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 接收数据、构造请求</span></span><br><span class="line">    <span class="variable">$attribute1</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;attribute1&#x27;</span>, <span class="number">0</span>);  <span class="comment">// body中的内容</span></span><br><span class="line">    <span class="variable">$attribute2</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;attribute2&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    <span class="comment">// 处理逻辑</span></span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$attribute1</span>))&#123;</span><br><span class="line">        <span class="variable">$attribute</span> = <span class="title class_">ShopLib</span>::<span class="title function_ invoke__">wxAppLogin</span>(<span class="variable">$attribute1</span>);</span><br><span class="line">        <span class="keyword">if</span>(!<span class="variable">$attribute</span>) &#123;</span><br><span class="line">            <span class="variable">$errData</span> = [</span><br><span class="line">                <span class="string">&#x27;errcode&#x27;</span> =&gt; -<span class="number">2</span>, <span class="comment">// 相当于字典，errData[&#x27;errcode&#x27;] = -2</span></span><br><span class="line">                <span class="string">&#x27;msg&#x27;</span> =&gt; <span class="string">&#x27;error message&#x27;</span></span><br><span class="line">            ];</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">json</span>(<span class="variable">$errData</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 到Model中查找数据</span></span><br><span class="line">    <span class="variable">$Model</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">getModel</span>(); <span class="comment">// getModel()默认使用定义的主模型，可以在common/model中找到定义</span></span><br><span class="line">    <span class="variable">$where</span>[<span class="string">&#x27;key&#x27;</span>] = [</span><br><span class="line">        <span class="string">&#x27;key_name&#x27;</span> =&gt; <span class="variable">$value</span>,</span><br><span class="line">    ];</span><br><span class="line">    <span class="comment">// 处理逻辑</span></span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$attribute</span>))&#123;</span><br><span class="line">        <span class="variable">$where</span>[<span class="string">&#x27;key&#x27;</span>] = [</span><br><span class="line">            <span class="string">&#x27;key_name&#x27;</span> =&gt; <span class="variable">$attribute</span>[<span class="string">&#x27;key_name&#x27;</span>],</span><br><span class="line">        ];</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$Result</span> = <span class="variable">$Model</span>::<span class="title function_ invoke__">getDetail</span>(<span class="variable">$where</span>[<span class="string">&#x27;key&#x27;</span>], <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 组装数据</span></span><br><span class="line">    <span class="variable">$result</span> = [</span><br><span class="line">        <span class="string">&#x27;errcode&#x27;</span> =&gt; <span class="number">0</span>,</span><br><span class="line">        <span class="string">&#x27;data&#x27;</span> =&gt; <span class="variable">$Result</span></span><br><span class="line">    ];</span><br><span class="line">    <span class="comment">// 返回前台</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">json_encode</span>(<span class="variable">$result</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>app_name/class_name/method_name?attribute1=1&amp;attribute2=10</code>’?'后面的内容是参数</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>微信小程序 miniapp</title>
+    <url>/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%20miniapp/</url>
     <content><![CDATA[<p>说明：%%是注释%%</p>
 <h1 id="程序设计"><a class="markdownIt-Anchor" href="#程序设计"></a> 程序设计</h1>
 <ol>
@@ -3212,38 +3262,5 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
       <tags>
         <tag>项目</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>PHP ADTP后台管理</title>
-    <url>/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/</url>
-    <content><![CDATA[<h1 id="信息系统架构"><a class="markdownIt-Anchor" href="#信息系统架构"></a> 信息系统架构</h1>
-<ul>
-<li>信息化系统：前台 + 后台 + 数据库</li>
-<li>B/S 模式</li>
-<li>前端 -&gt; Server[Apache-&gt;PHP(TP6.0)] -&gt; SQL DataBase</li>
-<li>运行逻辑：
-<ul>
-<li>Client发送require请求(http协议)，包含header（length、refer信息）、body（数据）</li>
-<li>Apache接受请求，给PHP做处理</li>
-<li>PHP读取、处理数据；判断数据是否损毁、是否需要退回</li>
-<li>数据更新到前端，并返回结果(success/fail)</li>
-</ul>
-</li>
-</ul>
-<h1 id="think-php-60-mvc模式"><a class="markdownIt-Anchor" href="#think-php-60-mvc模式"></a> Think Php 6.0 MVC模式</h1>
-<ul>
-<li>MVC模式: Model View Controller</li>
-</ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">      后台            数据交互  组织查询语句</span><br><span class="line"> | Controller | ---&gt; | Model | ---&gt; | DataBase |</span><br><span class="line">    ↓   ↖ ------------------------------ ↙</span><br><span class="line">决定数据处理</span><br><span class="line"> | View |</span><br><span class="line">   前端</span><br></pre></td></tr></table></figure>
-<h2 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h2>
-<ul>
-<li>加载页面，产生一个require请求<code>https://website.net/app_name/class_name/method_name</code></li>
-<li>在<code>project_floder/app_name/class_name.php</code>可以找到<code>method_name</code>方法</li>
-</ul>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">method_name</span>(<span class="params">Request <span class="variable">$request</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 接收数据、构造请求</span></span><br><span class="line">    <span class="variable">$attribute1</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;attribute1&#x27;</span>, <span class="number">0</span>);  <span class="comment">// body中的内容</span></span><br><span class="line">    <span class="variable">$attribute2</span> = <span class="variable">$request</span>-&gt;<span class="title function_ invoke__">post</span>(<span class="string">&#x27;attribute2&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">    <span class="comment">// 处理逻辑</span></span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$attribute1</span>))&#123;</span><br><span class="line">        <span class="variable">$attribute</span> = <span class="title class_">ShopLib</span>::<span class="title function_ invoke__">wxAppLogin</span>(<span class="variable">$attribute1</span>);</span><br><span class="line">        <span class="keyword">if</span>(!<span class="variable">$attribute</span>) &#123;</span><br><span class="line">            <span class="variable">$errData</span> = [</span><br><span class="line">                <span class="string">&#x27;errcode&#x27;</span> =&gt; -<span class="number">2</span>, <span class="comment">// 相当于字典，errData[&#x27;errcode&#x27;] = -2</span></span><br><span class="line">                <span class="string">&#x27;msg&#x27;</span> =&gt; <span class="string">&#x27;error message&#x27;</span></span><br><span class="line">            ];</span><br><span class="line">            <span class="keyword">return</span> <span class="title function_ invoke__">json</span>(<span class="variable">$errData</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 到Model中查找数据</span></span><br><span class="line">    <span class="variable">$Model</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">getModel</span>(); <span class="comment">// getModel()默认使用定义的主模型</span></span><br><span class="line">    <span class="variable">$where</span>[<span class="string">&#x27;key&#x27;</span>] = [</span><br><span class="line">        <span class="string">&#x27;key_name&#x27;</span> =&gt; <span class="variable">$value</span>,</span><br><span class="line">    ];</span><br><span class="line">    <span class="comment">// 处理逻辑</span></span><br><span class="line">    <span class="keyword">if</span>(!<span class="keyword">empty</span>(<span class="variable">$attribute</span>))&#123;</span><br><span class="line">        <span class="variable">$where</span>[<span class="string">&#x27;key&#x27;</span>] = [</span><br><span class="line">            <span class="string">&#x27;key_name&#x27;</span> =&gt; <span class="variable">$attribute</span>[<span class="string">&#x27;key_name&#x27;</span>],</span><br><span class="line">        ];</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$Result</span> = <span class="variable">$Model</span>::<span class="title function_ invoke__">getDetail</span>(<span class="variable">$where</span>[<span class="string">&#x27;key&#x27;</span>], <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 组装数据</span></span><br><span class="line">    <span class="variable">$result</span> = [</span><br><span class="line">        <span class="string">&#x27;errcode&#x27;</span> =&gt; <span class="number">0</span>,</span><br><span class="line">        <span class="string">&#x27;data&#x27;</span> =&gt; <span class="variable">$Result</span></span><br><span class="line">    ];</span><br><span class="line">    <span class="comment">// 返回前台</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_ invoke__">json_encode</span>(<span class="variable">$result</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>app_name/class_name/method_name?attribute1=1&amp;attribute2=10</code>’?'后面的内容是参数</li>
-</ul>
-]]></content>
   </entry>
 </search>
