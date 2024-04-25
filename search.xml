@@ -2528,8 +2528,11 @@ T = 1 + 12 + [0.5(半圈)*60*1000/5400] + 0.5KB/4MB*1000（实际上局部性会
 <li>最少几个节点才能构造一个4层平衡二叉树？7个（保持高度差=1）</li>
 </ul>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">    A</span><br><span class="line">   / \</span><br><span class="line">  B   C</span><br><span class="line"> / \  /</span><br><span class="line"> D  E F</span><br><span class="line">/</span><br><span class="line">G</span><br></pre></td></tr></table></figure>
+<h1 id="堆"><a class="markdownIt-Anchor" href="#堆"></a> 堆</h1>
 <ul>
-<li></li>
+<li>不按顺序处理，按优先级</li>
+<li>优先队列(Priority Queue)：特殊的队列，按优先权（关键字）大小取元素</li>
+<li>用完全二叉树存储，任何节点都比左右子节点要大</li>
 </ul>
 ]]></content>
       <tags>
