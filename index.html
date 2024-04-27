@@ -149,7 +149,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -216,7 +216,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-24 20:50:19" itemprop="dateModified" datetime="2024-04-24T20:50:19+08:00">2024-04-24</time>
+      <time title="修改时间：2024-04-27 16:19:30" itemprop="dateModified" datetime="2024-04-27T16:19:30+08:00">2024-04-27</time>
     </span>
 
   
@@ -243,6 +243,136 @@
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/%E6%95%B0%E5%AD%97%E4%BA%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/%E6%95%B0%E5%AD%97%E4%BA%BA/" class="post-title-link" itemprop="url">数字人</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-26 00:00:00" itemprop="dateCreated datePublished" datetime="2024-04-26T00:00:00+08:00">2024-04-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-27 10:45:36" itemprop="dateModified" datetime="2024-04-27T10:45:36+08:00">2024-04-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="探究成果"><a class="markdownIt-Anchor" href="#探究成果"></a> 探究成果</h1>
+<h2 id="林堂辉"><a class="markdownIt-Anchor" href="#林堂辉"></a> 林堂辉</h2>
+<ol>
+<li><strong>后期处理规避闭唇</strong>：分句子合成视频；这样就不会有嘴唇不动的情况。结果是数字人每说一句话剪辑一下，画面会切割</li>
+</ol>
+<h1 id="to-do-list"><a class="markdownIt-Anchor" href="#to-do-list"></a> TO DO LIST</h1>
+<p>[] 打开month_tracking再训练一次m2<br />
+[] 生成一段中间有5s停顿的音频再合成<br />
+[] 剪掉嘴唇动作的片段后，再生成视频<br />
+[] 探究如何使视频可以念出字母、单词；中英文混合<br />
+[] 多段合成</p>
+<h1 id="10-gpt-sovits克隆音频"><a class="markdownIt-Anchor" href="#10-gpt-sovits克隆音频"></a> 1.0 GPT-SoVITS克隆音频</h1>
+<h2 id="11-启动环境"><a class="markdownIt-Anchor" href="#11-启动环境"></a> 1.1 启动环境</h2>
+<ol>
+<li>准备wav格式音频</li>
+<li>登录AutoDL子账号，并开启最新的GVS服务器（保持数据同步）</li>
+<li>WinSCP远程连接</li>
+<li>开启虚拟机，开启指令：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> &#123;&#125; &gt; ~/GPT-SoVITS/i18n/locale/en_US.json &amp;&amp; <span class="built_in">source</span> activate GPTSoVits &amp;&amp; <span class="built_in">cd</span> ~/GPT-SoVITS/ &amp;&amp; python webui.py</span><br><span class="line"><span class="comment"># 将en_US.json文件内容重置为&#123;&#125;，激活虚拟环境GPTSoVits，转到GVS文件夹开启webui.python文件</span></span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>打开网址，勾选<code>UVR5-WebUI</code>（分离人声、背景音）；退出，并打开新网址</li>
+</ol>
+<h2 id="12-处理音频"><a class="markdownIt-Anchor" href="#12-处理音频"></a> 1.2 处理音频</h2>
+<h3 id="121-切割音频"><a class="markdownIt-Anchor" href="#121-切割音频"></a> 1.2.1 切割音频</h3>
+<ol>
+<li>文件路径：<code>vocal.wav</code></li>
+<li>输出目录 <code>output/slicer_opt/tis/</code></li>
+<li><strong>开启语言切割</strong></li>
+<li>将输出目录填入ASR输入路径，等待任务完成</li>
+</ol>
+<h3 id="122-音频打标"><a class="markdownIt-Anchor" href="#122-音频打标"></a> 1.2.2 音频打标</h3>
+<h3 id="123-训练集格式化"><a class="markdownIt-Anchor" href="#123-训练集格式化"></a> 1.2.3 训练集格式化</h3>
+<ol>
+<li>文本标注文件 <code>output/asr_opt/tjs.list</code></li>
+<li>训练集文件目录 <code>output/slicer_opt/tjs</code></li>
+<li>一键三联，等待任务完成</li>
+</ol>
+<h3 id="124-训练模型"><a class="markdownIt-Anchor" href="#124-训练模型"></a> 1.2.4 训练模型</h3>
+<h3 id="125-推理模型合成语音"><a class="markdownIt-Anchor" href="#125-推理模型合成语音"></a> 1.2.5 推理模型合成语音</h3>
+<ol>
+<li>选择生成好的模型</li>
+<li>上传参考音频</li>
+<li>分割文本并训练</li>
+</ol>
+<h1 id="20-easy-wav2lip生成视频"><a class="markdownIt-Anchor" href="#20-easy-wav2lip生成视频"></a> 2.0 Easy-Wav2Lip生成视频</h1>
+<ol>
+<li>打开<code>Easy-Wav2Lip</code>服务器</li>
+<li>上传样品视频到<code>resource/YOUR_FOLDER</code></li>
+<li>编辑<code>config.ini</code></li>
+</ol>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[OPTIONS]</span></span><br><span class="line"></span><br><span class="line"><span class="attr">video_file</span> = /root/Easy-Wav2Lip/resoure/YOUR_FOLDER/YOUR_FILE.mp4</span><br><span class="line"><span class="attr">vocal_file</span> = /root/Easy-Wav2Lip/resoure/YOUR_FOLDER/YOUR_FILE.wav</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>下载训练好的视频（在资源文件夹）</li>
+</ol>
+
       
     </div>
 
@@ -1182,93 +1312,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">算法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-03-22 15:38:11" itemprop="dateModified" datetime="2024-03-22T15:38:11+08:00">2024-03-22</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ul>
-<li><strong>复杂度分析</strong>：数据结构和算法的评价维度与方法。时间复杂度、空间复杂度的推算方法、常见类型、示例等。</li>
-<li><strong>数据结构</strong>：基本数据类型，数据结构的分类方法。数组、链表、栈、队列、哈希表、树、堆、图等数据结构的定义、优缺点、常用操作、常见类型、典型应用、实现方法等。</li>
-<li><strong>算法</strong>：搜索、排序、分治、回溯、动态规划、贪心等算法的定义、优缺点、效率、应用场景、解题步骤、示例题目等。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience_Blog/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
