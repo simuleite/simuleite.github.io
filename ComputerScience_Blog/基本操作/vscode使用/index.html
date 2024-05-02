@@ -23,23 +23,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="SMULET&#39;s BLOG">
-<meta property="og:url" content="https://simuleite.github.io/tags/%E6%8C%87%E5%8D%97/index.html">
+    <meta name="description" content="全键盘操作指南  终端操作  code &lt;Folder&gt; 打开工作区；相当于 CTRL+K, CTRL+O code &lt;File&gt; 打开文件 CTRL + ←&#x2F;→ 逐词跳转 CTRL+K 清理终端 CTRL+P: &gt;Tasks 新建任务，用 CTRL+P: &gt;run 运行；相当于 make   Panel操作 CTRL+P 打开Panel  @ 符号：寻找sy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vscode使用">
+<meta property="og:url" content="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vscode%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="全键盘操作指南  终端操作  code &lt;Folder&gt; 打开工作区；相当于 CTRL+K, CTRL+O code &lt;File&gt; 打开文件 CTRL + ←&#x2F;→ 逐词跳转 CTRL+K 清理终端 CTRL+P: &gt;Tasks 新建任务，用 CTRL+P: &gt;run 运行；相当于 make   Panel操作 CTRL+P 打开Panel  @ 符号：寻找sy">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-02T03:11:54.271Z">
 <meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="基本操作">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://simuleite.github.io/tags/%E6%8C%87%E5%8D%97/">
+<link rel="canonical" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vscode%E4%BD%BF%E7%94%A8/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/指南/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vscode%E4%BD%BF%E7%94%A8/","path":"ComputerScience_Blog/基本操作/vscode使用/","title":"vscode使用"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: 指南 | SMULET's BLOG</title>
+<title>vscode使用 | SMULET's BLOG</title>
   
 
 
@@ -124,7 +129,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -137,6 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%A8%E9%94%AE%E7%9B%98%E6%93%8D%E4%BD%9C%E6%8C%87%E5%8D%97"><span class="nav-text"> 全键盘操作指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%88%E7%AB%AF%E6%93%8D%E4%BD%9C"><span class="nav-text"> 终端操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#panel%E6%93%8D%E4%BD%9C"><span class="nav-text"> Panel操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E5%8C%BA%E6%93%8D%E4%BD%9C"><span class="nav-text"> 编辑区操作</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -170,133 +176,114 @@
 
     </div>
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">指南
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vscode%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="vscode使用 | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vscode使用
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
+
+      <time title="创建时间：2024-05-02 00:00:00 / 修改时间：11:11:54" itemprop="dateCreated datePublished" datetime="2024-05-02T00:00:00+08:00">2024-05-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="全键盘操作指南"><a class="markdownIt-Anchor" href="#全键盘操作指南"></a> 全键盘操作指南</h1>
+<h2 id="终端操作"><a class="markdownIt-Anchor" href="#终端操作"></a> 终端操作</h2>
+<ul>
+<li><code>code &lt;Folder&gt;</code> 打开工作区；相当于 <code>CTRL+K, CTRL+O</code></li>
+<li><code>code &lt;File&gt;</code> 打开文件</li>
+<li><strong><code>CTRL + ←/→</code> 逐词跳转</strong></li>
+<li><code>CTRL+K</code> 清理终端</li>
+<li><code>CTRL+P: &gt;Tasks</code> 新建任务，用 <code>CTRL+P: &gt;run</code> 运行；相当于 <code>make</code></li>
+</ul>
+<h2 id="panel操作"><a class="markdownIt-Anchor" href="#panel操作"></a> Panel操作</h2>
+<p><code>CTRL+P</code> 打开Panel</p>
+<ul>
+<li><code>@</code> 符号：寻找symbol，如函数名、变量名；相当于<code>CRTL+SHIFT+.</code></li>
+<li><code># &lt;String&gt;</code> 符号：全局搜索字符串</li>
+</ul>
+<h2 id="编辑区操作"><a class="markdownIt-Anchor" href="#编辑区操作"></a> 编辑区操作</h2>
+<ul>
+<li><code>CTRL+G &lt;Line_Number&gt;</code> 跳到指定行</li>
+<li><code>CTRL + ←/→</code> 逐词跳转；相当于vim的 <code>w</code></li>
+<li><code>ALT + ↑/↓</code> 移动某行代码</li>
+<li><code>ALT + SHIGT+ ↑/↓</code> 复制某行代码</li>
+<li><code>CTRL+P: &gt;Snippets</code> 创建代码模板</li>
+<li><code>SHIFT+ALT+F12</code> 找到某个命名的全部引用（而不是简单的搜索）</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-01-11T00:00:00+08:00"
-              content="2024-01-11">
-          01-11
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Read%20Origin/" itemprop="url">
-          <span itemprop="name">Read Origin</span>
-        </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" rel="tag"># 基本操作</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/%E6%95%B0%E5%AD%97%E4%BA%BA/" rel="prev" title="数字人">
+                  <i class="fa fa-angle-left"></i> 数字人
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-01-10T00:00:00+08:00"
-              content="2024-01-10">
-          01-10
-        </time>
-      </div>
 
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Deep%20Reading/" itemprop="url">
-          <span itemprop="name">Deep Reading</span>
-        </a>
-      </div>
 
-      
-    </header>
-  </article>
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
-    </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-11-09T00:00:00+08:00"
-              content="2023-11-09">
-          11-09
-        </time>
-      </div>
 
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E6%8C%87%E5%8D%97/CSAPP%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/" itemprop="url">
-          <span itemprop="name">CSAPP阅读指南</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-11-09T00:00:00+08:00"
-              content="2023-11-09">
-          11-09
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" itemprop="url">
-          <span itemprop="name">Github使用指南</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-11-09T00:00:00+08:00"
-              content="2023-11-09">
-          11-09
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" itemprop="url">
-          <span itemprop="name">Hexo博客教程</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-    </div>
-  </div>
-  
-  
-  
 
 </div>
   </main>
