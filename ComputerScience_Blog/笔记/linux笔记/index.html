@@ -31,7 +31,7 @@
 <meta property="og:description" content="基本配置  sudox权限: 修改&#x2F;etc&#x2F;sudoers apt软件包管理系统：&#x2F;etc&#x2F;apt&#x2F;sources.list修改软件发布源 deb http:&#x2F;&#x2F;站点&#x2F;目录名&#x2F;stretch版本名 main contrib non-free三类软件包 Debian官方软件源：官网&#x2F;mirror&#x2F;list   1.0 命令篇  man 加&#x2F;词 可以搜索你需要的词汇 &#x2F;usr&#x2F;share&#x2F;doc 有">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-27T13:42:38.652Z">
+<meta property="article:modified_time" content="2024-05-03T09:05:01.307Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -142,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="nav-text"> 基本配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%91%BD%E4%BB%A4%E7%AF%87"><span class="nav-text"> 1.0 命令篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-bash-shell"><span class="nav-text"> 2.0 Bash Shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-text"> 环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95windows%E7%B3%BB%E7%BB%9F%E7%9A%84path%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-text"> 拓展：Windows系统的PATH环境变量</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE"><span class="nav-text"> 基本配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%91%BD%E4%BB%A4%E7%AF%87"><span class="nav-text"> 1.0 命令篇</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text"> 实用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-bash-shell"><span class="nav-text"> 2.0 Bash Shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-text"> 环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%93%E5%B1%95windows%E7%B3%BB%E7%BB%9F%E7%9A%84path%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-text"> 拓展：Windows系统的PATH环境变量</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -223,7 +223,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-02-27 21:42:38" itemprop="dateModified" datetime="2024-02-27T21:42:38+08:00">2024-02-27</time>
+      <time title="修改时间：2024-05-03 17:05:01" itemprop="dateModified" datetime="2024-05-03T17:05:01+08:00">2024-05-03</time>
     </span>
 
   
@@ -255,6 +255,10 @@ Debian官方软件源：官网/mirror/list</li>
 </ol>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">&quot;string&quot;</span> * <span class="comment"># 在所有文件中搜索string</span></span><br><span class="line">grep -r <span class="string">&quot;string&quot;</span> <span class="comment"># 递归搜索</span></span><br></pre></td></tr></table></figure>
 <span id="more"></span>
+<h3 id="实用方法"><a class="markdownIt-Anchor" href="#实用方法"></a> 实用方法</h3>
+<ul>
+<li>符号链接 <code>ln -s /absoluteAddress/source_folder /absoluteAddress/target_folder</code> 映射两个文件夹</li>
+</ul>
 <h2 id="20-bash-shell"><a class="markdownIt-Anchor" href="#20-bash-shell"></a> 2.0 Bash Shell</h2>
 <ol>
 <li>格式</li>
