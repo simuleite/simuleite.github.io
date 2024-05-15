@@ -2506,6 +2506,10 @@ T = 1 + 12 + [0.5(半圈)*60*1000/5400] + 0.5KB/4MB*1000（实际上局部性会
 <li>不是把连接的节点组织成单分支树，而是根-叶，所有节点直接指向父节点！</li>
 <li>尾（伪）递归：编译器自动转换为循环</li>
 </ul>
+<h2 id="074-哈利波特的考试打瞌睡"><a class="markdownIt-Anchor" href="#074-哈利波特的考试打瞌睡"></a> 0.7.4 哈利·波特的考试（打瞌睡）</h2>
+<ul>
+<li>使用Floyd算法找出任意两点的最短路径，再比较每一行最长的路径，找出最小的那个</li>
+</ul>
 <h1 id="10-基本概念"><a class="markdownIt-Anchor" href="#10-基本概念"></a> 1.0 基本概念</h1>
 <h2 id="11-什么是数据结构"><a class="markdownIt-Anchor" href="#11-什么是数据结构"></a> 1.1 什么是数据结构</h2>
 <ul>
@@ -2739,7 +2743,11 @@ T = 1 + 12 + [0.5(半圈)*60*1000/5400] + 0.5KB/4MB*1000（实际上局部性会
 <h3 id="哈夫曼树最小优二叉树"><a class="markdownIt-Anchor" href="#哈夫曼树最小优二叉树"></a> 哈夫曼树（最小/优二叉树）</h3>
 <ul>
 <li>寻找最有效的检索树</li>
+<li><strong>生成步骤</strong>
+<ul>
 <li>每次把权值最小的两棵二叉树合并</li>
+</ul>
+</li>
 <li>哈弗曼树的左子树也是哈弗曼树</li>
 <li>用最小堆实现
 <ul>
@@ -2821,6 +2829,16 @@ A. 00, 100, 101, 110, 111<br />
 <li>为什么需要两种遍历？
 <ul>
 <li>BFS在目标距离近的时候非常好使；目标距离远的时候就需要DFS节省算力</li>
+</ul>
+</li>
+</ul>
+<h2 id="最短路径问题"><a class="markdownIt-Anchor" href="#最短路径问题"></a> 最短路径问题</h2>
+<ul>
+<li>从起点到终点的权值之和</li>
+<li>单源与多源
+<ul>
+<li>从固定点出发，求最短路</li>
+<li>从任一点求最短路</li>
 </ul>
 </li>
 </ul>
@@ -3696,6 +3714,38 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
 <li><code>ALT + SHIGT+ ↑/↓</code> 复制某行代码</li>
 <li><code>CTRL+P: &gt;Snippets</code> 创建代码模板</li>
 <li><code>SHIFT+ALT+F12</code> 找到某个命名的全部引用（而不是简单的搜索）</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>基本操作</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Regular Expression 正则表达式</title>
+    <url>/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Regular%20Expression%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="基本知识"><a class="markdownIt-Anchor" href="#基本知识"></a> 基本知识</h1>
+<h2 id="特殊字符"><a class="markdownIt-Anchor" href="#特殊字符"></a> 特殊字符</h2>
+<p><code>*</code>：匹配前面的字符0+次<br />
+<code>+</code>：匹配前面的字符1+次<br />
+<code>?</code>：匹配前面的字符0/1次<br />
+<code>[a-z_]</code>：匹配中括号内字符1次，示例是匹配小写字母或下划线</p>
+<h2 id="定位符"><a class="markdownIt-Anchor" href="#定位符"></a> 定位符</h2>
+<p><code>^</code>：表示开头处<br />
+<code>$</code>：表示结尾处<br />
+<code>\b</code>：匹配单词间的空格处</p>
+<h2 id="特殊序列"><a class="markdownIt-Anchor" href="#特殊序列"></a> 特殊序列</h2>
+<p><code>\d</code>：匹配数字<br />
+<code>\w</code>：匹配字母、数字、下划线<br />
+<code>\s</code>：匹配不可见字符<br />
+<code>\D</code>：匹配非数字<br />
+<code>\W</code>：匹配非字母、数字、下划线<br />
+<code>\S</code>：匹配非空白字符</p>
+<h1 id="举例"><a class="markdownIt-Anchor" href="#举例"></a> 举例</h1>
+<ul>
+<li>“hel?o”：可以匹配heo, helo（0次或1次）</li>
+<li>“hel+o”：可以匹配helo, hello（1次以上）</li>
+<li>“hel*o”：可以匹配heo, helo, hello（0次以上）</li>
+<li>r&quot;+\-*/&quot;：匹配加减乘除符号，r表示不转义</li>
 </ul>
 ]]></content>
       <tags>
