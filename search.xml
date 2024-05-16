@@ -2842,6 +2842,33 @@ A. 00, 100, 101, 110, 111<br />
 </ul>
 </li>
 </ul>
+<h1 id="排序和查找算法"><a class="markdownIt-Anchor" href="#排序和查找算法"></a> 排序和查找算法</h1>
+<ul>
+<li>一万个数起步的排序</li>
+<li>基于比较的排序</li>
+<li>只讨论内部排序（可以在内存里一次性排完）；外部排序（内存一次装不下）</li>
+<li>稳定性： 相等数据，排序前后相对位置不变</li>
+<li>没有一种排序是任何情况下最快最好的</li>
+</ul>
+<h2 id="冒泡排序"><a class="markdownIt-Anchor" href="#冒泡排序"></a> 冒泡排序</h2>
+<ul>
+<li>最大的泡泡沉底</li>
+<li>对链表和数组都没问题</li>
+<li><strong>问题：对于7个数进行冒泡排序，最坏情况下需要进行的比较次数为</strong> 21次(6+5+4+3+2+1)</li>
+</ul>
+<h2 id="插入排序"><a class="markdownIt-Anchor" href="#插入排序"></a> 插入排序</h2>
+<ul>
+<li>从最后一位开始往前比较大小，选择好插入位置</li>
+<li>好处：不是交换排序</li>
+</ul>
+<h2 id="逆序对"><a class="markdownIt-Anchor" href="#逆序对"></a> 逆序对</h2>
+<ul>
+<li>每次交换正好消去1个逆序对</li>
+<li>最好情况T(N, I) = O(N + I)</li>
+<li>定理：N个元素平均有N(N-1)/4个逆序对</li>
+<li>定理：任意两两交换算法，平均时间复杂度为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>N</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">N^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></li>
+<li><strong>想要提高算法效率，每次消去不止1个逆序对，每次交换相隔较远的逆序对</strong></li>
+</ul>
 ]]></content>
       <tags>
         <tag>课程</tag>
