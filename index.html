@@ -149,7 +149,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">29</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,434 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS(5)%20PA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS(5)%20PA/" class="post-title-link" itemprop="url">ICS(5) PA</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-30 00:00:00 / 修改时间：22:14:31" itemprop="dateCreated datePublished" datetime="2024-05-30T00:00:00+08:00">2024-05-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="pa1-1-24530"><a class="markdownIt-Anchor" href="#pa1-1-24530"></a> PA1-1 24.5.30</h1>
+<p>又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！</p>
+<h2 id="target"><a class="markdownIt-Anchor" href="#target"></a> target</h2>
+<p>第一课的目标是修正一个assertion错误</p>
+<h2 id="insteresting"><a class="markdownIt-Anchor" href="#insteresting"></a> insteresting</h2>
+<ul>
+<li>中途网易源Bad Gateway 502了，更换清华源，学会了<code>:%s/163/tuna/g</code>非常爽！</li>
+<li>又学了几个<a href="../%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8">终端快捷键</a></li>
+<li>想到了用 <code>ccache</code> 加速我的PA</li>
+</ul>
+<h2 id="problems"><a class="markdownIt-Anchor" href="#problems"></a> problems</h2>
+<ol>
+<li><code>union</code> 和 <code>struct</code> 的区别？<br />
+<code>unioin</code> 在同一个内存空间中存储不同的数据类型。<br />
+<code>struct</code> 则是同时存储不同的数据类型。</li>
+<li>为什么要用 <code>union</code>？阅读i386手册<br />
+2.3.1 General Registers<br />
+As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-manual/s02_03.htm#fig2-5">Figure 2-5</a> shows, the low-order word of each of these eight registers has a separate name and can be treated as a unit. This feature is useful for handling 16-bit data items and for compatibility with the 8086 and 80286 processors. The word registers are named AX, BX, CX, DX, BP, SP, SI, and DI.<br />
+对于CPU来说，可以把AH AX AL看成单独的单元，拆分成小块。所以它们是共用关系。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Shell终端使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-05-30 21:50:53" itemprop="dateModified" datetime="2024-05-30T21:50:53+08:00">2024-05-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="shortcuts-快捷键"><a class="markdownIt-Anchor" href="#shortcuts-快捷键"></a> Shortcuts 快捷键</h1>
+<ul>
+<li><code>CTRL+N|P</code> 下、上一条命令</li>
+<li><code>CTRL+A|E</code> 跳到行首、行尾</li>
+<li><code>ALT+F|B</code> 或 <code>CTRL+←|→</code> 下、上一个单词（右ALT开始使用~）</li>
+<li><code>CTRL+W</code> 删除前面的单词</li>
+<li><code>CTRL+D</code> 删除一个字符</li>
+</ul>
+<h1 id="bash-prompt-string配置"><a class="markdownIt-Anchor" href="#bash-prompt-string配置"></a> Bash prompt string配置</h1>
+<ul>
+<li>PS(prompt string): 是命令行的默认显示文本，如：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username@hostname /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以在<code>~/.bash_profile</code>中修改默认显示</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Windows Git Bash默认配置，其中\007前面的$TITLEPREFIX和$PWD是标签栏的内容，git_ps1会显示git工作分支</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&quot;\[\e]0;<span class="variable">$TITLEPREFIX</span>:<span class="variable">$PWD</span>\007\]\n\[\e[32m\]\u@\h \[\e[35m\]<span class="variable">$MSYSTEM</span> \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &quot;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@hostname MINGW /work_directory</span><br><span class="line">$ </span><br><span class="line"></span><br><span class="line"><span class="comment"># 简洁配置，将\h换成了指定文本，保留了命令行前的换行，将标签名改为当前目录</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&quot;\[\e]0;\W\007\] \n\[\e[32m\]\u@Host \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &quot;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@Host /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">syntax</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\u</td>
+<td>username</td>
+</tr>
+<tr>
+<td style="text-align:center">\h</td>
+<td>hostname</td>
+</tr>
+<tr>
+<td style="text-align:center">\e</td>
+<td>set colors</td>
+</tr>
+<tr>
+<td style="text-align:center">\w</td>
+<td>work directory</td>
+</tr>
+<tr>
+<td style="text-align:center">\W</td>
+<td>current diretory</td>
+</tr>
+<tr>
+<td style="text-align:center">\n</td>
+<td>line feed</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/" class="post-title-link" itemprop="url">ICS PA实验课</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2024-02-09T00:00:00+08:00">2024-02-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-05-30 21:36:16" itemprop="dateModified" datetime="2024-05-30T21:36:16+08:00">2024-05-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="tips"><a class="markdownIt-Anchor" href="#tips"></a> Tips</h1>
+<ul>
+<li>参考资料：<a target="_blank" rel="noopener" href="https://note.tonycrane.cc/cs/system/pa/">https://note.tonycrane.cc/cs/system/pa/</a></li>
+</ul>
+<ol>
+<li>使用反向代理时，<code>git</code>相关命令会出问题</li>
+<li>实验前，创建新分支<code>pa号</code>，在其中做修改，完成以后合并pa到master中，并转回master分支</li>
+</ol>
+<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># PA</span></span><br><span class="line"><span class="section">## notification</span></span><br><span class="line"><span class="bullet">-</span> </span><br><span class="line"><span class="section">## difficulties</span></span><br><span class="line"><span class="bullet">1.</span> </span><br><span class="line"><span class="section">## summary</span></span><br></pre></td></tr></table></figure>
+<h1 id="pa0"><a class="markdownIt-Anchor" href="#pa0"></a> PA0</h1>
+<h2 id="notification"><a class="markdownIt-Anchor" href="#notification"></a> notification</h2>
+<ul>
+<li>全程使用git</li>
+<li><code>git commit --allow-empty</code>可以使git空（无更改的）提交</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">vim基本操作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-05-30 21:01:38" itemprop="dateModified" datetime="2024-05-30T21:01:38+08:00">2024-05-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
+<ul>
+<li>词：<code>w</code>（下一个词），<code>b</code>（词初），<code>e</code>（词尾）</li>
+<li>行：<code>0</code>（行初），<code>^</code>（第一个非空格字符），<code>$</code>（行尾）</li>
+<li>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</li>
+<li>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</li>
+<li><code>x</code>删除字符（等同于<code>dl</code>）</li>
+<li><code>s</code>(substitute)替换字符（等同于<code>xi</code>）
+<ul>
+<li>替换命令<code>:&#123;作用范围&#125;s/&#123;目标文本&#125;/&#123;替换文本&#125;/&#123;替换标志&#125;</code></li>
+<li><code>:%s/s_content/o_content/g</code> 全局替换</li>
+</ul>
+</li>
+<li>可视化模式 + 操作
+<ul>
+<li>选中文字,<code>d</code>删除（剪切） 或者<code>c</code>改变</li>
+</ul>
+</li>
+<li><code>u</code>撤销，<code>&lt;C-r&gt;</code>重做</li>
+<li><code>y</code>复制 / “yank” （其他一些命令比如<code>d</code>也会复制）</li>
+<li><code>p</code>粘贴</li>
+<li><strong>更多值得学习的</strong>:
+<ul>
+<li><code>~</code>改变字符的大小写</li>
+<li><code>3w</code>向前移动三个词</li>
+<li><code>A</code>（大写）可以迅速定位到行尾进行修改</li>
+</ul>
+</li>
+<li><code>%</code>匹配括号</li>
+</ul>
+<h1 id="切换文件"><a class="markdownIt-Anchor" href="#切换文件"></a> 切换文件</h1>
+<p>-<code>:e filename</code>切换到filename文件<br />
+-<code>:bn/bp</code>切换到下/上个文件</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -296,131 +724,6 @@ Debian官方软件源：官网/mirror/list</li>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Shell命令行使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-05-30 16:11:22" itemprop="dateModified" datetime="2024-05-30T16:11:22+08:00">2024-05-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="bash-prompt-string配置"><a class="markdownIt-Anchor" href="#bash-prompt-string配置"></a> Bash prompt string配置</h1>
-<ul>
-<li>PS(prompt string): 是命令行的默认显示文本，如：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username@hostname /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
-<ul>
-<li>可以在<code>~/.bash_profile</code>中修改默认显示</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Windows Git Bash默认配置，其中\007前面的$TITLEPREFIX和$PWD是标签栏的内容，git_ps1会显示git工作分支</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&quot;\[\e]0;<span class="variable">$TITLEPREFIX</span>:<span class="variable">$PWD</span>\007\]\n\[\e[32m\]\u@\h \[\e[35m\]<span class="variable">$MSYSTEM</span> \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &quot;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@hostname MINGW /work_directory</span><br><span class="line">$ </span><br><span class="line"></span><br><span class="line"><span class="comment"># 简洁配置，将\h换成了指定文本，保留了命令行前的换行，将标签名改为当前目录</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&quot;\[\e]0;\W\007\] \n\[\e[32m\]\u@Host \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &quot;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@Host /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">syntax</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">\u</td>
-<td>username</td>
-</tr>
-<tr>
-<td style="text-align:center">\h</td>
-<td>hostname</td>
-</tr>
-<tr>
-<td style="text-align:center">\e</td>
-<td>set colors</td>
-</tr>
-<tr>
-<td style="text-align:center">\w</td>
-<td>work directory</td>
-</tr>
-<tr>
-<td style="text-align:center">\W</td>
-<td>current diretory</td>
-</tr>
-<tr>
-<td style="text-align:center">\n</td>
-<td>line feed</td>
-</tr>
-</tbody>
-</table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%BD%BF%E7%94%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -902,353 +1205,6 @@ tags: Data Center, Linux, Open Source
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/%E6%95%B0%E5%AD%97%E4%BA%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/%E6%95%B0%E5%AD%97%E4%BA%BA/" class="post-title-link" itemprop="url">数字人</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-04-26 00:00:00" itemprop="dateCreated datePublished" datetime="2024-04-26T00:00:00+08:00">2024-04-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-05-05 20:37:34" itemprop="dateModified" datetime="2024-05-05T20:37:34+08:00">2024-05-05</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="探究成果"><a class="markdownIt-Anchor" href="#探究成果"></a> 探究成果</h1>
-<h2 id="林堂辉"><a class="markdownIt-Anchor" href="#林堂辉"></a> 林堂辉</h2>
-<ol>
-<li><strong>后期处理规避闭唇</strong>：分句子合成视频；这样就不会有嘴唇不动的情况。结果是数字人每说一句话剪辑一下，画面会切割</li>
-</ol>
-<h1 id="问题"><a class="markdownIt-Anchor" href="#问题"></a> 问题</h1>
-<h2 id="语言推理"><a class="markdownIt-Anchor" href="#语言推理"></a> 语言推理</h2>
-<ol>
-<li>吞音（改字）</li>
-<li>跳读</li>
-<li>多段生成语速不一致</li>
-</ol>
-<h1 id="to-do-list"><a class="markdownIt-Anchor" href="#to-do-list"></a> TO DO LIST</h1>
-<p>[] 打开month_tracking再训练一次m2<br />
-[] 生成一段中间有5s停顿的音频再合成<br />
-[] 剪掉嘴唇动作的片段后，再生成视频<br />
-[] 探究如何使视频可以念出字母、单词；中英文混合<br />
-[] 多段合成</p>
-<h1 id="资源"><a class="markdownIt-Anchor" href="#资源"></a> 资源</h1>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1P541117yn/?spm_id_from=333.337.search-card.all.click&amp;vd_source=87612b79e8227861b9f6c5d75650f5f6">GVS声音克隆教程</a></li>
-</ul>
-<h1 id="10-gpt-sovits克隆音频"><a class="markdownIt-Anchor" href="#10-gpt-sovits克隆音频"></a> 1.0 GPT-SoVITS克隆音频</h1>
-<h2 id="11-启动环境"><a class="markdownIt-Anchor" href="#11-启动环境"></a> 1.1 启动环境</h2>
-<ol>
-<li>准备wav格式音频</li>
-<li>登录AutoDL子账号，并开启最新的GVS服务器（保持数据同步）</li>
-<li>WinSCP远程连接</li>
-<li>开启虚拟机，开启指令：</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> &#123;&#125; &gt; ~/GPT-SoVITS/i18n/locale/en_US.json &amp;&amp; <span class="built_in">source</span> activate GPTSoVits &amp;&amp; <span class="built_in">cd</span> ~/GPT-SoVITS/ &amp;&amp; python webui.py</span><br><span class="line"><span class="comment"># 将en_US.json文件内容重置为&#123;&#125;，激活虚拟环境GPTSoVits，转到GVS文件夹开启webui.python文件</span></span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>打开网址，勾选<code>UVR5-WebUI</code>（分离人声、背景音）；退出，并打开新网址</li>
-</ol>
-<h2 id="12-处理音频"><a class="markdownIt-Anchor" href="#12-处理音频"></a> 1.2 处理音频</h2>
-<h3 id="121-切割音频"><a class="markdownIt-Anchor" href="#121-切割音频"></a> 1.2.1 切割音频</h3>
-<ol>
-<li>文件路径：<code>vocal.wav</code></li>
-<li>输出目录 <code>output/slicer_opt/tis/</code></li>
-<li><strong>开启语言切割</strong></li>
-<li>将输出目录填入ASR输入路径，等待任务完成</li>
-</ol>
-<h3 id="122-音频打标"><a class="markdownIt-Anchor" href="#122-音频打标"></a> 1.2.2 音频打标</h3>
-<h3 id="123-训练集格式化"><a class="markdownIt-Anchor" href="#123-训练集格式化"></a> 1.2.3 训练集格式化</h3>
-<ol>
-<li>文本标注文件 <code>output/asr_opt/tjs.list</code></li>
-<li>训练集文件目录 <code>output/slicer_opt/tjs</code></li>
-<li>一键三联，等待任务完成</li>
-</ol>
-<h3 id="124-训练模型"><a class="markdownIt-Anchor" href="#124-训练模型"></a> 1.2.4 训练模型</h3>
-<h3 id="125-推理模型合成语音"><a class="markdownIt-Anchor" href="#125-推理模型合成语音"></a> 1.2.5 推理模型合成语音</h3>
-<ol>
-<li>选择生成好的模型</li>
-<li>上传参考音频</li>
-<li>分割文本并训练</li>
-</ol>
-<h1 id="20-easy-wav2lip生成视频"><a class="markdownIt-Anchor" href="#20-easy-wav2lip生成视频"></a> 2.0 Easy-Wav2Lip生成视频</h1>
-<ol>
-<li>打开<code>Easy-Wav2Lip</code>服务器</li>
-<li>上传样品视频到<code>resource/YOUR_FOLDER</code></li>
-<li>编辑<code>config.ini</code></li>
-</ol>
-<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[OPTIONS]</span></span><br><span class="line"></span><br><span class="line"><span class="attr">video_file</span> = /root/Easy-Wav2Lip/resoure/YOUR_FOLDER/YOUR_FILE.mp4</span><br><span class="line"><span class="attr">vocal_file</span> = /root/Easy-Wav2Lip/resoure/YOUR_FOLDER/YOUR_FILE.wav</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>下载训练好的视频（在资源文件夹）</li>
-</ol>
-<h1 id="生成纪录"><a class="markdownIt-Anchor" href="#生成纪录"></a> 生成纪录</h1>
-<h2 id="10-72视频生成结果"><a class="markdownIt-Anchor" href="#10-72视频生成结果"></a> 1.0 7+2视频生成结果</h2>
-<h2 id="20-53重构结果"><a class="markdownIt-Anchor" href="#20-53重构结果"></a> 2.0 5.3重构结果</h2>
-<ol>
-<li>段老师的视频嘴部有方框，用原始模型结果好一点</li>
-<li>“懒人”第二段闭嘴唇效果不好。<strong>猜测闭嘴唇最好保持头部静止。</strong>
-<ol>
-<li>重新生成音频效果好。<strong>一定要分段生成，list文件最好全中文（未更新手动因素前）</strong></li>
-</ol>
-</li>
-<li>tjs视频低头效果时使用原始模型会错乱，<strong>有低头场景一定用GAN模型</strong></li>
-<li><strong>month_tracking超级慢！GPU利用率为0，不要打开</strong></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vscode%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vscode%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">vscode使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-05-02 00:00:00 / 修改时间：11:11:54" itemprop="dateCreated datePublished" datetime="2024-05-02T00:00:00+08:00">2024-05-02</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="全键盘操作指南"><a class="markdownIt-Anchor" href="#全键盘操作指南"></a> 全键盘操作指南</h1>
-<h2 id="终端操作"><a class="markdownIt-Anchor" href="#终端操作"></a> 终端操作</h2>
-<ul>
-<li><code>code &lt;Folder&gt;</code> 打开工作区；相当于 <code>CTRL+K, CTRL+O</code></li>
-<li><code>code &lt;File&gt;</code> 打开文件</li>
-<li><strong><code>CTRL + ←/→</code> 逐词跳转</strong></li>
-<li><code>CTRL+K</code> 清理终端</li>
-<li><code>CTRL+P: &gt;Tasks</code> 新建任务，用 <code>CTRL+P: &gt;run</code> 运行；相当于 <code>make</code></li>
-</ul>
-<h2 id="panel操作"><a class="markdownIt-Anchor" href="#panel操作"></a> Panel操作</h2>
-<p><code>CTRL+P</code> 打开Panel</p>
-<ul>
-<li><code>@</code> 符号：寻找symbol，如函数名、变量名；相当于<code>CRTL+SHIFT+.</code></li>
-<li><code># &lt;String&gt;</code> 符号：全局搜索字符串</li>
-</ul>
-<h2 id="编辑区操作"><a class="markdownIt-Anchor" href="#编辑区操作"></a> 编辑区操作</h2>
-<ul>
-<li><code>CTRL+G &lt;Line_Number&gt;</code> 跳到指定行</li>
-<li><code>CTRL + ←/→</code> 逐词跳转；相当于vim的 <code>w</code></li>
-<li><code>ALT + ↑/↓</code> 移动某行代码</li>
-<li><code>ALT + SHIGT+ ↑/↓</code> 复制某行代码</li>
-<li><code>CTRL+P: &gt;Snippets</code> 创建代码模板</li>
-<li><code>SHIFT+ALT+F12</code> 找到某个命名的全部引用（而不是简单的搜索）</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Makefile%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Makefile%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Makefile使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-02-27T00:00:00+08:00">2024-02-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-20 20:50:01" itemprop="dateModified" datetime="2024-04-20T20:50:01+08:00">2024-04-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="标准写法"><a class="markdownIt-Anchor" href="#标准写法"></a> 标准写法</h1>
-<ul>
-<li>编译<code>hello.c</code></li>
-</ul>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">hello:hello.c</span></span><br><span class="line">    gcc hello.c -o hello    <span class="comment"># 注意开头的tab, 而不是空格</span></span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: clean </span></span><br><span class="line"><span class="comment"># 用于指示&quot;clean是一个伪目标&quot;, 伪目标相应的命令序列总是会被执行.</span></span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">    rm hello    <span class="comment"># 注意开头的tab, 而不是空格</span></span><br><span class="line"></span><br><span class="line"><span class="section">生成目标文件名:依赖文件列表</span></span><br><span class="line">    用于生成目标文件的命令序列   <span class="comment"># 注意开头的tab, 而不是空格</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>更有效率的写法</li>
-</ul>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CC=gcc</span><br><span class="line">CFLAGS=-I.</span><br><span class="line"></span><br><span class="line"><span class="section">hellomake: hellomake.o hellofunc.o</span></span><br><span class="line">     <span class="variable">$(CC)</span> -o hellomake hellomake.o hellofunc.o</span><br></pre></td></tr></table></figure>
-<ul>
-<li>全部编译</li>
-</ul>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SOURCE = <span class="variable">$(<span class="built_in">wildcard</span> *.c)</span>  </span><br><span class="line">TARGETS = <span class="variable">$(<span class="built_in">patsubst</span> %.c, %, <span class="variable">$(SOURCE)</span>)</span>  </span><br><span class="line"></span><br><span class="line">CC = gcc  </span><br><span class="line">CFLAGS = -Wall -g  </span><br><span class="line"></span><br><span class="line"><span class="section">all: <span class="variable">$(TARGETS)</span>  </span></span><br><span class="line"></span><br><span class="line"><span class="section">%: %.c  </span></span><br><span class="line">    <span class="variable">$(CC)</span> <span class="variable">$&lt;</span> <span class="variable">$(CFLAGS)</span> -o <span class="variable">$@</span>  </span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>:clean all </span></span><br><span class="line"></span><br><span class="line"><span class="section">clean:  </span></span><br><span class="line">    rm -f <span class="variable">$(TARGETS)</span></span><br></pre></td></tr></table></figure>
-<h1 id="makefile文件的格式"><a class="markdownIt-Anchor" href="#makefile文件的格式"></a> Makefile文件的格式</h1>
-<pre><code>[廖雪峰](http://ruanyifeng.com/blog/2015/02/make.html)
-</code></pre>
-<p>Makefile文件由一系列规则（rules）构成。每条规则的形式如下。</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;target&gt;: &lt;prerequisites&gt; </span></span><br><span class="line">[tab]  &lt;commands&gt;</span><br></pre></td></tr></table></figure>
-<p>上面第一行冒号前面的部分，叫做&quot;目标&quot;（target），冒号后面的部分叫做&quot;前置条件&quot;（prerequisites）；第二行必须由一个tab键起首，后面跟着&quot;命令&quot;（commands）。</p>
-<ul>
-<li>键入<code>make -nB</code>, 它会让<code>make</code>程序以&quot;只输出命令但不执行&quot;的方式强制构建目标。</li>
-</ul>
-<h1 id="文件名匹配"><a class="markdownIt-Anchor" href="#文件名匹配"></a> 文件名匹配</h1>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">%.o: %.c # 所有.o/.c结尾的文件</span></span><br></pre></td></tr></table></figure>
-<h1 id="变量"><a class="markdownIt-Anchor" href="#变量"></a> 变量</h1>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">txt = Hello World</span><br><span class="line"><span class="section">test:</span></span><br><span class="line">    @echo <span class="variable">$(txt)</span> <span class="comment"># 变量放在$()中，@表示不打印直接执行</span></span><br></pre></td></tr></table></figure>
       
     </div>
 

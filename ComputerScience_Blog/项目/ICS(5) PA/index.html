@@ -23,23 +23,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.18.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="SMULET&#39;s BLOG">
-<meta property="og:url" content="https://simuleite.github.io/archives/page/3/index.html">
+    <meta name="description" content="PA1-1 24.5.30 又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！  target 第一课的目标是修正一个assertion错误  insteresting  中途网易源Bad Gateway 502了，更换清华源，学会了:%s&#x2F;163&#x2F;tuna&#x2F;g非常爽！ 又学了几个终端快捷键 想到了用 ccache 加速我的PA   problems  union 和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ICS(5) PA">
+<meta property="og:url" content="https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS(5)%20PA/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="PA1-1 24.5.30 又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！  target 第一课的目标是修正一个assertion错误  insteresting  中途网易源Bad Gateway 502了，更换清华源，学会了:%s&#x2F;163&#x2F;tuna&#x2F;g非常爽！ 又学了几个终端快捷键 想到了用 ccache 加速我的PA   problems  union 和">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-30T14:14:31.346Z">
 <meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="项目">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://simuleite.github.io/archives/page/3/">
+<link rel="canonical" href="https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS(5)%20PA/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/page/3/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS(5)%20PA/","path":"ComputerScience_Blog/项目/ICS(5) PA/","title":"ICS(5) PA"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | SMULET's BLOG</title>
+<title>ICS(5) PA | SMULET's BLOG</title>
   
 
 
@@ -71,7 +76,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">SMULET's BLOG</h1>
+      <p class="site-title">SMULET's BLOG</p>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -124,7 +129,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -137,6 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pa1-1-24530"><span class="nav-text"> PA1-1 24.5.30</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#target"><span class="nav-text"> target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#insteresting"><span class="nav-text"> insteresting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#problems"><span class="nav-text"> problems</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -170,232 +176,110 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 30 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://simuleite.github.io/ComputerScience_Blog/%E9%A1%B9%E7%9B%AE/ICS(5)%20PA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ICS(5) PA | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ICS(5) PA
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+
+      <time title="创建时间：2024-05-30 00:00:00 / 修改时间：22:14:31" itemprop="dateCreated datePublished" datetime="2024-05-30T00:00:00+08:00">2024-05-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="pa1-1-24530"><a class="markdownIt-Anchor" href="#pa1-1-24530"></a> PA1-1 24.5.30</h1>
+<p>又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！</p>
+<h2 id="target"><a class="markdownIt-Anchor" href="#target"></a> target</h2>
+<p>第一课的目标是修正一个assertion错误</p>
+<h2 id="insteresting"><a class="markdownIt-Anchor" href="#insteresting"></a> insteresting</h2>
+<ul>
+<li>中途网易源Bad Gateway 502了，更换清华源，学会了<code>:%s/163/tuna/g</code>非常爽！</li>
+<li>又学了几个<a href="../%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8">终端快捷键</a></li>
+<li>想到了用 <code>ccache</code> 加速我的PA</li>
+</ul>
+<h2 id="problems"><a class="markdownIt-Anchor" href="#problems"></a> problems</h2>
+<ol>
+<li><code>union</code> 和 <code>struct</code> 的区别？<br />
+<code>unioin</code> 在同一个内存空间中存储不同的数据类型。<br />
+<code>struct</code> 则是同时存储不同的数据类型。</li>
+<li>为什么要用 <code>union</code>？阅读i386手册<br />
+2.3.1 General Registers<br />
+As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-manual/s02_03.htm#fig2-5">Figure 2-5</a> shows, the low-order word of each of these eight registers has a separate name and can be treated as a unit. This feature is useful for handling 16-bit data items and for compatibility with the 8086 and 80286 processors. The word registers are named AX, BX, CX, DX, BP, SP, SI, and DI.<br />
+对于CPU来说，可以把AH AX AL看成单独的单元，拆分成小块。所以它们是共用关系。</li>
+</ol>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-11-09T00:00:00+08:00"
-              content="2023-11-09">
-          11-09
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/gdb%E4%BD%BF%E7%94%A8/" itemprop="url">
-          <span itemprop="name">gdb使用</span>
-        </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag"># 项目</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Regular%20Expression%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="prev" title="Regular Expression 正则表达式">
+                  <i class="fa fa-angle-left"></i> Regular Expression 正则表达式
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-11-09T00:00:00+08:00"
-              content="2023-11-09">
-          11-09
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" itemprop="url">
-          <span itemprop="name">vim基本操作</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-11-09T00:00:00+08:00"
-              content="2023-11-09">
-          11-09
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/" itemprop="url">
-          <span itemprop="name">git使用</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-11-09T00:00:00+08:00"
-              content="2023-11-09">
-          11-09
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E6%8C%87%E5%8D%97/CSAPP%E9%98%85%E8%AF%BB%E6%8C%87%E5%8D%97/" itemprop="url">
-          <span itemprop="name">CSAPP阅读指南</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-11-09T00:00:00+08:00"
-              content="2023-11-09">
-          11-09
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" itemprop="url">
-          <span itemprop="name">Github使用指南</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-11-09T00:00:00+08:00"
-              content="2023-11-09">
-          11-09
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" itemprop="url">
-          <span itemprop="name">Hexo博客教程</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-11-09T00:00:00+08:00"
-              content="2023-11-09">
-          11-09
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/" itemprop="url">
-          <span itemprop="name">算法</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-11-09T00:00:00+08:00"
-              content="2023-11-09">
-          11-09
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/LFS%E7%AC%94%E8%AE%B0/" itemprop="url">
-          <span itemprop="name">LFS笔记</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-11-09T00:00:00+08:00"
-              content="2023-11-09">
-          11-09
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/" itemprop="url">
-          <span itemprop="name">Linux笔记</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-11-09T00:00:00+08:00"
-              content="2023-11-09">
-          11-09
-        </time>
-      </div>
-
-      <div class="post-title">
-        <a class="post-title-link" href="/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/" itemprop="url">
-          <span itemprop="name">Shell终端使用</span>
-        </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/archives/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
+
+
+
 
 </div>
   </main>
