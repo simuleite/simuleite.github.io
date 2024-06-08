@@ -210,7 +210,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-06-08 00:00:00 / 修改时间：15:17:25" itemprop="dateCreated datePublished" datetime="2024-06-08T00:00:00+08:00">2024-06-08</time>
+      <time title="创建时间：2024-06-08 00:00:00 / 修改时间：15:27:04" itemprop="dateCreated datePublished" datetime="2024-06-08T00:00:00+08:00">2024-06-08</time>
     </span>
 
   
@@ -244,179 +244,14 @@ A的基址是存在$s3，编译下面的C语句</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A[<span class="number">12</span>] = h + A[<span class="number">8</span>]</span><br><span class="line"></span><br><span class="line">lw  $t0, <span class="number">32</span>($s3) <span class="comment">// 先读数，再相加；32为偏移量，8*4byte</span></span><br><span class="line">add $t0, $s2, $t0</span><br><span class="line">sw  $t0, <span class="number">48</span>($s3) <span class="comment">// 存数</span></span><br></pre></td></tr></table></figure>
 <h3 id="立即数"><a class="markdownIt-Anchor" href="#立即数"></a> 立即数</h3>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">addi $t0, $t1, <span class="number">4</span> <span class="comment">// t0 = t1 + 4；无需读取4，作为立即数相加</span></span><br><span class="line">subi $t0, $t1, <span class="number">4</span></span><br></pre></td></tr></table></figure>
-<h2 id="指令的表示"><a class="markdownIt-Anchor" href="#指令的表示"></a> 指令的表示</h2>
-<h3 id="mips字段"><a class="markdownIt-Anchor" href="#mips字段"></a> MIPS字段</h3>
-<ul>
-<li>op: operation code</li>
-<li>rs: source registor</li>
-<li>rt: target registor</li>
-<li>rd: destionation registor</li>
-<li>shamt: shift amount</li>
-<li>funct: function code</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>格式</th>
-<th>op</th>
-<th>rs</th>
-<th>rt</th>
-<th>rd</th>
-<th>shamt</th>
-<th>funct</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>共32位</td>
-<td>Registor</td>
-<td>6位</td>
-<td>5位</td>
-<td>5位</td>
-<td>5位</td>
-<td>5位</td>
-<td>6位</td>
-</tr>
-<tr>
-<td>add</td>
-<td>R</td>
-<td>0</td>
-<td>reg</td>
-<td>reg</td>
-<td>reg</td>
-<td>0</td>
-<td>32</td>
-</tr>
-<tr>
-<td>sub</td>
-<td>R</td>
-<td>0</td>
-<td>reg</td>
-<td>reg</td>
-<td>reg</td>
-<td>0</td>
-<td>34</td>
-</tr>
-<tr>
-<td>5位字段太小，用处不大，取常数也取不了多大范围；所以设计了I型指令，支持16位字段</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>指令</th>
-<th>格式</th>
-<th>op</th>
-<th>rs</th>
-<th>rt</th>
-<th>|-----address----|</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>共32位</td>
-<td>Immeidate</td>
-<td>6位</td>
-<td>5位</td>
-<td>5位</td>
-<td>16位</td>
-</tr>
-<tr>
-<td>addi</td>
-<td>I</td>
-<td>8</td>
-<td>reg</td>
-<td>reg</td>
-<td>常数</td>
-</tr>
-<tr>
-<td>lw</td>
-<td>I</td>
-<td>35</td>
-<td>reg</td>
-<td>reg</td>
-<td>地址</td>
-</tr>
-<tr>
-<td>sw</td>
-<td>I</td>
-<td>43</td>
-<td>reg</td>
-<td>reg</td>
-<td>地址</td>
-</tr>
-<tr>
-<td>大部分CPU只有16或32个寄存器，再增加，rs和rt字段都必须额外增加位，很难满足指令32位字长的要求。</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>将下面C语句编译成MIPS，并写出机器代码</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">A[<span class="number">300</span>] = h + A[<span class="number">300</span>];</span><br><span class="line"></span><br><span class="line">lw $t0, <span class="number">1200</span>($t1) <span class="comment">// 注意t1存的是A的基址，不能当做temp随意修改！</span></span><br><span class="line">add $t0, $s2, $t0 </span><br><span class="line">sw $t0, <span class="number">1200</span>($t1)</span><br></pre></td></tr></table></figure>
-<h3 id="两个准则"><a class="markdownIt-Anchor" href="#两个准则"></a> 两个准则</h3>
-<ol>
-<li>指令用数的形式表示</li>
-<li>和数据一样，程序存储在存储器中，并且可以读写<br />
-这两个原则引出&quot;stored-program&quot;概念，释放了计算机的潜力。程序可以编译好放到存储器中，需要时再读取。</li>
-</ol>
-<h2 id="逻辑操作"><a class="markdownIt-Anchor" href="#逻辑操作"></a> 逻辑操作</h2>
-<table>
-<thead>
-<tr>
-<th>Logical Operation</th>
-<th>MIPS Instructions</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Shift Left Logical</td>
-<td>sll</td>
-</tr>
-<tr>
-<td>Shift Right Logical</td>
-<td>sdl</td>
-</tr>
-<tr>
-<td>And &amp;</td>
-<td>and, andi</td>
-</tr>
-<tr>
-<td>Or |</td>
-<td>or, ori</td>
-</tr>
-<tr>
-<td>Not ~</td>
-<td>nor</td>
-</tr>
-<tr>
-<td>均为R型指令，Not通过nor 0（或非0）来实现</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id="决策指令"><a class="markdownIt-Anchor" href="#决策指令"></a> 决策指令</h2>
-<h2 id="branch-if"><a class="markdownIt-Anchor" href="#branch-if"></a> branch if</h2>
-<p>i, k分别存放在$s3, $s5， save基址存放在$s6，编译下面的C语句</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (save[i] == k)</span><br><span class="line">    i += <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">Loop: sll $t1, $s3, <span class="number">2</span> <span class="comment">// 左移2，相当于i*4</span></span><br><span class="line">add  $t1, $t1, $s6 <span class="comment">// 下标*4与基址相加，得到save[i]</span></span><br><span class="line">lw   $t0, <span class="number">0</span>($s6) <span class="comment">// 取save[i]</span></span><br><span class="line"><span class="comment">// beq 与 bne，两条判断相等、不等的指令</span></span><br><span class="line">bne  $t0, $s5, Exit <span class="comment">// branch if not equal, jump to Exit</span></span><br><span class="line">addi $s3, $s3, <span class="number">1</span> <span class="comment">// i++</span></span><br><span class="line">   j Loop <span class="comment">// jump to Loop</span></span><br><span class="line">Exit:</span><br></pre></td></tr></table></figure>
-<p>可以看出对i不仅要做程序的加法处理，作为下标还要做*4处理。save[i]是通过每次加i的地址到&amp;save[0]，再取数取出来的。</p>
-<h2 id="小于"><a class="markdownIt-Anchor" href="#小于"></a> 小于</h2>
-<p>检查数组下标是否越界</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// set on less than (unsigned)</span></span><br><span class="line">sltu $t0, $s1, $t2 <span class="comment">// t0 = 0 if s1 &gt;= t2(length) or s1 &lt; 0</span></span><br><span class="line"><span class="comment">// 小于则为1，大于则为0</span></span><br><span class="line">beq $t0, $zero, IndexOutOfBounds</span><br></pre></td></tr></table></figure>
-<p>用无符号数，正树正常比较，负数会被解释为一个很大的数，所以$t0会被置0，完成越界判断</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience_Blog/%E7%AC%94%E8%AE%B0/Computer%20Organization&Design%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
