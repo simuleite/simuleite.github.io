@@ -111,7 +111,7 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
   <entry>
     <title>Matlab使用</title>
     <url>/ComputerScience_Blog/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Matlab%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h3 id="10-编辑"><a class="markdownIt-Anchor" href="#10-编辑"></a> 1.0 编辑</h3>
+    <content><![CDATA[<h1 id="10-编辑"><a class="markdownIt-Anchor" href="#10-编辑"></a> 1.0 编辑</h1>
 <pre><code>% 表示注释
 ; 表示不显示结果，只执行语句
 clear 清除内存变量
@@ -122,11 +122,11 @@ exp(x) 指数, e^x
 log2(x) 以2为底数的对数
 </code></pre>
 <span id="more"></span>
-<h3 id="11-求极限"><a class="markdownIt-Anchor" href="#11-求极限"></a> 1.1 求极限</h3>
+<h2 id="11-求极限"><a class="markdownIt-Anchor" href="#11-求极限"></a> 1.1 求极限</h2>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; syms x</span><br><span class="line">&gt;&gt; limit(f(x), x, a) <span class="comment">% 表示x-&gt;a趋于某数，a默认为0，无穷大用inf</span></span><br><span class="line"></span><br><span class="line">syms x y <span class="comment">% 用来声明所用变量x, y</span></span><br><span class="line">limit(x* <span class="built_in">log</span>(<span class="number">1</span>+ x)/<span class="built_in">sin</span>(x^<span class="number">2</span>), x, <span class="number">0</span>)  <span class="comment">% 求x-&gt;0时，左边的函数的极限</span></span><br></pre></td></tr></table></figure>
-<h3 id="20-求导数"><a class="markdownIt-Anchor" href="#20-求导数"></a> 2.0 求导数</h3>
+<h1 id="20-求导数"><a class="markdownIt-Anchor" href="#20-求导数"></a> 2.0 求导数</h1>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">&gt;&gt; syms x y</span><br><span class="line">&gt;&gt; y = f(x)</span><br><span class="line">&gt;&gt; dy = diff(y, x, n) <span class="comment">% n表示求导的阶数，默认为1</span></span><br><span class="line"></span><br><span class="line">syms x y</span><br><span class="line">y= (x* <span class="built_in">exp</span>(x)- <span class="number">1</span>)/<span class="built_in">sin</span>(x);</span><br><span class="line">dy= diff(y, x, <span class="number">3</span>)  <span class="comment">% 求三阶导数</span></span><br><span class="line">&gt;&gt; pretty(dy) <span class="comment">% 分式表示</span></span><br><span class="line">&gt;&gt; simplify(dy) <span class="comment">% 简化公式</span></span><br></pre></td></tr></table></figure>
-<h3 id="30-作图"><a class="markdownIt-Anchor" href="#30-作图"></a> 3.0 作图</h3>
+<h1 id="30-作图"><a class="markdownIt-Anchor" href="#30-作图"></a> 3.0 作图</h1>
 <pre><code>新建一个文件，F5运行即可
 </code></pre>
 <ol>
@@ -145,8 +145,10 @@ log2(x) 以2为底数的对数
 <li><strong>散点图</strong></li>
 </ol>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">x = [<span class="number">12</span> <span class="number">25</span> <span class="number">52</span> <span class="number">27</span> <span class="number">86</span>];</span><br><span class="line">y = [<span class="number">24</span> <span class="number">23</span> <span class="number">34</span> <span class="number">53</span> <span class="number">67</span>];</span><br><span class="line"><span class="built_in">plot</span>(x, y, <span class="string">&#x27;*&#x27;</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="40-求解积分"><a class="markdownIt-Anchor" href="#40-求解积分"></a> 4.0 求解积分</h3>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 不定积分</span></span><br><span class="line">syms x <span class="comment">% 声明字母，用到什么字母写什么</span></span><br><span class="line">int(f(x), x) <span class="comment">% f(x)是被积函数，x是积分变量</span></span><br><span class="line"></span><br><span class="line">int((x+<span class="number">1</span>)/(<span class="number">3</span>*x+<span class="number">1</span>)^(<span class="number">1</span>/<span class="number">3</span>), x)</span><br><span class="line"><span class="comment">% 显示结果</span></span><br><span class="line"><span class="built_in">ans</span> = <span class="number">1</span>/<span class="number">5</span> * (<span class="number">3</span>*x+<span class="number">1</span>)^(<span class="number">2</span>/<span class="number">3</span>) * (<span class="number">2</span>+x) <span class="comment">% 注意加上C</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 定积分</span></span><br><span class="line">syms x</span><br><span class="line">int(f(x), x, a, b) <span class="comment">% a, b为积分区间</span></span><br><span class="line">quad(<span class="string">&#x27;f(x)&#x27;</span>, a, b) <span class="comment">% 数值解，需要点乘.* 点除./ 点乘方.^</span></span><br></pre></td></tr></table></figure>]]></content>
+<h1 id="40-求解积分"><a class="markdownIt-Anchor" href="#40-求解积分"></a> 4.0 求解积分</h1>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% 不定积分</span></span><br><span class="line">syms x <span class="comment">% 声明字母，用到什么字母写什么</span></span><br><span class="line">int(f(x), x) <span class="comment">% f(x)是被积函数，x是积分变量</span></span><br><span class="line"></span><br><span class="line">int((x+<span class="number">1</span>)/(<span class="number">3</span>*x+<span class="number">1</span>)^(<span class="number">1</span>/<span class="number">3</span>), x)</span><br><span class="line"><span class="comment">% 显示结果</span></span><br><span class="line"><span class="built_in">ans</span> = <span class="number">1</span>/<span class="number">5</span> * (<span class="number">3</span>*x+<span class="number">1</span>)^(<span class="number">2</span>/<span class="number">3</span>) * (<span class="number">2</span>+x) <span class="comment">% 注意加上C</span></span><br><span class="line"></span><br><span class="line"><span class="comment">% 定积分</span></span><br><span class="line">syms x</span><br><span class="line">int(f(x), x, a, b) <span class="comment">% a, b为积分区间</span></span><br><span class="line">quad(<span class="string">&#x27;f(x)&#x27;</span>, a, b) <span class="comment">% 数值解，需要点乘.* 点除./ 点乘方.^</span></span><br></pre></td></tr></table></figure>
+<h1 id="80-求解偏导数"><a class="markdownIt-Anchor" href="#80-求解偏导数"></a> 8.0 求解偏导数</h1>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">syms x y</span><br><span class="line">f = x^<span class="number">3</span> * <span class="built_in">exp</span>(-y);</span><br><span class="line">dxf = diff(f, x, n) <span class="comment">% n为阶数</span></span><br><span class="line">diff(f, x), diff(f, y) <span class="comment">% 输出两条</span></span><br><span class="line">dxyf = diff(dxf, x)</span><br><span class="line">simplify(dy) <span class="comment">% 化简</span></span><br><span class="line">pretty(dy)</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>基本操作</tag>
       </tags>
@@ -3694,27 +3696,27 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
 <li>越小越快 Smaller is faster.</li>
 <li>优秀的设计需要适宜的折中方案 Good design demands good compromises.</li>
 </ol>
-<h2 id="硬件的操作与操作数"><a class="markdownIt-Anchor" href="#硬件的操作与操作数"></a> 硬件的操作与操作数</h2>
+<h2 id="22-硬件的操作与操作数"><a class="markdownIt-Anchor" href="#22-硬件的操作与操作数"></a> 2.2 硬件的操作与操作数</h2>
 <h3 id="规整"><a class="markdownIt-Anchor" href="#规整"></a> 规整</h3>
 <p><code>add a, b, c // a = b + c</code> MIPS汇编语言使用这样的固定记法。<br />
 每条MIPS算术指令只执行1个操作，仅有3个变量。</p>
 <h3 id="操作数必须来自寄存器"><a class="markdownIt-Anchor" href="#操作数必须来自寄存器"></a> 操作数必须来自寄存器</h3>
 <p>变量f、g、h、i、j依次分配给$s0~$s4，编译下面的C语句</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f = (g + h) - (i + j);</span><br><span class="line"></span><br><span class="line">add $t0, $s1, $s2 <span class="comment">// t0 = s1 + s2</span></span><br><span class="line">add $t1, $s3, $s4</span><br><span class="line">sub $s0, $t0, $t1 <span class="comment">// s0 = t0 + t1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f = (g + h) - (i + j);</span><br><span class="line">---</span><br><span class="line">add $t0, $s1, $s2 <span class="comment">// t0 = s1 + s2</span></span><br><span class="line">add $t1, $s3, $s4</span><br><span class="line">sub $s0, $t0, $t1 <span class="comment">// s0 = t0 + t1</span></span><br></pre></td></tr></table></figure>
 <h3 id="数据传输"><a class="markdownIt-Anchor" href="#数据传输"></a> 数据传输</h3>
-<p>只有少量数据存在寄存器中，因此需要在存储器和寄存器间传输数据<br />
-A的基址是存在$s3，编译下面的C语句</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">A[<span class="number">12</span>] = h + A[<span class="number">8</span>]</span><br><span class="line"></span><br><span class="line">lw  $t0, <span class="number">32</span>($s3) <span class="comment">// 先读数，再相加；32为偏移量，8*4byte</span></span><br><span class="line">add $t0, $s2, $t0</span><br><span class="line">sw  $t0, <span class="number">48</span>($s3) <span class="comment">// 存数</span></span><br></pre></td></tr></table></figure>
+<p>只有少量数据存在寄存器中，因此需要在存储器和寄存器间传输数据</p>
+<p>A的基址是存在$s3，编译下面的C语句</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">A[<span class="number">12</span>] = h + A[<span class="number">8</span>]</span><br><span class="line">---</span><br><span class="line">lw  $t0, <span class="number">32</span>($s3) <span class="comment">// 先读数，再相加；32为偏移量，8*4byte</span></span><br><span class="line">add $t0, $s2, $t0</span><br><span class="line">sw  $t0, <span class="number">48</span>($s3) <span class="comment">// 存数</span></span><br></pre></td></tr></table></figure>
 <h3 id="立即数"><a class="markdownIt-Anchor" href="#立即数"></a> 立即数</h3>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">addi $t0, $t1, <span class="number">4</span> <span class="comment">// t0 = t1 + 4；无需读取4，作为立即数相加</span></span><br><span class="line">subi $t0, $t1, <span class="number">4</span></span><br></pre></td></tr></table></figure>
 <span id="more"></span>
-<h2 id="指令的表示"><a class="markdownIt-Anchor" href="#指令的表示"></a> 指令的表示</h2>
+<h2 id="25-指令的表示"><a class="markdownIt-Anchor" href="#25-指令的表示"></a> 2.5 指令的表示</h2>
 <h3 id="mips字段"><a class="markdownIt-Anchor" href="#mips字段"></a> MIPS字段</h3>
 <ul>
 <li>op: operation code</li>
-<li>rs: source registor</li>
-<li>rt: target registor</li>
-<li>rd: destionation registor</li>
+<li>rs: source register</li>
+<li>rt: target register</li>
+<li>rd: destionation register</li>
 <li>shamt: shift amount</li>
 <li>funct: function code</li>
 </ul>
@@ -3734,7 +3736,7 @@ A的基址是存在$s3，编译下面的C语句</p>
 <tbody>
 <tr>
 <td>共32位</td>
-<td>Registor</td>
+<td>register</td>
 <td>6位</td>
 <td>5位</td>
 <td>5位</td>
@@ -3813,14 +3815,14 @@ A的基址是存在$s3，编译下面的C语句</p>
 </table>
 <p>大部分CPU只有16或32个寄存器，再增加，rs和rt字段都必须额外增加位，很难满足指令32位字长的要求。</p>
 <p>将下面C语句编译成MIPS，并写出机器代码</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">A[<span class="number">300</span>] = h + A[<span class="number">300</span>];</span><br><span class="line"></span><br><span class="line">lw $t0, <span class="number">1200</span>($t1) <span class="comment">// 注意t1存的是A的基址，不能当做temp随意修改！</span></span><br><span class="line">add $t0, $s2, $t0 </span><br><span class="line">sw $t0, <span class="number">1200</span>($t1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">A[<span class="number">300</span>] = h + A[<span class="number">300</span>];</span><br><span class="line">---</span><br><span class="line">lw $t0, <span class="number">1200</span>($t1) <span class="comment">// 注意t1存的是A的基址，不能当做temp随意修改！</span></span><br><span class="line">add $t0, $s2, $t0 </span><br><span class="line">sw $t0, <span class="number">1200</span>($t1)</span><br></pre></td></tr></table></figure>
 <h3 id="两个准则"><a class="markdownIt-Anchor" href="#两个准则"></a> 两个准则</h3>
 <ol>
 <li>指令用数的形式表示</li>
 <li>和数据一样，程序存储在存储器中，并且可以读写<br />
 这两个原则引出&quot;stored-program&quot;概念，释放了计算机的潜力。程序可以编译好放到存储器中，需要时再读取。</li>
 </ol>
-<h2 id="逻辑操作"><a class="markdownIt-Anchor" href="#逻辑操作"></a> 逻辑操作</h2>
+<h2 id="26-逻辑操作"><a class="markdownIt-Anchor" href="#26-逻辑操作"></a> 2.6 逻辑操作</h2>
 <table>
 <thead>
 <tr>
@@ -3852,15 +3854,95 @@ A的基址是存在$s3，编译下面的C语句</p>
 </tbody>
 </table>
 <p>均为R型指令，Not通过nor 0（或非0）来实现</p>
-<h2 id="决策指令"><a class="markdownIt-Anchor" href="#决策指令"></a> 决策指令</h2>
-<h2 id="branch-if"><a class="markdownIt-Anchor" href="#branch-if"></a> branch if</h2>
+<h2 id="27-决策指令"><a class="markdownIt-Anchor" href="#27-决策指令"></a> 2.7 决策指令</h2>
+<h3 id="branch-if"><a class="markdownIt-Anchor" href="#branch-if"></a> branch if</h3>
 <p>i, k分别存放在$s3, $s5， save基址存放在$s6，编译下面的C语句</p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (save[i] == k)</span><br><span class="line">    i += <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">Loop: sll $t1, $s3, <span class="number">2</span> <span class="comment">// 左移2，相当于i*4</span></span><br><span class="line">add  $t1, $t1, $s6 <span class="comment">// 下标*4与基址相加，得到save[i]</span></span><br><span class="line">lw   $t0, <span class="number">0</span>($s6) <span class="comment">// 取save[i]</span></span><br><span class="line"><span class="comment">// beq 与 bne，两条判断相等、不等的指令</span></span><br><span class="line">bne  $t0, $s5, Exit <span class="comment">// branch if not equal, jump to Exit</span></span><br><span class="line">addi $s3, $s3, <span class="number">1</span> <span class="comment">// i++</span></span><br><span class="line">   j Loop <span class="comment">// jump to Loop</span></span><br><span class="line">Exit:</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (save[i] == k)</span><br><span class="line">    i += <span class="number">1</span>;</span><br><span class="line">---</span><br><span class="line">Loop: sll $t1, $s3, <span class="number">2</span> <span class="comment">// 左移2，相当于i*4</span></span><br><span class="line">add  $t1, $t1, $s6 <span class="comment">// 下标*4与基址相加，得到save[i]</span></span><br><span class="line">lw   $t0, <span class="number">0</span>($s6) <span class="comment">// 取save[i]</span></span><br><span class="line"><span class="comment">// beq 与 bne，两条判断相等、不等的指令</span></span><br><span class="line">bne  $t0, $s5, Exit <span class="comment">// branch if not equal, jump to Exit</span></span><br><span class="line">addi $s3, $s3, <span class="number">1</span> <span class="comment">// i++</span></span><br><span class="line">   j Loop <span class="comment">// jump to Loop</span></span><br><span class="line">Exit:</span><br></pre></td></tr></table></figure>
 <p>可以看出对i不仅要做程序的加法处理，作为下标还要做*4处理。save[i]是通过每次加i的地址到&amp;save[0]，再取数取出来的。</p>
-<h2 id="小于"><a class="markdownIt-Anchor" href="#小于"></a> 小于</h2>
+<h3 id="小于"><a class="markdownIt-Anchor" href="#小于"></a> 小于</h3>
 <p>检查数组下标是否越界</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// set on less than (unsigned)</span></span><br><span class="line">sltu $t0, $s1, $t2 <span class="comment">// t0 = 0 if s1 &gt;= t2(length) or s1 &lt; 0</span></span><br><span class="line"><span class="comment">// 小于则为1，大于则为0</span></span><br><span class="line">beq $t0, $zero, IndexOutOfBounds</span><br></pre></td></tr></table></figure>
 <p>用无符号数，正树正常比较，负数会被解释为一个很大的数，所以$t0会被置0，完成越界判断</p>
+<h3 id="caseswitch语句"><a class="markdownIt-Anchor" href="#caseswitch语句"></a> case/switch语句</h3>
+<p>实际上被汇编转换成了<code>if-then-else</code></p>
+<h2 id="28-过程"><a class="markdownIt-Anchor" href="#28-过程"></a> 2.8 过程</h2>
+<p>根据<strong>提供的参数</strong>执行一定任务的<strong>存储子程序</strong><br />
+六个步骤：</p>
+<ol>
+<li>参数放到可访问位置</li>
+<li>控制权交给过程</li>
+<li>获取过程所需存储空间</li>
+<li>执行任务</li>
+<li>结果放到调用程序可访问位置</li>
+<li>返回控制权</li>
+</ol>
+<h3 id="mips过程调用硬件"><a class="markdownIt-Anchor" href="#mips过程调用硬件"></a> MIPS过程调用硬件</h3>
+<ul>
+<li><code>$a0 - $a3</code> 四个参数寄存器</li>
+<li><code>$v0 ~ $v1</code> 两个返回值寄存器（为什么是两个？返回值不是只有1个吗？）</li>
+<li><code>$ra</code> return address register</li>
+</ul>
+<h3 id="过程调用指令jal"><a class="markdownIt-Anchor" href="#过程调用指令jal"></a> 过程调用指令jal</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jal ProcedureAddr // jump and link，把下条指令地址PC+4放到$ra</span><br></pre></td></tr></table></figure>
+<h3 id="栈"><a class="markdownIt-Anchor" href="#栈"></a> 栈</h3>
+<p>在MIPS中，栈从高地址开始<br />
+栈指针寄存器为<code>$sp</code>，stack pointer</p>
+<p>将下面的C语句编译成MIPS汇编代码</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">leaf_example</span><span class="params">(<span class="type">int</span> g, <span class="type">int</span> h, <span class="type">int</span> i, <span class="type">int</span> j)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> f;</span><br><span class="line">    </span><br><span class="line">    f = (g + h) - (i + j);</span><br><span class="line">    <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line">---</span><br><span class="line">leaf_example:</span><br><span class="line">addi $sp, $sp, <span class="number">-12</span> <span class="comment">// 分配地址，需要保存3个寄存器（看下面操作），-4*3</span></span><br><span class="line">sw $t1, <span class="number">8</span>($sp) <span class="comment">// 8~11</span></span><br><span class="line">sw $t0, <span class="number">4</span>($sp)</span><br><span class="line">sw $s0, <span class="number">0</span>($sp) <span class="comment">// 从高地址到低地址压栈push</span></span><br><span class="line"><span class="comment">// 操作用到3个寄存器</span></span><br><span class="line">add $t0, $a0, $a1</span><br><span class="line">add $t1, $a2, $a3</span><br><span class="line">add $s0, $t0, $t1</span><br><span class="line"><span class="comment">// return f</span></span><br><span class="line">add $v0, $s0, $zero</span><br><span class="line"><span class="comment">// 释放栈空间，pop</span></span><br><span class="line">lw $s0, <span class="number">0</span>($sp)</span><br><span class="line">lw $t0, <span class="number">4</span>($sp)</span><br><span class="line">lw $t1, <span class="number">8</span>($sp)</span><br><span class="line"><span class="comment">// 跳出函数，返回控制权</span></span><br><span class="line">jr $ra</span><br></pre></td></tr></table></figure>
+<h3 id="寄存器保存约定"><a class="markdownIt-Anchor" href="#寄存器保存约定"></a> 寄存器保存约定</h3>
+<p><code>$t0 ~ $t9</code> 是10个临时寄存器，不一定要保存（使用t寄存器就默认使用者不指望保存）<br />
+<code>$s0 ~ $s7</code> 是8个保留寄存器，必须保存<br />
+上面的示例中，可以不保存t1、t0，节省步骤</p>
+<h3 id="嵌套"><a class="markdownIt-Anchor" href="#嵌套"></a> 嵌套</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">factorial</span><span class="params">(<span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> (n * factorial(n - <span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line">---</span><br><span class="line">factorial:</span><br><span class="line">addi $sp, $sp, <span class="number">-8</span> <span class="comment">// 分配栈，push</span></span><br><span class="line">sw $ra, <span class="number">4</span>($sp) <span class="comment">// 保存地址</span></span><br><span class="line">sw $a0, <span class="number">0</span>($sp) <span class="comment">// 嵌套函数，需要保存调用时的参数</span></span><br><span class="line"></span><br><span class="line">slti $t0, $a0, <span class="number">1</span></span><br><span class="line">beq $t0, $zero, L1 <span class="comment">// if(n &gt;= 1) L1</span></span><br><span class="line"></span><br><span class="line">addi $v0, $zero, <span class="number">1</span> <span class="comment">// n &lt; 1时执行</span></span><br><span class="line">addi $sp, $sp, <span class="number">8</span> <span class="comment">// 释放，原来sw的寄存器没有变，所有不lw</span></span><br><span class="line">jr $ra</span><br><span class="line"><span class="comment">// 递</span></span><br><span class="line">L1: addi $a0, $a0, <span class="number">-1</span> <span class="comment">// n - 1</span></span><br><span class="line">    jal factorial</span><br><span class="line"><span class="comment">// 归</span></span><br><span class="line">lw $a0, <span class="number">0</span>($sp) <span class="comment">// 释放栈，pop</span></span><br><span class="line">lw $ra, <span class="number">4</span>($sp)</span><br><span class="line">addi $sp, $sp, <span class="number">8</span></span><br><span class="line">mul $v0, $a0, $v0 <span class="comment">// 返回v = n * factorial(n - 1)</span></span><br><span class="line">jr $ra <span class="comment">// 跳出，返回控制权</span></span><br></pre></td></tr></table></figure>
+<h3 id="帧指针与堆"><a class="markdownIt-Anchor" href="#帧指针与堆"></a> 帧指针与堆</h3>
+<h4 id="帧指针"><a class="markdownIt-Anchor" href="#帧指针"></a> 帧指针</h4>
+<p>当存储<strong>局部</strong>数组或结构体时，这些局部变量无法放入寄存器（过大），就需要一个帧指针<strong>统一偏移量</strong>，保存变量到栈中。（函数多于四个参数时，多余参数也会存到栈中。<br />
+<strong>帧指针不是必须的</strong>，它方便了统一偏移量；有的编译器将$fp用作$s8。</p>
+<h4 id="堆"><a class="markdownIt-Anchor" href="#堆"></a> 堆</h4>
+<p>动态数据类型，例如指针，存放在堆里。<br />
+在C中，<code>malloc()</code>即申请堆空间，<code>free()</code>即释放堆空间。忘记释放就会占满内存导致泄漏！提前释放就会导致指针指向错误的位置。在Java，有自动的内存分配和无用单元回收避免泄漏和错误指向。</p>
+<p>在内存中，从低地址往高地址依次是保留空间、代码段、静态变量段，然后是<strong>从低到高的堆空间</strong>和<strong>从高到低的栈空间</strong>。堆与栈相互增长，最大化利用空间。</p>
+<table>
+<thead>
+<tr>
+<th>内存空间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>栈↓</td>
+</tr>
+<tr>
+<td>空间</td>
+</tr>
+<tr>
+<td>堆↑</td>
+</tr>
+<tr>
+<td>静态数据（常量）</td>
+</tr>
+<tr>
+<td>代码段</td>
+</tr>
+<tr>
+<td>保留</td>
+</tr>
+</tbody>
+</table>
+<h2 id="29-取字节8bit或更高位32bit数"><a class="markdownIt-Anchor" href="#29-取字节8bit或更高位32bit数"></a> 2.9 取字节（8bit）或更高位（32bit）数</h2>
+<p>C使用ASCII码表示字符，每个ASCII码是8bit；Java使用Unicode，每个Unicode是16bit。因此寄存器也有<code>lb (load byte)、lh (load halfword)、lhu</code>指令</p>
+<h2 id="字符串的表示"><a class="markdownIt-Anchor" href="#字符串的表示"></a> 字符串的表示</h2>
+<p>三种选择</p>
+<ol>
+<li>保留第一个位置给出字符串长度（Java）</li>
+<li>附加一个带有字符串长度的变量（结构体）</li>
+<li>字符串结尾设置一个字符标识（C, ‘\0’)<br />
+注意，读取字符串的每个字符时，str[i]不需要每次把i*4。</li>
+</ol>
+<h2 id="32bit立即数"><a class="markdownIt-Anchor" href="#32bit立即数"></a> 32bit立即数</h2>
+<p>把32bit常量加载到寄存器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">32bit constant:</span><br><span class="line">0000 0000 0011 1101 0000 1001 0000 0000</span><br><span class="line">---</span><br><span class="line">lui $t0, 61 // load upper immediate</span><br><span class="line">---</span><br><span class="line">001111 00000 01000  0000_0000_0011_1101 // MIPS指令</span><br><span class="line">0000_0000_0011_1101 0000_0000_0000_0000 // $t0, 把61拷贝到高16bit</span><br><span class="line">---</span><br><span class="line">ori $t0, $t0, 2304 // or immediate</span><br><span class="line">---</span><br><span class="line">0000_0000_0011_1101 0000_1001_0000_0000 // 把2304拷贝到低16bit</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>笔记</tag>
