@@ -3544,6 +3544,7 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
 <ul>
 <li><code>@</code> 符号：寻找symbol，如函数名、变量名；相当于<code>CRTL+SHIFT+.</code></li>
 <li><code># &lt;String&gt;</code> 符号：全局搜索字符串</li>
+<li><code>&gt;join line</code> <strong>选中多行合并为一行</strong></li>
 </ul>
 <h2 id="编辑区操作"><a class="markdownIt-Anchor" href="#编辑区操作"></a> 编辑区操作</h2>
 <ul>
@@ -3554,6 +3555,9 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
 <li><code>CTRL+P: &gt;Snippets</code> 创建代码模板</li>
 <li><code>SHIFT+ALT+F12</code> 找到某个命名的全部引用（而不是简单的搜索）</li>
 </ul>
+<h1 id="设置"><a class="markdownIt-Anchor" href="#设置"></a> 设置</h1>
+<h2 id="显示gitignore屏蔽文件"><a class="markdownIt-Anchor" href="#显示gitignore屏蔽文件"></a> 显示.gitignore屏蔽文件</h2>
+<p>关闭 <code>Search: Use Ignore Files</code>，或 setting <code>&quot;search.useIgnoreFiles&quot;: false</code></p>
 ]]></content>
       <tags>
         <tag>基本操作</tag>
@@ -3914,7 +3918,7 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
 <td>栈↓</td>
 </tr>
 <tr>
-<td>空间</td>
+<td>（空间）</td>
 </tr>
 <tr>
 <td>堆↑</td>
@@ -3932,7 +3936,7 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
 </table>
 <h2 id="29-取字节8bit或更高位32bit数"><a class="markdownIt-Anchor" href="#29-取字节8bit或更高位32bit数"></a> 2.9 取字节（8bit）或更高位（32bit）数</h2>
 <p>C使用ASCII码表示字符，每个ASCII码是8bit；Java使用Unicode，每个Unicode是16bit。因此寄存器也有<code>lb (load byte)、lh (load halfword)、lhu</code>指令</p>
-<h2 id="字符串的表示"><a class="markdownIt-Anchor" href="#字符串的表示"></a> 字符串的表示</h2>
+<h3 id="字符串的表示"><a class="markdownIt-Anchor" href="#字符串的表示"></a> 字符串的表示</h3>
 <p>三种选择</p>
 <ol>
 <li>保留第一个位置给出字符串长度（Java）</li>
@@ -3940,9 +3944,59 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
 <li>字符串结尾设置一个字符标识（C, ‘\0’)<br />
 注意，读取字符串的每个字符时，str[i]不需要每次把i*4。</li>
 </ol>
-<h2 id="32bit立即数"><a class="markdownIt-Anchor" href="#32bit立即数"></a> 32bit立即数</h2>
+<h2 id="2101-32bit立即数"><a class="markdownIt-Anchor" href="#2101-32bit立即数"></a> 2.10.1 32bit立即数</h2>
 <p>把32bit常量加载到寄存器</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">32bit constant:</span><br><span class="line">0000 0000 0011 1101 0000 1001 0000 0000</span><br><span class="line">---</span><br><span class="line">lui $t0, 61 // load upper immediate</span><br><span class="line">---</span><br><span class="line">001111 00000 01000  0000_0000_0011_1101 // MIPS指令</span><br><span class="line">0000_0000_0011_1101 0000_0000_0000_0000 // $t0, 把61拷贝到高16bit</span><br><span class="line">---</span><br><span class="line">ori $t0, $t0, 2304 // or immediate</span><br><span class="line">---</span><br><span class="line">0000_0000_0011_1101 0000_1001_0000_0000 // 把2304拷贝到低16bit</span><br></pre></td></tr></table></figure>
+<h2 id="2102-寻址与j型指令"><a class="markdownIt-Anchor" href="#2102-寻址与j型指令"></a> 2.10.2 寻址与J型指令</h2>
+<p>J型指令除了6位操作码，其余位都是地址字段：</p>
+<table>
+<thead>
+<tr>
+<th>操作码</th>
+<th>操作数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6位</td>
+<td>26位</td>
+</tr>
+</tbody>
+</table>
+<p>bne条件分支指令：</p>
+<table>
+<thead>
+<tr>
+<th>操作码</th>
+<th>操作数1</th>
+<th>操作数2</th>
+<th>地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6位</td>
+<td>5位</td>
+<td>5位</td>
+<td>16位</td>
+</tr>
+</tbody>
+</table>
+<p>如果地址只有16位就太小了，所以PC=寄存器+分支地址，地址成为了求和，变成了32位。</p>
+<h3 id="pc相对寻址"><a class="markdownIt-Anchor" href="#pc相对寻址"></a> PC相对寻址</h3>
+<p>实际上，<strong>MIPS寻址是对于下一条指令</strong>（而不是当前指令），这个设计加速了<strong>大概率事件</strong>。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 2.7.1的while循环，i存在$s3，k存在$s5，save[0]基址存在$s6</span></span><br><span class="line"><span class="keyword">while</span> (save[i] == k)</span><br><span class="line">    i += <span class="number">1</span>;</span><br><span class="line">---</span><br><span class="line">Loop: sll  $t1, $s3, <span class="number">2</span> <span class="comment">// i * 4</span></span><br><span class="line">add  $t1, $t1, $s6 <span class="comment">// 加地址，save[i*4]</span></span><br><span class="line">lw   $t0, <span class="number">0</span>($t1)</span><br><span class="line">bne  $t0, $s5, Exit</span><br><span class="line">addi $s3, $s3, <span class="number">1</span></span><br><span class="line">j    Loop</span><br><span class="line">Exit:</span><br><span class="line">---</span><br><span class="line"><span class="comment">// Q: 把Loop存在80_000，MIPS代码是什么？</span></span><br><span class="line"><span class="comment">// Loop:</span></span><br><span class="line"><span class="number">80000</span>: |<span class="number">0</span> |<span class="number">0</span> |<span class="number">19</span>|<span class="number">9</span> |<span class="number">2</span> |<span class="number">0</span> | <span class="comment">// sll</span></span><br><span class="line"><span class="number">80004</span>: |<span class="number">0</span> |<span class="number">9</span> |<span class="number">22</span>|<span class="number">9</span> |<span class="number">0</span> |<span class="number">32</span>| <span class="comment">// add</span></span><br><span class="line"><span class="number">80008</span>: |<span class="number">35</span>|<span class="number">9</span> |<span class="number">8</span> |   <span class="number">0</span>    | <span class="comment">// lw</span></span><br><span class="line"><span class="comment">// 注意：</span></span><br><span class="line"><span class="number">80012</span>: |<span class="number">5</span> |<span class="number">8</span> |<span class="number">21</span>|<span class="number">2</span>(<span class="number">8B</span>yte)| <span class="comment">// bne，MIPS用字寻址，1word = 4Byte</span></span><br><span class="line"><span class="comment">// 8 + 80016，实际上16位存的是偏移量，利用下一跳地址来寻址</span></span><br><span class="line"><span class="number">80016</span>: |<span class="number">8</span> |<span class="number">19</span>|<span class="number">19</span>|   <span class="number">1</span>    | <span class="comment">// addi</span></span><br><span class="line"><span class="number">80020</span>: |<span class="number">2</span> |     <span class="number">20000</span>    | <span class="comment">// j，完整的2000word*4 Byte</span></span><br><span class="line"><span class="number">80024</span>: ... <span class="comment">// Exit</span></span><br></pre></td></tr></table></figure>
+<h3 id="跳转寻址"><a class="markdownIt-Anchor" href="#跳转寻址"></a> 跳转寻址</h3>
+<p>对于距离远的跳转，bne的16位地址不够用，可以间接利用j来跳更远距离。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">bne $s0, $s1, L2</span><br><span class="line">j   L1</span><br><span class="line">L2:</span><br></pre></td></tr></table></figure>
+<h3 id="寻址模式总结"><a class="markdownIt-Anchor" href="#寻址模式总结"></a> 寻址模式总结</h3>
+<ol>
+<li>立即数寻址</li>
+<li>寄存器寻址</li>
+<li>基址寻址</li>
+<li>PC相对寻址：bne指令用的方法</li>
+<li>伪直接寻址：j指令用的方法</li>
+</ol>
 ]]></content>
       <tags>
         <tag>笔记</tag>
