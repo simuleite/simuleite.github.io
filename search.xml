@@ -3944,10 +3944,11 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
 <li>字符串结尾设置一个字符标识（C, ‘\0’)<br />
 注意，读取字符串的每个字符时，str[i]不需要每次把i*4。</li>
 </ol>
-<h2 id="2101-32bit立即数"><a class="markdownIt-Anchor" href="#2101-32bit立即数"></a> 2.10.1 32bit立即数</h2>
+<h2 id="210-指令拓展"><a class="markdownIt-Anchor" href="#210-指令拓展"></a> 2.10 指令拓展</h2>
+<h3 id="2101-32bit立即数"><a class="markdownIt-Anchor" href="#2101-32bit立即数"></a> 2.10.1 32bit立即数</h3>
 <p>把32bit常量加载到寄存器</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">32bit constant:</span><br><span class="line">0000 0000 0011 1101 0000 1001 0000 0000</span><br><span class="line">---</span><br><span class="line">lui $t0, 61 // load upper immediate</span><br><span class="line">---</span><br><span class="line">001111 00000 01000  0000_0000_0011_1101 // MIPS指令</span><br><span class="line">0000_0000_0011_1101 0000_0000_0000_0000 // $t0, 把61拷贝到高16bit</span><br><span class="line">---</span><br><span class="line">ori $t0, $t0, 2304 // or immediate</span><br><span class="line">---</span><br><span class="line">0000_0000_0011_1101 0000_1001_0000_0000 // 把2304拷贝到低16bit</span><br></pre></td></tr></table></figure>
-<h2 id="2102-寻址与j型指令"><a class="markdownIt-Anchor" href="#2102-寻址与j型指令"></a> 2.10.2 寻址与J型指令</h2>
+<h3 id="2102-寻址模式"><a class="markdownIt-Anchor" href="#2102-寻址模式"></a> 2.10.2 寻址模式</h3>
 <p>J型指令除了6位操作码，其余位都是地址字段：</p>
 <table>
 <thead>
@@ -3983,20 +3984,105 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
 </tbody>
 </table>
 <p>如果地址只有16位就太小了，所以PC=寄存器+分支地址，地址成为了求和，变成了32位。</p>
-<h3 id="pc相对寻址"><a class="markdownIt-Anchor" href="#pc相对寻址"></a> PC相对寻址</h3>
+<h4 id="pc相对寻址"><a class="markdownIt-Anchor" href="#pc相对寻址"></a> PC相对寻址</h4>
 <p>实际上，<strong>MIPS寻址是对于下一条指令</strong>（而不是当前指令），这个设计加速了<strong>大概率事件</strong>。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 2.7.1的while循环，i存在$s3，k存在$s5，save[0]基址存在$s6</span></span><br><span class="line"><span class="keyword">while</span> (save[i] == k)</span><br><span class="line">    i += <span class="number">1</span>;</span><br><span class="line">---</span><br><span class="line">Loop: sll  $t1, $s3, <span class="number">2</span> <span class="comment">// i * 4</span></span><br><span class="line">add  $t1, $t1, $s6 <span class="comment">// 加地址，save[i*4]</span></span><br><span class="line">lw   $t0, <span class="number">0</span>($t1)</span><br><span class="line">bne  $t0, $s5, Exit</span><br><span class="line">addi $s3, $s3, <span class="number">1</span></span><br><span class="line">j    Loop</span><br><span class="line">Exit:</span><br><span class="line">---</span><br><span class="line"><span class="comment">// Q: 把Loop存在80_000，MIPS代码是什么？</span></span><br><span class="line"><span class="comment">// Loop:</span></span><br><span class="line"><span class="number">80000</span>: |<span class="number">0</span> |<span class="number">0</span> |<span class="number">19</span>|<span class="number">9</span> |<span class="number">2</span> |<span class="number">0</span> | <span class="comment">// sll</span></span><br><span class="line"><span class="number">80004</span>: |<span class="number">0</span> |<span class="number">9</span> |<span class="number">22</span>|<span class="number">9</span> |<span class="number">0</span> |<span class="number">32</span>| <span class="comment">// add</span></span><br><span class="line"><span class="number">80008</span>: |<span class="number">35</span>|<span class="number">9</span> |<span class="number">8</span> |   <span class="number">0</span>    | <span class="comment">// lw</span></span><br><span class="line"><span class="comment">// 注意：</span></span><br><span class="line"><span class="number">80012</span>: |<span class="number">5</span> |<span class="number">8</span> |<span class="number">21</span>|<span class="number">2</span>(<span class="number">8B</span>yte)| <span class="comment">// bne，MIPS用字寻址，1word = 4Byte</span></span><br><span class="line"><span class="comment">// 8 + 80016，实际上16位存的是偏移量，利用下一跳地址来寻址</span></span><br><span class="line"><span class="number">80016</span>: |<span class="number">8</span> |<span class="number">19</span>|<span class="number">19</span>|   <span class="number">1</span>    | <span class="comment">// addi</span></span><br><span class="line"><span class="number">80020</span>: |<span class="number">2</span> |     <span class="number">20000</span>    | <span class="comment">// j，完整的2000word*4 Byte</span></span><br><span class="line"><span class="number">80024</span>: ... <span class="comment">// Exit</span></span><br></pre></td></tr></table></figure>
-<h3 id="跳转寻址"><a class="markdownIt-Anchor" href="#跳转寻址"></a> 跳转寻址</h3>
+<h4 id="长跳转寻址"><a class="markdownIt-Anchor" href="#长跳转寻址"></a> 长跳转寻址</h4>
 <p>对于距离远的跳转，bne的16位地址不够用，可以间接利用j来跳更远距离。</p>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">bne $s0, $s1, L2</span><br><span class="line">j   L1</span><br><span class="line">L2:</span><br></pre></td></tr></table></figure>
-<h3 id="寻址模式总结"><a class="markdownIt-Anchor" href="#寻址模式总结"></a> 寻址模式总结</h3>
+<h4 id="寻址模式总结"><a class="markdownIt-Anchor" href="#寻址模式总结"></a> 寻址模式总结</h4>
 <ol>
 <li>立即数寻址</li>
 <li>寄存器寻址</li>
 <li>基址寻址</li>
 <li>PC相对寻址：bne指令用的方法</li>
-<li>伪直接寻址：j指令用的方法</li>
+<li>伪直接寻址：J型指令用的方法</li>
 </ol>
+<p>Q：MIPS中，条件分支beq指令的地址范围多大？（K = 1024）<br />
+A：beq指令地址前后±128K，beq使用相对PC寻址，相对寻址有1个符号位，PC相对寻址模式把16位地址左移2位与PC相加，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>±</mo><msup><mn>2</mn><mn>15</mn></msup><mo>∗</mo><msup><mn>2</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\pm2^{15} * 2^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">5</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>。</p>
+<p>Q：MIPS中，跳转和跳转链接j、jal指令的地址范围多大？（M = 1024K）<br />
+A：256M任意地址，J型指令使用伪直接寻址，26位地址左移2位与PC高4位相连，<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>26</mn></msup><mo>∗</mo><msup><mn>2</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">2^{26} * 2^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>。</p>
+<h2 id="211-同步"><a class="markdownIt-Anchor" href="#211-同步"></a> 2.11 同步</h2>
+<p>计算机进行数据操作必须要知道能不能目标地址读写，也就是任务之间需要同步sync，否则就会竞争race。同步使用lock和unlock操作。</p>
+<h3 id="lock基本原理"><a class="markdownIt-Anchor" href="#lock基本原理"></a> lock基本原理</h3>
+<p>实际上就是用0表示解锁，1表示加锁，把锁的值和对应的寄存器交换就可以了。lock操作是在硬件层面实现的，不在硬件层实现会很麻烦。<br />
+两条指令：load linked、store conditional</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">again:</span><br><span class="line">addi $t0, $zero, <span class="number">1</span> <span class="comment">// 加上锁的值，1表示加锁</span></span><br><span class="line">ll   $t1, <span class="number">0</span>($s1) <span class="comment">// 取寄存器s1的值</span></span><br><span class="line">sc   $t0, <span class="number">0</span>($s1) <span class="comment">// 给s1加锁</span></span><br><span class="line">beq  $t0, $zero, again <span class="comment">// 如果是0（解锁状态），加锁失败，就重试</span></span><br><span class="line">add  $s4, $zero, $t1 <span class="comment">// 把取来的值加载到寄存器s4上操作</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>实际上，不仅仅是多处理需要这样的lock操作；单处理器也需要lock来保证程序运行独立不受干扰、保证写入无错、指令执行成功。</p>
+<h1 id="212-从语言到可执行程序"><a class="markdownIt-Anchor" href="#212-从语言到可执行程序"></a> 2.12 从语言到可执行程序</h1>
+<h3 id="c语言"><a class="markdownIt-Anchor" href="#c语言"></a> C语言</h3>
+<table>
+<thead>
+<tr>
+<th>系统</th>
+<th>源文件</th>
+<th>汇编文件</th>
+<th>目标文件</th>
+<th>静态链接库</th>
+<th>动态链接库</th>
+<th>可执行文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNIX</td>
+<td>.c</td>
+<td>.s</td>
+<td>.o</td>
+<td>.a</td>
+<td>.so</td>
+<td>.out / no suffix</td>
+</tr>
+<tr>
+<td>MS-DOS</td>
+<td>.C</td>
+<td>.ASM</td>
+<td>.OBJ</td>
+<td>.LIB</td>
+<td>.DLL</td>
+<td>.EXE</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-编译"><a class="markdownIt-Anchor" href="#1-编译"></a> 1. 编译</h4>
+<p>编译器把高级语言转换成汇编语言</p>
+<h4 id="2-汇编"><a class="markdownIt-Anchor" href="#2-汇编"></a> 2. 汇编</h4>
+<p>汇编器把汇编语言汇编成机器代码，生成obj file，包括了机器语言指令、数据和指令正确放入内存所需的信息。<br />
+汇编语言有硬件层没有实现的<strong>伪指令</strong>，如<code>move dest, tar</code>移动，实际上在硬件层是<code>add dest, 0, tar</code><br />
+MIPS汇编器使用16进制Hex<br />
+为了把汇编语言转换成二进制，有一个符号表。表由标号、地址对构成</p>
+<h4 id="3-链接"><a class="markdownIt-Anchor" href="#3-链接"></a> 3. 链接</h4>
+<p>链接器把独立汇编的机器语言程序拼接到一起，生成可执行文件。链接器做到拼接操作，使程序每次只需要重新编译和汇编<strong>一部分代码</strong>。修补代码比重新编译和汇编快得多（ccache）。<br />
+工作步骤：</p>
+<ol>
+<li>将代码、数据块象征性地放入内存</li>
+<li>决定数据、指令标签的地址</li>
+<li>修补内部、外部引用<br />
+也就是它寻找旧地址并用新地址取代它们。</li>
+</ol>
+<h4 id="4-加载"><a class="markdownIt-Anchor" href="#4-加载"></a> 4. 加载</h4>
+<p>工作步骤：</p>
+<ol>
+<li>读取exe文件头，确定代码段、数据段大小</li>
+<li>为内容、数据创建足够的地址空间</li>
+<li>将exe中的指令、数据复制到内存</li>
+<li>主程序参数复制到栈顶</li>
+<li>初始化寄存器，栈指针指向第一个空位置</li>
+<li>跳转到启动例程，把参数复制到寄存器，调用main()；并在return 0后调用exit终止程序</li>
+</ol>
+<h4 id="动态链接库-dll"><a class="markdownIt-Anchor" href="#动态链接库-dll"></a> 动态链接库 DLL</h4>
+<p>传统的链接静态链接库的方法很快。但是静态链接库有更新问题，并且库可能很大，静态库需要全部装载到程序。<br />
+而动态链接库，只有程序运行的时候才链接和加载例程。（第一次调用库例程会把整个库走一遍，以后会按需调用）<br />
+DLL需要额外空间存储动态链接库信息，但是不需要复制或链接整个库。</p>
+<h3 id="java"><a class="markdownIt-Anchor" href="#java"></a> JAVA</h3>
+<h4 id="编译与解释"><a class="markdownIt-Anchor" href="#编译与解释"></a> 编译与解释</h4>
+<p>编译依赖特定指令集，而Java是为了兼容性而发明的。<br />
+Java程序被编译成Java字节码，经过JVM虚拟机解释字节码运行。<br />
+解释的优势是可移植性，也导致了它更慢、性能较差。<br />
+现代的方法是使用即时编译器（Just In Time complier），<strong>编译过的部分保存起来，下次运行直接调用</strong>，这样每次运行都会更快。在今天，实际上Java与C的性能差距越来越小了。</p>
+<blockquote>
+<p>思考：“缓存”的概念真的很伟大，在计算机的世界中几乎无处不在。</p>
+</blockquote>
 ]]></content>
       <tags>
         <tag>笔记</tag>
