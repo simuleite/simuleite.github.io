@@ -19,28 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="LFS 参考网站：https:&#x2F;&#x2F;www.linuxfromscratch.org&#x2F;lfs&#x2F;  Linux From Scratch，搭建你自己的Linux  bision： bison是属于 GNU 项目的一个语法分析器生成器 gawk： linux下查找替换文本工具 texinfo： Texinfo是一种用于创建文档的格式和工具集。 它最初是为GNU项目开发的，用于编写GNU的软件文档。 T">
+    <meta name="description" content="Spring CLI 可以用Spring Initializr或Spirng CLI来构建项目 1234567spring init -list # 列出参数# 初始化项目spring init ( -d || --dependencies ) package1,package2 --build (maven&#x2F;gradle) ( -p || --package) (war&#x2F;jar) projec">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LFS笔记">
-<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/LFS%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="Spring Boot">
+<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Spring%20Boot/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
-<meta property="og:description" content="LFS 参考网站：https:&#x2F;&#x2F;www.linuxfromscratch.org&#x2F;lfs&#x2F;  Linux From Scratch，搭建你自己的Linux  bision： bison是属于 GNU 项目的一个语法分析器生成器 gawk： linux下查找替换文本工具 texinfo： Texinfo是一种用于创建文档的格式和工具集。 它最初是为GNU项目开发的，用于编写GNU的软件文档。 T">
+<meta property="og:description" content="Spring CLI 可以用Spring Initializr或Spirng CLI来构建项目 1234567spring init -list # 列出参数# 初始化项目spring init ( -d || --dependencies ) package1,package2 --build (maven&#x2F;gradle) ( -p || --package) (war&#x2F;jar) projec">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-11-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-26T03:12:35.457Z">
+<meta property="article:published_time" content="2024-07-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-24T10:38:25.074Z">
 <meta property="article:author" content="SIMULEITE">
-<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="项目">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/LFS%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Spring%20Boot/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/LFS%E7%AC%94%E8%AE%B0/","path":"ComputerScience/笔记/LFS笔记/","title":"LFS笔记"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Spring%20Boot/","path":"ComputerScience/项目/Spring Boot/","title":"Spring Boot"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>LFS笔记 | SMULET's BLOG</title>
+<title>Spring Boot | SMULET's BLOG</title>
   
 
 
@@ -138,7 +138,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#lfs"><span class="nav-text"> LFS</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#spring-cli"><span class="nav-text"> Spring CLI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#maven"><span class="nav-text"> Maven</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%A2%E6%BA%90"><span class="nav-text"> 换源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE"><span class="nav-text"> 运行项目</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -183,7 +183,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/LFS%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Spring%20Boot/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -196,12 +196,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="LFS笔记 | SMULET's BLOG">
+      <meta itemprop="name" content="Spring Boot | SMULET's BLOG">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LFS笔记
+          Spring Boot
         </h1>
 
         <div class="post-meta-container">
@@ -211,15 +211,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-11-26 11:12:35" itemprop="dateModified" datetime="2023-11-26T11:12:35+08:00">2023-11-26</time>
+      <time title="创建时间：2024-07-24 00:00:00 / 修改时间：18:38:25" itemprop="dateCreated datePublished" datetime="2024-07-24T00:00:00+08:00">2024-07-24</time>
     </span>
 
   
@@ -231,19 +225,16 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="lfs"><a class="markdownIt-Anchor" href="#lfs"></a> <strong>LFS</strong></h2>
-<pre><code>参考网站：https://www.linuxfromscratch.org/lfs/
-</code></pre>
-<p>Linux From Scratch，搭建你自己的Linux</p>
-<ul>
-<li><strong>bision：</strong> bison是属于 GNU 项目的一个语法分析器生成器</li>
-<li><strong>gawk：</strong> linux下查找替换文本工具</li>
-<li><strong>texinfo：</strong> Texinfo是一种用于创建文档的格式和工具集。<br />
-它最初是为GNU项目开发的，用于编写GNU的软件文档。<br />
-Texinfo使用简单的文本文件格式，可以生成各种格式的输出，如HTML、PDF、Info格式等。</li>
-<li><strong>sudo ln -sf bash /bin/sh：</strong> 令shell脚本指向bash</li>
-</ul>
-
+    <div class="post-body" itemprop="articleBody"><h1 id="spring-cli"><a class="markdownIt-Anchor" href="#spring-cli"></a> Spring CLI</h1>
+<p>可以用<a target="_blank" rel="noopener" href="https://start.spring.io">Spring Initializr</a>或Spirng CLI来构建项目</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">spring init -list <span class="comment"># 列出参数</span></span><br><span class="line"><span class="comment"># 初始化项目</span></span><br><span class="line">spring init ( -d || --dependencies ) package1,package2 --build (maven/gradle) ( -p || --package) (war/jar) projectName</span><br><span class="line"><span class="comment"># Example</span></span><br><span class="line">spring init -d web,jpa,security --build maven -p jar basic-project</span><br><span class="line"></span><br><span class="line">spring init -d web,mustache,jpa,h2,devtools --package-name=com.example.blog --build maven mybloge</span><br></pre></td></tr></table></figure>
+<p>项目结构图</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">$ tree basic-project/</span><br><span class="line">basic-project/</span><br><span class="line">├── HELP.md</span><br><span class="line">├── mvnw # maven wrapper附带脚本</span><br><span class="line">├── mvnw.cmd</span><br><span class="line">├── pom.xml # maven 构建配置文件</span><br><span class="line">└── src</span><br><span class="line">    ├── main</span><br><span class="line">    │   ├── java</span><br><span class="line">    │   │   └── com</span><br><span class="line">    │   │       └── example</span><br><span class="line">    │   │           └── basic_project</span><br><span class="line">    │   │               └── DemoApplication.java # 入口</span><br><span class="line">    │   └── resources</span><br><span class="line">    │       ├── application.properties # Configuration</span><br><span class="line">    │       ├── static # 存放js/css,images</span><br><span class="line">    │       └── templates # 存放页面模板</span><br><span class="line">    └── test</span><br><span class="line">        └── java</span><br><span class="line">            └── com</span><br><span class="line">                └── example</span><br><span class="line">                    └── basic_project</span><br><span class="line">                        └── DemoApplicationTests.java</span><br><span class="line"></span><br><span class="line">15 directories, 7 files</span><br></pre></td></tr></table></figure>
+<h1 id="maven"><a class="markdownIt-Anchor" href="#maven"></a> Maven</h1>
+<h2 id="换源"><a class="markdownIt-Anchor" href="#换源"></a> 换源</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">distributionUrl=https://maven.aliyun.com/repository/central/org/apache/maven/apache-maven/(edition.number)/apache-maven-(edition.number)-bin.zip</span><br></pre></td></tr></table></figure>
+<h2 id="运行项目"><a class="markdownIt-Anchor" href="#运行项目"></a> 运行项目</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mvn spring-boot:run</span><br><span class="line"><span class="comment"># 将会在localhost:8080运行</span></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -252,20 +243,20 @@ Texinfo使用简单的文本文件格式，可以生成各种格式的输出，�
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+              <a href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag"># 项目</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/" rel="prev" title="Linux笔记">
-                  <i class="fa fa-angle-left"></i> Linux笔记
+                <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/ThinkPHP%206/" rel="prev" title="ThinkPHP 6">
+                  <i class="fa fa-angle-left"></i> ThinkPHP 6
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" rel="next" title="Hexo博客教程">
-                  Hexo博客教程 <i class="fa fa-angle-right"></i>
+                <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/start.spring.io/" rel="next" title="">
+                   <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

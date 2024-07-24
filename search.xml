@@ -979,16 +979,23 @@ tags: Data Center, Linux, Open Source
 <li>tmux使会话与窗口解绑，一个窗口<code>source .bashrc</code>更新了，另一个窗口可能没有</li>
 </ul>
 <ul>
-<li>
-<p><strong><code>ctrl+b</code> 前缀键</strong><br />
+<li><strong><code>ctrl+b</code> 前缀键</strong><br />
 <code>%</code>  分成左右两栏<br />
 <code>&quot;</code>  分成上下两栏<br />
 <code>up</code>  选择上边的窗口<br />
-<code>[</code> 查看历史记录</p>
-</li>
-<li>
-<p><strong><code>ctrl+d</code> 删除窗口</strong></p>
-</li>
+<code>[</code> 查看历史记录</li>
+</ul>
+<h1 id="窗口"><a class="markdownIt-Anchor" href="#窗口"></a> 窗口</h1>
+<ul>
+<li><code>&lt;C-d&gt;</code> <strong>删除窗口</strong></li>
+</ul>
+<ul>
+<li><code>&lt;C-b&gt; z</code> <strong>最大化/最小化一个窗口</strong></li>
+<li><code>&lt;C-b&gt; c</code> 创建一个新的窗口，使用 <code>&lt;C-d&gt;</code>关闭</li>
+<li><code>&lt;C-b&gt; N</code> 跳转到第 <em>N</em> 个窗口，注意每个窗口都是有编号的</li>
+<li><code>&lt;C-b&gt; p</code> 切换到前一个窗口</li>
+<li><code>&lt;C-b&gt; n</code> 切换到下一个窗口</li>
+<li><code>&lt;C-b&gt; w</code> 列出当前所有窗口</li>
 </ul>
 ]]></content>
       <tags>
@@ -4126,7 +4133,7 @@ OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
 <p>Sub with Borrow<br />
 什么时候产生借位？<br />
 1. 和普通减法一样10-1， 0&lt;1，产生借位<br />
-2. 已经借位的时候，130-31，3!❤️，但是3已经产生借位，所以(3-1借位)&lt;3的时候，产生借位<br />
+2. 已经借位的时候，130-31，3 不小于 3，但是3已经产生借位，所以(3-1借位)&lt;3的时候，产生借位<br />
 根据上面规则，即可完成set_CF_sbb()</p>
 <h3 id="shl"><a class="markdownIt-Anchor" href="#shl"></a> SHL</h3>
 <p>Shift Left<br />
@@ -4555,7 +4562,7 @@ OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
 <h3 id="多条数据"><a class="markdownIt-Anchor" href="#多条数据"></a> 多条数据</h3>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">insertAll</span>(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
 <h2 id="修改"><a class="markdownIt-Anchor" href="#修改"></a> 修改</h2>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="number">232</span>)</span><br><span class="line">                -&gt;<span class="title function_ invoke__">update</span>([ </span><br><span class="line">                  // 下面是SQL表达式</span><br><span class="line">                  <span class="string">&#x27;email&#x27;</span> =&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;UPPER(email)&#x27;</span>),</span><br><span class="line">                  <span class="string">&#x27;price&#x27;</span> =&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;price + 1&#x27;</span>),</span><br><span class="line">                  <span class="string">&#x27;status&#x27;</span>=&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;status - 2&#x27;</span>)</span><br><span class="line">                ]);</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="number">232</span>)</span><br><span class="line">                -&gt;<span class="title function_ invoke__">update</span>([ </span><br><span class="line">                  // 下面是SQL表达式</span><br><span class="line">                  <span class="string">&#x27;email&#x27;</span> =&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;UPPER(email)&#x27;</span>),</span><br><span class="line">                    <span class="string">&#x27;price&#x27;</span> =&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;price + 1&#x27;</span>),</span><br><span class="line">                  <span class="string">&#x27;status&#x27;</span>=&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;status - 2&#x27;</span>)</span><br><span class="line">                ]);</span><br></pre></td></tr></table></figure>
 <h2 id="删除"><a class="markdownIt-Anchor" href="#删除"></a> 删除</h2>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 根据主键删除多条数据</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">delete</span>([<span class="number">48</span>,<span class="number">49</span>,<span class="number">50</span>]);</span><br><span class="line"><span class="comment">// 匹配删除</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="number">47</span>)-&gt;<span class="title function_ invoke__">delete</span>();</span><br><span class="line"><span class="comment">// 全部删除</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">delete</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
 <h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
@@ -4636,5 +4643,27 @@ OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
       <tags>
         <tag>项目</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Spring Boot</title>
+    <url>/ComputerScience/%E9%A1%B9%E7%9B%AE/Spring%20Boot/</url>
+    <content><![CDATA[<h1 id="spring-cli"><a class="markdownIt-Anchor" href="#spring-cli"></a> Spring CLI</h1>
+<p>可以用<a href="https://start.spring.io">Spring Initializr</a>或Spirng CLI来构建项目</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">spring init -list <span class="comment"># 列出参数</span></span><br><span class="line"><span class="comment"># 初始化项目</span></span><br><span class="line">spring init ( -d || --dependencies ) package1,package2 --build (maven/gradle) ( -p || --package) (war/jar) projectName</span><br><span class="line"><span class="comment"># Example</span></span><br><span class="line">spring init -d web,jpa,security --build maven -p jar basic-project</span><br><span class="line"></span><br><span class="line">spring init -d web,mustache,jpa,h2,devtools --package-name=com.example.blog --build maven mybloge</span><br></pre></td></tr></table></figure>
+<p>项目结构图</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ tree basic-project/</span><br><span class="line">basic-project/</span><br><span class="line">├── HELP.md</span><br><span class="line">├── mvnw # maven wrapper附带脚本</span><br><span class="line">├── mvnw.cmd</span><br><span class="line">├── pom.xml # maven 构建配置文件</span><br><span class="line">└── src</span><br><span class="line">    ├── main</span><br><span class="line">    │   ├── java</span><br><span class="line">    │   │   └── com</span><br><span class="line">    │   │       └── example</span><br><span class="line">    │   │           └── basic_project</span><br><span class="line">    │   │               └── DemoApplication.java # 入口</span><br><span class="line">    │   └── resources</span><br><span class="line">    │       ├── application.properties # Configuration</span><br><span class="line">    │       ├── static # 存放js/css,images</span><br><span class="line">    │       └── templates # 存放页面模板</span><br><span class="line">    └── test</span><br><span class="line">        └── java</span><br><span class="line">            └── com</span><br><span class="line">                └── example</span><br><span class="line">                    └── basic_project</span><br><span class="line">                        └── DemoApplicationTests.java</span><br><span class="line"></span><br><span class="line">15 directories, 7 files</span><br></pre></td></tr></table></figure>
+<h1 id="maven"><a class="markdownIt-Anchor" href="#maven"></a> Maven</h1>
+<h2 id="换源"><a class="markdownIt-Anchor" href="#换源"></a> 换源</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">distributionUrl=https://maven.aliyun.com/repository/central/org/apache/maven/apache-maven/(edition.number)/apache-maven-(edition.number)-bin.zip</span><br></pre></td></tr></table></figure>
+<h2 id="运行项目"><a class="markdownIt-Anchor" href="#运行项目"></a> 运行项目</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mvn spring-boot:run</span><br><span class="line"><span class="comment"># 将会在localhost:8080运行</span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>项目</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/ComputerScience/%E9%A1%B9%E7%9B%AE/start.spring.io/</url>
+    <content><![CDATA[]]></content>
   </entry>
 </search>
