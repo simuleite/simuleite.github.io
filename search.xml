@@ -4650,7 +4650,11 @@ OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
     <content><![CDATA[<h1 id="spring-cli"><a class="markdownIt-Anchor" href="#spring-cli"></a> Spring CLI</h1>
 <p>可以用<a href="https://start.spring.io">Spring Initializr</a>或Spirng CLI来构建项目</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">spring init -list <span class="comment"># 列出参数</span></span><br><span class="line"><span class="comment"># 初始化项目</span></span><br><span class="line">spring init ( -d || --dependencies ) package1,package2 --build (maven/gradle) ( -p || --package) (war/jar) projectName</span><br><span class="line"><span class="comment"># Example</span></span><br><span class="line">spring init -d web,jpa,security --build maven -p jar basic-project</span><br><span class="line"></span><br><span class="line">spring init -d web,mustache,jpa,h2,devtools --package-name=com.example.blog --build maven mybloge</span><br></pre></td></tr></table></figure>
-<p>项目结构图</p>
+<ul>
+<li>Web: API服务</li>
+<li>JPA: 访问数据库的抽象<br />
+项目结构图</li>
+</ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ tree basic-project/</span><br><span class="line">basic-project/</span><br><span class="line">├── HELP.md</span><br><span class="line">├── mvnw # maven wrapper附带脚本</span><br><span class="line">├── mvnw.cmd</span><br><span class="line">├── pom.xml # maven 构建配置文件</span><br><span class="line">└── src</span><br><span class="line">    ├── main</span><br><span class="line">    │   ├── java</span><br><span class="line">    │   │   └── com</span><br><span class="line">    │   │       └── example</span><br><span class="line">    │   │           └── basic_project</span><br><span class="line">    │   │               └── DemoApplication.java # 入口</span><br><span class="line">    │   └── resources</span><br><span class="line">    │       ├── application.properties # Configuration</span><br><span class="line">    │       ├── static # 存放js/css,images</span><br><span class="line">    │       └── templates # 存放页面模板</span><br><span class="line">    └── test</span><br><span class="line">        └── java</span><br><span class="line">            └── com</span><br><span class="line">                └── example</span><br><span class="line">                    └── basic_project</span><br><span class="line">                        └── DemoApplicationTests.java</span><br><span class="line"></span><br><span class="line">15 directories, 7 files</span><br></pre></td></tr></table></figure>
 <h1 id="maven"><a class="markdownIt-Anchor" href="#maven"></a> Maven</h1>
 <h2 id="换源"><a class="markdownIt-Anchor" href="#换源"></a> 换源</h2>
@@ -4679,6 +4683,36 @@ ICMP：定义各种消息，如超时、无法到达、超出转发能力</p>
 ]]></content>
       <tags>
         <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql使用</title>
+    <url>/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1>
+<h2 id="压缩包安装"><a class="markdownIt-Anchor" href="#压缩包安装"></a> 压缩包安装</h2>
+<ol>
+<li>初始化</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化，生成data文件夹，console参数可以看见密码</span></span><br><span class="line">mysqld --initialize --console &gt; mysql_info</span><br><span class="line"><span class="comment"># &gt; mysql_info把命令行输出结果存到文件里，防止密码丢失</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>配置<code>mysql.ini</code></li>
+</ol>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置3306端口</span></span><br><span class="line"><span class="attr">port</span>=<span class="number">3306</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql目录路径</span></span><br><span class="line"><span class="attr">basedir</span>=C:\\your\\path\\MySQL</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></span><br><span class="line"><span class="attr">datadir</span>=C:\\your\\path\\MySQL\\Data</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许连接失败的次数。这是为了防止有人从该主机试图攻击数据库系统</span></span><br><span class="line"><span class="attr">max_connect_errors</span>=<span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为UTF8</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认使用“mysql_native_password”插件认证</span></span><br><span class="line"><span class="attr">default_authentication_plugin</span>=mysql_native_password</span><br><span class="line"></span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br><span class="line"></span><br><span class="line"><span class="section">[client]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql客户端连接服务端时默认使用的端口</span></span><br><span class="line"><span class="attr">port</span>=<span class="number">3306</span></span><br><span class="line"></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>安装服务</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysqld --install MySQL8 --defaults-file=<span class="string">&quot;C:\your\path\MySQL\mysql.ini&quot;</span> <span class="comment"># 设置服务名</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认安装</span></span><br><span class="line">mysqld install</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>修改密码</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置YourPassword为新密码，再输入旧密码确认修改即可</span></span><br><span class="line">mysqladmin -u root -p password (YourPassword) --port 3306</span><br></pre></td></tr></table></figure>
+<h1 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h1>
+<h2 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 创建数据库</span><br><span class="line">CREATE DATABASE yourDatabase</span><br><span class="line">  CHARACTER SET utf8mb4;</span><br><span class="line"></span><br><span class="line"># 查看所有数据库</span><br><span class="line">show databases;</span><br><span class="line"></span><br><span class="line"># 进入数据库</span><br><span class="line">use yourDatabase</span><br></pre></td></tr></table></figure>
+<h2 id="表"><a class="markdownIt-Anchor" href="#表"></a> 表</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 建表</span><br><span class="line">CREATE TABLE yourTable (</span><br><span class="line">  id INT AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">  name varchar(50) NOT NULL,</span><br><span class="line">  age INT NOT NULL</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"># 查看表 </span><br><span class="line">show tables;</span><br><span class="line"></span><br><span class="line">select * from yourTable;</span><br><span class="line"></span><br><span class="line">insert into yourTable (name, email, age) values (&#x27;eric&#x27;, &#x27;example@email.com&#x27;, 19);</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>基本操作</tag>
       </tags>
   </entry>
 </search>
