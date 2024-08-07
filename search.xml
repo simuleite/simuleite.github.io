@@ -148,7 +148,9 @@ log2(x) 以2为底数的对数
 <li><code>CTRL+A|E</code> 跳到行首、行尾</li>
 <li><code>ALT+F|B</code> 或 <code>CTRL+←|→</code> 下、上一个单词（右ALT开始使用~）</li>
 <li><code>CTRL+W</code> 删除前面的单词</li>
-<li><code>CTRL+D</code> 删除一个字符</li>
+<li><code>CTRL+D|H</code> 删除一个字符（D向后删除=Delete，H向前删除=Backspace）</li>
+<li><code>CTRL+U</code> 删除整行</li>
+<li><code>CTRL+R</code> 搜索整行，Esc退出</li>
 </ul>
 <h1 id="bash-prompt-string配置"><a class="markdownIt-Anchor" href="#bash-prompt-string配置"></a> Bash prompt string配置</h1>
 <ul>
@@ -515,12 +517,18 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 </li>
 <li><code>u</code>撤销，<code>&lt;C-r&gt;</code>重做</li>
 <li><code>y</code>复制 / “yank” （其他一些命令比如<code>d</code>也会复制）</li>
-<li><code>p</code>粘贴</li>
+<li><code>p</code>粘贴
+<ul>
+<li><code>+p</code> 粘贴系统剪贴板</li>
+</ul>
+</li>
 <li><strong>更多值得学习的</strong>:
 <ul>
+<li><code>:&lt;line&gt;</code> 跳到line行</li>
 <li><code>~</code>改变字符的大小写</li>
 <li><code>3w</code>向前移动三个词</li>
 <li><code>A</code>（大写）可以迅速定位到行尾进行修改</li>
+<li><code>:!python prog.py</code> 使用！直接运行shell命令</li>
 </ul>
 </li>
 <li><code>%</code>匹配括号</li>
@@ -666,6 +674,8 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
     <content><![CDATA[<h1 id="笔记"><a class="markdownIt-Anchor" href="#笔记"></a> 笔记</h1>
 <h2 id="命令"><a class="markdownIt-Anchor" href="#命令"></a> 命令</h2>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;postName&quot;</span> <span class="comment">#新建文章</span></span><br><span class="line">hexo new page <span class="string">&quot;pageName&quot;</span> <span class="comment">#新建页面</span></span><br><span class="line">hexo generate <span class="comment">#生成静态页面至public目录</span></span><br><span class="line">hexo server <span class="comment">#开启预览访问端口（默认端口4000，&#x27;ctrl + c&#x27;关闭server）</span></span><br><span class="line">hexo deploy <span class="comment">#部署到GitHub</span></span><br><span class="line">hexo <span class="built_in">help</span>  <span class="comment"># 查看帮助</span></span><br><span class="line">hexo version  <span class="comment">#查看Hexo的版本</span></span><br></pre></td></tr></table></figure>
+<h1 id="按文章更新时间排序"><a class="markdownIt-Anchor" href="#按文章更新时间排序"></a> 按文章更新时间排序</h1>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="comment"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-updated</span> <span class="comment"># 默认是-date</span></span><br></pre></td></tr></table></figure>
 <h2 id="背景设置"><a class="markdownIt-Anchor" href="#背景设置"></a> 背景设置</h2>
 <p>把你挑选的背景图片命名为：background.jpg，放在blog\themes\next\source\images里，在blog\themes\next\source\css_custom文件的custom.styl首部添加</p>
 <figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">/images/background.jpg</span>);</span><br><span class="line">  <span class="attribute">background-attachment</span>: fixed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
