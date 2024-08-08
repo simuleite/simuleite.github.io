@@ -145,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -167,6 +167,86 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">OS 操作系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-08-07 00:00:00 / 修改时间：17:00:22" itemprop="dateCreated datePublished" datetime="2024-08-07T00:00:00+08:00">2024-08-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="复杂度管理方法-malh"><a class="markdownIt-Anchor" href="#复杂度管理方法-malh"></a> 复杂度管理方法 M.A.L.H</h1>
+<p>Modularity: 模块化，分而治之<br />
+Abstraction: 抽象，接口与实现分离，遵循宽进严出原则。例如虚拟内存、文件系统</p>
+<blockquote>
+<p>对于大型系统，只有模块化和抽象，可能导致划分模块太多，交互关系复杂，因此还需要引入分层和层次结构控制复杂度。</p>
+</blockquote>
+<p>Layering: 分层，每个层级是一套完整机制。通常一个模块只能与本层和上下层交互，不能跨层。例如OSI、TCP/IP<br />
+Hierarchy: 层次结构，大的子系统由多个小的子系统组织成。即同级模块的分层</p>
+<blockquote>
+<p>宽进严出原则：容忍各种输入（包括恶意输入），严格控制模块的对外输出</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1235,105 +1315,6 @@ TCP需要确认对方收到数据，但是为了不浪费时间，实际上TCP�
 <p>用电信号传输数据时，用高电平表示1，低电平表示0.为了防止连续的低电平读不出来，会有一条时钟信号（固定切换高低电平）<br />
 ICMP：定义各种消息，如超时、无法到达、超出转发能力</p>
 <p>UDP在发送的数据少于一个包（重发也只需要发一个包，代价小，如DNS查询控制信息）、发送的数据具有时效性（如音视频，必须快速发送，即使重发也没有意义）的情况下使用。UDP只负责收发数据，对方没收到就全部重发一遍。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">tmux使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-25T00:00:00+08:00">2023-11-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-07-24 10:28:51" itemprop="dateModified" datetime="2024-07-24T10:28:51+08:00">2024-07-24</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <pre><code>参考教程： https://www.ruanyifeng.com/blog/2019/10/tmux.html
-</code></pre>
-<ul>
-<li>tmux使会话与窗口解绑，一个窗口<code>source .bashrc</code>更新了，另一个窗口可能没有</li>
-</ul>
-<ul>
-<li><strong><code>ctrl+b</code> 前缀键</strong><br />
-<code>%</code>  分成左右两栏<br />
-<code>&quot;</code>  分成上下两栏<br />
-<code>up</code>  选择上边的窗口<br />
-<code>[</code> 查看历史记录</li>
-</ul>
-<h1 id="窗口"><a class="markdownIt-Anchor" href="#窗口"></a> 窗口</h1>
-<ul>
-<li><code>&lt;C-d&gt;</code> <strong>删除窗口</strong></li>
-</ul>
-<ul>
-<li><code>&lt;C-b&gt; z</code> <strong>最大化/最小化一个窗口</strong></li>
-<li><code>&lt;C-b&gt; c</code> 创建一个新的窗口，使用 <code>&lt;C-d&gt;</code>关闭</li>
-<li><code>&lt;C-b&gt; N</code> 跳转到第 <em>N</em> 个窗口，注意每个窗口都是有编号的</li>
-<li><code>&lt;C-b&gt; p</code> 切换到前一个窗口</li>
-<li><code>&lt;C-b&gt; n</code> 切换到下一个窗口</li>
-<li><code>&lt;C-b&gt; w</code> 列出当前所有窗口</li>
-</ul>
 
       
     </div>
