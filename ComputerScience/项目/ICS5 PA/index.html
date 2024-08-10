@@ -27,7 +27,7 @@
 <meta property="og:description" content="PA1-1 24.5.30 又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！  target 第一课的目标是修正一个register错误声明  insteresting  中途网易源Bad Gateway 502了，更换清华源，学会了:%s&#x2F;163&#x2F;tuna&#x2F;g非常爽！ 又学了几个终端快捷键 想到了用 ccache 加速我的PA   problems  union">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-30T04:06:52.703Z">
+<meta property="article:modified_time" content="2024-08-10T08:30:47.754Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="项目">
 <meta name="twitter:card" content="summary">
@@ -138,7 +138,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pa1-1-24530"><span class="nav-text"> PA1-1 24.5.30</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#target"><span class="nav-text"> target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#insteresting"><span class="nav-text"> insteresting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#problems"><span class="nav-text"> problems</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pa1-2-alu-2465"><span class="nav-text"> PA1-2 ALU 24.6.5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#target-2"><span class="nav-text"> target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#knowledge"><span class="nav-text"> knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#appendix-c"><span class="nav-text"> Appendix C</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#add"><span class="nav-text"> ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#adc"><span class="nav-text"> ADC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sub"><span class="nav-text"> SUB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sbb"><span class="nav-text"> SBB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shl"><span class="nav-text"> SHL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#div"><span class="nav-text"> DIV</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pa1-3-fpu-24730"><span class="nav-text"> PA1-3 FPU 24.7.30</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95"><span class="nav-text"> 加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%98%E6%B3%95"><span class="nav-text"> 乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%84%E6%A0%BC%E5%8C%96"><span class="nav-text"> 规格化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%8D%E5%85%A5"><span class="nav-text"> 舍入</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pa1-1-24530"><span class="nav-text"> PA1-1 24.5.30</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#target"><span class="nav-text"> target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#insteresting"><span class="nav-text"> insteresting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#problems"><span class="nav-text"> problems</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pa1-2-alu-2465"><span class="nav-text"> PA1-2 ALU 24.6.5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#target-2"><span class="nav-text"> target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#knowledge"><span class="nav-text"> knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#appendix-c"><span class="nav-text"> Appendix C</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#add"><span class="nav-text"> ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#adc"><span class="nav-text"> ADC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sub"><span class="nav-text"> SUB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sbb"><span class="nav-text"> SBB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shl"><span class="nav-text"> SHL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#div"><span class="nav-text"> DIV</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pa1-3-fpu-24730"><span class="nav-text"> PA1-3 FPU 24.7.30</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95"><span class="nav-text"> 加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%98%E6%B3%95"><span class="nav-text"> 乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%84%E6%A0%BC%E5%8C%96"><span class="nav-text"> 规格化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%8D%E5%85%A5"><span class="nav-text"> 舍入</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pa2-1"><span class="nav-text"> PA2-1</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -219,7 +219,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-07-30 12:06:52" itemprop="dateModified" datetime="2024-07-30T12:06:52+08:00">2024-07-30</time>
+      <time title="修改时间：2024-08-10 16:30:47" itemprop="dateModified" datetime="2024-08-10T16:30:47+08:00">2024-08-10</time>
     </span>
 
   
@@ -350,7 +350,9 @@ OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
 <li>Guard位为1，Round、Sticky不为0，进位<br />
 注意最后要处理掉GRS位</li>
 </ol>
-
+<h1 id="pa2-1"><a class="markdownIt-Anchor" href="#pa2-1"></a> PA2-1</h1>
+<p>示例修改文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">objdump -d ./testcase/bin/mov | less</span><br><span class="line"></span><br><span class="line">nemu/src/cpu/instr/jmp.c // 包含.h</span><br><span class="line">nemu/include/cpu/instr/jmp.h // 声明函数</span><br><span class="line"></span><br><span class="line">nemu/src/cpu/decode/opcode.c // 替换</span><br><span class="line"></span><br><span class="line">nemu/include/cpu/operand.h // OPERAND read/write</span><br></pre></td></tr></table></figure>
     </div>
 
     

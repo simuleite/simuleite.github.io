@@ -412,6 +412,9 @@ log2(x) 以2为底数的对数
 </ul>
 <h2 id="指南github使用指南github-远程仓库远程同步"><a class="markdownIt-Anchor" href="#指南github使用指南github-远程仓库远程同步"></a> [[…/指南/Github使用指南#Github 远程仓库|远程同步]]</h2>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git remote add origin^ git@github.com:账户名/仓库名.git // ^origin是远程仓库名字</span><br><span class="line">git push -u 远程仓库名字 master  </span><br><span class="line">/* 加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<h1 id="git如何进行多人协作"><a class="markdownIt-Anchor" href="#git如何进行多人协作"></a> Git如何进行多人协作</h1>
+<p>使用Git多人协作，就要用到分支。<br />
+分支的特点是，将不同功能分配给不同的人开发，各个分支之间彼此独立、不受干扰。等待开发完成，只需要合并代码就可以了。</p>
 ]]></content>
       <tags>
         <tag>基本操作</tag>
@@ -4183,7 +4186,9 @@ OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
 <li>Guard位为1，Round、Sticky不为0，进位<br />
 注意最后要处理掉GRS位</li>
 </ol>
-]]></content>
+<h1 id="pa2-1"><a class="markdownIt-Anchor" href="#pa2-1"></a> PA2-1</h1>
+<p>示例修改文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">objdump -d ./testcase/bin/mov | less</span><br><span class="line"></span><br><span class="line">nemu/src/cpu/instr/jmp.c // 包含.h</span><br><span class="line">nemu/include/cpu/instr/jmp.h // 声明函数</span><br><span class="line"></span><br><span class="line">nemu/src/cpu/decode/opcode.c // 替换</span><br><span class="line"></span><br><span class="line">nemu/include/cpu/operand.h // OPERAND read/write</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>项目</tag>
       </tags>

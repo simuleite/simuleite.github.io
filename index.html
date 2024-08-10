@@ -176,6 +176,304 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS5%20PA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS5%20PA/" class="post-title-link" itemprop="url">ICS5 PA</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2024-05-30T00:00:00+08:00">2024-05-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-10 16:30:47" itemprop="dateModified" datetime="2024-08-10T16:30:47+08:00">2024-08-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="pa1-1-24530"><a class="markdownIt-Anchor" href="#pa1-1-24530"></a> PA1-1 24.5.30</h1>
+<p>又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！</p>
+<h2 id="target"><a class="markdownIt-Anchor" href="#target"></a> target</h2>
+<p>第一课的目标是修正一个register错误声明</p>
+<h2 id="insteresting"><a class="markdownIt-Anchor" href="#insteresting"></a> insteresting</h2>
+<ul>
+<li>中途网易源Bad Gateway 502了，更换清华源，学会了<code>:%s/163/tuna/g</code>非常爽！</li>
+<li>又学了几个<a href="../%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8">终端快捷键</a></li>
+<li>想到了用 <code>ccache</code> 加速我的PA</li>
+</ul>
+<h2 id="problems"><a class="markdownIt-Anchor" href="#problems"></a> problems</h2>
+<ol>
+<li><code>union</code> 和 <code>struct</code> 的区别？<br />
+<code>unioin</code> 在同一个内存空间中存储不同的数据类型。<br />
+<code>struct</code> 则是同时存储不同的数据类型。</li>
+<li>为什么要用 <code>union</code>？阅读i386手册<br />
+2.3.1 General Registers<br />
+As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-manual/s02_03.htm#fig2-5">Figure 2-5</a> shows, the low-order word of each of these eight registers has a separate name and can be treated as a unit. This feature is useful for handling 16-bit data items and for compatibility with the 8086 and 80286 processors. The word registers are named AX, BX, CX, DX, BP, SP, SI, and DI.<br />
+对于CPU来说，可以把AH AX AL看成单独的单元，拆分成小块。所以它们是共用关系。</li>
+</ol>
+<h1 id="pa1-2-alu-2465"><a class="markdownIt-Anchor" href="#pa1-2-alu-2465"></a> PA1-2 ALU 24.6.5</h1>
+<h2 id="target-2"><a class="markdownIt-Anchor" href="#target-2"></a> target</h2>
+<p>实现ALU中的各类运算，包括设置标志位</p>
+<h2 id="knowledge"><a class="markdownIt-Anchor" href="#knowledge"></a> knowledge</h2>
+<h3 id="appendix-c"><a class="markdownIt-Anchor" href="#appendix-c"></a> Appendix C</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CF</td>
+<td>Carry Flag ── Set on high-order bit carry or borrow; cleared otherwise.</td>
+</tr>
+<tr>
+<td>PF</td>
+<td>Parity Flag ── Set if low-order eight bits of result contain an even number of 1 bits; cleared otherwise.</td>
+</tr>
+<tr>
+<td>ZF</td>
+<td>Zero Flag ── Set if result is zero; cleared otherwise.</td>
+</tr>
+<tr>
+<td>SF</td>
+<td>Sign Flag ── Set equal to high-order bit of result (0 is positive, 1 if negative).</td>
+</tr>
+<tr>
+<td>OF</td>
+<td>Overflow Flag ── Set if result is too large a positive number or too small a negative number (excluding sign-bit) to fit in destination operand; cleared otherwise.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="add"><a class="markdownIt-Anchor" href="#add"></a> ADD</h3>
+<p>Operation<br />
+DEST ← DEST + SRC;<br />
+Flags Affected<br />
+OF, SF, ZF, AF, CF, and PF as described in Appendix C</p>
+<h3 id="adc"><a class="markdownIt-Anchor" href="#adc"></a> ADC</h3>
+<p>ADD with Carry：“带进位的加法”操作，需要看操作数是否已经进位<br />
+Operation<br />
+DEST ← DEST + SRC + CF;<br />
+Flags Affected<br />
+OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
+注意CF标志位需要特殊设置，考虑之前的进位状态</p>
+<h3 id="sub"><a class="markdownIt-Anchor" href="#sub"></a> SUB</h3>
+<p>借位：A - B，当A小于B时，结果为一个负数，产生了借位。<br />
+根据这个规则完成set_CF_sub()<br />
+在做减法时，<br />
+如果用一个正数减去一个负数得到一个负的结果，<br />
+或者用一个负数减去一个正数然后得到一个正的结果，<br />
+则发生了溢出 。<br />
+根据上面的规则比较符号，即可完成set_OF_sub()</p>
+<h3 id="sbb"><a class="markdownIt-Anchor" href="#sbb"></a> SBB</h3>
+<p>Sub with Borrow<br />
+什么时候产生借位？<br />
+1. 和普通减法一样10-1， 0&lt;1，产生借位<br />
+2. 已经借位的时候，130-31，3 不小于 3，但是3已经产生借位，所以(3-1借位)&lt;3的时候，产生借位<br />
+根据上面规则，即可完成set_CF_sbb()</p>
+<h3 id="shl"><a class="markdownIt-Anchor" href="#shl"></a> SHL</h3>
+<p>Shift Left<br />
+左移操作，CF位是最高位；只移1位时才需要设置OF（CF和操作数不相同时）<br />
+注意：符号位不等于最高位！</p>
+<h3 id="div"><a class="markdownIt-Anchor" href="#div"></a> DIV</h3>
+<p>实现除法需要完成MOD<br />
+注意，dest是被除数，src是除数</p>
+<h1 id="pa1-3-fpu-24730"><a class="markdownIt-Anchor" href="#pa1-3-fpu-24730"></a> PA1-3 FPU 24.7.30</h1>
+<p>按照手册和伪代码实现FPU的规格化操作，以及加法和乘法。注意NEMU的实现中，fraction包含Guard、Round、Sticky位，共23+3=26位。</p>
+<h2 id="加法"><a class="markdownIt-Anchor" href="#加法"></a> 加法</h2>
+<p>小阶向大阶对齐，shift right，exp–<br />
+根据guide处理各种情况即可</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="type">uint32_t</span> <span class="title function_">internal_normalize</span><span class="params">(<span class="type">uint32_t</span> sign, <span class="type">int32_t</span> <span class="built_in">exp</span>, <span class="type">uint64_t</span> sig_grs)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>( <span class="comment">/* 需要进行右规 */</span> ) &#123;</span><br><span class="line">        <span class="keyword">while</span>( <span class="comment">/* 需要右规 且 未发生阶码上溢*/</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 右规一次 */</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>( <span class="comment">/* 发生了阶码上溢 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 根据符号将结果置为 +∞ 或 -∞ */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>( <span class="comment">/* 需要进行左规 */</span> ) &#123;</span><br><span class="line">        <span class="keyword">while</span>( <span class="comment">/* 需要左规 且 阶码大于0 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 左规一次 */</span>        </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>( <span class="comment">/* 发生了阶码==0 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 右移一次化为非规格化浮点数 */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>( <span class="comment">/* 两个非规格化数运算后得到了一个规格化数 */</span> ) &#123;</span><br><span class="line">        <span class="built_in">exp</span>++; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>( <span class="comment">/* 规格化过程中未发生溢出 */</span> ) &#123;</span><br><span class="line">        <span class="comment">/* 根据sig_grs最后三位GRS bits的取值决定舍入，采取就近舍入到偶数的方式 */</span></span><br><span class="line">        <span class="comment">/* 移除sig_grs最后三位保留的GRS bits*/</span></span><br><span class="line">        <span class="keyword">if</span>( <span class="comment">/* 舍入后破坏了规格化 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 再进行规格化并判断溢出 */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 假设最后的结果的符号、阶码、尾数保留在sign, exp, sig_grs中</span></span><br><span class="line">    FLOAT f;</span><br><span class="line">    f.sign = sign;</span><br><span class="line">    f.exponent = (<span class="type">uint32_t</span>) (<span class="built_in">exp</span> &amp; <span class="number">0xff</span>);</span><br><span class="line">    f.fraction = sig_grs; <span class="comment">// here only the lowest 23 bits are kept</span></span><br><span class="line">    <span class="keyword">return</span> f.val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="乘法"><a class="markdownIt-Anchor" href="#乘法"></a> 乘法</h2>
+<p>非常简单，浮点相乘就是尾数相乘，阶码相加</p>
+<blockquote>
+<p>加入GRS bits后，等同于约定中间结果的小数部分为26位。<br />
+对于除法而言，将被除数左移shift位后除以除数得到的小数部分为shift位，为了保证中间结果的小数部分为26位且真值不变，将多余的shift – 26位从阶码中减去，最后的阶码等于<code>fa.exponent - fb.exponent + 127 – (shift – 26)</code>。<br />
+对于乘法而言，用两个小数点后为23位的尾数相乘得到的乘积尾数小数点后为46位，为了保证中间结果的小数点后依然是26位，我们将多出来的46 – 26 = 20位归于阶码，因此阶码就是<code>fa.exponent + fb.exponent - 127 - 20</code>。</p>
+</blockquote>
+<h2 id="规格化"><a class="markdownIt-Anchor" href="#规格化"></a> 规格化</h2>
+<blockquote>
+<p>如果sig_grs &gt;&gt; (23 + 3) &gt; 1，则需要右规直至sig_grs &gt;&gt; (23 + 3) == 1；<br />
+反之如果sig_grs &gt;&gt; (23 + 3) == 0且不是非规格化浮点数（exp &gt; 0），则需要左规直至sig_grs &gt;&gt; (23 + 3) == 1。<br />
+注意这里的23 + 3的取值是因为我们在临时尾数的最低三位保留了GRS bits的缘故，也就是上文所述的等同于中间结果尾数sig_grs的小数部分约定为26位。<br />
+在规格化过程中，根据规格化的方向确定尾数右移还是左移，并对阶码进行增减操作。右规过程中需要保留粘位。<br />
+同时在每次右移前都要检查阶码上溢（exp &gt;= 0xff）的情形。<br />
+在左规过程中，则有可能发生结果出现非规格化浮点数的情况（阶码变为exp == 0），此时需要将尾数额外右移1位以对应非规格化浮点数阶码是2 ^-126的约定（否则单纯从数值上看阶码全0对应2 ^ -127）。</p>
+</blockquote>
+<p>整数部分不是1，(sig_grs &gt;&gt; 26) &gt; 1，，需要进行右移；整数部分 &lt; 1（也就是等于0）则需要进行左移</p>
+<h2 id="舍入"><a class="markdownIt-Anchor" href="#舍入"></a> 舍入</h2>
+<p>就近舍入偶数的规则可以参考视频和袁春风老师的书。</p>
+<ol>
+<li>Guard位为0，Round、Sticky不为0，舍去</li>
+<li>Guard位为1，Round、Sticky为0，确保尾数是偶数</li>
+<li>Guard位为1，Round、Sticky不为0，进位<br />
+注意最后要处理掉GRS位</li>
+</ol>
+<h1 id="pa2-1"><a class="markdownIt-Anchor" href="#pa2-1"></a> PA2-1</h1>
+<p>示例修改文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">objdump -d ./testcase/bin/mov | less</span><br><span class="line"></span><br><span class="line">nemu/src/cpu/instr/jmp.c // 包含.h</span><br><span class="line">nemu/include/cpu/instr/jmp.h // 声明函数</span><br><span class="line"></span><br><span class="line">nemu/src/cpu/decode/opcode.c // 替换</span><br><span class="line"></span><br><span class="line">nemu/include/cpu/operand.h // OPERAND read/write</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">git使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-09 13:13:12" itemprop="dateModified" datetime="2024-08-09T13:13:12+08:00">2024-08-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="10-第一件事git-config"><a class="markdownIt-Anchor" href="#10-第一件事git-config"></a> 1.0 第一件事git config</h1>
+<ul>
+<li><code>git config --list --show-origin</code>查看所有git配置以及所在文件</li>
+<li>使用<code>git config --global</code>可以设置git的基本信息（如用户名、邮箱），使用<code>--unset</code>取消设置
+<ol>
+<li>配置你的名称、邮箱以及编辑器</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;191220000-Zhang San&quot;</span> </span><br><span class="line"><span class="comment"># 全局设置名称</span></span><br><span class="line">git config --global user.email <span class="string">&quot;zhang3@email.com&quot;</span></span><br><span class="line">git config --global core.editor vim</span><br></pre></td></tr></table></figure>
+<h1 id="20-初始化仓库"><a class="markdownIt-Anchor" href="#20-初始化仓库"></a> 2.0 初始化仓库</h1>
+<ol>
+<li>本地仓库：<code>git init</code>创建一个新的 git 仓库，其数据会存放在一个名为 <code>.git</code> 的目录下<br />
+删除仓库：删除 .git 文件夹</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;文件名字，*表示全部&gt;</span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span> </span><br><span class="line"><span class="comment"># 提交到暂存区，并附上注释</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>远程仓库：<code>git clone</code>克隆远端仓库</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &lt;网址&gt; &lt;仓库存放文件夹名&gt;</span><br><span class="line"><span class="comment"># 使用http克隆</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -707,200 +1005,6 @@ mechanism：怎么做。就像盖房子的砖块。例如输入处理、桌面�
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS5%20PA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS5%20PA/" class="post-title-link" itemprop="url">ICS5 PA</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2024-05-30T00:00:00+08:00">2024-05-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-07-30 12:06:52" itemprop="dateModified" datetime="2024-07-30T12:06:52+08:00">2024-07-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="pa1-1-24530"><a class="markdownIt-Anchor" href="#pa1-1-24530"></a> PA1-1 24.5.30</h1>
-<p>又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！</p>
-<h2 id="target"><a class="markdownIt-Anchor" href="#target"></a> target</h2>
-<p>第一课的目标是修正一个register错误声明</p>
-<h2 id="insteresting"><a class="markdownIt-Anchor" href="#insteresting"></a> insteresting</h2>
-<ul>
-<li>中途网易源Bad Gateway 502了，更换清华源，学会了<code>:%s/163/tuna/g</code>非常爽！</li>
-<li>又学了几个<a href="../%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8">终端快捷键</a></li>
-<li>想到了用 <code>ccache</code> 加速我的PA</li>
-</ul>
-<h2 id="problems"><a class="markdownIt-Anchor" href="#problems"></a> problems</h2>
-<ol>
-<li><code>union</code> 和 <code>struct</code> 的区别？<br />
-<code>unioin</code> 在同一个内存空间中存储不同的数据类型。<br />
-<code>struct</code> 则是同时存储不同的数据类型。</li>
-<li>为什么要用 <code>union</code>？阅读i386手册<br />
-2.3.1 General Registers<br />
-As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-manual/s02_03.htm#fig2-5">Figure 2-5</a> shows, the low-order word of each of these eight registers has a separate name and can be treated as a unit. This feature is useful for handling 16-bit data items and for compatibility with the 8086 and 80286 processors. The word registers are named AX, BX, CX, DX, BP, SP, SI, and DI.<br />
-对于CPU来说，可以把AH AX AL看成单独的单元，拆分成小块。所以它们是共用关系。</li>
-</ol>
-<h1 id="pa1-2-alu-2465"><a class="markdownIt-Anchor" href="#pa1-2-alu-2465"></a> PA1-2 ALU 24.6.5</h1>
-<h2 id="target-2"><a class="markdownIt-Anchor" href="#target-2"></a> target</h2>
-<p>实现ALU中的各类运算，包括设置标志位</p>
-<h2 id="knowledge"><a class="markdownIt-Anchor" href="#knowledge"></a> knowledge</h2>
-<h3 id="appendix-c"><a class="markdownIt-Anchor" href="#appendix-c"></a> Appendix C</h3>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Function</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CF</td>
-<td>Carry Flag ── Set on high-order bit carry or borrow; cleared otherwise.</td>
-</tr>
-<tr>
-<td>PF</td>
-<td>Parity Flag ── Set if low-order eight bits of result contain an even number of 1 bits; cleared otherwise.</td>
-</tr>
-<tr>
-<td>ZF</td>
-<td>Zero Flag ── Set if result is zero; cleared otherwise.</td>
-</tr>
-<tr>
-<td>SF</td>
-<td>Sign Flag ── Set equal to high-order bit of result (0 is positive, 1 if negative).</td>
-</tr>
-<tr>
-<td>OF</td>
-<td>Overflow Flag ── Set if result is too large a positive number or too small a negative number (excluding sign-bit) to fit in destination operand; cleared otherwise.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="add"><a class="markdownIt-Anchor" href="#add"></a> ADD</h3>
-<p>Operation<br />
-DEST ← DEST + SRC;<br />
-Flags Affected<br />
-OF, SF, ZF, AF, CF, and PF as described in Appendix C</p>
-<h3 id="adc"><a class="markdownIt-Anchor" href="#adc"></a> ADC</h3>
-<p>ADD with Carry：“带进位的加法”操作，需要看操作数是否已经进位<br />
-Operation<br />
-DEST ← DEST + SRC + CF;<br />
-Flags Affected<br />
-OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
-注意CF标志位需要特殊设置，考虑之前的进位状态</p>
-<h3 id="sub"><a class="markdownIt-Anchor" href="#sub"></a> SUB</h3>
-<p>借位：A - B，当A小于B时，结果为一个负数，产生了借位。<br />
-根据这个规则完成set_CF_sub()<br />
-在做减法时，<br />
-如果用一个正数减去一个负数得到一个负的结果，<br />
-或者用一个负数减去一个正数然后得到一个正的结果，<br />
-则发生了溢出 。<br />
-根据上面的规则比较符号，即可完成set_OF_sub()</p>
-<h3 id="sbb"><a class="markdownIt-Anchor" href="#sbb"></a> SBB</h3>
-<p>Sub with Borrow<br />
-什么时候产生借位？<br />
-1. 和普通减法一样10-1， 0&lt;1，产生借位<br />
-2. 已经借位的时候，130-31，3 不小于 3，但是3已经产生借位，所以(3-1借位)&lt;3的时候，产生借位<br />
-根据上面规则，即可完成set_CF_sbb()</p>
-<h3 id="shl"><a class="markdownIt-Anchor" href="#shl"></a> SHL</h3>
-<p>Shift Left<br />
-左移操作，CF位是最高位；只移1位时才需要设置OF（CF和操作数不相同时）<br />
-注意：符号位不等于最高位！</p>
-<h3 id="div"><a class="markdownIt-Anchor" href="#div"></a> DIV</h3>
-<p>实现除法需要完成MOD<br />
-注意，dest是被除数，src是除数</p>
-<h1 id="pa1-3-fpu-24730"><a class="markdownIt-Anchor" href="#pa1-3-fpu-24730"></a> PA1-3 FPU 24.7.30</h1>
-<p>按照手册和伪代码实现FPU的规格化操作，以及加法和乘法。注意NEMU的实现中，fraction包含Guard、Round、Sticky位，共23+3=26位。</p>
-<h2 id="加法"><a class="markdownIt-Anchor" href="#加法"></a> 加法</h2>
-<p>小阶向大阶对齐，shift right，exp–<br />
-根据guide处理各种情况即可</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="type">uint32_t</span> <span class="title function_">internal_normalize</span><span class="params">(<span class="type">uint32_t</span> sign, <span class="type">int32_t</span> <span class="built_in">exp</span>, <span class="type">uint64_t</span> sig_grs)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>( <span class="comment">/* 需要进行右规 */</span> ) &#123;</span><br><span class="line">        <span class="keyword">while</span>( <span class="comment">/* 需要右规 且 未发生阶码上溢*/</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 右规一次 */</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>( <span class="comment">/* 发生了阶码上溢 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 根据符号将结果置为 +∞ 或 -∞ */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>( <span class="comment">/* 需要进行左规 */</span> ) &#123;</span><br><span class="line">        <span class="keyword">while</span>( <span class="comment">/* 需要左规 且 阶码大于0 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 左规一次 */</span>        </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>( <span class="comment">/* 发生了阶码==0 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 右移一次化为非规格化浮点数 */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>( <span class="comment">/* 两个非规格化数运算后得到了一个规格化数 */</span> ) &#123;</span><br><span class="line">        <span class="built_in">exp</span>++; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>( <span class="comment">/* 规格化过程中未发生溢出 */</span> ) &#123;</span><br><span class="line">        <span class="comment">/* 根据sig_grs最后三位GRS bits的取值决定舍入，采取就近舍入到偶数的方式 */</span></span><br><span class="line">        <span class="comment">/* 移除sig_grs最后三位保留的GRS bits*/</span></span><br><span class="line">        <span class="keyword">if</span>( <span class="comment">/* 舍入后破坏了规格化 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 再进行规格化并判断溢出 */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 假设最后的结果的符号、阶码、尾数保留在sign, exp, sig_grs中</span></span><br><span class="line">    FLOAT f;</span><br><span class="line">    f.sign = sign;</span><br><span class="line">    f.exponent = (<span class="type">uint32_t</span>) (<span class="built_in">exp</span> &amp; <span class="number">0xff</span>);</span><br><span class="line">    f.fraction = sig_grs; <span class="comment">// here only the lowest 23 bits are kept</span></span><br><span class="line">    <span class="keyword">return</span> f.val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="乘法"><a class="markdownIt-Anchor" href="#乘法"></a> 乘法</h2>
-<p>非常简单，浮点相乘就是尾数相乘，阶码相加</p>
-<blockquote>
-<p>加入GRS bits后，等同于约定中间结果的小数部分为26位。<br />
-对于除法而言，将被除数左移shift位后除以除数得到的小数部分为shift位，为了保证中间结果的小数部分为26位且真值不变，将多余的shift – 26位从阶码中减去，最后的阶码等于<code>fa.exponent - fb.exponent + 127 – (shift – 26)</code>。<br />
-对于乘法而言，用两个小数点后为23位的尾数相乘得到的乘积尾数小数点后为46位，为了保证中间结果的小数点后依然是26位，我们将多出来的46 – 26 = 20位归于阶码，因此阶码就是<code>fa.exponent + fb.exponent - 127 - 20</code>。</p>
-</blockquote>
-<h2 id="规格化"><a class="markdownIt-Anchor" href="#规格化"></a> 规格化</h2>
-<blockquote>
-<p>如果sig_grs &gt;&gt; (23 + 3) &gt; 1，则需要右规直至sig_grs &gt;&gt; (23 + 3) == 1；<br />
-反之如果sig_grs &gt;&gt; (23 + 3) == 0且不是非规格化浮点数（exp &gt; 0），则需要左规直至sig_grs &gt;&gt; (23 + 3) == 1。<br />
-注意这里的23 + 3的取值是因为我们在临时尾数的最低三位保留了GRS bits的缘故，也就是上文所述的等同于中间结果尾数sig_grs的小数部分约定为26位。<br />
-在规格化过程中，根据规格化的方向确定尾数右移还是左移，并对阶码进行增减操作。右规过程中需要保留粘位。<br />
-同时在每次右移前都要检查阶码上溢（exp &gt;= 0xff）的情形。<br />
-在左规过程中，则有可能发生结果出现非规格化浮点数的情况（阶码变为exp == 0），此时需要将尾数额外右移1位以对应非规格化浮点数阶码是2 ^-126的约定（否则单纯从数值上看阶码全0对应2 ^ -127）。</p>
-</blockquote>
-<p>整数部分不是1，(sig_grs &gt;&gt; 26) &gt; 1，，需要进行右移；整数部分 &lt; 1（也就是等于0）则需要进行左移</p>
-<h2 id="舍入"><a class="markdownIt-Anchor" href="#舍入"></a> 舍入</h2>
-<p>就近舍入偶数的规则可以参考视频和袁春风老师的书。</p>
-<ol>
-<li>Guard位为0，Round、Sticky不为0，舍去</li>
-<li>Guard位为1，Round、Sticky为0，确保尾数是偶数</li>
-<li>Guard位为1，Round、Sticky不为0，进位<br />
-注意最后要处理掉GRS位</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/gdb%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1314,87 +1418,6 @@ Debian官方软件源：官网/mirror/list</li>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">distributionUrl=https://maven.aliyun.com/repository/central/org/apache/maven/apache-maven/(edition.number)/apache-maven-(edition.number)-bin.zip</span><br></pre></td></tr></table></figure>
 <h2 id="运行项目"><a class="markdownIt-Anchor" href="#运行项目"></a> 运行项目</h2>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mvn spring-boot:run</span><br><span class="line"><span class="comment"># 将会在localhost:8080运行</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/" class="post-title-link" itemprop="url">网络是怎样连接的</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-07-25 00:00:00 / 修改时间：08:33:01" itemprop="dateCreated datePublished" datetime="2024-07-25T00:00:00+08:00">2024-07-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="web浏览器"><a class="markdownIt-Anchor" href="#web浏览器"></a> Web浏览器</h1>
-<p>网址就是请求服务器上对应的文件<br />
-DNS从顶级域名开始根据网址查IP。DNS服务器通过缓存查过的IP来加快服务响应（缓存拥有有效期）。<br />
-浏览器调用Socket库建立连接管道</p>
-<h1 id="tcpip协议栈"><a class="markdownIt-Anchor" href="#tcpip协议栈"></a> TCP/IP协议栈</h1>
-<p>应用将数据分割为许多个网络包，TCP加上头部发送出去。需要发送的信息会缓存起来，<strong>超出计时时间</strong>或者<strong>数据量大于一个包大小</strong>时才发出去。<br />
-TCP需要确认对方收到数据，但是为了不浪费时间，实际上TCP在等待确认信息的过程中也在发送包，这个方法称为<strong>滑动窗口</strong>。<br />
-为了使接收方有足够的时间处理数据，接收方有一个接收缓存，当缓存满了会在TCP头部中通知发送方；处理完成，缓冲区有空余时也会通过TCP头部通知发送方。<br />
-通信完成后，发送方会保留套接字一段时间，以防对方的FINISH信号发送有延迟，把新的相同端口的套接字错误删除。</p>
-<p>用电信号传输数据时，用高电平表示1，低电平表示0.为了防止连续的低电平读不出来，会有一条时钟信号（固定切换高低电平）<br />
-ICMP：定义各种消息，如超时、无法到达、超出转发能力</p>
-<p>UDP在发送的数据少于一个包（重发也只需要发一个包，代价小，如DNS查询控制信息）、发送的数据具有时效性（如音视频，必须快速发送，即使重发也没有意义）的情况下使用。UDP只负责收发数据，对方没收到就全部重发一遍。</p>
-
       
     </div>
 
