@@ -176,6 +176,131 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/" class="post-title-link" itemprop="url">Spring Framework</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-11T00:00:00+08:00">2024-08-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-13 17:42:16" itemprop="dateModified" datetime="2024-08-13T17:42:16+08:00">2024-08-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="tight-coupling-紧耦合"><a class="markdownIt-Anchor" href="#tight-coupling-紧耦合"></a> Tight Coupling 紧耦合</h1>
+<p>在Spring框架以前，使用排序算法需要将算法实例化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line">  <span class="type">SortAlgorithm</span> <span class="variable">sortAlgorithm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BubbleSortAlgorithm</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BubbleSortAlgorithm</span> <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Good code has loose coupling.</p>
+</blockquote>
+<p>移除依赖项的实例化可以移除紧耦合</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line">  SortAlgorithm sortAlgorithm; <span class="comment">// = new BubbleSortAlgorithm();</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">ComplexBusinessService</span><span class="params">(SortAlgorithm sortAlgorithm)</span> &#123; <span class="comment">// 创建构造函数</span></span><br><span class="line">      <span class="built_in">this</span>.sortAlgorithm = sortAlgorithm;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> classBubbleSortAlgorithm <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Spring Framework instantiates objects and populates the dependencies.</p>
+</blockquote>
+<h1 id="component"><a class="markdownIt-Anchor" href="#component"></a> @Component</h1>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span> <span class="comment">// 告诉Spring管理这两个类的实例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span> <span class="comment">// 告诉Spring这是依赖项</span></span><br><span class="line">  SortAlgorithm sortAlgorithm;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BubbleSortAlgorithm</span> <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Spring的工作：</span></span><br><span class="line"><span class="type">SortAlgorithm</span> <span class="variable">sortAlgorithm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BubbleSortAlgorithm</span>();</span><br><span class="line"><span class="type">ComplexBusinessService</span> <span class="variable">businessService</span> <span class="operator">=</span></span><br><span class="line">  <span class="keyword">new</span> <span class="title class_">ComplexBusinessService</span>(sortAlgorithm);</span><br></pre></td></tr></table></figure>
+<h1 id="dependency-injection"><a class="markdownIt-Anchor" href="#dependency-injection"></a> Dependency Injection</h1>
+<p>Spring理解你放在类顶部的不同注释，它确保它管理的所有对象的实例都是使用正确填充的依赖项创建的。</p>
+<h1 id="术语"><a class="markdownIt-Anchor" href="#术语"></a> 术语</h1>
+<ul>
+<li>Beans：Spring管理的不同对象</li>
+<li>Autowiring：Spring识别依赖关系、它的匹配项并填充的过程。</li>
+<li>Dependency Injection：将算法作为依赖项注入到复杂业务中。</li>
+<li>Inversion Of Control：从需要依赖关系的类中获取Control，并将框架控制权交给Spring</li>
+<li>IOC Container</li>
+<li>Application Context：创建和管理所有Bean的上下文。典型的IOC容器。</li>
+</ul>
+<h1 id="beans"><a class="markdownIt-Anchor" href="#beans"></a> Beans</h1>
+<ul>
+<li>What are the beans? <code>@Component</code></li>
+<li>What are the dependencies of a bean? <code>@Autowired</code></li>
+<li>Where to search for beans? <code>SpringApplication</code></li>
+</ul>
+<h1 id="primary"><a class="markdownIt-Anchor" href="#primary"></a> @Primary</h1>
+<blockquote>
+<p>If you have two components on the class path of the same type then use @Primary.</p>
+</blockquote>
+<h1 id="constructorsetter-injection"><a class="markdownIt-Anchor" href="#constructorsetter-injection"></a> Constructor/Setter Injection</h1>
+<blockquote>
+<p>All mandatory(necessary) dependencies should be autowired using Constructor Injection. Other(Optional) was recommended to use Setter Injection.</p>
+</blockquote>
+<h1 id="modularity-of-spring"><a class="markdownIt-Anchor" href="#modularity-of-spring"></a> Modularity of Spring</h1>
+<blockquote>
+<p>One of the important things about Spring is that it’s not one big framework. Spring is built in a very modular way. It enables you to use specific models.</p>
+</blockquote>
+<h1 id="why-spring-popular"><a class="markdownIt-Anchor" href="#why-spring-popular"></a> Why Spring popular</h1>
+<ol>
+<li>With porperly usage of Dependency Injection, we are able to write test unit easily.</li>
+<li>No plumbing(not core) code. 在内部写好了许多Exceptions，使用Spring的程序员几乎不需要自己写Exception Handling。</li>
+<li>Modularity.(Flexible to other framework)</li>
+<li>Stay up with the trends. like Spring Cloud.</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -251,100 +376,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/" class="post-title-link" itemprop="url">Spring Framework</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-08-11 00:00:00 / 修改时间：18:02:24" itemprop="dateCreated datePublished" datetime="2024-08-11T00:00:00+08:00">2024-08-11</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="tight-coupling-紧耦合"><a class="markdownIt-Anchor" href="#tight-coupling-紧耦合"></a> Tight Coupling 紧耦合</h1>
-<p>在Spring框架以前，使用排序算法需要将算法实例化</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line">  <span class="type">SortAlgorithm</span> <span class="variable">sortAlgorithm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BubbleSortAlgorithm</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BubbleSortAlgorithm</span> <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Good code has loose coupling.</p>
-</blockquote>
-<p>移除依赖项的实例化可以移除紧耦合</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line">  SortAlgorithm sortAlgorithm; <span class="comment">// = new BubbleSortAlgorithm();</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">ComplexBusinessService</span><span class="params">(SortAlgorithm sortAlgorithm)</span> &#123; <span class="comment">// 创建构造函数</span></span><br><span class="line">      <span class="built_in">this</span>.sortAlgorithm = sortAlgorithm;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> classBubbleSortAlgorithm <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Spring Framework instantiates objects and populates the dependencies.</p>
-</blockquote>
-<h1 id="component"><a class="markdownIt-Anchor" href="#component"></a> @Component</h1>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span> <span class="comment">// 告诉Spring管理这两个类的实例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span> <span class="comment">// 告诉Spring这是依赖项</span></span><br><span class="line">  SortAlgorithm sortAlgorithm;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BubbleSortAlgorithm</span> <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Spring的工作：</span></span><br><span class="line"><span class="type">SortAlgorithm</span> <span class="variable">sortAlgorithm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BubbleSortAlgorithm</span>();</span><br><span class="line"><span class="type">ComplexBusinessService</span> <span class="variable">businessService</span> <span class="operator">=</span></span><br><span class="line">  <span class="keyword">new</span> <span class="title class_">ComplexBusinessService</span>(sortAlgorithm);</span><br></pre></td></tr></table></figure>
-<h1 id="dependency-injection"><a class="markdownIt-Anchor" href="#dependency-injection"></a> Dependency Injection</h1>
-<p>Spring理解你放在类顶部的不同注释，它确保它管理的所有对象的实例都是使用正确填充的依赖项创建的。</p>
-<h1 id="术语"><a class="markdownIt-Anchor" href="#术语"></a> 术语</h1>
-<ul>
-<li>Beans：Spring管理的不同对象</li>
-<li>Autowiring：Spring识别依赖关系、它的匹配项并填充的过程。</li>
-<li>Dependency Injection：将算法作为依赖项注入到复杂业务中。</li>
-<li>Inversion Of Control：从需要依赖关系的类中获取Control，并将框架控制权交给Spring</li>
-<li>IOC Container</li>
-<li>Application Context：创建和管理所有Bean的上下文。典型的IOC容器。</li>
-</ul>
-
       
     </div>
 
