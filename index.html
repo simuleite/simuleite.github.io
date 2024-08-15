@@ -212,7 +212,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-13 17:42:16" itemprop="dateModified" datetime="2024-08-13T17:42:16+08:00">2024-08-13</time>
+      <time title="修改时间：2024-08-15 10:49:12" itemprop="dateModified" datetime="2024-08-15T10:49:12+08:00">2024-08-15</time>
     </span>
 
   
@@ -254,12 +254,23 @@
 <ul>
 <li>What are the beans? <code>@Component</code></li>
 <li>What are the dependencies of a bean? <code>@Autowired</code></li>
-<li>Where to search for beans? <code>SpringApplication</code></li>
+<li>Where to search for beans? <code>SpringApplication</code><br />
+Features:</li>
+<li>Singleton: One instance per Spring Context</li>
+<li>Prototype: New bean whenever requested <code>@Scope(&quot;prototype&quot;)/ @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</code></li>
+<li>request: One bean per HTTP request</li>
+<li>session: One bean per HTTP session</li>
 </ul>
 <h1 id="primary"><a class="markdownIt-Anchor" href="#primary"></a> @Primary</h1>
 <blockquote>
 <p>If you have two components on the class path of the same type then use @Primary.</p>
 </blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// It also decides which Algo to use.</span></span><br><span class="line"><span class="keyword">private</span> SortAlgorithm bubbleSortAlgorithm;</span><br><span class="line"><span class="comment">// However, if quickSortAlgorithm is marked as @Primary, then @Primary has higher priority.</span></span><br></pre></td></tr></table></figure>
+<h1 id="qualifier"><a class="markdownIt-Anchor" href="#qualifier"></a> @Qualifier</h1>
+<blockquote>
+<p>Use @Qualifier(“name”) to name and choose the algo you want to use.</p>
+</blockquote>
+<p>However, use name is much clearer than use @Qualifier. @Qualifier is more likely a rename tool.</p>
 <h1 id="constructorsetter-injection"><a class="markdownIt-Anchor" href="#constructorsetter-injection"></a> Constructor/Setter Injection</h1>
 <blockquote>
 <p>All mandatory(necessary) dependencies should be autowired using Constructor Injection. Other(Optional) was recommended to use Setter Injection.</p>
@@ -275,6 +286,23 @@
 <li>Modularity.(Flexible to other framework)</li>
 <li>Stay up with the trends. like Spring Cloud.</li>
 </ol>
+<h1 id="eclipse-skill"><a class="markdownIt-Anchor" href="#eclipse-skill"></a> Eclipse Skill</h1>
+<p><code>&lt;Ctrl+Space&gt;</code> Auto Completion<br />
+<code>&lt;Ctrl+1&gt;</code> File Operation<br />
+<code>&lt;C-S-L&gt;</code> List Shortcuts<br />
+<code>&lt;C-S-R&gt;</code> Resource Finding<br />
+<code>&lt;C-S-T&gt;</code> Type Finding<br />
+<code>F3</code> Goto Declaration<br />
+<code>F4</code> Type Hierarchy<br />
+<code>&lt;A-S-S&gt;</code> Code Generation</p>
+<h1 id="maven"><a class="markdownIt-Anchor" href="#maven"></a> Maven</h1>
+<p>Convention over Configuration<br />
+<code>mvn compile</code>: Compile source files<br />
+<code>mvn test compile </code>mvn clean<code>: Delete target directory </code>mvn test<code>: Run unit tests </code>mvn package<code>: Create a jar </code>mvn help:effective-pom<code> </code>mvn dependency:tree`</p>
+<h1 id="gradle"><a class="markdownIt-Anchor" href="#gradle"></a> Gradle</h1>
+<p>Cross-platform: C/C++, JavaScript, Python…<br />
+Completely Programmable<br />
+Deliver Faster(Cache)</p>
 
       
     </div>
