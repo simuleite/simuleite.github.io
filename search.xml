@@ -4205,7 +4205,7 @@ OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
 <h1 id="10-创建环境"><a class="markdownIt-Anchor" href="#10-创建环境"></a> 1.0 创建环境</h1>
 <h2 id="11-创建虚拟环境"><a class="markdownIt-Anchor" href="#11-创建虚拟环境"></a> 1.1 创建虚拟环境</h2>
 <p>在独立的项目文件夹下运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m venv ll_env</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m venv ll_env</span><br><span class="line"></span><br><span class="line">python -m ensurepip --default-pip <span class="comment"># 重装pip</span></span><br></pre></td></tr></table></figure>
 <p>将会创造一个<code>ll_env</code>文件夹<br />
 可以使用下面的命令激活虚拟环境。激活虚拟环境后，安装的模组将只在虚拟环境中生效，而不干扰到电脑上Python的模组</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ll_env/bin/activate <span class="comment"># Linux系统</span></span><br><span class="line"><span class="built_in">source</span> ll_env/Scripts/activate <span class="comment"># Windows系统</span></span><br><span class="line"></span><br><span class="line">(ll_env)</span><br><span class="line">work_directory$ <span class="comment"># 命令提示符前会显示(ll_env)</span></span><br></pre></td></tr></table></figure>
@@ -4934,9 +4934,98 @@ Features:</li>
 <p>Cross-platform: C/C++, JavaScript, Python…<br />
 Completely Programmable<br />
 Deliver Faster(Cache)</p>
+<h1 id="dao-data-accessed-object"><a class="markdownIt-Anchor" href="#dao-data-accessed-object"></a> DAO: Data Accessed Object</h1>
+<h1 id="servlet"><a class="markdownIt-Anchor" href="#servlet"></a> Servlet</h1>
+<blockquote>
+<p>A very simple Java class which can take request in, and can take respond back with a  response.</p>
+</blockquote>
+<ol>
+<li>extends javax.servlet.http.HttpServlet</li>
+<li>@WebServlet(urlPatterns = “/login.do”)</li>
+<li>doGet(HttpServletRequest request, HttpServletResponse response) throws IOException</li>
+</ol>
 ]]></content>
       <tags>
         <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>listary使用</title>
+    <url>/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/listary%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="网络搜索"><a class="markdownIt-Anchor" href="#网络搜索"></a> 网络搜索</h1>
+<table>
+<thead>
+<tr>
+<th>网站</th>
+<th>URL</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>哔哩哔哩</td>
+<td><a href="https://search.bilibili.com/all?keyword=%7Bquery%7D">https://search.bilibili.com/all?keyword={query}</a></td>
+<td></td>
+</tr>
+<tr>
+<td>知乎</td>
+<td><a href="https://www.zhihu.com/search?type=content&amp;q=%7Bquery%7D">https://www.zhihu.com/search?type=content&amp;q={query}</a></td>
+<td></td>
+</tr>
+<tr>
+<td>百度贴吧</td>
+<td><a href="https://tieba.baidu.com/f?ie=utf-8&amp;kw=%7Bquery%7D&amp;fr=search">https://tieba.baidu.com/f?ie=utf-8&amp;kw={query}&amp;fr=search</a></td>
+<td>优先搜索吧名</td>
+</tr>
+<tr>
+<td>小红书</td>
+<td><a href="https://www.xiaohongshu.com/search_result?keyword=%7Bquery%7D&amp;source=web_search_result_notes">https://www.xiaohongshu.com/search_result?keyword={query}&amp;source=web_search_result_notes</a></td>
+<td>需要登录</td>
+</tr>
+<tr>
+<td>淘宝</td>
+<td><a href="https://s.taobao.com/search?q=%7Bquery%7D&amp;commend=all&amp;search_type=item&amp;sourceId=tb.index&amp;ie=utf8">https://s.taobao.com/search?q={query}&amp;commend=all&amp;search_type=item&amp;sourceId=tb.index&amp;ie=utf8</a></td>
+<td></td>
+</tr>
+<tr>
+<td>京东</td>
+<td><a href="https://search.jd.com/Search?keyword=%7Bquery%7D&amp;enc=utf-8">https://search.jd.com/Search?keyword={query}&amp;enc=utf-8</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Yandex</td>
+<td><a href="https://yandex.com/search/?text=%7Bquery%7D">https://yandex.com/search/?text={query}</a></td>
+<td></td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td><a href="https://github.com/search?q=%7Bquery%7D&amp;type=repositories">https://github.com/search?q={query}&amp;type=repositories</a></td>
+<td></td>
+</tr>
+<tr>
+<td>tldr</td>
+<td><a href="https://tldr.inbrowser.app/pages/common/%7Bquery%7D">https://tldr.inbrowser.app/pages/common/{query}</a></td>
+<td>mannual查Linux命令</td>
+</tr>
+<tr>
+<td>必应翻译</td>
+<td><a href="https://cn.bing.com/translator?ref=TThis&amp;text=%7Bquery%7D&amp;from=en&amp;to=zh-Hant">https://cn.bing.com/translator?ref=TThis&amp;text={query}&amp;from=en&amp;to=zh-Hant</a></td>
+<td>英译中</td>
+</tr>
+<tr>
+<td>DeepL翻译</td>
+<td><a href="https://www.deepl.com/translator#en/zh/%7Bquery%7D">https://www.deepl.com/translator#en/zh/{query}</a></td>
+<td>英译中</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>有时候站内搜索没有搜索引擎准确，可以使用搜索引擎过滤网站<br />
+过滤站点：</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://&lt;ENGINE.URL&gt;/search?text=site%3A&lt;SITE.URL&gt;%20&#123;query&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>基本操作</tag>
       </tags>
   </entry>
 </search>
