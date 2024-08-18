@@ -176,6 +176,190 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/" class="post-title-link" itemprop="url">Spring Framework</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-11T00:00:00+08:00">2024-08-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-18 11:51:51" itemprop="dateModified" datetime="2024-08-18T11:51:51+08:00">2024-08-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="tight-coupling-紧耦合"><a class="markdownIt-Anchor" href="#tight-coupling-紧耦合"></a> Tight Coupling 紧耦合</h1>
+<p>在Spring框架以前，使用排序算法需要将算法实例化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line">  <span class="type">SortAlgorithm</span> <span class="variable">sortAlgorithm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BubbleSortAlgorithm</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BubbleSortAlgorithm</span> <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Good code has loose coupling.</p>
+</blockquote>
+<p>移除依赖项的实例化可以移除紧耦合</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line">  SortAlgorithm sortAlgorithm; <span class="comment">// = new BubbleSortAlgorithm();</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">ComplexBusinessService</span><span class="params">(SortAlgorithm sortAlgorithm)</span> &#123; <span class="comment">// 创建构造函数</span></span><br><span class="line">      <span class="built_in">this</span>.sortAlgorithm = sortAlgorithm;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> classBubbleSortAlgorithm <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Spring Framework instantiates objects and populates the dependencies.</p>
+</blockquote>
+<h1 id="component"><a class="markdownIt-Anchor" href="#component"></a> @Component</h1>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span> <span class="comment">// 告诉Spring管理这两个类的实例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span> <span class="comment">// 告诉Spring这是依赖项</span></span><br><span class="line">  SortAlgorithm sortAlgorithm;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BubbleSortAlgorithm</span> <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Spring的工作：</span></span><br><span class="line"><span class="type">SortAlgorithm</span> <span class="variable">sortAlgorithm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BubbleSortAlgorithm</span>();</span><br><span class="line"><span class="type">ComplexBusinessService</span> <span class="variable">businessService</span> <span class="operator">=</span></span><br><span class="line">  <span class="keyword">new</span> <span class="title class_">ComplexBusinessService</span>(sortAlgorithm);</span><br></pre></td></tr></table></figure>
+<h1 id="dependency-injection"><a class="markdownIt-Anchor" href="#dependency-injection"></a> Dependency Injection</h1>
+<p>Spring理解你放在类顶部的不同注释，它确保它管理的所有对象的实例都是使用正确填充的依赖项创建的。</p>
+<h1 id="术语"><a class="markdownIt-Anchor" href="#术语"></a> 术语</h1>
+<ul>
+<li>Beans：Spring管理的不同对象</li>
+<li>Autowiring：Spring识别依赖关系、它的匹配项并填充的过程。</li>
+<li>Dependency Injection：将算法作为依赖项注入到复杂业务中。</li>
+<li>Inversion Of Control：从需要依赖关系的类中获取Control，并将框架控制权交给Spring</li>
+<li>IOC Container</li>
+<li>Application Context：创建和管理所有Bean的上下文。典型的IOC容器。</li>
+</ul>
+<h1 id="beans"><a class="markdownIt-Anchor" href="#beans"></a> Beans</h1>
+<ul>
+<li>What are the beans? <code>@Component</code></li>
+<li>What are the dependencies of a bean? <code>@Autowired</code></li>
+<li>Where to search for beans? <code>SpringApplication</code><br />
+Features:</li>
+<li>Singleton: One instance per Spring Context</li>
+<li>Prototype: New bean whenever requested <code>@Scope(&quot;prototype&quot;)/ @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</code></li>
+<li>request: One bean per HTTP request</li>
+<li>session: One bean per HTTP session</li>
+</ul>
+<h1 id="primary"><a class="markdownIt-Anchor" href="#primary"></a> @Primary</h1>
+<blockquote>
+<p>If you have two components on the class path of the same type then use @Primary.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// It also decides which Algo to use.</span></span><br><span class="line"><span class="keyword">private</span> SortAlgorithm bubbleSortAlgorithm;</span><br><span class="line"><span class="comment">// However, if quickSortAlgorithm is marked as @Primary, then @Primary has higher priority.</span></span><br></pre></td></tr></table></figure>
+<h1 id="qualifier"><a class="markdownIt-Anchor" href="#qualifier"></a> @Qualifier</h1>
+<blockquote>
+<p>Use @Qualifier(“name”) to name and choose the algo you want to use.</p>
+</blockquote>
+<p>However, use name is much clearer than use @Qualifier. @Qualifier is more likely a rename tool.</p>
+<h1 id="constructorsetter-injection"><a class="markdownIt-Anchor" href="#constructorsetter-injection"></a> Constructor/Setter Injection</h1>
+<blockquote>
+<p>All mandatory(necessary) dependencies should be autowired using Constructor Injection. Other(Optional) was recommended to use Setter Injection.</p>
+</blockquote>
+<h1 id="modularity-of-spring"><a class="markdownIt-Anchor" href="#modularity-of-spring"></a> Modularity of Spring</h1>
+<blockquote>
+<p>One of the important things about Spring is that it’s not one big framework. Spring is built in a very modular way. It enables you to use specific models.</p>
+</blockquote>
+<h1 id="why-spring-popular"><a class="markdownIt-Anchor" href="#why-spring-popular"></a> Why Spring popular</h1>
+<ol>
+<li>With porperly usage of Dependency Injection, we are able to write test unit easily.</li>
+<li>No plumbing(not core) code. 在内部写好了许多Exceptions，使用Spring的程序员几乎不需要自己写Exception Handling。</li>
+<li>Modularity.(Flexible to other framework)</li>
+<li>Stay up with the trends. like Spring Cloud.</li>
+</ol>
+<h1 id="eclipse-skill"><a class="markdownIt-Anchor" href="#eclipse-skill"></a> Eclipse Skill</h1>
+<p><code>&lt;Ctrl+Space&gt;</code> Auto Completion<br />
+<code>&lt;Ctrl+1&gt;</code> File Operation<br />
+<code>&lt;C-S-L&gt;</code> List Shortcuts<br />
+<code>&lt;C-S-R&gt;</code> Resource Finding<br />
+<code>&lt;C-S-T&gt;</code> Type Finding<br />
+<code>F3</code> Goto Declaration<br />
+<code>F4</code> Type Hierarchy<br />
+<code>&lt;A-S-S&gt;</code> Code Generation</p>
+<h1 id="maven"><a class="markdownIt-Anchor" href="#maven"></a> Maven</h1>
+<p>Convention over Configuration<br />
+<code>mvn compile</code>: Compile source files<br />
+<code>mvn test compile </code>mvn clean<code>: Delete target directory </code>mvn test<code>: Run unit tests </code>mvn package<code>: Create a jar </code>mvn help:effective-pom<code> </code>mvn dependency:tree`</p>
+<h1 id="gradle"><a class="markdownIt-Anchor" href="#gradle"></a> Gradle</h1>
+<p>Cross-platform: C/C++, JavaScript, Python…<br />
+Completely Programmable<br />
+Deliver Faster(Cache)</p>
+<h1 id="dao-data-accessed-object"><a class="markdownIt-Anchor" href="#dao-data-accessed-object"></a> DAO: Data Accessed Object</h1>
+<h1 id="servlet"><a class="markdownIt-Anchor" href="#servlet"></a> Servlet</h1>
+<blockquote>
+<p>A very simple Java class which can take request in, and can take respond back with a  response.</p>
+</blockquote>
+<ol>
+<li>extends javax.servlet.http.HttpServlet</li>
+<li>@WebServlet(urlPatterns = “/login.do”)</li>
+<li>doGet(HttpServletRequest request, HttpServletResponse response) throws IOException</li>
+</ol>
+<h1 id="实践"><a class="markdownIt-Anchor" href="#实践"></a> 实践</h1>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet(urlPatterns = &quot;/login.do&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoginServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line">	<span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest request, </span></span><br><span class="line"><span class="params">			HttpServletResponse response)</span> <span class="keyword">throws</span> IOException, ServletException &#123;	</span><br><span class="line">		request.getRequestDispatcher(<span class="string">&quot;/webapp/your/path/to/login.jsp&quot;</span>).forward(request, response);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- /pom.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.in28minutes<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>in28Minutes-first-webapp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javaee-web-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">verbose</span>&gt;</span>true<span class="tag">&lt;/<span class="name">verbose</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">showWarnings</span>&gt;</span>true<span class="tag">&lt;/<span class="name">showWarnings</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.maven<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat7-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">path</span>&gt;</span>/<span class="tag">&lt;/<span class="name">path</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">contextReloadable</span>&gt;</span>true<span class="tag">&lt;/<span class="name">contextReloadable</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- webapp/WEB-INF/web.xml --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">web-app</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://java.sun.com/xml/ns/javaee&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd&quot;</span></span></span><br><span class="line"><span class="tag">	<span class="attr">version</span>=<span class="string">&quot;3.0&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">display-name</span>&gt;</span>To do List<span class="tag">&lt;/<span class="name">display-name</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">welcome-file</span>&gt;</span>login.do<span class="tag">&lt;/<span class="name">welcome-file</span>&gt;</span> <span class="comment">&lt;!-- 首页默认后缀名 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">welcome-file-list</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动服务</span></span><br><span class="line">mvn tomcat7:run</span><br></pre></td></tr></table></figure>
+<h2 id="passing-parameters"><a class="markdownIt-Anchor" href="#passing-parameters"></a> Passing Parameters</h2>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://your.site?parameter=value&amp;param2=value</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">param</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;parameter&quot;</span>);</span><br><span class="line">request.setAttribute(<span class="string">&quot;parameter&quot;</span>, param);</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  Hello, $&#123;param&#125;! &lt;!-- Expression Language --&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="scriptlet-java-code-in-jsp"><a class="markdownIt-Anchor" href="#scriptlet-java-code-in-jsp"></a> Scriptlet: Java Code in JSP</h2>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">java.util.<span class="type">Date</span> <span class="variable">date</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">java</span>.util.Date();</span><br><span class="line">%&gt;</span><br><span class="line">&lt;div&gt;Current date is &lt;%=date%&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>JSP is a view. It should only show Information. There shouldn’t have any business logic.</p>
+</blockquote>
+<h2 id="disadvantage-of-get"><a class="markdownIt-Anchor" href="#disadvantage-of-get"></a> Disadvantage of GET</h2>
+<blockquote>
+<p>Any router can see the URL. Never use GET to pass your password. It’s unsecure and it is the reason why there is POST.</p>
+</blockquote>
+<h2 id="post"><a class="markdownIt-Anchor" href="#post"></a> POST</h2>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;/login.do&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span>&gt;</span></span><br><span class="line">  Enter your name </span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;name&quot;</span> /&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Login&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoginServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">UserValidationService</span> <span class="variable">service</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">UserValidationService</span>();</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest request,</span></span><br><span class="line"><span class="params">          HttpServletResponse response)</span> <span class="keyword">throws</span> IOException, ServletException &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;name&quot;</span>);</span><br><span class="line">        <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> request.getParameter(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">      </span><br><span class="line">        <span class="type">boolean</span> <span class="variable">isUserValid</span> <span class="operator">=</span> service.isUserValid(name, password);</span><br><span class="line">      </span><br><span class="line">        <span class="keyword">if</span> (isUserValid) &#123;</span><br><span class="line">            request.setAttribute(<span class="string">&quot;name&quot;</span>, name);</span><br><span class="line">            request.setAttribute(<span class="string">&quot;password&quot;</span>, password);</span><br><span class="line">            request.getRequestDispatcher(<span class="string">&quot;/WEB-INF/views/welcome.jsp&quot;</span>).forward(request, response);  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            request.setAttribute(<span class="string">&quot;errMsg&quot;</span>, <span class="string">&quot;Invalid Credentials!&quot;</span>);</span><br><span class="line">            request.getRequestDispatcher(<span class="string">&quot;WEB-INF/views/login.jsp&quot;</span>).forward(request, response);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserValidationService</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isUserValid</span><span class="params">(String user, String password)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (user.equals(<span class="string">&quot;account&quot;</span>) &amp;&amp; password.equals(<span class="string">&quot;password&quot;</span>))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="spring-mvc"><a class="markdownIt-Anchor" href="#spring-mvc"></a> Spring MVC</h1>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.2.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -581,169 +765,6 @@ SLAB后来被改进成SLUB；还有一个最小开销、用于嵌入式的SLOB�
 过滤站点：</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://&lt;ENGINE.URL&gt;/search?text=site%3A&lt;SITE.URL&gt;%20&#123;query&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/" class="post-title-link" itemprop="url">Spring Framework</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-11T00:00:00+08:00">2024-08-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-16 18:22:01" itemprop="dateModified" datetime="2024-08-16T18:22:01+08:00">2024-08-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="tight-coupling-紧耦合"><a class="markdownIt-Anchor" href="#tight-coupling-紧耦合"></a> Tight Coupling 紧耦合</h1>
-<p>在Spring框架以前，使用排序算法需要将算法实例化</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line">  <span class="type">SortAlgorithm</span> <span class="variable">sortAlgorithm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BubbleSortAlgorithm</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BubbleSortAlgorithm</span> <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Good code has loose coupling.</p>
-</blockquote>
-<p>移除依赖项的实例化可以移除紧耦合</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line">  SortAlgorithm sortAlgorithm; <span class="comment">// = new BubbleSortAlgorithm();</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">ComplexBusinessService</span><span class="params">(SortAlgorithm sortAlgorithm)</span> &#123; <span class="comment">// 创建构造函数</span></span><br><span class="line">      <span class="built_in">this</span>.sortAlgorithm = sortAlgorithm;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> classBubbleSortAlgorithm <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Spring Framework instantiates objects and populates the dependencies.</p>
-</blockquote>
-<h1 id="component"><a class="markdownIt-Anchor" href="#component"></a> @Component</h1>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span> <span class="comment">// 告诉Spring管理这两个类的实例</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span> <span class="comment">// 告诉Spring这是依赖项</span></span><br><span class="line">  SortAlgorithm sortAlgorithm;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BubbleSortAlgorithm</span> <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Spring的工作：</span></span><br><span class="line"><span class="type">SortAlgorithm</span> <span class="variable">sortAlgorithm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BubbleSortAlgorithm</span>();</span><br><span class="line"><span class="type">ComplexBusinessService</span> <span class="variable">businessService</span> <span class="operator">=</span></span><br><span class="line">  <span class="keyword">new</span> <span class="title class_">ComplexBusinessService</span>(sortAlgorithm);</span><br></pre></td></tr></table></figure>
-<h1 id="dependency-injection"><a class="markdownIt-Anchor" href="#dependency-injection"></a> Dependency Injection</h1>
-<p>Spring理解你放在类顶部的不同注释，它确保它管理的所有对象的实例都是使用正确填充的依赖项创建的。</p>
-<h1 id="术语"><a class="markdownIt-Anchor" href="#术语"></a> 术语</h1>
-<ul>
-<li>Beans：Spring管理的不同对象</li>
-<li>Autowiring：Spring识别依赖关系、它的匹配项并填充的过程。</li>
-<li>Dependency Injection：将算法作为依赖项注入到复杂业务中。</li>
-<li>Inversion Of Control：从需要依赖关系的类中获取Control，并将框架控制权交给Spring</li>
-<li>IOC Container</li>
-<li>Application Context：创建和管理所有Bean的上下文。典型的IOC容器。</li>
-</ul>
-<h1 id="beans"><a class="markdownIt-Anchor" href="#beans"></a> Beans</h1>
-<ul>
-<li>What are the beans? <code>@Component</code></li>
-<li>What are the dependencies of a bean? <code>@Autowired</code></li>
-<li>Where to search for beans? <code>SpringApplication</code><br />
-Features:</li>
-<li>Singleton: One instance per Spring Context</li>
-<li>Prototype: New bean whenever requested <code>@Scope(&quot;prototype&quot;)/ @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)</code></li>
-<li>request: One bean per HTTP request</li>
-<li>session: One bean per HTTP session</li>
-</ul>
-<h1 id="primary"><a class="markdownIt-Anchor" href="#primary"></a> @Primary</h1>
-<blockquote>
-<p>If you have two components on the class path of the same type then use @Primary.</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// It also decides which Algo to use.</span></span><br><span class="line"><span class="keyword">private</span> SortAlgorithm bubbleSortAlgorithm;</span><br><span class="line"><span class="comment">// However, if quickSortAlgorithm is marked as @Primary, then @Primary has higher priority.</span></span><br></pre></td></tr></table></figure>
-<h1 id="qualifier"><a class="markdownIt-Anchor" href="#qualifier"></a> @Qualifier</h1>
-<blockquote>
-<p>Use @Qualifier(“name”) to name and choose the algo you want to use.</p>
-</blockquote>
-<p>However, use name is much clearer than use @Qualifier. @Qualifier is more likely a rename tool.</p>
-<h1 id="constructorsetter-injection"><a class="markdownIt-Anchor" href="#constructorsetter-injection"></a> Constructor/Setter Injection</h1>
-<blockquote>
-<p>All mandatory(necessary) dependencies should be autowired using Constructor Injection. Other(Optional) was recommended to use Setter Injection.</p>
-</blockquote>
-<h1 id="modularity-of-spring"><a class="markdownIt-Anchor" href="#modularity-of-spring"></a> Modularity of Spring</h1>
-<blockquote>
-<p>One of the important things about Spring is that it’s not one big framework. Spring is built in a very modular way. It enables you to use specific models.</p>
-</blockquote>
-<h1 id="why-spring-popular"><a class="markdownIt-Anchor" href="#why-spring-popular"></a> Why Spring popular</h1>
-<ol>
-<li>With porperly usage of Dependency Injection, we are able to write test unit easily.</li>
-<li>No plumbing(not core) code. 在内部写好了许多Exceptions，使用Spring的程序员几乎不需要自己写Exception Handling。</li>
-<li>Modularity.(Flexible to other framework)</li>
-<li>Stay up with the trends. like Spring Cloud.</li>
-</ol>
-<h1 id="eclipse-skill"><a class="markdownIt-Anchor" href="#eclipse-skill"></a> Eclipse Skill</h1>
-<p><code>&lt;Ctrl+Space&gt;</code> Auto Completion<br />
-<code>&lt;Ctrl+1&gt;</code> File Operation<br />
-<code>&lt;C-S-L&gt;</code> List Shortcuts<br />
-<code>&lt;C-S-R&gt;</code> Resource Finding<br />
-<code>&lt;C-S-T&gt;</code> Type Finding<br />
-<code>F3</code> Goto Declaration<br />
-<code>F4</code> Type Hierarchy<br />
-<code>&lt;A-S-S&gt;</code> Code Generation</p>
-<h1 id="maven"><a class="markdownIt-Anchor" href="#maven"></a> Maven</h1>
-<p>Convention over Configuration<br />
-<code>mvn compile</code>: Compile source files<br />
-<code>mvn test compile </code>mvn clean<code>: Delete target directory </code>mvn test<code>: Run unit tests </code>mvn package<code>: Create a jar </code>mvn help:effective-pom<code> </code>mvn dependency:tree`</p>
-<h1 id="gradle"><a class="markdownIt-Anchor" href="#gradle"></a> Gradle</h1>
-<p>Cross-platform: C/C++, JavaScript, Python…<br />
-Completely Programmable<br />
-Deliver Faster(Cache)</p>
-<h1 id="dao-data-accessed-object"><a class="markdownIt-Anchor" href="#dao-data-accessed-object"></a> DAO: Data Accessed Object</h1>
-<h1 id="servlet"><a class="markdownIt-Anchor" href="#servlet"></a> Servlet</h1>
-<blockquote>
-<p>A very simple Java class which can take request in, and can take respond back with a  response.</p>
-</blockquote>
-<ol>
-<li>extends javax.servlet.http.HttpServlet</li>
-<li>@WebServlet(urlPatterns = “/login.do”)</li>
-<li>doGet(HttpServletRequest request, HttpServletResponse response) throws IOException</li>
-</ol>
-
       
     </div>
 
