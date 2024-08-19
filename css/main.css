@@ -18,10 +18,10 @@
   --btn-default-hover-bg: #fff;
   --btn-default-hover-color: #222;
   --btn-default-hover-border-color: #222;
-  --highlight-background: #f3f3f3;
-  --highlight-foreground: #444;
-  --highlight-gutter-background: #e1e1e1;
-  --highlight-gutter-foreground: #555;
+  --highlight-background: #f6f6f6;
+  --highlight-foreground: #2f3337;
+  --highlight-gutter-background: #e2e2e2;
+  --highlight-gutter-foreground: #42464a;
   color-scheme: light;
 }
 html {
@@ -375,113 +375,113 @@ code.hljs {
   padding: 3px 5px
 }
 /*!
-  Theme: Default
-  Description: Original highlight.js style
-  Author: (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
-  Maintainer: @highlightjs/core-team
-  Website: https://highlightjs.org/
-  License: see project LICENSE
-  Touched: 2021
-*/
-/*
-This is left on purpose making default.css the single file that can be lifted
-as-is from the repository directly without the need for a build step
+  Theme: StackOverflow Light
+  Description: Light theme as used on stackoverflow.com
+  Author: stackoverflow.com
+  Maintainer: @Hirse
+  Website: https://github.com/StackExchange/Stacks
+  License: MIT
+  Updated: 2021-05-15
 
-Typically this "required" baseline CSS is added by `makestuff.js` during build.
+  Updated for @stackoverflow/stacks v0.64.0
+  Code Blocks: /blob/v0.64.0/lib/css/components/_stacks-code-blocks.less
+  Colors: /blob/v0.64.0/lib/css/exports/_stacks-constants-colors.less
 */
-pre code.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 1em
-}
-code.hljs {
-  padding: 3px 5px
-}
-/* end baseline CSS */
 .hljs {
-  background: #F3F3F3;
-  color: #444
+  /* var(--highlight-color) */
+  color: #2f3337;
+  /* var(--highlight-bg) */
+  background: #f6f6f6
 }
-/* Base color: saturation 0; */
 .hljs-subst {
-  /* default */
-  
-}
-/* purposely ignored */
-.hljs-formula,
-.hljs-attr,
-.hljs-property,
-.hljs-params {
-  
+  /* var(--highlight-color) */
+  color: #2f3337
 }
 .hljs-comment {
-  color: #697070
-}
-.hljs-tag,
-.hljs-punctuation {
-  color: #444a
-}
-.hljs-tag .hljs-name,
-.hljs-tag .hljs-attr {
-  color: #444
+  /* var(--highlight-comment) */
+  color: #656e77
 }
 .hljs-keyword,
-.hljs-attribute,
 .hljs-selector-tag,
 .hljs-meta .hljs-keyword,
 .hljs-doctag,
-.hljs-name {
-  font-weight: bold
+.hljs-section {
+  /* var(--highlight-keyword) */
+  color: #015692
 }
-/* User color: hue: 0 */
+.hljs-attr {
+  /* var(--highlight-attribute); */
+  color: #015692
+}
+.hljs-attribute {
+  /* var(--highlight-symbol) */
+  color: #803378
+}
+.hljs-name,
 .hljs-type,
-.hljs-string,
 .hljs-number,
 .hljs-selector-id,
-.hljs-selector-class,
 .hljs-quote,
-.hljs-template-tag,
-.hljs-deletion {
-  color: #880000
+.hljs-template-tag {
+  /* var(--highlight-namespace) */
+  color: #b75501
 }
-.hljs-title,
-.hljs-section {
-  color: #880000;
-  font-weight: bold
+.hljs-selector-class {
+  /* var(--highlight-keyword) */
+  color: #015692
 }
+.hljs-string,
 .hljs-regexp,
 .hljs-symbol,
 .hljs-variable,
 .hljs-template-variable,
 .hljs-link,
-.hljs-selector-attr,
-.hljs-operator,
-.hljs-selector-pseudo {
-  color: #ab5656
+.hljs-selector-attr {
+  /* var(--highlight-variable) */
+  color: #54790d
 }
-/* Language color: hue: 90; */
-.hljs-literal {
-  color: #695
+.hljs-meta,
+.hljs-selector-pseudo {
+  /* var(--highlight-keyword) */
+  color: #015692
 }
 .hljs-built_in,
-.hljs-bullet,
-.hljs-code,
-.hljs-addition {
-  color: #397300
+.hljs-title,
+.hljs-literal {
+  /* var(--highlight-literal) */
+  color: #b75501
 }
-/* Meta color: hue: 200 */
-.hljs-meta {
-  color: #1f7199
+.hljs-bullet,
+.hljs-code {
+  /* var(--highlight-punctuation) */
+  color: #535a60
 }
 .hljs-meta .hljs-string {
-  color: #38a
+  /* var(--highlight-variable) */
+  color: #54790d
 }
-/* Misc effects */
+.hljs-deletion {
+  /* var(--highlight-deletion) */
+  color: #c02d2e
+}
+.hljs-addition {
+  /* var(--highlight-addition) */
+  color: #2f6f44
+}
 .hljs-emphasis {
   font-style: italic
 }
 .hljs-strong {
   font-weight: bold
+}
+.hljs-formula,
+.hljs-operator,
+.hljs-params,
+.hljs-property,
+.hljs-punctuation,
+.hljs-tag {
+  /* purposely ignored */
+  
 }
 code,
 kbd,
@@ -518,7 +518,7 @@ pre figcaption a:hover {
 }
 pre,
 code {
-  font-family: consolas, Menlo, monospace, 'PingFang SC', 'Microsoft YaHei';
+  font-family: IBM Plex Mono, consolas, Menlo, monospace, 'PingFang SC', 'Microsoft YaHei';
 }
 code {
   border-radius: 3px;
@@ -1237,7 +1237,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #62ff6a;
+  background: #7abaa2;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
