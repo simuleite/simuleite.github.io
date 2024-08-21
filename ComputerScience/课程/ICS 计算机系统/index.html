@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -679,15 +679,15 @@ Cout = AB + ACin + BCin</li>
 </ul>
 </li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int uadd_ok(unsigned x, unsigned y)</span><br><span class="line">&#123;</span><br><span class="line">	unsigned sum = x+y;</span><br><span class="line">	return sum&gt;=x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int uadd_ok(unsigned x, unsigned y)</span><br><span class="line">&#123;</span><br><span class="line">    unsigned sum = x+y;</span><br><span class="line">    return sum&gt;=x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>判断带符号数相加有没有发生溢出</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int tadd_ok(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">	int sum = x+y;</span><br><span class="line">	int neg_over = x&lt;0 &amp;&amp; y&lt;0 &amp;&amp; sum&gt;= 0</span><br><span class="line">	int pos_over = x&gt;=0 &amp;&amp; y&gt;= 0 &amp;&amp; sum&lt;0</span><br><span class="line">	return !neg_over &amp;&amp; !pos_over;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int tadd_ok(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">    int sum = x+y;</span><br><span class="line">    int neg_over = x&lt;0 &amp;&amp; y&lt;0 &amp;&amp; sum&gt;= 0</span><br><span class="line">    int pos_over = x&gt;=0 &amp;&amp; y&gt;= 0 &amp;&amp; sum&lt;0</span><br><span class="line">    return !neg_over &amp;&amp; !pos_over;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>上面的函数改成判断相减有没有溢出</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int tsub_ok(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">	return tadd_ok(x, -y)</span><br><span class="line">	// 当x=0，y=0x8000 0000时错误,最大负数不能表示</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int tsub_ok(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">    return tadd_ok(x, -y)</span><br><span class="line">    // 当x=0，y=0x8000 0000时错误,最大负数不能表示</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="40-乘除运算及浮点数运算"><a class="markdownIt-Anchor" href="#40-乘除运算及浮点数运算"></a> 4.0 乘除运算及浮点数运算</h2>
 <h3 id="41-整数乘法运算"><a class="markdownIt-Anchor" href="#41-整数乘法运算"></a> 4.1 整数乘法运算</h3>
 <ul>
@@ -874,7 +874,7 @@ IEEE 754规定中间结果需要在右边加两个附加位</li>
 <li>下面的代码<br />
 打印结果是什么? <code>d=0, x=1 072 693 248</code>, Why?</li>
 </ol>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// p1.c</span></span><br><span class="line"><span class="type">double</span> d;</span><br><span class="line"><span class="type">void</span> <span class="title function_">p1</span><span class="params">( )</span></span><br><span class="line">&#123;</span><br><span class="line">	d=<span class="number">1.0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.c</span></span><br><span class="line"><span class="type">int</span> d=<span class="number">100</span>;</span><br><span class="line"><span class="type">int</span> x=<span class="number">200</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	p1( );</span><br><span class="line">	<span class="built_in">printf</span> (“d=%d, x=%d\n”, d, x );</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// p1.c</span></span><br><span class="line"><span class="type">double</span> d;</span><br><span class="line"><span class="type">void</span> <span class="title function_">p1</span><span class="params">( )</span></span><br><span class="line">&#123;</span><br><span class="line">    d=<span class="number">1.0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.c</span></span><br><span class="line"><span class="type">int</span> d=<span class="number">100</span>;</span><br><span class="line"><span class="type">int</span> x=<span class="number">200</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    p1( );</span><br><span class="line">    <span class="built_in">printf</span> (“d=%d, x=%d\n”, d, x );</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>在p1中，d变成了double类型，占8个字节；而在全局变量里d和x各占4字节，在d转成浮点数的过程中发生了溢出，而溢出的值影响到了后面的x。<br />
 <code>(double)1.0D = 0000 0000 0000 F03FH, 1 072 693 248D = 3f f0 00 00H</code></li>

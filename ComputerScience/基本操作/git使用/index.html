@@ -19,12 +19,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="1.0 第一件事git config  git config --list --show-origin查看所有git配置以及所在文件 使用git config --global可以设置git的基本信息（如用户名、邮箱），使用--unset取消设置  配置你的名称、邮箱以及编辑器    1234git config --global user.name &quot;191220000-Zhang">
+    <meta name="description" content="1.0 第一件事git config  git config --list --show-origin查看所有git配置以及所在文件 使用git config --global可以设置git的基本信息（如用户名、邮箱），使用--unset取消设置  配置你的名称、邮箱以及编辑器    git config --global user.name &quot;191220000-Zhang San&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git使用">
 <meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
-<meta property="og:description" content="1.0 第一件事git config  git config --list --show-origin查看所有git配置以及所在文件 使用git config --global可以设置git的基本信息（如用户名、邮箱），使用--unset取消设置  配置你的名称、邮箱以及编辑器    1234git config --global user.name &quot;191220000-Zhang">
+<meta property="og:description" content="1.0 第一件事git config  git config --list --show-origin查看所有git配置以及所在文件 使用git config --global可以设置git的基本信息（如用户名、邮箱），使用--unset取消设置  配置你的名称、邮箱以及编辑器    git config --global user.name &quot;191220000-Zhang San&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-08T16:00:00.000Z">
 <meta property="article:modified_time" content="2024-08-09T05:13:12.058Z">
@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-count">42</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -240,17 +240,17 @@
 </ol>
 </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;191220000-Zhang San&quot;</span> </span><br><span class="line"><span class="comment"># 全局设置名称</span></span><br><span class="line">git config --global user.email <span class="string">&quot;zhang3@email.com&quot;</span></span><br><span class="line">git config --global core.editor vim</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;191220000-Zhang San&quot;</span> </span><br><span class="line"><span class="comment"># 全局设置名称</span></span><br><span class="line">git config --global user.email <span class="string">&quot;zhang3@email.com&quot;</span></span><br><span class="line">git config --global core.editor vim</span><br></pre></td></tr></table></figure>
 <h1 id="20-初始化仓库"><a class="markdownIt-Anchor" href="#20-初始化仓库"></a> 2.0 初始化仓库</h1>
 <ol>
 <li>本地仓库：<code>git init</code>创建一个新的 git 仓库，其数据会存放在一个名为 <code>.git</code> 的目录下<br />
 删除仓库：删除 .git 文件夹</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add &lt;文件名字，*表示全部&gt;</span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span> </span><br><span class="line"><span class="comment"># 提交到暂存区，并附上注释</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add &lt;文件名字，*表示全部&gt;</span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span> </span><br><span class="line"><span class="comment"># 提交到暂存区，并附上注释</span></span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>远程仓库：<code>git clone</code>克隆远端仓库</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &lt;网址&gt; &lt;仓库存放文件夹名&gt;</span><br><span class="line"><span class="comment"># 使用http克隆</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &lt;网址&gt; &lt;仓库存放文件夹名&gt;</span><br><span class="line"><span class="comment"># 使用http克隆</span></span><br></pre></td></tr></table></figure>
 <span id="more"></span>
 <h1 id="30-记录更新"><a class="markdownIt-Anchor" href="#30-记录更新"></a> 3.0 记录更新</h1>
 <ul>
@@ -307,7 +307,7 @@
 <li><code>git merge &lt;brach_name&gt;</code>: 合并到当前分支</li>
 </ul>
 <h1 id="70-gitigore"><a class="markdownIt-Anchor" href="#70-gitigore"></a> 7.0 gitigore</h1>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">*.c // 所有.c文件</span><br><span class="line">chapter*/eg/ 所有chapter*/eg/文件夹的文件</span><br><span class="line">**/*.class // 所有子目录下的.class文件</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">*.c // 所有.c文件</span><br><span class="line">chapter*/eg/ 所有chapter*/eg/文件夹的文件</span><br><span class="line">**/*.class // 所有子目录下的.class文件</span><br></pre></td></tr></table></figure>
 <hr />
 <h1 id="nju讲解"><a class="markdownIt-Anchor" href="#nju讲解"></a> NJU讲解</h1>
 <pre><code>B站王慧妍老师：BV1Bu4y1K7yr 
@@ -348,7 +348,7 @@
 <li>git reset HEAD file 把暂存区某个文件的更改撤销掉（此时status为not staged)</li>
 </ul>
 <h2 id="指南github使用指南github-远程仓库远程同步"><a class="markdownIt-Anchor" href="#指南github使用指南github-远程仓库远程同步"></a> [[…/指南/Github使用指南#Github 远程仓库|远程同步]]</h2>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin^ git@github.com:账户名/仓库名.git // ^origin是远程仓库名字</span><br><span class="line">git push -u 远程仓库名字 master  </span><br><span class="line">/* 加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git remote add origin^ git@github.com:账户名/仓库名.git // ^origin是远程仓库名字</span><br><span class="line">git push -u 远程仓库名字 master  </span><br><span class="line">/* 加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
 <h1 id="git如何进行多人协作"><a class="markdownIt-Anchor" href="#git如何进行多人协作"></a> Git如何进行多人协作</h1>
 <p>使用Git多人协作，就要用到分支。<br />
 分支的特点是，将不同功能分配给不同的人开发，各个分支之间彼此独立、不受干扰。等待开发完成，只需要合并代码就可以了。</p>
