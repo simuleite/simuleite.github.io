@@ -12,9 +12,11 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.loli.net/css?family=Inconsolata:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
@@ -27,7 +29,7 @@
 <meta property="og:description" content="PA1-1 24.5.30 又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！  target 第一课的目标是修正一个register错误声明  insteresting  中途网易源Bad Gateway 502了，更换清华源，学会了:%s&#x2F;163&#x2F;tuna&#x2F;g非常爽！ 又学了几个终端快捷键 想到了用 ccache 加速我的PA   problems  union">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-10T08:30:47.754Z">
+<meta property="article:modified_time" content="2024-08-21T09:20:40.374Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="项目">
 <meta name="twitter:card" content="summary">
@@ -219,7 +221,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-10 16:30:47" itemprop="dateModified" datetime="2024-08-10T16:30:47+08:00">2024-08-10</time>
+      <time title="修改时间：2024-08-21 17:20:40" itemprop="dateModified" datetime="2024-08-21T17:20:40+08:00">2024-08-21</time>
     </span>
 
   
@@ -281,11 +283,12 @@ As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-m
 <td>Sign Flag ── Set equal to high-order bit of result (0 is positive, 1 if negative).</td>
 </tr>
 <tr>
-<td>OF</td>
+<td>OF<br></td>
 <td>Overflow Flag ── Set if result is too large a positive number or too small a negative number (excluding sign-bit) to fit in destination operand; cleared otherwise.</td>
 </tr>
 </tbody>
 </table>
+<span id="more"></span>
 <h3 id="add"><a class="markdownIt-Anchor" href="#add"></a> ADD</h3>
 <p>Operation<br />
 DEST ← DEST + SRC;<br />
