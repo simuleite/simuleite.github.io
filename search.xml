@@ -2344,13 +2344,29 @@ ICMP：定义各种消息，如超时、无法到达、超出转发能力</p>
 邀请码：<code>MB7ZPY</code></p>
 <h1 id="文章收录"><a class="markdownIt-Anchor" href="#文章收录"></a> 文章收录</h1>
 <p><a href="https://mathwithbaddrawings.com/2015/04/08/the-math-ceiling-wheres-your-cognitive-breaking-point/">The Law of the Broken Futon</a> 浮沙筑高台法则</p>
+<blockquote>
+<p>“Since I’m fine now, can’t I add that missing piece later, when it’s actually needed?” Sometimes, yes. But it’s much harder.<br />
+Adding the missing piece later means waiting until the damage is already underway, and hellishly difficult to undo.</p>
+</blockquote>
 <h1 id="21-mystery-of-java-restore"><a class="markdownIt-Anchor" href="#21-mystery-of-java-restore"></a> 2.1 Mystery of Java Restore</h1>
 <blockquote>
 <p>When instantiate an Object, <code>obj = new Object()</code>, <code>obj</code> <strong>stores the address</strong> of the Object, not the specific data struction.</p>
 </blockquote>
 <p>(That is why all type of variables create memory boxes of 64 bits. It is just the memory of the address.)</p>
 <p>Therefore, When we use <code>obj2 = obj</code>, Java simply copy the addr of <code>obj</code> and assign it to <code>obj2</code> (They are pointing to the same Object), that is why when we change <code>obj2.weight</code> it effects <code>obj.weight</code> too.</p>
-]]></content>
+<h1 id="22-sllist"><a class="markdownIt-Anchor" href="#22-sllist"></a> 2.2 SLList</h1>
+<h2 id="static"><a class="markdownIt-Anchor" href="#static"></a> Static</h2>
+<blockquote>
+<p>if you don’t use any instance members of the outer class, make the nested class static.</p>
+</blockquote>
+<h2 id="overloaded"><a class="markdownIt-Anchor" href="#overloaded"></a> Overloaded</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Share the same name but have different parameters.</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">size</span><span class="params">(IntNode p)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (p.next == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> + size(p.next);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">size</span><span class="params">()</span> &#123;</span><br><span class="line">   <span class="keyword">return</span> size(first);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="sentinel-node"><a class="markdownIt-Anchor" href="#sentinel-node"></a> Sentinel Node</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">SLList</span><span class="params">()</span> &#123;</span><br><span class="line">    first = <span class="literal">null</span>;</span><br><span class="line">    size = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addLast</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (size == <span class="number">0</span>) &#123;</span><br><span class="line">        addFirst(x);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// This solution works, but special case code like that shown above should be avoided when necessary.</span></span><br><span class="line">    <span class="type">IntNode</span> <span class="variable">p</span> <span class="operator">=</span> first;</span><br><span class="line">    <span class="keyword">while</span> (p.next != <span class="literal">null</span>) &#123;</span><br><span class="line">        p = p.next;</span><br><span class="line">    &#125;</span><br><span class="line">    p.next = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, <span class="literal">null</span>);</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>We can do this by creating a special node that is always there, which we will call a <strong>sentinel node</strong>. The sentinel node will hold a value, which we won’t care about.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addLast</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">    <span class="type">IntNode</span> <span class="variable">p</span> <span class="operator">=</span> sentinel;</span><br><span class="line">    <span class="keyword">while</span> (p.next != <span class="literal">null</span>) &#123;</span><br><span class="line">        p = p.next;</span><br><span class="line">    &#125;</span><br><span class="line">    p.next = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, <span class="literal">null</span>);</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>课程</tag>
       </tags>
@@ -4336,7 +4352,7 @@ Hierarchy: 层次结构，大的子系统由多个小的子系统组织成。即
 <p>宏内核架构：单点bug使整个系统崩溃。<br />
 微内核：解耦单个功能/模块（如文件系统、设备驱动）作为独立服务隔离运行，使内核成为一个最小功能集。</p>
 <blockquote>
-<p>为内核架构服务隔离，单点出问题系统不会崩溃</p>
+<p>微内核架构服务隔离，单点出问题系统不会崩溃</p>
 </blockquote>
 <blockquote>
 <p>内核态部分，称为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>μ</mi><mi>k</mi><mi>e</mi><mi>r</mi><mi>n</mi><mi>e</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">\mu kernel</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">μ</span><span class="mord mathnormal" style="margin-right:0.03148em;">k</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">n</span><span class="mord mathnormal">e</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span></span></span></span></p>
