@@ -214,7 +214,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-25 17:08:19" itemprop="dateModified" datetime="2024-08-25T17:08:19+08:00">2024-08-25</time>
+      <time title="修改时间：2024-08-29 15:12:01" itemprop="dateModified" datetime="2024-08-29T15:12:01+08:00">2024-08-29</time>
     </span>
 
   
@@ -242,6 +242,10 @@
 <p>“Since I’m fine now, can’t I add that missing piece later, when it’s actually needed?” Sometimes, yes. But it’s much harder.<br />
 Adding the missing piece later means waiting until the damage is already underway, and hellishly difficult to undo.</p>
 </blockquote>
+<p><a target="_blank" rel="noopener" href="https://henrikwarne.com/2014/09/04/a-response-to-why-most-unit-testing-is-waste/">A Response to “Why Most Unit Testing is Waste”</a></p>
+<blockquote>
+<p>(Unit Tests) They are based on <em>programmers’ fantasies about how the function should work</em>. But programmers break down requirements into smaller components all the time – this is how you program. Sometimes there are misunderstandings, but that is the exception, not the rule, in my opinion.</p>
+</blockquote>
 <h1 id="21-mystery-of-java-restore"><a class="markdownIt-Anchor" href="#21-mystery-of-java-restore"></a> 2.1 Mystery of Java Restore</h1>
 <blockquote>
 <p>When instantiate an Object, <code>obj = new Object()</code>, <code>obj</code> <strong>stores the address</strong> of the Object, not the specific data struction.</p>
@@ -261,6 +265,66 @@ Adding the missing piece later means waiting until the damage is already underwa
 <p>We can do this by creating a special node that is always there, which we will call a <strong>sentinel node</strong>. The sentinel node will hold a value, which we won’t care about.</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addLast</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">    <span class="type">IntNode</span> <span class="variable">p</span> <span class="operator">=</span> sentinel;</span><br><span class="line">    <span class="keyword">while</span> (p.next != <span class="literal">null</span>) &#123;</span><br><span class="line">        p = p.next;</span><br><span class="line">    &#125;</span><br><span class="line">    p.next = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, <span class="literal">null</span>);</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="30-testing"><a class="markdownIt-Anchor" href="#30-testing"></a> 3.0 Testing</h1>
+<h2 id="the-operator"><a class="markdownIt-Anchor" href="#the-operator"></a> The <code>==</code> operator</h2>
+<blockquote>
+<p><code>==</code> operator simply compares the literal bits in the memory boxes. (e.g., for objects it only compares their address.)</p>
+</blockquote>
+<h2 id="private-recursive-helper"><a class="markdownIt-Anchor" href="#private-recursive-helper"></a> Private Recursive Helper</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/** Sorts strings destructively starting from item start. */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(String[] x, <span class="type">int</span> start)</span> &#123; </span><br><span class="line">   <span class="type">int</span> <span class="variable">smallestIndex</span> <span class="operator">=</span> findSmallest(x);</span><br><span class="line">   swap(x, start, smallestIndex);</span><br><span class="line">   sort(x, start + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Sorts strings destructively. */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(String[] x)</span> &#123; </span><br><span class="line">   sort(x, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>This approach is quite common when trying to use recursion on a data structure that is not inherently recursive, e.g. arrays.</p>
+</blockquote>
+<h2 id="junit"><a class="markdownIt-Anchor" href="#junit"></a> JUnit</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// your test code</span></span><br><span class="line">    assertEquals(actual, expected);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="autograder-vs-junit"><a class="markdownIt-Anchor" href="#autograder-vs-junit"></a> Autograder vs JUnit</h2>
+<p>Rely on an Autograder, there is plenty of time that you’re not in control of neither your workflow or your code.</p>
+<h2 id="test-driven-development-tdd"><a class="markdownIt-Anchor" href="#test-driven-development-tdd"></a> Test-Driven Development (TDD)</h2>
+<p>TDD is a development process in which we write tests for code before writing the code itself. The steps are as follows:</p>
+<ol>
+<li>Identify a new feature.</li>
+<li>Write a unit test for that feature.</li>
+<li>Run the test. It should fail.</li>
+<li>Write code that passes the test. Yay!</li>
+<li>Optional: refactor code to make it faster, cleaner, etc. Except now we have a reference to tests that should pass.</li>
+</ol>
+<blockquote>
+<p>You should <strong>definitely write tests but only when they might be useful!</strong></p>
+</blockquote>
+<h1 id="41-overload"><a class="markdownIt-Anchor" href="#41-overload"></a> 4.1 Overload</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">longest</span><span class="params">(SLList&lt;String&gt; list)</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">longest</span><span class="params">(AList&lt;String&gt; list)</span>;</span><br></pre></td></tr></table></figure>
+<p>Java will choose the right method according to the parameter you pass in.</p>
+<blockquote>
+<p>However, it is ugly, repetitive and hard to maintain.</p>
+</blockquote>
+<h2 id="override"><a class="markdownIt-Anchor" href="#override"></a> @Override</h2>
+<blockquote>
+<p>Override is something like a proofreader. It will remind you when you make a typo and named method in error.</p>
+</blockquote>
+<h2 id="default"><a class="markdownIt-Anchor" href="#default"></a> Default</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Use `default` to define a method in `interface`</span></span><br><span class="line"><span class="keyword">default</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// your code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="extends"><a class="markdownIt-Anchor" href="#extends"></a> Extends</h2>
+<blockquote>
+<p>The <code>extends</code> keyword defines “is-a”.</p>
+</blockquote>
+<blockquote>
+<p>By using the <code>extends</code> keyword, subclasses inherit all <strong>members</strong> of the parent class. “Members” includes:</p>
+</blockquote>
+<ol>
+<li>All instance and static variables</li>
+<li>All methods</li>
+<li>All nested classes</li>
+</ol>
+<blockquote>
+<p>Note that constructors are not inherited, and private members cannot be directly accessed by subclasses.</p>
+</blockquote>
+<h3 id="subclass-constructor"><a class="markdownIt-Anchor" href="#subclass-constructor"></a> Subclass Constructor</h3>
+<p>A subclass is firstly its parentclass. Using the <code>super</code> keyword.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">VengefulSLList</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">    deletedItems = <span class="keyword">new</span> <span class="title class_">SLList</span>&lt;Item&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Or, if we choose not to, Java will automatically make a call to the superclass’s <em>no-argument</em> constructor for us.</p>
+<h2 id="compile-time-error"><a class="markdownIt-Anchor" href="#compile-time-error"></a> Compile-time Error</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">VengefulSLList&lt;Integer&gt; vsl = <span class="keyword">new</span> <span class="title class_">VengefulSLList</span>&lt;Integer&gt;(<span class="number">9</span>);</span><br><span class="line">SLList&lt;Integer&gt; sl = vsl;</span><br><span class="line"></span><br><span class="line">sl.addLast(<span class="number">50</span>);</span><br><span class="line">sl.removeLast();</span><br><span class="line"></span><br><span class="line">sl.printLostItems(); <span class="comment">// 会出错</span></span><br><span class="line">VengefulSLList&lt;Integer&gt; vsl2 = sl; <span class="comment">// 会出错</span></span><br></pre></td></tr></table></figure>
+<p>尽管运行时sl是动态的<code>VengefulSLList</code>类型，Java编译器将对象看作静态类型；<code>SLList</code>没有<code>printLostItems</code>方法，因此会报错；最后一句也是一样。</p>
 <h1 id="assn"><a class="markdownIt-Anchor" href="#assn"></a> Assn</h1>
 <h2 id="proj0"><a class="markdownIt-Anchor" href="#proj0"></a> Proj0</h2>
 <blockquote>
@@ -279,11 +343,113 @@ Adding the missing piece later means waiting until the damage is already underwa
 <h3 id="array-deque"><a class="markdownIt-Anchor" href="#array-deque"></a> Array Deque</h3>
 <ul>
 <li>先设计，再编码。好好想想要设计怎样的ArrayDeque。分离传入index和实际index。</li>
-<li>取模！！！一定要注意<code>-1 % size = -1</code>，<code>Math.floorMod(-1, size) = size-1</code>！（当Gradescope出现index=-1一般就是取模问题）</li>
+<li>取模！！！一定要注意<code>-1 % size = -1</code>是取余数，<code>Math.floorMod(-1, size) = size-1</code>才是取模！（当Gradescope出现index=-1一般就是取模问题）</li>
 <li><code>addFirst()</code>后调用<code>removeLast()</code>时，size变回0，但是没有调整下标的话head和end不会连在一起（错误状态）</li>
 <li>考虑<code>resize()</code>的实现方法。浮点数运算比整数运算慢很多！</li>
 </ul>
 
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">git使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-27 09:15:55" itemprop="dateModified" datetime="2024-08-27T09:15:55+08:00">2024-08-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="10-第一件事git-config"><a class="markdownIt-Anchor" href="#10-第一件事git-config"></a> 1.0 第一件事git config</h1>
+<ul>
+<li><code>git config --list --show-origin</code>查看所有git配置以及所在文件</li>
+<li>使用<code>git config --global</code>可以设置git的基本信息（如用户名、邮箱），使用<code>--unset</code>取消设置
+<ol>
+<li>配置你的名称、邮箱以及编辑器</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;191220000-Zhang San&quot;</span> </span><br><span class="line"><span class="comment"># 全局设置名称</span></span><br><span class="line">git config --global user.email <span class="string">&quot;zhang3@email.com&quot;</span></span><br><span class="line">git config --global core.editor vim</span><br></pre></td></tr></table></figure>
+<h1 id="20-初始化仓库"><a class="markdownIt-Anchor" href="#20-初始化仓库"></a> 2.0 初始化仓库</h1>
+<ol>
+<li>本地仓库：<code>git init</code>创建一个新的 git 仓库，其数据会存放在一个名为 <code>.git</code> 的目录下<br />
+删除仓库：删除 .git 文件夹</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add &lt;文件名字，*表示全部&gt;</span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span> </span><br><span class="line"><span class="comment"># 提交到暂存区，并附上注释</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>远程仓库：<code>git clone</code>克隆远端仓库</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &lt;网址&gt; &lt;仓库存放文件夹名&gt;</span><br><span class="line"><span class="comment"># 使用http克隆</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1237,108 +1403,6 @@ Here is some INFO.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">git使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-09 13:13:12" itemprop="dateModified" datetime="2024-08-09T13:13:12+08:00">2024-08-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="10-第一件事git-config"><a class="markdownIt-Anchor" href="#10-第一件事git-config"></a> 1.0 第一件事git config</h1>
-<ul>
-<li><code>git config --list --show-origin</code>查看所有git配置以及所在文件</li>
-<li>使用<code>git config --global</code>可以设置git的基本信息（如用户名、邮箱），使用<code>--unset</code>取消设置
-<ol>
-<li>配置你的名称、邮箱以及编辑器</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;191220000-Zhang San&quot;</span> </span><br><span class="line"><span class="comment"># 全局设置名称</span></span><br><span class="line">git config --global user.email <span class="string">&quot;zhang3@email.com&quot;</span></span><br><span class="line">git config --global core.editor vim</span><br></pre></td></tr></table></figure>
-<h1 id="20-初始化仓库"><a class="markdownIt-Anchor" href="#20-初始化仓库"></a> 2.0 初始化仓库</h1>
-<ol>
-<li>本地仓库：<code>git init</code>创建一个新的 git 仓库，其数据会存放在一个名为 <code>.git</code> 的目录下<br />
-删除仓库：删除 .git 文件夹</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add &lt;文件名字，*表示全部&gt;</span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span> </span><br><span class="line"><span class="comment"># 提交到暂存区，并附上注释</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>远程仓库：<code>git clone</code>克隆远端仓库</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &lt;网址&gt; &lt;仓库存放文件夹名&gt;</span><br><span class="line"><span class="comment"># 使用http克隆</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
