@@ -214,7 +214,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-30 15:30:12" itemprop="dateModified" datetime="2024-08-30T15:30:12+08:00">2024-08-30</time>
+      <time title="修改时间：2024-09-02 11:22:30" itemprop="dateModified" datetime="2024-09-02T11:22:30+08:00">2024-09-02</time>
     </span>
 
   
@@ -337,6 +337,13 @@ Adding the missing piece later means waiting until the damage is already underwa
 <h1 id="43-polymorphism"><a class="markdownIt-Anchor" href="#43-polymorphism"></a> 4.3 Polymorphism</h1>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">OurComparable</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(Object o)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> OurComparable <span class="title function_">max</span><span class="params">(OurComparable[] items)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">maxDex</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; items.length; i += <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">cmp</span> <span class="operator">=</span> items[i].compareTo(items[maxDex]);</span><br><span class="line">            <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                maxDex = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> items[maxDex];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">        <span class="type">Dog</span> <span class="variable">uddaDog</span> <span class="operator">=</span> (Dog) o;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.size - uddaDog.size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>使用多态，就可以写出一个统一的max()方法，而不需要考虑各个类的数据结构</p>
+<h1 id="final"><a class="markdownIt-Anchor" href="#final"></a> Final</h1>
+<blockquote>
+<p>The <code>final</code> keyword prevents the variable from being changed after its first assignment.</p>
+</blockquote>
+<p>Notice: it doesn’t work for reference!</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> ArrayDeque&lt;String&gt;() deque = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;String&gt;();</span><br></pre></td></tr></table></figure>
+<p>deque不可改变，然而deque指向的ArrayDeque可变</p>
 <h1 id="assn"><a class="markdownIt-Anchor" href="#assn"></a> Assn</h1>
 <h2 id="proj0"><a class="markdownIt-Anchor" href="#proj0"></a> Proj0</h2>
 <blockquote>
