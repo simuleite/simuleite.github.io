@@ -2461,7 +2461,40 @@ Adding the missing piece later means waiting until the damage is already underwa
 <blockquote>
 <p>注意Set的add()方法需要检查是否已包含元素。</p>
 </blockquote>
+<h1 id="iterator"><a class="markdownIt-Anchor" href="#iterator"></a> Iterator</h1>
+<p>For code on the right to work:</p>
+<ol>
+<li>Compiler checks that Lists have a method called iterator() that returns an  Iterator&lt;Integer&gt;.</li>
+<li>Then, compiler checks that Iterators have:
+<ul>
+<li>hasNext()</li>
+<li>next()</li>
+</ul>
+</li>
+</ol>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArraySet</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Iterable</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Iterator&lt;T&gt; <span class="title function_">iterator</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ArraySetIterator</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">ArraySetIterator</span> <span class="keyword">implements</span> <span class="title class_">Iterator</span>&lt;T&gt; &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> wizPos;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">ArraySetIterator</span><span class="params">()</span> &#123;</span><br><span class="line">            wizPos = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> wizPos &lt; size;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> T <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="type">T</span> <span class="variable">returnItem</span> <span class="operator">=</span> items[wizPos];</span><br><span class="line">            wizPos += <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> returnItem;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="the-philosophy-of-exceptions"><a class="markdownIt-Anchor" href="#the-philosophy-of-exceptions"></a> The Philosophy of Exceptions</h1>
+<blockquote>
+<p>Exceptions keep error handling separate from the rest of the program.</p>
+</blockquote>
+<p>Program without exceptions:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (theFileIsOpen) &#123;</span><br><span class="line">    determine its size;</span><br><span class="line">    <span class="keyword">if</span> (gotTheFileLength) &#123;</span><br><span class="line">        allocate that much memory;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> error(<span class="string">&quot;fileLengthError&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>Program with exceptions:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    open the file;</span><br><span class="line">    determine its size;</span><br><span class="line">    allocate that much memory;</span><br><span class="line">    read the file into memory;</span><br><span class="line">    close the file;</span><br><span class="line">&#125; <span class="keyword">catch</span> (fileOpenFailed) &#123;</span><br><span class="line">    doSomething;</span><br></pre></td></tr></table></figure>
+<h1 id="exceptions-catch-and-specify"><a class="markdownIt-Anchor" href="#exceptions-catch-and-specify"></a> Exceptions: Catch and Specify</h1>
+<blockquote>
+<p><strong>Catch</strong> the error when you can handle the problem there. Keep it from escaping!</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        gulgate();</span><br><span class="line">    &#125; <span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Averted!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>Specify</strong> the error when someone else should handle the error. Make sure the caller knows the method is dangerous!</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    gulgate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="abstract"><a class="markdownIt-Anchor" href="#abstract"></a> Abstract</h1>
+<blockquote>
+<p>If an implementing class fails to implement any abstract methods inherited from an interface, then that class must be declared abstract.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractBoundedQueue</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* the method must be defined with the abstract keyword </span></span><br><span class="line"><span class="comment">     * and without an implementation (without braces, and </span></span><br><span class="line"><span class="comment">     * followed by a semicolon) </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">moveTo</span><span class="params">(<span class="type">double</span> deltaX, <span class="type">double</span> deltaY)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="assn"><a class="markdownIt-Anchor" href="#assn"></a> Assn</h1>
 <h2 id="proj0"><a class="markdownIt-Anchor" href="#proj0"></a> Proj0</h2>
 <blockquote>
