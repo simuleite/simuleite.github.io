@@ -147,7 +147,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -214,7 +214,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-09 12:02:37" itemprop="dateModified" datetime="2024-09-09T12:02:37+08:00">2024-09-09</time>
+      <time title="修改时间：2024-09-15 14:55:18" itemprop="dateModified" datetime="2024-09-15T14:55:18+08:00">2024-09-15</time>
     </span>
 
   
@@ -387,6 +387,37 @@ Adding the missing piece later means waiting until the damage is already underwa
 <p>If an implementing class fails to implement any abstract methods inherited from an interface, then that class must be declared abstract.</p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractBoundedQueue</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* the method must be defined with the abstract keyword </span></span><br><span class="line"><span class="comment">     * and without an implementation (without braces, and </span></span><br><span class="line"><span class="comment">     * followed by a semicolon) </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">moveTo</span><span class="params">(<span class="type">double</span> deltaX, <span class="type">double</span> deltaY)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="package"><a class="markdownIt-Anchor" href="#package"></a> Package</h1>
+<blockquote>
+<p>It is very possible that with all the code in this world, you would create classes that share names with those from a different project.</p>
+</blockquote>
+<blockquote>
+<p>the <strong>package</strong> — a namespace that organizes classes and interfaces.<br />
+naming convention: package name starts with the website address, backwards.</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">com.joshh.animal // joshh.com</span><br></pre></td></tr></table></figure>
+<h1 id="jar"><a class="markdownIt-Anchor" href="#jar"></a> JAR</h1>
+<blockquote>
+<p>JAR files are just like zip files.<br />
+JAR files do not keep your code safe, and thus you should not share your .jar files of your projects with other students.</p>
+</blockquote>
+<h1 id="access-control"><a class="markdownIt-Anchor" href="#access-control"></a> Access Control</h1>
+<ul>
+<li><code>private</code>: Only the given class can access. Subclass cannot.</li>
+<li><code>package private</code>: Only the class from the same package can access.</li>
+<li><code>protected</code>: the same package or subclass can access.</li>
+</ul>
+<h1 id="encapsulation"><a class="markdownIt-Anchor" href="#encapsulation"></a> Encapsulation</h1>
+<blockquote>
+<p>A module is said to be encapsulated if its implementation is completely hidden, and it can be accessed only through a documented interface.</p>
+</blockquote>
+<h1 id="delegation"><a class="markdownIt-Anchor" href="#delegation"></a> Delegation</h1>
+<blockquote>
+<p>Extension tends to be used when you know what is going on in the parent class.</p>
+</blockquote>
+<blockquote>
+<p>Delegation is when you do not want to consider your current class to be a version of the class that you are pulling the method from.</p>
+</blockquote>
 <h1 id="assn"><a class="markdownIt-Anchor" href="#assn"></a> Assn</h1>
 <h2 id="proj0"><a class="markdownIt-Anchor" href="#proj0"></a> Proj0</h2>
 <blockquote>
@@ -409,7 +440,307 @@ Adding the missing piece later means waiting until the damage is already underwa
 <li><code>addFirst()</code>后调用<code>removeLast()</code>时，size变回0，但是没有调整下标的话head和end不会连在一起（错误状态）</li>
 <li>考虑<code>resize()</code>的实现方法。浮点数运算比整数运算慢很多！</li>
 </ul>
+<h2 id="proj2"><a class="markdownIt-Anchor" href="#proj2"></a> Proj2</h2>
+<p>思路：在房间旁边画房间，并在房间重合边缘处打洞，实现迷宫。</p>
+<ol>
+<li>首先设计<code>Room.java</code>，内置画一个房间，在房间旁边生成房间的方法。<br />
+稀里糊涂地生成了不错的迷宫出来。但是不好打洞！</li>
+</ol>
 
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">mysql使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-27T00:00:00+08:00">2024-07-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-13 17:57:20" itemprop="dateModified" datetime="2024-09-13T17:57:20+08:00">2024-09-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1>
+<h2 id="压缩包安装"><a class="markdownIt-Anchor" href="#压缩包安装"></a> 压缩包安装</h2>
+<ol>
+<li>初始化</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 初始化，生成data文件夹，console参数可以看见密码</span></span><br><span class="line">mysqld --initialize --console &gt; mysql_info</span><br><span class="line"><span class="comment"># &gt; mysql_info把命令行输出结果存到文件里，防止密码丢失</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>配置<code>mysql.ini</code></li>
+</ol>
+<figure class="highlight ini"><table><tr><td class="code"><pre><span class="line"><span class="section">[mysqld]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置3306端口</span></span><br><span class="line"><span class="attr">port</span>=<span class="number">3306</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql目录路径</span></span><br><span class="line"><span class="attr">basedir</span>=C:\\your\\path\\MySQL</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql数据库的数据的存放目录</span></span><br><span class="line"><span class="attr">datadir</span>=C:\\your\\path\\MySQL\\Data</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许最大连接数</span></span><br><span class="line"><span class="attr">max_connections</span>=<span class="number">200</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许连接失败的次数。这是为了防止有人从该主机试图攻击数据库系统</span></span><br><span class="line"><span class="attr">max_connect_errors</span>=<span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 服务端使用的字符集默认为UTF8</span></span><br><span class="line"><span class="attr">character-set-server</span>=utf8</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建新表时将使用的默认存储引擎</span></span><br><span class="line"><span class="attr">default-storage-engine</span>=INNODB</span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认使用“mysql_native_password”插件认证</span></span><br><span class="line"><span class="attr">default_authentication_plugin</span>=mysql_native_password</span><br><span class="line"></span><br><span class="line"><span class="section">[mysql]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql客户端默认字符集</span></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br><span class="line"></span><br><span class="line"><span class="section">[client]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置mysql客户端连接服务端时默认使用的端口</span></span><br><span class="line"><span class="attr">port</span>=<span class="number">3306</span></span><br><span class="line"></span><br><span class="line"><span class="attr">default-character-set</span>=utf8</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>安装服务</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysqld --install MySQL8 --defaults-file=<span class="string">&quot;C:\your\path\MySQL\mysql.ini&quot;</span> <span class="comment"># 设置服务名</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认安装</span></span><br><span class="line">mysqld install</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>修改密码</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置YourPassword为新密码，再输入旧密码确认修改即可</span></span><br><span class="line">mysqladmin -u root -p password (YourPassword) --port 3306</span><br></pre></td></tr></table></figure>
+<h1 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h1>
+<h2 id="启动数据库"><a class="markdownIt-Anchor" href="#启动数据库"></a> 启动数据库</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 需要管理员权限</span></span><br><span class="line">net start &lt;mysql-service_name&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="登录数据库"><a class="markdownIt-Anchor" href="#登录数据库"></a> 登录数据库</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u &lt;username&gt; -p</span><br><span class="line">$ &lt;password&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="导入数据库"><a class="markdownIt-Anchor" href="#导入数据库"></a> 导入数据库</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 设置中文字符集</span><br><span class="line">mysql&gt; SET NAMES &#x27;utf8mb4&#x27;;</span><br><span class="line">mysql&gt; SET character_set_server = &#x27;utf8mb4&#x27;;</span><br><span class="line">mysql&gt; SOURCE /path/to/database.sql;</span><br></pre></td></tr></table></figure>
+<h2 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 创建数据库</span><br><span class="line">CREATE DATABASE yourDatabase</span><br><span class="line">  CHARACTER SET utf8mb4;</span><br><span class="line"></span><br><span class="line"># 查看所有数据库</span><br><span class="line">show databases;</span><br><span class="line"></span><br><span class="line"># 进入数据库</span><br><span class="line">use yourDatabase</span><br></pre></td></tr></table></figure>
+<h2 id="表"><a class="markdownIt-Anchor" href="#表"></a> 表</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 建表</span><br><span class="line">CREATE TABLE yourTable (</span><br><span class="line">  id INT AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">  name varchar(50) NOT NULL,</span><br><span class="line">  age INT NOT NULL</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"># 查看表 </span><br><span class="line">show tables;</span><br><span class="line"></span><br><span class="line">select * from yourTable;</span><br><span class="line"></span><br><span class="line">insert into yourTable (name, email, age) values (&#x27;eric&#x27;, &#x27;example@email.com&#x27;, 19);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/%E6%95%B0%E5%AD%97%E4%BA%BA%E6%96%87%E6%97%85%20%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/%E6%95%B0%E5%AD%97%E4%BA%BA%E6%96%87%E6%97%85%20%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-11 20:48:08 / 修改时间：21:20:41" itemprop="dateCreated datePublished" datetime="2024-09-11T20:48:08+08:00">2024-09-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="10-数字时代虚拟影像ip赋能文旅产业发展研究"><a class="markdownIt-Anchor" href="#10-数字时代虚拟影像ip赋能文旅产业发展研究"></a> 1.0 <a target="_blank" rel="noopener" href="https://kns.cnki.net/nzkhtml/xmlRead/trialRead.html?dbCode=CJFD&amp;tableName=CJFDTOTAL&amp;fileName=FLBZ202303024&amp;fileSourceType=1&amp;invoice=n1Coy3G1pP35%2bG48KG%2b7s4cqV%2buntTl4%2fy0JHOJYAGfFq3ytn5kS8xCtgs20rUS%2bcM0vdKInMzf9ZecCF%2fdLPhYT%2fCX6jJIDTZAQeMxhFn6Jq6bjBwMkgfo5ucrM5G8Hx8UxIlWmf%2fMCm2GhPY2m2Q80XybOcN4%2b6ZbnvwAbd7E%3d&amp;appId=KNS_BASIC_PSMC">数字时代虚拟影像IP赋能文旅产业发展研究</a></h1>
+<p>来源：湖南包装。海口经济学院。被引用数：6</p>
+<h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h2>
+<p>数字技术是文旅转型升级的重要引擎。5G网络加速了虚拟形象IP的开发和应用。</p>
+<h2 id="结论"><a class="markdownIt-Anchor" href="#结论"></a> 结论</h2>
+<p>虚拟形象IP商业价值：</p>
+<ol>
+<li>与品牌跨界合作</li>
+<li>走入直播间带货</li>
+<li>代言品牌</li>
+<li>粉丝效益转化交易</li>
+</ol>
+<h2 id="图表"><a class="markdownIt-Anchor" href="#图表"></a> 图表</h2>
+<p>提出了虚拟形象IP赋能文旅的具体方法。<br />
+提到了身份型虚拟形象和服务型虚拟形象。<br />
+<img src="Source/Pasted%20image%2020240911205700.png" alt="" /></p>
+<h2 id="正文"><a class="markdownIt-Anchor" href="#正文"></a> 正文</h2>
+<p>IP：Intellectual Property（知识产权）<br />
+商业应用：</p>
+<ol>
+<li>角色设计型，如Hello Kitty、米菲兔。通过形象授权、主题园区、周边潮玩来盈利。</li>
+<li>品牌标志。如京东、搜狐、腾讯将动物符号嫁接到品牌上，强化和塑造品牌认知。</li>
+<li>品牌吉祥物。米其林、海尔、麦当劳，虚拟形象人格化，增加品牌感染力。</li>
+</ol>
+<p>案例：</p>
+<ol>
+<li>
+<p>阿里巴巴动物园<br />
+天猫、飞猪、盒马鲜生、虾米音乐、蚂蚁金服。每个应用都对应一个动物形象。</p>
+</li>
+<li>
+<p>熊本熊<br />
+日本熊本县的旅游吉祥物。鲜明的形象设计、成功的营销策略、政府的主导推行，让这个虚拟小熊形象为熊本县带来巨大经济效益。<br />
+<img src="Source/Pasted%20image%2020240911205642.png" alt="" /><br />
+<img src="Source/Pasted%20image%2020240911205630.png" alt="" /></p>
+</li>
+<li>
+<p>地方虚拟形象<br />
+眉山市数字代言人“苏小妹”（虚构的苏轼妹妹），以古代少女发髻、宋代襦裙为基本造型特点，塑造成一个热爱诗词歌赋、国风舞蹈的虚拟人物，结合数字技术讲述眉山故事，传播中华优秀传统文化。</p>
+</li>
+<li>
+<p>虚拟形象作为艺术装置<br />
+融入城市公共空间,例如长沙 IFS 的 KAWS、成都 IFS 的熊猫、深圳万象天地的抱抱象,将 IP 植入点引流成网红打卡地。</p>
+</li>
+</ol>
+<h1 id="值得学习的点"><a class="markdownIt-Anchor" href="#值得学习的点"></a> 值得学习的点</h1>
+<ol>
+<li>数字人文旅的论文也可以画一张产业发展路径图</li>
+<li>这篇文章的结论可以用来说明数字孪生人赋能文旅的商业价值和意义</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/DNS%20Over%20Https/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/DNS%20Over%20Https/" class="post-title-link" itemprop="url">DNS Over Https</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-10 00:00:00 / 修改时间：19:25:58" itemprop="dateCreated datePublished" datetime="2024-09-10T00:00:00+08:00">2024-09-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="windows"><a class="markdownIt-Anchor" href="#windows"></a> Windows</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">模板</span></span><br><span class="line">netsh dns add encryption server=&lt;IP Address&gt; dohtemplate=&lt;DOH Template&gt; autoupgrade=yes udpfallback=no</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">腾讯</span></span><br><span class="line">netsh dns add encryption server=1.12.12.12 dohtemplate=https://doh.pub/dns-query autoupgrade=yes udpfallback=no</span><br><span class="line"></span><br><span class="line">netsh dns add encryption server=120.53.53.53 dohtemplate=https://doh.360.cn/dns-query autoupgrade=yes udpfallback=no</span><br></pre></td></tr></table></figure>
+<p>查看DoH模板：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">netsh dns show encryption</span></span><br><span class="line"></span><br><span class="line">223.5.5.5 加密设置</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">DNS-over-HTTPS 模板     : https://dns.alidns.com/dns-query</span><br><span class="line">自动升级                : yes</span><br><span class="line">UDP 回退                : no</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -1126,352 +1457,6 @@ Here is some INFO.</p>
 </ol>
 </section>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Github使用指南</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-20 12:23:57" itemprop="dateModified" datetime="2024-08-20T12:23:57+08:00">2024-08-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="git配置"><a class="markdownIt-Anchor" href="#git配置"></a> Git配置</h1>
-<p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/896954117292416">远程仓库 - 廖雪峰的官方网站 (liaoxuefeng.com)</a></p>
-<ol>
-<li>创建ssh key，在c盘用户目录.git文件夹中<br />
-<code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code><br />
-<code>ssh-keygen -l -f ~/.ssh/id_rsa</code> 可以查看秘钥的配置信息，包括邮箱</li>
-<li>在GitHub账号设置页面，添加ssh key，复制<code>.ssh/id_rsa.pub</code>的信息，点击创建即可</li>
-<li>测试是否成功：<code>ssh -T git@github.com</code><br />
-注意：如果测试不成功，可能是反向代理的问题</li>
-</ol>
-<h1 id="github-远程仓库"><a class="markdownIt-Anchor" href="#github-远程仓库"></a> Github 远程仓库</h1>
-<ol>
-<li>在github上新建一个仓库</li>
-<li><code>git remote add origin git@github.com:github账号名称/仓库名称.git</code> 关联仓库，origin是远程库的名字</li>
-<li><code>git push -u origin master</code>把本地库内容（master分支）推送到远程库（oringin），<code>-u</code> 参数表示会把本地master分支和远程master分支关联起来，方便后面简化命令</li>
-</ol>
-<ul>
-<li><code>git remote set-url origin &lt;URL&gt;</code>更改仓库地址</li>
-</ul>
-<h1 id="github-trending-热门软件"><a class="markdownIt-Anchor" href="#github-trending-热门软件"></a> github trending 热门软件</h1>
-<ul>
-<li>项目含金量 stars 1k+</li>
-<li>fork 拷贝项目到自己的仓库</li>
-<li>pull request 合并分支</li>
-</ul>
-<h1 id="nju"><a class="markdownIt-Anchor" href="#nju"></a> NJU</h1>
-<ul>
-<li>学习编程语言如C、Rust</li>
-<li>精选精读论文</li>
-<li>STFW：比百度更高效的办法</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Listary%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Listary%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Listary使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-08-16 00:00:00 / 修改时间：20:08:33" itemprop="dateCreated datePublished" datetime="2024-08-16T00:00:00+08:00">2024-08-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="网络搜索"><a class="markdownIt-Anchor" href="#网络搜索"></a> 网络搜索</h1>
-<table>
-<thead>
-<tr>
-<th>网站</th>
-<th>URL</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>哔哩哔哩</td>
-<td><a target="_blank" rel="noopener" href="https://search.bilibili.com/all?keyword=%7Bquery%7D">https://search.bilibili.com/all?keyword={query}</a></td>
-<td></td>
-</tr>
-<tr>
-<td>知乎</td>
-<td><a target="_blank" rel="noopener" href="https://www.zhihu.com/search?type=content&amp;q=%7Bquery%7D">https://www.zhihu.com/search?type=content&amp;q={query}</a></td>
-<td></td>
-</tr>
-<tr>
-<td>百度贴吧</td>
-<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/f?ie=utf-8&amp;kw=%7Bquery%7D&amp;fr=search">https://tieba.baidu.com/f?ie=utf-8&amp;kw={query}&amp;fr=search</a></td>
-<td>优先搜索吧名</td>
-</tr>
-<tr>
-<td>小红书</td>
-<td><a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/search_result?keyword=%7Bquery%7D&amp;source=web_search_result_notes">https://www.xiaohongshu.com/search_result?keyword={query}&amp;source=web_search_result_notes</a></td>
-<td>需要登录</td>
-</tr>
-<tr>
-<td>淘宝</td>
-<td><a target="_blank" rel="noopener" href="https://s.taobao.com/search?q=%7Bquery%7D&amp;commend=all&amp;search_type=item&amp;sourceId=tb.index&amp;ie=utf8">https://s.taobao.com/search?q={query}&amp;commend=all&amp;search_type=item&amp;sourceId=tb.index&amp;ie=utf8</a></td>
-<td></td>
-</tr>
-<tr>
-<td>京东</td>
-<td><a target="_blank" rel="noopener" href="https://search.jd.com/Search?keyword=%7Bquery%7D&amp;enc=utf-8">https://search.jd.com/Search?keyword={query}&amp;enc=utf-8</a></td>
-<td></td>
-</tr>
-<tr>
-<td>Yandex</td>
-<td><a target="_blank" rel="noopener" href="https://yandex.com/search/?text=%7Bquery%7D">https://yandex.com/search/?text={query}</a></td>
-<td></td>
-</tr>
-<tr>
-<td>GitHub</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/search?q=%7Bquery%7D&amp;type=repositories">https://github.com/search?q={query}&amp;type=repositories</a></td>
-<td></td>
-</tr>
-<tr>
-<td>tldr</td>
-<td><a target="_blank" rel="noopener" href="https://tldr.inbrowser.app/pages/common/%7Bquery%7D">https://tldr.inbrowser.app/pages/common/{query}</a></td>
-<td>mannual查Linux命令</td>
-</tr>
-<tr>
-<td>必应翻译</td>
-<td><a target="_blank" rel="noopener" href="https://cn.bing.com/translator?ref=TThis&amp;text=%7Bquery%7D&amp;from=en&amp;to=zh-Hant">https://cn.bing.com/translator?ref=TThis&amp;text={query}&amp;from=en&amp;to=zh-Hant</a></td>
-<td>英译中</td>
-</tr>
-<tr>
-<td>DeepL翻译</td>
-<td><a target="_blank" rel="noopener" href="https://www.deepl.com/translator#en/zh/%7Bquery%7D">https://www.deepl.com/translator#en/zh/{query}</a></td>
-<td>英译中</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>有时候站内搜索没有搜索引擎准确，可以使用搜索引擎过滤网站<br />
-过滤站点：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://&lt;ENGINE.URL&gt;/search?text=site%3A&lt;SITE.URL&gt;%20&#123;query&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">Django动态网页 Python项目</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-03T00:00:00+08:00">2024-03-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-15 14:47:41" itemprop="dateModified" datetime="2024-08-15T14:47:41+08:00">2024-08-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="00-规范"><a class="markdownIt-Anchor" href="#00-规范"></a> 0.0 规范</h1>
-<p>我要编写一个名为“学习笔记”的 Web 应用程序,让用户能够记录感兴趣的主题,并在学习每个主题的过程中添加日志条目。“学习笔记”的主页对这个网站进行描述,并邀请用户注册或登录。用户登录后,可以创建新主题、添加新条目以及阅读既有的条目。</p>
-<p>目录 ll_project 包含 4 个文件, 其中最重要的是 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a>、<a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 和 <a target="_blank" rel="noopener" href="http://wsgi.py">wsgi.py</a>。文件 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a> 指定 Django 如何与系统交互以及如何管理项目。<br />
-在开发项目的过程中,我们将修改其中的一些设置,并添加一些设置。<br />
-文件 <a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 告诉 Django,应创建哪些网页来响应浏览器请求。<br />
-文件 <a target="_blank" rel="noopener" href="http://wsgi.py">wsgi.py</a> 帮助 Django 提供它创建的文件,名称是 web server gateway interface(Web 服务器网关接口)的首字母缩写。</p>
-<h1 id="10-创建环境"><a class="markdownIt-Anchor" href="#10-创建环境"></a> 1.0 创建环境</h1>
-<h2 id="11-创建虚拟环境"><a class="markdownIt-Anchor" href="#11-创建虚拟环境"></a> 1.1 创建虚拟环境</h2>
-<p>在独立的项目文件夹下运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m venv ll_env</span><br><span class="line"></span><br><span class="line">python -m ensurepip --default-pip <span class="comment"># 重装pip</span></span><br></pre></td></tr></table></figure>
-<p>将会创造一个<code>ll_env</code>文件夹<br />
-可以使用下面的命令激活虚拟环境。激活虚拟环境后，安装的模组将只在虚拟环境中生效，而不干扰到电脑上Python的模组</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ll_env/bin/activate <span class="comment"># Linux系统</span></span><br><span class="line"><span class="built_in">source</span> ll_env/Scripts/activate <span class="comment"># Windows系统</span></span><br><span class="line"></span><br><span class="line">(ll_env)</span><br><span class="line">work_directory$ <span class="comment"># 命令提示符前会显示(ll_env)</span></span><br></pre></td></tr></table></figure>
-<p>使用<code>deactive</code>取消激活虚拟环境</p>
-<h2 id="12-安装配置django"><a class="markdownIt-Anchor" href="#12-安装配置django"></a> 1.2 安装配置Django</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install --upgrade pip <span class="comment"># 更新pip</span></span><br><span class="line">pip install django <span class="comment"># 安装Django</span></span><br><span class="line">django-admin startproject ll_project . <span class="comment"># 初始化Django</span></span><br><span class="line">python manage.py migrate <span class="comment"># 生成数据库</span></span><br><span class="line">python manage.py runserver <span class="comment"># 生成预览，可以在本地8000端口看到网页</span></span><br></pre></td></tr></table></figure>
-<pre><code>Django手册： https://docs.djangoproject.com/en/4.1/ref/models/fields/
-</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
