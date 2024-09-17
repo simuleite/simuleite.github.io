@@ -5583,4 +5583,23 @@ OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
 </ol>
 ]]></content>
   </entry>
+  <entry>
+    <title></title>
+    <url>/ComputerScience/%E9%A1%B9%E7%9B%AE/AI%E7%88%B1%E5%A4%96%E5%8D%96/</url>
+    <content><![CDATA[<h1 id="nginx"><a class="markdownIt-Anchor" href="#nginx"></a> Nginx</h1>
+<h2 id="反向代理"><a class="markdownIt-Anchor" href="#反向代理"></a> 反向代理</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        # 反向代理,处理管理端发送的请求</span><br><span class="line">        location /api/ &#123;</span><br><span class="line">            # localhost/api/abc转发到下面admin/abc</span><br><span class="line">            proxy_pass   http://localhost:8080/admin/;</span><br><span class="line">            #proxy_pass   http://webservers/admin/;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好处：</p>
+<ul>
+<li>不会暴露服务器，服务器可以安全放在内网，由nginx转发、缓存。</li>
+</ul>
+<h2 id="负载均衡"><a class="markdownIt-Anchor" href="#负载均衡"></a> 负载均衡</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">upstream webservers&#123;</span><br><span class="line">      # 服务器组，按权重分配</span><br><span class="line">      server 127.0.0.1:8080 weight=90 ;</span><br><span class="line">      server 127.0.0.1:8088 weight=10 ;</span><br><span class="line">      # ip_hash 根据ip分配</span><br><span class="line">      # least_conn 分配到最少链接的服务器</span><br><span class="line">      # url_hash 根据url分配</span><br><span class="line">      # fair 分配到响应时间最短的服务器</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        </span><br><span class="line">        # 反向代理,处理管理端发送的请求</span><br><span class="line">        location /api/ &#123;</span><br><span class="line">            # 负载均衡</span><br><span class="line">            proxy_pass   http://webservers/admin/;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="swagger"><a class="markdownIt-Anchor" href="#swagger"></a> Swagger</h1>
+<blockquote>
+<p>Knife4j：Java MVC框架集成Swagger</p>
+</blockquote>
+<p>API接口文档生成、测试</p>
+]]></content>
+  </entry>
 </search>
