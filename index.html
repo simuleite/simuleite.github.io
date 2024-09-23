@@ -147,7 +147,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -214,7 +214,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-21 09:52:31" itemprop="dateModified" datetime="2024-09-21T09:52:31+08:00">2024-09-21</time>
+      <time title="修改时间：2024-09-23 20:21:45" itemprop="dateModified" datetime="2024-09-23T20:21:45+08:00">2024-09-23</time>
     </span>
 
   
@@ -233,11 +233,26 @@
 <h1 id="登录数据库"><a class="markdownIt-Anchor" href="#登录数据库"></a> 登录数据库</h1>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u &lt;username&gt; -p</span><br><span class="line">$ &lt;password&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="导入数据库"><a class="markdownIt-Anchor" href="#导入数据库"></a> 导入数据库</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 设置中文字符集</span><br><span class="line">mysql&gt; SET NAMES &#x27;utf8mb4&#x27;;</span><br><span class="line">mysql&gt; SET character_set_server = &#x27;utf8mb4&#x27;;</span><br><span class="line">mysql&gt; SOURCE /path/to/database.sql;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- 设置中文字符集</span><br><span class="line">mysql&gt; SET NAMES &#x27;utf8mb4&#x27;;</span><br><span class="line">mysql&gt; SET character_set_server = &#x27;utf8mb4&#x27;;</span><br><span class="line">mysql&gt; SOURCE /path/to/database.sql;</span><br></pre></td></tr></table></figure>
 <h2 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 创建数据库</span><br><span class="line">CREATE DATABASE yourDatabase</span><br><span class="line">  CHARACTER SET utf8mb4;</span><br><span class="line"></span><br><span class="line"># 查看所有数据库</span><br><span class="line">show databases;</span><br><span class="line"></span><br><span class="line"># 进入数据库</span><br><span class="line">use yourDatabase</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- 创建数据库</span><br><span class="line">CREATE DATABASE yourDatabase</span><br><span class="line">  CHARACTER SET utf8mb4;</span><br><span class="line"></span><br><span class="line">-- 查看所有数据库</span><br><span class="line">show databases;</span><br><span class="line"></span><br><span class="line">-- 进入数据库</span><br><span class="line">use yourDatabase</span><br></pre></td></tr></table></figure>
 <h2 id="表"><a class="markdownIt-Anchor" href="#表"></a> 表</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 建表</span><br><span class="line">CREATE TABLE yourTable (</span><br><span class="line">  id INT AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">  name varchar(50) NOT NULL,</span><br><span class="line">  age INT NOT NULL</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"># 查看表 </span><br><span class="line">show tables;</span><br><span class="line"></span><br><span class="line"># \G 参数单独展示每一行，避免过宽</span><br><span class="line">select * from yourTable\G</span><br><span class="line"></span><br><span class="line">insert into yourTable (name, email, age) values (&#x27;eric&#x27;, &#x27;example@email.com&#x27;, 19);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 建表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> yourTable (</span><br><span class="line">  id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  age <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看表 </span></span><br><span class="line"><span class="keyword">show</span> tables;</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> yourTable (name, email, age) <span class="keyword">values</span> (<span class="string">&#x27;eric&#x27;</span>, <span class="string">&#x27;example@email.com&#x27;</span>, <span class="number">19</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="查询"><a class="markdownIt-Anchor" href="#查询"></a> 查询</h1>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- \G 参数单独展示每一行，避免过宽</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>\G</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询多列</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>column1<span class="operator">&gt;</span>, <span class="operator">&lt;</span>column2<span class="operator">&gt;</span>, <span class="operator">&lt;</span>column3<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 只显示不同项</span></span><br><span class="line"><span class="comment">-- 注意，对多列使用时，两列完全一样才会被屏蔽</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> <span class="operator">&lt;</span><span class="keyword">column</span><span class="operator">&gt;</span> <span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 检错前5行</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span> limit <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="排序"><a class="markdownIt-Anchor" href="#排序"></a> 排序</h1>
+<blockquote>
+<p><code>ORDER BY</code> 需要放在 <code>WHERE</code> 之后</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 按列升序排序</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> (<span class="keyword">asc</span>); <span class="comment">-- 默认Ascending</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 降序排序。对多列排序，每列都要跟desc</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="operator">&lt;</span>col1<span class="operator">&gt;</span> <span class="keyword">desc</span>, <span class="operator">&lt;</span>col2<span class="operator">&gt;</span> <span class="keyword">desc</span>; <span class="comment">-- Descending降序排序</span></span><br></pre></td></tr></table></figure>
+<h1 id="筛选"><a class="markdownIt-Anchor" href="#筛选"></a> 筛选</h1>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 筛选col = value的字段</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="operator">=</span> <span class="operator">&lt;</span><span class="keyword">value</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 筛选between 0 and 10的字段</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="keyword">between</span> <span class="number">0</span> <span class="keyword">and</span> <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 筛选col为空的字段</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="keyword">is</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="逻辑操作符"><a class="markdownIt-Anchor" href="#逻辑操作符"></a> 逻辑操作符</h1>
+<blockquote>
+<p>优先级： <code>AND</code> &gt; <code>OR</code></p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- AND, OR</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;</span>cond1<span class="operator">&gt;</span> <span class="keyword">or</span> (<span class="operator">&lt;</span>cond2<span class="operator">&gt;</span> <span class="keyword">and</span> <span class="operator">&lt;</span>cond3<span class="operator">&gt;</span>); <span class="comment">-- 不加括号，结果会改变</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- IN, NOT</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="comment">-- 相当于OR，性能稍好一点，也更直观；NOT主要配合IN使用</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="keyword">not</span> <span class="keyword">in</span> (<span class="operator">&lt;</span>value1<span class="operator">&gt;</span>, <span class="operator">&lt;</span>value2<span class="operator">&gt;</span>); </span><br></pre></td></tr></table></figure>
+<hr />
 <h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1>
 <h2 id="压缩包安装"><a class="markdownIt-Anchor" href="#压缩包安装"></a> 压缩包安装</h2>
 <ol>
@@ -282,7 +297,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/AI%E7%88%B1%E5%A4%96%E5%8D%96/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -300,7 +315,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/AI%E7%88%B1%E5%A4%96%E5%8D%96/" class="post-title-link" itemprop="url">未命名</a>
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">vim基本操作</a>
         </h2>
 
         <div class="post-meta-container">
@@ -310,9 +325,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-09-16 17:14:58 / 修改时间：20:23:27" itemprop="dateCreated datePublished" datetime="2024-09-16T17:14:58+08:00">2024-09-16</time>
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-23 11:13:46" itemprop="dateModified" datetime="2024-09-23T11:13:46+08:00">2024-09-23</time>
     </span>
 
   
@@ -325,20 +346,207 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="nginx"><a class="markdownIt-Anchor" href="#nginx"></a> Nginx</h1>
-<h2 id="反向代理"><a class="markdownIt-Anchor" href="#反向代理"></a> 反向代理</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        # 反向代理,处理管理端发送的请求</span><br><span class="line">        location /api/ &#123;</span><br><span class="line">            # localhost/api/abc转发到下面admin/abc</span><br><span class="line">            proxy_pass   http://localhost:8080/admin/;</span><br><span class="line">            #proxy_pass   http://webservers/admin/;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>好处：</p>
+          <h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
 <ul>
-<li>不会暴露服务器，服务器可以安全放在内网，由nginx转发、缓存。</li>
+<li><code>&lt;C-o&gt;, &lt;C-i&gt;</code>：回到前一个/后一个位置（例如，打开文件默认在第一行，<code>&lt;C-o&gt;</code>回到上次编辑位置）。<strong>注意这个操作是跨文件的</strong>。</li>
+<li><code>`0</code>：返回上次位置</li>
+<li>词：<code>w</code>（下一个词），<code>b</code>（词初），<code>e</code>（词尾）</li>
+<li>行：<code>0</code>（行初），<code>^</code>（第一个非空格字符），<code>$</code>（行尾）</li>
+<li>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</li>
+<li>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</li>
+<li><code>x</code>删除字符（等同于<code>dl</code>）</li>
+<li><code>s</code>(substitute)替换字符（等同于<code>xi</code>）
+<ul>
+<li>替换命令<code>:&#123;作用范围&#125;s/&#123;目标文本&#125;/&#123;替换文本&#125;/&#123;替换标志&#125;</code></li>
+<li><code>:%s/s_content/o_content/g</code> 全局替换</li>
 </ul>
-<h2 id="负载均衡"><a class="markdownIt-Anchor" href="#负载均衡"></a> 负载均衡</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">upstream webservers&#123;</span><br><span class="line">      # 服务器组，按权重分配</span><br><span class="line">      server 127.0.0.1:8080 weight=90 ;</span><br><span class="line">      server 127.0.0.1:8088 weight=10 ;</span><br><span class="line">      # ip_hash 根据ip分配</span><br><span class="line">      # least_conn 分配到最少链接的服务器</span><br><span class="line">      # url_hash 根据url分配</span><br><span class="line">      # fair 分配到响应时间最短的服务器</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        </span><br><span class="line">        # 反向代理,处理管理端发送的请求</span><br><span class="line">        location /api/ &#123;</span><br><span class="line">            # 负载均衡</span><br><span class="line">            proxy_pass   http://webservers/admin/;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="swagger"><a class="markdownIt-Anchor" href="#swagger"></a> Swagger</h1>
+</li>
+<li>可视化模式 + 操作
+<ul>
+<li>选中文字,<code>d</code>删除（剪切） 或者<code>c</code>改变</li>
+</ul>
+</li>
+<li><code>u</code>撤销，<code>&lt;C-r&gt;</code>重做</li>
+<li><code>y</code>复制 / “yank” （其他一些命令比如<code>d</code>也会复制）</li>
+<li><code>p</code>粘贴
+<ul>
+<li><code>+p</code> 粘贴系统剪贴板</li>
+</ul>
+</li>
+<li><strong>更多值得学习的</strong>:
+<ul>
+<li><code>:&lt;line&gt;</code> 跳到line行</li>
+<li><code>~</code>改变字符的大小写</li>
+<li><code>3w</code>向前移动三个词</li>
+<li><code>A</code>（大写）可以迅速定位到行尾进行修改</li>
+<li><code>:!python prog.py</code> 使用！直接运行shell命令</li>
+</ul>
+</li>
+<li><code>%</code>匹配括号</li>
+</ul>
+<h2 id="多行操作"><a class="markdownIt-Anchor" href="#多行操作"></a> 多行操作</h2>
+<p><code>&lt;C-v&gt;</code> 选中多行，<code>Shift + i</code>输入后<code>Esc</code>，即可多行同步输入</p>
+<h1 id="文件操作"><a class="markdownIt-Anchor" href="#文件操作"></a> 文件操作</h1>
+<ul>
+<li><code>:e filename</code>切换到filename文件</li>
+<li><code>:bn/bp</code>切换到下/上个文件</li>
+<li><code>&lt;C-x&gt;&lt;C-f&gt;</code> 自动补全路径</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Markdown%E6%A8%A1%E6%9D%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Markdown%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">Markdown模板</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-10 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-10T00:00:00+08:00">2023-11-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-21 10:53:01" itemprop="dateModified" datetime="2024-09-21T10:53:01+08:00">2024-09-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="一号标题"><a class="markdownIt-Anchor" href="#一号标题"></a> 一号标题</h1>
+<h2 id="title-2"><a class="markdownIt-Anchor" href="#title-2"></a> Title 2</h2>
+<h3 id="三号标题"><a class="markdownIt-Anchor" href="#三号标题"></a> 三号标题</h3>
+<h4 id="title-4"><a class="markdownIt-Anchor" href="#title-4"></a> Title 4</h4>
+<h5 id="五号标题"><a class="markdownIt-Anchor" href="#五号标题"></a> 五号标题</h5>
+<h6 id="title-6"><a class="markdownIt-Anchor" href="#title-6"></a> Title 6</h6>
+<hr />
+<table>
+<thead>
+<tr>
+<th style="text-align:left">标题</th>
+<th style="text-align:center">标题</th>
+<th style="text-align:right">标题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">左对齐</td>
+<td style="text-align:center">两端对齐</td>
+<td style="text-align:right">右对齐</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Unordered List
+<ul>
+<li>Unordered List</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Ordered List<br />
+2. Ordered List</li>
+</ol>
+<ul>
+<li>[x] TO-DO List</li>
+<li>[] TO-DO List</li>
+</ul>
+<p><s>Delete Line</s><br />
+<strong>Blod</strong><br />
+<em>Italic</em><br />
+<code>Code</code><br />
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>E</mi><mo>=</mo><mi>M</mi><msup><mi>C</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = MC^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><br />
+<a href="#">Link</a></p>
+<p><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>Hello, World!</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="comment">--- auto_detect: ture</span></span><br><span class="line"><span class="comment">+++ auto_detect: false</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>Knife4j：Java MVC框架集成Swagger</p>
+<p>No Silver Bullet</p>
+<blockquote>
+<p>By Brooks</p>
 </blockquote>
-<p>API接口文档生成、测试</p>
+</blockquote>
+<blockquote>
+<p>[!NOTE]<br />
+Note that it is a note.</p>
+</blockquote>
+<blockquote>
+<p>[!WARNING]<br />
+WARNING!</p>
+</blockquote>
+<blockquote>
+<p>[!DANGER]<br />
+Notice the DANGER!</p>
+</blockquote>
+<blockquote>
+<p>[!SUCCESS]<br />
+Now it is SUCCESS.</p>
+</blockquote>
+<blockquote>
+<p>[!INFO]<br />
+Here is some INFO.</p>
+</blockquote>
+<hr class="footnotes-sep" />
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Hello World! <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
       
     </div>
@@ -401,7 +609,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-15 14:55:18" itemprop="dateModified" datetime="2024-09-15T14:55:18+08:00">2024-09-15</time>
+      <time title="修改时间：2024-09-21 10:49:23" itemprop="dateModified" datetime="2024-09-21T10:49:23+08:00">2024-09-21</time>
     </span>
 
   
@@ -439,201 +647,14 @@ Adding the missing piece later means waiting until the damage is already underwa
 </blockquote>
 <p>(That is why all type of variables create memory boxes of 64 bits. It is just the memory of the address.)</p>
 <p>Therefore, When we use <code>obj2 = obj</code>, Java simply copy the addr of <code>obj</code> and assign it to <code>obj2</code> (They are pointing to the same Object), that is why when we change <code>obj2.weight</code> it effects <code>obj.weight</code> too.</p>
-<h1 id="22-sllist"><a class="markdownIt-Anchor" href="#22-sllist"></a> 2.2 SLList</h1>
-<h2 id="static"><a class="markdownIt-Anchor" href="#static"></a> Static</h2>
-<blockquote>
-<p>if you don’t use any instance members of the outer class, make the nested class static.</p>
-</blockquote>
-<h2 id="overloaded"><a class="markdownIt-Anchor" href="#overloaded"></a> Overloaded</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Share the same name but have different parameters.</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">size</span><span class="params">(IntNode p)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (p.next == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> + size(p.next);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">size</span><span class="params">()</span> &#123;</span><br><span class="line">   <span class="keyword">return</span> size(first);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="sentinel-node"><a class="markdownIt-Anchor" href="#sentinel-node"></a> Sentinel Node</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">SLList</span><span class="params">()</span> &#123;</span><br><span class="line">    first = <span class="literal">null</span>;</span><br><span class="line">    size = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addLast</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (size == <span class="number">0</span>) &#123;</span><br><span class="line">        addFirst(x);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// This solution works, but special case code like that shown above should be avoided when necessary.</span></span><br><span class="line">    <span class="type">IntNode</span> <span class="variable">p</span> <span class="operator">=</span> first;</span><br><span class="line">    <span class="keyword">while</span> (p.next != <span class="literal">null</span>) &#123;</span><br><span class="line">        p = p.next;</span><br><span class="line">    &#125;</span><br><span class="line">    p.next = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, <span class="literal">null</span>);</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>We can do this by creating a special node that is always there, which we will call a <strong>sentinel node</strong>. The sentinel node will hold a value, which we won’t care about.</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addLast</span><span class="params">(<span class="type">int</span> x)</span> &#123;</span><br><span class="line">    <span class="type">IntNode</span> <span class="variable">p</span> <span class="operator">=</span> sentinel;</span><br><span class="line">    <span class="keyword">while</span> (p.next != <span class="literal">null</span>) &#123;</span><br><span class="line">        p = p.next;</span><br><span class="line">    &#125;</span><br><span class="line">    p.next = <span class="keyword">new</span> <span class="title class_">IntNode</span>(x, <span class="literal">null</span>);</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="30-testing"><a class="markdownIt-Anchor" href="#30-testing"></a> 3.0 Testing</h1>
-<h2 id="the-operator"><a class="markdownIt-Anchor" href="#the-operator"></a> The <code>==</code> operator</h2>
-<blockquote>
-<p><code>==</code> operator simply compares the literal bits in the memory boxes. (e.g., for objects it only compares their address.)</p>
-</blockquote>
-<h2 id="private-recursive-helper"><a class="markdownIt-Anchor" href="#private-recursive-helper"></a> Private Recursive Helper</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/** Sorts strings destructively starting from item start. */</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(String[] x, <span class="type">int</span> start)</span> &#123; </span><br><span class="line">   <span class="type">int</span> <span class="variable">smallestIndex</span> <span class="operator">=</span> findSmallest(x);</span><br><span class="line">   swap(x, start, smallestIndex);</span><br><span class="line">   sort(x, start + <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Sorts strings destructively. */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(String[] x)</span> &#123; </span><br><span class="line">   sort(x, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>This approach is quite common when trying to use recursion on a data structure that is not inherently recursive, e.g. arrays.</p>
-</blockquote>
-<h2 id="junit"><a class="markdownIt-Anchor" href="#junit"></a> JUnit</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// your test code</span></span><br><span class="line">    assertEquals(actual, expected);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="autograder-vs-junit"><a class="markdownIt-Anchor" href="#autograder-vs-junit"></a> Autograder vs JUnit</h2>
-<p>Rely on an Autograder, there is plenty of time that you’re not in control of neither your workflow or your code.</p>
-<h2 id="test-driven-development-tdd"><a class="markdownIt-Anchor" href="#test-driven-development-tdd"></a> Test-Driven Development (TDD)</h2>
-<p>TDD is a development process in which we write tests for code before writing the code itself. The steps are as follows:</p>
-<ol>
-<li>Identify a new feature.</li>
-<li>Write a unit test for that feature.</li>
-<li>Run the test. It should fail.</li>
-<li>Write code that passes the test. Yay!</li>
-<li>Optional: refactor code to make it faster, cleaner, etc. Except now we have a reference to tests that should pass.</li>
-</ol>
-<blockquote>
-<p>You should <strong>definitely write tests but only when they might be useful!</strong></p>
-</blockquote>
-<h1 id="41-overload"><a class="markdownIt-Anchor" href="#41-overload"></a> 4.1 Overload</h1>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">longest</span><span class="params">(SLList&lt;String&gt; list)</span>;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">longest</span><span class="params">(AList&lt;String&gt; list)</span>;</span><br></pre></td></tr></table></figure>
-<p>Java will choose the right method according to the parameter you pass in.</p>
-<blockquote>
-<p>However, it is ugly, repetitive and hard to maintain.</p>
-</blockquote>
-<h2 id="override"><a class="markdownIt-Anchor" href="#override"></a> @Override</h2>
-<blockquote>
-<p>Override is something like a proofreader. It will remind you when you make a typo and named method in error.</p>
-</blockquote>
-<h1 id="42-interface"><a class="markdownIt-Anchor" href="#42-interface"></a> 4.2 Interface</h1>
-<p>Summary:</p>
-<ul>
-<li>All methods must be public.</li>
-<li>All variables must be public static final.</li>
-<li>Cannot be instantiated</li>
-<li>All methods are by default abstract unless specified to be <code>default</code></li>
-<li>Can implement more than one interface per class</li>
-</ul>
-<h2 id="default"><a class="markdownIt-Anchor" href="#default"></a> Default</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Use `default` to define a method in `interface`</span></span><br><span class="line"><span class="keyword">default</span> <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// your code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="extends"><a class="markdownIt-Anchor" href="#extends"></a> Extends</h2>
-<blockquote>
-<p>The <code>extends</code> keyword defines “is-a”.</p>
-</blockquote>
-<blockquote>
-<p>By using the <code>extends</code> keyword, subclasses inherit all <strong>members</strong> of the parent class. “Members” includes:</p>
-</blockquote>
-<ol>
-<li>All instance and static variables</li>
-<li>All methods</li>
-<li>All nested classes</li>
-</ol>
-<blockquote>
-<p>Note that constructors are not inherited, and private members cannot be directly accessed by subclasses.</p>
-</blockquote>
-<h3 id="subclass-constructor"><a class="markdownIt-Anchor" href="#subclass-constructor"></a> Subclass Constructor</h3>
-<p>A subclass is firstly its parentclass. Using the <code>super</code> keyword.</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">VengefulSLList</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>();</span><br><span class="line">    deletedItems = <span class="keyword">new</span> <span class="title class_">SLList</span>&lt;Item&gt;();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Or, if we choose not to, Java will automatically make a call to the superclass’s <em>no-argument</em> constructor for us.</p>
-<h2 id="compile-time-error"><a class="markdownIt-Anchor" href="#compile-time-error"></a> Compile-time Error</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">VengefulSLList&lt;Integer&gt; vsl = <span class="keyword">new</span> <span class="title class_">VengefulSLList</span>&lt;Integer&gt;(<span class="number">9</span>);</span><br><span class="line">SLList&lt;Integer&gt; sl = vsl;</span><br><span class="line"></span><br><span class="line">sl.addLast(<span class="number">50</span>);</span><br><span class="line">sl.removeLast();</span><br><span class="line"></span><br><span class="line">sl.printLostItems(); <span class="comment">// 会出错</span></span><br><span class="line">VengefulSLList&lt;Integer&gt; vsl2 = sl; <span class="comment">// 会出错</span></span><br></pre></td></tr></table></figure>
-<p>尽管运行时sl是动态的<code>VengefulSLList</code>类型，Java编译器将对象看作静态类型；<code>SLList</code>没有<code>printLostItems</code>方法，因此会报错；最后一句也是一样。</p>
-<h1 id="43-polymorphism"><a class="markdownIt-Anchor" href="#43-polymorphism"></a> 4.3 Polymorphism</h1>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">OurComparable</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(Object o)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> OurComparable <span class="title function_">max</span><span class="params">(OurComparable[] items)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">maxDex</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; items.length; i += <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">cmp</span> <span class="operator">=</span> items[i].compareTo(items[maxDex]);</span><br><span class="line">            <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                maxDex = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> items[maxDex];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Dog</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compareTo</span><span class="params">(Object o)</span> &#123;</span><br><span class="line">        <span class="type">Dog</span> <span class="variable">uddaDog</span> <span class="operator">=</span> (Dog) o;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.size - uddaDog.size;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用多态，就可以写出一个统一的max()方法，而不需要考虑各个类的数据结构</p>
-<h1 id="final"><a class="markdownIt-Anchor" href="#final"></a> Final</h1>
-<blockquote>
-<p>The <code>final</code> keyword prevents the variable from being changed after its first assignment.</p>
-</blockquote>
-<p>Notice: it doesn’t work for reference!</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> ArrayDeque&lt;String&gt;() deque = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;String&gt;();</span><br></pre></td></tr></table></figure>
-<p>deque不可改变，然而deque指向的ArrayDeque可变</p>
-<h1 id="specific-generic-types"><a class="markdownIt-Anchor" href="#specific-generic-types"></a> Specific Generic Types</h1>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;K <span class="keyword">extends</span> <span class="title class_">Comparable</span>&lt;K&gt;, V&gt; K <span class="title function_">maxKey</span><span class="params">(Map61B&lt;K, V&gt; map)</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>The <code>K extends Comparable&lt;K&gt;</code> means keys must implement the comparable interface and can be compared to other K’s.</p>
-</blockquote>
-<h1 id="arrayset"><a class="markdownIt-Anchor" href="#arrayset"></a> ArraySet</h1>
-<blockquote>
-<p>注意Set的add()方法需要检查是否已包含元素。</p>
-</blockquote>
-<h1 id="iterator"><a class="markdownIt-Anchor" href="#iterator"></a> Iterator</h1>
-<p>For code on the right to work:</p>
-<ol>
-<li>Compiler checks that Lists have a method called iterator() that returns an  Iterator&lt;Integer&gt;.</li>
-<li>Then, compiler checks that Iterators have:
-<ul>
-<li>hasNext()</li>
-<li>next()</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArraySet</span>&lt;T&gt; <span class="keyword">implements</span> <span class="title class_">Iterable</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Iterator&lt;T&gt; <span class="title function_">iterator</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">ArraySetIterator</span>();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">ArraySetIterator</span> <span class="keyword">implements</span> <span class="title class_">Iterator</span>&lt;T&gt; &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> wizPos;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">ArraySetIterator</span><span class="params">()</span> &#123;</span><br><span class="line">            wizPos = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">hasNext</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> wizPos &lt; size;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> T <span class="title function_">next</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="type">T</span> <span class="variable">returnItem</span> <span class="operator">=</span> items[wizPos];</span><br><span class="line">            wizPos += <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> returnItem;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="the-philosophy-of-exceptions"><a class="markdownIt-Anchor" href="#the-philosophy-of-exceptions"></a> The Philosophy of Exceptions</h1>
-<blockquote>
-<p>Exceptions keep error handling separate from the rest of the program.</p>
-</blockquote>
-<p>Program without exceptions:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (theFileIsOpen) &#123;</span><br><span class="line">    determine its size;</span><br><span class="line">    <span class="keyword">if</span> (gotTheFileLength) &#123;</span><br><span class="line">        allocate that much memory;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> error(<span class="string">&quot;fileLengthError&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>Program with exceptions:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    open the file;</span><br><span class="line">    determine its size;</span><br><span class="line">    allocate that much memory;</span><br><span class="line">    read the file into memory;</span><br><span class="line">    close the file;</span><br><span class="line">&#125; <span class="keyword">catch</span> (fileOpenFailed) &#123;</span><br><span class="line">    doSomething;</span><br></pre></td></tr></table></figure>
-<h1 id="exceptions-catch-and-specify"><a class="markdownIt-Anchor" href="#exceptions-catch-and-specify"></a> Exceptions: Catch and Specify</h1>
-<blockquote>
-<p><strong>Catch</strong> the error when you can handle the problem there. Keep it from escaping!</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        gulgate();</span><br><span class="line">    &#125; <span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Averted!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>Specify</strong> the error when someone else should handle the error. Make sure the caller knows the method is dangerous!</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    gulgate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="abstract"><a class="markdownIt-Anchor" href="#abstract"></a> Abstract</h1>
-<blockquote>
-<p>If an implementing class fails to implement any abstract methods inherited from an interface, then that class must be declared abstract.</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">AbstractBoundedQueue</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* the method must be defined with the abstract keyword </span></span><br><span class="line"><span class="comment">     * and without an implementation (without braces, and </span></span><br><span class="line"><span class="comment">     * followed by a semicolon) </span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">     <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title function_">moveTo</span><span class="params">(<span class="type">double</span> deltaX, <span class="type">double</span> deltaY)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="package"><a class="markdownIt-Anchor" href="#package"></a> Package</h1>
-<blockquote>
-<p>It is very possible that with all the code in this world, you would create classes that share names with those from a different project.</p>
-</blockquote>
-<blockquote>
-<p>the <strong>package</strong> — a namespace that organizes classes and interfaces.<br />
-naming convention: package name starts with the website address, backwards.</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">com.joshh.animal // joshh.com</span><br></pre></td></tr></table></figure>
-<h1 id="jar"><a class="markdownIt-Anchor" href="#jar"></a> JAR</h1>
-<blockquote>
-<p>JAR files are just like zip files.<br />
-JAR files do not keep your code safe, and thus you should not share your .jar files of your projects with other students.</p>
-</blockquote>
-<h1 id="access-control"><a class="markdownIt-Anchor" href="#access-control"></a> Access Control</h1>
-<ul>
-<li><code>private</code>: Only the given class can access. Subclass cannot.</li>
-<li><code>package private</code>: Only the class from the same package can access.</li>
-<li><code>protected</code>: the same package or subclass can access.</li>
-</ul>
-<h1 id="encapsulation"><a class="markdownIt-Anchor" href="#encapsulation"></a> Encapsulation</h1>
-<blockquote>
-<p>A module is said to be encapsulated if its implementation is completely hidden, and it can be accessed only through a documented interface.</p>
-</blockquote>
-<h1 id="delegation"><a class="markdownIt-Anchor" href="#delegation"></a> Delegation</h1>
-<blockquote>
-<p>Extension tends to be used when you know what is going on in the parent class.</p>
-</blockquote>
-<blockquote>
-<p>Delegation is when you do not want to consider your current class to be a version of the class that you are pulling the method from.</p>
-</blockquote>
-<h1 id="assn"><a class="markdownIt-Anchor" href="#assn"></a> Assn</h1>
-<h2 id="proj0"><a class="markdownIt-Anchor" href="#proj0"></a> Proj0</h2>
-<blockquote>
-<p>[!NOTE]<br />
-注意严格按照讲义要求编程，不要有讲义以外的函数或方法，否则Gradescope OJ会扣掉API的10分！</p>
-</blockquote>
-<p>计算<code>ForceExertedByX/Y</code>，不要使用<code>Math.abs()</code>或者<code>a &lt; 0 ? -a : a</code>来通过本地测试，否则OJ会报错。力的方向（正负）需要根据行星的相对位置来定。</p>
-<h2 id="proj1"><a class="markdownIt-Anchor" href="#proj1"></a> Proj1</h2>
-<ul>
-<li>注意构造空的Deque时，确保哨兵正确指向自己。</li>
-<li>add()需要更改4个指针的方向。修改指针指向时，注意备份原指针指向位置。</li>
-<li>对于循环Deque，注意print()的迭代条件。</li>
-<li>remove()方法需要检查isEmpty()，否则不应该执行。</li>
-<li>get()方法，index从0开始，LinkedList和ArrayList的对应关系是一样的。</li>
-</ul>
-<h3 id="array-deque"><a class="markdownIt-Anchor" href="#array-deque"></a> Array Deque</h3>
-<ul>
-<li>先设计，再编码。好好想想要设计怎样的ArrayDeque。分离传入index和实际index。</li>
-<li>取模！！！一定要注意<code>-1 % size = -1</code>是取余数，<code>Math.floorMod(-1, size) = size-1</code>才是取模！（当Gradescope出现index=-1一般就是取模问题）</li>
-<li><code>addFirst()</code>后调用<code>removeLast()</code>时，size变回0，但是没有调整下标的话head和end不会连在一起（错误状态）</li>
-<li>考虑<code>resize()</code>的实现方法。浮点数运算比整数运算慢很多！</li>
-</ul>
-<h2 id="proj2"><a class="markdownIt-Anchor" href="#proj2"></a> Proj2</h2>
-<p>思路：在房间旁边画房间，并在房间重合边缘处打洞，实现迷宫。</p>
-<ol>
-<li>首先设计<code>Room.java</code>，内置画一个房间，在房间旁边生成房间的方法。<br />
-稀里糊涂地生成了不错的迷宫出来。但是不好打洞！</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/CS61B%20sp18/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -659,7 +680,7 @@ JAR files do not keep your code safe, and thus you should not share your .jar fi
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/%E6%95%B0%E5%AD%97%E4%BA%BA%E6%96%87%E6%97%85%20%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/AI%E7%88%B1%E5%A4%96%E5%8D%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -677,7 +698,7 @@ JAR files do not keep your code safe, and thus you should not share your .jar fi
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/%E6%95%B0%E5%AD%97%E4%BA%BA%E6%96%87%E6%97%85%20%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="post-title-link" itemprop="url">未命名</a>
+          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/AI%E7%88%B1%E5%A4%96%E5%8D%96/" class="post-title-link" itemprop="url">AI爱外卖</a>
         </h2>
 
         <div class="post-meta-container">
@@ -689,7 +710,7 @@ JAR files do not keep your code safe, and thus you should not share your .jar fi
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-09-11 20:48:08 / 修改时间：21:20:41" itemprop="dateCreated datePublished" datetime="2024-09-11T20:48:08+08:00">2024-09-11</time>
+      <time title="创建时间：2024-09-21 00:00:00 / 修改时间：10:48:57" itemprop="dateCreated datePublished" datetime="2024-09-21T00:00:00+08:00">2024-09-21</time>
     </span>
 
   
@@ -702,56 +723,20 @@ JAR files do not keep your code safe, and thus you should not share your .jar fi
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="10-数字时代虚拟影像ip赋能文旅产业发展研究"><a class="markdownIt-Anchor" href="#10-数字时代虚拟影像ip赋能文旅产业发展研究"></a> 1.0 <a target="_blank" rel="noopener" href="https://kns.cnki.net/nzkhtml/xmlRead/trialRead.html?dbCode=CJFD&amp;tableName=CJFDTOTAL&amp;fileName=FLBZ202303024&amp;fileSourceType=1&amp;invoice=n1Coy3G1pP35%2bG48KG%2b7s4cqV%2buntTl4%2fy0JHOJYAGfFq3ytn5kS8xCtgs20rUS%2bcM0vdKInMzf9ZecCF%2fdLPhYT%2fCX6jJIDTZAQeMxhFn6Jq6bjBwMkgfo5ucrM5G8Hx8UxIlWmf%2fMCm2GhPY2m2Q80XybOcN4%2b6ZbnvwAbd7E%3d&amp;appId=KNS_BASIC_PSMC">数字时代虚拟影像IP赋能文旅产业发展研究</a></h1>
-<p>来源：湖南包装。海口经济学院。被引用数：6</p>
-<h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h2>
-<p>数字技术是文旅转型升级的重要引擎。5G网络加速了虚拟形象IP的开发和应用。</p>
-<h2 id="结论"><a class="markdownIt-Anchor" href="#结论"></a> 结论</h2>
-<p>虚拟形象IP商业价值：</p>
-<ol>
-<li>与品牌跨界合作</li>
-<li>走入直播间带货</li>
-<li>代言品牌</li>
-<li>粉丝效益转化交易</li>
-</ol>
-<h2 id="图表"><a class="markdownIt-Anchor" href="#图表"></a> 图表</h2>
-<p>提出了虚拟形象IP赋能文旅的具体方法。<br />
-提到了身份型虚拟形象和服务型虚拟形象。<br />
-<img src="Source/Pasted%20image%2020240911205700.png" alt="" /></p>
-<h2 id="正文"><a class="markdownIt-Anchor" href="#正文"></a> 正文</h2>
-<p>IP：Intellectual Property（知识产权）<br />
-商业应用：</p>
-<ol>
-<li>角色设计型，如Hello Kitty、米菲兔。通过形象授权、主题园区、周边潮玩来盈利。</li>
-<li>品牌标志。如京东、搜狐、腾讯将动物符号嫁接到品牌上，强化和塑造品牌认知。</li>
-<li>品牌吉祥物。米其林、海尔、麦当劳，虚拟形象人格化，增加品牌感染力。</li>
-</ol>
-<p>案例：</p>
-<ol>
-<li>
-<p>阿里巴巴动物园<br />
-天猫、飞猪、盒马鲜生、虾米音乐、蚂蚁金服。每个应用都对应一个动物形象。</p>
-</li>
-<li>
-<p>熊本熊<br />
-日本熊本县的旅游吉祥物。鲜明的形象设计、成功的营销策略、政府的主导推行，让这个虚拟小熊形象为熊本县带来巨大经济效益。<br />
-<img src="Source/Pasted%20image%2020240911205642.png" alt="" /><br />
-<img src="Source/Pasted%20image%2020240911205630.png" alt="" /></p>
-</li>
-<li>
-<p>地方虚拟形象<br />
-眉山市数字代言人“苏小妹”（虚构的苏轼妹妹），以古代少女发髻、宋代襦裙为基本造型特点，塑造成一个热爱诗词歌赋、国风舞蹈的虚拟人物，结合数字技术讲述眉山故事，传播中华优秀传统文化。</p>
-</li>
-<li>
-<p>虚拟形象作为艺术装置<br />
-融入城市公共空间,例如长沙 IFS 的 KAWS、成都 IFS 的熊猫、深圳万象天地的抱抱象,将 IP 植入点引流成网红打卡地。</p>
-</li>
-</ol>
-<h1 id="值得学习的点"><a class="markdownIt-Anchor" href="#值得学习的点"></a> 值得学习的点</h1>
-<ol>
-<li>数字人文旅的论文也可以画一张产业发展路径图</li>
-<li>这篇文章的结论可以用来说明数字孪生人赋能文旅的商业价值和意义</li>
-</ol>
+          <h1 id="nginx"><a class="markdownIt-Anchor" href="#nginx"></a> Nginx</h1>
+<h2 id="反向代理"><a class="markdownIt-Anchor" href="#反向代理"></a> 反向代理</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        # 反向代理,处理管理端发送的请求</span><br><span class="line">        location /api/ &#123;</span><br><span class="line">            # localhost/api/abc转发到下面admin/abc</span><br><span class="line">            proxy_pass   http://localhost:8080/admin/;</span><br><span class="line">            #proxy_pass   http://webservers/admin/;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好处：</p>
+<ul>
+<li>不会暴露服务器，服务器可以安全放在内网，由nginx转发、缓存。</li>
+</ul>
+<h2 id="负载均衡"><a class="markdownIt-Anchor" href="#负载均衡"></a> 负载均衡</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">upstream webservers&#123;</span><br><span class="line">      # 服务器组，按权重分配</span><br><span class="line">      server 127.0.0.1:8080 weight=90 ;</span><br><span class="line">      server 127.0.0.1:8088 weight=10 ;</span><br><span class="line">      # ip_hash 根据ip分配</span><br><span class="line">      # least_conn 分配到最少链接的服务器</span><br><span class="line">      # url_hash 根据url分配</span><br><span class="line">      # fair 分配到响应时间最短的服务器</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        </span><br><span class="line">        # 反向代理,处理管理端发送的请求</span><br><span class="line">        location /api/ &#123;</span><br><span class="line">            # 负载均衡</span><br><span class="line">            proxy_pass   http://webservers/admin/;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="swagger"><a class="markdownIt-Anchor" href="#swagger"></a> Swagger</h1>
+<blockquote>
+<p>Knife4j：Java MVC框架集成Swagger</p>
+</blockquote>
+<p>API接口文档生成、测试</p>
 
       
     </div>
@@ -1249,143 +1234,6 @@ Hierarchy: 层次结构，大的子系统由多个小的子系统组织成。即
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS5%20PA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS5%20PA/" class="post-title-link" itemprop="url">ICS5 PA</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2024-05-30T00:00:00+08:00">2024-05-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-21 17:20:40" itemprop="dateModified" datetime="2024-08-21T17:20:40+08:00">2024-08-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="pa1-1-24530"><a class="markdownIt-Anchor" href="#pa1-1-24530"></a> PA1-1 24.5.30</h1>
-<p>又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！</p>
-<h2 id="target"><a class="markdownIt-Anchor" href="#target"></a> target</h2>
-<p>第一课的目标是修正一个register错误声明</p>
-<h2 id="insteresting"><a class="markdownIt-Anchor" href="#insteresting"></a> insteresting</h2>
-<ul>
-<li>中途网易源Bad Gateway 502了，更换清华源，学会了<code>:%s/163/tuna/g</code>非常爽！</li>
-<li>又学了几个<a href="../%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8">终端快捷键</a></li>
-<li>想到了用 <code>ccache</code> 加速我的PA</li>
-</ul>
-<h2 id="problems"><a class="markdownIt-Anchor" href="#problems"></a> problems</h2>
-<ol>
-<li><code>union</code> 和 <code>struct</code> 的区别？<br />
-<code>unioin</code> 在同一个内存空间中存储不同的数据类型。<br />
-<code>struct</code> 则是同时存储不同的数据类型。</li>
-<li>为什么要用 <code>union</code>？阅读i386手册<br />
-2.3.1 General Registers<br />
-As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-manual/s02_03.htm#fig2-5">Figure 2-5</a> shows, the low-order word of each of these eight registers has a separate name and can be treated as a unit. This feature is useful for handling 16-bit data items and for compatibility with the 8086 and 80286 processors. The word registers are named AX, BX, CX, DX, BP, SP, SI, and DI.<br />
-对于CPU来说，可以把AH AX AL看成单独的单元，拆分成小块。所以它们是共用关系。</li>
-</ol>
-<h1 id="pa1-2-alu-2465"><a class="markdownIt-Anchor" href="#pa1-2-alu-2465"></a> PA1-2 ALU 24.6.5</h1>
-<h2 id="target-2"><a class="markdownIt-Anchor" href="#target-2"></a> target</h2>
-<p>实现ALU中的各类运算，包括设置标志位</p>
-<h2 id="knowledge"><a class="markdownIt-Anchor" href="#knowledge"></a> knowledge</h2>
-<h3 id="appendix-c"><a class="markdownIt-Anchor" href="#appendix-c"></a> Appendix C</h3>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Function</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CF</td>
-<td>Carry Flag ── Set on high-order bit carry or borrow; cleared otherwise.</td>
-</tr>
-<tr>
-<td>PF</td>
-<td>Parity Flag ── Set if low-order eight bits of result contain an even number of 1 bits; cleared otherwise.</td>
-</tr>
-<tr>
-<td>ZF</td>
-<td>Zero Flag ── Set if result is zero; cleared otherwise.</td>
-</tr>
-<tr>
-<td>SF</td>
-<td>Sign Flag ── Set equal to high-order bit of result (0 is positive, 1 if negative).</td>
-</tr>
-<tr>
-<td>OF<br></td>
-<td>Overflow Flag ── Set if result is too large a positive number or too small a negative number (excluding sign-bit) to fit in destination operand; cleared otherwise.</td>
-</tr>
-</tbody>
-</table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS5%20PA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 

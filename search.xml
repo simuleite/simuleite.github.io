@@ -567,11 +567,26 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 <h1 id="登录数据库"><a class="markdownIt-Anchor" href="#登录数据库"></a> 登录数据库</h1>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u &lt;username&gt; -p</span><br><span class="line">$ &lt;password&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="导入数据库"><a class="markdownIt-Anchor" href="#导入数据库"></a> 导入数据库</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 设置中文字符集</span><br><span class="line">mysql&gt; SET NAMES &#x27;utf8mb4&#x27;;</span><br><span class="line">mysql&gt; SET character_set_server = &#x27;utf8mb4&#x27;;</span><br><span class="line">mysql&gt; SOURCE /path/to/database.sql;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- 设置中文字符集</span><br><span class="line">mysql&gt; SET NAMES &#x27;utf8mb4&#x27;;</span><br><span class="line">mysql&gt; SET character_set_server = &#x27;utf8mb4&#x27;;</span><br><span class="line">mysql&gt; SOURCE /path/to/database.sql;</span><br></pre></td></tr></table></figure>
 <h2 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 创建数据库</span><br><span class="line">CREATE DATABASE yourDatabase</span><br><span class="line">  CHARACTER SET utf8mb4;</span><br><span class="line"></span><br><span class="line"># 查看所有数据库</span><br><span class="line">show databases;</span><br><span class="line"></span><br><span class="line"># 进入数据库</span><br><span class="line">use yourDatabase</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- 创建数据库</span><br><span class="line">CREATE DATABASE yourDatabase</span><br><span class="line">  CHARACTER SET utf8mb4;</span><br><span class="line"></span><br><span class="line">-- 查看所有数据库</span><br><span class="line">show databases;</span><br><span class="line"></span><br><span class="line">-- 进入数据库</span><br><span class="line">use yourDatabase</span><br></pre></td></tr></table></figure>
 <h2 id="表"><a class="markdownIt-Anchor" href="#表"></a> 表</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 建表</span><br><span class="line">CREATE TABLE yourTable (</span><br><span class="line">  id INT AUTO_INCREMENT PRIMARY KEY,</span><br><span class="line">  name varchar(50) NOT NULL,</span><br><span class="line">  age INT NOT NULL</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"># 查看表 </span><br><span class="line">show tables;</span><br><span class="line"></span><br><span class="line"># \G 参数单独展示每一行，避免过宽</span><br><span class="line">select * from yourTable\G</span><br><span class="line"></span><br><span class="line">insert into yourTable (name, email, age) values (&#x27;eric&#x27;, &#x27;example@email.com&#x27;, 19);</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 建表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> yourTable (</span><br><span class="line">  id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">  age <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看表 </span></span><br><span class="line"><span class="keyword">show</span> tables;</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> yourTable (name, email, age) <span class="keyword">values</span> (<span class="string">&#x27;eric&#x27;</span>, <span class="string">&#x27;example@email.com&#x27;</span>, <span class="number">19</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="查询"><a class="markdownIt-Anchor" href="#查询"></a> 查询</h1>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- \G 参数单独展示每一行，避免过宽</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>\G</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询多列</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>column1<span class="operator">&gt;</span>, <span class="operator">&lt;</span>column2<span class="operator">&gt;</span>, <span class="operator">&lt;</span>column3<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 只显示不同项</span></span><br><span class="line"><span class="comment">-- 注意，对多列使用时，两列完全一样才会被屏蔽</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> <span class="operator">&lt;</span><span class="keyword">column</span><span class="operator">&gt;</span> <span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 检错前5行</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span> limit <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="排序"><a class="markdownIt-Anchor" href="#排序"></a> 排序</h1>
+<blockquote>
+<p><code>ORDER BY</code> 需要放在 <code>WHERE</code> 之后</p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 按列升序排序</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> (<span class="keyword">asc</span>); <span class="comment">-- 默认Ascending</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 降序排序。对多列排序，每列都要跟desc</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="operator">&lt;</span>col1<span class="operator">&gt;</span> <span class="keyword">desc</span>, <span class="operator">&lt;</span>col2<span class="operator">&gt;</span> <span class="keyword">desc</span>; <span class="comment">-- Descending降序排序</span></span><br></pre></td></tr></table></figure>
+<h1 id="筛选"><a class="markdownIt-Anchor" href="#筛选"></a> 筛选</h1>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 筛选col = value的字段</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="operator">=</span> <span class="operator">&lt;</span><span class="keyword">value</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 筛选between 0 and 10的字段</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="keyword">between</span> <span class="number">0</span> <span class="keyword">and</span> <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 筛选col为空的字段</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="keyword">is</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="逻辑操作符"><a class="markdownIt-Anchor" href="#逻辑操作符"></a> 逻辑操作符</h1>
+<blockquote>
+<p>优先级： <code>AND</code> &gt; <code>OR</code></p>
+</blockquote>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- AND, OR</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;</span>cond1<span class="operator">&gt;</span> <span class="keyword">or</span> (<span class="operator">&lt;</span>cond2<span class="operator">&gt;</span> <span class="keyword">and</span> <span class="operator">&lt;</span>cond3<span class="operator">&gt;</span>); <span class="comment">-- 不加括号，结果会改变</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- IN, NOT</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="comment">-- 相当于OR，性能稍好一点，也更直观；NOT主要配合IN使用</span></span><br><span class="line"><span class="keyword">where</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="keyword">not</span> <span class="keyword">in</span> (<span class="operator">&lt;</span>value1<span class="operator">&gt;</span>, <span class="operator">&lt;</span>value2<span class="operator">&gt;</span>); </span><br></pre></td></tr></table></figure>
+<hr />
 <h1 id="安装"><a class="markdownIt-Anchor" href="#安装"></a> 安装</h1>
 <h2 id="压缩包安装"><a class="markdownIt-Anchor" href="#压缩包安装"></a> 压缩包安装</h2>
 <ol>
@@ -686,10 +701,11 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 </ul>
 <h2 id="多行操作"><a class="markdownIt-Anchor" href="#多行操作"></a> 多行操作</h2>
 <p><code>&lt;C-v&gt;</code> 选中多行，<code>Shift + i</code>输入后<code>Esc</code>，即可多行同步输入</p>
-<h1 id="切换文件"><a class="markdownIt-Anchor" href="#切换文件"></a> 切换文件</h1>
+<h1 id="文件操作"><a class="markdownIt-Anchor" href="#文件操作"></a> 文件操作</h1>
 <ul>
 <li><code>:e filename</code>切换到filename文件</li>
 <li><code>:bn/bp</code>切换到下/上个文件</li>
+<li><code>&lt;C-x&gt;&lt;C-f&gt;</code> 自动补全路径</li>
 </ul>
 ]]></content>
       <tags>
@@ -2367,6 +2383,7 @@ Adding the missing piece later means waiting until the damage is already underwa
 </blockquote>
 <p>(That is why all type of variables create memory boxes of 64 bits. It is just the memory of the address.)</p>
 <p>Therefore, When we use <code>obj2 = obj</code>, Java simply copy the addr of <code>obj</code> and assign it to <code>obj2</code> (They are pointing to the same Object), that is why when we change <code>obj2.weight</code> it effects <code>obj.weight</code> too.</p>
+<span id="more"></span>
 <h1 id="22-sllist"><a class="markdownIt-Anchor" href="#22-sllist"></a> 2.2 SLList</h1>
 <h2 id="static"><a class="markdownIt-Anchor" href="#static"></a> Static</h2>
 <blockquote>
@@ -5530,62 +5547,7 @@ OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/ComputerScience/%E9%A1%B9%E7%9B%AE/%E6%95%B0%E5%AD%97%E4%BA%BA%E6%96%87%E6%97%85%20%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/</url>
-    <content><![CDATA[<h1 id="10-数字时代虚拟影像ip赋能文旅产业发展研究"><a class="markdownIt-Anchor" href="#10-数字时代虚拟影像ip赋能文旅产业发展研究"></a> 1.0 <a href="https://kns.cnki.net/nzkhtml/xmlRead/trialRead.html?dbCode=CJFD&amp;tableName=CJFDTOTAL&amp;fileName=FLBZ202303024&amp;fileSourceType=1&amp;invoice=n1Coy3G1pP35%2bG48KG%2b7s4cqV%2buntTl4%2fy0JHOJYAGfFq3ytn5kS8xCtgs20rUS%2bcM0vdKInMzf9ZecCF%2fdLPhYT%2fCX6jJIDTZAQeMxhFn6Jq6bjBwMkgfo5ucrM5G8Hx8UxIlWmf%2fMCm2GhPY2m2Q80XybOcN4%2b6ZbnvwAbd7E%3d&amp;appId=KNS_BASIC_PSMC">数字时代虚拟影像IP赋能文旅产业发展研究</a></h1>
-<p>来源：湖南包装。海口经济学院。被引用数：6</p>
-<h2 id="摘要"><a class="markdownIt-Anchor" href="#摘要"></a> 摘要</h2>
-<p>数字技术是文旅转型升级的重要引擎。5G网络加速了虚拟形象IP的开发和应用。</p>
-<h2 id="结论"><a class="markdownIt-Anchor" href="#结论"></a> 结论</h2>
-<p>虚拟形象IP商业价值：</p>
-<ol>
-<li>与品牌跨界合作</li>
-<li>走入直播间带货</li>
-<li>代言品牌</li>
-<li>粉丝效益转化交易</li>
-</ol>
-<h2 id="图表"><a class="markdownIt-Anchor" href="#图表"></a> 图表</h2>
-<p>提出了虚拟形象IP赋能文旅的具体方法。<br />
-提到了身份型虚拟形象和服务型虚拟形象。<br />
-<img src="Source/Pasted%20image%2020240911205700.png" alt="" /></p>
-<h2 id="正文"><a class="markdownIt-Anchor" href="#正文"></a> 正文</h2>
-<p>IP：Intellectual Property（知识产权）<br />
-商业应用：</p>
-<ol>
-<li>角色设计型，如Hello Kitty、米菲兔。通过形象授权、主题园区、周边潮玩来盈利。</li>
-<li>品牌标志。如京东、搜狐、腾讯将动物符号嫁接到品牌上，强化和塑造品牌认知。</li>
-<li>品牌吉祥物。米其林、海尔、麦当劳，虚拟形象人格化，增加品牌感染力。</li>
-</ol>
-<p>案例：</p>
-<ol>
-<li>
-<p>阿里巴巴动物园<br />
-天猫、飞猪、盒马鲜生、虾米音乐、蚂蚁金服。每个应用都对应一个动物形象。</p>
-</li>
-<li>
-<p>熊本熊<br />
-日本熊本县的旅游吉祥物。鲜明的形象设计、成功的营销策略、政府的主导推行，让这个虚拟小熊形象为熊本县带来巨大经济效益。<br />
-<img src="Source/Pasted%20image%2020240911205642.png" alt="" /><br />
-<img src="Source/Pasted%20image%2020240911205630.png" alt="" /></p>
-</li>
-<li>
-<p>地方虚拟形象<br />
-眉山市数字代言人“苏小妹”（虚构的苏轼妹妹），以古代少女发髻、宋代襦裙为基本造型特点，塑造成一个热爱诗词歌赋、国风舞蹈的虚拟人物，结合数字技术讲述眉山故事，传播中华优秀传统文化。</p>
-</li>
-<li>
-<p>虚拟形象作为艺术装置<br />
-融入城市公共空间,例如长沙 IFS 的 KAWS、成都 IFS 的熊猫、深圳万象天地的抱抱象,将 IP 植入点引流成网红打卡地。</p>
-</li>
-</ol>
-<h1 id="值得学习的点"><a class="markdownIt-Anchor" href="#值得学习的点"></a> 值得学习的点</h1>
-<ol>
-<li>数字人文旅的论文也可以画一张产业发展路径图</li>
-<li>这篇文章的结论可以用来说明数字孪生人赋能文旅的商业价值和意义</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
-    <title></title>
+    <title>AI爱外卖</title>
     <url>/ComputerScience/%E9%A1%B9%E7%9B%AE/AI%E7%88%B1%E5%A4%96%E5%8D%96/</url>
     <content><![CDATA[<h1 id="nginx"><a class="markdownIt-Anchor" href="#nginx"></a> Nginx</h1>
 <h2 id="反向代理"><a class="markdownIt-Anchor" href="#反向代理"></a> 反向代理</h2>
@@ -5602,5 +5564,8 @@ OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
 </blockquote>
 <p>API接口文档生成、测试</p>
 ]]></content>
+      <tags>
+        <tag>项目</tag>
+      </tags>
   </entry>
 </search>
