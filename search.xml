@@ -2584,6 +2584,9 @@ JAR files do not keep your code safe, and thus you should not share your .jar fi
 <li>首先设计<code>Room.java</code>，内置画一个房间，在房间旁边生成房间的方法。<br />
 稀里糊涂地生成了不错的迷宫出来。但是不好打洞！</li>
 </ol>
+<h1 id="hw2"><a class="markdownIt-Anchor" href="#hw2"></a> HW2</h1>
+<p>蒙特卡罗渗透实验。原理是使用集合连接打通的节点，检查是否从top到bottom都连通了，连通了即渗透成功。<br />
+因此使用集合UF时，可以生成N*N+2个节点，作为top节点和bottom节点。但是这样做会导致倒灌(backwash)，可以创建两个UF，一个有bottom，另一个没有。一个用于检查是否渗透，另一个用于检查isFull。</p>
 ]]></content>
       <tags>
         <tag>课程</tag>
@@ -5572,6 +5575,40 @@ OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
 ]]></content>
       <tags>
         <tag>项目</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LeetCode100 错题本</title>
+    <url>/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/</url>
+    <content><![CDATA[<h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
+<h2 id="two-sum"><a class="markdownIt-Anchor" href="#two-sum"></a> Two Sum</h2>
+<p>从数组中，找到<code>nums[i] + nums[j] == target</code>，并返回<code>&#123; i, j &#125;</code>。<br />
+思路是双重循环，遍历每一个元素，求和是否为target。<br />
+然而，双重循环需要<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的复杂度。因此，可以使用一张表，使用<code>containsKey</code>方法识别是否存在当前i的<code>target - nums[i]</code>，即可减少一重循环。</p>
+<h3 id="关键思想"><a class="markdownIt-Anchor" href="#关键思想"></a> 关键思想</h3>
+<p>用Map高效率查找，减少一重循环。</p>
+<h2 id="最长连续序列"><a class="markdownIt-Anchor" href="#最长连续序列"></a> 最长连续序列</h2>
+<p>从乱序数组中，找到最长连续（数组中不一定连续）的序列。要求<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。<br />
+首先用数组的值存入哈希表，然后遍历数组，判断<code>map.constains(curNum++)</code>。<br />
+然而，即使这样还是效率不够高。</p>
+<p>优化</p>
+<ol>
+<li>中间值不进入循环，序列开始值才进入，使用<code>!contains(curNum - 1)</code>判断是否为序列开始值</li>
+<li>去重，不要哈希表，不需要键值对，使用哈希Set，只存储值。</li>
+</ol>
+<h3 id="关键思想-2"><a class="markdownIt-Anchor" href="#关键思想-2"></a> 关键思想</h3>
+<p>去重；不处理中间值</p>
+<h1 id="stack"><a class="markdownIt-Anchor" href="#stack"></a> Stack</h1>
+<h2 id="每日温度"><a class="markdownIt-Anchor" href="#每日温度"></a> 每日温度</h2>
+<p>给一个长度为N的每日温度数组，返回一个数组，记录每一天距离下次升温的天数。</p>
+<p>可以用双重循环，找到比当前温度大的那一天，但是这样效率太低。</p>
+<p>优化：<br />
+使用栈，存取没有找到升温日的index，找到升温日后，一次性处理完，减少一重循环。</p>
+<h3 id="关键思想-3"><a class="markdownIt-Anchor" href="#关键思想-3"></a> 关键思想</h3>
+<p>使用栈存储未处理的值，找到升温日后一次性处理，减少重复动作。</p>
+]]></content>
+      <tags>
+        <tag>笔记</tag>
       </tags>
   </entry>
 </search>
