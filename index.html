@@ -190,6 +190,118 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">LeetCode100 错题本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-01T00:00:00+08:00">2024-10-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-08 16:42:49" itemprop="dateModified" datetime="2024-10-08T16:42:49+08:00">2024-10-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
+<h2 id="两数之和"><a class="markdownIt-Anchor" href="#两数之和"></a> 两数之和</h2>
+<p>从数组中，找到<code>nums[i] + nums[j] == target</code>，并返回<code>&#123; i, j &#125;</code>。<br />
+思路是双重循环，遍历每一个元素，求和是否为target。<br />
+然而，双重循环需要<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的复杂度。因此，可以使用一张表，使用<code>containsKey</code>方法识别是否存在当前i的<code>target - nums[i]</code>，即可减少一重循环。</p>
+<h3 id="关键思想"><a class="markdownIt-Anchor" href="#关键思想"></a> 关键思想</h3>
+<p>用Map高效率查找，减少一重循环。</p>
+<h2 id="最长连续序列"><a class="markdownIt-Anchor" href="#最长连续序列"></a> 最长连续序列</h2>
+<p>从乱序数组中，找到最长连续（数组中不一定连续）的序列。要求<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。<br />
+首先用数组的值存入哈希表，然后遍历数组，判断<code>map.constains(curNum++)</code>。<br />
+然而，即使这样还是效率不够高。</p>
+<p>优化</p>
+<ol>
+<li>中间值不进入循环，序列开始值才进入，使用<code>!contains(curNum - 1)</code>判断是否为序列开始值</li>
+<li>去重，不要哈希表，不需要键值对，使用哈希Set，只存储值。</li>
+</ol>
+<h3 id="关键思想-2"><a class="markdownIt-Anchor" href="#关键思想-2"></a> 关键思想</h3>
+<p>去重；不处理中间值</p>
+<h1 id="stack"><a class="markdownIt-Anchor" href="#stack"></a> Stack</h1>
+<h2 id="每日温度"><a class="markdownIt-Anchor" href="#每日温度"></a> 每日温度</h2>
+<p>给一个长度为N的每日温度数组，返回一个数组，记录每一天距离下次升温的天数。</p>
+<p>可以用双重循环，找到比当前温度大的那一天，但是这样效率太低。</p>
+<p>优化：<br />
+使用栈，存取没有找到升温日的index，找到升温日后，一次性处理完，减少一重循环。</p>
+<h3 id="关键思想-3"><a class="markdownIt-Anchor" href="#关键思想-3"></a> 关键思想</h3>
+<p>使用栈存储未处理的值，找到升温日后一次性处理，减少重复动作。</p>
+<h1 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h1>
+<h2 id="链表排序"><a class="markdownIt-Anchor" href="#链表排序"></a> 链表排序</h2>
+<p>链表的两种排序方法：插入排序和归并排序。<br />
+其中，归并排序需要用双指针来找到mid节点。</p>
+<p>注意，链表交换时，不要把<code>temp</code>设置成a或b的引用<code>temp = a/b;</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exch</span><span class="params">(ListNode a, ListNode b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> a.val; <span class="comment">// 或构造一个新的ListNode，否则就是在操作引用</span></span><br><span class="line">    a.val = b.val;</span><br><span class="line">    b.val = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，快指针的写法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这样可能访问不到fast.next</span></span><br><span class="line"><span class="keyword">if</span> (fast.next != end) fast = fast.next;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确写法</span></span><br><span class="line"><span class="keyword">if</span> (fast != end) fast = fast.next;</span><br></pre></td></tr></table></figure>
+<p>注意，链表的归并排序，不需要一个个赋值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (head1 != <span class="literal">null</span> &amp;&amp; head2 != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (head1.val &lt; head2.val) &#123;</span><br><span class="line">        p.next = head1;</span><br><span class="line">        head1 = head1.next;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        p.next = head2;</span><br><span class="line">        head2 = head2.next;</span><br><span class="line">    &#125;</span><br><span class="line">    p = p.next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (head1 != <span class="literal">null</span>) &#123;</span><br><span class="line">    p.next = head1; <span class="comment">// 不需要循环</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (head2 != <span class="literal">null</span>) &#123;</span><br><span class="line">    p.next = head2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，终止条件要熔断有序的链表</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (head.next == end) &#123;</span><br><span class="line">    head.next = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -226,7 +338,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-06 21:54:08" itemprop="dateModified" datetime="2024-10-06T21:54:08+08:00">2024-10-06</time>
+      <time title="修改时间：2024-10-06 21:57:02" itemprop="dateModified" datetime="2024-10-06T21:57:02+08:00">2024-10-06</time>
     </span>
 
   
@@ -245,9 +357,9 @@
 <h1 id="登录数据库"><a class="markdownIt-Anchor" href="#登录数据库"></a> 登录数据库</h1>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u &lt;username&gt; -p</span><br><span class="line">$ &lt;password&gt;</span><br></pre></td></tr></table></figure>
 <h2 id="导入数据库"><a class="markdownIt-Anchor" href="#导入数据库"></a> 导入数据库</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- 设置中文字符集</span><br><span class="line">mysql&gt; SET NAMES &#x27;utf8mb4&#x27;;</span><br><span class="line">mysql&gt; SET character_set_server = &#x27;utf8mb4&#x27;;</span><br><span class="line">mysql&gt; SOURCE /path/to/database.sql;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 设置中文字符集</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SET</span> NAMES <span class="string">&#x27;utf8mb4&#x27;</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SET</span> character_set_server <span class="operator">=</span> <span class="string">&#x27;utf8mb4&#x27;</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> SOURCE <span class="operator">/</span>path<span class="operator">/</span><span class="keyword">to</span><span class="operator">/</span>database.sql;</span><br></pre></td></tr></table></figure>
 <h2 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-- 创建数据库</span><br><span class="line">CREATE DATABASE yourDatabase</span><br><span class="line">  CHARACTER SET utf8mb4;</span><br><span class="line"></span><br><span class="line">-- 查看所有数据库</span><br><span class="line">show databases;</span><br><span class="line"></span><br><span class="line">-- 进入数据库</span><br><span class="line">use yourDatabase</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建数据库</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE yourDatabase</span><br><span class="line">  <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看所有数据库</span></span><br><span class="line"><span class="keyword">show</span> databases;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 进入数据库</span></span><br><span class="line">use yourDatabase</span><br></pre></td></tr></table></figure>
 <h2 id="表"><a class="markdownIt-Anchor" href="#表"></a> 表</h2>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 建表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> yourTable (</span><br><span class="line">  id   <span class="type">INT</span>         AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>       <span class="keyword">DEFAULT</span> <span class="string">&#x27;worker&#x27;</span>,</span><br><span class="line">  age  <span class="type">INT</span>         ,</span><br><span class="line">  addr <span class="type">varchar</span>(<span class="number">50</span>) </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除表</span></span><br><span class="line"><span class="keyword">drop</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看表 </span></span><br><span class="line"><span class="keyword">show</span> tables;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改表</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">add</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="type">char</span>(<span class="number">20</span>)</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">column</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除整张表</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
@@ -372,107 +484,6 @@ Hierarchy: 层次结构，大的子系统由多个小的子系统组织成。即
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">LeetCode100 错题本</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-01T00:00:00+08:00">2024-10-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-02 10:48:39" itemprop="dateModified" datetime="2024-10-02T10:48:39+08:00">2024-10-02</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
-<h2 id="两数之和"><a class="markdownIt-Anchor" href="#两数之和"></a> 两数之和</h2>
-<p>从数组中，找到<code>nums[i] + nums[j] == target</code>，并返回<code>&#123; i, j &#125;</code>。<br />
-思路是双重循环，遍历每一个元素，求和是否为target。<br />
-然而，双重循环需要<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的复杂度。因此，可以使用一张表，使用<code>containsKey</code>方法识别是否存在当前i的<code>target - nums[i]</code>，即可减少一重循环。</p>
-<h3 id="关键思想"><a class="markdownIt-Anchor" href="#关键思想"></a> 关键思想</h3>
-<p>用Map高效率查找，减少一重循环。</p>
-<h2 id="最长连续序列"><a class="markdownIt-Anchor" href="#最长连续序列"></a> 最长连续序列</h2>
-<p>从乱序数组中，找到最长连续（数组中不一定连续）的序列。要求<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。<br />
-首先用数组的值存入哈希表，然后遍历数组，判断<code>map.constains(curNum++)</code>。<br />
-然而，即使这样还是效率不够高。</p>
-<p>优化</p>
-<ol>
-<li>中间值不进入循环，序列开始值才进入，使用<code>!contains(curNum - 1)</code>判断是否为序列开始值</li>
-<li>去重，不要哈希表，不需要键值对，使用哈希Set，只存储值。</li>
-</ol>
-<h3 id="关键思想-2"><a class="markdownIt-Anchor" href="#关键思想-2"></a> 关键思想</h3>
-<p>去重；不处理中间值</p>
-<h1 id="stack"><a class="markdownIt-Anchor" href="#stack"></a> Stack</h1>
-<h2 id="每日温度"><a class="markdownIt-Anchor" href="#每日温度"></a> 每日温度</h2>
-<p>给一个长度为N的每日温度数组，返回一个数组，记录每一天距离下次升温的天数。</p>
-<p>可以用双重循环，找到比当前温度大的那一天，但是这样效率太低。</p>
-<p>优化：<br />
-使用栈，存取没有找到升温日的index，找到升温日后，一次性处理完，减少一重循环。</p>
-<h3 id="关键思想-3"><a class="markdownIt-Anchor" href="#关键思想-3"></a> 关键思想</h3>
-<p>使用栈存储未处理的值，找到升温日后一次性处理，减少重复动作。</p>
-
       
     </div>
 
