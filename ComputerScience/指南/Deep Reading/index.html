@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="“When in doubt go to the library.” – J.K.Rowling   Catalog Article1: What Are You Going to Do With That？  What Are You Going to Do With That？ William Deresiewicz（《国家》杂志撰稿人和《新共和》杂志编辑）在斯坦福大学的演讲  The qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Reading">
+<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Deep%20Reading/index.html">
+<meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="“When in doubt go to the library.” – J.K.Rowling   Catalog Article1: What Are You Going to Do With That？  What Are You Going to Do With That？ William Deresiewicz（《国家》杂志撰稿人和《新共和》杂志编辑）在斯坦福大学的演讲  The qu">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-09T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-06T12:01:38.092Z">
+<meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="指南">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Deep%20Reading/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Deep%20Reading/","path":"ComputerScience/指南/Deep Reading/","title":"Deep Reading"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Deep Reading | SMULET's BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="SMULET's BLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SMULET's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#catalog"><span class="nav-text"> Catalog</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-idarticle1what-are-you-going-to-do-with-thata"><span class="nav-text"> What Are You Going to Do With That？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#you-and-your-research"><span class="nav-text"> You and your research</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SIMULEITE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-handshake-o fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.nyc1.xyz/" title="https:&#x2F;&#x2F;blog.nyc1.xyz&#x2F;" rel="noopener" target="_blank">[网络] NgaiYeanCoi</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Deep%20Reading/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Deep Reading | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Deep Reading
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-10 00:00:00" itemprop="dateCreated datePublished" datetime="2024-01-10T00:00:00+08:00">2024-01-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-05-06 20:01:38" itemprop="dateModified" datetime="2024-05-06T20:01:38+08:00">2024-05-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>“When in doubt go to the library.” – J.K.Rowling</p>
+</blockquote>
+<h1 id="catalog"><a class="markdownIt-Anchor" href="#catalog"></a> Catalog</h1>
+<p><a href="#article1">Article1: What Are You Going to Do With That？</a></p>
+<h1 id="a-idarticle1what-are-you-going-to-do-with-thata"><a class="markdownIt-Anchor" href="#a-idarticle1what-are-you-going-to-do-with-thata"></a> <a id="article1">What Are You Going to Do With That？</a></h1>
+<pre><code>William Deresiewicz（《国家》杂志撰稿人和《新共和》杂志编辑）在斯坦福大学的演讲
+</code></pre>
+<p>The question my title poses, of course, is the one that is classically aimed at humanities majors. What practical value could there possibly be in studying literature or art or philosophy? So you must be wondering why I’m bothering to raise it here, at Stanford, this renowned citadel of science and technology. What doubt can there be that the world will offer you many opportunities to use your degree?</p>
+<p>（学习文学、艺术或哲学能有什么用呢？所以你肯定纳闷，我为什么在在以科技堡垒而闻名的斯坦福提出这个问题呢？在大学学位给人带来众多机会的问题上还有什么可怀疑的吗？）</p>
+<p>But that’s not the question I’m asking. By “do” I don’t mean a job, and by “that” I don’t mean your major. We are more than our jobs, and education is more than a major. Education is more than college, more even than the totality of your formal schooling, from kindergarten through graduate school. By “What are you going to do,” I mean, what kind of life are you going to lead? And by “that,” I mean everything in your training, formal and informal, that has brought you to be sitting here today, and everything you’re going to be doing for the rest of the time that you’re in school.</p>
+<p>（但那不是我提出的问题。这里的“做”并不是指工作，“那”并不是指你的专业。我们不仅仅是要个工作，教育不仅仅是学一门专业。教育也不仅仅是上大学，甚至也不仅是从幼儿园到研究生院的正规学校教育。我说的“你要做什么”的意思是你要过什么样的生活？我所说的“那”指的是你得到的正规或非正规的任何训练， 那些把你送到这里来的东西，你在学校的剩余时间里将要做的任何事。）</p>
+<span id="more"></span>
+<p>We should start by talking about how you did, in fact, get here. You got here by getting very good at a certain set of skills. Your parents pushed you to excel from the time you were very young. They sent you to good schools, where the encouragement of your teachers and the example of your peers helped push you even harder. Your natural aptitudes were nurtured so that, in addition to excelling in all your subjects, you developed a number of specific interests that you cultivated with particular vigor. You did extracurricular activities, went to afterschool programs, took private lessons. You spent summers doing advanced courses at a local college or attending skill-specific camps and workshops. You worked hard, you paid attention, and you tried your very best. And so you got very good at math, or piano, or lacrosse, or, indeed, several things at once.</p>
+<p>（我们不妨先来讨论你是如何考入斯坦福的吧。你能进入这所大学说明你在某些技能上非常出色。你的父母在你很小的时候就鼓励你追求卓越。他们送你到好学校，老师的鼓励和同伴的榜样激励你更努力地学习。除了在所有课程上都出类拔萃之外，你还注重修养的提高，充满热情地培养了一些特殊兴趣。你用几个暑假在本地大 学里预习大学课程，或参加专门技能的夏令营或训练营。你学习刻苦、精力集中、全力以赴。所以，你在数学、钢琴、曲棍球等众多方面都很出色。）</p>
+<p>Now there’s nothing wrong with mastering skills, with wanting to do your best and to be the best. What’s wrong is what the system leaves out: which is to say, everything else. I don’t mean that by choosing to excel in math, say, you are failing to develop your verbal abilities to their fullest extent, or that in addition to focusing on geology, you should also focus on political science, or that while you’re learning the piano, you should also be working on the flute. It is the nature of specialization, after all, to be specialized. No, the problem with specialization is that it narrows your attention to the point where all you know about and all you want to know about, and, indeed, all you can know about, is your specialty.</p>
+<p>（掌握这些技能当 然没有错，全力以赴成为最优秀的人也没有错。错误之处在于这个体系遗漏的地方：即任何别的东西。我并不是说因为选择钻研数学，你在充分发展话语表达能力的 潜力方面就失败了；也不是说除了集中精力学习地质学之外，你还应该研究政治学；也不是说你在学习钢琴时还应该学吹笛子。毕竟，专业化的本质就是要专业性。可是，专业化的问题在于它把你的注意力限制在一个点上，即你已经知道和想知道的东西。其实，你能知道的一切就是你的专业。）</p>
+<p>The problem with specialization is that it makes you into a specialist. It cuts you off, not only from everything else in the world, but also from everything else in yourself. And of course, as college freshmen, your specialization is only just beginning. In the journey toward the success that you all hope to achieve, you have completed, by getting into Stanford, only the first of many legs. Three more years of college, three or four or five years of law school or medical school or a Ph.D. program, then residencies or postdocs or years as a junior associate. In short, an ever-narrowing funnel of specialization. You go from being a political-science major to being a lawyer to being a corporate attorney focusing on taxation issues in the consumer-products industry. You go from being a biochemistry major to being a doctor to being a cardiologist to being a cardiac surgeon who performs heart-valve replacements.</p>
+<p>（专业化的问题是它让你成为专家，切断你与世界上其他任何东西的 联系，不仅如此，还切断你与自身其他潜能的联系。当然，作为大一新生，你的专业才刚刚开始。在你走向所渴望的成功之路的过程中，进入斯坦福是你踏上的众多 阶梯中的一个。再读三年大学，三五年法学院或医学院或博士，然后再干若干年住院实习生或博士后或助理教授。总而言之，进入越来越狭窄的专业化轨道。你可能 从政治学专业的学生变成了律师或者公司代理人，再变成专门研究消费品领域的税收问题的公司代理人。你从生物化学专业的学生变成了博士，再变成心脏病学家，再变成专门做心脏瓣膜移植的心脏病医生。）</p>
+<p>Again, there’s nothing wrong with being those things. It’s just that, as you get deeper and deeper into the funnel, into the tunnel, it becomes increasingly difficult to remember who you once were. You start to wonder what happened to that person who played piano and lacrosse and sat around with her friends having intense conversations about life and politics and all the things she was learning in her classes. The 19-year-old who could do so many things, and was interested in so many things, has become a 40-year-old who thinks about only one thing. That’s why older people are so boring. “Hey, my dad’s a smart guy, but all he talks about is money and livers.”</p>
+<p>（再次，做这些事没有任何错。只不过，在你越来越深入地进入这个轨道后，再记得你最初的样子就变得越来越困难了。你开始怀念那个曾经谈钢琴和打曲棍球的人，思考那个曾经和朋友热烈讨论人生和政治以及在课堂内容的人在做什么。那个活泼能干的19岁年轻人已经变成了只想一件事的40岁中年人。难怪年长的人这 么乏味无趣。“哎，我爸爸曾经是非常聪明的人，但他现在除了谈论钱和肝脏外再无其他。”）</p>
+<p>And there’s another problem. Maybe you never really wanted to be a cardiac surgeon in the first place. It just kind of happened. It’s easy, the way the system works, to simply go with the flow. I don’t mean the work is easy, but the choices are easy. Or rather, the choices sort of make themselves. You go to a place like Stanford because that’s what smart kids do. You go to medical school because it’s prestigious. You specialize in cardiology because it’s lucrative. You do the things that reap the rewards, that make your parents proud, and your teachers pleased, and your friends impressed. From the time you started high school and maybe even junior high, your whole goal was to get into the best college you could, and so now you naturally think about your life in terms of “getting into” whatever’s next. “Getting into” is validation; “getting into” is victory. Stanford, then Johns Hopkins medical school, then a residency at the University of San Francisco, and so forth. Or Michigan Law School, or Goldman Sachs, or Mc Kinsey, or whatever. You take it one step at a time, and the next step always seems to be inevitable.</p>
+<p>（还有另外一个问题。或许你从来没有想过当心脏病医生，只是碰巧发生 了而已。随大流最容易，这就是体制的力量。我不是说这个工作容易，而是说做出这种选择很容易。或者，这些根本就不是自己做出的选择。你来到斯坦福这样的名 牌大学是因为聪明的孩子都这样。你考入医学院是因为它的地位高，人人都羡慕。你选择心脏病学是因为当心脏病医生的待遇很好。你做那些事能给你带来好处，让 你的父母感到骄傲，令你的老师感到高兴，也让朋友们羡慕。从你上高中开始，甚至初中开始，你的唯一目标就是进入最好的大学，所以现在你会很自然地从“进入 下个阶段”的角度看待人生。“进入”就是能力的证明，“进入”就是胜利。先进入斯坦福，然后是约翰霍普金斯医学院，再进入旧金山大学做实习医生等。或者进入密歇根法学院，或高盛集团（Goldman Sachs）或麦肯锡公司（McKinsey）或别的什么地方。你迈出了这一步，下一步似乎就必然在等着你。）</p>
+<p>Or maybe you did always want to be a cardiac surgeon. You dreamed about it from the time you were 10 years old, even though you had no idea what it really meant, and you stayed on course for the entire time you were in school. You refused to be enticed from your path by that great experience you had in AP history, or that trip you took to Costa Rica the summer after your junior year in college, or that terrific feeling you got taking care of kids when you did your rotation in pediatrics during your fourth year in medical school.</p>
+<p>（也许你确实想当心脏病学家。十岁时就梦想成为医生，即使你根本不知道医生意味着什么。你在上学期间全身心都在朝着这个目标前进。你拒绝了上大学预修历史课时的美妙体验的诱惑，也无视你在医学院第四年的儿科学轮流值班时照看孩子的可怕感受。）</p>
+<p>But either way, either because you went with the flow or because you set your course very early, you wake up one day, maybe 20 years later, and you wonder what happened: how you got there, what it all means. Not what it means in the “big picture,” whatever that is, but what it means to you. Why you’re doing it, what it’s all for. It sounds like a cliché, this “waking up one day,” but it’s called having a midlife crisis, and it happens to people all the time.</p>
+<p>（但不管是什么，要么因为你随大流要么因为你早就选定了道路，20年后某天醒来，你或许会纳闷到底发生了什么：你怎么变成现在这个样子，这一切意味着什么。不是它是什么，不在于它是否“大画面”而是它对你意味着什么。你为什么做它，到底为了什么。这听起来像老生常谈，但这个被称为中年危机的“有一天醒 来”一直就发生在每个人身上。）</p>
+<p>There is an alternative, however, and it may be one that hasn’t occurred to you. Let me try to explain it by telling you a story about one of your peers, and the alternative that hadn’t occurred to her. A couple of years ago, I participated in a panel discussion at Harvard that dealt with some of these same matters, and afterward I was contacted by one of the students who had come to the event, a young woman who was writing her senior thesis about Harvard itself, how it instills in its students what she called self-efficacy, the sense that you can do anything you want. Self-efficacy, or, in more familiar terms, self-esteem. There are some kids, she said, who get an A on a test and say, “I got it because it was easy.” And there are other kids, the kind with self-efficacy or self-esteem, who get an A on a test and say, “I got it because I’m smart.”</p>
+<p>（不过，还有另外一种情况，或许中年危机并不会发生在你身上。让我通过告诉你们一个同伴的故事来解释我的意思吧，即她没有遭遇的情况。几年前，我在哈佛参加了一次小组讨论会，谈到这些问题。后来参加这次讨论的一个学生给我联系，这个哈佛学生正在写有关哈佛的毕业论文，讨论哈佛是如何给学生灌输她所说的“自 我效能”（self-efficacy），一种相信自己能做一切的意识。自我效能或更熟悉的说法‘自我尊重’。她说在考试中得了优秀的有些学生会说“我得 优秀是因为试题很简单。”）</p>
+<p>Again, there’s nothing wrong with thinking that you got an A because you’re smart. But what that Harvard student didn’t realize—and it was really quite a shock to her when I suggested it—is that there is a third alternative. True self-esteem, I proposed, means not caring whether you get an A in the first place. True self-esteem<br />
+means recognizing, despite everything that your upbringing has trained you to believe about yourself, that the grades you get—and the awards, and the test scores, and the trophies, and the acceptance letters—are not what defines who you are.</p>
+<p>（但另外一些学生，那种具有自我效能感或自我尊重的学生在考 试中得了优秀后会说“我得优秀是因为我聪明。” 再次，认为得了优秀是因为自己聪明的想法并没有任何错，不过，哈佛学生没有认识到的是他们没有第三种选择。当我指出这一点时，她十分震惊。我指出，真正的 自尊意味着最初根本就不在乎成绩是否优秀。真正的自尊意味着承认你取得的成绩，虽然你在成长过程中的一切都在训练你相信自己，但奖励、成绩、奖品、录取通 知书等所有这一切都不能来定义你是谁。）</p>
+<p>She also claimed, this young woman, that Harvard students take their sense of self-efficacy out into the world and become, as she put it, “innovative.” But when I asked her what she meant by innovative, the only example she could come up with was “being CEO of a Fortune 500.” That’s not innovative, I told her, that’s just successful, and successful according to a very narrow definition of success. True innovation means using your imagination, exercising the capacity to envision new possibilities.</p>
+<p>（她还说，这个年轻的女孩子说哈佛 学生把他们的自我效能带到了世界上，如她所说的“创新”（innovative）。但当我问她“创新”意味着什么时，她能够想到的唯一例子不过是“世界大 公司五百强的首席执行官。”我告诉她这不是创新，这只是成功，而且是根据非常狭隘的成功定义而认定的成功而已。真正的创新意味着使用你的想象力，发挥你的潜力，创造新的可能性。）</p>
+<p>But I’m not here to talk about technological innovation, I’m here to talk about a different kind. It’s not about inventing a new machine or a new drug. It’s about inventing your own life. Not following a path, but making your own path. The kind of imagination I’m talking about is moral imagination. “Moral” meaning not right or wrong, but having to do with making choices. Moral imagination means the capacity to envision new ways to live your life.</p>
+<p>（但这里我并不是在谈论技术创新，不是发明新机器或者制造一种新药，我谈论的是另外一种创新，是创造你自己的生活。不是走现成的道路而是创造一条属于自己的道路。我谈论的想象力是道德想象力。“道德”在这里不是对与错，而是与选择有关。道德想象力意味着创造自己新生的能力。）</p>
+<p>It means not just going with the flow. It means not just “getting into” whatever school or program comes next. It means figuring out what you want for yourself, not what your parents want, or your peers want, or your school wants, or your society wants. Originating your own values. Thinking your way toward your own definition of success. Not simply accepting the life that you’ve been handed. Not simply accepting the choices you’ve been handed. When you walk into Starbucks, you’re offered a choice among a latte and a macchiato and an espresso and a few other things, but you can also make another choice. You can turn around and walk out. When you walk into college, you are offered a choice among law and medicine and investment banking and consulting and a few other things, but again, you can also do something else, something that no one has thought of before.</p>
+<p>（它意味着不随波逐流，不是下一步要“进 入”什么名牌大学或研究生院。而是要弄清楚自己到底想要什么，而不是父母、同伴、学校、或社会想要什么。即确认你自己的价值观，思考迈向自己所定义的成功 的道路，而不仅仅是接受别人给你的生活，不仅仅是接受别人给你的选择。当今走进星巴克咖啡馆，服务员可能让你在牛奶咖啡（latte）、加糖咖啡 （macchiato）、特制咖啡（espresso）等几样东西之间做出选择。但你可以做出另外的选择，你可以转身走出去。当你进入大学，人家给你众多选择，或法律或医学或投资银行和咨询以及其他，但你同样也可以做其他事，做从前根本没有人想过的事。）</p>
+<p>Let me give you another counterexample. I wrote an essay a couple of years ago that touched on some of these same points. I said, among other things, that kids at places like Yale or Stanford tend to play it safe and go for the conventional rewards. And one of the most common criticisms I got went like this: What about Teach for America? Lots of kids from elite colleges go and do TFA after they graduate, so therefore I was wrong. TFA, TFA—I heard that over and over again. And Teach for America is undoubtedly a very good thing. But to cite TFA in response to my argument is precisely to miss the point, and to miss it in a way that actually confirms what I’m saying. The problem with TFA—or rather, the problem with the way that TFA has become incorporated into the system—is that it’s just become another thing to get into.</p>
+<p>（让我再举一个反面的例子。几年前我写过一篇涉及同类问题的文章。我说，那些在耶鲁和斯坦福这类名校的孩子往往比较谨慎，去追求一些稳妥的奖励。我得到的最常 见的批评是：教育项目“为美国而教”（Teach for America）如何？从名校出来的很多学生毕业后很多参与这个教育项目，因此我的观点是错误的。我一再听到TFA这个术语。“为美国而教”当然是好东西，但引用这个项目来反驳我的观点恰恰是不得要领，实际上正好证明了我想说的东西。“为美国而教”的问题或者“为美国而教”已经成为体系一部分的问题是它已经成为另外一个需要“进入”的门槛。）</p>
+<p>In terms of its content, Teach for America is completely different from Goldman Sachs or McKinsey or Harvard Medical School or Berkeley Law, but in terms of its place within the structure of elite expectations, of elite choices, it is exactly the same. It’s prestigious, it’s hard to get into, it’s something that you and your parents can brag about, it looks good on your résumé, and most important, it represents a clearly marked path. You don’t have to make it up yourself, you don’t have to do anything but apply and do the work —just like college or law school or McKinsey or whatever. It’s the Stanford or Harvard of social engagement. It’s another hurdle, another badge. It requires aptitude and diligence, but it does not require a single ounce of moral imagination.</p>
+<p>（从其内容来看，“为美国而教”完全不同于高盛或者麦肯锡公司或哈佛医学院或者伯克利法学院，但从它在精英期待的体系中的地位来说，完全是一样的。它享有盛名，很难进入，是值得你和父母夸耀的东西，如果写在简历上会很光彩，最重要的是，它代表了清晰标记的道路。你根本不用自己创造，什么都不用做，只需申请然后按要求做就行了，就像上大学或法学院或麦肯锡公司或别的什么。它是社会参与方面的斯坦福或哈佛，是另一个栅栏，另一枚奖章。该项目需要能力和勤奋，但不需要一丁点儿的道德想象力。）</p>
+<p>Moral imagination is hard, and it’s hard in a completely different way than the hard things you’re used to doing. And not only that, it’s not enough. If you’re going to invent your own life, if you’re going to be truly autonomous, you also need courage: moral courage. The courage to act on your values in the face of what everyone’s going to say and do to try to make you change your mind. Because they’re not going to like it. Morally courageous individuals tend to make the people around them very uncomfortable. They don’t fit in with everybody else’s ideas about the way the world is supposed to work, and still worse, they make them feel insecure about the choices that they themselves have made—or failed to make. People don’t mind being in prison as long as no one else is free. But stage a jailbreak, and everybody else freaks out.</p>
+<p>（道德想象力是困难的，这种 困难与你已经习惯的困难完全不同。不仅如此，光有道德想象力还不够。如果你要创造自己的生活，如果你想成为真正的独立思想者，你还需要勇气：道德勇气。不管别人说什么，有按自己的价值观行动的勇气，不会因为别人不喜欢而试图改变自己的想法。具有道德勇气的个人往往让周围的人感到不舒服。他们和其他人对世界的看法格格不入，更糟糕的是，让别人对自己已经做出的选择感到不安全或无法做出选择。只要别人也不享受自由，人们就不在乎自己被关进监狱。可一旦有人越狱，其他人都会跟着跑出去。）</p>
+<p>In A Portrait of the Artist as a Young Man, James Joyce has Stephen Dedalus famously say, about growing up in Ireland in the late 19th century, “When the soul of a man is born in this country there are nets flung at it to hold it back from flight. You talk to me of nationality, language, religion. I shall try to fly by those nets.”</p>
+<p>（在《青年艺术家的肖像》中，詹姆斯•乔伊斯（James Joyce）让主人公斯蒂芬•迪达勒斯（Stephen Dedalus）就19世纪末期的爱尔兰的成长环境说出了如下名言“当一个人的灵魂诞生在这个国家时，有一张大网把它罩住，防止它飞翔。你会给我谈论民族 性、语言和宗教。我想冲出这些牢笼。”）</p>
+<p>Today there are other nets. One of those nets is a term that I’ve heard again and again as I’ve talked with students about these things. That term is “self-indulgent.” “Isn’t it self-indulgent to try to live the life of the mind when there are so many other things I could be doing with my degree?” “Wouldn’t it be self-indulgent to pursue painting after I graduate instead of getting a real job?”</p>
+<p>（今天，我们面临的是其他的网。其中之一是我在就这些问题与学生交流时经常听到的一个术语“自我放任”。“在攻读学位过程中有这么多事要做的时候，试图按照自己的感觉生活难道不是自我放任吗？”“毕业后不去找个真正的工作而去画画难道不是自我放任吗？”）</p>
+<p>These are the kinds of questions that young people find themselves being asked today if they even think about doing something a little bit different. Even worse, the kinds of questions they are made to feel compelled to ask themselves. Many students have spoken to me, as they navigated their senior years, about the pressure they felt from their peers—from their peers—to justify a creative or intellectual life. You’re made to feel like you’re crazy: crazy to forsake the sure thing, crazy to think it could work, crazy to imagine that you even have a right to try.</p>
+<p>（这些是年轻人只要思考一下稍稍出格的事就不由自主地质问自己的问题。更糟糕的是，他们觉得提出这些问题是理所应当的。许多学生在毕业前夕的未来探索中跟我说，他们感受到来自同伴那里的压力，需要为创造性的生活或思想生活辩护。好像自己已经走火入魔了似的：抛弃确定无疑的东西是疯了，认为思想生活可行是疯了，想象你有权尝试是疯了。）</p>
+<p>Think of what we’ve come to. It is one of the great testaments to the intellectual—and moral, and spiritual—poverty of American society that it makes its most intelligent young people feel like they’re being self-indulgent if they pursue their curiosity. You are all told that you’re supposed to go to college, but you’re also told that you’re being “self-indulgent” if you actually want to get an education. Or even worse, give yourself one. As opposed to what? Going into consulting isn’t self-indulgent? Going into finance isn’t self-indulgent? Going into law, like most of the people who do, in order to make yourself rich, isn’t self-indulgent? It’s not OK to play music, or write essays, because what good does that really do anyone, but it is OK to work for a hedge fund. It’s selfish to pursue your passion, unless it’s also going to make you a lot of money, in which case it’s not selfish at all.</p>
+<p>（想象我们现在面临的局面。这是美国社会的贫困—思想、道德和精神贫困的最明显症状，美国最聪明的年轻人竟然认为听从自己的好奇心行动就是自我放任。你们得到的教导是应该上大学，但你们同时也被告知如果真的想得到教育，那就是“自我放任”。如果你自我教育的话，更糟糕。这是什么道理？进入证券咨询业是 不是自我放任？进入金融业是不是自我放任？像许多人那样进入律师界发财是不是自我放任？搞音乐，写文章就不行，因为它不能给人带来利益。但为风险投资公司 工作就可以。追求自己的理想和激情是自私的，除非它能让你赚很多钱。那样的话，就一点儿也不自私了。）</p>
+<p>Do you see how absurd this is? But these are the nets that are flung at you, and this is what I mean by the need for courage. And it’s a never-ending proc ess. At that Harvard event two years ago, one person said, about my assertion that college students needed to keep rethinking the decisions they’ve made about their lives, “We already made our decisions, back in middle school, when we decided to be the kind of high achievers who get into Harvard.” And I thought, who wants to live with the decisions that they made when they were 12? Let me put that another way. Who wants to let a 12-year-old decide what they’re going to do for the rest of their lives? Or a 19-year-old, for that matter?</p>
+<p>（你看到这些观点是多么荒谬了吗？这就是罩在你们身上的网，就是我说的需要勇气的意思。这是永不停息的过程。在两年前的哈佛事件中，有个学生谈到我说的大 学生需要重新思考人生决定的观点，他说“我们已经做出了决定，我们早在中学时就已经决定成为能够进入哈佛的高材生。”我在想，谁会打算按照他在12岁时做出的决定生活呢？让我换一种说法，谁愿意让一个12岁的孩子决定他们未来一辈子要做什么呢？在此问题上，谁又愿意让19岁的孩子做决定呢？）</p>
+<p>All you can decide is what you think now, and you need to be prepared to keep making revisions. Because let me be clear. I’m not trying to persuade you all to become writers or musicians. Being a doctor or a lawyer, a scientist or an engineer or an economist—these are all valid and admirable choices. All I’m saying is that you need to think about it, and think about it hard. All I’m asking is that you make your choices for the right reasons. All I’m urging is that you recognize and embrace your moral freedom.</p>
+<p>（你能做出的决定是你现在想什么， 你需要准备好不断修改自己的决定。让我说得更明白一些。我不是在试图说服你们都成为音乐家或者作家。成为医生、律师、科学家、工程师或者经济学家没有什么不好，这些都是可靠的、可敬的选择。我想说的是你需要思考它，认真地思考。我请求你们做的是根据正确的原因做出你的选择。我在敦促你们的是认识到你的道德自由并热情拥抱它。）</p>
+<p>And most of all, don’t play it safe. Resist the seductions of the cowardly values our society has come to prize so highly: comfort, convenience, security, predictability, control. These, too, are nets. Above all, resist the fear of failure. Yes, you will make mistakes. But they will be your mistakes, not someone else’s. And you will survive them, and you will know yourself better for having made them, and you will be a fuller and a stronger person.</p>
+<p>（最重要的是，不要过分谨慎。抗拒我们社会给予最高奖励的那些懦弱的价值观的 诱惑：舒服、方便、安全、可预测性、可控制性。这些也都是网。最重要的是，抗拒失败的恐惧。是的，你可能犯错误，但它们是你的错误，不是别人的。你将从错误中幸存下来，将会因为这些错误对自己有更好的认识。你将因此成为更完整和更强大的人。）</p>
+<p>It’s been said—and I’m not sure I agree with this, but it’s an idea that’s worth taking seriously—that you guys belong to a “postemotional” generation. That you prefer to avoid messy and turbulent and powerful feelings. But I say, don’t shy away from the challenging parts of yourself. Don’t deny the desires and curiosities, the doubts and dissatisfactions, the joy and the darkness, that might knock you off the path that you have set for yourself. College is just beginning for you, adulthood is just beginning. Open yourself to the possibilities they represent. The world is much larger than you can imagine right now. Which means, you are much larger than you can imagine.</p>
+<p>（人们常说你们年轻人属于“后情感”一代，我不敢肯定我赞同这个说法，但这是值得认真考虑的一个观点。你们更愿意避免混乱、动荡和强烈的感情，但我想说，不要回避挑战自我，不要否认欲望和好奇心、怀疑和不满、快乐和郁闷，它们可能把你从事先设定的人生道路上打倒。大学不过是人生的开始，成年时代才刚刚开始。张开双臂去迎接成年生活的各种可能性吧。这个世界比你现 在能够想象的情况广大得多。这意味着你比你能想象的情况大得多。）</p>
+<h1 id="you-and-your-research"><a class="markdownIt-Anchor" href="#you-and-your-research"></a> You and your research</h1>
+<p>It’s a pleasure to be here. I doubt if I can live up to the Introduction. The title of my talk is, “You and<br />
+Your Research.” It is not about managing research, it is about how you individually do your research.<br />
+I could give a talk on the other subject - but it’s not, it’s about you. I’m not talking about ordinary<br />
+run-of-the-mill research; I’m talking about great research. And for the sake of describing great research<br />
+I’ll occasionally say Nobel-Prize type of work. It doesn’t have to gain the Nobel Prize, but I mean those<br />
+kinds of things which we perceive are significant things. Relativity, if you want, Shannon’s information<br />
+theory, any number of outstanding theories - that’s the kind of thing I’m talking about.</p>
+<p>我演讲的题目是“你和你的研究”。这不是有关研究管理方面的，而是关于你如何独自做研究的。我也可以作别的方面的专题演讲–但是不，今天是专门谈你。我不是谈什么平常的“车轱辘转”（run-of-mill）的研究，我是谈重大的研究。并且，为了描述重大的研究，我将时常要谈及相当诺贝尔奖那一类的“大事”。这和获奖不获奖无关，我指的是我们认为有重大价值的事情。如相对论，<a target="_blank" rel="noopener" href="http://www.bell-labs.com/news/2001/february/26/1.html"><em>香农(Shannon)</em></a> （信息理论之父，<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>）信息论，以及其他杰出的理论 —- 这就是我要讲的。</p>
+<p>Now, how did I come to do this study? At Los Alamos I was brought in to run the computing machines<br />
+which other people had got going, so those scientists and physicists could get back to business. I saw I<br />
+was a stooge. I saw that although physically I was the same, they were different. And to put the thing<br />
+bluntly, I was envious. I wanted to know why they were so different from me. I saw Feynman up close.<br />
+I saw Fermi and Teller. I saw Oppenheimer. I saw Hans Bethe: he was my boss. I saw quite a few very<br />
+capable people. I became very interested in the difference between those who do and those who might<br />
+have done.</p>
+<p>那么，我是怎样搞起这样的研究的呢？还在Los Alamos(美国洛斯阿拉莫斯国家实验室Los Alamos National Laboratory的所在地，1943年由能源部为研制原子弹而建立。<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>）的时候，我负责运行有关计算机方面的事，以便那些科学家们、物理学家们可以去干他们的（大）事了。我无非是个“跑龙套”的。尽管我在身体上与他们无异，但我还是与他们不同。说实话，我挺嫉妒的。我见过Feynman (1965年获诺贝尔物理学奖。<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>)，我见过Fermi和Teller，我见过奥本海默，尤（里乌斯）·罗伯特(Oppenheimer)(1902-1967美国原子物理学家, 原子弹计划主持人。<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>)，我见过贝蒂(Hans Albrecht, 1906-, 美国物理学家, 曾获1967诺贝尔物理学奖。<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>)—他就是我的“老板”。我见过不少非常有才能的人，我于是有兴趣去了解自己与那些正在做事和已经成事的人之间的差别。（瞧瞧那龙套跑的，啧啧。<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"></a><a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>）</p>
+<p>When I came to Bell Labs, I came into a very productive department. Bode was the department head at<br />
+the time; Shannon was there, and there were other people. I continued examining the questions, “Why?”<br />
+and “What is the difference?” I continued subsequently by reading biographies, autobiographies, asking<br />
+people questions such as: “How did you come to do this?” I tried to find out what are the differences.<br />
+And that’s what this talk is about.</p>
+<p>当年我刚到贝尔实验室的时候，我进入到了一个硕果累累的部门。Bode是那时的部门头，香农(Shannon)也在那里。我一直问自己这样的问题：“为什么”和“差别是什么”。我于是去读有关的传记、自传，去问他们这样的问题：“你是怎么干起来这样的事的？” 我试着搞清差别是什么。这就是今天要谈的内容。</p>
+<p>Now, why is this talk important? I think it is important because, as far as I know, each of you has one<br />
+life to live. Even if you believe in reincarnation it doesn’t do you any good from one life to the next! Why<br />
+shouldn’t you do significant things in this one life, however you define significant? I’m not going to define<br />
+it - you know what I mean. I will talk mainly about science because that is what I have studied. But<br />
+so far as I know, and I’ve been told by others, much of what I say applies to many fields. Outstanding<br />
+work is characterized very much the same way in most fields, but I will confine myself to science.</p>
+<p>那么，为什么这样的话题重要呢？那是因为，就我所知，你一生只有一次生命。即使你相信来世，那也无助于你对待来世的“来世”！为什么你不在这次生命中就做一些意义重大的事呢，不管你是如何定义你的“意义重大”？我不会去定义它 —- 你懂我的意思。我将主要谈论科学，因为这是我研究的领域。尽管就我所知，别人也多次告诉我，我所讲的（道理）也适用于其他很多领域。尽管杰出的工作在很多不同的领域里都具有相同的特点，我还是将我自己限定在科学的领域。(他老人家的意思是说，他要去当总统或“政协委员”的话，实在是大材小用，驴头不对马嘴。<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>)</p>
+<p>In order to get at you individually, I must talk in the first person. I have to get you to drop modesty and<br />
+say to yourself, “Yes, I would like to do first-class work.” Our society frowns on people who set out to do<br />
+really good work. You’re not supposed to; luck is supposed to descend on you and you do great things<br />
+by chance. Well, that’s a kind of dumb thing to say. I say, why shouldn’t you set out to do something<br />
+significant. You don’t have to tell other people, but shouldn’t you say to yourself, “Yes, I would like to<br />
+do something significant.”</p>
+<p>为了让你感觉到专门针对你个人的，我必须使用第一人称。我必须让你抛开谦逊并对自己说：“对，我想做一流的事。” 我们的社会会对那些着手去做像样的事的人皱起眉头，他们会怀疑：“你是那块料吗？运气会光顾你吗？或许你侥幸做成某件大事。” 好吧，随这些闲言碎语去吧。我要说的是：你为什么不现在就动手去做一点大事呢？！你不用告诉别人，但是你可以告诉你自己啊：“对，我就是喜欢做一些重要的 事。”</p>
+<p>In order to get to the second stage, I have to drop modesty and talk in the first person about what I’ve<br />
+seen, what I’ve done, and what I’ve heard. I’m going to talk about people, some of whom you know, and<br />
+I trust that when we leave, you won’t quote me as saying some of the things I said.</p>
+<p>为了达到第二个层次，我自己也得放下谦逊并以第一人称来谈我见识了什么，我做了什么，以及我听到什么。我会谈及一些人，其中一些你们认识，但我相信当我们离开的时候，你们不会把我的话当成“话柄”到处说事儿。</p>
+<p>Let me start not logically, but psychologically. I find that the major objection is that people think great<br />
+science is done by luck. It’s all a matter of luck. Well, consider Einstein. Note how many different things<br />
+he did that were good. Was it all luck? Wasn’t it a little too repetitive? Consider Shannon. He didn’t<br />
+do just information theory. Several years before, he did some other good things and some which are still<br />
+locked up in the security of cryptography. He did many good things.</p>
+<p>请让我从心理学的角度开始，而不是逻辑的。我主要不赞成人们认为重大科学成果是因运气而成。要说什么事情都和运气有关。但是，想想爱因斯坦，看看他做了多少 不凡的事，那全都是运气使然吗？难道就没有一点可重复性？想想香农，他不仅仅搞了信息理论，多年以前他就做了一些别的好的事，以及为确保密码学不被攻破而 无法公开的其他一些技术。 他可做了不少的好事。</p>
+<p>You see again and again, that it is more than one thing from a good person. Once in a while a person<br />
+does only one thing in his whole life, and we’ll talk about that later, but a lot of times there is repetition.<br />
+I claim that luck will not cover everything. And I will cite Pasteur who said, “Luck favors the prepared<br />
+mind.” And I think that says it the way I believe it. There is indeed an element of luck, and no, there<br />
+2<br />
+isn’t. The prepared mind sooner or later finds something important and does it. So yes, it is luck. The<br />
+particular thing you do is luck, but that you do something is not.</p>
+<p>你一次又一次地看到一个“好”人不只做一件“好”事。但有时一个人一生就做一件事，关于这一点我们一会儿再谈，只是更多时候是存在可重复性的。我坚持认为运气并不推及所有的事。我在此引用巴斯德(Louis Pasteur，19世纪法国化学家。<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>)的话：“运气只光顾有准备之士。” 他的话说出了我心里所想。的确有运气的因素，同时也有没有运气的成分。有准备之士早晚会找到重要的事并去做它。所以，的确，是有运气。你去做的那件特定的事是偶然，但是，你总归要做某事却不是(The particular thing you do is luck, but that you do something is not)。</p>
+<p>For example, when I came to Bell Labs, I shared an office for a while with Shannon. At the same time<br />
+he was doing information theory, I was doing coding theory. It is suspicious that the two of us did it at<br />
+the same place and at the same time - it was in the atmosphere. And you can say, “Yes, it was luck.”<br />
+On the other hand you can say, “But why of all the people in Bell Labs then were those the two who did<br />
+it?” Yes, it is partly luck, and partly it is the prepared mind; but ‘partly’ is the other thing I’m going<br />
+to talk about. So, although I’ll come back several more times to luck, I want to dispose of this matter of<br />
+luck as being the sole criterion whether you do great work or not. I claim you have some, but not total,<br />
+control over it. And I will quote, finally, Newton on the matter. Newton said, “If others would think as<br />
+hard as I did, then they would get similar results.”</p>
+<p>举一个例子，我当初来到贝尔实验室，和香农共用一个办公室。他在那间办公室搞出了他的信息理论的同时，我也做出我的编码理论。真有点奇怪，我们两人居然在同一办公室、同一时刻做了这些“事”—-在 某种气氛中。你可以说：那是运气。另一方面你也可以问：“但是为什么那时所有在贝尔实验室的人只有我们两个做了这事呢？” 是的，那里面部分是“运气”，部分是“有准备”。 “部分”一概念也是我后面要谈到的另一问题。所以， 尽管我会不时提及“运气”这个问题，但我不会把运气这东西看成与你的工作出色与否有没有关联的的唯一砝码（谢谢海涛帮我“掰斥”这句。<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>）我主张即使不是全部你也要对“运气”有部分掌控。最后我引用牛顿对此的原话：“如果别人也和我一样努力思考的话，那么他们也许会得出差不多的结论。”（<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>：问问自己，用一卡车苹果往你头上砸，直把你砸晕看能砸出个什么来。）</p>
+<p>One of the characteristics you see, and many people have it including great scientists, is that usually<br />
+when they were young they had independent thoughts and had the courage to pursue them. For example,<br />
+Einstein, somewhere around 12 or 14, asked himself the question, “What would a light wave look like<br />
+if I went with the velocity of light to look at it?” Now he knew that electromagnetic theory says you<br />
+cannot have a stationary local maximum. But if he moved along with the velocity of light, he would see<br />
+a local maximum. He could see a contradiction at the age of 12, 14, or somewhere around there, that<br />
+everything was not right and that the velocity of light had something peculiar. Is it luck that he finally<br />
+created special relativity? Early on, he had laid down some of the pieces by thinking of the fragments.<br />
+Now that’s the necessary but not sufficient condition. All of these items I will talk about are both luck<br />
+and not luck.</p>
+<p>包括许多（大）科学家在内的很多人所具有的一个特质，如你所见，就是通常在他们年轻的时候，他们具有独立的思维并有勇气去追求。举一个例子，爱因斯坦，大概在他12或14岁的时候，他问自己：如果我有光速那么快，那么光波看起来是个什么样子？现在他知道了光电理论告诉你不可能有稳定的局部极大(local maximum)，但是你随着光速移动，你就能看到局部极大(local maximum)。他能在12或14的时候就难能看到这样的“矛盾”—-所有的事物在光速条件下看起来不一样。是运气使得他最后创造了相对论吗？(那是由于)他早就开始积累对此问题的思考。这，就是必要条件，而非充分条件。所有这些就是我要谈论的“运气”和“非运气”。</p>
+<p>How about having lots of ‘brains?’ It sounds good. Most of you in this room probably have more than<br />
+enough brains to do first-class work. But great work is something else than mere brains. Brains are<br />
+measured in various ways. In mathematics, theoretical physics, astrophysics, typically brains correlates<br />
+to a great extent with the ability to manipulate symbols. And so the typical IQ test is apt to score them<br />
+fairly high. On the other hand, in other fields it is something different. For example, Bill Pfann, the<br />
+fellow who did zone melting, came into my office one day. He had this idea dimly in his mind about<br />
+what he wanted and he had some equations. It was pretty clear to me that this man didn’t know much<br />
+mathematics and he wasn’t really articulate. His problem seemed interesting so I took it home and<br />
+did a little work. I finally showed him how to run computers so he could compute his own answers. I<br />
+gave him the power to compute. He went ahead, with negligible recognition from his own department,<br />
+but ultimately he has collected all the prizes in the field. Once he got well started, his shyness, his<br />
+awkwardness, his inarticulateness, fell away and he became much more productive in many other ways.<br />
+Certainly he became much more articulate.</p>
+<p>那么，把很多聪明的头脑都凑在一起会怎样？这主意听起来不错。这屋子里的听众们大概都具有从事一流工作还富余的头脑。“有头脑”可用不同的方式来衡量。在数学、物理、天体物理方面，一般来说，头脑在很大程度上与处理那些“符号”有关。因此标准的IQ测试就能测定出他们的高智商程度。但另一方面，在其他领域里有点不同。举个例子，Bill Pfann，此人发明了区域溶化(zome melting)理论，有一天走进我的办公室。他那时只是模模糊糊地有了一些想法和提出了一些式子。当时我非常清楚此人不太懂数学，而且有点“茶壶煮汤圆—-有话说不出”的意思。但我觉得他的问题挺有意思的，于是我就把他的问题带回家琢磨了一下。我最后教他如何使用计算机以便帮他计算自己的答案。我给他提供了用数学计算的动力，他于是径直干了下去，他们自己部门的人都没人理解他。终于他收获了在此领域里的全部声誉。只要他有了一个良好的开头，他的胆怯、他的不熟练、他的含糊不清都会消失。他在其他很多方面也更强了。当然，他也更加融会贯通(articulate)。（<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>：也许你对articulate会有不同翻译，对我，这里articulate就是“融会贯通”。原文的字面意思是“他的表达能力也大大增强了”。在很多方面，如果不是完全意义上的语言问题，表达不清主要原因是没有融会贯通。这里Hamming并没有教Pfann表达的事，所以我认为是“融会贯通”的问题。）</p>
+<p>And I can cite another person in the same way. I trust he isn’t in the audience, i.e. a fellow named<br />
+Clogston. I met him when I was working on a problem with John Pierce’s group and I didn’t think he<br />
+had much. I asked my friends who had been with him at school, “Was he like that in graduate school?”<br />
+“Yes,” they replied. Well I would have fired the fellow, but J. R. Pierce was smart and kept him on.<br />
+Clogston finally did the Clogston cable. After that there was a steady stream of good ideas. One success<br />
+brought him confidence and courage.</p>
+<p>我还要举另一个人的例子，希望他不在场。一个叫Clogson的家伙。我遇到他的时候正值我和他一起在John Pierce（贝尔实验室研究总监，在通信理论、电子光学和行波管研究方面有突出贡献。<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>。）小组一起攻克一个难题，我那时可没觉得他有肚里没有什么料(I didn’t think he had much)。我问那些和他同过学的同事们：“他在学校里就这德性吗？”“是的”，他们回答。那好，我还是把他辞退了吧。但是John Pierce明智地把他保了下来。Clogston最终做成了Clogston Cable (想想吧，能以他的名字命名东西的人是什么牛吧。<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>)。他并从此一发不可收拾—-一次成功给他带来了自信和勇气。</p>
+<p>One of the characteristics of successful scientists is having courage. Once you get your courage up and<br />
+believe that you can do important problems, then you can. If you think you can’t, almost surely you are<br />
+not going to. Courage is one of the things that Shannon had supremely. You have only to think of his<br />
+major theorem. He wants to create a method of coding, but he doesn’t know what to do so he makes<br />
+a random code. Then he is stuck. And then he asks the impossible question, “What would the average<br />
+random code do?” He then proves that the average code is arbitrarily good, and that therefore there<br />
+must be at least one good code. Who but a man of infinite courage could have dared to think those<br />
+thoughts? That is the characteristic of great scientists; they have courage. They will go forward under<br />
+incredible circumstances; they think and continue to think.</p>
+<p>成功科学家的重要品质之一就是勇气。一旦你鼓起了自己的勇气并相信自己能解决重要的问题，那么你就行。如果你觉得你不行，几乎肯定你不会去做。勇气就是香农（Shannon）所拥有的最重要的东西之一。想一想他的主要定理。他想建立一种编码方法，但是他并不清楚如何做，所以他搞了一个随机码(a random code)。然后他又卡了壳。然后他问了一个“不可能”的问题：“一个平均随机码（the average random code）会怎样？” 他于是去证明了平均码(average code)是arbitrarily good（随意性良好？），并且因而一定存在至少一个好的编码。除了一个拥有无限勇气的人，还有谁胆敢有如此勇气想此所想! 这就是伟大的科学家的品质—-他们有勇气。他们不管周围境况，勇往直前；他们思考、思考、再思考。</p>
+<p>Age is another factor which the physicists particularly worry about. They always are saying that you<br />
+have got to do it when you are young or you will never do it. Einstein did things very early, and all the<br />
+quantum mechanic fellows were disgustingly young when they did their best work. Most mathematicians,<br />
+theoretical physicists, and astrophysicists do what we consider their best work when they are young. It is not that they don’t do good work in their old age but what we value most is often what they did early.<br />
+On the other hand, in music, politics and literature, often what we consider their best work was done<br />
+late. I don’t know how whatever field you are in fits this scale, but age has some effect.</p>
+<p>年龄是另外一个自然科学家们（physicists）担心的因素。他们总是说你要做就得趁年轻，否则就别做。爱因斯坦做事就早，所有的量子理论的同仁们做他们的“事”的时候都早得吓人（disgustingly young）。 大多数数学家、理论物理学家，以及天体物理学家都在他们的早年作出了我们公认的他们最好的成就。这并不是说他们岁数大了以后就不能做有益的工作，只是我们 认为他们最有价值的事是他们年青的时候所为。在另一方面，在音乐、政治和文学方面，通常的情况是，那些我们仰慕的大作品往往出炉较晚。我不知道你的情况适 合以上的哪种情况，但年龄总是有影响。</p>
+<p>But let me say why age seems to have the effect it does. In the first place if you do some good work you<br />
+will find yourself on all kinds of committees and unable to do any more work. You may find yourself as<br />
+I saw Brattain when he got a Nobel Prize. The day the prize was announced we all assembled in Arnold<br />
+Auditorium; all three winners got up and made speeches. The third one, Brattain, practically with tears<br />
+in his eyes, said, “I know about this Nobel-Prize effect and I am not going to let it affect me; I am going<br />
+to remain good old Walter Brattain.” Well I said to myself, “That is nice.” But in a few weeks I saw it<br />
+was affecting him. Now he could only work on great problems.</p>
+<p>就让我说说为什么年龄产生那些影响。 首先，如果你干得不错的话，你就发现你被拉进了各种各样的委员会，然后你就没法做更多的事了。你也许发现你就和我见到获诺贝尔奖时的布拉顿(Brattain, 美国物理学家, 曾获1956年诺贝尔物理学奖)差不多。颁奖的那天我们全都聚集Arnold大厅（Arnold Auditorium），三个获奖者都上台发表了演讲。第三个是布拉顿，他差不多噙着泪水说：“我知道这个诺贝尔奖的影响但我不会让它影响我。我会继续保持做个好的老瓦尔特.布拉顿。” 我于是对自己说：“说的真好！”。 但是仅仅几周的功夫我就看见（诺贝尔奖）对他产生影响。现在他只能对付那些“伟大的”的问题了。（<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>：既然如此的大牛科学家都为身外之物所累，我们又怎可幸免？所以，你没有做好“出名”的准备之前，不可妄自出名。“名”可不是什么人都可以出的。）</p>
+<p>When you are famous it is hard to work on small problems. This is what did Shannon in. After<br />
+information theory, what do you do for an encore? The great scientists often make this error. They fail<br />
+to continue to plant the little acorns from which the mighty oak trees grow. They try to get the big thing<br />
+right off. And that isn’t the way things go. So that is another reason why you find that when you get<br />
+early recognition it seems to sterilize you. In fact I will give you my favorite quotation of many years.<br />
+The Institute for Advanced Study in Princeton, in my opinion, has ruined more good scientists than any<br />
+institution has created, judged by what they did before they came and judged by what they did after.<br />
+Not that they weren’t good afterwards, but they were superb before they got there and were only good<br />
+afterwards.</p>
+<p>当你成名后再做一些“小”事就难了，香农（Shannon）也难逃此运。有了信息理论(information theory)，你还能有什么“招”让人叫好呢？（ingot的建议太妙了！受用。译者）那些伟大的科学家也经常犯这样的“晕”。他们未能继续燃烧心中本可以燎原的星星之火（They fail to continue to plant the little acorns from which the mighty oak trees grow）。他们想一下子做成一件大事。这并不是事情的本来面目。所以，这解释了为什么你明白一旦成名太早你就往往“废”了（sterilize you）。实际上我要给你我多年的最爱的例子：普林斯顿高级研究院，比起其他的学院，在我看来，已经毁了无数好的科学家，你只要比比那些科学家去“普高”之前和之后的成就就可以分辨这点。他们进去之前可谓超级牛（superb），出来之后就变得一般牛了(only good)。</p>
+<p>This brings up the subject, out of order perhaps, of working conditions. What most people think are<br />
+the best working conditions, are not. Very clearly they are not because people are often most productive<br />
+when working conditions are bad. One of the better times of the Cambridge Physical Laboratories was<br />
+when they had practically shacks - they did some of the best physics ever.</p>
+<p>从这又引出工作条件的话题，也许有点次序颠倒。多数人想的是最好的工作条件。非常清楚，事实并非如此，因为人们常常在条件不好的时候富有成果。剑桥物理实验室有史以来最好的时期恰逢他们实际上是最简陋的时期—-他们做出了有史以来最好的物理。</p>
+<p>I give you a story from my own private life. Early on it became evident to me that Bell Laboratories was<br />
+not going to give me the conventional acre of programming people to program computing machines in<br />
+absolute binary. It was clear they weren’t going to. But that was the way everybody did it. I could go to<br />
+the West Coast and get a job with the airplane companies without any trouble, but the exciting people<br />
+were at Bell Labs and the fellows out there in the airplane companies were not. I thought for a long<br />
+while about, “Did I want to go or not?” and I wondered how I could get the best of two possible worlds.<br />
+I finally said to myself, “Hamming, you think the machines can do practically everything. Why can’t<br />
+you make them write programs?” What appeared at first to me as a defect forced me into automatic<br />
+programming very early. What appears to be a fault, often, by a change of viewpoint, turns out to be one<br />
+of the greatest assets you can have. But you are not likely to think that when you first look the thing and<br />
+say, “Gee, I’m never going to get enough programmers, so how can I ever do any great programming?”</p>
+<p>我给你一个我个人生活的故事。早些时候，对我来讲似乎表明贝尔实验室不像是常说的搞二进制的计算机程序的人聚集的地方。的确不是。但是每个人的确就是这样做出来的。（贝尔实验室自1925年成立至今，科学家们共获31000多项专利，他们中的11人获诺贝尔奖，他们中的其他人选择获得别的奖或其他的东西。<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>。）我本可以去西海岸找个什么飞机公司的差事也不是什么问题，但是贝尔实验室的人是些让人兴奋的人，而那些飞机公司的同仁不是。我想了好长一阵子，我去还是不去？我一直在想两全其美的是。最后我对自己说：“Hamming， 你一直想计算机能做任何事，为什么你不能让他们写程序？” 首先跳进我脑海的是“毛病”，并促使我非常早的进入自动程序系统。所以，那些看起来像缺陷的东西，通过换位思考，常常变成你可能拥有的最有价值的财富。但 你似乎不太可能头一次看到它时就说：“哇塞，我不可能召集足够的程序员，那么我怎能搞成任何大事呢？”</p>
+<p>And there are many other stories of the same kind; Grace Hopper has similar ones. I think that if you<br />
+look carefully you will see that often the great scientists, by turning the problem around a bit, changed<br />
+a defect to an asset. For example, many scientists when they found they couldn’t do a problem finally<br />
+began to study why not. They then turned it around the other way and said, “But of course, this is what<br />
+it is” and got an important result. So ideal working conditions are very strange. The ones you want<br />
+aren’t always the best ones for you.</p>
+<p>这类的故事多的是。Grace Hopper (Grace Murray Hopper 是共享代码库、编译器验证软件以及编译器标准的使用的早期倡导者。促进了计算机科学的发展,促成了COBOL的产生。<a target="_blank" rel="noopener" href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>) 也有一个。我想只要你用点心你就能明白，伟大的科学家常常通过换一个角度看问题，就能把瑕疵变成财富。例如，许多科学家每当不能解决一个难题时，他们终究转而去研究为什么“不能”的问题。他们然后反过来看问题：“本来嘛，这才是问题所在。” 于是，就有了一个重要的结果。所以，理想的工作条件非常奇特—-你想要的往往不是对你来说最好的。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8C%87%E5%8D%97/" rel="tag"># 指南</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" rel="prev" title="ICS 计算机系统">
+                  <i class="fa fa-angle-left"></i> ICS 计算机系统
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Read%20Origin/" rel="next" title="Read Origin">
+                  Read Origin <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa-solid fa-pen-nib"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SIMULEITE</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

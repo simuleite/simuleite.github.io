@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Chapter3 操作系统结构  复杂度管理方法 M.A.L.H Modularity: 模块化，分而治之 Abstraction: 抽象，接口与实现分离，遵循宽进严出原则。例如虚拟内存、文件系统  对于大型系统，只有模块化和抽象，可能导致划分模块太多，交互关系复杂，因此还需要引入分层和层次结构控制复杂度。  Layering: 分层，每个层级是一套完整机制。通常一个模块只能与本层和上下层交互，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OS 操作系统">
+<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="Chapter3 操作系统结构  复杂度管理方法 M.A.L.H Modularity: 模块化，分而治之 Abstraction: 抽象，接口与实现分离，遵循宽进严出原则。例如虚拟内存、文件系统  对于大型系统，只有模块化和抽象，可能导致划分模块太多，交互关系复杂，因此还需要引入分层和层次结构控制复杂度。  Layering: 分层，每个层级是一套完整机制。通常一个模块只能与本层和上下层交互，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-06T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-06T08:24:22.296Z">
+<meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="课程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/","path":"ComputerScience/课程/OS 操作系统/","title":"OS 操作系统"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>OS 操作系统 | SMULET's BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="SMULET's BLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SMULET's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter3-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84"><span class="nav-text"> Chapter3 操作系统结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%AE%A1%E7%90%86%E6%96%B9%E6%B3%95-malh"><span class="nav-text"> 复杂度管理方法 M.A.L.H</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E5%86%85%E6%A0%B8"><span class="nav-text"> 微内核</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-text"> 抽象的缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E6%A0%B8-exokernel"><span class="nav-text"> 外核 Exokernel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E4%B8%8E%E6%9C%BA%E5%88%B6"><span class="nav-text"> 策略与机制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter4-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-text"> Chapter4 内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="nav-text"> 虚拟内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E6%AE%B5%E4%B8%8E%E5%88%86%E9%A1%B5"><span class="nav-text"> 内存分段与分页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%BA%A7%E9%A1%B5%E8%A1%A8"><span class="nav-text"> 多级页表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tlb-translation-buffer"><span class="nav-text"> TLB Translation Buffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%A2%E9%A1%B5%E4%B8%8E%E7%BC%BA%E9%A1%B5"><span class="nav-text"> 换页与缺页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E9%9B%86%E6%A8%A1%E5%9E%8B"><span class="nav-text"> 工作集模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E6%97%B6%E6%8B%B7%E8%B4%9D"><span class="nav-text"> 写时拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%8E%BB%E9%87%8D"><span class="nav-text"> 内存去重</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E9%A1%B5"><span class="nav-text"> 大页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%A9%E7%90%86%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E4%B8%8E%E7%AE%A1%E7%90%86"><span class="nav-text"> 物理内存分配与管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9F"><span class="nav-text"> 伙伴系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#slab%E5%88%86%E9%85%8D%E5%99%A8"><span class="nav-text"> SLAB分配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%9D%80%E8%89%B2%E8%BD%AF%E4%BB%B6%E6%96%B9%E6%A1%88"><span class="nav-text"> 软件着色（软件方案）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter5-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B"><span class="nav-text"> Chapter5 进程与线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B"><span class="nav-text"> 进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E5%86%85%E5%AD%98%E7%A9%BA%E9%97%B4%E5%B8%83%E5%B1%80"><span class="nav-text"> 进程内存空间布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6%E5%9D%97%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="nav-text"> 进程控制块与上下文切换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fork"><span class="nav-text"> fork</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter6-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E8%B0%83%E5%BA%A6"><span class="nav-text"> Chapter6 操作系统调度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E7%AD%96%E7%95%A5"><span class="nav-text"> 调度策略</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SIMULEITE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-handshake-o fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.nyc1.xyz/" title="https:&#x2F;&#x2F;blog.nyc1.xyz&#x2F;" rel="noopener" target="_blank">[网络] NgaiYeanCoi</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="OS 操作系统 | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OS 操作系统
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-07 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-07T00:00:00+08:00">2024-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-06 16:24:22" itemprop="dateModified" datetime="2024-10-06T16:24:22+08:00">2024-10-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="chapter3-操作系统结构"><a class="markdownIt-Anchor" href="#chapter3-操作系统结构"></a> Chapter3 操作系统结构</h1>
+<h2 id="复杂度管理方法-malh"><a class="markdownIt-Anchor" href="#复杂度管理方法-malh"></a> 复杂度管理方法 M.A.L.H</h2>
+<p>Modularity: 模块化，分而治之<br />
+Abstraction: 抽象，接口与实现分离，遵循宽进严出原则。例如虚拟内存、文件系统</p>
+<blockquote>
+<p>对于大型系统，只有模块化和抽象，可能导致划分模块太多，交互关系复杂，因此还需要引入分层和层次结构控制复杂度。</p>
+</blockquote>
+<p>Layering: 分层，每个层级是一套完整机制。通常一个模块只能与本层和上下层交互，不能跨层。例如OSI、TCP/IP<br />
+Hierarchy: 层次结构，大的子系统由多个小的子系统组织成。即同级模块的分层</p>
+<blockquote>
+<p>宽进严出原则：容忍各种输入（包括恶意输入），严格控制模块的对外输出</p>
+</blockquote>
+<h2 id="微内核"><a class="markdownIt-Anchor" href="#微内核"></a> 微内核</h2>
+<p>宏内核架构：单点bug使整个系统崩溃。<br />
+微内核：解耦单个功能/模块（如文件系统、设备驱动）作为独立服务隔离运行，使内核成为一个最小功能集。</p>
+<blockquote>
+<p>微内核架构服务隔离，单点出问题系统不会崩溃</p>
+</blockquote>
+<blockquote>
+<p>内核态部分，称为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi><mi>k</mi><mi>e</mi><mi>r</mi><mi>n</mi><mi>e</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">\mu kernel</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span></p>
+</blockquote>
+<p>微内核优势：</p>
+<ol>
+<li>弹性硬件拓展能力</li>
+<li>硬件异构实现</li>
+<li>功能安全</li>
+<li>信息安全</li>
+<li>时延确定</li>
+</ol>
+<blockquote>
+<p>现代操作系统特征：1）虚拟内存；2）用户态、内核态隔离。</p>
+</blockquote>
+<span id="more"></span>
+<h3 id="抽象的缺点"><a class="markdownIt-Anchor" href="#抽象的缺点"></a> 抽象的缺点</h3>
+<ol>
+<li>过度抽象会损失性能（原则：abstract but don’t hide power)</li>
+<li>通用的抽象对数据库、Web服务器来说不是最优抽象。（软件比操作系统更了解如何使用抽象来使用硬件资源）</li>
+</ol>
+<h2 id="外核-exokernel"><a class="markdownIt-Anchor" href="#外核-exokernel"></a> 外核 Exokernel</h2>
+<p>外核将硬件资源抽象为LibOS，按需最小化调用</p>
+<blockquote>
+<p>外核的缺点：LibOS针对应用定制，不通用、复用差（增大内存开销）</p>
+</blockquote>
+<blockquote>
+<p>开源的缺点：开放设备驱动源码会透露实现细节</p>
+</blockquote>
+<h2 id="策略与机制"><a class="markdownIt-Anchor" href="#策略与机制"></a> 策略与机制</h2>
+<blockquote>
+<p>重要的操作系统设计原则：分离 policy 与 mechanism</p>
+</blockquote>
+<p>policy：做什么。就像房子。例如什么用户、什么权限<br />
+mechanism：怎么做。就像盖房子的砖块。例如输入处理、桌面加载</p>
+<h1 id="chapter4-内存管理"><a class="markdownIt-Anchor" href="#chapter4-内存管理"></a> Chapter4 内存管理</h1>
+<h2 id="虚拟内存"><a class="markdownIt-Anchor" href="#虚拟内存"></a> 虚拟内存</h2>
+<p>两种内存管理</p>
+<ol>
+<li>一个程序占用全部内存。程序切换时，将内存的数据写入硬盘（写入慢）</li>
+<li>程序共享内存。无需频繁写入硬盘（问题：隔离性、地址不连续）<br />
+方法2更好，于是催生了虚拟内存这个中间层来解决隔离性和地址不连续的问题。</li>
+</ol>
+<blockquote>
+<p>有了虚拟内存技术，程序连续地存储在硬盘里，通过页表映射的方式高效使用内存。</p>
+</blockquote>
+<h2 id="内存分段与分页"><a class="markdownIt-Anchor" href="#内存分段与分页"></a> 内存分段与分页</h2>
+<p>分段：早期内存划分成大小不一样的段。缺点是容易产生内存碎片，不能充分利用内存资源。<br />
+分页：按规格划分内存和硬盘，任意虚拟页可以被映射到物理页。</p>
+<h2 id="多级页表"><a class="markdownIt-Anchor" href="#多级页表"></a> 多级页表</h2>
+<p>如果每个程序只维护1张页表，那么每张页表的大小将会是3千万GB！</p>
+<blockquote>
+<p>单级页表每一项都要存在：因为整个页表必须连续，没有用到的页也预留着。</p>
+</blockquote>
+<h2 id="tlb-translation-buffer"><a class="markdownIt-Anchor" href="#tlb-translation-buffer"></a> TLB Translation Buffer</h2>
+<p>TLB缓存了虚拟页与物理页的映射关系。<br />
+其中，每项TLB有一个标签（ASID/PCID）来区别不同的程序，切换程序时只需要刷新那个程序的页表，无需全部刷新。</p>
+<blockquote>
+<p>页表切换时，操作系统需要主动刷新TLB。</p>
+</blockquote>
+<h2 id="换页与缺页"><a class="markdownIt-Anchor" href="#换页与缺页"></a> 换页与缺页</h2>
+<p>打开PS，占用2G内存；打开游戏，占用3G内存。一共占用5G内存，却可以在总共4G的电脑上运行。</p>
+<blockquote>
+<p>换页：物理内存容量不够，将物理页写入磁盘，并回收资源。</p>
+</blockquote>
+<blockquote>
+<p>缺页异常：内存找不到页，从磁盘找到对应页，写入内存。</p>
+</blockquote>
+<blockquote>
+<p>预取：预测即将被访问的页，提前换入内存，减少不命中。</p>
+</blockquote>
+<blockquote>
+<p>按需页分配：程序申请内存，只标记不换入，等到缺页异常再换入，提高利用率。</p>
+</blockquote>
+<h2 id="工作集模型"><a class="markdownIt-Anchor" href="#工作集模型"></a> 工作集模型</h2>
+<p>将程序使用的内存页集合共同保持在物理页中，避免颠簸，优先换出非工作集的物理页。<br />
+原理：时钟算法。通过定时比较当前内存页与上次检测结果的访问位，判断出哪些内存是当前工作集。</p>
+<h2 id="写时拷贝"><a class="markdownIt-Anchor" href="#写时拷贝"></a> 写时拷贝</h2>
+<p>对于两个程序共用的物理页，只在内存保留1份数据，只读地映射到页表。当其中一个程序对共享部分修改时，再拷贝一份可读写的数据（由异常处理完成操作）来完成修改。</p>
+<h2 id="内存去重"><a class="markdownIt-Anchor" href="#内存去重"></a> 内存去重</h2>
+<p>操作系统定期扫描内存中的相同内容，只保留其中一份。缺点是修改时需要写时拷贝，加大了时延。</p>
+<blockquote>
+<p>针对内存去重的攻击：伪造数据，如果被去重了（表现为时延变长）就说明内存中存在相同的数据。</p>
+</blockquote>
+<h2 id="大页"><a class="markdownIt-Anchor" href="#大页"></a> 大页</h2>
+<blockquote>
+<p>TLB中翻译每个内存页要占用1个TLB缓存项。使用大页来解决缓存不够用的问题，提高命中率。大页的大小可以是2MB到1GB（普通页仅为4KB）。</p>
+</blockquote>
+<h2 id="物理内存分配与管理"><a class="markdownIt-Anchor" href="#物理内存分配与管理"></a> 物理内存分配与管理</h2>
+<blockquote>
+<p>内存碎片：无法被利用的内存。</p>
+</blockquote>
+<blockquote>
+<p>外部碎片：有足够的内存却不是连续的，无法被分配使用。解决方法是按规格切分并分配内存。</p>
+</blockquote>
+<blockquote>
+<p>内部碎片：切分并分配内存后（解决外部碎片），每块内存都没有被充分使用。</p>
+</blockquote>
+<h3 id="伙伴系统"><a class="markdownIt-Anchor" href="#伙伴系统"></a> 伙伴系统</h3>
+<p>物理内存分块，每块由<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.664392em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span></span></span>个（1，2，4，8）物理页构成。2块相同大小的块为<strong>伙伴</strong>，可以合并成大一号的块；大块也可以分裂出2个小一号的伙伴块。</p>
+<blockquote>
+<p>伙伴系统：一个块被释放后，<strong>自动寻找伙伴块向上合并</strong>成大块，直到没有伙伴块为止。</p>
+</blockquote>
+<h3 id="slab分配器"><a class="markdownIt-Anchor" href="#slab分配器"></a> SLAB分配器</h3>
+<p>伙伴系统最小分配4KB，然而许多服务只需要几十、几百B，SLAB用于分配这些小内存。<br />
+SLAB后来被改进成SLUB；还有一个最小开销、用于嵌入式的SLOB，这三者共称“SLAB分配器”。</p>
+<blockquote>
+<p>SLUB：2^n Byte(3\leq n \textless 12) 的伙伴系统。有2个指针，partial指向一块空闲内存slab，current指向slab中的空闲块。</p>
+</blockquote>
+<h3 id="软件着色软件方案"><a class="markdownIt-Anchor" href="#软件着色软件方案"></a> 软件着色（软件方案）</h3>
+<blockquote>
+<p>对放到不同位置的物理页标记不同颜色。对于连续虚拟内存，优先分别到不同颜色的位置，避免不命中。</p>
+</blockquote>
+<h1 id="chapter5-进程与线程"><a class="markdownIt-Anchor" href="#chapter5-进程与线程"></a> Chapter5 进程与线程</h1>
+<blockquote>
+<p>进程：每个进程对应一个运行中的程序。</p>
+</blockquote>
+<p>有了进程的抽象，应用程序再运行时仿佛独占了整个CPU。</p>
+<blockquote>
+<p>上下文切换：通过保存/回复进程的运行状态（上下文），使进程可以暂停、切换、恢复，实现CPU资源共享。</p>
+</blockquote>
+<blockquote>
+<p>操作系统为每个进程提供独立虚拟地址空间（页表）。</p>
+</blockquote>
+<blockquote>
+<p>线程：更轻量的执行单元，解决进程间数据不易共享、通信开销问题。</p>
+</blockquote>
+<blockquote>
+<p>纤程：允许上下文在用户态而非内核态切换，再次减小开销。</p>
+</blockquote>
+<h2 id="进程"><a class="markdownIt-Anchor" href="#进程"></a> 进程</h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new</td>
+<td>进程被创建，未初始化，不能调度</td>
+</tr>
+<tr>
+<td>ready</td>
+<td>进程初始化完成，未被调度器选择</td>
+</tr>
+<tr>
+<td>running</td>
+<td>进程被调度器选择，在CPU上运行</td>
+</tr>
+<tr>
+<td>blocked</td>
+<td>进程需要等待外部事件，暂时无法被调度</td>
+</tr>
+<tr>
+<td>terminated</td>
+<td>进程完成执行，不会再被调度</td>
+</tr>
+</tbody>
+</table>
+<h3 id="进程内存空间布局"><a class="markdownIt-Anchor" href="#进程内存空间布局"></a> 进程内存空间布局</h3>
+<table>
+<thead>
+<tr>
+<th>内核</th>
+<th>最顶端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户栈</td>
+<td>自顶向下拓展</td>
+</tr>
+<tr>
+<td>代码库</td>
+<td>共享，只读</td>
+</tr>
+<tr>
+<td>用户堆</td>
+<td>自底向上拓展</td>
+</tr>
+<tr>
+<td>数据、代码段</td>
+<td>静态</td>
+</tr>
+</tbody>
+</table>
+<p><code>cat /proc/PID/maps</code> 可以查看某个进程的空间布局</p>
+<h3 id="进程控制块与上下文切换"><a class="markdownIt-Anchor" href="#进程控制块与上下文切换"></a> 进程控制块与上下文切换</h3>
+<p>进程通过一个数据结构来保存它的相关状态（PID、进程状态、VM状态、打开的文件…）。</p>
+<blockquote>
+<p>这个数据结构称为PCB（Process Control Block）</p>
+</blockquote>
+<blockquote>
+<p>上下文切换：将前一个进程的寄存器状态保存到PCB，将下一个进程之前保存的状态写入寄存器。</p>
+</blockquote>
+<h2 id="fork"><a class="markdownIt-Anchor" href="#fork"></a> fork</h2>
+<p>fork创建一个与父进程一样子进程（PID与VM不同）。</p>
+<h1 id="chapter6-操作系统调度"><a class="markdownIt-Anchor" href="#chapter6-操作系统调度"></a> Chapter6 操作系统调度</h1>
+<h2 id="调度策略"><a class="markdownIt-Anchor" href="#调度策略"></a> 调度策略</h2>
+<ul>
+<li>
+<p>FCFS，First Come First Served<br />
+先到先服务。用时短的服务需要等待，用户体验不好。</p>
+</li>
+<li>
+<p>SFJ， Shortest Job First<br />
+最短运行时间先服务。依赖到达时间，如果长时间任务先到，仍然是长时间任务占用系统。</p>
+</li>
+<li>
+<p>STCF，Shortest Time-to Completion First<br />
+最短剩余时间先服务。容易饿死长时间服务。</p>
+</li>
+<li>
+<p>RR，Round Robin<br />
+时间片循环服务。平均把时间放在所有任务上。</p>
+</li>
+<li>
+<p>MLQ，Multi-Level Queue<br />
+多级队列，高优先级的队列执行完后，才执行低优先级队列。同级别的队列，随机选择。同样，低优先级会饿死。而且一个任务锁定内存时，高优先级实质上执行不了。</p>
+</li>
+<li>
+<p>MLFQ，Multi-Level Feedback Queue<br />
+多级队列加上反馈。假设所有任务是短时间任务，优先执行，超过一定时间后降级，处理其他事务。定时刷新，重设任务为高优先级，防止饿死。</p>
+</li>
+</ul>
+<p>上面的所有调度方案，都是单用户下的调度；对多用户的调度和分配，我们需要引入<strong>份额</strong>。</p>
+<ul>
+<li>
+<p>彩票调度<br />
+生成随机数，例如生成32，则份额为10的不会执行，份额为20-40的会执行。<br />
+这个方法显然不是完全按概率调度的。</p>
+</li>
+<li>
+<p>彩票货币<br />
+A任务份额10，B任务份额5。在实际执行过程中，B可能会锁死A需要的内存，这时就需要A转让份额，让B快点执行完。<br />
+通过在份额上，再增加一层抽象货币，即A分配1/3的份额给B时，转换成A给B100货币，更容易计算。</p>
+</li>
+<li>
+<p>步幅调度<br />
+步幅调度设置虚拟时间T，严格按照1：3的分配执行两个任务。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%BE%E7%A8%8B/" rel="tag"># 课程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/" rel="prev" title="mysql使用">
+                  <i class="fa fa-angle-left"></i> mysql使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/" rel="next" title="Spring Framework">
+                  Spring Framework <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa-solid fa-pen-nib"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SIMULEITE</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

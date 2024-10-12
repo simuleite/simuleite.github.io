@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="复杂度分析：数据结构和算法的评价维度与方法。时间复杂度、空间复杂度的推算方法、常见类型、示例等。 数据结构：基本数据类型，数据结构的分类方法。数组、链表、栈、队列、哈希表、树、堆、图等数据结构的定义、优缺点、常用操作、常见类型、典型应用、实现方法等。 算法：搜索、排序、分治、回溯、动态规划、贪心等算法的定义、优缺点、效率、应用场景、解题步骤、示例题目等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法">
+<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="复杂度分析：数据结构和算法的评价维度与方法。时间复杂度、空间复杂度的推算方法、常见类型、示例等。 数据结构：基本数据类型，数据结构的分类方法。数组、链表、栈、队列、哈希表、树、堆、图等数据结构的定义、优缺点、常用操作、常见类型、典型应用、实现方法等。 算法：搜索、排序、分治、回溯、动态规划、贪心等算法的定义、优缺点、效率、应用场景、解题步骤、示例题目等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-03-22T07:38:11.821Z">
+<meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="知识">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/","path":"ComputerScience/知识/算法/","title":"算法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>算法 | SMULET's BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="SMULET's BLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SMULET's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95"><span class="nav-text"> 1.0 排序算法</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SIMULEITE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-handshake-o fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.nyc1.xyz/" title="https:&#x2F;&#x2F;blog.nyc1.xyz&#x2F;" rel="noopener" target="_blank">[网络] NgaiYeanCoi</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="算法 | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          算法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-03-22 15:38:11" itemprop="dateModified" datetime="2024-03-22T15:38:11+08:00">2024-03-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><ul>
+<li><strong>复杂度分析</strong>：数据结构和算法的评价维度与方法。时间复杂度、空间复杂度的推算方法、常见类型、示例等。</li>
+<li><strong>数据结构</strong>：基本数据类型，数据结构的分类方法。数组、链表、栈、队列、哈希表、树、堆、图等数据结构的定义、优缺点、常用操作、常见类型、典型应用、实现方法等。</li>
+<li><strong>算法</strong>：搜索、排序、分治、回溯、动态规划、贪心等算法的定义、优缺点、效率、应用场景、解题步骤、示例题目等。</li>
+</ul>
+<span id="more"></span>
+<h3 id="10-排序算法"><a class="markdownIt-Anchor" href="#10-排序算法"></a> 1.0 排序算法</h3>
+<ul>
+<li><strong>插入排序：</strong><br />
+对于一段数组，从a[1]开始依次插入到前面<strong>已经排序好的数组</strong>里。<br />
+实现：比较大小，把比待排序元素key大的元素往后移。<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">key = a[j];  <span class="comment">// 待排序数组</span></span><br><span class="line">i = j - <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (i &gt;= <span class="number">0</span> &amp;&amp; a[i] &gt; key) &#123;  <span class="comment">// 比较大小</span></span><br><span class="line">    a[i+<span class="number">1</span>] = a[i];  <span class="comment">// 比key大的往后挪</span></span><br><span class="line">    i--;</span><br><span class="line">&#125;</span><br><span class="line">a[i+<span class="number">1</span>] = key;</span><br></pre></td></tr></table></figure>
+</li>
+<li><strong>选择排序：</strong><br />
+第一次从数组a[0…LEN-1]中找出最小值，与a[0]交换，第二次从a[1…LEN-1]找最小值与a[1]交换，等等。<br />
+实现：遍历数组，记录最小值及其下标，与a[0~LEN-1]交换<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">key = a[i];</span><br><span class="line"><span class="keyword">for</span> (j = i+<span class="number">1</span>; j &lt; LEN; j++) &#123;  <span class="comment">// 遍历数组i到末尾</span></span><br><span class="line">    <span class="keyword">if</span> (a[j] &lt; key) &#123;  <span class="comment">// 找出最小值并储存值和索引</span></span><br><span class="line">    key = a[j];</span><br><span class="line">    tag = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">a[tag] = a[i];</span><br><span class="line">a[i] = key;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><strong>归并排序：</strong><br />
+把数组分成前后两半，直到不可再分；然后对已排序好的小数组排序。<br />
+实现：将原数组复制成左右两份，比较左右数组每一项的大小，并给原数组重新赋值。</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">merge(<span class="type">int</span> start, <span class="type">int</span> mid, <span class="type">int</span> end)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> n1 = mid - start + <span class="number">1</span>;  <span class="comment">// 9/2 = 4, 0-4共5个元素</span></span><br><span class="line">    <span class="type">int</span> n2 = end - mid;  <span class="comment">// 9 - 9/2 = 5, 刚好5个元素</span></span><br><span class="line">    <span class="type">int</span> left[n1], right[n2];</span><br><span class="line">    <span class="type">int</span> i, j, k;</span><br><span class="line">        </span><br><span class="line">    <span class="comment">// 复制数组</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n1; i++)</span><br><span class="line">        left[i] = a[start+i];</span><br><span class="line">    <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; n2; j++)</span><br><span class="line">        right[j] = a[mid+<span class="number">1</span>+j];</span><br><span class="line"></span><br><span class="line">    i = j = <span class="number">0</span>;</span><br><span class="line">    k = start;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; n1 &amp;&amp; j &lt; n2) &#123;</span><br><span class="line">        <span class="keyword">if</span> (left[i] &lt; right[j])  <span class="comment">// 已排序好的小数组再排序</span></span><br><span class="line">            a[k++] = left[i++];</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            a[k++] = right[j++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; n1)  <span class="comment">// 处理剩余项（已排序好无需比较）</span></span><br><span class="line">        a[k++] = left[i++];</span><br><span class="line">    <span class="keyword">while</span> (j &lt; n2)</span><br><span class="line">        a[k++] = right[j++];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sort(<span class="type">int</span> start, <span class="type">int</span> end)  </span><br><span class="line"><span class="comment">// start, end应为数组下标范围; a[10]传入0, 9</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(start &lt; end) &#123;</span><br><span class="line">        <span class="type">int</span> mid = (start+end) / <span class="number">2</span>;</span><br><span class="line">        sort(start, mid);  <span class="comment">// 分割数组为两半</span></span><br><span class="line">        sort(mid+<span class="number">1</span>, end);</span><br><span class="line">        merge(start, mid, end);  <span class="comment">// 对已排序好的数组排序</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p><strong>快速排序：</strong><br />
+找到一个标兵pivot，并把数组按左小右大顺序排到pivot两侧，对左右两侧再排序。<br />
+实现：两个索引从数组前后向中间遍历，每找到一组“左大右小”就交换，直到索引重合（排序完毕）。将pivot与索引位置交换，对左右两组再次排序。和冒泡排序一样属于交换排序。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// end在数组下标取值范围里  </span></span><br><span class="line"><span class="type">int</span> <span class="title function_">partition</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> end)</span>  &#123;  </span><br><span class="line">    <span class="type">int</span> i = start, j = end;  </span><br><span class="line">    <span class="comment">// 完全遍历数组，将组内全部元素排序成“左小右大”  </span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; j) &#123;  </span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; a[j] &gt;= a[start])  </span><br><span class="line">            j--;  </span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; a[i] &lt;= a[start])  </span><br><span class="line">            i++;  </span><br><span class="line">        <span class="comment">// 找到一组“左大右小”就交换</span></span><br><span class="line">        swap(&amp;a[i], &amp;a[j]);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="comment">// 交换pivot到组中间  </span></span><br><span class="line">    swap(&amp;a[start], &amp;a[i]);  </span><br><span class="line">    <span class="keyword">return</span> a[i];  </span><br><span class="line">&#125;  </span><br><span class="line">  </span><br><span class="line"><span class="type">void</span> <span class="title function_">quick_sort</span><span class="params">(<span class="type">int</span> start, <span class="type">int</span> end)</span>  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">if</span> (end &gt; start) &#123;  </span><br><span class="line">        <span class="type">int</span> pivot = partition(start, end);  </span><br><span class="line">        <span class="comment">// 如果把pivot变成pivot-1，pivot+1变成pivot就会死循环，为什么？  </span></span><br><span class="line">        quick_sort(start, pivot);          quick_sort(pivot+<span class="number">1</span>, end);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>算法</p>
+<ul>
+<li>有限指令集</li>
+<li>接受输入或不需要输入</li>
+<li>产生输出</li>
+<li>一定在有限步骤后终止</li>
+<li>每条指令必须
+<ol>
+<li>明确无歧义</li>
+<li>计算机处理范围内（如递归别爆内存）</li>
+<li>伪代码，不依赖特定语言和实现手段</li>
+</ol>
+</li>
+<li>例子</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* 将N个整数List[0]...List[N-1]进行非递减排序 */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">SelectionSort</span><span class="params">(<span class="type">int</span> List[], <span class="type">int</span> N)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">        MinPosition = ScanForMin( List, i, N–<span class="number">1</span> );</span><br><span class="line">        <span class="comment">/* 从List[i]到List[N–1]中找最小元,并将其位置赋给MinPosition */</span></span><br><span class="line">        Swap( List[i], List[MinPosition] );</span><br><span class="line">        <span class="comment">/* 将未排序部分的最小元换到有序部分的最后位置 */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>什么是好的算法
+<ul>
+<li>空间复杂度S(n)和时间复杂度T(n)</li>
+<li>S(n)：递归PrintN(int N)占用跟N大小呈线性增长；而循环始终占用1个函数空间</li>
+<li>T(n)：多项式例子，直接算的方法执行(1+2+…+n)次乘法，巧妙方法只执行n次乘法
+<ul>
+<li>只关心 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mrow><mi>w</mi><mi>o</mi><mi>r</mi><mi>s</mi><mi>t</mi></mrow></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo><mtext>和</mtext><msub><mi>T</mi><mrow><mi>a</mi><mi>v</mi><mi>g</mi></mrow></msub><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">T_{worst}(n) \text{和} T_{avg}(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mord text"><span class="mord cjk_fallback">和</span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 最坏情况更容易统计</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%9F%A5%E8%AF%86/" rel="tag"># 知识</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/LFS%E7%AC%94%E8%AE%B0/" rel="prev" title="LFS笔记">
+                  <i class="fa fa-angle-left"></i> LFS笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" rel="next" title="Hexo博客教程">
+                  Hexo博客教程 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa-solid fa-pen-nib"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SIMULEITE</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

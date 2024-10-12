@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Shortcuts 快捷键  CTRL+N|P 下、上一条命令 CTRL+A|E 跳到行首、行尾 ALT+F|B 或 CTRL+←|→ 下、上一个单词（右ALT开始使用~） CTRL+W 删除前面的单词 CTRL+D|H 删除一个字符（D向后删除&#x3D;Delete，H向前删除&#x3D;Backspace） CTRL+U 删除整行 CTRL+R 搜索整行，Esc退出   Bash prompt string配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shell终端使用">
+<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="Shortcuts 快捷键  CTRL+N|P 下、上一条命令 CTRL+A|E 跳到行首、行尾 ALT+F|B 或 CTRL+←|→ 下、上一个单词（右ALT开始使用~） CTRL+W 删除前面的单词 CTRL+D|H 删除一个字符（D向后删除&#x3D;Delete，H向前删除&#x3D;Backspace） CTRL+U 删除整行 CTRL+R 搜索整行，Esc退出   Bash prompt string配">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-11-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-07T02:47:45.581Z">
+<meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="基本操作">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/","path":"ComputerScience/基本操作/Shell终端使用/","title":"Shell终端使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Shell终端使用 | SMULET's BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="SMULET's BLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SMULET's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#shortcuts-%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-text"> Shortcuts 快捷键</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bash-prompt-string%E9%85%8D%E7%BD%AE"><span class="nav-text"> Bash prompt string配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bash-shell"><span class="nav-text"> Bash Shell</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="nav-text"> 好用的工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pandoc"><span class="nav-text"> Pandoc</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SIMULEITE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-handshake-o fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.nyc1.xyz/" title="https:&#x2F;&#x2F;blog.nyc1.xyz&#x2F;" rel="noopener" target="_blank">[网络] NgaiYeanCoi</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Shell终端使用 | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Shell终端使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-07 10:47:45" itemprop="dateModified" datetime="2024-08-07T10:47:45+08:00">2024-08-07</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="shortcuts-快捷键"><a class="markdownIt-Anchor" href="#shortcuts-快捷键"></a> Shortcuts 快捷键</h1>
+<ul>
+<li><code>CTRL+N|P</code> 下、上一条命令</li>
+<li><code>CTRL+A|E</code> 跳到行首、行尾</li>
+<li><code>ALT+F|B</code> 或 <code>CTRL+←|→</code> 下、上一个单词（右ALT开始使用~）</li>
+<li><code>CTRL+W</code> 删除前面的单词</li>
+<li><code>CTRL+D|H</code> 删除一个字符（D向后删除=Delete，H向前删除=Backspace）</li>
+<li><code>CTRL+U</code> 删除整行</li>
+<li><code>CTRL+R</code> 搜索整行，Esc退出</li>
+</ul>
+<h1 id="bash-prompt-string配置"><a class="markdownIt-Anchor" href="#bash-prompt-string配置"></a> Bash prompt string配置</h1>
+<ul>
+<li>PS(prompt string): 是命令行的默认显示文本，如：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">username@hostname /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以在<code>~/.bash_profile</code>或<code>.bashrc</code>中修改默认显示（Windows Git Bash是<code>git-prompt.sh</code>）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Windows Git Bash默认配置，其中\007前面的$TITLEPREFIX和$PWD是标签栏的内容，git_ps1会显示git工作分支</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&quot;\[\e]0;<span class="variable">$TITLEPREFIX</span>:<span class="variable">$PWD</span>\007\]\n\[\e[32m\]\u@\h \[\e[35m\]<span class="variable">$MSYSTEM</span> \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &quot;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@hostname MINGW /work_directory</span><br><span class="line">$ </span><br><span class="line"></span><br><span class="line"><span class="comment"># 简洁配置，将\h换成了指定文本，保留了命令行前的换行，将标签名改为当前目录</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&quot;\[\e]0;\W\007\] \n\[\e[32m\]\u@Host \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &quot;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@Host /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
+<ul>
+<li>Windows虚拟环境后不会换行：设置<code>venv/Scripts/activate</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -z <span class="string">&quot;<span class="variable">$&#123;VIRTUAL_ENV_DISABLE_PROMPT-&#125;</span>&quot;</span> ] ; <span class="keyword">then</span></span><br><span class="line">    _OLD_VIRTUAL_PS1=<span class="string">&quot;<span class="variable">$&#123;PS1-&#125;</span>&quot;</span></span><br><span class="line">    PS1=<span class="string">&quot;\n(<span class="variable">$&#123;VIRTUAL_ENV_PROMPT&#125;</span>) <span class="variable">$&#123;PS1-&#125;</span>&quot;</span> <span class="comment"># 添加换行符</span></span><br><span class="line">    <span class="built_in">export</span> PS1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>MSYS2显示git prompt</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># etc/profile.d/git-prompt.sh</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -f /etc/profile.d/git-sdk.sh</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        TITLEPREFIX=SDK-<span class="variable">$&#123;MSYSTEM#MINGW&#125;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        TITLEPREFIX=<span class="variable">$MSYSTEM</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -f ~/.config/git/git-prompt.sh</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        . ~/.config/git/git-prompt.sh</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        PS1=<span class="string">&#x27;\[\033]0;$TITLEPREFIX:$PWD\007\]&#x27;</span> <span class="comment"># set window title</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\n&#x27;</span>                 <span class="comment"># new line</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[32m\]&#x27;</span>       <span class="comment"># change to green</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\u@\h &#x27;</span>             <span class="comment"># user@host&lt;space&gt;</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[35m\]&#x27;</span>       <span class="comment"># change to purple</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;$MSYSTEM &#x27;</span>          <span class="comment"># show MSYSTEM</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[33m\]&#x27;</span>       <span class="comment"># change to brownish yellow</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\w&#x27;</span>                 <span class="comment"># current working directory</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$WINELOADERNOEXEC</span>&quot;</span></span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                GIT_EXEC_PATH=<span class="string">&quot;<span class="subst">$(git --exec-path 2&gt;/dev/null)</span>&quot;</span></span><br><span class="line">                COMPLETION_PATH=<span class="string">&quot;<span class="variable">$&#123;GIT_EXEC_PATH%/libexec/git-core&#125;</span>&quot;</span></span><br><span class="line">                COMPLETION_PATH=<span class="string">&quot;<span class="variable">$&#123;COMPLETION_PATH%/lib/git-core&#125;</span>&quot;</span></span><br><span class="line">                COMPLETION_PATH=<span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/share/git/completion&quot;</span></span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">test</span> -f <span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/git-prompt.sh&quot;</span></span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        . <span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/git-completion.bash&quot;</span></span><br><span class="line">                        . <span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/git-prompt.sh&quot;</span></span><br><span class="line">                        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[36m\]&#x27;</span>  <span class="comment"># change color to cyan</span></span><br><span class="line">                        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;`__git_ps1`&#x27;</span>   <span class="comment"># bash function</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[0m\]&#x27;</span>        <span class="comment"># change color</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\n&#x27;</span>                 <span class="comment"># new line</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;$ &#x27;</span>                 <span class="comment"># prompt: always $</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"> </span><br><span class="line">MSYS2_PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span>               <span class="comment"># for detection by MSYS2 SDK&#x27;s bash.basrc</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># Evaluate all user-specific Bash completion scripts (if any)</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$WINELOADERNOEXEC</span>&quot;</span></span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$HOME</span>&quot;</span>/bash_completion.d/*.bash</span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">                <span class="comment"># Handle absence of any scripts (or the folder) gracefully</span></span><br><span class="line">                <span class="built_in">test</span> ! -f <span class="string">&quot;<span class="variable">$c</span>&quot;</span> ||</span><br><span class="line">                . <span class="string">&quot;<span class="variable">$c</span>&quot;</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ~/.bashrc || ~/.bash_profile</span></span><br><span class="line"><span class="built_in">shopt</span> -q login_shell || . /etc/profile.d/git-prompt.sh</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">syntax</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\u</td>
+<td>username</td>
+</tr>
+<tr>
+<td style="text-align:center">\h</td>
+<td>hostname</td>
+</tr>
+<tr>
+<td style="text-align:center">\e</td>
+<td>set colors</td>
+</tr>
+<tr>
+<td style="text-align:center">\w</td>
+<td>work directory</td>
+</tr>
+<tr>
+<td style="text-align:center">\W</td>
+<td>current diretory</td>
+</tr>
+<tr>
+<td style="text-align:center">\n</td>
+<td>line feed</td>
+</tr>
+</tbody>
+</table>
+<span id="more"></span>
+<h1 id="bash-shell"><a class="markdownIt-Anchor" href="#bash-shell"></a> Bash Shell</h1>
+<ol>
+<li>格式</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">value=&quot;string&quot;（不要有空格）</span><br><span class="line">echo $value</span><br><span class="line">    </span><br><span class="line">执行使用sh filename.sh</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>&quot;%d&quot;输出变量， '%d’输出%d（不转义）</li>
+<li>declare -afirx 定义变量为数组函数整数只读环境（默认为字符串）</li>
+<li>read value 读取变量</li>
+<li>$0 $1 $2 表示命令行参数sh <a target="_blank" rel="noopener" href="http://file.sh">file.sh</a> $0 $1</li>
+<li>if then</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">if [ &quot;$yn&quot; = &quot;y&quot; ] &amp;&amp; [ 条件二 ]（注意空格）; then</span><br><span class="line">语句</span><br><span class="line">else</span><br><span class="line">语句</span><br><span class="line">fi 结束</span><br></pre></td></tr></table></figure>
+<ol>
+<li>case</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">case $value in</span><br><span class="line">one)</span><br><span class="line">语句</span><br><span class="line">value)</span><br><span class="line">语句</span><br><span class="line">exit 1</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+<ol start="8">
+<li>for</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for (( i=1；条件2；i=i+1 ))</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>while</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">while [条件] || [条件]</span><br><span class="line">do</span><br><span class="line">语句</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>调试脚本</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sh -nvx</span><br><span class="line">n 检查脚本错误</span><br><span class="line">v 执行脚本，并把脚本内容打印</span><br><span class="line">x 与v稍微不同(折叠显示)</span><br></pre></td></tr></table></figure>
+<h1 id="好用的工具"><a class="markdownIt-Anchor" href="#好用的工具"></a> 好用的工具</h1>
+<h2 id="pandoc"><a class="markdownIt-Anchor" href="#pandoc"></a> Pandoc</h2>
+<p>文本格式转换</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pandoc --from markdown --to docx source.md -o dest.docx</span><br><span class="line">pandoc -f markdown source.md -t docx -o dest.docx</span><br><span class="line">pandoc source.md -o dest.docx --ignore-args # 忽略参数</span><br></pre></td></tr></table></figure>
+<p><strong>注意</strong>：为了最佳转换效果，markdown文件每行后都要空行</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" rel="tag"># 基本操作</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/gdb%E4%BD%BF%E7%94%A8/" rel="prev" title="gdb使用">
+                  <i class="fa fa-angle-left"></i> gdb使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="next" title="数据结构">
+                  数据结构 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa-solid fa-pen-nib"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SIMULEITE</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

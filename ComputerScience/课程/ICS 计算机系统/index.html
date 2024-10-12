@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="第一阶段 程序的表示、转换与链接 参考MOOC：NJU-1001625001   1.0 计算机系统概述  1.3 程序开发和执行过程  hello.c程序用ascii文本表示 首先.c文件预处理为.i文件（把预处理指令翻译过来），然后.i文件编译成.s文件（汇编程序文本）,接着.s文件汇编成.o文件（二进制），与printf等函数的.o文件共同连接成可执行文件（二进制） 高级语言编写程序所需环">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ICS 计算机系统">
+<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="第一阶段 程序的表示、转换与链接 参考MOOC：NJU-1001625001   1.0 计算机系统概述  1.3 程序开发和执行过程  hello.c程序用ascii文本表示 首先.c文件预处理为.i文件（把预处理指令翻译过来），然后.i文件编译成.s文件（汇编程序文本）,接着.s文件汇编成.o文件（二进制），与printf等函数的.o文件共同连接成可执行文件（二进制） 高级语言编写程序所需环">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-04-09T07:14:32.887Z">
+<meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="课程">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/","path":"ComputerScience/课程/ICS 计算机系统/","title":"ICS 计算机系统"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ICS 计算机系统 | SMULET's BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="SMULET's BLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SMULET's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5-%E7%A8%8B%E5%BA%8F%E7%9A%84%E8%A1%A8%E7%A4%BA-%E8%BD%AC%E6%8D%A2%E4%B8%8E%E9%93%BE%E6%8E%A5"><span class="nav-text"> 第一阶段 程序的表示、转换与链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="nav-text"> 1.0 计算机系统概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E5%92%8C%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-text"> 1.3 程序开发和执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-text"> 1.4 计算机系统层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%9B%AE%E6%A0%87"><span class="nav-text"> 1.5 计算机系统基础学习目标</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%AD%98%E5%82%A8"><span class="nav-text"> 2.0 数据表示和存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#20-%E9%94%99%E9%A2%98"><span class="nav-text"> 2.0 错题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-%E7%BC%96%E7%A0%81%E5%92%8C%E6%95%B0%E5%88%B6"><span class="nav-text"> 2.1 编码和数制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.2 定点数的编码表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#221-%E5%AE%9A%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.2.1 定点数的编码表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#222-%E6%A8%A1%E8%BF%90%E7%AE%97%E7%B3%BB%E7%BB%9F%E5%92%8C%E8%A1%A5%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.2.2 模运算系统和补码表示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#223-%E8%A1%A5%E7%A0%81%E5%92%8C%E7%9C%9F%E5%80%BC%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB"><span class="nav-text"> 2.2.3 补码和真值的对应关系</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B4%E6%95%B0"><span class="nav-text"> 2.3 C语言中的整数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#231-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0%E4%B8%8E%E5%B8%A6%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0"><span class="nav-text"> 2.3.1 无符号整数与带符号整数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#232-c%E8%AF%AD%E8%A8%80%E7%A8%8B%E5%BA%8F%E4%B8%AD%E7%9A%84%E6%95%B4%E6%95%B0%E4%B8%BE%E4%BE%8B"><span class="nav-text"> 2.3.2 C语言程序中的整数举例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.4 浮点数的编码表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#241-%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%A1%A8%E7%A4%BA%E8%8C%83%E5%9B%B4"><span class="nav-text"> 2.4.1 浮点数的表示范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#242-ieee-754%E6%A0%87%E5%87%86%E7%9A%84%E8%A7%84%E6%A0%BC%E5%8C%96%E6%95%B0"><span class="nav-text"> 2.4.2 IEEE 754标准的规格化数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#243-ieee-754%E7%89%B9%E6%AE%8A%E6%95%B0%E8%A7%84%E6%A0%BC%E5%8C%96%E4%BB%A5%E5%A4%96"><span class="nav-text"> 2.4.3 IEEE 754特殊数（规格化以外）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-%E9%9D%9E%E6%95%B0%E5%80%BC%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.5 非数值数据的编码表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#26-%E6%95%B0%E6%8D%AE%E5%AE%BD%E5%BA%A6%E5%92%8C%E5%AD%98%E5%82%A8%E5%AE%B9%E9%87%8F%E7%9A%84%E5%8D%95%E4%BD%8D"><span class="nav-text"> 2.6 数据宽度和存储容量的单位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#27-%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%97%B6%E7%9A%84%E5%AD%97%E8%8A%82%E6%8E%92%E5%88%97%E5%A4%A7%E5%B0%8F%E7%AB%AF"><span class="nav-text"> 2.7 数据存储时的字节排列（大小端）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-%E8%BF%90%E7%AE%97%E7%94%B5%E8%B7%AF%E5%9F%BA%E7%A1%80"><span class="nav-text"> 3.0 运算电路基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#30-%E9%94%99%E9%A2%98"><span class="nav-text"> 3.0 错题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31-%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF%E5%9F%BA%E7%A1%80"><span class="nav-text"> 3.1 数字逻辑电路基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#311-%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0%E5%92%8C%E5%9F%BA%E6%9C%AC%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF"><span class="nav-text"> 3.1.1 布尔代数和基本逻辑电路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#312-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%8A%A0%E6%B3%95%E5%99%A8"><span class="nav-text"> 3.1.2 无符号数加法器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#313-%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97%E5%99%A8%E5%92%8Calu"><span class="nav-text"> 3.1.3 整数加&#x2F;减运算器和ALU</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-%E4%BB%8Ec%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%88%B0%E9%80%BB%E8%BE%91%E7%94%B5%E8%B7%AF"><span class="nav-text"> 3.2 从C表达式到逻辑电路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%90%84%E7%B1%BB%E8%BF%90%E7%AE%97"><span class="nav-text"> 3.3 C语言中的各类运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#34-%E6%95%B4%E6%95%B0%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-text"> 3.4 整数加减运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#341-%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97%E7%94%9F%E6%88%90%E7%9A%84%E6%A0%87%E5%BF%97%E4%BF%A1%E6%81%AF"><span class="nav-text"> 3.4.1 加减运算生成的标志信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#342-%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97%E6%BA%A2%E5%87%BA%E5%85%AC%E5%BC%8F%E5%8F%8A%E4%B8%BE%E4%BE%8B"><span class="nav-text"> 3.4.2 加减运算溢出公式及举例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-%E4%B9%98%E9%99%A4%E8%BF%90%E7%AE%97%E5%8F%8A%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.0 乘除运算及浮点数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#41-%E6%95%B4%E6%95%B0%E4%B9%98%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.1 整数乘法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#42-%E6%95%B4%E6%95%B0%E9%99%A4%E6%B3%95%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.2 整数除法运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#43-%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.3 浮点数运算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#431-%E6%B5%AE%E7%82%B9%E6%95%B0%E5%8A%A0%E5%87%8F%E8%BF%90%E7%AE%97"><span class="nav-text"> 4.3.1 浮点数加减运算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#432-%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97%E7%9A%84%E7%B2%BE%E5%BA%A6"><span class="nav-text"> 4.3.2 浮点数运算的精度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#433-%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97%E7%B2%BE%E5%BA%A6%E4%B8%BE%E4%BE%8B"><span class="nav-text"> 4.3.3 浮点数运算精度举例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E6%8B%BE%E9%81%97"><span class="nav-text"> 第一阶段拾遗</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%89%A7%E8%A1%8C%E5%92%8C%E5%AD%98%E5%82%A8%E8%AE%BF%E9%97%AE"><span class="nav-text"> 第二阶段 程序的执行和存储访问</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%A6%82%E8%BF%B0"><span class="nav-text"> 1.0 程序执行概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-%E9%94%99%E9%A2%98"><span class="nav-text"> 1.0 错题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-%E7%A8%8B%E5%BA%8F%E5%92%8C%E6%8C%87%E4%BB%A4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text"> 1.1 程序和指令的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-%E4%B8%80%E6%9D%A1%E6%8C%87%E4%BB%A4%E7%9A%84%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-text"> 1.2 一条指令的执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-ia-32%E6%8C%87%E4%BB%A4%E7%9A%84%E5%A4%A7%E8%87%B4%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="nav-text"> 1.3 IA-32指令的大致执行过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14-cpu%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD%E4%B8%8E%E7%BB%93%E6%9E%84"><span class="nav-text"> 1.4 CPU的基本功能与结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8%E7%BB%84%E7%BB%87"><span class="nav-text"> 2.0 主存储器组织</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#20-%E9%94%99%E9%A2%98-2"><span class="nav-text"> 2.0 错题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#21-%E5%AD%98%E5%82%A8%E5%99%A8%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text"> 2.1 存储器基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#211-%E8%AE%BF%E5%AD%98%E6%93%8D%E4%BD%9C%E4%B8%8E%E5%9F%BA%E6%9C%AC%E6%9C%AF%E8%AF%AD"><span class="nav-text"> 2.1.1 访存操作与基本术语</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#212-%E5%AD%98%E5%82%A8%E5%99%A8%E5%88%86%E7%B1%BB"><span class="nav-text"> 2.1.2 存储器分类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#22-%E4%B8%BB%E5%AD%98%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="nav-text"> 2.2 主存基本结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#23-%E4%B8%BB%E5%AD%98%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="nav-text"> 2.3 主存的性能指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#24-%E5%8D%8A%E5%AF%BC%E4%BD%93%E5%AD%98%E5%82%A8%E5%99%A8%E7%BB%84%E7%BB%87"><span class="nav-text"> 2.4 半导体存储器组织</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#25-%E5%86%85%E5%AD%98%E6%9D%A1%E7%BB%84%E7%BB%87%E4%B8%8E%E6%80%BB%E7%BA%BF%E5%AE%BD%E5%BA%A6"><span class="nav-text"> 2.5 内存条组织与总线宽度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#251-sparcstation%E5%B7%A5%E4%BD%9C%E7%AB%99-20%E7%9A%84%E5%86%85%E5%AD%98%E6%9D%A1"><span class="nav-text"> 2.5.1 SPARCstation（工作站） 20的内存条</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#252-pc%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E6%9D%A1"><span class="nav-text"> 2.5.2 PC中的内存条</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-%E7%A3%81%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-text"> 3.0 磁盘存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#30-%E9%94%99%E9%A2%98-2"><span class="nav-text"> 3.0 错题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#31-%E7%A1%AC%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8%E7%BB%93%E6%9E%84"><span class="nav-text"> 3.1 硬盘存储器结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#32-%E7%A3%81%E7%9B%98%E9%A9%B1%E5%8A%A8%E5%99%A8%E5%8F%8A%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-text"> 3.2 磁盘驱动器及操作过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#33-%E7%A1%AC%E7%9B%98%E5%AD%98%E5%82%A8%E5%99%A8%E7%9A%84%E7%BB%84%E6%88%90"><span class="nav-text"> 3.3 硬盘存储器的组成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="nav-text"> 4.0 高速缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#41-%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-text"> 4.1 存储器层次结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#42-cache%E6%A6%82%E8%BF%B0"><span class="nav-text"> 4.2 Cache概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#421-%E5%BC%95%E5%85%A5cache%E7%9A%84%E5%87%BA%E5%8F%91%E7%82%B9"><span class="nav-text"> 4.2.1 引入cache的出发点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#422-cache%E4%B8%8E%E4%B8%BB%E5%AD%98%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text"> 4.2.2 cache与主存的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#423-cache%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-text"> 4.2.3 cache操作过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#424-%E5%AE%9E%E7%8E%B0cache%E9%9C%80%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text"> 4.2.4 实现cache需要解决的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#43-cache%E6%98%A0%E5%B0%84%E6%96%B9%E5%BC%8F"><span class="nav-text"> 4.3 cache映射方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#431-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E4%B8%BB%E5%AD%98%E5%9C%B0%E5%9D%80%E5%88%92%E5%88%86"><span class="nav-text"> 4.3.1 直接映射主存地址划分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#432-%E6%9C%89%E6%95%88%E4%BD%8D%E5%92%8C%E8%AE%BF%E5%AD%98%E8%BF%87%E7%A8%8B"><span class="nav-text"> 4.3.2 有效位和访存过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#434-cache%E5%AE%B9%E9%87%8F%E8%AE%A1%E7%AE%97"><span class="nav-text"> 4.3.4 Cache容量计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#434-%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84%E7%9A%84%E6%96%B9%E5%BC%8F%E7%89%B9%E7%82%B9"><span class="nav-text"> 4.3.4 直接映射的方式特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#435-%E5%85%A8%E7%9B%B8%E8%81%94%E6%98%A0%E5%B0%84%E6%96%B9%E5%BC%8F"><span class="nav-text"> 4.3.5 全相联映射方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#435-%E7%BB%84%E7%9B%B8%E8%81%94set-associative%E6%98%A0%E5%B0%84%E6%96%B9%E5%BC%8F"><span class="nav-text"> 4.3.5 组相联（Set Associative）映射方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#50-cache%E6%9B%BF%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="nav-text"> 5.0 Cache替换算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#51-cache%E6%9B%BF%E6%8D%A2%E7%AD%96%E7%95%A5"><span class="nav-text"> 5.1 Cache替换策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#52-%E5%86%99%E7%AD%96%E7%95%A5cache%E4%B8%80%E8%87%B4%E6%80%A7"><span class="nav-text"> 5.2 写策略（cache一致性）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#53-cache%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9B%A0%E7%B4%A0"><span class="nav-text"> 5.3 cache实现的几个因素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#60-%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-text"> 6.0 虚拟存储器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#61-%E5%88%86%E9%A1%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="nav-text"> 6.1 分页存储管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#611-%E6%97%A9%E6%9C%9F%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8%E6%A6%82%E5%BF%B5"><span class="nav-text"> 6.1.1 早期虚拟存储器概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#612-%E5%88%86%E9%A1%B5%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text"> 6.1.2 分页的基本概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#62-%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8-%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="nav-text"> 6.2 虚拟存储器、虚拟地址空间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#621-%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="nav-text"> 6.2.1 虚拟存储器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#622-%E8%99%9A%E6%8B%9F%E5%9C%B0%E5%9D%80%E7%A9%BA%E9%97%B4"><span class="nav-text"> 6.2.2 虚拟地址空间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#63-%E5%88%86%E9%A1%B5%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-text"> 6.3 分页存储管理的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#631-%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86%E9%9C%80%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text"> 6.3.1 虚拟存储管理需要考虑的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#632-%E9%A1%B5%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="nav-text"> 6.3.2 页表结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#633-%E9%A1%B5%E8%A1%A8%E8%BD%AC%E6%8D%A2%E8%BF%87%E7%A8%8B"><span class="nav-text"> 6.3.3 页表转换过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#634-%E5%BF%AB%E8%A1%A8-tlb"><span class="nav-text"> 6.3.4 快表 TLB</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#64-%E5%AD%98%E5%82%A8%E5%99%A8%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-text"> 6.4 存储器层次结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#641-%E5%AD%98%E5%82%A8%E5%99%A8%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B"><span class="nav-text"> 6.4.1 存储器访问过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#65-%E6%AE%B5%E5%BC%8F%E5%92%8C%E6%AE%B5%E9%A1%B5%E5%BC%8F%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E7%AE%A1%E7%90%86"><span class="nav-text"> 6.5 段式和段页式虚拟存储管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#66-%E5%AD%98%E5%82%A8%E4%BF%9D%E6%8A%A4"><span class="nav-text"> 6.6 存储保护</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SIMULEITE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-handshake-o fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.nyc1.xyz/" title="https:&#x2F;&#x2F;blog.nyc1.xyz&#x2F;" rel="noopener" target="_blank">[网络] NgaiYeanCoi</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ICS 计算机系统 | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ICS 计算机系统
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-09T00:00:00+08:00">2023-12-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-09 15:14:32" itemprop="dateModified" datetime="2024-04-09T15:14:32+08:00">2024-04-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="第一阶段-程序的表示-转换与链接"><a class="markdownIt-Anchor" href="#第一阶段-程序的表示-转换与链接"></a> 第一阶段 程序的表示、转换与链接</h1>
+<pre><code>参考MOOC：NJU-1001625001
+</code></pre>
+<h2 id="10-计算机系统概述"><a class="markdownIt-Anchor" href="#10-计算机系统概述"></a> 1.0 计算机系统概述</h2>
+<h3 id="13-程序开发和执行过程"><a class="markdownIt-Anchor" href="#13-程序开发和执行过程"></a> 1.3 程序开发和执行过程</h3>
+<ol>
+<li>hello.c程序用ascii文本表示</li>
+<li>首先.c文件预处理为.i文件（把预处理指令翻译过来），然后.i文件编译成.s文件（汇编程序文本）,接着.s文件汇编成.o文件（二进制），与printf等函数的.o文件共同连接成可执行文件（二进制）</li>
+<li>高级语言编写程序所需环境：（1）语言处理程序； （2）语言处理系统； （3）语言运行时的系统； （4）操作系统内核； （5）操作系统； （6）指令集体系结构； （7）人机接口</li>
+</ol>
+<h3 id="14-计算机系统层次结构"><a class="markdownIt-Anchor" href="#14-计算机系统层次结构"></a> 1.4 计算机系统层次结构</h3>
+<ul>
+<li>过程式语言：如何做； 非过程化语言：做什么；语言发展是不断抽象的过程</li>
+<li>应用-&gt;算法-&gt;语言-&gt;操作系统-&gt;(软件)ISA指令集（硬件）-&gt;微体系、功能部件、电路和器件<br />
+非预期结果是硬件层次造成的。上层是下层的抽象，下层是上层的实现，底层为上层提供支撑环境</li>
+<li>题目：由机器语言编程的早期计算机系统中，没有ISA这一层次（F）；一直都有ISA，因此<strong>ISA是计算机体系层次中最重要的层次</strong>。<br />
+<strong>ISA， Instruction Set Architecture（结构）规定了如何使用硬件，是可以执行的指令的集合</strong>，包括指令格式、操作种类及操作数的类型的规定…<br />
+<strong>没有ISA，软件无法使用计算机硬件，一台计算机就不能成为“通用”计算机</strong></li>
+<li>计算机组成必须能够实现ISA规定的功能；同一种ISA可以由不同的计算机（硬件）组成，如乘法指令用ALU或乘法器都可以实现</li>
+<li>题目：有没有乘法指令是ISA考虑的问题，如何实现乘法指令是微体系结构考虑的问题</li>
+</ul>
+<h3 id="15-计算机系统基础学习目标"><a class="markdownIt-Anchor" href="#15-计算机系统基础学习目标"></a> 1.5 计算机系统基础学习目标</h3>
+<ul>
+<li>编写高效程序必须了解计算机底层结构</li>
+<li>必须掌握并行程序设计技术和工具</li>
+<li>课程目标：理解计算机如何生成和运行可执行文件</li>
+<li>涉及层次：C语言设计层，ISA和汇编层，微体系结构和硬件层</li>
+<li>第一部分 程序表示与转换；第二部分 执行控制流</li>
+</ul>
+<span id="more"></span>
+<h2 id="20-数据表示和存储"><a class="markdownIt-Anchor" href="#20-数据表示和存储"></a> 2.0 数据表示和存储</h2>
+<h3 id="20-错题"><a class="markdownIt-Anchor" href="#20-错题"></a> 2.0 错题</h3>
+<ol>
+<li>负整数转换无符号数。<strong>没有把负数转成补码！</strong><br />
+![[…/Source/Photo/ICS/错题本/2 负有符号转无符号.png]]</li>
+<li>大无符号数转带符号数。<strong>理解错误！-1取补码，各位取反再加1，就是全1！</strong><br />
+![[…/Source/Photo/ICS/错题本/2 大无符号转带符号.png]]</li>
+<li>无符号数和带符号数混合运算。<strong>和上题一样的错误，没有补码转换思维！</strong><br />
+![[…/Source/Photo/ICS/错题本/2 无符号和带符号混合运算.png]]</li>
+</ol>
+<h3 id="21-编码和数制"><a class="markdownIt-Anchor" href="#21-编码和数制"></a> 2.1 编码和数制</h3>
+<ul>
+<li>数据在计算机中表示的三要素：
+<ol>
+<li>进位计数制（2 8 10 16）</li>
+<li>定、浮点表示（小数）</li>
+<li>如何用二进制编码（正负号：原码、补码、反码、移码）</li>
+</ol>
+</li>
+</ul>
+<h3 id="22-定点数的编码表示"><a class="markdownIt-Anchor" href="#22-定点数的编码表示"></a> 2.2 定点数的编码表示</h3>
+<h4 id="221-定点数的编码表示"><a class="markdownIt-Anchor" href="#221-定点数的编码表示"></a> 2.2.1 定点数的编码表示</h4>
+<ul>
+<li>定点数：定点整数，定点小数，可以用于表示浮点数</li>
+<li>原码：正号为0，负号为1；缺点：加减运算不统一，需要额外符号位，不利于硬件设计，a&lt;b时a-b困难</li>
+<li>移码：一个数值加上一个偏置常数；便于浮点数加减运算、比较大小<br />
+例如，补码和移码表示的两个浮点数：</li>
+</ul>
+<h4 id="222-模运算系统和补码表示"><a class="markdownIt-Anchor" href="#222-模运算系统和补码表示"></a> 2.2.2 模运算系统和补码表示</h4>
+<ul>
+<li>8是 -4对模12的补码，10+8 % 12 = 10-4（-4的模12补码为8）8+4=12</li>
+<li>负数的补码是 模减去该负数的绝对值</li>
+<li>补码 modular运算：+和-的统一</li>
+<li>4位十进制数模运算：9828-1928 = 9828+(10^4-1928)=1 7900 = 7900(mod 10^4)；1928的补码8072（和为9999，末尾+1）</li>
+<li>0100 0000 的8位二进制补码 1011 1111 + 1 = 1100 0000 <strong>（每一位取反，再加1）</strong>，也可以用2^8 - 0100 0000计算</li>
+<li><strong>题目：补码位数为8，-1000b的补码表示是：1111 1000（别忽略前面四位！）</strong></li>
+<li>运算器适合使用补码：运算器只有n位，所有运算结果都只能保留低n位，是一个模2^n的计算器</li>
+<li><strong>补码的定义：X补 = 2^n + X。X是真值，X补是机器数</strong></li>
+</ul>
+<h4 id="223-补码和真值的对应关系"><a class="markdownIt-Anchor" href="#223-补码和真值的对应关系"></a> 2.2.3 补码和真值的对应关系</h4>
+<ul>
+<li>特殊数的补码
+<ol>
+<li>0的补码：0</li>
+<li>-1的补码：n个1（2^n - 01）</li>
+<li>-2<sup>n-1的补码：10…0（n-1个0，相当于2</sup>n - 2^n-1）</li>
+</ol>
+</li>
+<li><strong>题目：32位机器中，int类型-1的机器数是：32位1</strong> 32位机器int、short、char分别占32位、16位、8位</li>
+<li><strong>变形补码：</strong> 4’s comlement两个符号位，用于存放可能溢出的中间结果<br />
+![[…/Source/Photo/ICS/课程/变形补码.png]]</li>
+</ul>
+<p>例如，8的补码为1000，用四位补码则符号位为1（负数）</p>
+<ul>
+<li>例如：8位机器123和-123的补码<br />
+123: 0111 1011<br />
+-123: 1000 0101（简便方法，从又到左除第一个1以外全部取反）</li>
+<li>快速求补码真值：
+<ol>
+<li>普通求法：-1，除了符号位按位取反，然后B转D</li>
+<li>快速求法：-N<em>2^n-1 + N</em>2^n-2（原来是公式求法，难算，用上面的办法）<br />
+例如：1101 0110<br />
+算法1：1010 1010 = -(32+8+2)<br />
+算法2: -128+64+16 +4+2 = -42（好像不是很快^ ^）</li>
+</ol>
+</li>
+</ul>
+<h3 id="23-c语言中的整数"><a class="markdownIt-Anchor" href="#23-c语言中的整数"></a> 2.3 C语言中的整数</h3>
+<h4 id="231-无符号整数与带符号整数"><a class="markdownIt-Anchor" href="#231-无符号整数与带符号整数"></a> 2.3.1 无符号整数与带符号整数</h4>
+<ul>
+<li>两种位串排序方式
+<ol>
+<li>高位到低位 从左到右</li>
+<li>高位到低位 从右到左</li>
+</ol>
+<ul>
+<li>因此用LSB表示最低有效位，MSB为最高有效位</li>
+</ul>
+</li>
+<li>无符号整数：不带符号位，多一个MSB；<br />
+如16位无符号整数最大可以表示的数是2^16=65536<br />
+用于不出现负值的场合，如地址运算、编号表示</li>
+<li>补码的好处：
+<ol>
+<li>模运算系统，加减运算统一</li>
+<li>0可以唯一表示，没有正负号</li>
+<li>比原码多表示一个最小负数（-128~127）</li>
+</ol>
+</li>
+</ul>
+<h4 id="232-c语言程序中的整数举例"><a class="markdownIt-Anchor" href="#232-c语言程序中的整数举例"></a> 2.3.2 C语言程序中的整数举例</h4>
+<p>(unsigned) int (short / long)</p>
+<ul>
+<li>如果同时有无符号和有符号，会把有符号强制转换成无符号数<br />
+如 -1 &lt; 0(unsigned）值为false，因为把-1转成1111了<br />
+如 2147 4836 47 &gt; -2147 4836 37 - 1 值为false，因为后面的有一个符号位，转换后相当于前面+1的真值<br />
+![[…/Source/Photo/ICS/课程/unsigned.png]]</li>
+<li><strong>题目：已知2147483647为2^31-1, C语言中的关系表达式&quot;2147 4836 47U &gt; -2147 4836 47-1&quot;的结果是</strong> 假，前后都会转换成unsigned</li>
+<li>int x = -1<br />
+%u 4294 9672 95，%d -1</li>
+</ul>
+<h3 id="24-浮点数的编码表示"><a class="markdownIt-Anchor" href="#24-浮点数的编码表示"></a> 2.4 浮点数的编码表示</h3>
+<h4 id="241-浮点数的表示范围"><a class="markdownIt-Anchor" href="#241-浮点数的表示范围"></a> 2.4.1 浮点数的表示范围</h4>
+<ul>
+<li>规格化形式：小数点前只有一位非0数，小数点后第一位总是为1（所以经常省略，用23个二进制位表示24位尾数）</li>
+<li>32位浮点数格式的规格化数表示范围<br />
+0位为符号位S，1<sub>8位用8位**移码**表示阶码E(偏置常数128)；9</sub>31位用24位二进制<strong>原码</strong>表示尾数M<br />
++/- 0.1xxx(M 23位) * 2^E<br />
+max: (1-2^-24) * 2^127(偏置128+127=255)<br />
+min: (1/2) * 2^-128(128-128=0)</li>
+<li>由于<strong>原码对称性</strong>，浮点数表示范围关于<strong>原点对称</strong></li>
+<li><strong>题目：若浮点数结果位于上溢区，则说明其值大于最大可表示数</strong> false，大于max或小于min</li>
+<li>机器0：尾数为0或落在下溢区的数(下溢区太小取近似为0)</li>
+<li>早期，不同体系结构计算机所用的浮点数表示格式是不一样的，在不同计算机之间进行程序移植时，需要考虑浮点数格式之间的转换。</li>
+</ul>
+<h4 id="242-ieee-754标准的规格化数"><a class="markdownIt-Anchor" href="#242-ieee-754标准的规格化数"></a> 2.4.2 IEEE 754标准的规格化数</h4>
+<ul>
+<li>阶码没有全0和全1，只有00…01和11…10 (-126~127)</li>
+<li>S(single)P: (-1)^S * (1+Significand) * 2(Exponent - 127)(用127那么最大254-127=127范围更大，用128就成了最大为126)</li>
+<li>D(double)P: Exponent - 1023</li>
+<li><strong>例子：float变量x机器数为BEE00000H，求x的真值</strong><br />
+1| 011 11101| 110 0000 0000 0000 0000<br />
+= (-1)^S * (1+Significand) * 2^Exponent-127
+<ul>
+<li>阶码：0111 1101B = 125</li>
+<li>阶码的值：125-127=-2</li>
+<li>尾数部分的值：<br />
+1 + 1* 2^-1 + 1* 2^-2 + 0* 2^-3…<br />
+= 1 + 2^-1 + 2^-2<br />
+= 1.75</li>
+<li>真值：-1.75 * 2^-2 = -0.4375</li>
+</ul>
+</li>
+</ul>
+<h4 id="243-ieee-754特殊数规格化以外"><a class="markdownIt-Anchor" href="#243-ieee-754特殊数规格化以外"></a> 2.4.3 IEEE 754特殊数（规格化以外）</h4>
+<ul>
+<li>0的机器数<br />
+<strong>符号 阶码全0 尾数全0</strong></li>
+<li>正负无穷+/-inf（浮点数除以0的结果）<br />
+<strong>符号 阶码全1（255） 尾数全0</strong><br />
+5.0 / 0 = +inf</li>
+<li>非数NaN（如-4.0开根，不存在）<br />
+<strong>阶码全1 尾数全0</strong></li>
+<li>非规格化数<br />
+最小规格化数：2^-126（0.00…01）<br />
+在 0~最小规格化数 间就是非规格化数<br />
+<strong>阶码全0 尾数非0</strong><br />
+当输入数不可表示，机器将其转换成最近的可表示数</li>
+<li><strong>题目：从键盘上输入61.420001赋值给一个float型变量x，再打印输出x时，其结果为61.420002。以下描述的是由此推断出的一些结论，其中哪些是正确的？</strong><br />
+<strong>由此说明能精确表示的float型数据的有效位数最多为7位。为什么，因为61.42000(7位)是精确的吗？</strong><br />
+由此说明32位IEEE 754单浮点数格式无法精确表示61.420001，可以精确表示61.420002。</li>
+</ul>
+<h3 id="25-非数值数据的编码表示"><a class="markdownIt-Anchor" href="#25-非数值数据的编码表示"></a> 2.5 非数值数据的编码表示</h3>
+<ul>
+<li>非数值数据：逻辑数据、音乐</li>
+<li>逻辑数据
+<ul>
+<li>表示：用1位表示。n位可以表示n个逻辑数据</li>
+<li>运算：按位进行。按位与、或，逻辑左、右移</li>
+<li>识别：和数据一样是01序列，计算机靠指令识别</li>
+</ul>
+</li>
+<li>西文字符编码
+<ul>
+<li>7位（256个）ASCII码</li>
+<li>操作：传送、比较</li>
+<li>0~9：48D, 30H~39H</li>
+<li>A~Z：65D, 41H</li>
+<li>a~Z：97D, 61H</li>
+<li>空格：20H</li>
+<li>回车：0DH, 0AH</li>
+</ul>
+</li>
+<li>汉字国际字符编码
+<ul>
+<li>输入码：用于输入（输入法，拼音、双拼）</li>
+<li>内码：在系统中存储、查找、传送</li>
+<li>点阵\轮廓(输出码)：用于输出</li>
+<li><strong>西文没有输入码，有内码和点阵、轮廓码</strong></li>
+</ul>
+</li>
+<li>GB2312-80字符集
+<ul>
+<li>区位码和国标码：<br />
+区号位号各加上32(20H)即为国标码<br />
+行号为区号，列号为位号，各占7位，共14位</li>
+<li>必须用两个字节表示，2B = 16bits，2^16 = 65536 &gt; 6万汉字</li>
+<li>内码表示：国标码最高位设为1，与ASCII区分</li>
+</ul>
+</li>
+<li>多媒体信息（图形、图像、音频、视频）
+<ul>
+<li>MIDI：音乐信息</li>
+</ul>
+</li>
+</ul>
+<h3 id="26-数据宽度和存储容量的单位"><a class="markdownIt-Anchor" href="#26-数据宽度和存储容量的单位"></a> 2.6 数据宽度和存储容量的单位</h3>
+<ul>
+<li>bits, Byte, word(字，与字长不同，如IA32字为16b，字长为32b)</li>
+<li>Byte：存储器按字节编址，需要表示最低、最高有效字节(LSB、MSB)</li>
+<li>字长：<strong>定点数据通路宽度</strong>，等于CPU内部总线宽度、运算器位数、通用寄存器宽度</li>
+<li>字： <strong>被处理信息的单位</strong></li>
+<li>不同机器表示同一类型的数据可能宽度不同<br />
+如char* 32位4B，64位8B</li>
+</ul>
+<h3 id="27-数据存储时的字节排列大小端"><a class="markdownIt-Anchor" href="#27-数据存储时的字节排列大小端"></a> 2.7 数据存储时的字节排列（大小端）</h3>
+<ul>
+<li>int型变量x=-10，存放地址为100，机器数为FF FF FF F6，占4单元<br />
+Q1：变量地址是最大地址还是最小地址？
+<ul>
+<li>最小地址，即x存放在100~103中<br />
+Q2：多个字节在存储单元中存放顺序如何？</li>
+<li>大端法、小端法<br />
+大端法(顺序）：MSB所在地址是数的地址，100 101 102 103，取100<br />
+小端法：LSB所在地址是数的地址，103 102 101 100，取100<br />
+[photo]</li>
+<li><strong>大小端表示的数据内容是一样的</strong>，只不过存放顺序不同，读取时会处理成一样的数据</li>
+</ul>
+</li>
+</ul>
+<h2 id="30-运算电路基础"><a class="markdownIt-Anchor" href="#30-运算电路基础"></a> 3.0 运算电路基础</h2>
+<h3 id="30-错题"><a class="markdownIt-Anchor" href="#30-错题"></a> 3.0 错题</h3>
+<ol>
+<li><strong>CPU基本运算部件是ALU，不是加法器</strong><br />
+![[…/Source/Photo/ICS/错题本/3 基本运算部件ALU.png]]</li>
+<li>异号补码运算，真值肯定不会超过可表示范围，<strong>不会产生溢出OF信号！</strong><br />
+![[…/Source/Photo/ICS/错题本/3 异号补码运算.png]]</li>
+</ol>
+<h3 id="31-数字逻辑电路基础"><a class="markdownIt-Anchor" href="#31-数字逻辑电路基础"></a> 3.1 数字逻辑电路基础</h3>
+<h4 id="311-布尔代数和基本逻辑电路"><a class="markdownIt-Anchor" href="#311-布尔代数和基本逻辑电路"></a> 3.1.1 布尔代数和基本逻辑电路</h4>
+<ul>
+<li>布尔代数：关于0和1的数学运算体系</li>
+<li>真值表：输入、输出之间的关系</li>
+<li>与：^/* ，或：v/+</li>
+<li>n位逻辑运算：按位与、或，用n个门电路实现</li>
+<li>门电路分类
+<ul>
+<li>组合逻辑电路：没有存储功能，输出仅仅取决于当前输入</li>
+<li>时序逻辑电路：有存储功能，不仅依赖当前输入，还依赖存储单元当前状态</li>
+<li>组合逻辑部件（功能部件）：译码器、编码器、多路选择器、加法器</li>
+</ul>
+</li>
+<li>如何实现功能部件：
+<ol>
+<li>真值表</li>
+<li>逻辑表达式</li>
+<li>电路</li>
+</ol>
+</li>
+<li>多路选择器（MUX）</li>
+</ul>
+<h4 id="312-无符号数加法器"><a class="markdownIt-Anchor" href="#312-无符号数加法器"></a> 3.1.2 无符号数加法器</h4>
+<ul>
+<li>一位加法器 全加器：<br />
+F = A异或B异或Cin（低位进位）<br />
+Cout = AB + ACin + BCin</li>
+<li><strong>题目：关于全加器的叙述，错误的是。全加器只能由与门、或门和异或门实现</strong></li>
+<li>n位加法器：n个全加器，每个Cout接入高位的Cin</li>
+<li><strong>重要认识：加法器由逻辑部件实现，而其他运算部件都基于加法器和逻辑运算实现；因此，所有运算都是基于0和1以及逻辑运算实现的。</strong></li>
+<li><strong>题目：关于n位加法器，错误的是。n位加法器的输出包括一个n位的数和一个n位的进位Cout。</strong> 只有一个Cout</li>
+<li>n位带标志加法器
+<ul>
+<li>n位加法器无法用于两个带符号整数（补码）相加，无法判断溢出</li>
+<li>程序经常需要比较大小，通过做减法得到的标志信息来判断</li>
+<li>OF溢出标志：Cn异或Cn-1</li>
+<li>SF符号标志：Fn-1</li>
+<li>ZF零标志：F=0时为1（或非所有F）</li>
+<li>CF进位、借位标志：Cout异或Cin</li>
+</ul>
+</li>
+<li><strong>n位带标志加法器和n位加法器一样可以实现无符号加运算，输入也完全一样，带标志多输出了几个标志信息</strong></li>
+</ul>
+<h4 id="313-整数加减运算器和alu"><a class="markdownIt-Anchor" href="#313-整数加减运算器和alu"></a> 3.1.3 整数加/减运算器和ALU</h4>
+<ul>
+<li>n位整数加减运算器：计算机需要电路可以表示x, y的补码以及计算x+/-y的补码<br />
+多路选择器选择原码/各位取反输出（多一路Sub输入决定加法、减法（补码））：实现了带/无符号整数加、减</li>
+<li><strong>题目：以下关于整数加/减运算器的叙述中，错误的是：整数加/减运算器不可以实现两个无符号数的加/减运算。</strong>
+<ul>
+<li>整数加/减运算器的输入为两个运算的操作数和一位控制信号sub。</li>
+<li>整数加/减运算器通过输出的标志信息确定运算结果是否正确。</li>
+</ul>
+</li>
+<li>ALU
+<ul>
+<li>进行基本算术、逻辑运算</li>
+<li>核心电路是带标志加法器</li>
+<li>输出除了和、差，还有标志信息</li>
+<li>有一个操作控制端（分配器）用来决定ALU执行的处理功能</li>
+</ul>
+</li>
+<li><strong>题目：以下关于ALU的叙述中，错误的是：ALU可以实现加、减、乘、除运算。</strong> 只有加减运算</li>
+</ul>
+<h3 id="32-从c表达式到逻辑电路"><a class="markdownIt-Anchor" href="#32-从c表达式到逻辑电路"></a> 3.2 从C表达式到逻辑电路</h3>
+<ul>
+<li>基本数据类型
+<ul>
+<li>整数：无符号、带符号</li>
+<li>浮点数</li>
+<li>位串、字符串</li>
+</ul>
+</li>
+<li>基本运算类型
+<ul>
+<li>关系运算：比较大小，实际上是减法</li>
+<li>按位运算 | &amp; ~ ^</li>
+<li>逻辑运算</li>
+<li>移位运算</li>
+<li>扩展和截断</li>
+</ul>
+</li>
+<li><strong>例如：y=(x&gt;&gt;2)+k如何实现</strong>
+<ol>
+<li>转换为运算指令序列
+<ul>
+<li>sarw $2, %ax;  x&gt;&gt;2</li>
+<li>addw %bx, %ax;  (x&gt;&gt;2) + k</li>
+</ul>
+</li>
+<li>计算机直接执行指令完成运算
+<ul>
+<li>控制器对指令译码，产生控制信号送运算电路</li>
+</ul>
+</li>
+<li>操作数在运算电路中运算
+<ul>
+<li>sarw $2, &amp;ax：将操作数“2”和“R[ax]”送移位器运算</li>
+<li>addw %bx, %ax：将R[ax]和R[bx]送整数加减器中运算</li>
+<li>移位器、整数加减运算器由逻辑门电路构成</li>
+</ul>
+</li>
+<li><strong>高级语言执行指令进行两次转换：1. 转换成指令；2. 指令在电路上执行</strong></li>
+</ol>
+</li>
+<li>高级语言涉及的运算<br />
+![[…/Source/Photo/ICS/课程/3.2 数据的运算.png]]</li>
+<li><strong>题目：指令系统中有专门的浮点数左移和右移运算指令。（错误）</strong> 只有整数有左右移运算</li>
+</ul>
+<h3 id="33-c语言中的各类运算"><a class="markdownIt-Anchor" href="#33-c语言中的各类运算"></a> 3.3 C语言中的各类运算</h3>
+<ul>
+<li>算术运算</li>
+<li>按位运算
+<ul>
+<li>掩码或其他处理</li>
+</ul>
+</li>
+<li>移位运算
+<ul>
+<li>提取部分信息</li>
+<li>扩大(&lt;&lt;)、缩小(&gt;&gt;)2^n倍</li>
+<li>移位操作可能溢出、丢失信息</li>
+<li><strong>题目：8位带符号整数的补码表示为1001 0101，右移一位是：1100 1010</strong> 最高位的1也要右移，并且保留符号位</li>
+</ul>
+</li>
+<li>移位运算、按位运算举例
+<ol>
+<li>x最高有效字节不变，其余全0：右移到只剩下八位，再左移回来</li>
+<li>x最低有效字节不变，其余全0：x和0xFF按位与</li>
+<li>x最低有效字节变0，其余取反：用1异或x（取反），右移8位再左移回来</li>
+<li>x最低有效字节变1，其余不变：x和0xFF按位或</li>
+</ol>
+</li>
+<li>逻辑运算
+<ul>
+<li>与按位运算的区别：运算的是整体（而不是按位），结果返回一个逻辑值（而不是位串）</li>
+</ul>
+</li>
+<li>位拓展和位截断运算
+<ul>
+<li>拓展：短转长
+<ul>
+<li>无符号：补0</li>
+<li>有符号：补符号</li>
+</ul>
+</li>
+<li>截断：长转短：
+<ul>
+<li>高位丢弃（可能溢出）</li>
+</ul>
+</li>
+<li>例子：<br />
+![[…/Source/Photo/ICS/课程/3.3 位拓展举例.png]]<br />
+![[…/Source/Photo/ICS/课程/3.3 位截断溢出举例.png]]<br />
+溢出导致正数32768变成负的(在short类型最高（符号）位上)</li>
+</ul>
+</li>
+</ul>
+<h3 id="34-整数加减运算"><a class="markdownIt-Anchor" href="#34-整数加减运算"></a> 3.4 整数加减运算</h3>
+<h4 id="341-加减运算生成的标志信息"><a class="markdownIt-Anchor" href="#341-加减运算生成的标志信息"></a> 3.4.1 加减运算生成的标志信息</h4>
+<ul>
+<li>加减运算部件
+<ul>
+<li>所有运算都基于此加法器</li>
+<li>加法器不知道运算的数带不带符号</li>
+<li>加法器不判定对错，只输出低n位</li>
+</ul>
+</li>
+<li>条件标志位（条件码CC）
+<ul>
+<li>被记录到专门的寄存器（程序、状态字寄存器或标志寄存器）中</li>
+<li><strong>题目：假定整数加/减运算器的两个输入端分别是A和B，以下关于整数加/减运算器的叙述中，错误的是。不管是带符号整数还是无符号整数，做减运算时，只要借位标志CF=1，就说明有借位，即A小于B。</strong></li>
+<li><strong>题目：以下关于n位带标志加法器的叙述中，错误的是。进位标志CF等于加法器的进位输出Cout。</strong> 同时也表示借位
+<ul>
+<li>正确项：当两个加数的符号相同且不同于和的符号，则溢出标志OF=1。符号标志SF与和的符号位Fn-1相同。在整数加/减运算器中的加法器是n位带标志加法器。</li>
+</ul>
+</li>
+<li>举例<br />
+![[…/Source/Photo/ICS/课程/3.4 整数加法运算举例.png]]</li>
+</ul>
+</li>
+</ul>
+<h4 id="342-加减运算溢出公式及举例"><a class="markdownIt-Anchor" href="#342-加减运算溢出公式及举例"></a> 3.4.2 加减运算溢出公式及举例</h4>
+<ul>
+<li>判断无符号数相加有没有发生溢出的程序
+<ul>
+<li>发生溢出时，一定满足1. result&lt;x &amp;&amp; result&lt;y (x+y-2^n&gt;=x, y&gt;=2^n明显错误)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int uadd_ok(unsigned x, unsigned y)</span><br><span class="line">&#123;</span><br><span class="line">    unsigned sum = x+y;</span><br><span class="line">    return sum&gt;=x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>判断带符号数相加有没有发生溢出</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int tadd_ok(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">    int sum = x+y;</span><br><span class="line">    int neg_over = x&lt;0 &amp;&amp; y&lt;0 &amp;&amp; sum&gt;= 0</span><br><span class="line">    int pos_over = x&gt;=0 &amp;&amp; y&gt;= 0 &amp;&amp; sum&lt;0</span><br><span class="line">    return !neg_over &amp;&amp; !pos_over;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上面的函数改成判断相减有没有溢出</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">int tsub_ok(int x, int y)</span><br><span class="line">&#123;</span><br><span class="line">    return tadd_ok(x, -y)</span><br><span class="line">    // 当x=0，y=0x8000 0000时错误,最大负数不能表示</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="40-乘除运算及浮点数运算"><a class="markdownIt-Anchor" href="#40-乘除运算及浮点数运算"></a> 4.0 乘除运算及浮点数运算</h2>
+<h3 id="41-整数乘法运算"><a class="markdownIt-Anchor" href="#41-整数乘法运算"></a> 4.1 整数乘法运算</h3>
+<ul>
+<li>乘法运算，计算机只取低n位
+<ul>
+<li>int类型乘法不一定大于0（溢出）</li>
+<li>float类型乘法一定大于0</li>
+</ul>
+</li>
+<li>如何判断返回值z正确：<strong>!x || z/x==y</strong></li>
+<li>编译器怎样判断不溢出：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup><mo>&lt;</mo><mo>=</mo><mi>x</mi><mo>∗</mo><mi>y</mi><mo>&lt;</mo><msup><mn>2</mn><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">-2^{n-1} &lt;= x*y &lt; 2^{n-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span> ，即高n位为全0或全1，并且低于低n位（int类型占用bits）的最高位；乘积高n+1位为全0/1
+<ul>
+<li>若为unsigned类型，高n位全0就没有溢出</li>
+</ul>
+</li>
+<li><strong>题目：以下是关于整数乘运算（z=x*y）结果溢出判断规则的描述，其中错误的是。如果是C语言程序员，可以采用&quot;若(y!=0 || x==z/y)，则结果z不溢出&quot;的规则。</strong> !x || z/x==y，题目中y!=0错误</li>
+<li>无符号和带符号乘法器的关系
+<ul>
+<li>不同的是高n位（因此可以用无符号乘法器实现带符号乘法，但此时不能靠编译器判断了）</li>
+</ul>
+</li>
+<li>硬件不判断溢出，只保留2n位乘积
+<ul>
+<li>如果程序和编译器都没有溢出处理，就会出问题</li>
+<li>指令：分为无符号、带符号乘指令</li>
+</ul>
+</li>
+<li><strong>例子：malloc(count*sizeof(int))，若count很大，会溢出，堆中大量数据会被破坏（数组大小不够但是程序强行写入）</strong></li>
+<li>乘法运算需要多个时钟周期，而移位、加减法只需要一个或更少的时钟周期，因此<strong>编译器处理变量与常数相乘时，常常把乘法优化成移位、加减的组合运算</strong>
+<ul>
+<li>例如x*20，20 = 16+4 = 2^4 + 2^2，可以转化成（x&lt;&lt;4)+(x&lt;&lt;2)（溢出和乘法运算相同）</li>
+</ul>
+</li>
+</ul>
+<h3 id="42-整数除法运算"><a class="markdownIt-Anchor" href="#42-整数除法运算"></a> 4.2 整数除法运算</h3>
+<ul>
+<li>带符号整数，n位整数除以n位整数，<strong>只有-2^(n-1)/-1 = 2^(n-1)会溢出</strong>（正数表示范围比负数小）</li>
+<li>整数除法舍入：整数向下取（floor），负数向上取（ceiling）</li>
+<li>整除0：无法表示，发生异常；操作系统异常处理</li>
+<li>0x80000000 / -1 和 / b(b=-1)，后者检测到异常（floating point exception），前者不会，<strong>因为-1被编译器优化为neg（取负）</strong></li>
+<li>除法指令比乘法指令还要长（30+时钟周期），无法用流水线实现，<strong>尽量别做除法（编译器优化neg的原因）</strong>
+<ul>
+<li>可以整除，用&gt;&gt;右移计算</li>
+<li>不能整除，右移的位有非0，做相应处理</li>
+</ul>
+</li>
+<li>不能整除，朝零舍入（截断）
+<ul>
+<li>无符号、带符号正整数：移出位直接丢弃</li>
+<li>带符号负整数：加偏移量（2^k-1），再右移、低位截断（k是右移位数）</li>
+</ul>
+</li>
+<li>举例<br />
+![[…/Source/Photo/ICS/课程/4.2 整数除法运算.png]]</li>
+</ul>
+<h3 id="43-浮点数运算"><a class="markdownIt-Anchor" href="#43-浮点数运算"></a> 4.3 浮点数运算</h3>
+<h4 id="431-浮点数加减运算"><a class="markdownIt-Anchor" href="#431-浮点数加减运算"></a> 4.3.1 浮点数加减运算</h4>
+<ul>
+<li>若<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><msub><mi>M</mi><mi>a</mi></msub><mo>∗</mo><msup><mn>2</mn><msub><mi>E</mi><mi>a</mi></msub></msup><mo separator="true">,</mo><mi>B</mi><mo>=</mo><msub><mi>M</mi><mi>b</mi></msub><mo>∗</mo><msup><mn>2</mn><msub><mi>E</mi><mi>b</mi></msub></msup></mrow><annotation encoding="application/x-tex">A = M_a*2^{E_a}, B = M_b*2^{E_b}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.035771em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3487714285714287em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15122857142857138em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span>, 则<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>+</mo><mi>B</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>M</mi><mi>a</mi></msub><mo>+</mo><msub><mi>M</mi><mi>b</mi></msub><mo>∗</mo><msup><mn>2</mn><mrow><mo>−</mo><mo stretchy="false">(</mo><msub><mi>E</mi><mi>a</mi></msub><mo>−</mo><msub><mi>E</mi><mi>b</mi></msub><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">)</mo><mo>∗</mo><msup><mn>2</mn><msub><mi>E</mi><mi>a</mi></msub></msup><mo stretchy="false">(</mo><msub><mi>E</mi><mi>a</mi></msub><mo>&gt;</mo><mo>=</mo><msub><mi>E</mi><mi>b</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A+B = (M_a+M_b*2^{-(E_a-E_b)})*2^{E_a}(E_a&gt;=E_b)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.10903em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.138em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8879999999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.3487714285714287em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15122857142857138em;"><span></span></span></span></span></span></span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.0913309999999998em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">b</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，阶小的数尾数右移<br />
+![[…/Source/Photo/ICS/课程/4.3.1 浮点数四则运算原理.png]]</li>
+<li>可能情况：
+<ul>
+<li>阶码上溢：正指数超过最大允许值，+/-inf/溢出（SP最大指数127）</li>
+<li>阶码下溢 ：+/-0（SP最小指数-126）</li>
+<li>尾数溢出：最高有效位有进位(1.5+1.5=3(11B))，右规（右移1位，再加1）<strong>尾数溢出，结果不一定溢出</strong></li>
+<li>非规格化尾数：数值部分高位为0(<a target="_blank" rel="noopener" href="http://0.xxx">0.xxx</a>)，左规</li>
+<li>右规或对阶（使阶码相等）时，右端有效位丢失：尾数舍入，在运算过程添加保护位（把可能丢弃的位保留，最后再舍入）</li>
+</ul>
+</li>
+<li>IEEE 754五种异常情况
+<ul>
+<li>无效运算
+<ul>
+<li>运算时有一个非有限数</li>
+<li>结果无效</li>
+</ul>
+</li>
+<li>除以0，无穷大</li>
+<li>数太大，阶上溢</li>
+<li>数太小</li>
+<li>结果不精确（舍入引起），如1/3,1/10</li>
+</ul>
+</li>
+<li><strong>例子：除0，int类型发生错误，double浮点型有结果（正负无穷大）</strong></li>
+<li>例子：1.123*10^5 + 2.560*10^2
+<ul>
+<li>(1.123+<strong>0.00256</strong>)*10^5</li>
+<li>1.12556舍入56，得1.126*10^5</li>
+<li>IEEE 754会保留右移尾数的最高位，最后才舍入</li>
+</ul>
+</li>
+<li>基本要点
+<ol>
+<li>求阶差</li>
+<li>对阶（保留附加位，即最高位1）</li>
+<li>尾数加减</li>
+<li>规格化：
+<ul>
+<li>尾数高位为0，左规</li>
+<li>尾数最高位有进位，右规</li>
+<li>阶码溢出异常处理：溢出（上溢）或0（下溢）</li>
+</ul>
+</li>
+<li>尾数比规定位数长（或有附加位），舍入</li>
+<li>运算结果尾数是0，将阶码设置成0（只有阶码和尾数全为0才是0）</li>
+</ol>
+</li>
+<li><strong>例子：0.5+（-0.4375）</strong>
+<ul>
+<li>注意机器中用2进制计算，因此0.5=1.0B*2^-1, -0.4375=-1.110B*2^-2(0.25+0.0625)</li>
+<li>对阶：0.111*2^-2 -&gt; 1.111*2^-1</li>
+<li>加减：(1.000-0.111)*2^-1</li>
+<li>左规：1.0*2^-4</li>
+<li>判断溢出：无溢出</li>
+</ul>
+</li>
+<li><strong>（没懂）问题：为什么IEEE 754加减运算右规最多只需一次</strong> 因为最大的尾数相加整数部分最多有两位（和的尾数不超过4）</li>
+</ul>
+<h4 id="432-浮点数运算的精度"><a class="markdownIt-Anchor" href="#432-浮点数运算的精度"></a> 4.3.2 浮点数运算的精度</h4>
+<pre><code>&quot;Floating Point numbers are like piles of sand; every time you move one 
+ you lose a little sand, but you pick up a little dirt.&quot;
+</code></pre>
+<ul>
+<li>如何使得失去的“沙”和捡回的“dirt”少一点？**增加附加位！**多少位合适？<strong>没有准确答案</strong>；<br />
+IEEE 754规定中间结果需要在右边加两个附加位</li>
+<li>Guard（保护位）：significand右边的位</li>
+<li>Round（舍入位）：保护位右边的位</li>
+<li>附加位的作用：用来保护对阶时右移的位或运算的中间结果</li>
+<li>附加位的处理：1）左规时被移到significand；2）作为舍入的依据</li>
+<li>例子：2.3400+0.0253=2.3653，若没有舍入位3，则依据5舍入，结果为2.36；而有3作为依据，则结果为2.37</li>
+<li>IEEE舍入标准（4种）：
+<ol>
+<li>就近舍入（0舍1入）<strong>精度最高</strong>
+<ul>
+<li>舍入数大于中间数（01）：末位加1</li>
+<li>舍入数小于中间数（11）：截断、丢弃</li>
+<li>相等（10）：最近偶数</li>
+</ul>
+</li>
+<li>朝+/-inf舍入；朝0舍入</li>
+</ol>
+</li>
+<li>float类型和double类型
+<ul>
+<li>float范围：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3.4</mn><mo>∗</mo><mn>1</mn><msup><mn>0</mn><mn>38</mn></msup></mrow><annotation encoding="application/x-tex">3.4 * 10^{38}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mord">.</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span></span></li>
+<li>double范围：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1.8</mn><mo>∗</mo><mn>1</mn><msup><mn>0</mn><mn>308</mn></msup></mrow><annotation encoding="application/x-tex">1.8 * 10^{308}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">0</span><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span></span></li>
+<li>float类型可表示7个十进制有效位</li>
+<li>int转float可能舍入丢失精度，转double（52+1位表示）不会；但double转int或float会溢出</li>
+</ul>
+</li>
+<li>**浮点数不满足结合律：**大数与小数对阶，小数全部移位移没了</li>
+</ul>
+<h4 id="433-浮点数运算精度举例"><a class="markdownIt-Anchor" href="#433-浮点数运算精度举例"></a> 4.3.3 浮点数运算精度举例</h4>
+<ul>
+<li>96年Ariana5火箭爆炸，5亿美元
+<ul>
+<li>原因：64位float转16位int，溢出</li>
+</ul>
+</li>
+<li>91年海湾战争，爱国者导弹定位错误
+<ul>
+<li>软件时钟浮点数精度问题，0.1的机器数是无限循环序列，约等于9.54*10^-8；飞毛腿导弹连续工作100小时，误差了0.343秒，2000m/sec，误差为二者相乘687米</li>
+</ul>
+</li>
+<li>用32位定点小数表示0.1，比float精度高64倍</li>
+<li><strong>用float相乘比直接把两个二进制数相乘要慢</strong>用确定小数常量效率更高</li>
+</ul>
+<h2 id="第一阶段拾遗"><a class="markdownIt-Anchor" href="#第一阶段拾遗"></a> 第一阶段拾遗</h2>
+<ol>
+<li>ISO C90标准下, 在32位系统上以下C表达式的结果是什么?<br />
+<code>-2147483648 &lt; 2147483647</code>, false(与事实不符)!Why?
+<ul>
+<li><strong>C语言编译器将<code>2147483648==pow（2，31）</code>看成无符号整型</strong>，机器数为<code>0x8000 0000</code>，因此表达式是false<br />
+<code>int i = -2147483648;i &lt; 2147483647</code>，true!Why?</li>
+<li>这次编译器把两边的数都看做带符号数，负数一定小于正数</li>
+</ul>
+</li>
+<li>对于任何int型变量x和y, <code>(x&gt;y) == (-x&lt;-y)</code> 总成立吗?<br />
+当<code>x=-2147483648</code>, <code>y任意(除-2147483648外)</code>时不成立, Why?
+<ul>
+<li>x为最小负数时，表示为<code>100...000</code>，这时-x取补码仍然是最小负数；此时无论y取什么值，等式右边恒成立，左边恒不成立</li>
+</ul>
+</li>
+<li>下面的代码<br />
+打印结果是什么? <code>d=0, x=1 072 693 248</code>, Why?</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// p1.c</span></span><br><span class="line"><span class="type">double</span> d;</span><br><span class="line"><span class="type">void</span> <span class="title function_">p1</span><span class="params">( )</span></span><br><span class="line">&#123;</span><br><span class="line">    d=<span class="number">1.0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// main.c</span></span><br><span class="line"><span class="type">int</span> d=<span class="number">100</span>;</span><br><span class="line"><span class="type">int</span> x=<span class="number">200</span>;</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    p1( );</span><br><span class="line">    <span class="built_in">printf</span> (“d=%d, x=%d\n”, d, x );</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在p1中，d变成了double类型，占8个字节；而在全局变量里d和x各占4字节，在d转成浮点数的过程中发生了溢出，而溢出的值影响到了后面的x。<br />
+<code>(double)1.0D = 0000 0000 0000 F03FH, 1 072 693 248D = 3f f0 00 00H</code></li>
+</ul>
+<ol start="4">
+<li>float类型机器数和真值转换
+<ul>
+<li>机器数转真值
+<ol>
+<li><code>1| 011 11101| 110 0000 0000 0000 0000</code>先划分符号位、阶码和尾数</li>
+<li>阶码转10进制，减去127，<code>127-2-127 = -2</code></li>
+<li>尾数转10进制，记得加1，<code>0.5+0.25+1 = 1.75</code></li>
+<li>真值 = 尾数 * 2^阶码，<code>-1.75 * 2^-2 = -0.4375</code></li>
+</ol>
+</li>
+<li>真值转机器数
+<ol>
+<li><code>24.678</code>转二进制，并划分整数部分和小数部分</li>
+<li><code>1 1000.101</code>整数部分用科学计数法表示<code>1.1000 101 * 2^4</code></li>
+<li>计算阶码，<code>4+127=3+128</code></li>
+<li>小数部分就是尾数，照抄，<code>0| 100 00011| 100 0101 0000 0000 0000</code></li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h1 id="第二阶段-程序的执行和存储访问"><a class="markdownIt-Anchor" href="#第二阶段-程序的执行和存储访问"></a> 第二阶段 程序的执行和存储访问</h1>
+<pre><code>参考MOOC：NJU-1001964032
+</code></pre>
+<h2 id="10-程序执行概述"><a class="markdownIt-Anchor" href="#10-程序执行概述"></a> 1.0 程序执行概述</h2>
+<h3 id="10-错题"><a class="markdownIt-Anchor" href="#10-错题"></a> 1.0 错题</h3>
+<ol>
+<li>
+<p>CPU中控制器的功能是（ ）。<br />
+B. 完成指令译码，并产生操作控制信号</p>
+</li>
+<li>
+<p>冯·诺依曼计算机中指令和数据均以二进制形式存放在存储器中，CPU依据（ ）来区分它们。<br />
+B. 指令和数据的访问时点不同</p>
+</li>
+<li>
+<p>下列寄存器中，用户可见的（即：机器级代码程序员能感觉其存在的）寄存器是（ ）。<br />
+D. 程序计数器（PC）<br />
+程序计数器（PC）是用户可见的寄存器。在汇编语言编程中，程序员可以直接操作或引用程序计数器，例如通过跳转（jump）指令来改变程序的执行流程。</p>
+</li>
+<li>
+<p>下面是有关CPU中部分部件的描述，其中错误的是（ ）。<br />
+B. IR称为指令寄存器，用来存放当前指令的操作码<br />
+这个描述是错误的。IR（Instruction Register）确实是用来存放当前正在执行的指令，但它不仅包含操作码（opcode），还可能包含操作数（operand）或其他指令信息。</p>
+</li>
+<li>
+<p>下列有关程序计数器PC的叙述中，错误的是（ ）。 ‎ ‌ ‎<br />
+A. 指令顺序执行时，PC的值总是自动加1<br />
+程序计数器（PC）的值在指令顺序执行时通常会增加，但增加的量取决于当前执行的指令的长度，而不是固定的1。<br />
+每条指令执行后，PC的值都会被改变，否则会永远执行某一条指令。</p>
+</li>
+<li>
+<p>机器主频的倒数（一个节拍）等于（   ）。<br />
+D、时钟周期<br />
+时钟周期是CPU工作的最小时间单位，也称节拍脉冲或T周期，其值等于机器主频的倒数。</p>
+</li>
+<li>
+<p>任何指令周期的第一个阶段都是取指令阶段，需要访问存储器。</p>
+</li>
+</ol>
+<h3 id="11-程序和指令的关系"><a class="markdownIt-Anchor" href="#11-程序和指令的关系"></a> 1.1 程序和指令的关系</h3>
+<ul>
+<li>程序和指令的关系
+<ul>
+<li>程序由一条一条指令组成</li>
+</ul>
+</li>
+<li>程序的执行：<strong>周而复始地执行一条一条指令</strong></li>
+<li>程序的执行流的控制
+<ul>
+<li>可以通过改变PC（程序计数器）的值来控制执行顺序，因为要执行的指令的地址就是PC给的</li>
+</ul>
+</li>
+<li>指令周期：CPU<strong>取出并执行</strong>一条指令的时间
+<ul>
+<li>CPI: Cycles Per Instruction</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-一条指令的执行过程"><a class="markdownIt-Anchor" href="#12-一条指令的执行过程"></a> 1.2 一条指令的执行过程</h3>
+<ul>
+<li>取指令-&gt;算操作数-&gt;取操作数-&gt;操作-&gt;计算下条指令地址</li>
+<li><strong>每一步都会检测异常</strong>，若有异常，自动切换操作系统异常处理程序。如越界（第6章）、非法译码、缺页（没取到）、除0/溢出</li>
+<li><strong>问题：“取指令”一定在最开始做吗？PC+&quot;1&quot;一定在译码前做吗?“译码”必须在指令执行前做吗？</strong> 	- 取指令一定在最开始做；
+<ul>
+<li>PC+1随便在哪里做，在下条取指令之前做就行了；</li>
+<li>译码一定在指令执行前做</li>
+</ul>
+</li>
+<li><strong>异常和中断的差别</strong>
+<ul>
+<li>异常是<strong>程序性中断</strong>，和指令相关</li>
+<li>中断是IO发出的<strong>外部中断</strong>，如Ctrl^c，打印机缺纸</li>
+</ul>
+</li>
+<li>取指令：从PC所指单元取指令发送到IR（指令寄存器），并增加PC；<strong>一般按最长的指令取</strong>；或先取一个字节，看看是什么指令，再决定是否继续取</li>
+<li>取操作数：如果在寄存器，不用访存；在存储器需要一次或多次访存</li>
+</ul>
+<h3 id="13-ia-32指令的大致执行过程"><a class="markdownIt-Anchor" href="#13-ia-32指令的大致执行过程"></a> 1.3 IA-32指令的大致执行过程</h3>
+<ul>
+<li>四种基本操作
+<ul>
+<li><strong>取</strong>指令、操作数 LOAD</li>
+<li>算术逻辑<strong>运算</strong></li>
+<li><strong>存</strong>储（数字、结果）</li>
+<li>寄存器、ALU间<strong>传送</strong></li>
+</ul>
+</li>
+<li>IA-32体系结构
+<ul>
+<li>8个GPR（通用寄存器，标号0~7）</li>
+<li>可寻址空间4GB</li>
+<li>取指令格式变长、操作码变长</li>
+<li>由若干字段（OP、Mod、SIB）组成</li>
+</ul>
+</li>
+<li>寻址方式
+<ul>
+<li>基值+有效地址+位移量</li>
+</ul>
+</li>
+</ul>
+<h3 id="14-cpu的基本功能与结构"><a class="markdownIt-Anchor" href="#14-cpu的基本功能与结构"></a> 1.4 CPU的基本功能与结构</h3>
+<ul>
+<li>起始EIP（扩展指令指针） = 第一条指令的地址</li>
+<li>指令执行结果
+<ol>
+<li>取指令：EIP -&gt; MAR -&gt; 地址线 -&gt; 控制线 -&gt; 数据线 -&gt; MDR -&gt; IR（指令寄存器） -&gt; 控制器译码</li>
+<li>译码，指令执行：ESP-4， EBP送到MDR（EBP是数据）,ESP送到MAR（ESP是地址）（指令内容），写入内存。最后PC+1</li>
+</ol>
+</li>
+<li>ALU结构原理：多路选择器选择加减乘除其中一路输入（所有门电路都会运算！）</li>
+</ul>
+<h2 id="20-主存储器组织"><a class="markdownIt-Anchor" href="#20-主存储器组织"></a> 2.0 主存储器组织</h2>
+<h3 id="20-错题-2"><a class="markdownIt-Anchor" href="#20-错题-2"></a> 2.0 错题</h3>
+<ol>
+<li>
+<p>假定用若干个16K×8位的存储器芯片组成一个64K×8位的存储器，芯片各单元交叉编址，则地址BFFFH所在的芯片的最小地址为（   ）。<br />
+B、用若干个16K×8位的存储器芯片构成64K×8位的存储器，需要64K×8位/（16K×8位）= 4个芯片。<strong>因为采用交叉编址方式，所以，存储单元地址对4取模后，低两位相同的存储单元在同一个芯片中。</strong> BFFFH的最低两位为11，显然，与0003H在同一个芯片中。</p>
+</li>
+<li>
+<p>下面有关半导体存储器组织的叙述中，错误的是（   ）。<br />
+B. 同一个存储器中，每个存储单元的宽度可以不同<br />
+这个叙述是错误的。在同一个存储器中，所有存储单元的宽度（即每个存储单元可以存储的数据位数）是相同的。<strong>存储单元的宽度决定了存储器的数据总线宽度</strong></p>
+</li>
+<li>
+<p>某32位计算机，主存地址为32位，按字节编址，则该计算机的主存地址范围是（  ）。<br />
+B. 0～(4G-1)<br />
+在32位计算机中，主存地址是32位长，这意味着地址空间的大小是2的32次方字节。由于每个字节由8位（1字节）组成，所以地址空间的总大小是：<br />
+2^32 字节 / 8 = 2^30 字节<br />
+这等于4GB（Gigabytes）。因此，主存地址范围是从0到4GB减1（即4,294,967,295），因为地址是从0开始计数的。</p>
+</li>
+<li>
+<p>假定主存地址空间大小为1024MB，按字节编址，每次读写操作最多可以一次存取32位。不考虑其它因素，则存储器地址寄存器MAR和存储器数据寄存器MDR的位数至少应分别为（ ）。<br />
+C. 30，32<br />
+存储器地址寄存器（MAR）的位数决定了CPU可以寻址的内存空间大小。由于主存地址空间大小为1024MB，我们需要计算出对应的位数：<br />
+1024MB = 1024 * 1024 * 1024字节 = 2^20 * 1024 * 1024字节 = 2^30字节<br />
+因此，MAR至少需要30位来表示这个地址空间。<br />
+存储器数据寄存器（MDR）的位数决定了每次读写操作可以处理的数据量。题目中提到每次操作最多可以一次存取32位，这意味着MDR至少需要32位来存储这些数据。<br />
+所以，MAR至少需要30位，MDR至少需要32位。</p>
+</li>
+<li>
+<p>存储容量为16K×4位的DRAM芯片，其地址引脚和数据引脚数各是（ ）。<br />
+D. 7和4<br />
+存储容量为16K×4位的DRAM芯片意味着它有16K个存储单元，每个存储单元可以存储4位（即半个字节）数据。首先，我们需要计算地址引脚数：<br />
+16K表示16 * 1024，即16384个存储单元。要表示16384个存储单元，我们需要足够的地址引脚来提供唯一的地址。计算所需的地址引脚数：<br />
+2^n = 16384<br />
+解这个方程，我们得到 n ≈ 14。所以，我们需要14个地址引脚来寻址16384个存储单元。<strong>又因DRAM行列复用，7个引脚即可</strong><br />
+接下来，数据引脚数由存储单元的数据宽度决定。由于每个存储单元是4位宽，我们只需要4个数据引脚来传输这些数据。<br />
+因此，答案是7个地址引脚和4个数据引脚。</p>
+</li>
+<li>
+<p>下面有关ROM和RAM的叙述中，错误的是（   ）。<br />
+计算机系统的主存都用DRAM芯片实现。DRAM的roll buffer是SRAM做的！</p>
+</li>
+<li>
+<p>下面有关半导体存储器的叙述中，错误的是（   ）。<br />
+C、有些情况下，可用半导体存储器实现相联存储器，即按内容进行访问，而不是按地址进行随机读写。<br />
+‏</p>
+</li>
+</ol>
+<h3 id="21-存储器基本概念"><a class="markdownIt-Anchor" href="#21-存储器基本概念"></a> 2.1 存储器基本概念</h3>
+<h4 id="211-访存操作与基本术语"><a class="markdownIt-Anchor" href="#211-访存操作与基本术语"></a> 2.1.1 访存操作与基本术语</h4>
+<ul>
+<li>许多指令都要访存，是一个非常重要的概念</li>
+<li>栈是主存中的一个区域</li>
+<li>术语
+<ol>
+<li>Cell单元，表示0/1</li>
+<li>Addressing Unit</li>
+<li>Bank</li>
+<li>Addressing Mode</li>
+<li>MAR, MBR</li>
+</ol>
+</li>
+</ul>
+<h4 id="212-存储器分类"><a class="markdownIt-Anchor" href="#212-存储器分类"></a> 2.1.2 存储器分类</h4>
+<ul>
+<li>分类
+<ol>
+<li>RAM，如内存。每个单元读写时间一样，与各单元所在位置无关（不考虑roll buffer）。</li>
+<li>SAM（顺序），如磁带。按顺序读写，存储时间长短与信息位置有关。</li>
+<li>DAM，如磁盘。直接定位到读写数据块，读写数据时按顺序进行。</li>
+<li>©AM，如快表。按内容检索到存储位置进行读写。<strong>不需要根据位置、地址，而是根据内容检索。</strong></li>
+</ol>
+</li>
+<li>内存与外存关系、比较
+<ol>
+<li>外存 -&gt; 内存，程序、数据成批传送</li>
+<li>内存 -&gt; CPU，CPU逐条读取指令、数据</li>
+<li>CPU -&gt; 内存，指令处理结果送回内存</li>
+<li>内存 -&gt; 外存，处理结果成批送到外存（回写）</li>
+</ol>
+</li>
+</ul>
+<h3 id="22-主存基本结构"><a class="markdownIt-Anchor" href="#22-主存基本结构"></a> 2.2 主存基本结构</h3>
+<ul>
+<li>8个cell（记忆单元）构成一个存储单元，从全0开始编号，同一个存储单元字线连在一起，同时读整个存储单元</li>
+<li>问题：主存中存放的是？指令和数据；CPU何时访问主存？取指令、取数据、存数据的时候</li>
+</ul>
+<h3 id="23-主存的性能指标"><a class="markdownIt-Anchor" href="#23-主存的性能指标"></a> 2.3 主存的性能指标</h3>
+<ul>
+<li>存储时间（Access）： 读取时间和写入时间</li>
+<li>存储周期（Memory Cycle）：连续两次访问存储器所需的最小时间间隔，比Access Time更长，有一个预充电（预处理）的时间<br />
+![[…/Source/Photo/ICS/课程/Part II/2.2 单位.png]]</li>
+</ul>
+<h3 id="24-半导体存储器组织"><a class="markdownIt-Anchor" href="#24-半导体存储器组织"></a> 2.4 半导体存储器组织</h3>
+<ul>
+<li>六管静态MOS管电路（SRAM，集成度低）
+<ul>
+<li>相当于带时钟的RS触发器，无需刷新</li>
+</ul>
+</li>
+<li>动态单管记忆单元电路（DRAM）
+<ul>
+<li>对电容充电，所以速度慢。元件少、集成高。破坏性读出，会漏电（但是CPU速度比漏电速度快），需要刷新。</li>
+</ul>
+</li>
+<li>半导体的RAM组织
+<ul>
+<li>Cell -&gt; Chip -&gt; Memory</li>
+<li>相同字的Cell字线连在一起，SRAM与ROM，字片式</li>
+<li>二维位片式，DRAM<br />
+-DRAM芯片举例</li>
+<li>16Mb = 4Mb*4 = 2048*2048 *4 = 2^11 * 2^11 * 4</li>
+<li>问题：为什么每一代DDR都会扩大四倍内存？<strong>行列分时复用</strong>，每一代DDR都会增加至少一根地址线，即行、列各增一位，所以容量至少提升4倍。用行、列地址选通信号（RAS\CAS）决定传送的是行、列地址</li>
+</ul>
+</li>
+</ul>
+<h3 id="25-内存条组织与总线宽度"><a class="markdownIt-Anchor" href="#25-内存条组织与总线宽度"></a> 2.5 内存条组织与总线宽度</h3>
+<h4 id="251-sparcstation工作站-20的内存条"><a class="markdownIt-Anchor" href="#251-sparcstation工作站-20的内存条"></a> 2.5.1 SPARCstation（工作站） 20的内存条</h4>
+<ul>
+<li>存储器总线宽度为128，内存条可以一次读取128bits</li>
+<li>2Mb = 256K * 8 = 2^9 * 2^9 * 8，即8行8列</li>
+<li>行缓存roll buffer是SRAM做的，保持了速度！</li>
+<li>各个芯片同一行同时读取到roll buffer</li>
+</ul>
+<h4 id="252-pc中的内存条"><a class="markdownIt-Anchor" href="#252-pc中的内存条"></a> 2.5.2 PC中的内存条</h4>
+<ul>
+<li>主存地址27位，片内地址24位与高24位主存地址相同，低3位用来选片（一般不用，整个读取），确定8个字节中的哪个。<strong>片内地址不是连续的，而是交叉编址（如0, 8, 16），可以同时读写</strong></li>
+<li>Core i7北桥直接做到CPU里</li>
+<li>行与列相等，引脚越少；如不能相等，尽量行比列少，这样可以减少刷新次数（按行刷新）</li>
+</ul>
+<h2 id="30-磁盘存储器"><a class="markdownIt-Anchor" href="#30-磁盘存储器"></a> 3.0 磁盘存储器</h2>
+<h3 id="30-错题-2"><a class="markdownIt-Anchor" href="#30-错题-2"></a> 3.0 错题</h3>
+<ol>
+<li>
+<p>以下有关硬磁盘的磁道和扇区的叙述中，错误的是（）。<br />
+C. 一个磁道由若干扇区构成且磁盘各磁道信息位数总相同<br />
+早期的低密度磁盘中每个磁道信息位数总是一样，但是，现在的磁盘，其外道信息量比内道大</p>
+</li>
+<li>
+<p>以下有关磁盘驱动器的叙述中，错误的是（）<br />
+C. 送到磁盘驱动器的盘地址由磁头号、盘面号和扇区号组成<br />
+因为每个盘面有一个磁头，所以磁头号就是盘面号。盘地址由柱面号（即磁道号）、盘面号（即磁头号）和扇区号组成。</p>
+</li>
+<li>
+<p>假定一个磁盘存储器有10个记录面，用于记录信息的柱面数为5000，每个磁道上记录信息位数相同，磁盘片外径200mm，内径40mm，最内道位密度为200bpm（位/毫米），则该磁盘存储器的容量约为（）<br />
+我们来计算：(10×5000×π×40mm×200bpm)/8bits = 0.157GB</p>
+</li>
+<li>
+<p>假定一个磁盘存储器有4个盘片，用于记录信息的柱面数为2000，每个磁道上有3000个扇区，每个扇区512B，则该磁盘存储器的容量约为（）。<br />
+2×4×2000×3000×0.5KB ≈ 24GB</p>
+</li>
+<li>
+<p>假定一个磁盘的转速为7200RPM，磁盘的平均寻道时间为10ms，内部数据传输率为1MB/s，不考虑排队等待时间。那么读一个512字节扇区的平均时间大约为 ( )。<br />
+10ms + (1/7200×60×1000)/2 + 0.5KB/1MB×1024≈14.67ms</p>
+</li>
+<li>
+<p>以下有关磁盘存储器读写操作的叙述中，错误的是（）。<br />
+ C. 磁盘存储器可与CPU交换盘面上的存储信息<br />
+ 磁盘存储器以成批方式进行数据读写，CPU中没有那么多通用寄存器用于存放交换的数据，所以，磁盘存储器通常直接和主存交换信息</p>
+</li>
+<li>
+<p>磁盘存储器进行读写操作之前，CPU需要对磁盘控制器或DMA控制器进行初始化。以下选项中，不包含在初始化信息中的是（）。<br />
+D. 传送信息所在的通用寄存器编号</p>
+</li>
+</ol>
+<h3 id="31-硬盘存储器结构"><a class="markdownIt-Anchor" href="#31-硬盘存储器结构"></a> 3.1 硬盘存储器结构</h3>
+<ul>
+<li>写入：磁头上有线圈，通过电流改变磁性来写入</li>
+<li>读入：磁头不同，载体运动。根据感应电压识别0\1</li>
+<li>磁盘：最外面是0磁道</li>
+<li>扇区：同心圆分割成扇形，近几年变成4KB扇区，而不是512B</li>
+<li>磁道：检测到脉冲，一个扇区就开始了。运用CRC校验，有一个同步字节。（512/600有效信息）格式化就是填补512信息字节以外的信息的过程。</li>
+</ul>
+<h3 id="32-磁盘驱动器及操作过程"><a class="markdownIt-Anchor" href="#32-磁盘驱动器及操作过程"></a> 3.2 磁盘驱动器及操作过程</h3>
+<ul>
+<li>所有磁头同进同出，同步寻道</li>
+<li>硬盘操作流程
+<ol>
+<li>寻道，控制磁头（平均寻道时间,5ms左右）</li>
+<li>选择1个磁头读写</li>
+<li>磁盘旋转（旋转等待时间）</li>
+<li>读写</li>
+</ol>
+</li>
+<li>平均存储时间T = 平均寻道时间 + 平均旋转等待时间 + 数据传输时间</li>
+<li>题目：每个扇区512B，转速5400RPM，寻道时间12ms，数据传输率4MB/s，磁盘控制器开销1ms，则硬盘响应时间为：<br />
+T = 1 + 12 + [0.5(半圈)*60*1000/5400] + 0.5KB/4MB*1000（实际上局部性会让寻道时间减少1/3，旋转等待时间很重要！）</li>
+</ul>
+<h3 id="33-硬盘存储器的组成"><a class="markdownIt-Anchor" href="#33-硬盘存储器的组成"></a> 3.3 硬盘存储器的组成</h3>
+<ul>
+<li>存储介质：用于保存信息</li>
+<li>磁盘驱动器：包括读写短路、读写转换开关，磁头定位系统等</li>
+<li>磁盘控制器：控制逻辑、时序电路</li>
+<li>寄存器：IO端口（第8章）</li>
+<li>磁盘地址寄存器：控制磁头定位系统</li>
+<li>操作过程：
+<ol>
+<li>盘地址到寄存器，磁头定位系统，开始旋转，计数器数扇区号，扇区符合比较，开始读写</li>
+</ol>
+</li>
+</ul>
+<h2 id="40-高速缓存"><a class="markdownIt-Anchor" href="#40-高速缓存"></a> 4.0 高速缓存</h2>
+<h3 id="41-存储器层次结构"><a class="markdownIt-Anchor" href="#41-存储器层次结构"></a> 4.1 存储器层次结构</h3>
+<ul>
+<li>构造一个存储系统，又大、又快、又便宜：金字塔层次结构</li>
+<li><strong>为什么层次化结构有效？局部性。</strong> 图书馆相同的书放在一起，搬的次数减少。预借登记，一堆图书送到某个图书馆，比直接去原来的图书馆借书耗费的时间少。
+<ul>
+<li>思考：<strong>真正重要的是局部性，而不是层次结构。</strong> 例如，一直缓存不命中也是很慢的，层次结构什么也没有做，是局部性让我们加速：是局部性让我们不会一直不命中，而是把搬来的一块数据全部用完，再般下一块数据，从而减少了搬数据的世界，把时间用在处理上。</li>
+<li>时间局部性：循环。</li>
+<li>空间局部性：数组，结构，循环。</li>
+</ul>
+</li>
+</ul>
+<h3 id="42-cache概述"><a class="markdownIt-Anchor" href="#42-cache概述"></a> 4.2 Cache概述</h3>
+<h4 id="421-引入cache的出发点"><a class="markdownIt-Anchor" href="#421-引入cache的出发点"></a> 4.2.1 引入cache的出发点</h4>
+<ul>
+<li>程序具有局部性特征的原因
+<ul>
+<li>指令：连续存放，地址连续；循环或子程序重复执行</li>
+<li>数据：连续存放，数组元素重复、按顺序访问</li>
+</ul>
+</li>
+<li><strong>为什么引入cache会加快访存速度？</strong>
+<ul>
+<li>引入cache，访问一次内存，一直到把内存的数据都用完了，才开始下一次访问内存。减少了访问次数和时间开销。</li>
+</ul>
+</li>
+</ul>
+<h4 id="422-cache与主存的关系"><a class="markdownIt-Anchor" href="#422-cache与主存的关系"></a> 4.2.2 cache与主存的关系</h4>
+<ul>
+<li>cache如何实现？主存是4*n，把其中一行block(4)复制到cache，如果cache中没有找到要找的数据，就到主存中寻找，然后覆写到cache中（整行block）</li>
+</ul>
+<h4 id="423-cache操作过程"><a class="markdownIt-Anchor" href="#423-cache操作过程"></a> 4.2.3 cache操作过程</h4>
+<ul>
+<li>CPU给出访存要求，送给cache，判断是否在cache，取数据</li>
+<li>若不在cache，访问主存并把1block覆盖到cache的空闲行，缺失处理</li>
+<li>因为访问cache，所以给出的地址是虚拟地址，不是主存的地址</li>
+</ul>
+<h4 id="424-实现cache需要解决的问题"><a class="markdownIt-Anchor" href="#424-实现cache需要解决的问题"></a> 4.2.4 实现cache需要解决的问题</h4>
+<ul>
+<li>哪些问题？</li>
+</ul>
+<ol>
+<li>判断是否在cache</li>
+<li>如何在cache中取数据
+<ul>
+<li>如何划分块
+<ul>
+<li>划分为大小相同的block，cache被分成line/slot槽</li>
+</ul>
+</li>
+<li>主存块和cache如何映射</li>
+<li>放到cache什么地方（随便放、一一对应放）</li>
+<li>cache已满，怎么办？（先进先出？最近不用的？）</li>
+<li>写数据如何保证cache和主存的一致性？（修改了cache后，主存的数据怎么办？其他cpu也要用怎么办？<strong>锁住，不给其他cpu用</strong>一致性问题：计算机体系结构）</li>
+<li>如何根据主存地址访问cache数据？</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>cache对程序员透明：程序员感觉不到cache，不需要了解cache的存在、如何设置，但是对cache深入了解有助于写好的程序。</li>
+</ul>
+<h3 id="43-cache映射方式"><a class="markdownIt-Anchor" href="#43-cache映射方式"></a> 4.3 cache映射方式</h3>
+<h4 id="431-直接映射主存地址划分"><a class="markdownIt-Anchor" href="#431-直接映射主存地址划分"></a> 4.3.1 直接映射主存地址划分</h4>
+<ul>
+<li>什么是cache的映射功能？
+<ul>
+<li>把访存的局部主存区域取到cache中，该放到cache的何处？</li>
+<li>cache行比主存块少，多个主存映射到一个cache行中</li>
+</ul>
+</li>
+<li>如何进行映射？
+<ol>
+<li>把主存空间划分成相等的主存块</li>
+<li>cache中存放一个主存块的单位是slot/line，但不叫作page!</li>
+<li>三种映射方式：
+<ol>
+<li>直接Direct：每个主存块映射到cache的固定行，取模放（第一行放小说，第二行放专业书）</li>
+<li>全相联：每个主存块映射到cache任一行（只要有空的就放，随便放）</li>
+<li>组相联（折中）：分组，在每个组里随便放</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>直接
+<ul>
+<li>取模放</li>
+<li>有效位：当前slot有没有东西</li>
+<li>tag：当前slot是哪个主存块0(block0),4(block1),8(block2)?</li>
+<li>根据tag判断有没有命中</li>
+<li>主存地址：7块主存标记+4cache槽号（行数决定）+9块内地址（块大小决定），4+9就是cache地址；拿块号取模得到cache槽号</li>
+</ul>
+</li>
+</ul>
+<h4 id="432-有效位和访存过程"><a class="markdownIt-Anchor" href="#432-有效位和访存过程"></a> 4.3.2 有效位和访存过程</h4>
+<ul>
+<li>有效位
+<ul>
+<li>开机、复位，所有有效位V=0</li>
+<li>被替换、装入，V=1</li>
+<li>使V=0来冲刷cache（进程切换、DMA传送，内核用，特权指令）对操作系统程序员不透明（能够感觉到cache）</li>
+</ul>
+</li>
+<li>实现直接映射
+<ul>
+<li>tag多少位：主存地址 - 块内地址（块内大小B按字节编址，16B用4bits存储）- 数据区地址（Cache容量除以16（16B一块）得到行数4K行用12bits储存）= tag的位数</li>
+</ul>
+</li>
+<li>如何判断命中Hit
+<ul>
+<li>拿slot与高16位相比（与门、比较器），若相等且V=1，Hit</li>
+</ul>
+</li>
+<li>Hit后怎么办
+<ul>
+<li>根据块内地址高2位，在MUX选择哪个数据word</li>
+<li>再根据word（32b）再根据MUX取Byte<br />
+![[…/Source/Photo/ICS/课程/Part II/4.3.2 访存过程.png]]</li>
+</ul>
+</li>
+<li>硬件实现和软件实现：两条指令以上的功能叫软件实现</li>
+</ul>
+<h4 id="434-cache容量计算"><a class="markdownIt-Anchor" href="#434-cache容量计算"></a> 4.3.4 Cache容量计算</h4>
+<ul>
+<li>上图的cache容量多大？
+<ul>
+<li>4K行 * (1有效位+16tdg) + 64K数据区 * 8 = 580Kbits = 72.5KB， 数据占64/72.5 = 88.3%</li>
+</ul>
+</li>
+<li>问题：64行的cache，块大小16B，地址1200在哪一行？
+<ol>
+<li>(1200/16)块号 % 64 = 11</li>
+<li>1200D（居然是10进制）转2进制 = 1024+128+32+16，取6位tag</li>
+</ol>
+</li>
+<li>问题：实现以下cache需要多少位容量？Cache：直接映射、16K行，块大小4B、32位主存地址
+<ul>
+<li>16K * 4B = 64KB数据</li>
+<li>tag = 32主存 - 14行所需b - 2块所需b</li>
+<li>块大小 = <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>14</mn></msup><mtext> </mtext><mo>×</mo><mo stretchy="false">(</mo><mn>3</mn><msub><mn>2</mn><mrow><mi>b</mi><mi>l</mi><mi>o</mi><mi>c</mi><mi>k</mi><mo>−</mo><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi><mo stretchy="false">(</mo><mi>w</mi><mi>o</mi><mi>r</mi><mi>d</mi><mo stretchy="false">)</mo></mrow></msub><mo>+</mo><mo stretchy="false">(</mo><mn>32</mn><mo>−</mo><mn>14</mn><mo>−</mo><mn>2</mn><msub><mo stretchy="false">)</mo><mrow><mi>t</mi><mi>a</mi><mi>g</mi></mrow></msub><mo>+</mo><msub><mn>1</mn><mrow><mi>v</mi><mi>a</mi><mi>l</mi><mi>i</mi><mi>d</mi><mi>a</mi><mi>t</mi><mi>e</mi></mrow></msub><mo stretchy="false">)</mo><mo>=</mo><msup><mn>2</mn><mn>14</mn></msup><mo>×</mo><mn>49</mn><mo>=</mo><mn>784</mn><mi>K</mi><mi>b</mi><mi>i</mi><mi>t</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">2^{14}\ \times (32_{block-size(word)} + (32-14-2)_{tag}+1_{validate}) = 2^{14} \times 49 = 784Kbits</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">4</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mspace"> </span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1052em;vertical-align:-0.3551999999999999em;"></span><span class="mopen">(</span><span class="mord">3</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">b</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">c</span><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.04398em;">z</span><span class="mord mathdefault mtight">e</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">d</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">3</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord">2</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">v</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">d</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">t</span><span class="mord mathdefault mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">4</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">4</span><span class="mord">9</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord">7</span><span class="mord">8</span><span class="mord">4</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault">b</span><span class="mord mathdefault">i</span><span class="mord mathdefault">t</span><span class="mord mathdefault">s</span></span></span></span></li>
+</ul>
+</li>
+</ul>
+<h4 id="434-直接映射的方式特点"><a class="markdownIt-Anchor" href="#434-直接映射的方式特点"></a> 4.3.4 直接映射的方式特点</h4>
+<ul>
+<li>特点
+<ol>
+<li>容易实现，命中时间（决定是否命中+取数据的时间）短</li>
+<li>无需考虑淘汰（替换）问题</li>
+</ol>
+</li>
+<li>缺点
+<ol>
+<li>0,4,8不命中，不够灵活，cache空间不能得到充分利用，命中率低，机器很少用</li>
+</ol>
+</li>
+</ul>
+<h4 id="435-全相联映射方式"><a class="markdownIt-Anchor" href="#435-全相联映射方式"></a> 4.3.5 全相联映射方式</h4>
+<ul>
+<li>特点
+<ol>
+<li>随便哪一槽都可以放（按内容访问）</li>
+<li>地址分为两个字段：tag=主存块号+块内地址</li>
+<li>命中率高</li>
+</ol>
+</li>
+<li>缺点：
+<ol>
+<li>命中时间长</li>
+<li>比较器位数长，成本高，开销大</li>
+</ol>
+</li>
+</ul>
+<h4 id="435-组相联set-associative映射方式"><a class="markdownIt-Anchor" href="#435-组相联set-associative映射方式"></a> 4.3.5 组相联（Set Associative）映射方式</h4>
+<ul>
+<li>特点
+<ol>
+<li>将所有组分行，把主存映射到cache<strong>固定组的任意一行</strong>。（组间模映射，组内随便放）n行称为n-way</li>
+<li>地址 = 组群标记 + 组号 + 块内地址</li>
+<li>把高位和组内几行一起相比</li>
+</ol>
+</li>
+</ul>
+<h2 id="50-cache替换算法"><a class="markdownIt-Anchor" href="#50-cache替换算法"></a> 5.0 Cache替换算法</h2>
+<h3 id="51-cache替换策略"><a class="markdownIt-Anchor" href="#51-cache替换策略"></a> 5.1 Cache替换策略</h3>
+<ul>
+<li>先进先出FIFO
+<ul>
+<li>如果每组4个，循环读取1,2,3,4,5，每次都不命中（颠簸现象，或抖动，乒乓现象）</li>
+</ul>
+</li>
+<li>最近最少用LRU
+<ul>
+<li>栈算法，命中率随着组的增大而提高</li>
+<li>每个槽加一位LRU位（计数值）。如4个槽，两位LRU，每次被访问的槽的LRU位置0，其余槽位+1；每次淘汰LRU值最大的那个</li>
+</ul>
+</li>
+</ul>
+<h3 id="52-写策略cache一致性"><a class="markdownIt-Anchor" href="#52-写策略cache一致性"></a> 5.2 写策略（cache一致性）</h3>
+<ul>
+<li>cache里的内容是主存块的副本</li>
+<li>直写（Write Through）：
+<ul>
+<li>直接写入内存，无一致性问题，但是慢</li>
+<li>写缓存：增加速度，并行。但是write buffer写满就会饱和，很慢、阻塞。</li>
+<li>解决buffer缓冲饱和：加一个二级cache（比buffer大）</li>
+</ul>
+</li>
+<li>写回（Write Back）：
+<ul>
+<li>block被淘汰替换的时候，一次性写回。</li>
+<li>需要锁死内存或cache的数据（修改位 dirty bit）</li>
+<li>一定是写分配</li>
+</ul>
+</li>
+<li>写不命中：
+<ul>
+<li>写分配：装入cache再写（需要读取主存的block）</li>
+<li>非写分配：直接写入主存</li>
+</ul>
+</li>
+</ul>
+<h3 id="53-cache实现的几个因素"><a class="markdownIt-Anchor" href="#53-cache实现的几个因素"></a> 5.3 cache实现的几个因素</h3>
+<ul>
+<li>L1 Cache的数据和指令是分开的，可以一边读数据一边取指令 ；L1的命中时间比命中率更重要，因为不命中还有L2也很快</li>
+<li>L2, L3, L4是联合Cache，指令数据放一起；L2命中率更重要</li>
+</ul>
+<h2 id="60-虚拟存储器"><a class="markdownIt-Anchor" href="#60-虚拟存储器"></a> 6.0 虚拟存储器</h2>
+<h3 id="61-分页存储管理"><a class="markdownIt-Anchor" href="#61-分页存储管理"></a> 6.1 分页存储管理</h3>
+<h4 id="611-早期虚拟存储器概念"><a class="markdownIt-Anchor" href="#611-早期虚拟存储器概念"></a> 6.1.1 早期虚拟存储器概念</h4>
+<ul>
+<li>早期：程序员自己管理主存；1961提出overlay，把地址空间和主存容量概念区分开。程序员在地址空间里编写程序，而程序在真正的主存中执行。自动完成映射。</li>
+<li>操作系统： 执行到某个页的程序段时，当前主存内容保存到磁盘；找到需要的区间并读入主存；改变地址映射；程序继续执行</li>
+</ul>
+<h4 id="612-分页的基本概念"><a class="markdownIt-Anchor" href="#612-分页的基本概念"></a> 6.1.2 分页的基本概念</h4>
+<ul>
+<li>页表实现逻辑、物理地址的转换</li>
+<li>局部化特性时我们不需要把整个程序装入内存；每个程序只用很小一部分内存，为多程序运行提供了便利</li>
+</ul>
+<h3 id="62-虚拟存储器-虚拟地址空间"><a class="markdownIt-Anchor" href="#62-虚拟存储器-虚拟地址空间"></a> 6.2 虚拟存储器、虚拟地址空间</h3>
+<h4 id="621-虚拟存储器"><a class="markdownIt-Anchor" href="#621-虚拟存储器"></a> 6.2.1 虚拟存储器</h4>
+<ul>
+<li>使程序员可以在比实际主存空间大得多的逻辑地址空间里编写程序</li>
+<li>程序执行时，只把局部加载到主存</li>
+<li>思考：这就是为什么只有CPU、内存就可以称为计算机。原始的计算机就是这样的，在后面需要保存数据时才引入了外存</li>
+<li>理想的页表对每一页都有说明，所以每一个程序都有一个页表</li>
+</ul>
+<h4 id="622-虚拟地址空间"><a class="markdownIt-Anchor" href="#622-虚拟地址空间"></a> 6.2.2 虚拟地址空间</h4>
+<ul>
+<li>将内核与用户空间隔离开</li>
+<li>Linux虚拟地址空间
+<ul>
+<li>Kernel</li>
+<li>User Stack (Dynamic)</li>
+<li>Shared Libraries</li>
+<li>Heap (Dynamic)</li>
+<li>Read/Write Data</li>
+<li>Code</li>
+</ul>
+</li>
+<li>按需调页：仅仅建立映射，实际上不会真正从磁盘调入，需要的时候才调入</li>
+</ul>
+<h3 id="63-分页存储管理的实现"><a class="markdownIt-Anchor" href="#63-分页存储管理的实现"></a> 6.3 分页存储管理的实现</h3>
+<h4 id="631-虚拟存储管理需要考虑的问题"><a class="markdownIt-Anchor" href="#631-虚拟存储管理需要考虑的问题"></a> 6.3.1 虚拟存储管理需要考虑的问题</h4>
+<ul>
+<li>问题
+<ul>
+<li>块大小（在虚拟存储器中“块”被称为“页／Page”）应多大？</li>
+<li>主存与辅存的空间如何分区管理？</li>
+<li>程序块存储块之间如何映像？</li>
+<li>逻辑地址和物理地址如何转换，转换速度如何提高？</li>
+<li>主存与辅存之间如何进行替换（与Cache所用策略相似）？</li>
+<li>页表如何实现，页表项中要记录哪些信息？</li>
+<li>如何加快访问页表的速度？</li>
+<li>如果要找的内容不在主存，怎么办？</li>
+<li>如何保护进程各自的存储区不被其他进程访问</li>
+</ul>
+</li>
+<li>缺页开销大：用全相联</li>
+<li>页大小比cache的block大得多，因为访问很慢，所以一次取很多</li>
+<li>用软件处理“缺页”：缺页时访问磁盘太慢了，所以不用硬件实现</li>
+</ul>
+<h4 id="632-页表结构"><a class="markdownIt-Anchor" href="#632-页表结构"></a> 6.3.2 页表结构</h4>
+<ul>
+<li>装入位、修改位、替换控制位、其他（访问权限）、实际页号</li>
+<li>每一个页有一项</li>
+<li>页表比页还大</li>
+<li>页表存在内核区</li>
+</ul>
+<h4 id="633-页表转换过程"><a class="markdownIt-Anchor" href="#633-页表转换过程"></a> 6.3.3 页表转换过程</h4>
+<ul>
+<li>虚拟地址：虚拟页号 + 页内地址</li>
+<li>数组访问违例就会Segment Fault</li>
+</ul>
+<h4 id="634-快表-tlb"><a class="markdownIt-Anchor" href="#634-快表-tlb"></a> 6.3.4 快表 TLB</h4>
+<ul>
+<li>一次存储器引用需要访问几次主存？3次；把经常要查的页表项放在Cache，就是Translation Lookaside Buffer快表</li>
+<li>TLB: tag（页表哪一项） + 主存页表项</li>
+<li>TLB可以直接拿到物理地址，无需访问主存（TLB目的：减少访问主存的次数）</li>
+</ul>
+<h3 id="64-存储器层次结构"><a class="markdownIt-Anchor" href="#64-存储器层次结构"></a> 6.4 存储器层次结构</h3>
+<h4 id="641-存储器访问过程"><a class="markdownIt-Anchor" href="#641-存储器访问过程"></a> 6.4.1 存储器访问过程</h4>
+<ul>
+<li>CPU用VAdrress去TLB，hit则去Cache中取（0次访存）；miss则去页表，再去Cache；最坏情况Page Fault</li>
+<li>考研题：在Cache里hit的地址一定会在TLB和页表里</li>
+</ul>
+<h3 id="65-段式和段页式虚拟存储管理"><a class="markdownIt-Anchor" href="#65-段式和段页式虚拟存储管理"></a> 6.5 段式和段页式虚拟存储管理</h3>
+<ul>
+<li>分段系统的实现
+<ul>
+<li>不是等长划分，而是根据程序代码段、按程序逻辑划分（代码段、只读数据段、可读写数据段等）</li>
+<li>有段长、段表（段号、装入位、段长、起始位置、访问方式），很好判断缺段、地址出界、保护违例</li>
+<li>物理地址 = 段起始地址+段内偏移</li>
+<li>缺点：占有空间多，碎片多</li>
+</ul>
+</li>
+<li>段页式
+<ul>
+<li>先分段，再分页，仍以页为单位</li>
+<li>段号+页号+页内偏移量</li>
+<li>缺点：两次访问内存</li>
+</ul>
+</li>
+</ul>
+<h3 id="66-存储保护"><a class="markdownIt-Anchor" href="#66-存储保护"></a> 6.6 存储保护</h3>
+<ul>
+<li>目的：避免程序相互干扰，每个程序有自己的数据区</li>
+<li>模式：
+<ul>
+<li>用户模式（目态）：用户的程序</li>
+<li>管理模式（内核态）：操作系统的程序</li>
+</ul>
+</li>
+<li>有指令实现内核、用户的转换</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%BE%E7%A8%8B/" rel="tag"># 课程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/DD%20%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/" rel="prev" title="DD 数字逻辑">
+                  <i class="fa fa-angle-left"></i> DD 数字逻辑
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Deep%20Reading/" rel="next" title="Deep Reading">
+                  Deep Reading <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa-solid fa-pen-nib"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SIMULEITE</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

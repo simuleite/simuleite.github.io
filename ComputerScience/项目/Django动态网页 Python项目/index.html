@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="0.0 规范 我要编写一个名为“学习笔记”的 Web 应用程序,让用户能够记录感兴趣的主题,并在学习每个主题的过程中添加日志条目。“学习笔记”的主页对这个网站进行描述,并邀请用户注册或登录。用户登录后,可以创建新主题、添加新条目以及阅读既有的条目。 目录 ll_project 包含 4 个文件, 其中最重要的是 settings.py、urls.py 和 wsgi.py。文件 settings.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django动态网页 Python项目">
+<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="0.0 规范 我要编写一个名为“学习笔记”的 Web 应用程序,让用户能够记录感兴趣的主题,并在学习每个主题的过程中添加日志条目。“学习笔记”的主页对这个网站进行描述,并邀请用户注册或登录。用户登录后,可以创建新主题、添加新条目以及阅读既有的条目。 目录 ll_project 包含 4 个文件, 其中最重要的是 settings.py、urls.py 和 wsgi.py。文件 settings.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-03-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-15T06:47:41.901Z">
+<meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="项目">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/","path":"ComputerScience/项目/Django动态网页 Python项目/","title":"Django动态网页 Python项目"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Django动态网页 Python项目 | SMULET's BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="SMULET's BLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SMULET's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#00-%E8%A7%84%E8%8C%83"><span class="nav-text"> 0.0 规范</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E5%88%9B%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="nav-text"> 1.0 创建环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-text"> 1.1 创建虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEdjango"><span class="nav-text"> 1.2 安装配置Django</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E5%88%9B%E5%BB%BA%E5%92%8C%E9%85%8D%E7%BD%AEapp"><span class="nav-text"> 1.3 创建和配置App</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-%E5%88%9B%E5%BB%BA%E7%AE%A1%E7%90%86%E5%91%98%E5%8F%8A%E6%B3%A8%E5%86%8C%E6%A8%A1%E5%9E%8B%E5%88%B0admin%E9%A1%B5%E9%9D%A2"><span class="nav-text"> 1.4 创建管理员及注册模型到admin页面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8Bmodels"><span class="nav-text"> 1.5 定义模型Models</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-%E6%BF%80%E6%B4%BB%E6%A8%A1%E5%9E%8B"><span class="nav-text"> 1.6 激活模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-shell%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-text"> 1.7 Shell命令行</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#20-%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5"><span class="nav-text"> 2.0 制作网页</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#21-%E5%88%B6%E4%BD%9C%E4%B8%BB%E9%A1%B5"><span class="nav-text"> 2.1 制作主页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-%E5%88%B6%E4%BD%9C%E7%BD%91%E9%A1%B5%E6%A8%A1%E6%9D%BF"><span class="nav-text"> 2.2 制作网页模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#23-%E5%88%B6%E4%BD%9Ctopic%E4%B8%8Eentry%E7%BD%91%E9%A1%B5"><span class="nav-text"> 2.3 制作Topic与Entry网页</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#231-topics"><span class="nav-text"> 2.3.1 Topics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#232-topic"><span class="nav-text"> 2.3.2 Topic</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#11-%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E6%80%BB%E7%BB%93"><span class="nav-text"> 1.1 第一阶段总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#30-%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7"><span class="nav-text"> 3.0 用户账户</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#31-%E8%AE%A9%E7%94%A8%E6%88%B7%E6%B7%BB%E5%8A%A0topics"><span class="nav-text"> 3.1 让用户添加Topics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-%E6%96%B0%E5%A2%9E-%E4%BF%AE%E6%94%B9entries"><span class="nav-text"> 3.2 新增、修改entries</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-%E8%AE%A9%E7%94%A8%E6%88%B7%E7%99%BB%E5%BD%95-%E6%B3%A8%E5%86%8C"><span class="nav-text"> 3.3 让用户登录、注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-%E8%AE%A9%E7%94%A8%E6%88%B7%E5%8F%AA%E8%83%BD%E7%9C%8B%E8%A7%81%E8%87%AA%E5%B7%B1%E7%9A%84topic"><span class="nav-text"> 3.4 让用户只能看见自己的topic</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#40-%E7%BE%8E%E5%8C%96%E9%A1%B5%E9%9D%A2"><span class="nav-text"> 4.0 美化页面</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#41-%E5%AE%89%E8%A3%85%E5%B9%B6%E5%90%AF%E7%94%A8bootstrap5"><span class="nav-text"> 4.1 安装并启用bootstrap5</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#50-%E9%83%A8%E7%BD%B2"><span class="nav-text"> 5.0 部署</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SIMULEITE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-handshake-o fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.nyc1.xyz/" title="https:&#x2F;&#x2F;blog.nyc1.xyz&#x2F;" rel="noopener" target="_blank">[网络] NgaiYeanCoi</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Django动态网页 Python项目 | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Django动态网页 Python项目
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-03T00:00:00+08:00">2024-03-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-15 14:47:41" itemprop="dateModified" datetime="2024-08-15T14:47:41+08:00">2024-08-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="00-规范"><a class="markdownIt-Anchor" href="#00-规范"></a> 0.0 规范</h1>
+<p>我要编写一个名为“学习笔记”的 Web 应用程序,让用户能够记录感兴趣的主题,并在学习每个主题的过程中添加日志条目。“学习笔记”的主页对这个网站进行描述,并邀请用户注册或登录。用户登录后,可以创建新主题、添加新条目以及阅读既有的条目。</p>
+<p>目录 ll_project 包含 4 个文件, 其中最重要的是 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a>、<a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 和 <a target="_blank" rel="noopener" href="http://wsgi.py">wsgi.py</a>。文件 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a> 指定 Django 如何与系统交互以及如何管理项目。<br />
+在开发项目的过程中,我们将修改其中的一些设置,并添加一些设置。<br />
+文件 <a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 告诉 Django,应创建哪些网页来响应浏览器请求。<br />
+文件 <a target="_blank" rel="noopener" href="http://wsgi.py">wsgi.py</a> 帮助 Django 提供它创建的文件,名称是 web server gateway interface(Web 服务器网关接口)的首字母缩写。</p>
+<h1 id="10-创建环境"><a class="markdownIt-Anchor" href="#10-创建环境"></a> 1.0 创建环境</h1>
+<h2 id="11-创建虚拟环境"><a class="markdownIt-Anchor" href="#11-创建虚拟环境"></a> 1.1 创建虚拟环境</h2>
+<p>在独立的项目文件夹下运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m venv ll_env</span><br><span class="line"></span><br><span class="line">python -m ensurepip --default-pip <span class="comment"># 重装pip</span></span><br></pre></td></tr></table></figure>
+<p>将会创造一个<code>ll_env</code>文件夹<br />
+可以使用下面的命令激活虚拟环境。激活虚拟环境后，安装的模组将只在虚拟环境中生效，而不干扰到电脑上Python的模组</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ll_env/bin/activate <span class="comment"># Linux系统</span></span><br><span class="line"><span class="built_in">source</span> ll_env/Scripts/activate <span class="comment"># Windows系统</span></span><br><span class="line"></span><br><span class="line">(ll_env)</span><br><span class="line">work_directory$ <span class="comment"># 命令提示符前会显示(ll_env)</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>deactive</code>取消激活虚拟环境</p>
+<h2 id="12-安装配置django"><a class="markdownIt-Anchor" href="#12-安装配置django"></a> 1.2 安装配置Django</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install --upgrade pip <span class="comment"># 更新pip</span></span><br><span class="line">pip install django <span class="comment"># 安装Django</span></span><br><span class="line">django-admin startproject ll_project . <span class="comment"># 初始化Django</span></span><br><span class="line">python manage.py migrate <span class="comment"># 生成数据库</span></span><br><span class="line">python manage.py runserver <span class="comment"># 生成预览，可以在本地8000端口看到网页</span></span><br></pre></td></tr></table></figure>
+<pre><code>Django手册： https://docs.djangoproject.com/en/4.1/ref/models/fields/
+</code></pre>
+<span id="more"></span>
+<h2 id="13-创建和配置app"><a class="markdownIt-Anchor" href="#13-创建和配置app"></a> 1.3 创建和配置App</h2>
+<ul>
+<li>创建app</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python manage.py startapp learning_logs(app_name)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>保存更改</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 更改了.py文件就要重新执行下面的命令保存，否则会出错</span></span><br><span class="line">python manage.py makemigrations learning_logs(app name)</span><br><span class="line">python manage.py migrate</span><br></pre></td></tr></table></figure>
+<p>每当需要修改“学习笔记”管理的数据时,都采取如下三个步骤:修改<br />
+<a target="_blank" rel="noopener" href="http://models.py">models.py</a>,对 learning_logs 调用 makemigrations,以及让 Django迁移项目。</p>
+<h2 id="14-创建管理员及注册模型到admin页面"><a class="markdownIt-Anchor" href="#14-创建管理员及注册模型到admin页面"></a> 1.4 创建管理员及注册模型到admin页面</h2>
+<ul>
+<li>创建管理员</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python manage.py createsuperuser</span><br><span class="line">ll_admin, Abc123</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注册模型，打开<code>admin.py</code>并注册模型</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.contrib <span class="keyword">import</span> admin</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Model1, Model2 <span class="comment"># improt models with their name</span></span><br><span class="line"></span><br><span class="line">admin.site.register(Model1)</span><br></pre></td></tr></table></figure>
+<h2 id="15-定义模型models"><a class="markdownIt-Anchor" href="#15-定义模型models"></a> 1.5 定义模型Models</h2>
+<ol>
+<li>打开<code>app_name/models.py</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># your models:</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Model_name1</span>(models.Model):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Document&quot;&quot;&quot;</span></span><br><span class="line">    text = models.TextField() <span class="comment"># field attribute</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Return a string representation of the model.&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.text</span><br><span class="line">        <span class="comment"># will be used as output</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Model_name2</span>(models.Model):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Document&quot;&quot;&quot;</span></span><br><span class="line">    content = models.TextField(max_length=<span class="number">200</span>) <span class="comment"># parameter is optional</span></span><br><span class="line">    something_else = models.ForeignKey(Model_name1, on_delete=models.CASCADE)</span><br><span class="line">    <span class="comment"># foreign key, cascading delete级联删除</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__str__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;Return a string representation of the model.&quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">self</span>.content</span><br></pre></td></tr></table></figure>
+<h2 id="16-激活模型"><a class="markdownIt-Anchor" href="#16-激活模型"></a> 1.6 激活模型</h2>
+<ul>
+<li>在<code>settings.py</code>下找到<code>INSTALLED_APPS</code>并添加App名称</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line">        <span class="comment"># My apps.</span></span><br><span class="line">    <span class="string">&#x27;app_name&#x27;</span>, <span class="comment"># the app&#x27;s file name</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Default django apps.</span></span><br><span class="line">    <span class="string">&#x27;django.contrib.admin&#x27;</span>,</span><br><span class="line">    --snip--</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="17-shell命令行"><a class="markdownIt-Anchor" href="#17-shell命令行"></a> 1.7 Shell命令行</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">$ python manage.py shell</span><br><span class="line"><span class="keyword">from</span> learning_logs.models <span class="keyword">import</span> Topic</span><br><span class="line">Topic.objects.<span class="built_in">all</span>() <span class="comment"># 返回Queryset， 查询结果集</span></span><br><span class="line"></span><br><span class="line">topics = Topic.objects.<span class="built_in">all</span>()</span><br><span class="line"><span class="comment"># 列出topic的id与名称</span></span><br><span class="line"><span class="keyword">for</span> topic <span class="keyword">in</span> topics:</span><br><span class="line">    <span class="built_in">print</span>(topic.<span class="built_in">id</span>, topic)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 知道id后可以调用方法查看相应内容</span></span><br><span class="line">t = Topic.objects.get(<span class="built_in">id</span>=<span class="number">1</span>)</span><br><span class="line">t.text</span><br><span class="line">t.date_added</span><br><span class="line"></span><br><span class="line">t.entry_set.<span class="built_in">all</span>() <span class="comment"># 查看entries具体内容</span></span><br></pre></td></tr></table></figure>
+<h1 id="20-制作网页"><a class="markdownIt-Anchor" href="#20-制作网页"></a> 2.0 制作网页</h1>
+<p>使用 Django 创建网页的过程分为三个阶段：定义 URL，编写视图，以及编写模板。按什么顺序完成这三个阶段无关紧要，但在本项目中，总是先定义 URL 模式。<strong>URL 模式</strong>描述了 URL 的构成，让 Django 知道如何将浏览器请求与网站 URL 匹配，以确定返回哪个网页。</p>
+<h2 id="21-制作主页"><a class="markdownIt-Anchor" href="#21-制作主页"></a> 2.1 制作主页</h2>
+<ol>
+<li>增加配置文件，在<code>ll_project</code>中编辑<code>urls.py</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> include <span class="comment"># 导入方法</span></span><br><span class="line">    </span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;admin/&#x27;</span>, admin.site.urls),</span><br><span class="line">    path(<span class="string">&#x27;&#x27;</span>, include(<span class="string">&#x27;app_folder_name.urls&#x27;</span>)), <span class="comment"># 添加app文件夹的名称</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建并编辑<code>app_folder_name/urls.</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;Defines URL patterns for learning_logs.&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> django.urls <span class="keyword">import</span> path</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line"></span><br><span class="line">app_name = <span class="string">&#x27;learning_logs&#x27;</span> <span class="comment"># app文件夹名称</span></span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment"># Home page</span></span><br><span class="line">    path(<span class="string">&#x27;&#x27;</span>, views.index, name=<span class="string">&#x27;index&#x27;</span>),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>编写<code>views.py</code></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;The home page for Learning Log.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;app_floder_name/index.html&#x27;</span>) <span class="comment"># template路径</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>创建<code>tmplates/app_floder_name</code>文件夹，并创建<code>index.html</code>文件</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Learning Log<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Learning Log helps you keep track of your learning, for any topic you&#x27;re</span><br><span class="line">interested in.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="22-制作网页模板"><a class="markdownIt-Anchor" href="#22-制作网页模板"></a> 2.2 制作网页模板</h2>
+<ol>
+<li>创建<code>base.html</code></li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;learning_logs:index&#x27; %&#125;&quot;</span>&gt;</span>Learning Log<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123;% block content %&#125;&#123;% endblock content %&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>使用<code>base.html</code>模板</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% extends &#x27;learning_logs/base.html&#x27; %&#125; <span class="comment">&lt;!-- &#x27;extends 表示继承哪个模板 --&gt;</span></span><br><span class="line"></span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Learning Log helps you keep track of your learning, for any topic you&#x27;re</span><br><span class="line">  interested in.<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">&#123;% endblock content %&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="23-制作topic与entry网页"><a class="markdownIt-Anchor" href="#23-制作topic与entry网页"></a> 2.3 制作Topic与Entry网页</h2>
+<h3 id="231-topics"><a class="markdownIt-Anchor" href="#231-topics"></a> 2.3.1 Topics</h3>
+<ol>
+<li>修改<code>urls.py</code>，创建<code>topics</code>界面</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment"># Home page</span></span><br><span class="line">    path(<span class="string">&#x27;&#x27;</span>, views.index, name=<span class="string">&#x27;index&#x27;</span>),</span><br><span class="line">    <span class="comment"># Page that shows all topics.</span></span><br><span class="line">    path(<span class="string">&#x27;topics/&#x27;</span>, views.topics, name=<span class="string">&#x27;topics&#x27;</span>), </span><br><span class="line">    <span class="comment"># 标注网址、调用方法、名称 </span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>修改<code>views.py</code>，创建<code>topics</code>方法</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Topic <span class="comment"># 导入Topic类</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">topics</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;Show all topics.&quot;&quot;&quot;</span></span><br><span class="line">     topics = Topic.objects.order_by(<span class="string">&#x27;date_added&#x27;</span>) <span class="comment"># 顺序</span></span><br><span class="line">     context = &#123;<span class="string">&#x27;topics&#x27;</span>: topics&#125; <span class="comment"># 内容组织方式</span></span><br><span class="line">     <span class="keyword">return</span> render(request, <span class="string">&#x27;learning_logs/topics.html&#x27;</span>, context) <span class="comment"># 指出html文件名，传入内容</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>创建<code>topics.html</code>界面</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&#123;% extends <span class="string">&#x27;learning_logs/base.html&#x27;</span> %&#125; <span class="comment"># 模板</span></span><br><span class="line"></span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  &lt;p&gt;Topics&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">   &lt;ul&gt; <span class="comment"># 无序列表 unordered list</span></span><br><span class="line">     &#123;% <span class="keyword">for</span> topic <span class="keyword">in</span> topics %&#125; <span class="comment"># for循环</span></span><br><span class="line">       &lt;li&gt;&#123;&#123; topic.text &#125;&#125;&lt;/li&gt; <span class="comment"># 有序列表 list item, text是models.py的Topic类中定义的属性</span></span><br><span class="line">     &#123;% empty %&#125;</span><br><span class="line">      &lt;li&gt;No topics have been added yet.&lt;/li&gt;</span><br><span class="line">     &#123;% endfor %&#125;</span><br><span class="line">   &lt;/ul&gt;</span><br><span class="line"></span><br><span class="line">&#123;% endblock content %&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>修改<code>base.html</code>，添加链接</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line"> &lt;a href=<span class="string">&quot;&#123;% url &#x27;learning_logs:index&#x27; %&#125;&quot;</span>&gt;Learning Log&lt;/a&gt; -</span><br><span class="line"> &lt;a href=<span class="string">&quot;&#123;% url &#x27;learning_logs:topics&#x27; %&#125;&quot;</span>&gt;Topics&lt;/a&gt; <span class="comment"># Topics链接</span></span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="232-topic"><a class="markdownIt-Anchor" href="#232-topic"></a> 2.3.2 Topic</h3>
+<ul>
+<li>同样是4步走</li>
+</ul>
+<ol>
+<li>修改<code>urls.py</code>，创建<code>topic</code>界面</li>
+<li>
+<ol start="2">
+<li>修改<code>views.py</code>，创建<code>topic</code>方法</li>
+</ol>
+</li>
+<li>创建<code>topic.html</code>界面</li>
+<li><strong>修改<code>topics.html</code>，添加链接</strong>（不是修改<code>base.html</code>）</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># urls.py</span></span><br><span class="line">urlpatterns = [</span><br><span class="line">--snip--</span><br><span class="line"><span class="comment"># 特定主题的详细页面</span></span><br><span class="line">path(<span class="string">&#x27;topics/&lt;int:topic_id&gt;/&#x27;</span>, views.topic, name=<span class="string">&#x27;topic&#x27;</span>), </span><br><span class="line"><span class="comment"># &lt;int:topic_id&gt;变量匹配每个单独topic的id</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># views.py</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">topic</span>(<span class="params">request, topic_id</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;显示单个主题及其所有的条目&quot;&quot;&quot;</span></span><br><span class="line">    topic = Topic.objects.get(<span class="built_in">id</span>=topic_id) <span class="comment"># query检索id</span></span><br><span class="line">    entries = topic.entry_set.order_by(<span class="string">&#x27;-date_added&#x27;</span>) <span class="comment"># 负date，按时间倒序，新的在前</span></span><br><span class="line">    context = &#123;<span class="string">&#x27;topic&#x27;</span>: topic, <span class="string">&#x27;entries&#x27;</span>: entries&#125; <span class="comment"># 组织方式</span></span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;learning_logs/topic.html&#x27;</span>, context) <span class="comment"># 指定html文件名，返回内容</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- topic.html --&gt;</span></span><br><span class="line">    &#123;% extends &#x27;learning_logs/base.html&#x27; %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Topic: &#123;&#123; topic.text &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Entries:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    &#123;% for entry in entries %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; entry.date_added|date:&#x27;M d, Y H:i&#x27; &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span> <span class="comment">&lt;!-- |设置时间格式 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; entry.text|linebreaks &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line">      <span class="comment">&lt;!-- |textlinebreaks将包含换行符的长条目转换为浏览器能够理解的格式，</span></span><br><span class="line"><span class="comment">      以免显示为不间断的文本块。--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    &#123;% empty %&#125;</span><br><span class="line">      <span class="tag">&lt;<span class="name">li</span>&gt;</span>There are no entries for this topic yet.<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    &#123;% endfor %&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123;% endblock content %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- topics.html --&gt;</span></span><br><span class="line">&#123;% for topic in topics %&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;learning_logs:topic&#x27; topic.id %&#125;&quot;</span>&gt;</span></span><br><span class="line">&#123;&#123; topic.text &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">&#123;% empty %&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="11-第一阶段总结"><a class="markdownIt-Anchor" href="#11-第一阶段总结"></a> 1.1 第一阶段总结</h1>
+<ul>
+<li>构建<code>learning_logs</code>的过程基本上是在抄代码，只有到做课后练习，完成<code>pizzas_project</code>的时候才真正在学习。例如为什么<code>import Topic</code>而不是<code>Entry</code>，在我课后练习的时候就给我带来了一个无法运行网页的代价：不理解<code>subsequence_set</code>是怎么来的，就不能够成功地导入<code>Pizza</code>模组并成功设置<code>toppings</code>参数；不理解<code>.order_by()</code>方法建立在什么基础上，不阅读手册，就想不到在不是博客，而是菜单的pizza项目中使用<code>.all()</code></li>
+<li>理解是那么的重要，它几乎占据了学习的全部：理解过后就只剩计算了。而学习的乐趣也大多在于这个理解和融会贯通。</li>
+<li>最终我明白：正是在错误中我得以学习，不要畏惧错误。正如CSAPP所说：错误地使用内存，最好的结果是程序马上崩溃，最坏的结果是程序运行一段时间才出现不知道哪里冒出来的问题。让我多多崩溃，这是相对最好的结果。</li>
+<li>2024/6/25：有一些小细节也会导致错误，例如DateField和DateTimeField是不一样的</li>
+<li>2024/6/26：html -&gt; views.py字典 -&gt; models.py定义字段</li>
+</ul>
+<h1 id="30-用户账户"><a class="markdownIt-Anchor" href="#30-用户账户"></a> 3.0 用户账户</h1>
+<h2 id="31-让用户添加topics"><a class="markdownIt-Anchor" href="#31-让用户添加topics"></a> 3.1 让用户添加Topics</h2>
+<ul>
+<li>添加新主题，四步走
+<ol>
+<li>创建<code>app_folder/forms.py</code>，添加表单</li>
+<li>修改<code>urls.py</code>，添加网页</li>
+<li>修改<code>views.py</code>，添加定义的函数</li>
+<li>创建html模板</li>
+<li>链接到页面</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># forms.py</span></span><br><span class="line"><span class="keyword">from</span> django <span class="keyword">import</span> forms</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Topic</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TopicForm</span>(forms.ModelForm):</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Meta</span>:</span><br><span class="line">        model = Topic</span><br><span class="line">        fields = [<span class="string">&#x27;text&#x27;</span>]</span><br><span class="line">        labels = &#123;<span class="string">&#x27;text&#x27;</span>: <span class="string">&#x27;&#x27;</span>&#125; <span class="comment"># 不要为字段text生成标签</span></span><br><span class="line">        widgets = &#123;<span class="string">&#x27;text&#x27;</span>: forms.Textarea(attrs=&#123;<span class="string">&#x27;cols&#x27;</span>: <span class="number">80</span>&#125;)&#125; <span class="comment"># 使用80列宽（默认是40列）</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># urls.py</span></span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment"># 用于添加新主题的网页</span></span><br><span class="line">    path(<span class="string">&#x27;new_topic/&#x27;</span>, views.new_topic, name=<span class="string">&#x27;new_topic&#x27;</span>),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># views.py</span></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render, redirect</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Topic</span><br><span class="line"><span class="keyword">from</span> .forms <span class="keyword">import</span> TopicForm</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">new_topic</span>(<span class="params">request</span>):</span><br><span class="line"><span class="string">&quot;&quot;&quot;添加新主题&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> request.method != <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        <span class="comment"># 未提交数据:创建一个新表单</span></span><br><span class="line">        form = TopicForm()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># POST 提交的数据:对数据进行处理</span></span><br><span class="line">        form = TopicForm(data=request.POST)</span><br><span class="line">        <span class="keyword">if</span> form.is_valid(): <span class="comment"># 检查是否有效</span></span><br><span class="line">            form.save() <span class="comment"># 写入数据库</span></span><br><span class="line">            <span class="keyword">return</span> redirect(<span class="string">&#x27;learning_logs:topics&#x27;</span>)</span><br><span class="line">    <span class="comment"># 显示空表单或指出表单数据无效</span></span><br><span class="line">    context = &#123;<span class="string">&#x27;form&#x27;</span>: form&#125;</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;learning_logs/new_topic.html&#x27;</span>,</span><br><span class="line">context)</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- new_topic.html --&gt;</span></span><br><span class="line">&#123;% extends &quot;learning_logs/base.html&quot; %&#125;</span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Add a new topic:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&#123;% url &#x27;learning_logs:new_topic&#x27; %&#125;&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">method</span>=<span class="string">&#x27;post&#x27;</span>&gt;</span></span><br><span class="line">    &#123;% csrf_token %&#125; <span class="comment">&lt;!-- web安全，防止攻击 --&gt;</span></span><br><span class="line">    &#123;&#123; form.as_div &#125;&#125; <span class="comment">&lt;!-- 自动创建表单 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">name</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>Add topic<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">&#123;% endblock content %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- topics.html添加链接 --&gt;</span></span><br><span class="line">&#123;% extends &quot;learning_logs/base.html&quot; %&#125;</span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Topics<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">    --snip--</span><br><span class="line">  <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;learning_logs:new_topic&#x27; %&#125;&quot;</span>&gt;</span>Add a new topic<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&#123;% endblock content %&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="32-新增-修改entries"><a class="markdownIt-Anchor" href="#32-新增-修改entries"></a> 3.2 新增、修改entries</h2>
+<ul>
+<li>新增</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># forms.py</span><br><span class="line">from django import forms</span><br><span class="line">from .models import Topic, Entry</span><br><span class="line">class TopicForm(forms.ModelForm):</span><br><span class="line">--snip--</span><br><span class="line">class EntryForm(forms.ModelForm):</span><br><span class="line">    class Meta:</span><br><span class="line">        model = Entry</span><br><span class="line">        fields = [&#x27;text&#x27;]</span><br><span class="line">        labels = &#123;&#x27;text&#x27;: &#x27;&#x27;&#125;</span><br><span class="line">        widgets = &#123;&#x27;text&#x27;: forms.Textarea(attrs=&#123;&#x27;cols&#x27;: 80&#125;)&#125;</span><br><span class="line"></span><br><span class="line"># urls.py</span><br><span class="line">urlpatterns = [</span><br><span class="line">--snip--</span><br><span class="line"># 用于添加新条目的页面</span><br><span class="line">path(&#x27;new_entry/&lt;int:topic_id&gt;/&#x27;, views.new_entry,</span><br><span class="line">name=&#x27;new_entry&#x27;),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"># views.py</span><br><span class="line">from django.shortcuts import render, redirect</span><br><span class="line">from .models import Topic</span><br><span class="line">from .forms import TopicForm, EntryForm</span><br><span class="line">--snip--</span><br><span class="line">def new_entry(request, topic_id):</span><br><span class="line">&quot;&quot;&quot;在特定主题中添加新条目&quot;&quot;&quot;</span><br><span class="line">    topic = Topic.objects.get(id=topic_id)</span><br><span class="line">    if request.method != &#x27;POST&#x27;:</span><br><span class="line">    # 未提交数据:创建一个空表单</span><br><span class="line">        form = EntryForm()</span><br><span class="line">    else:</span><br><span class="line">    # POST 提交的数据:对数据进行处理</span><br><span class="line">        form = EntryForm(data=request.POST)</span><br><span class="line">        if form.is_valid():</span><br><span class="line">            new_entry = form.save(commit=False)</span><br><span class="line">            new_entry.topic = topic</span><br><span class="line">            new_entry.save()</span><br><span class="line">            return redirect(&#x27;learning_logs:topic&#x27;,</span><br><span class="line">    topic_id=topic_id)</span><br><span class="line">    # 显示空表单或指出表单数据无效</span><br><span class="line">    context = &#123;&#x27;topic&#x27;: topic, &#x27;form&#x27;: form&#125;</span><br><span class="line">    return render(request, &#x27;learning_logs/new_entry.html&#x27;,</span><br><span class="line">    context)</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- new_entry.html --&gt;</span></span><br><span class="line">&#123;% extends &quot;learning_logs/base.html&quot; %&#125;</span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;learning_logs:topic&#x27; topic.id %&#125;&quot;</span>&gt;</span>&#123;&#123; topic &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Add a new entry:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&#123;% url &#x27;learning_logs:new_entry&#x27; topic.id %&#125;&quot;</span> <span class="attr">method</span>=<span class="string">&#x27;post&#x27;</span>&gt;</span></span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line">    &#123;&#123; form.as_div &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">name</span>=<span class="string">&#x27;submit&#x27;</span>&gt;</span>Add entry<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">&#123;% endblock content %&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- topic.html --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Entries:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;learning_logs:new_entry&#x27; topic.id %&#125;&quot;</span>&gt;</span>Add new entry<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># urls.py</span></span><br><span class="line">urlpatterns = [</span><br><span class="line">--snip--</span><br><span class="line"><span class="comment"># 用于编辑条目的页面</span></span><br><span class="line">path(<span class="string">&#x27;edit_entry/&lt;int:entry_id&gt;/&#x27;</span>, views.edit_entry,</span><br><span class="line">name=<span class="string">&#x27;edit_entry&#x27;</span>),</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment"># views.py</span></span><br><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render, redirect</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> Topic, Entry</span><br><span class="line"><span class="keyword">from</span> .forms <span class="keyword">import</span> TopicForm, EntryForm</span><br><span class="line">--snip--</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">edit_entry</span>(<span class="params">request, entry_id</span>):</span><br><span class="line"><span class="string">&quot;&quot;&quot;编辑既有的条目&quot;&quot;&quot;</span></span><br><span class="line">    entry = Entry.objects.get(<span class="built_in">id</span>=entry_id)</span><br><span class="line">    topic = entry.topic</span><br><span class="line">    <span class="keyword">if</span> request.method != <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line">        <span class="comment"># 初次请求:使用当前的条目填充表单</span></span><br><span class="line">        form = EntryForm(instance=entry)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># POST 提交的数据:对数据进行处理</span></span><br><span class="line">        form = EntryForm(instance=entry, data=request.POST)</span><br><span class="line">        <span class="keyword">if</span> form.is_valid():</span><br><span class="line">            form.save()</span><br><span class="line">            <span class="keyword">return</span> redirect(<span class="string">&#x27;learning_logs:topic&#x27;</span>, topic_id=topic.<span class="built_in">id</span>)</span><br><span class="line">            </span><br><span class="line">    context = &#123;<span class="string">&#x27;entry&#x27;</span>: entry, <span class="string">&#x27;topic&#x27;</span>: topic, <span class="string">&#x27;form&#x27;</span>: form&#125;</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;learning_logs/edit_entry.html&#x27;</span>,</span><br><span class="line">    context)</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line">&#123;% extends &quot;learning_logs/base.html&quot; %&#125;</span><br><span class="line">&#123;% block content %&#125;</span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&#123;% url &#x27;learning_logs:topic&#x27; topic.id %&#125;&quot;</span>&gt;</span>&#123;&#123; topic &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Edit entry:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;&#123;% url &#x27;learning_logs:edit_entry&#x27; entry.id %&#125;&quot;</span> <span class="attr">method</span>=<span class="string">&#x27;post&#x27;</span>&gt;</span></span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line">    &#123;&#123; form.as_div &#125;&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">name</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>Save changes<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">&#123;% endblock content %&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="33-让用户登录-注册"><a class="markdownIt-Anchor" href="#33-让用户登录-注册"></a> 3.3 让用户登录、注册</h2>
+<h2 id="34-让用户只能看见自己的topic"><a class="markdownIt-Anchor" href="#34-让用户只能看见自己的topic"></a> 3.4 让用户只能看见自己的topic</h2>
+<h1 id="40-美化页面"><a class="markdownIt-Anchor" href="#40-美化页面"></a> 4.0 美化页面</h1>
+<h2 id="41-安装并启用bootstrap5"><a class="markdownIt-Anchor" href="#41-安装并启用bootstrap5"></a> 4.1 安装并启用bootstrap5</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">(ll_env)learning_log$ pip install django-bootstrap5</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="http://settings.py">settings.py</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">INSTALLED_APPS = [</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"> 我的应用程序</span><br><span class="line"><span class="string">&#x27;learning_logs&#x27;</span>,</span><br><span class="line"><span class="string">&#x27;accounts&#x27;</span>,</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"> 第三方应用程序</span><br><span class="line"><span class="string">&#x27;django_bootstrap5&#x27;</span>,</span><br></pre></td></tr></table></figure>
+<h1 id="50-部署"><a class="markdownIt-Anchor" href="#50-部署"></a> 5.0 部署</h1>
+<p>生成配置文件<code>requirements.txt</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ pip freeze &gt; requirements.txt</span><br><span class="line">$ pip install -r requirements.txt</span><br></pre></td></tr></table></figure>
+<p>YAML (YAML Ain’t Markup Language)</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag"># 项目</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Makefile%E4%BD%BF%E7%94%A8/" rel="prev" title="Makefile使用">
+                  <i class="fa fa-angle-left"></i> Makefile使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="next" title="数据结构与算法">
+                  数据结构与算法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa-solid fa-pen-nib"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SIMULEITE</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

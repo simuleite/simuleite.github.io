@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="PA1-1 24.5.30 又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！  target 第一课的目标是修正一个register错误声明  insteresting  中途网易源Bad Gateway 502了，更换清华源，学会了:%s&#x2F;163&#x2F;tuna&#x2F;g非常爽！ 又学了几个终端快捷键 想到了用 ccache 加速我的PA   problems  union">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ICS5 PA">
+<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS5%20PA/index.html">
+<meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="PA1-1 24.5.30 又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！  target 第一课的目标是修正一个register错误声明  insteresting  中途网易源Bad Gateway 502了，更换清华源，学会了:%s&#x2F;163&#x2F;tuna&#x2F;g非常爽！ 又学了几个终端快捷键 想到了用 ccache 加速我的PA   problems  union">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-08-21T09:20:40.374Z">
+<meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="项目">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS5%20PA/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS5%20PA/","path":"ComputerScience/项目/ICS5 PA/","title":"ICS5 PA"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ICS5 PA | SMULET's BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="SMULET's BLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SMULET's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pa1-1-24530"><span class="nav-text"> PA1-1 24.5.30</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#target"><span class="nav-text"> target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#insteresting"><span class="nav-text"> insteresting</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#problems"><span class="nav-text"> problems</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pa1-2-alu-2465"><span class="nav-text"> PA1-2 ALU 24.6.5</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#target-2"><span class="nav-text"> target</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#knowledge"><span class="nav-text"> knowledge</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#appendix-c"><span class="nav-text"> Appendix C</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#add"><span class="nav-text"> ADD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#adc"><span class="nav-text"> ADC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sub"><span class="nav-text"> SUB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sbb"><span class="nav-text"> SBB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shl"><span class="nav-text"> SHL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#div"><span class="nav-text"> DIV</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pa1-3-fpu-24730"><span class="nav-text"> PA1-3 FPU 24.7.30</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E6%B3%95"><span class="nav-text"> 加法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%98%E6%B3%95"><span class="nav-text"> 乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%84%E6%A0%BC%E5%8C%96"><span class="nav-text"> 规格化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%8D%E5%85%A5"><span class="nav-text"> 舍入</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pa2-1"><span class="nav-text"> PA2-1</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SIMULEITE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-handshake-o fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.nyc1.xyz/" title="https:&#x2F;&#x2F;blog.nyc1.xyz&#x2F;" rel="noopener" target="_blank">[网络] NgaiYeanCoi</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS5%20PA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="ICS5 PA | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ICS5 PA
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2024-05-30T00:00:00+08:00">2024-05-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-21 17:20:40" itemprop="dateModified" datetime="2024-08-21T17:20:40+08:00">2024-08-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="pa1-1-24530"><a class="markdownIt-Anchor" href="#pa1-1-24530"></a> PA1-1 24.5.30</h1>
+<p>又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！</p>
+<h2 id="target"><a class="markdownIt-Anchor" href="#target"></a> target</h2>
+<p>第一课的目标是修正一个register错误声明</p>
+<h2 id="insteresting"><a class="markdownIt-Anchor" href="#insteresting"></a> insteresting</h2>
+<ul>
+<li>中途网易源Bad Gateway 502了，更换清华源，学会了<code>:%s/163/tuna/g</code>非常爽！</li>
+<li>又学了几个<a href="../%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8">终端快捷键</a></li>
+<li>想到了用 <code>ccache</code> 加速我的PA</li>
+</ul>
+<h2 id="problems"><a class="markdownIt-Anchor" href="#problems"></a> problems</h2>
+<ol>
+<li><code>union</code> 和 <code>struct</code> 的区别？<br />
+<code>unioin</code> 在同一个内存空间中存储不同的数据类型。<br />
+<code>struct</code> 则是同时存储不同的数据类型。</li>
+<li>为什么要用 <code>union</code>？阅读i386手册<br />
+2.3.1 General Registers<br />
+As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-manual/s02_03.htm#fig2-5">Figure 2-5</a> shows, the low-order word of each of these eight registers has a separate name and can be treated as a unit. This feature is useful for handling 16-bit data items and for compatibility with the 8086 and 80286 processors. The word registers are named AX, BX, CX, DX, BP, SP, SI, and DI.<br />
+对于CPU来说，可以把AH AX AL看成单独的单元，拆分成小块。所以它们是共用关系。</li>
+</ol>
+<h1 id="pa1-2-alu-2465"><a class="markdownIt-Anchor" href="#pa1-2-alu-2465"></a> PA1-2 ALU 24.6.5</h1>
+<h2 id="target-2"><a class="markdownIt-Anchor" href="#target-2"></a> target</h2>
+<p>实现ALU中的各类运算，包括设置标志位</p>
+<h2 id="knowledge"><a class="markdownIt-Anchor" href="#knowledge"></a> knowledge</h2>
+<h3 id="appendix-c"><a class="markdownIt-Anchor" href="#appendix-c"></a> Appendix C</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CF</td>
+<td>Carry Flag ── Set on high-order bit carry or borrow; cleared otherwise.</td>
+</tr>
+<tr>
+<td>PF</td>
+<td>Parity Flag ── Set if low-order eight bits of result contain an even number of 1 bits; cleared otherwise.</td>
+</tr>
+<tr>
+<td>ZF</td>
+<td>Zero Flag ── Set if result is zero; cleared otherwise.</td>
+</tr>
+<tr>
+<td>SF</td>
+<td>Sign Flag ── Set equal to high-order bit of result (0 is positive, 1 if negative).</td>
+</tr>
+<tr>
+<td>OF<br></td>
+<td>Overflow Flag ── Set if result is too large a positive number or too small a negative number (excluding sign-bit) to fit in destination operand; cleared otherwise.</td>
+</tr>
+</tbody>
+</table>
+<span id="more"></span>
+<h3 id="add"><a class="markdownIt-Anchor" href="#add"></a> ADD</h3>
+<p>Operation<br />
+DEST ← DEST + SRC;<br />
+Flags Affected<br />
+OF, SF, ZF, AF, CF, and PF as described in Appendix C</p>
+<h3 id="adc"><a class="markdownIt-Anchor" href="#adc"></a> ADC</h3>
+<p>ADD with Carry：“带进位的加法”操作，需要看操作数是否已经进位<br />
+Operation<br />
+DEST ← DEST + SRC + CF;<br />
+Flags Affected<br />
+OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
+注意CF标志位需要特殊设置，考虑之前的进位状态</p>
+<h3 id="sub"><a class="markdownIt-Anchor" href="#sub"></a> SUB</h3>
+<p>借位：A - B，当A小于B时，结果为一个负数，产生了借位。<br />
+根据这个规则完成set_CF_sub()<br />
+在做减法时，<br />
+如果用一个正数减去一个负数得到一个负的结果，<br />
+或者用一个负数减去一个正数然后得到一个正的结果，<br />
+则发生了溢出 。<br />
+根据上面的规则比较符号，即可完成set_OF_sub()</p>
+<h3 id="sbb"><a class="markdownIt-Anchor" href="#sbb"></a> SBB</h3>
+<p>Sub with Borrow<br />
+什么时候产生借位？<br />
+1. 和普通减法一样10-1， 0&lt;1，产生借位<br />
+2. 已经借位的时候，130-31，3 不小于 3，但是3已经产生借位，所以(3-1借位)&lt;3的时候，产生借位<br />
+根据上面规则，即可完成set_CF_sbb()</p>
+<h3 id="shl"><a class="markdownIt-Anchor" href="#shl"></a> SHL</h3>
+<p>Shift Left<br />
+左移操作，CF位是最高位；只移1位时才需要设置OF（CF和操作数不相同时）<br />
+注意：符号位不等于最高位！</p>
+<h3 id="div"><a class="markdownIt-Anchor" href="#div"></a> DIV</h3>
+<p>实现除法需要完成MOD<br />
+注意，dest是被除数，src是除数</p>
+<h1 id="pa1-3-fpu-24730"><a class="markdownIt-Anchor" href="#pa1-3-fpu-24730"></a> PA1-3 FPU 24.7.30</h1>
+<p>按照手册和伪代码实现FPU的规格化操作，以及加法和乘法。注意NEMU的实现中，fraction包含Guard、Round、Sticky位，共23+3=26位。</p>
+<h2 id="加法"><a class="markdownIt-Anchor" href="#加法"></a> 加法</h2>
+<p>小阶向大阶对齐，shift right，exp–<br />
+根据guide处理各种情况即可</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="type">uint32_t</span> <span class="title function_">internal_normalize</span><span class="params">(<span class="type">uint32_t</span> sign, <span class="type">int32_t</span> <span class="built_in">exp</span>, <span class="type">uint64_t</span> sig_grs)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>( <span class="comment">/* 需要进行右规 */</span> ) &#123;</span><br><span class="line">        <span class="keyword">while</span>( <span class="comment">/* 需要右规 且 未发生阶码上溢*/</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 右规一次 */</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>( <span class="comment">/* 发生了阶码上溢 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 根据符号将结果置为 +∞ 或 -∞ */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>( <span class="comment">/* 需要进行左规 */</span> ) &#123;</span><br><span class="line">        <span class="keyword">while</span>( <span class="comment">/* 需要左规 且 阶码大于0 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 左规一次 */</span>        </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>( <span class="comment">/* 发生了阶码==0 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 右移一次化为非规格化浮点数 */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>( <span class="comment">/* 两个非规格化数运算后得到了一个规格化数 */</span> ) &#123;</span><br><span class="line">        <span class="built_in">exp</span>++; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>( <span class="comment">/* 规格化过程中未发生溢出 */</span> ) &#123;</span><br><span class="line">        <span class="comment">/* 根据sig_grs最后三位GRS bits的取值决定舍入，采取就近舍入到偶数的方式 */</span></span><br><span class="line">        <span class="comment">/* 移除sig_grs最后三位保留的GRS bits*/</span></span><br><span class="line">        <span class="keyword">if</span>( <span class="comment">/* 舍入后破坏了规格化 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 再进行规格化并判断溢出 */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 假设最后的结果的符号、阶码、尾数保留在sign, exp, sig_grs中</span></span><br><span class="line">    FLOAT f;</span><br><span class="line">    f.sign = sign;</span><br><span class="line">    f.exponent = (<span class="type">uint32_t</span>) (<span class="built_in">exp</span> &amp; <span class="number">0xff</span>);</span><br><span class="line">    f.fraction = sig_grs; <span class="comment">// here only the lowest 23 bits are kept</span></span><br><span class="line">    <span class="keyword">return</span> f.val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="乘法"><a class="markdownIt-Anchor" href="#乘法"></a> 乘法</h2>
+<p>非常简单，浮点相乘就是尾数相乘，阶码相加</p>
+<blockquote>
+<p>加入GRS bits后，等同于约定中间结果的小数部分为26位。<br />
+对于除法而言，将被除数左移shift位后除以除数得到的小数部分为shift位，为了保证中间结果的小数部分为26位且真值不变，将多余的shift – 26位从阶码中减去，最后的阶码等于<code>fa.exponent - fb.exponent + 127 – (shift – 26)</code>。<br />
+对于乘法而言，用两个小数点后为23位的尾数相乘得到的乘积尾数小数点后为46位，为了保证中间结果的小数点后依然是26位，我们将多出来的46 – 26 = 20位归于阶码，因此阶码就是<code>fa.exponent + fb.exponent - 127 - 20</code>。</p>
+</blockquote>
+<h2 id="规格化"><a class="markdownIt-Anchor" href="#规格化"></a> 规格化</h2>
+<blockquote>
+<p>如果sig_grs &gt;&gt; (23 + 3) &gt; 1，则需要右规直至sig_grs &gt;&gt; (23 + 3) == 1；<br />
+反之如果sig_grs &gt;&gt; (23 + 3) == 0且不是非规格化浮点数（exp &gt; 0），则需要左规直至sig_grs &gt;&gt; (23 + 3) == 1。<br />
+注意这里的23 + 3的取值是因为我们在临时尾数的最低三位保留了GRS bits的缘故，也就是上文所述的等同于中间结果尾数sig_grs的小数部分约定为26位。<br />
+在规格化过程中，根据规格化的方向确定尾数右移还是左移，并对阶码进行增减操作。右规过程中需要保留粘位。<br />
+同时在每次右移前都要检查阶码上溢（exp &gt;= 0xff）的情形。<br />
+在左规过程中，则有可能发生结果出现非规格化浮点数的情况（阶码变为exp == 0），此时需要将尾数额外右移1位以对应非规格化浮点数阶码是2 ^-126的约定（否则单纯从数值上看阶码全0对应2 ^ -127）。</p>
+</blockquote>
+<p>整数部分不是1，(sig_grs &gt;&gt; 26) &gt; 1，，需要进行右移；整数部分 &lt; 1（也就是等于0）则需要进行左移</p>
+<h2 id="舍入"><a class="markdownIt-Anchor" href="#舍入"></a> 舍入</h2>
+<p>就近舍入偶数的规则可以参考视频和袁春风老师的书。</p>
+<ol>
+<li>Guard位为0，Round、Sticky不为0，舍去</li>
+<li>Guard位为1，Round、Sticky为0，确保尾数是偶数</li>
+<li>Guard位为1，Round、Sticky不为0，进位<br />
+注意最后要处理掉GRS位</li>
+</ol>
+<h1 id="pa2-1"><a class="markdownIt-Anchor" href="#pa2-1"></a> PA2-1</h1>
+<p>示例修改文件</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">objdump -d ./testcase/bin/mov | less</span><br><span class="line"></span><br><span class="line">nemu/src/cpu/instr/jmp.c // 包含.h</span><br><span class="line">nemu/include/cpu/instr/jmp.h // 声明函数</span><br><span class="line"></span><br><span class="line">nemu/src/cpu/decode/opcode.c // 替换</span><br><span class="line"></span><br><span class="line">nemu/include/cpu/operand.h // OPERAND read/write</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag"># 项目</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Regular%20Expression%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="prev" title="Regular Expression 正则表达式">
+                  <i class="fa fa-angle-left"></i> Regular Expression 正则表达式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Computer%20Organization&Design%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" rel="next" title="Computer Organization&Design学习记录">
+                  Computer Organization&Design学习记录 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa-solid fa-pen-nib"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SIMULEITE</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
