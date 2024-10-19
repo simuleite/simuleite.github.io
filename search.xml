@@ -679,6 +679,42 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 <li><code>:%s/s_content/o_content/g</code> 全局替换</li>
 </ul>
 </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Sign</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%</td>
+<td>整个文件</td>
+</tr>
+<tr>
+<td>.</td>
+<td>当前行</td>
+</tr>
+<tr>
+<td>$</td>
+<td>最后一行</td>
+</tr>
+<tr>
+<td>,n</td>
+<td>当前行到n行</td>
+</tr>
+<tr>
+<td>n,</td>
+<td>n行到当前行</td>
+</tr>
+<tr>
+<td>+n</td>
+<td>当前行后n行</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li>可视化模式 + 操作
 <ul>
 <li>选中文字,<code>d</code>删除（剪切） 或者<code>c</code>改变</li>
@@ -3997,7 +4033,12 @@ Texinfo使用简单的文本文件格式，可以生成各种格式的输出，�
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> longestDiameter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> <span class="title function_">maxDepthCache</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 使用缓存</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">L</span> <span class="operator">=</span> maxDepthCache(root.left);</span><br><span class="line">    <span class="type">int</span> <span class="variable">R</span> <span class="operator">=</span> maxDepthCache(root.right);</span><br><span class="line">    longestDiameter = max(longestDiameter, L + R + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> max(L, R) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">diameterOfBinaryTree</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    longestDiameter = <span class="number">1</span>;</span><br><span class="line">    maxDepthCache(root);</span><br><span class="line">    <span class="keyword">return</span> longestDiameter - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="反转二叉树"><a class="markdownIt-Anchor" href="#反转二叉树"></a> 反转二叉树</h1>
 <p>翻转每一个节点。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> TreeNode <span class="title function_">invertTree</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">TreeNode</span> <span class="variable">left</span> <span class="operator">=</span> invertTree(root.left);</span><br><span class="line">    <span class="type">TreeNode</span> <span class="variable">right</span> <span class="operator">=</span> invertTree(root.right);</span><br><span class="line">    root.left = right;</span><br><span class="line">    root.right = left;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> TreeNode <span class="title function_">invertTree</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">TreeNode</span> <span class="variable">left</span> <span class="operator">=</span> invertTree(root.left);</span><br><span class="line">    <span class="type">TreeNode</span> <span class="variable">right</span> <span class="operator">=</span> invertTree(root.right);</span><br><span class="line">    root.left = right;</span><br><span class="line">    root.right = left;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="双指针"><a class="markdownIt-Anchor" href="#双指针"></a> 双指针</h1>
+<h2 id="移动0"><a class="markdownIt-Anchor" href="#移动0"></a> 移动0</h2>
+<p>两个指针，<code>i, j</code>，j左边是排序好的数，i用于遍历。<br />
+遇到非0的数，交换i与j。</p>
+]]></content>
       <tags>
         <tag>笔记</tag>
       </tags>
