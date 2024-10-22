@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Author：aatalyk Origin: Link Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动态规划学习指南">
+<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="Author：aatalyk Origin: Link Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to pr">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-10-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-22T04:51:05.283Z">
+<meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="指南">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/","path":"ComputerScience/指南/动态规划学习指南/","title":"动态规划学习指南"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>动态规划学习指南 | SMULET's BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="SMULET's BLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SMULET's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#patterns"><span class="nav-text"> Patterns</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-minimum-maximum-path-to-reach-a-target"><span class="nav-text"> 1.0 Minimum (Maximum) Path to Reach a Target</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#statement"><span class="nav-text"> Statement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#approach"><span class="nav-text"> Approach</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#similar-problems"><span class="nav-text"> Similar Problems</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#20-distinct-ways"><span class="nav-text"> 2.0 Distinct Ways</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#statement%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-text"> Statement，问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#approach%E8%A7%A3%E9%A2%98%E6%96%B9%E6%B3%95"><span class="nav-text"> Approach，解题方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#similar-problems-2"><span class="nav-text"> Similar Problems</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#30-merging-intervals"><span class="nav-text"> 3.0 Merging Intervals</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#statement%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0-2"><span class="nav-text"> Statement，问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#approach%E8%A7%A3%E6%B3%95%E6%96%B9%E6%B3%95"><span class="nav-text"> Approach，解法方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#similar-problems%E7%B1%BB%E4%BC%BC%E9%97%AE%E9%A2%98"><span class="nav-text"> Similar Problems，类似问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#40-dp-on-strings"><span class="nav-text"> 4.0 DP on Strings</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#statement%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0-3"><span class="nav-text"> Statement，问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#approach%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text"> Approach，解决方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#50-decision-making"><span class="nav-text"> 5.0 Decision Making</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#statement%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0-4"><span class="nav-text"> Statement，问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#approach%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95-2"><span class="nav-text"> Approach，解决方法</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SIMULEITE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="sidebar-inner sidebar-blogroll">
+      <div class="links-of-blogroll animated">
+        <div class="links-of-blogroll-title"><i class="fa fa-handshake-o fa-fw"></i>
+          链接
+        </div>
+        <ul class="links-of-blogroll-list">
+            <li class="links-of-blogroll-item">
+              <a href="https://blog.nyc1.xyz/" title="https:&#x2F;&#x2F;blog.nyc1.xyz&#x2F;" rel="noopener" target="_blank">[网络] NgaiYeanCoi</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="动态规划学习指南 | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          动态规划学习指南
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-10-22 00:00:00 / 修改时间：12:51:05" itemprop="dateCreated datePublished" datetime="2024-10-22T00:00:00+08:00">2024-10-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Author：<strong><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/aatalyk">aatalyk</a></strong><br />
+Origin: <a target="_blank" rel="noopener" href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns">Link</a></p>
+<p>Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to prepare for interviews two years ago. At that time I should say I could not solve the two sum problem. Easy problems seemed to me like hard ones so most of the time I had to look at editorials and discuss section. Currently, I have solved ~800 problems and time to time participate in contests. I usually solve 3 problems in a contest and sometimes 4 problems. Ok, lets come back to the topic.</p>
+<p>Recently I have concentrated my attention on Dynamic Programming cause its one of the hardest topics in an interview prep. After solving ~140 problems in DP I have noticed that there are few patterns that can be found in different problems. So I did a research on that and find the following topics. I will not give complete ways how to solve problems but these patterns may be helpful in solving DP.</p>
+<h2 id="patterns"><a class="markdownIt-Anchor" href="#patterns"></a> Patterns</h2>
+<ol>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Minimum-%28Maximum%29-Path-to-Reach-a-Target">Minimum (Maximum) Path to Reach a Target</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23distinct-ways">Distinct Ways</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Merging-Intervals">Merging Intervals</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23DP-on-Strings">DP on Strings</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Decision-Making">Decision Making</a></li>
+</ol>
+<h2 id="10-minimum-maximum-path-to-reach-a-target"><a class="markdownIt-Anchor" href="#10-minimum-maximum-path-to-reach-a-target"></a> 1.0 Minimum (Maximum) Path to Reach a Target</h2>
+<p>最大最小的条件路径</p>
+<p>Generate problem statement for this pattern</p>
+<h3 id="statement"><a class="markdownIt-Anchor" href="#statement"></a> Statement</h3>
+<blockquote>
+<p>Given a target find minimum (maximum) cost / path / sum to reach the target.</p>
+</blockquote>
+<h3 id="approach"><a class="markdownIt-Anchor" href="#approach"></a> Approach</h3>
+<blockquote>
+<p>Choose minimum (maximum) path among all possible paths before the current state, then add value for the current state.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">routes[i] = min(routes[i-<span class="number">1</span>], routes[i-<span class="number">2</span>], ... , routes[i-k]) + cost[i]</span><br></pre></td></tr></table></figure>
+<p>Generate optimal solutions for all values in the target and return the value for the target.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= target; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; ways.size(); ++j) &#123;</span><br><span class="line">       <span class="keyword">if</span> (ways[j] &lt;= i) &#123;</span><br><span class="line">           dp[i] = min(dp[i], dp[i - ways[j]]) + cost / path / sum;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> dp[target]</span><br></pre></td></tr></table></figure>
+<h3 id="similar-problems"><a class="markdownIt-Anchor" href="#similar-problems"></a> Similar Problems</h3>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/min-cost-climbing-stairs/">746. Min Cost Climbing Stairs</a> <code>Easy</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">   dp[i] = min(dp[i-<span class="number">1</span>], dp[i-<span class="number">2</span>]) + (i == n ? <span class="number">0</span> : cost[i]);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-path-sum/">64. Minimum Path Sum</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; m; ++j) &#123;</span><br><span class="line">       grid[i][j] = min(grid[i-<span class="number">1</span>][j], grid[i][j-<span class="number">1</span>]) + grid[i][j];</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> grid[n-<span class="number">1</span>][m-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/coin-change/">322. Coin Change</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= amount; ++j) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; coins.size(); ++i) &#123;</span><br><span class="line">       <span class="keyword">if</span> (coins[i] &lt;= j) &#123;</span><br><span class="line">           dp[j] = min(dp[j], dp[j - coins[i]] + <span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-falling-path-sum/">931. Minimum Falling Path Sum</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-cost-for-tickets/">983. Minimum Cost For Tickets</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/2-keys-keyboard/">650. 2 Keys Keyboard</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/perfect-squares/">279. Perfect Squares</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/last-stone-weight-ii/">1049. Last Stone Weight II</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/triangle/">120. Triangle</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/ones-and-zeroes/">474. Ones and Zeroes</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/maximal-square/">221. Maximal Square</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/coin-change/">322. Coin Change</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/">1240. Tiling a Rectangle with the Fewest Squares</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/dungeon-game/">174. Dungeon Game</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-number-of-refueling-stops/">871. Minimum Number of Refueling Stops</a> <code>Hard</code></p>
+<h2 id="20-distinct-ways"><a class="markdownIt-Anchor" href="#20-distinct-ways"></a> 2.0 Distinct Ways</h2>
+<p>达到目标的不同方式总数</p>
+<p>Generate problem statement for this pattern</p>
+<h3 id="statement问题描述"><a class="markdownIt-Anchor" href="#statement问题描述"></a> Statement，问题描述</h3>
+<blockquote>
+<p>Given a target find a number of distinct ways to reach the target.</p>
+</blockquote>
+<h3 id="approach解题方法"><a class="markdownIt-Anchor" href="#approach解题方法"></a> Approach，解题方法</h3>
+<blockquote>
+<p>Sum all possible ways to reach the current state.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">routes[i] = routes[i-<span class="number">1</span>] + routes[i-<span class="number">2</span>], ... , + routes[i-k]</span><br></pre></td></tr></table></figure>
+<p>Generate sum for all values in the target and return the value for the target.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= target; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; ways.size(); ++j) &#123;</span><br><span class="line">       <span class="keyword">if</span> (ways[j] &lt;= i) &#123;</span><br><span class="line">           dp[i] += dp[i - ways[j]];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> dp[target]</span><br></pre></td></tr></table></figure>
+<h3 id="similar-problems-2"><a class="markdownIt-Anchor" href="#similar-problems-2"></a> Similar Problems</h3>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/climbing-stairs/">70. Climbing Stairs</a> <code>easy</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">stair</span> <span class="operator">=</span> <span class="number">2</span>; stair &lt;= n; ++stair) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">step</span> <span class="operator">=</span> <span class="number">1</span>; step &lt;= <span class="number">2</span>; ++step) &#123;</span><br><span class="line">       dp[stair] += dp[stair-step];   </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/unique-paths/">62. Unique Paths</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; m; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; n; ++j) &#123;</span><br><span class="line">       dp[i][j] = dp[i][j-<span class="number">1</span>] + dp[i-<span class="number">1</span>][j];</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/number-of-dice-rolls-with-target-sum/">1155. Number of Dice Rolls With Target Sum</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">rep</span> <span class="operator">=</span> <span class="number">1</span>; rep &lt;= d; ++rep) &#123;</span><br><span class="line">   vector&lt;<span class="type">int</span>&gt; <span class="title function_">new_ways</span><span class="params">(target+<span class="number">1</span>)</span>;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">already</span> <span class="operator">=</span> <span class="number">0</span>; already &lt;= target; ++already) &#123;</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">pipe</span> <span class="operator">=</span> <span class="number">1</span>; pipe &lt;= f; ++pipe) &#123;</span><br><span class="line">           <span class="keyword">if</span> (already - pipe &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">               new_ways[already] += ways[already - pipe];</span><br><span class="line">               new_ways[already] %= mod;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   ways = new_ways;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Note，备注</strong><br />
+Some questions point out the number of repetitions, in that case, add one more loop to simulate every repetition.<br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/knight-probability-in-chessboard/">688. Knight Probability in Chessboard</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/target-sum/">494. Target Sum</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/combination-sum-iv/">377. Combination Sum IV</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/knight-dialer/">935. Knight Dialer</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/dice-roll-simulation/">1223. Dice Roll Simulation</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/partition-equal-subset-sum/">416. Partition Equal Subset Sum</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/soup-servings/">808. Soup Servings</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/domino-and-tromino-tiling/">790. Domino and Tromino Tiling</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-swaps-to-make-sequences-increasing/">801. Minimum Swaps To Make Sequences Increasing</a><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/number-of-longest-increasing-subsequence/">673. Number of Longest Increasing Subsequence</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/unique-paths-ii/">63. Unique Paths II</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/out-of-boundary-paths/">576. Out of Boundary Paths</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/number-of-ways-to-stay-in-the-same-place-after-some-steps/">1269. Number of Ways to Stay in the Same Place After Some Steps</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/count-vowels-permutation/">1220. Count Vowels Permutation</a> <code>Hard</code></p>
+<h2 id="30-merging-intervals"><a class="markdownIt-Anchor" href="#30-merging-intervals"></a> 3.0 Merging Intervals</h2>
+<p>区间合并</p>
+<p>Generate problem statement for this pattern</p>
+<h3 id="statement问题描述-2"><a class="markdownIt-Anchor" href="#statement问题描述-2"></a> Statement，问题描述</h3>
+<blockquote>
+<p>Given a set of numbers find an optimal solution for a problem considering the current number and the best you can get from the left and right sides.</p>
+</blockquote>
+<h3 id="approach解法方法"><a class="markdownIt-Anchor" href="#approach解法方法"></a> Approach，解法方法</h3>
+<blockquote>
+<p>Find all optimal solutions for every interval and return the best possible answer.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// from i to j</span></span><br><span class="line">dp[i][j] = dp[i][k] + result[k] + dp[k+<span class="number">1</span>][j]</span><br></pre></td></tr></table></figure>
+<p>Get the best from the left and right sides and add a solution for the current position.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">1</span>; l&lt;n; l++) &#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i&lt;n-l; i++) &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i+l;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> i; k&lt;j; k++) &#123;</span><br><span class="line">           dp[i][j] = max(dp[i][j], dp[i][k] + result[k] + dp[k+<span class="number">1</span>][j]);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> dp[<span class="number">0</span>][n-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="similar-problems类似问题"><a class="markdownIt-Anchor" href="#similar-problems类似问题"></a> Similar Problems，类似问题</h3>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-cost-tree-from-leaf-values/">1130. Minimum Cost Tree From Leaf Values</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">1</span>; l &lt; n; ++l) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n - l; ++i) &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + l;</span><br><span class="line">       dp[i][j] = INT_MAX;</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> i; k &lt; j; ++k) &#123;</span><br><span class="line">           dp[i][j] = min(dp[i][j], dp[i][k] + dp[k+<span class="number">1</span>][j] + maxs[i][k] * maxs[k+<span class="number">1</span>][j]);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/unique-binary-search-trees/">96. Unique Binary Search Trees</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-score-triangulation-of-polygon/">1039. Minimum Score Triangulation of Polygon</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/remove-boxes/">546. Remove Boxes</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-cost-to-merge-stones/">1000. Minimum Cost to Merge Stones</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/burst-balloons/">312. Burst Balloons</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/guess-number-higher-or-lower-ii/">375. Guess Number Higher or Lower II</a> <code>Medium</code></p>
+<h2 id="40-dp-on-strings"><a class="markdownIt-Anchor" href="#40-dp-on-strings"></a> 4.0 DP on Strings</h2>
+<p>字符串上的DP</p>
+<p>General problem statement for this pattern can vary but most of the time you are given two strings where lengths of those strings are not big</p>
+<h3 id="statement问题描述-3"><a class="markdownIt-Anchor" href="#statement问题描述-3"></a> Statement，问题描述</h3>
+<blockquote>
+<p>Given two strings <code>s1</code> and <code>s2</code>, return <code>some result</code>.</p>
+</blockquote>
+<h3 id="approach解决方法"><a class="markdownIt-Anchor" href="#approach解决方法"></a> Approach，解决方法</h3>
+<blockquote>
+<p>Most of the problems on this pattern requires a solution that can be accepted in O(n^2) complexity.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// i - indexing string s1</span></span><br><span class="line"><span class="comment">// j - indexing string s2</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">       <span class="keyword">if</span> (s1[i-<span class="number">1</span>] == s2[j-<span class="number">1</span>]) &#123;</span><br><span class="line">           dp[i][j] = <span class="comment">/*code*/</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           dp[i][j] = <span class="comment">/*code*/</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>If you are given one string <code>s</code> the approach may little vary</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">1</span>; l &lt; n; ++l) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n-l; ++i) &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + l;</span><br><span class="line">       <span class="keyword">if</span> (s[i] == s[j]) &#123;</span><br><span class="line">           dp[i][j] = <span class="comment">/*code*/</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           dp[i][j] = <span class="comment">/*code*/</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/longest-common-subsequence/">1143. Longest Common Subsequence</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">       <span class="keyword">if</span> (text1[i-<span class="number">1</span>] == text2[j-<span class="number">1</span>]) &#123;</span><br><span class="line">           dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           dp[i][j] = max(dp[i-<span class="number">1</span>][j], dp[i][j-<span class="number">1</span>]);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/palindromic-substrings/">647. Palindromic Substrings</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">1</span>; l &lt; n; ++l) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n-l; ++i) &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + l;</span><br><span class="line">       <span class="keyword">if</span> (s[i] == s[j] &amp;&amp; dp[i+<span class="number">1</span>][j-<span class="number">1</span>] == j-i-<span class="number">1</span>) &#123;</span><br><span class="line">           dp[i][j] = dp[i+<span class="number">1</span>][j-<span class="number">1</span>] + <span class="number">2</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           dp[i][j] = <span class="number">0</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/longest-palindromic-subsequence/">516. Longest Palindromic Subsequence</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/shortest-common-supersequence/">1092. Shortest Common Supersequence</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/edit-distance/">72. Edit Distance</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/distinct-subsequences/">115. Distinct Subsequences</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/">712. Minimum ASCII Delete Sum for Two Strings</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/longest-palindromic-substring/">5. Longest Palindromic Substring</a> <code>Medium</code></p>
+<h2 id="50-decision-making"><a class="markdownIt-Anchor" href="#50-decision-making"></a> 5.0 Decision Making</h2>
+<p>决策，取不取当前元素</p>
+<p>The general problem statement for this pattern is forgiven situation decide whether to use or not to use the current state. So, the problem requires you to make a decision at a current state.</p>
+<h3 id="statement问题描述-4"><a class="markdownIt-Anchor" href="#statement问题描述-4"></a> Statement，问题描述</h3>
+<blockquote>
+<p>Given a set of values find an answer with an option to choose or ignore the current value.</p>
+</blockquote>
+<h3 id="approach解决方法-2"><a class="markdownIt-Anchor" href="#approach解决方法-2"></a> Approach，解决方法</h3>
+<blockquote>
+<p>If you decide to choose the current value use the previous result where the value was ignored; vice-versa, if you decide to ignore the current value use previous result where value was used.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// i - indexing a set of values</span></span><br><span class="line"><span class="comment">// j - options to ignore j values</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= k; ++j) &#123;</span><br><span class="line">       dp[i][j] = max(&#123;dp[i][j], dp[i-<span class="number">1</span>][j] + arr[i], dp[i-<span class="number">1</span>][j-<span class="number">1</span>]&#125;);</span><br><span class="line">       dp[i][j-<span class="number">1</span>] = max(&#123;dp[i][j-<span class="number">1</span>], dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + arr[i], arr[i]&#125;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/house-robber/">198. House Robber</a> <code>Easy</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">   dp[i][<span class="number">1</span>] = max(dp[i-<span class="number">1</span>][<span class="number">0</span>] + nums[i], dp[i-<span class="number">1</span>][<span class="number">1</span>]);</span><br><span class="line">   dp[i][<span class="number">0</span>] = dp[i-<span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/best-time-to-buy-and-sell-stock/">121. Best Time to Buy and Sell Stock</a> <code>Easy</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/">714. Best Time to Buy and Sell Stock with Transaction Fee</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/">309. Best Time to Buy and Sell Stock with Cooldown</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/">123. Best Time to Buy and Sell Stock III</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/">188. Best Time to Buy and Sell Stock IV</a> <code>Hard</code></p>
+<p>I hope these tips will be helpful.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%8C%87%E5%8D%97/" rel="tag"># 指南</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/SpringBoot%20%E6%94%AF%E4%BB%98%E6%A8%A1%E5%9D%97/" rel="prev" title="">
+                  <i class="fa fa-angle-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa-solid fa-pen-nib"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SIMULEITE</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -145,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">45</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,6 +179,455 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">LeetCode100 错题本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-01T00:00:00+08:00">2024-10-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-22 19:33:22" itemprop="dateModified" datetime="2024-10-22T19:33:22+08:00">2024-10-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
+<h1 id="字母异位词"><a class="markdownIt-Anchor" href="#字母异位词"></a> 字母异位词</h1>
+<p>排序每一个单词，就知道是不是异位词。</p>
+<h2 id="两数之和"><a class="markdownIt-Anchor" href="#两数之和"></a> 两数之和</h2>
+<p>从数组中，找到<code>nums[i] + nums[j] == target</code>，并返回<code>&#123; i, j &#125;</code>。<br />
+思路是双重循环，遍历每一个元素，求和是否为target。<br />
+然而，双重循环需要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的复杂度。因此，可以使用一张表，使用<code>containsKey</code>方法识别是否存在当前i的<code>target - nums[i]</code>，即可减少一重循环。</p>
+<h3 id="关键思想"><a class="markdownIt-Anchor" href="#关键思想"></a> 关键思想</h3>
+<p>用Map高效率查找，减少一重循环。</p>
+<h2 id="最长连续序列"><a class="markdownIt-Anchor" href="#最长连续序列"></a> 最长连续序列</h2>
+<p>从乱序数组中，找到最长连续（数组中不一定连续）的序列。要求<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。<br />
+首先用数组的值存入哈希表，然后遍历数组，判断<code>map.constains(curNum++)</code>。<br />
+然而，即使这样还是效率不够高。</p>
+<p>优化</p>
+<ol>
+<li>中间值不进入循环，序列开始值才进入，使用<code>!contains(curNum - 1)</code>判断是否为序列开始值</li>
+<li>去重，不要哈希表，不需要键值对，使用哈希Set，只存储值。</li>
+</ol>
+<h3 id="关键思想-2"><a class="markdownIt-Anchor" href="#关键思想-2"></a> 关键思想</h3>
+<p>去重；不处理中间值</p>
+<h1 id="stack"><a class="markdownIt-Anchor" href="#stack"></a> Stack</h1>
+<h2 id="每日温度"><a class="markdownIt-Anchor" href="#每日温度"></a> 每日温度</h2>
+<p>给一个长度为N的每日温度数组，返回一个数组，记录每一天距离下次升温的天数。</p>
+<p>可以用双重循环，找到比当前温度大的那一天，但是这样效率太低。</p>
+<p>优化：<br />
+使用栈，存取没有找到升温日的index，找到升温日后，一次性处理完，减少一重循环。</p>
+<h3 id="关键思想-3"><a class="markdownIt-Anchor" href="#关键思想-3"></a> 关键思想</h3>
+<p>使用栈存储未处理的值，找到升温日后一次性处理，减少重复动作。</p>
+<h1 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h1>
+<h2 id="链表排序"><a class="markdownIt-Anchor" href="#链表排序"></a> 链表排序</h2>
+<p>链表的两种排序方法：插入排序和归并排序。<br />
+其中，归并排序需要用双指针来找到mid节点。</p>
+<p>注意，链表交换时，不要把<code>temp</code>设置成a或b的引用<code>temp = a/b;</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exch</span><span class="params">(ListNode a, ListNode b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> a.val; <span class="comment">// 或构造一个新的ListNode，否则就是在操作引用</span></span><br><span class="line">    a.val = b.val;</span><br><span class="line">    b.val = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，快指针的写法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这样可能访问不到fast.next</span></span><br><span class="line"><span class="keyword">if</span> (fast.next != end) fast = fast.next;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确写法</span></span><br><span class="line"><span class="keyword">if</span> (fast != end) fast = fast.next;</span><br></pre></td></tr></table></figure>
+<p>注意，链表的归并排序，不需要一个个赋值</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (head1 != <span class="literal">null</span> &amp;&amp; head2 != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (head1.val &lt; head2.val) &#123;</span><br><span class="line">        p.next = head1;</span><br><span class="line">        head1 = head1.next;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        p.next = head2;</span><br><span class="line">        head2 = head2.next;</span><br><span class="line">    &#125;</span><br><span class="line">    p = p.next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (head1 != <span class="literal">null</span>) &#123;</span><br><span class="line">    p.next = head1; <span class="comment">// 不需要循环</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (head2 != <span class="literal">null</span>) &#123;</span><br><span class="line">    p.next = head2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意，终止条件要熔断有序的链表</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (head.next == end) &#123;</span><br><span class="line">    head.next = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="删除倒数第n个节点"><a class="markdownIt-Anchor" href="#删除倒数第n个节点"></a> 删除倒数第N个节点</h1>
+<p>24.10.11<br />
+使用双指针，p2比p1快N个节点，遍历，<code>p2 == null</code>时，p1为要删除的节点</p>
+<h1 id="tree"><a class="markdownIt-Anchor" href="#tree"></a> Tree</h1>
+<h2 id="对称树"><a class="markdownIt-Anchor" href="#对称树"></a> 对称树</h2>
+<p>使用递归解决。对称遍历到两棵树的底部(null)，仍然没有出现不相等的情况，即为对称树。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">checkNode</span><span class="params">(TreeNode left, TreeNode right)</span> &#123;</span><br><span class="line">    <span class="comment">// condition</span></span><br><span class="line">    <span class="keyword">return</span> checkNode(left.left, right.right) &amp;&amp;</span><br><span class="line">           checkNode(left.right, right.left);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="最大深度"><a class="markdownIt-Anchor" href="#最大深度"></a> 最大深度</h2>
+<p>获得每一个节点的最大深度，root再比较left与right的深度，取最大值即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> max(maxDepth(root.left), maxDepth(root.right)) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="最长直径"><a class="markdownIt-Anchor" href="#最长直径"></a> 最长直径</h2>
+<p>获取每个节点左右节点的最大深度之和，最大值即为二叉树的最长直径。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> longestDiameter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> <span class="title function_">maxDepthCache</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 使用缓存</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">L</span> <span class="operator">=</span> maxDepthCache(root.left);</span><br><span class="line">    <span class="type">int</span> <span class="variable">R</span> <span class="operator">=</span> maxDepthCache(root.right);</span><br><span class="line">    longestDiameter = max(longestDiameter, L + R + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> max(L, R) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">diameterOfBinaryTree</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    longestDiameter = <span class="number">1</span>;</span><br><span class="line">    maxDepthCache(root);</span><br><span class="line">    <span class="keyword">return</span> longestDiameter - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="反转二叉树"><a class="markdownIt-Anchor" href="#反转二叉树"></a> 反转二叉树</h1>
+<p>翻转每一个节点。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> TreeNode <span class="title function_">invertTree</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">TreeNode</span> <span class="variable">left</span> <span class="operator">=</span> invertTree(root.left);</span><br><span class="line">    <span class="type">TreeNode</span> <span class="variable">right</span> <span class="operator">=</span> invertTree(root.right);</span><br><span class="line">    root.left = right;</span><br><span class="line">    root.right = left;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="双指针"><a class="markdownIt-Anchor" href="#双指针"></a> 双指针</h1>
+<h2 id="移动0"><a class="markdownIt-Anchor" href="#移动0"></a> 移动0</h2>
+<p>两个指针，<code>i, j</code>，j左边是排序好的数，i用于遍历。<br />
+遇到非0的数，交换i与j。</p>
+<h1 id="动态规划dp"><a class="markdownIt-Anchor" href="#动态规划dp"></a> 动态规划，DP</h1>
+<p>动态规划：缓存运算结果，空间换时间。</p>
+<h2 id="爬楼梯"><a class="markdownIt-Anchor" href="#爬楼梯"></a> 爬楼梯</h2>
+<p>Distinct Ways问题。<br />
+累加所有到达当前状态的可能路径数。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= target; ++i) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; ways.size(); ++j) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ways[j] &lt;= i) &#123;</span><br><span class="line">            dp[i] += dp[i - ways[j]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="不同路径ii"><a class="markdownIt-Anchor" href="#不同路径ii"></a> 不同路径II</h2>
+<p>增加了Obstacles，不能通过的点。</p>
+<p>题目描述：<br />
+二维数组，<code>matrix[0][0]</code>为起点；<code>matrix[m-1][n-1]</code>为终点。每次只能向下走或向右走，中间有障碍物，不能通行。求到达终点的不同路径总数。</p>
+<p>核心思想：<br />
+从起点开始逐步推导走到每一格的路径数量，并将推导结果缓存到数组<code>dp[i][j]</code>中，用于下一步的推导。</p>
+<p>题解：</p>
+<ol>
+<li>首先，创建二维数组<code>dp[m][n]</code>用于存储达到每一格的路径数，初始化第一行和第一列，将可以通行的路径初始化为1，遇到障碍物，将障碍物置0并break中止初始化。</li>
+<li>运用动态规划算法，得出到达每一格的路径数量。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; m; i += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= n; j += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="comment">// 只能从上方或左方走过来</span></span><br><span class="line">        dp[i][j] = dp[i - <span class="number">1</span>][j] + dp[i][j - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> dp[m - <span class="number">1</span>][n - <span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>处理障碍物。遇到障碍物，跳过当前<code>dp[i][j]</code>的赋值操作。（此路不通，到达此格的路径数为默认值0）</li>
+<li>处理边界情况。当起点或终点值为1，即有障碍物不可达时，直接返回0。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">动态规划学习指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-10-22 00:00:00 / 修改时间：12:51:05" itemprop="dateCreated datePublished" datetime="2024-10-22T00:00:00+08:00">2024-10-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Author：<strong><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/aatalyk">aatalyk</a></strong><br />
+Origin: <a target="_blank" rel="noopener" href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns">Link</a></p>
+<p>Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to prepare for interviews two years ago. At that time I should say I could not solve the two sum problem. Easy problems seemed to me like hard ones so most of the time I had to look at editorials and discuss section. Currently, I have solved ~800 problems and time to time participate in contests. I usually solve 3 problems in a contest and sometimes 4 problems. Ok, lets come back to the topic.</p>
+<p>Recently I have concentrated my attention on Dynamic Programming cause its one of the hardest topics in an interview prep. After solving ~140 problems in DP I have noticed that there are few patterns that can be found in different problems. So I did a research on that and find the following topics. I will not give complete ways how to solve problems but these patterns may be helpful in solving DP.</p>
+<h2 id="patterns"><a class="markdownIt-Anchor" href="#patterns"></a> Patterns</h2>
+<ol>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Minimum-%28Maximum%29-Path-to-Reach-a-Target">Minimum (Maximum) Path to Reach a Target</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23distinct-ways">Distinct Ways</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Merging-Intervals">Merging Intervals</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23DP-on-Strings">DP on Strings</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Decision-Making">Decision Making</a></li>
+</ol>
+<h2 id="10-minimum-maximum-path-to-reach-a-target"><a class="markdownIt-Anchor" href="#10-minimum-maximum-path-to-reach-a-target"></a> 1.0 Minimum (Maximum) Path to Reach a Target</h2>
+<p>最大最小的条件路径</p>
+<p>Generate problem statement for this pattern</p>
+<h3 id="statement"><a class="markdownIt-Anchor" href="#statement"></a> Statement</h3>
+<blockquote>
+<p>Given a target find minimum (maximum) cost / path / sum to reach the target.</p>
+</blockquote>
+<h3 id="approach"><a class="markdownIt-Anchor" href="#approach"></a> Approach</h3>
+<blockquote>
+<p>Choose minimum (maximum) path among all possible paths before the current state, then add value for the current state.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">routes[i] = min(routes[i-<span class="number">1</span>], routes[i-<span class="number">2</span>], ... , routes[i-k]) + cost[i]</span><br></pre></td></tr></table></figure>
+<p>Generate optimal solutions for all values in the target and return the value for the target.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= target; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; ways.size(); ++j) &#123;</span><br><span class="line">       <span class="keyword">if</span> (ways[j] &lt;= i) &#123;</span><br><span class="line">           dp[i] = min(dp[i], dp[i - ways[j]]) + cost / path / sum;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> dp[target]</span><br></pre></td></tr></table></figure>
+<h3 id="similar-problems"><a class="markdownIt-Anchor" href="#similar-problems"></a> Similar Problems</h3>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/min-cost-climbing-stairs/">746. Min Cost Climbing Stairs</a> <code>Easy</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">   dp[i] = min(dp[i-<span class="number">1</span>], dp[i-<span class="number">2</span>]) + (i == n ? <span class="number">0</span> : cost[i]);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-path-sum/">64. Minimum Path Sum</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; m; ++j) &#123;</span><br><span class="line">       grid[i][j] = min(grid[i-<span class="number">1</span>][j], grid[i][j-<span class="number">1</span>]) + grid[i][j];</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> grid[n-<span class="number">1</span>][m-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/coin-change/">322. Coin Change</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= amount; ++j) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; coins.size(); ++i) &#123;</span><br><span class="line">       <span class="keyword">if</span> (coins[i] &lt;= j) &#123;</span><br><span class="line">           dp[j] = min(dp[j], dp[j - coins[i]] + <span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-falling-path-sum/">931. Minimum Falling Path Sum</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-cost-for-tickets/">983. Minimum Cost For Tickets</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/2-keys-keyboard/">650. 2 Keys Keyboard</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/perfect-squares/">279. Perfect Squares</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/last-stone-weight-ii/">1049. Last Stone Weight II</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/triangle/">120. Triangle</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/ones-and-zeroes/">474. Ones and Zeroes</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/maximal-square/">221. Maximal Square</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/coin-change/">322. Coin Change</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/tiling-a-rectangle-with-the-fewest-squares/">1240. Tiling a Rectangle with the Fewest Squares</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/dungeon-game/">174. Dungeon Game</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-number-of-refueling-stops/">871. Minimum Number of Refueling Stops</a> <code>Hard</code></p>
+<h2 id="20-distinct-ways"><a class="markdownIt-Anchor" href="#20-distinct-ways"></a> 2.0 Distinct Ways</h2>
+<p>达到目标的不同方式总数</p>
+<p>Generate problem statement for this pattern</p>
+<h3 id="statement问题描述"><a class="markdownIt-Anchor" href="#statement问题描述"></a> Statement，问题描述</h3>
+<blockquote>
+<p>Given a target find a number of distinct ways to reach the target.</p>
+</blockquote>
+<h3 id="approach解题方法"><a class="markdownIt-Anchor" href="#approach解题方法"></a> Approach，解题方法</h3>
+<blockquote>
+<p>Sum all possible ways to reach the current state.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">routes[i] = routes[i-<span class="number">1</span>] + routes[i-<span class="number">2</span>], ... , + routes[i-k]</span><br></pre></td></tr></table></figure>
+<p>Generate sum for all values in the target and return the value for the target.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= target; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; ways.size(); ++j) &#123;</span><br><span class="line">       <span class="keyword">if</span> (ways[j] &lt;= i) &#123;</span><br><span class="line">           dp[i] += dp[i - ways[j]];</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> dp[target]</span><br></pre></td></tr></table></figure>
+<h3 id="similar-problems-2"><a class="markdownIt-Anchor" href="#similar-problems-2"></a> Similar Problems</h3>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/climbing-stairs/">70. Climbing Stairs</a> <code>easy</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">stair</span> <span class="operator">=</span> <span class="number">2</span>; stair &lt;= n; ++stair) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">step</span> <span class="operator">=</span> <span class="number">1</span>; step &lt;= <span class="number">2</span>; ++step) &#123;</span><br><span class="line">       dp[stair] += dp[stair-step];   </span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/unique-paths/">62. Unique Paths</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; m; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; n; ++j) &#123;</span><br><span class="line">       dp[i][j] = dp[i][j-<span class="number">1</span>] + dp[i-<span class="number">1</span>][j];</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/number-of-dice-rolls-with-target-sum/">1155. Number of Dice Rolls With Target Sum</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">rep</span> <span class="operator">=</span> <span class="number">1</span>; rep &lt;= d; ++rep) &#123;</span><br><span class="line">   vector&lt;<span class="type">int</span>&gt; <span class="title function_">new_ways</span><span class="params">(target+<span class="number">1</span>)</span>;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">already</span> <span class="operator">=</span> <span class="number">0</span>; already &lt;= target; ++already) &#123;</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">pipe</span> <span class="operator">=</span> <span class="number">1</span>; pipe &lt;= f; ++pipe) &#123;</span><br><span class="line">           <span class="keyword">if</span> (already - pipe &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">               new_ways[already] += ways[already - pipe];</span><br><span class="line">               new_ways[already] %= mod;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   ways = new_ways;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>Note，备注</strong><br />
+Some questions point out the number of repetitions, in that case, add one more loop to simulate every repetition.<br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/knight-probability-in-chessboard/">688. Knight Probability in Chessboard</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/target-sum/">494. Target Sum</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/combination-sum-iv/">377. Combination Sum IV</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/knight-dialer/">935. Knight Dialer</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/dice-roll-simulation/">1223. Dice Roll Simulation</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/partition-equal-subset-sum/">416. Partition Equal Subset Sum</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/soup-servings/">808. Soup Servings</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/domino-and-tromino-tiling/">790. Domino and Tromino Tiling</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-swaps-to-make-sequences-increasing/">801. Minimum Swaps To Make Sequences Increasing</a><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/number-of-longest-increasing-subsequence/">673. Number of Longest Increasing Subsequence</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/unique-paths-ii/">63. Unique Paths II</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/out-of-boundary-paths/">576. Out of Boundary Paths</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/number-of-ways-to-stay-in-the-same-place-after-some-steps/">1269. Number of Ways to Stay in the Same Place After Some Steps</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/count-vowels-permutation/">1220. Count Vowels Permutation</a> <code>Hard</code></p>
+<h2 id="30-merging-intervals"><a class="markdownIt-Anchor" href="#30-merging-intervals"></a> 3.0 Merging Intervals</h2>
+<p>区间合并</p>
+<p>Generate problem statement for this pattern</p>
+<h3 id="statement问题描述-2"><a class="markdownIt-Anchor" href="#statement问题描述-2"></a> Statement，问题描述</h3>
+<blockquote>
+<p>Given a set of numbers find an optimal solution for a problem considering the current number and the best you can get from the left and right sides.</p>
+</blockquote>
+<h3 id="approach解法方法"><a class="markdownIt-Anchor" href="#approach解法方法"></a> Approach，解法方法</h3>
+<blockquote>
+<p>Find all optimal solutions for every interval and return the best possible answer.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// from i to j</span></span><br><span class="line">dp[i][j] = dp[i][k] + result[k] + dp[k+<span class="number">1</span>][j]</span><br></pre></td></tr></table></figure>
+<p>Get the best from the left and right sides and add a solution for the current position.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">1</span>; l&lt;n; l++) &#123;</span><br><span class="line">   <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i&lt;n-l; i++) &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i+l;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> i; k&lt;j; k++) &#123;</span><br><span class="line">           dp[i][j] = max(dp[i][j], dp[i][k] + result[k] + dp[k+<span class="number">1</span>][j]);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> dp[<span class="number">0</span>][n-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<h3 id="similar-problems类似问题"><a class="markdownIt-Anchor" href="#similar-problems类似问题"></a> Similar Problems，类似问题</h3>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-cost-tree-from-leaf-values/">1130. Minimum Cost Tree From Leaf Values</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">1</span>; l &lt; n; ++l) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n - l; ++i) &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + l;</span><br><span class="line">       dp[i][j] = INT_MAX;</span><br><span class="line">       <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> i; k &lt; j; ++k) &#123;</span><br><span class="line">           dp[i][j] = min(dp[i][j], dp[i][k] + dp[k+<span class="number">1</span>][j] + maxs[i][k] * maxs[k+<span class="number">1</span>][j]);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/unique-binary-search-trees/">96. Unique Binary Search Trees</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-score-triangulation-of-polygon/">1039. Minimum Score Triangulation of Polygon</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/remove-boxes/">546. Remove Boxes</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-cost-to-merge-stones/">1000. Minimum Cost to Merge Stones</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/burst-balloons/">312. Burst Balloons</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/guess-number-higher-or-lower-ii/">375. Guess Number Higher or Lower II</a> <code>Medium</code></p>
+<h2 id="40-dp-on-strings"><a class="markdownIt-Anchor" href="#40-dp-on-strings"></a> 4.0 DP on Strings</h2>
+<p>字符串上的DP</p>
+<p>General problem statement for this pattern can vary but most of the time you are given two strings where lengths of those strings are not big</p>
+<h3 id="statement问题描述-3"><a class="markdownIt-Anchor" href="#statement问题描述-3"></a> Statement，问题描述</h3>
+<blockquote>
+<p>Given two strings <code>s1</code> and <code>s2</code>, return <code>some result</code>.</p>
+</blockquote>
+<h3 id="approach解决方法"><a class="markdownIt-Anchor" href="#approach解决方法"></a> Approach，解决方法</h3>
+<blockquote>
+<p>Most of the problems on this pattern requires a solution that can be accepted in O(n^2) complexity.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// i - indexing string s1</span></span><br><span class="line"><span class="comment">// j - indexing string s2</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">       <span class="keyword">if</span> (s1[i-<span class="number">1</span>] == s2[j-<span class="number">1</span>]) &#123;</span><br><span class="line">           dp[i][j] = <span class="comment">/*code*/</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           dp[i][j] = <span class="comment">/*code*/</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>If you are given one string <code>s</code> the approach may little vary</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">1</span>; l &lt; n; ++l) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n-l; ++i) &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + l;</span><br><span class="line">       <span class="keyword">if</span> (s[i] == s[j]) &#123;</span><br><span class="line">           dp[i][j] = <span class="comment">/*code*/</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           dp[i][j] = <span class="comment">/*code*/</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/longest-common-subsequence/">1143. Longest Common Subsequence</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= m; ++j) &#123;</span><br><span class="line">       <span class="keyword">if</span> (text1[i-<span class="number">1</span>] == text2[j-<span class="number">1</span>]) &#123;</span><br><span class="line">           dp[i][j] = dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           dp[i][j] = max(dp[i-<span class="number">1</span>][j], dp[i][j-<span class="number">1</span>]);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/palindromic-substrings/">647. Palindromic Substrings</a> <code>Medium</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">1</span>; l &lt; n; ++l) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n-l; ++i) &#123;</span><br><span class="line">       <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + l;</span><br><span class="line">       <span class="keyword">if</span> (s[i] == s[j] &amp;&amp; dp[i+<span class="number">1</span>][j-<span class="number">1</span>] == j-i-<span class="number">1</span>) &#123;</span><br><span class="line">           dp[i][j] = dp[i+<span class="number">1</span>][j-<span class="number">1</span>] + <span class="number">2</span>;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           dp[i][j] = <span class="number">0</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/longest-palindromic-subsequence/">516. Longest Palindromic Subsequence</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/shortest-common-supersequence/">1092. Shortest Common Supersequence</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/edit-distance/">72. Edit Distance</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/distinct-subsequences/">115. Distinct Subsequences</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/">712. Minimum ASCII Delete Sum for Two Strings</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/longest-palindromic-substring/">5. Longest Palindromic Substring</a> <code>Medium</code></p>
+<h2 id="50-decision-making"><a class="markdownIt-Anchor" href="#50-decision-making"></a> 5.0 Decision Making</h2>
+<p>决策，取不取当前元素</p>
+<p>The general problem statement for this pattern is forgiven situation decide whether to use or not to use the current state. So, the problem requires you to make a decision at a current state.</p>
+<h3 id="statement问题描述-4"><a class="markdownIt-Anchor" href="#statement问题描述-4"></a> Statement，问题描述</h3>
+<blockquote>
+<p>Given a set of values find an answer with an option to choose or ignore the current value.</p>
+</blockquote>
+<h3 id="approach解决方法-2"><a class="markdownIt-Anchor" href="#approach解决方法-2"></a> Approach，解决方法</h3>
+<blockquote>
+<p>If you decide to choose the current value use the previous result where the value was ignored; vice-versa, if you decide to ignore the current value use previous result where value was used.</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// i - indexing a set of values</span></span><br><span class="line"><span class="comment">// j - options to ignore j values</span></span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= k; ++j) &#123;</span><br><span class="line">       dp[i][j] = max(&#123;dp[i][j], dp[i-<span class="number">1</span>][j] + arr[i], dp[i-<span class="number">1</span>][j-<span class="number">1</span>]&#125;);</span><br><span class="line">       dp[i][j-<span class="number">1</span>] = max(&#123;dp[i][j-<span class="number">1</span>], dp[i-<span class="number">1</span>][j-<span class="number">1</span>] + arr[i], arr[i]&#125;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/house-robber/">198. House Robber</a> <code>Easy</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">   dp[i][<span class="number">1</span>] = max(dp[i-<span class="number">1</span>][<span class="number">0</span>] + nums[i], dp[i-<span class="number">1</span>][<span class="number">1</span>]);</span><br><span class="line">   dp[i][<span class="number">0</span>] = dp[i-<span class="number">1</span>][<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/best-time-to-buy-and-sell-stock/">121. Best Time to Buy and Sell Stock</a> <code>Easy</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/">714. Best Time to Buy and Sell Stock with Transaction Fee</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/">309. Best Time to Buy and Sell Stock with Cooldown</a> <code>Medium</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/">123. Best Time to Buy and Sell Stock III</a> <code>Hard</code><br />
+<a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/">188. Best Time to Buy and Sell Stock IV</a> <code>Hard</code></p>
+<p>I hope these tips will be helpful.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/SpringBoot%20%E6%94%AF%E4%BB%98%E6%A8%A1%E5%9D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/SpringBoot%20%E6%94%AF%E4%BB%98%E6%A8%A1%E5%9D%97/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-10-20 14:05:14 / 修改时间：14:05:57" itemprop="dateCreated datePublished" datetime="2024-10-20T14:05:14+08:00">2024-10-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>参考资料<br />
+<a target="_blank" rel="noopener" href="https://gitee.com/52itstyle/spring-boot-pay/">Gitee项目</a><br />
+<a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_66490875/article/details/136842381">支付宝</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -319,141 +768,6 @@
 <li><code>:bn/bp</code>切换到下/上个文件</li>
 <li><code>&lt;C-x&gt;&lt;C-f&gt;</code> 自动补全路径</li>
 </ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">LeetCode100 错题本</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-01T00:00:00+08:00">2024-10-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-17 10:17:21" itemprop="dateModified" datetime="2024-10-17T10:17:21+08:00">2024-10-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
-<h1 id="字母异位词"><a class="markdownIt-Anchor" href="#字母异位词"></a> 字母异位词</h1>
-<p>排序每一个单词，就知道是不是异位词。</p>
-<h2 id="两数之和"><a class="markdownIt-Anchor" href="#两数之和"></a> 两数之和</h2>
-<p>从数组中，找到<code>nums[i] + nums[j] == target</code>，并返回<code>&#123; i, j &#125;</code>。<br />
-思路是双重循环，遍历每一个元素，求和是否为target。<br />
-然而，双重循环需要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的复杂度。因此，可以使用一张表，使用<code>containsKey</code>方法识别是否存在当前i的<code>target - nums[i]</code>，即可减少一重循环。</p>
-<h3 id="关键思想"><a class="markdownIt-Anchor" href="#关键思想"></a> 关键思想</h3>
-<p>用Map高效率查找，减少一重循环。</p>
-<h2 id="最长连续序列"><a class="markdownIt-Anchor" href="#最长连续序列"></a> 最长连续序列</h2>
-<p>从乱序数组中，找到最长连续（数组中不一定连续）的序列。要求<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。<br />
-首先用数组的值存入哈希表，然后遍历数组，判断<code>map.constains(curNum++)</code>。<br />
-然而，即使这样还是效率不够高。</p>
-<p>优化</p>
-<ol>
-<li>中间值不进入循环，序列开始值才进入，使用<code>!contains(curNum - 1)</code>判断是否为序列开始值</li>
-<li>去重，不要哈希表，不需要键值对，使用哈希Set，只存储值。</li>
-</ol>
-<h3 id="关键思想-2"><a class="markdownIt-Anchor" href="#关键思想-2"></a> 关键思想</h3>
-<p>去重；不处理中间值</p>
-<h1 id="stack"><a class="markdownIt-Anchor" href="#stack"></a> Stack</h1>
-<h2 id="每日温度"><a class="markdownIt-Anchor" href="#每日温度"></a> 每日温度</h2>
-<p>给一个长度为N的每日温度数组，返回一个数组，记录每一天距离下次升温的天数。</p>
-<p>可以用双重循环，找到比当前温度大的那一天，但是这样效率太低。</p>
-<p>优化：<br />
-使用栈，存取没有找到升温日的index，找到升温日后，一次性处理完，减少一重循环。</p>
-<h3 id="关键思想-3"><a class="markdownIt-Anchor" href="#关键思想-3"></a> 关键思想</h3>
-<p>使用栈存储未处理的值，找到升温日后一次性处理，减少重复动作。</p>
-<h1 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h1>
-<h2 id="链表排序"><a class="markdownIt-Anchor" href="#链表排序"></a> 链表排序</h2>
-<p>链表的两种排序方法：插入排序和归并排序。<br />
-其中，归并排序需要用双指针来找到mid节点。</p>
-<p>注意，链表交换时，不要把<code>temp</code>设置成a或b的引用<code>temp = a/b;</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">exch</span><span class="params">(ListNode a, ListNode b)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> a.val; <span class="comment">// 或构造一个新的ListNode，否则就是在操作引用</span></span><br><span class="line">    a.val = b.val;</span><br><span class="line">    b.val = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，快指针的写法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 这样可能访问不到fast.next</span></span><br><span class="line"><span class="keyword">if</span> (fast.next != end) fast = fast.next;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 正确写法</span></span><br><span class="line"><span class="keyword">if</span> (fast != end) fast = fast.next;</span><br></pre></td></tr></table></figure>
-<p>注意，链表的归并排序，不需要一个个赋值</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (head1 != <span class="literal">null</span> &amp;&amp; head2 != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (head1.val &lt; head2.val) &#123;</span><br><span class="line">        p.next = head1;</span><br><span class="line">        head1 = head1.next;</span><br><span class="line">        </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        p.next = head2;</span><br><span class="line">        head2 = head2.next;</span><br><span class="line">    &#125;</span><br><span class="line">    p = p.next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (head1 != <span class="literal">null</span>) &#123;</span><br><span class="line">    p.next = head1; <span class="comment">// 不需要循环</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (head2 != <span class="literal">null</span>) &#123;</span><br><span class="line">    p.next = head2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，终止条件要熔断有序的链表</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (head.next == end) &#123;</span><br><span class="line">    head.next = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">return</span> head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="删除倒数第n个节点"><a class="markdownIt-Anchor" href="#删除倒数第n个节点"></a> 删除倒数第N个节点</h1>
-<p>24.10.11<br />
-使用双指针，p2比p1快N个节点，遍历，<code>p2 == null</code>时，p1为要删除的节点</p>
-<h1 id="tree"><a class="markdownIt-Anchor" href="#tree"></a> Tree</h1>
-<h2 id="对称树"><a class="markdownIt-Anchor" href="#对称树"></a> 对称树</h2>
-<p>使用递归解决。对称遍历到两棵树的底部(null)，仍然没有出现不相等的情况，即为对称树。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">checkNode</span><span class="params">(TreeNode left, TreeNode right)</span> &#123;</span><br><span class="line">    <span class="comment">// condition</span></span><br><span class="line">    <span class="keyword">return</span> checkNode(left.left, right.right) &amp;&amp;</span><br><span class="line">           checkNode(left.right, right.left);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="最大深度"><a class="markdownIt-Anchor" href="#最大深度"></a> 最大深度</h2>
-<p>获得每一个节点的最大深度，root再比较left与right的深度，取最大值即可。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxDepth</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> max(maxDepth(root.left), maxDepth(root.right)) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="最长直径"><a class="markdownIt-Anchor" href="#最长直径"></a> 最长直径</h2>
-<p>获取每个节点左右节点的最大深度之和，最大值即为二叉树的最长直径。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> longestDiameter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> <span class="title function_">maxDepthCache</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 使用缓存</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">L</span> <span class="operator">=</span> maxDepthCache(root.left);</span><br><span class="line">    <span class="type">int</span> <span class="variable">R</span> <span class="operator">=</span> maxDepthCache(root.right);</span><br><span class="line">    longestDiameter = max(longestDiameter, L + R + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> max(L, R) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">diameterOfBinaryTree</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    longestDiameter = <span class="number">1</span>;</span><br><span class="line">    maxDepthCache(root);</span><br><span class="line">    <span class="keyword">return</span> longestDiameter - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="反转二叉树"><a class="markdownIt-Anchor" href="#反转二叉树"></a> 反转二叉树</h1>
-<p>翻转每一个节点。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> TreeNode <span class="title function_">invertTree</span><span class="params">(TreeNode root)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">null</span>) <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="type">TreeNode</span> <span class="variable">left</span> <span class="operator">=</span> invertTree(root.left);</span><br><span class="line">    <span class="type">TreeNode</span> <span class="variable">right</span> <span class="operator">=</span> invertTree(root.right);</span><br><span class="line">    root.left = right;</span><br><span class="line">    root.right = left;</span><br><span class="line">    <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="双指针"><a class="markdownIt-Anchor" href="#双指针"></a> 双指针</h1>
-<h2 id="移动0"><a class="markdownIt-Anchor" href="#移动0"></a> 移动0</h2>
-<p>两个指针，<code>i, j</code>，j左边是排序好的数，i用于遍历。<br />
-遇到非0的数，交换i与j。</p>
 
       
     </div>
@@ -1126,173 +1440,6 @@ Adding the missing piece later means waiting until the damage is already underwa
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/CS61B%20sp18/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/DNS%20Over%20Https/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/DNS%20Over%20Https/" class="post-title-link" itemprop="url">DNS Over Https</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-09-10 00:00:00 / 修改时间：19:25:58" itemprop="dateCreated datePublished" datetime="2024-09-10T00:00:00+08:00">2024-09-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="windows"><a class="markdownIt-Anchor" href="#windows"></a> Windows</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">模板</span></span><br><span class="line">netsh dns add encryption server=&lt;IP Address&gt; dohtemplate=&lt;DOH Template&gt; autoupgrade=yes udpfallback=no</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">腾讯</span></span><br><span class="line">netsh dns add encryption server=1.12.12.12 dohtemplate=https://doh.pub/dns-query autoupgrade=yes udpfallback=no</span><br><span class="line"></span><br><span class="line">netsh dns add encryption server=120.53.53.53 dohtemplate=https://doh.360.cn/dns-query autoupgrade=yes udpfallback=no</span><br></pre></td></tr></table></figure>
-<p>查看DoH模板：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">netsh dns show encryption</span></span><br><span class="line"></span><br><span class="line">223.5.5.5 加密设置</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">DNS-over-HTTPS 模板     : https://dns.alidns.com/dns-query</span><br><span class="line">自动升级                : yes</span><br><span class="line">UDP 回退                : no</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/" class="post-title-link" itemprop="url">Spring Framework</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-11T00:00:00+08:00">2024-08-11</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-07 11:17:23" itemprop="dateModified" datetime="2024-09-07T11:17:23+08:00">2024-09-07</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="pomxml-更换-maven-源"><a class="markdownIt-Anchor" href="#pomxml-更换-maven-源"></a> Pom.xml 更换 Maven 源</h1>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.quoters<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quoters-incorporated<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>quoters-incorporated<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>REST service to support the guides<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">developers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">developer</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>gturnquist<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>Greg Turnquist<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">email</span>&gt;</span>gturnquist at vmware.com<span class="tag">&lt;/<span class="name">email</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">organization</span>&gt;</span>VMware, Inc.<span class="tag">&lt;/<span class="name">organization</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">roles</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">role</span>&gt;</span>Project Lead<span class="tag">&lt;/<span class="name">role</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">roles</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">developer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">developers</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">organization</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>VMware, Inc.<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://spring.io<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">organization</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">licenses</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">license</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>Apache License, Version 2.0<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://www.apache.org/licenses/LICENSE-2.0<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">comments</span>&gt;</span></span><br><span class="line">                Copyright 2011 the original author or authors.</span><br><span class="line"></span><br><span class="line">                Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span><br><span class="line">                you may not use this file except in compliance with the License.</span><br><span class="line">                You may obtain a copy of the License at</span><br><span class="line"></span><br><span class="line">                https://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line"></span><br><span class="line">                Unless required by applicable law or agreed to in writing, software</span><br><span class="line">                distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">                WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or</span><br><span class="line">                implied.</span><br><span class="line">                See the License for the specific language governing permissions and</span><br><span class="line">                limitations under the License.</span><br><span class="line">            <span class="tag">&lt;/<span class="name">comments</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">license</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">licenses</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.h2database<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>h2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置阿里云仓库 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun-repos<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">releases</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun-repos<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">releases</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="tight-coupling-紧耦合"><a class="markdownIt-Anchor" href="#tight-coupling-紧耦合"></a> Tight Coupling 紧耦合</h1>
-<p>在Spring框架以前，使用排序算法需要将算法实例化</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line">  <span class="type">SortAlgorithm</span> <span class="variable">sortAlgorithm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BubbleSortAlgorithm</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BubbleSortAlgorithm</span> <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Good code has loose coupling.</p>
-</blockquote>
-<p>移除依赖项的实例化可以移除紧耦合</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line">  SortAlgorithm sortAlgorithm; <span class="comment">// = new BubbleSortAlgorithm();</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">ComplexBusinessService</span><span class="params">(SortAlgorithm sortAlgorithm)</span> &#123; <span class="comment">// 创建构造函数</span></span><br><span class="line">      <span class="built_in">this</span>.sortAlgorithm = sortAlgorithm;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> classBubbleSortAlgorithm <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Spring Framework instantiates objects and populates the dependencies.</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
