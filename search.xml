@@ -4040,11 +4040,12 @@ Texinfo使用简单的文本文件格式，可以生成各种格式的输出，�
 遇到非0的数，交换i与j。</p>
 <h1 id="动态规划dp"><a class="markdownIt-Anchor" href="#动态规划dp"></a> 动态规划，DP</h1>
 <p>动态规划：缓存运算结果，空间换时间。</p>
-<h2 id="爬楼梯"><a class="markdownIt-Anchor" href="#爬楼梯"></a> 爬楼梯</h2>
+<h2 id="不同路径和问题"><a class="markdownIt-Anchor" href="#不同路径和问题"></a> 不同路径和问题</h2>
+<h3 id="爬楼梯"><a class="markdownIt-Anchor" href="#爬楼梯"></a> 爬楼梯</h3>
 <p>Distinct Ways问题。<br />
 累加所有到达当前状态的可能路径数。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= target; ++i) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; ways.size(); ++j) &#123;</span><br><span class="line">        <span class="keyword">if</span> (ways[j] &lt;= i) &#123;</span><br><span class="line">            dp[i] += dp[i - ways[j]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="不同路径ii"><a class="markdownIt-Anchor" href="#不同路径ii"></a> 不同路径II</h2>
+<h3 id="不同路径ii"><a class="markdownIt-Anchor" href="#不同路径ii"></a> 不同路径II</h3>
 <p>增加了Obstacles，不能通过的点。</p>
 <p>题目描述：<br />
 二维数组，<code>matrix[0][0]</code>为起点；<code>matrix[m-1][n-1]</code>为终点。每次只能向下走或向右走，中间有障碍物，不能通行。求到达终点的不同路径总数。</p>
@@ -4059,6 +4060,16 @@ Texinfo使用简单的文本文件格式，可以生成各种格式的输出，�
 <ol start="3">
 <li>处理障碍物。遇到障碍物，跳过当前<code>dp[i][j]</code>的赋值操作。（此路不通，到达此格的路径数为默认值0）</li>
 <li>处理边界情况。当起点或终点值为1，即有障碍物不可达时，直接返回0。</li>
+</ol>
+<h2 id="最大最小不同路径问题"><a class="markdownIt-Anchor" href="#最大最小不同路径问题"></a> 最大/最小不同路径问题</h2>
+<p>在不同路径问题的基础上，增加一个max或min函数，筛选达到每一步的最大或最小步数。<br />
+核心算法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= target; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; ways.size(); ++j) &#123;</span><br><span class="line">       <span class="keyword">if</span> (ways[j] &lt;= i) &#123;</span><br><span class="line">           dp[i] = min(dp[i], dp[i - ways[j]]) + cost / path / sum;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> dp[target]</span><br></pre></td></tr></table></figure>
+<h3 id="零钱兑换"><a class="markdownIt-Anchor" href="#零钱兑换"></a> 零钱兑换</h3>
+<ol>
+<li>首先初始化dp，并填充最大值；然后对coin的倍数赋正确的值（显然，凑成<code>coin*i</code>元最少需要<code>i</code>个硬币）。为了避免小的硬币倍数覆盖大的硬币倍数，先对<code>coins</code>排序。</li>
+<li>动态规划最小值核心算法</li>
+<li>验证dp是否被修改，没有被修改，说明凑不成，返回-1；否则返回<code>dp[amount]</code></li>
 </ol>
 ]]></content>
       <tags>
@@ -5741,7 +5752,7 @@ Origin: <a href="https://leetcode.com/discuss/general-discussion/458695/dynamic-
 <p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/min-cost-climbing-stairs/">746. Min Cost Climbing Stairs</a> <code>Easy</code></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">   dp[i] = min(dp[i-<span class="number">1</span>], dp[i-<span class="number">2</span>]) + (i == n ? <span class="number">0</span> : cost[i]);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> dp[n]</span><br></pre></td></tr></table></figure>
 <p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-path-sum/">64. Minimum Path Sum</a> <code>Medium</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; m; ++j) &#123;</span><br><span class="line">       grid[i][j] = min(grid[i-<span class="number">1</span>][j], grid[i][j-<span class="number">1</span>]) + grid[i][j];</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> grid[n-<span class="number">1</span>][m-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; m; ++j) &#123;</span><br><span class="line">       grid[i][j] = min(grid[i-<span class="number">1</span>][j], grid[i][j-<span class="number">1</span>]) + grid[i][j];</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">return</span> grid[n-<span class="number">1</span>][m-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
 <p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/coin-change/">322. Coin Change</a> <code>Medium</code></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt;= amount; ++j) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; coins.size(); ++i) &#123;</span><br><span class="line">       <span class="keyword">if</span> (coins[i] &lt;= j) &#123;</span><br><span class="line">           dp[j] = min(dp[j], dp[j - coins[i]] + <span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/problems/minimum-falling-path-sum/">931. Minimum Falling Path Sum</a> <code>Medium</code><br />
