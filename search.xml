@@ -5886,4 +5886,36 @@ Some questions point out the number of repetitions, in that case, add one more l
 <a href="https://blog.csdn.net/m0_66490875/article/details/136842381">支付宝</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>Redis使用</title>
+    <url>/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="general"><a class="markdownIt-Anchor" href="#general"></a> General</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 返回给定模式的keys</span><br><span class="line">KEYS patter</span><br><span class="line">KEYS * # 返回全部</span><br><span class="line">KEYS set* # 返回set开头的keys</span><br><span class="line">EXISTS key</span><br><span class="line">TYPE key</span><br><span class="line">DEL key</span><br></pre></td></tr></table></figure>
+<h1 id="string"><a class="markdownIt-Anchor" href="#string"></a> String</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET key value</span><br><span class="line">GET key</span><br><span class="line"># Set Extend Time</span><br><span class="line">SETEX key seconds value</span><br><span class="line"># Set When Key Not Exist</span><br><span class="line">SETNX key value</span><br></pre></td></tr></table></figure>
+<h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HSET key field value</span><br><span class="line">HGET key field</span><br><span class="line">HDEL key field</span><br><span class="line"># Get All Fields</span><br><span class="line">HKEYS key</span><br><span class="line"># Get All Values</span><br><span class="line">HVALS key</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    key[key]</span><br><span class="line">    item[</span><br><span class="line">    field1: value1</span><br><span class="line">    field2: value2</span><br><span class="line">    ]</span><br><span class="line">    key --&gt; item</span><br></pre></td></tr></table></figure>
+<h1 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LPUSH key value1 value2</span><br><span class="line"># Get Key From Start To Stop</span><br><span class="line">LRANGE key start stop</span><br><span class="line"># Right POP</span><br><span class="line">RPOP key</span><br><span class="line"># List Length</span><br><span class="line">LLEN key</span><br></pre></td></tr></table></figure>
+<h1 id="set"><a class="markdownIt-Anchor" href="#set"></a> Set</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SADD key mem1 mem2</span><br><span class="line">SMEMBERS key</span><br><span class="line"># Set Size</span><br><span class="line">SCARD key</span><br><span class="line">SINTER key1 key2</span><br><span class="line">SUNION key1 key2</span><br><span class="line"># Delete</span><br><span class="line">SREM key mem1 mem2</span><br></pre></td></tr></table></figure>
+<h1 id="sorted-set-zset"><a class="markdownIt-Anchor" href="#sorted-set-zset"></a> Sorted Set / ZSet</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ZADD key score1 mem1 score2 mem2</span><br><span class="line"># Show List</span><br><span class="line">ZRANGE key start stop (WITHSCORES)</span><br><span class="line"># Increse Member</span><br><span class="line">ZINCRBY key increment member</span><br><span class="line">ZREM key mem1 mem2</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h1 id="redis-for-java"><a class="markdownIt-Anchor" href="#redis-for-java"></a> Redis for Java</h1>
+<ul>
+<li>Jedis (Official Recommand)</li>
+<li>Lettuce</li>
+<li>Spring Data Redis</li>
+</ul>
+<h2 id="redis-data-redis"><a class="markdownIt-Anchor" href="#redis-data-redis"></a> Redis Data Redis</h2>
+<figure class="highlight xml"><figcaption><span>pom.xml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Redis --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframwork.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yml"><figcaption><span>application.yml</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="string">localhost</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">6379</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">yourPassword</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Slf4j</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisConfiguration</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> RedisTemplate <span class="title function_">redisTemplate</span><span class="params">(RedisConnectionFactory redisConnectionFactory)</span> &#123;</span><br><span class="line">        log.info(<span class="string">&quot;开始创建Redis模板对象...&quot;</span>);</span><br><span class="line">        <span class="type">RedisTemplate</span> <span class="variable">redisTemplate</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RedisTemplate</span>();</span><br><span class="line">        <span class="comment">// Set Redis Connection Factory Object</span></span><br><span class="line">        redisTemplate.setConnectionFactory(redisConnectionFactory);</span><br><span class="line">        <span class="comment">// Set Key Serializer</span></span><br><span class="line">        redisTemplate.setKeySerializer(<span class="keyword">new</span> <span class="title class_">StringRedisSerializer</span>());</span><br><span class="line">        <span class="keyword">return</span> redisTemplate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>基本操作</tag>
+      </tags>
+  </entry>
 </search>

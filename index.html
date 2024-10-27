@@ -145,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,6 +179,95 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Redis使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-10-27 00:00:00 / 修改时间：15:06:48" itemprop="dateCreated datePublished" datetime="2024-10-27T00:00:00+08:00">2024-10-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="general"><a class="markdownIt-Anchor" href="#general"></a> General</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 返回给定模式的keys</span><br><span class="line">KEYS patter</span><br><span class="line">KEYS * # 返回全部</span><br><span class="line">KEYS set* # 返回set开头的keys</span><br><span class="line">EXISTS key</span><br><span class="line">TYPE key</span><br><span class="line">DEL key</span><br></pre></td></tr></table></figure>
+<h1 id="string"><a class="markdownIt-Anchor" href="#string"></a> String</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET key value</span><br><span class="line">GET key</span><br><span class="line"># Set Extend Time</span><br><span class="line">SETEX key seconds value</span><br><span class="line"># Set When Key Not Exist</span><br><span class="line">SETNX key value</span><br></pre></td></tr></table></figure>
+<h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HSET key field value</span><br><span class="line">HGET key field</span><br><span class="line">HDEL key field</span><br><span class="line"># Get All Fields</span><br><span class="line">HKEYS key</span><br><span class="line"># Get All Values</span><br><span class="line">HVALS key</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    key[key]</span><br><span class="line">    item[</span><br><span class="line">    field1: value1</span><br><span class="line">    field2: value2</span><br><span class="line">    ]</span><br><span class="line">    key --&gt; item</span><br></pre></td></tr></table></figure>
+<h1 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LPUSH key value1 value2</span><br><span class="line"># Get Key From Start To Stop</span><br><span class="line">LRANGE key start stop</span><br><span class="line"># Right POP</span><br><span class="line">RPOP key</span><br><span class="line"># List Length</span><br><span class="line">LLEN key</span><br></pre></td></tr></table></figure>
+<h1 id="set"><a class="markdownIt-Anchor" href="#set"></a> Set</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SADD key mem1 mem2</span><br><span class="line">SMEMBERS key</span><br><span class="line"># Set Size</span><br><span class="line">SCARD key</span><br><span class="line">SINTER key1 key2</span><br><span class="line">SUNION key1 key2</span><br><span class="line"># Delete</span><br><span class="line">SREM key mem1 mem2</span><br></pre></td></tr></table></figure>
+<h1 id="sorted-set-zset"><a class="markdownIt-Anchor" href="#sorted-set-zset"></a> Sorted Set / ZSet</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ZADD key score1 mem1 score2 mem2</span><br><span class="line"># Show List</span><br><span class="line">ZRANGE key start stop (WITHSCORES)</span><br><span class="line"># Increse Member</span><br><span class="line">ZINCRBY key increment member</span><br><span class="line">ZREM key mem1 mem2</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1350,113 +1439,6 @@ Hierarchy: 层次结构，大的子系统由多个小的子系统组织成。即
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/CS61B%20sp18/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/CS61B%20sp18/" class="post-title-link" itemprop="url">CS61B sp18</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-08-21 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-21T00:00:00+08:00">2024-08-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-30 11:01:12" itemprop="dateModified" datetime="2024-09-30T11:01:12+08:00">2024-09-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="gradescope-autograder"><a class="markdownIt-Anchor" href="#gradescope-autograder"></a> Gradescope Autograder</h1>
-<h2 id="spring-2018"><a class="markdownIt-Anchor" href="#spring-2018"></a> <a target="_blank" rel="noopener" href="https://sp18.datastructur.es/">Spring 2018</a></h2>
-<p>44个Assn，偏向数据结构<br />
-邀请码：<code>MNXYKX</code><br />
-学校：<code>UC Berkeley</code><br />
-直接输入，不要选择<code>2U-UC Berkeley</code>，否则将提示<code>COURSE ENTRY CODE IS INVALID</code></p>
-<h2 id="spring-2021"><a class="markdownIt-Anchor" href="#spring-2021"></a> <a target="_blank" rel="noopener" href="https://sp21.datastructur.es/">Spring 2021</a></h2>
-<p>19个Assn，偏向软件工程<br />
-邀请码：<code>MB7ZPY</code></p>
-<h1 id="文章收录"><a class="markdownIt-Anchor" href="#文章收录"></a> 文章收录</h1>
-<p><a target="_blank" rel="noopener" href="https://mathwithbaddrawings.com/2015/04/08/the-math-ceiling-wheres-your-cognitive-breaking-point/">The Law of the Broken Futon</a> 浮沙筑高台法则</p>
-<blockquote>
-<p>“Since I’m fine now, can’t I add that missing piece later, when it’s actually needed?” Sometimes, yes. But it’s much harder.<br />
-Adding the missing piece later means waiting until the damage is already underway, and hellishly difficult to undo.</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://henrikwarne.com/2014/09/04/a-response-to-why-most-unit-testing-is-waste/">A Response to “Why Most Unit Testing is Waste”</a></p>
-<blockquote>
-<p>(Unit Tests) They are based on <em>programmers’ fantasies about how the function should work</em>. But programmers break down requirements into smaller components all the time – this is how you program. Sometimes there are misunderstandings, but that is the exception, not the rule, in my opinion.</p>
-</blockquote>
-<h1 id="21-mystery-of-java-restore"><a class="markdownIt-Anchor" href="#21-mystery-of-java-restore"></a> 2.1 Mystery of Java Restore</h1>
-<blockquote>
-<p>When instantiate an Object, <code>obj = new Object()</code>, <code>obj</code> <strong>stores the address</strong> of the Object, not the specific data struction.</p>
-</blockquote>
-<p>(That is why all type of variables create memory boxes of 64 bits. It is just the memory of the address.)</p>
-<p>Therefore, When we use <code>obj2 = obj</code>, Java simply copy the addr of <code>obj</code> and assign it to <code>obj2</code> (They are pointing to the same Object), that is why when we change <code>obj2.weight</code> it effects <code>obj.weight</code> too.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/CS61B%20sp18/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
