@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Author：aatalyk Origin: Link Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to pr">
+    <meta name="description" content="Author：aatalyk Origin：Link Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to pre">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动态规划学习指南">
 <meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
-<meta property="og:description" content="Author：aatalyk Origin: Link Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to pr">
+<meta property="og:description" content="Author：aatalyk Origin：Link Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to pre">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-24T01:44:16.464Z">
+<meta property="article:modified_time" content="2024-10-28T12:36:54.033Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="指南">
 <meta name="twitter:card" content="summary">
@@ -231,7 +231,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-24 09:44:16" itemprop="dateModified" datetime="2024-10-24T09:44:16+08:00">2024-10-24</time>
+      <time title="修改时间：2024-10-28 20:36:54" itemprop="dateModified" datetime="2024-10-28T20:36:54+08:00">2024-10-28</time>
     </span>
 
   
@@ -244,7 +244,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><p>Author：<strong><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/aatalyk">aatalyk</a></strong><br />
-Origin: <a target="_blank" rel="noopener" href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns">Link</a></p>
+Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns">Link</a></p>
 <p>Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to prepare for interviews two years ago. At that time I should say I could not solve the two sum problem. Easy problems seemed to me like hard ones so most of the time I had to look at editorials and discuss section. Currently, I have solved ~800 problems and time to time participate in contests. I usually solve 3 problems in a contest and sometimes 4 problems. Ok, lets come back to the topic.</p>
 <p>Recently I have concentrated my attention on Dynamic Programming cause its one of the hardest topics in an interview prep. After solving ~140 problems in DP I have noticed that there are few patterns that can be found in different problems. So I did a research on that and find the following topics. I will not give complete ways how to solve problems but these patterns may be helpful in solving DP.</p>
 <h2 id="patterns"><a class="markdownIt-Anchor" href="#patterns"></a> Patterns</h2>
@@ -255,6 +255,7 @@ Origin: <a target="_blank" rel="noopener" href="https://leetcode.com/discuss/gen
 <li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23DP-on-Strings">DP on Strings</a></li>
 <li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Decision-Making">Decision Making</a></li>
 </ol>
+<span id="more"></span>
 <h2 id="10-minimum-maximum-path-to-reach-a-target"><a class="markdownIt-Anchor" href="#10-minimum-maximum-path-to-reach-a-target"></a> 1.0 Minimum (Maximum) Path to Reach a Target</h2>
 <p>最大最小的条件路径</p>
 <p>Generate problem statement for this pattern</p>
@@ -410,8 +411,8 @@ Some questions point out the number of repetitions, in that case, add one more l
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/SpringBoot%20%E6%94%AF%E4%BB%98%E6%A8%A1%E5%9D%97/" rel="prev" title="">
-                  <i class="fa fa-angle-left"></i> 
+                <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/" rel="prev" title="LeetCode100 错题本">
+                  <i class="fa fa-angle-left"></i> LeetCode100 错题本
                 </a>
             </div>
             <div class="post-nav-item">
