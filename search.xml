@@ -5114,6 +5114,7 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
 <ul>
 <li>效果</li>
 </ul>
+<span id="more"></span>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5271,7 +5272,6 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
     </script>
 </body>
 </html>
-<span id="more"></span>
 <ul>
 <li>生成图片</li>
 </ul>
