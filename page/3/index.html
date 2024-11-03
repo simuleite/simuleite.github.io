@@ -145,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,6 +179,106 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">Django动态网页 Python项目</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-03T00:00:00+08:00">2024-03-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-15 14:47:41" itemprop="dateModified" datetime="2024-08-15T14:47:41+08:00">2024-08-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="00-规范"><a class="markdownIt-Anchor" href="#00-规范"></a> 0.0 规范</h1>
+<p>我要编写一个名为“学习笔记”的 Web 应用程序,让用户能够记录感兴趣的主题,并在学习每个主题的过程中添加日志条目。“学习笔记”的主页对这个网站进行描述,并邀请用户注册或登录。用户登录后,可以创建新主题、添加新条目以及阅读既有的条目。</p>
+<p>目录 ll_project 包含 4 个文件, 其中最重要的是 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a>、<a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 和 <a target="_blank" rel="noopener" href="http://wsgi.py">wsgi.py</a>。文件 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a> 指定 Django 如何与系统交互以及如何管理项目。<br />
+在开发项目的过程中,我们将修改其中的一些设置,并添加一些设置。<br />
+文件 <a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 告诉 Django,应创建哪些网页来响应浏览器请求。<br />
+文件 <a target="_blank" rel="noopener" href="http://wsgi.py">wsgi.py</a> 帮助 Django 提供它创建的文件,名称是 web server gateway interface(Web 服务器网关接口)的首字母缩写。</p>
+<h1 id="10-创建环境"><a class="markdownIt-Anchor" href="#10-创建环境"></a> 1.0 创建环境</h1>
+<h2 id="11-创建虚拟环境"><a class="markdownIt-Anchor" href="#11-创建虚拟环境"></a> 1.1 创建虚拟环境</h2>
+<p>在独立的项目文件夹下运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m venv ll_env</span><br><span class="line"></span><br><span class="line">python -m ensurepip --default-pip <span class="comment"># 重装pip</span></span><br></pre></td></tr></table></figure>
+<p>将会创造一个<code>ll_env</code>文件夹<br />
+可以使用下面的命令激活虚拟环境。激活虚拟环境后，安装的模组将只在虚拟环境中生效，而不干扰到电脑上Python的模组</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ll_env/bin/activate <span class="comment"># Linux系统</span></span><br><span class="line"><span class="built_in">source</span> ll_env/Scripts/activate <span class="comment"># Windows系统</span></span><br><span class="line"></span><br><span class="line">(ll_env)</span><br><span class="line">work_directory$ <span class="comment"># 命令提示符前会显示(ll_env)</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>deactive</code>取消激活虚拟环境</p>
+<h2 id="12-安装配置django"><a class="markdownIt-Anchor" href="#12-安装配置django"></a> 1.2 安装配置Django</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install --upgrade pip <span class="comment"># 更新pip</span></span><br><span class="line">pip install django <span class="comment"># 安装Django</span></span><br><span class="line">django-admin startproject ll_project . <span class="comment"># 初始化Django</span></span><br><span class="line">python manage.py migrate <span class="comment"># 生成数据库</span></span><br><span class="line">python manage.py runserver <span class="comment"># 生成预览，可以在本地8000端口看到网页</span></span><br></pre></td></tr></table></figure>
+<pre><code>Django手册： https://docs.djangoproject.com/en/4.1/ref/models/fields/
+</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1120,113 +1220,6 @@ log2(x) 以2为底数的对数
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vscode%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vscode%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">vscode使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-05-02 00:00:00" itemprop="dateCreated datePublished" datetime="2024-05-02T00:00:00+08:00">2024-05-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-07-06 10:36:50" itemprop="dateModified" datetime="2024-07-06T10:36:50+08:00">2024-07-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="全键盘操作指南"><a class="markdownIt-Anchor" href="#全键盘操作指南"></a> 全键盘操作指南</h1>
-<h2 id="终端操作"><a class="markdownIt-Anchor" href="#终端操作"></a> 终端操作</h2>
-<ul>
-<li><code>code &lt;Folder&gt;</code> 打开工作区；相当于 <code>CTRL+K, CTRL+O</code></li>
-<li><code>code -diff file1 file2</code> 对比两个文件（颜色标注）</li>
-<li><code>code &lt;File&gt;</code> 打开文件</li>
-<li><strong><code>CTRL + ←/→</code> 逐词跳转</strong></li>
-<li><code>CTRL+K</code> 清理终端</li>
-<li><code>CTRL+P: &gt;Tasks</code> 新建任务，用 <code>CTRL+P: &gt;run</code> 运行；相当于 <code>make</code></li>
-</ul>
-<h2 id="panel操作"><a class="markdownIt-Anchor" href="#panel操作"></a> Panel操作</h2>
-<p><code>CTRL+P</code> 打开Panel</p>
-<ul>
-<li><code>@</code> 符号：寻找symbol，如函数名、变量名；相当于<code>CRTL+SHIFT+.</code></li>
-<li><code># &lt;String&gt;</code> 符号：全局搜索字符串</li>
-<li><code>&gt;join line</code> <strong>选中多行合并为一行</strong></li>
-</ul>
-<h2 id="编辑区操作"><a class="markdownIt-Anchor" href="#编辑区操作"></a> 编辑区操作</h2>
-<ul>
-<li><code>CTRL+G &lt;Line_Number&gt;</code> 跳到指定行</li>
-<li><code>CTRL + ←/→</code> 逐词跳转；相当于vim的 <code>w</code></li>
-<li><code>ALT + ↑/↓</code> 移动某行代码</li>
-<li><code>ALT + SHIGT+ ↑/↓</code> 复制某行代码</li>
-<li><code>CTRL+P: &gt;Snippets</code> 创建代码模板</li>
-<li><code>SHIFT+ALT+F12</code> 找到某个命名的全部引用（而不是简单的搜索）</li>
-<li><code>SHIFT+ALT+F</code> 格式化代码，相当于 <code>&gt;Format Document</code></li>
-</ul>
-<h1 id="设置-settingsjson"><a class="markdownIt-Anchor" href="#设置-settingsjson"></a> 设置 settings.json</h1>
-<h2 id="显示gitignore屏蔽文件"><a class="markdownIt-Anchor" href="#显示gitignore屏蔽文件"></a> 显示.gitignore屏蔽文件</h2>
-<p>关闭 <code>Search: Use Ignore Files</code>，或</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;search.useIgnoreFiles&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="自定义终端"><a class="markdownIt-Anchor" href="#自定义终端"></a> 自定义终端</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;terminal.integrated.defaultProfile.windows&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MSYS2-UCRT64&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;terminal.integrated.profiles.windows&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;MSYS2-UCRT64&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;D:\\your\\path\\MSYS2\\msys2_shell.cmd&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;-defterm&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;-no-start&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;-here&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;-ucrt64&quot;</span><span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
       
     </div>
 

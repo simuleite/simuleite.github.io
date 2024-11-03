@@ -145,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">48</span>
+          <span class="site-state-item-count">49</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,6 +179,99 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">mysql使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-27T00:00:00+08:00">2024-07-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-10 19:55:08" itemprop="dateModified" datetime="2024-10-10T19:55:08+08:00">2024-10-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h1>
+<h2 id="启动数据库"><a class="markdownIt-Anchor" href="#启动数据库"></a> 启动数据库</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 需要管理员权限</span></span><br><span class="line">net start &lt;mysql-service_name&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="登录数据库"><a class="markdownIt-Anchor" href="#登录数据库"></a> 登录数据库</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -u &lt;username&gt; -p</span><br><span class="line">$ &lt;password&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="导入数据库"><a class="markdownIt-Anchor" href="#导入数据库"></a> 导入数据库</h2>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 设置中文字符集</span></span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SET</span> NAMES <span class="string">&#x27;utf8mb4&#x27;</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> <span class="keyword">SET</span> character_set_server <span class="operator">=</span> <span class="string">&#x27;utf8mb4&#x27;</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> SOURCE <span class="operator">/</span>path<span class="operator">/</span><span class="keyword">to</span><span class="operator">/</span>database.sql;</span><br></pre></td></tr></table></figure>
+<h2 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h2>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建数据库</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE yourDatabase</span><br><span class="line">  <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看所有数据库</span></span><br><span class="line"><span class="keyword">show</span> databases;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 进入数据库</span></span><br><span class="line">use yourDatabase</span><br></pre></td></tr></table></figure>
+<h2 id="表"><a class="markdownIt-Anchor" href="#表"></a> 表</h2>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 建表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> yourTable (</span><br><span class="line">  id   <span class="type">INT</span>         AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>       <span class="keyword">DEFAULT</span> <span class="string">&#x27;worker&#x27;</span>,</span><br><span class="line">  age  <span class="type">INT</span>         ,</span><br><span class="line">  addr <span class="type">varchar</span>(<span class="number">50</span>) </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除表</span></span><br><span class="line"><span class="keyword">drop</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看表 </span></span><br><span class="line"><span class="keyword">show</span> tables;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改表</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">add</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="type">char</span>(<span class="number">20</span>)</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">column</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除整张表</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1130,106 +1223,6 @@ As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-m
 过滤站点：</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://&lt;ENGINE.URL&gt;/search?text=site%3A&lt;SITE.URL&gt;%20&#123;query&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">Django动态网页 Python项目</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-03T00:00:00+08:00">2024-03-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-15 14:47:41" itemprop="dateModified" datetime="2024-08-15T14:47:41+08:00">2024-08-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="00-规范"><a class="markdownIt-Anchor" href="#00-规范"></a> 0.0 规范</h1>
-<p>我要编写一个名为“学习笔记”的 Web 应用程序,让用户能够记录感兴趣的主题,并在学习每个主题的过程中添加日志条目。“学习笔记”的主页对这个网站进行描述,并邀请用户注册或登录。用户登录后,可以创建新主题、添加新条目以及阅读既有的条目。</p>
-<p>目录 ll_project 包含 4 个文件, 其中最重要的是 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a>、<a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 和 <a target="_blank" rel="noopener" href="http://wsgi.py">wsgi.py</a>。文件 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a> 指定 Django 如何与系统交互以及如何管理项目。<br />
-在开发项目的过程中,我们将修改其中的一些设置,并添加一些设置。<br />
-文件 <a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 告诉 Django,应创建哪些网页来响应浏览器请求。<br />
-文件 <a target="_blank" rel="noopener" href="http://wsgi.py">wsgi.py</a> 帮助 Django 提供它创建的文件,名称是 web server gateway interface(Web 服务器网关接口)的首字母缩写。</p>
-<h1 id="10-创建环境"><a class="markdownIt-Anchor" href="#10-创建环境"></a> 1.0 创建环境</h1>
-<h2 id="11-创建虚拟环境"><a class="markdownIt-Anchor" href="#11-创建虚拟环境"></a> 1.1 创建虚拟环境</h2>
-<p>在独立的项目文件夹下运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m venv ll_env</span><br><span class="line"></span><br><span class="line">python -m ensurepip --default-pip <span class="comment"># 重装pip</span></span><br></pre></td></tr></table></figure>
-<p>将会创造一个<code>ll_env</code>文件夹<br />
-可以使用下面的命令激活虚拟环境。激活虚拟环境后，安装的模组将只在虚拟环境中生效，而不干扰到电脑上Python的模组</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ll_env/bin/activate <span class="comment"># Linux系统</span></span><br><span class="line"><span class="built_in">source</span> ll_env/Scripts/activate <span class="comment"># Windows系统</span></span><br><span class="line"></span><br><span class="line">(ll_env)</span><br><span class="line">work_directory$ <span class="comment"># 命令提示符前会显示(ll_env)</span></span><br></pre></td></tr></table></figure>
-<p>使用<code>deactive</code>取消激活虚拟环境</p>
-<h2 id="12-安装配置django"><a class="markdownIt-Anchor" href="#12-安装配置django"></a> 1.2 安装配置Django</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install --upgrade pip <span class="comment"># 更新pip</span></span><br><span class="line">pip install django <span class="comment"># 安装Django</span></span><br><span class="line">django-admin startproject ll_project . <span class="comment"># 初始化Django</span></span><br><span class="line">python manage.py migrate <span class="comment"># 生成数据库</span></span><br><span class="line">python manage.py runserver <span class="comment"># 生成预览，可以在本地8000端口看到网页</span></span><br></pre></td></tr></table></figure>
-<pre><code>Django手册： https://docs.djangoproject.com/en/4.1/ref/models/fields/
-</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 

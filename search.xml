@@ -5923,4 +5923,51 @@ Some questions point out the number of repetitions, in that case, add one more l
         <tag>基本操作</tag>
       </tags>
   </entry>
+  <entry>
+    <title>DP 设计模式</title>
+    <url>/ComputerScience/%E8%AF%BE%E7%A8%8B/DP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="策略模式"><a class="markdownIt-Anchor" href="#策略模式"></a> 策略模式</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MallardDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MallardDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        quackBehavior = <span class="keyword">new</span> <span class="title class_">Quack</span>();</span><br><span class="line">        flyBehavior = <span class="keyword">new</span> <span class="title class_">FlyWithWings</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ModelDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ModelDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        quackBehavior = <span class="keyword">new</span> <span class="title class_">Quack</span>();</span><br><span class="line">        flyBehavior = <span class="keyword">new</span> <span class="title class_">FlyNoWay</span>(); <span class="comment">// 组合不同的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Duck</span> <span class="variable">real</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MallardDuck</span>();</span><br><span class="line">        <span class="type">Duck</span> <span class="variable">model</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelDuck</span>();</span><br><span class="line"></span><br><span class="line">        real.fly();</span><br><span class="line">        model.fly(); <span class="comment">// 调用同样的接口</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>识别应用中变化的方面，把它们和不变的方面分开。</p>
+</blockquote>
+<blockquote>
+<p>针对接口编程，而不是针对实现编程。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Implement</span></span><br><span class="line"><span class="type">Dog</span> <span class="variable">d</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">d.bark();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Interface</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">dog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">dog.makeSound(); <span class="comment">// abstract</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>优先使用组合而不是继承。</p>
+</blockquote>
+<h2 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> summary</h2>
+<p>策略模式定义了算法族并分别封装。策略让算法变化独立于使用它的客户。</p>
+<span id="more"></span>
+<h1 id="观察者模式"><a class="markdownIt-Anchor" href="#观察者模式"></a> 观察者模式</h1>
+<p>不要打给我，我会打给你！</p>
+<blockquote>
+<p>尽量做到交互的对象之间的松耦合设计。</p>
+</blockquote>
+<h2 id="summary-2"><a class="markdownIt-Anchor" href="#summary-2"></a> summary</h2>
+<p>观察者模式定义对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。</p>
+<h1 id="装饰者模式"><a class="markdownIt-Anchor" href="#装饰者模式"></a> 装饰者模式</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Expresso</span> <span class="keyword">extends</span> <span class="title class_">Beverage</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">double</span> <span class="title function_">cost</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1.99</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Milk</span> &#123;</span><br><span class="line">    Beverage beverage;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">cost</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// Decorator</span></span><br><span class="line">        <span class="keyword">return</span> cost + beverage.cost();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>类应该对拓展开放，对修改关闭。</p>
+</blockquote>
+<h2 id="summary-3"><a class="markdownIt-Anchor" href="#summary-3"></a> summary</h2>
+<p>装饰者模式动态地将额外责任附加到对象上。对于拓展功能，装饰着提供子类化之外的弹性替代方案。</p>
+<h1 id="工厂模式"><a class="markdownIt-Anchor" href="#工厂模式"></a> 工厂模式</h1>
+<blockquote>
+<p>依赖抽象，不依赖具体类。</p>
+</blockquote>
+<p>三条原则帮助你遵循依赖倒置：</p>
+<ol>
+<li>变量不应该持有到具体类的引用。</li>
+<li>类不应该派生自具体类。</li>
+<li>方法不覆盖基类已实现的方法。</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>课程</tag>
+      </tags>
+  </entry>
 </search>
