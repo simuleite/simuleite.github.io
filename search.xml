@@ -513,6 +513,7 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 <ul>
 <li><code>git status</code> 查看结果（会显示你对什么文件做了什么修改、操作），显示当前的仓库状态；<code>-s</code>参数简短输出</li>
 <li><code>git diff</code> 展示修改，具体查看修改内容</li>
+<li><code>git ls-files</code> 查看git已跟踪文件</li>
 <li><code>git commit -m &quot;comment&quot;</code> 创建一个新的提交</li>
 <li><code>git rm</code> 移除文件，<code>--cached</code>表明只删除版本文件，保留本地文件</li>
 <li><code>git rm -r --cache .</code> 取消跟踪所有文件</li>
@@ -1142,6 +1143,109 @@ began to study why not. They then turned it around the other way and said, “Bu
 it is” and got an important result. So ideal working conditions are very strange. The ones you want<br />
 aren’t always the best ones for you.</p>
 <p>这类的故事多的是。Grace Hopper (Grace Murray Hopper 是共享代码库、编译器验证软件以及编译器标准的使用的早期倡导者。促进了计算机科学的发展,促成了COBOL的产生。<a href="http://www.rangang.com/" title="译者注"><em>译者注</em></a>) 也有一个。我想只要你用点心你就能明白，伟大的科学家常常通过换一个角度看问题，就能把瑕疵变成财富。例如，许多科学家每当不能解决一个难题时，他们终究转而去研究为什么“不能”的问题。他们然后反过来看问题：“本来嘛，这才是问题所在。” 于是，就有了一个重要的结果。所以，理想的工作条件非常奇特—-你想要的往往不是对你来说最好的。</p>
+<h1 id="9大关于生产力的错误认知"><a class="markdownIt-Anchor" href="#9大关于生产力的错误认知"></a> <a href="https://www.cnblogs.com/joe-yang/p/18173932">9大关于生产力的错误认知</a></h1>
+<p>9大关于生产力的错误认知<br />
+以及你应该做的9个有用的替代方法</p>
+<h2 id="生产力"><a class="markdownIt-Anchor" href="#生产力"></a> 生产力</h2>
+<p>大量文章不断提供新的方法来提高生产力,或者以新的方式重新包装相同的建议。然而,无论我们读了多少文章,我们大多数人仍然对自己的坏习惯感到无助。部分挑战在于,养成提高生产力的习惯需要时间。</p>
+<p>但是很大一部分问题在于,许多建议实际上并没有帮助,甚至可能适得其反。这里列出了关于生产力的9大错误认知——这些被普遍认为正确的观点实际上站不住脚,可能会让你误入歧途。</p>
+<p>因为我们喜欢给你可行的信息,所以也提出了一些替代方法,帮助你保持高效——以及心理健康!</p>
+<h2 id="神话1模仿高度成功人士的习惯"><a class="markdownIt-Anchor" href="#神话1模仿高度成功人士的习惯"></a> 神话1:模仿高度成功人士的习惯。</h2>
+<p>许多生产力文章喜欢罗列高度成功人士的日常习惯:史蒂夫·乔布斯每周只吃两种食物,西格蒙德·弗洛伊德每天都修胡子,奥普拉从不错过会议,蒂姆·库克凌晨3:45起床(真的吗?),等等。然而,把高度成功人士的习惯当作圭臬是有缺陷的,原因有几个。</p>
+<p>一个原因是这在统计学上值得质疑。</p>
+<p>心理学家Aditya Shukla在他的博客Cognition Today上说:“对于少数人来说,培养高效习惯可以让他们成功,然而尽管使用了相同的习惯,许多人仍然不成功。”</p>
+<p>此外,它让人觉得高度成功的人总是保持巅峰状态。但是,就连本杰明·富兰克林这样知名的人物,他为自己制定了一套要求很高的美德和目标,可能还是待办事项的发明者,也&quot;天生不擅长保持文件和其他物品井井有条,他觉得这种努力非常烦人,几乎因沮丧而放弃,&quot;正如《每日仪式:艺术家如何工作》的作者梅森·库里所说。“此外,印刷生意的需求意味着他不能总是遵循自己制定的严格每日时间表。”</p>
+<p>把高度成功的人放在神坛上可能在不知不觉中阻碍了我们自己的努力。Thrive Global网站的健康教练Casey von Iderstein表示:“我们很容易忘记他们在成功道路上经历过并且仍在经历自己的一系列挣扎和挑战。”“我们可能觉得他们的生活完美无缺,遥不可及。”</p>
+<h3 id="相反把成功人士当作激励而不是偶像"><a class="markdownIt-Anchor" href="#相反把成功人士当作激励而不是偶像"></a> 相反:把成功人士当作激励,而不是偶像</h3>
+<p>从你欣赏的人那里获得激励,尝试他们的生产力方法,效仿那些真正帮助你提高工作效率的想法——其他的就抛到一边。</p>
+<p>&quot;当我们看到某人创造了一种对我们有吸引力的生活方式时,重要的是要把他们当作真实的、人性化的激励(这与崇拜偶像大不相同)——因为我们从这个角度看问题时,就能对整体情况有更清晰的认识,&quot;von Iderstein说。</p>
+<h2 id="神话2最大化利用每一刻时间"><a class="markdownIt-Anchor" href="#神话2最大化利用每一刻时间"></a> 神话2:最大化利用每一刻时间。</h2>
+<p>最根深蒂固的神话之一——以至于人们把它等同于生产力本身——是认为高效工作就是要最大化利用一天中的每个清醒时刻,以尽可能快的速度完成尽可能多的事情。</p>
+<p>事实上,试图成为一台永不停歇的成就机器,与人性不符。根据&quot;深度工作&quot;专家Cal Newport和其他研究,我们每天大约有3到4个高效时段。</p>
+<p>&quot;多产与时间管理无关,&quot;沃顿商学院的组织心理学家Adam Grant说。 “一天中的时间是有限的,专注于时间管理只会让我们更清楚地意识到我们浪费了多少时间。”</p>
+<p>事实上,专注于最大化利用时间实际上可能会削弱我们的创造力。Grant说:“生产力和创造力需要相反的注意力管理策略。生产力通过提高注意力过滤来排除不相关或分散注意力的想法。但是创造力则是通过降低注意力过滤来吸纳那些想法。”</p>
+<p>心理学家Mihaly Csikszentmihalyi指出,创造力的能量是非常复杂的,其中包含许多矛盾的元素。</p>
+<p>他说,有创造力的人&quot;经常休息,睡眠充足。&quot;“关键是他们能控制自己的精力;不受日历、时钟、外部日程的支配。必要时,他们可以把精力集中起来像激光束一样;不需要时,创造型人格会立即给自己充电。”</p>
+<h3 id="相反确定并专注于一天中你最有效率的几个小时"><a class="markdownIt-Anchor" href="#相反确定并专注于一天中你最有效率的几个小时"></a> 相反:确定并专注于一天中你最有效率的几个小时。</h3>
+<p>把精力集中在你最专注的那几个小时里。找出你一天中效率最高的时间段,使用&quot;吃掉那只青蛙&quot;或&quot;时间划分&quot;等方法来完成最重要的工作。在工作时间之外,一定要抽出时间放松,保证充足睡眠。</p>
+<h2 id="神话3设定大目标"><a class="markdownIt-Anchor" href="#神话3设定大目标"></a> 神话3:设定大目标。</h2>
+<p>在自我提升的语境下,常常给人的印象是,目标定得最大的人最成功。</p>
+<p>但是,如果你设定了一些目标,比如报名参加一个半程马拉松以激励自己多跑步,或者出版小说以促使自己写作,你可能会因为目标太大、太急而不知所措,可能会适得其反。从长远来看,它可能会让你觉得这些行为——跑步、写作等——太吓人了。</p>
+<p>芝加哥大学和韩国商学院的研究人员的一组研究发现了这一点。过于关注目标——无论是在跑步机上锻炼、折纸、使用牙线还是练习瑜伽——都与更早放弃有关。</p>
+<p>在其中一个实验中,研究人员将一组被告知要把锻炼视为减肥手段的学生,与另一组被告知要关注锻炼体验的学生进行了比较。然后要求每组说明他们的锻炼目的。有减肥目标的学生计划在跑步机上跑的时间比被告知要关注体验的学生长,但实际情况却相反:关注目标的学生实际上跑的时间比关注锻炼体验的学生少(34分钟,而后者为43分钟)。</p>
+<p>正如99u在描述这项研究时总结的那样:“过于专注于目标会分散我们对追求这些目标所需活动的内在乐趣的注意力。”</p>
+<h3 id="相反从极其微小的-持续的习惯开始"><a class="markdownIt-Anchor" href="#相反从极其微小的-持续的习惯开始"></a> 相反:从&quot;极其微小的&quot;、持续的习惯开始。</h3>
+<p>要养成可持续的生产力习惯,最好从容易实现的任务开始。心理学家尼克·威格纳尔说:“我们中的许多人很快就会失去动力,灰心丧气,过早地放弃目标,因为我们想一口吃成个胖子。”</p>
+<p>他建议&quot;从非常小的事情开始&quot;。想出一个看似可管理的、有规律的例行工作,然后再从中降低几个步骤。例如,如果你的目标是写一部小说,可以从每天早上写一个小时开始,然后缩减到每天500字,接着是每个工作日500字,最后定为每个工作日300字。</p>
+<p>基本上,任务越小,就越容易养成坚持的习惯。最终,这些小小的成就累积起来就能成就一件大事——比如写出那部小说。</p>
+<h2 id="神话4优化你的生产力应用和系统"><a class="markdownIt-Anchor" href="#神话4优化你的生产力应用和系统"></a> 神话4:优化你的生产力应用和系统。</h2>
+<p>对于一个Doist的作者来说,驳斥这一点有点可笑,但是请听我说完。调整(或彻底改造)我们的生产力应用和系统,让我们觉得自己正在取得进展。问题是,这种&quot;进展&quot;是在管理我们的生产力应用和系统,而不是真正朝着目标努力。</p>
+<p>尽管找到合适的应用程序(对我来说是Todoist)或系统(对我来说是番茄工作法)很好,但过于依赖它们可能会适得其反,尤其是当它侧重于数量——完成尽可能多的待办事项——而不是质量——优先处理对目标影响最大的任务时。杜克大学心理学和行为经济学教授丹·艾瑞里(Dan Ariely)也有同感。</p>
+<p>以努力实现&quot;收件箱归零&quot;为例。如果目标是每天结束时收件箱里没有邮件,那就会花大量时间查看邮件,创建精细的归档系统。但这只会导致收件箱变成一个空白屏幕。它实际上并没有实现任何更大的目标。(这甚至可能是浪费时间。根据IBM研究人员的一项研究,使用文件夹整理电子邮件的人找邮件的速度并不比直接搜索邮件的人快)。</p>
+<p>在某种程度上,优化生产力系统的边际效用会变成负面影响。通过使用应用程序和系统来量化自己是令人兴奋甚至上瘾的,但它可能会分散我们对更需要认知能力——从根本上更令人满意——的工作的注意力。</p>
+<p>只使用几个应用程序和系统,不要为了跟上每一个新东西而焦虑。</p>
+<h3 id="相反有选择地使用应用程序和系统"><a class="markdownIt-Anchor" href="#相反有选择地使用应用程序和系统"></a> 相反:有选择地使用应用程序和系统。</h3>
+<p>离线设定你的优先事项。然后,使用你最喜欢的应用程序或系统来分解和实现你的优先事项。只使用几个应用程序和系统,不要为了跟上每一个新东西而焦虑。选择应用程序应基于它们是否能帮助你实现目标,而不是因为你觉得应该使用热门新应用。</p>
+<h2 id="神话5使用奖励"><a class="markdownIt-Anchor" href="#神话5使用奖励"></a> 神话5:使用奖励。</h2>
+<p>美国文化大力宣扬,人们最强烈的动力来自外部奖励,比如金钱或有声望的头衔。</p>
+<p>但是,一个人意识到自己想要的所有金钱和权力并没有让他们感到快乐,这样的故事由来已久。</p>
+<p>相反,我们往往通过&quot;内在动机&quot;获得最有意义、最持久的生产力。</p>
+<p>根据对约3500名德国中小学生进行的一项2013年研究,那些为了获得好成绩而努力学习的学生短期内表现不错,但那些因为对某个学科感兴趣并想掌握它而努力学习的学生长期表现更好。</p>
+<p>有趣的是,当人们已经对某项任务感兴趣时,使用外部奖励——比如加薪、晋升和福利——会削弱内在动机。如果对一个已经对某个项目感兴趣的人引入外部奖励,就会取代内在动机,这种现象被称为&quot;动机拥挤理论&quot;。即使后来把外部奖励从情境中移除,人们也很难重新唤起原有的内在动机。</p>
+<h3 id="相反培养内在动机"><a class="markdownIt-Anchor" href="#相反培养内在动机"></a> 相反:培养内在动机。</h3>
+<p>专注于培养你的内在动机。首先,花点时间用艾森豪威尔矩阵之类的框架列举你生活中的主要价值观。这将有助于你确定优先事项,了解你最想在工作中培养的技能。</p>
+<p>然后,关注过程而不是结果。例如,如果你正在尝试写一部小说,你可以分时段写作,甚至可以制定一个待办事项清单,将要打勾的项目设为时间增量。这会让你朝着一个非常真实和有限的目标努力,即在特定时间内写作,而不是朝着更抽象、面向结果的目标,比如写一部小说,甚至是写一章。</p>
+<p>正如作家兼艺术家奥斯汀·克莱恩所说,要关注动词而不是名词:</p>
+<p>“很多人想当名词,却不想做动词所代表的事。他们想要头衔,却不想工作……做动词所指的事情会带你去一个比仅仅想要当名词更远、更有趣的地方。”</p>
+<h2 id="神话6意志力是有限的"><a class="markdownIt-Anchor" href="#神话6意志力是有限的"></a> 神话6:意志力是有限的。</h2>
+<p>意志力是社会心理学中最具争议的主题之一。多年来,一种叫做&quot;自我损耗&quot;的理论一直主导着传统观点。根据这一理论,行使意志力和抵制诱惑(吃零食、查看社交媒体、小睡等)是一项认知要求很高的任务,会削弱我们的表现能力。</p>
+<p>但是这一理论最近因广泛难以复制其研究结果而受到质疑。新的研究表明,意志力可能更多地取决于环境和文化。例如,一项比较了来自印度的400人和来自美国的450人的研究发现,与印度人相比,美国人在坚持完成任务方面的自制力更差。</p>
+<p>研究人员之一Veronika Job解释说:“在东亚文化背景下,通过日常锻炼自制力来变得更强大是哲学传统的一部分。<br />
+自我损耗&quot;取决于文化影响和背景。”</p>
+<p>Job、Carol Dweck和Gregory Walton的相关研究发现,与那些认为意志力有限的参与者相比,认为意志力无限的参与者表现出较少的自我损耗迹象。甚至&quot;自我损耗&quot;理论的创始人Roy Baumeister也发表了一篇论文,指出&quot;动机、个人信念和有限的资源&quot;是影响意志力的不同因素。</p>
+<p>未能复制Baumeister理论的研究人员Michael Inzlicht和Brandon J. Schmeichel表示:&quot;[自我损耗]不是神秘的自控资源丧失的结果,而是动机、注意力和情绪转变的结果。&quot;</p>
+<h3 id="相反通过积极的自我肯定和习惯养成随着时间的推移增强你的意志力"><a class="markdownIt-Anchor" href="#相反通过积极的自我肯定和习惯养成随着时间的推移增强你的意志力"></a> 相反:通过积极的自我肯定和习惯养成,随着时间的推移增强你的意志力。</h3>
+<p>养成小习惯或仪式有助于随时间增强意志力。夏天,我养成了朱莉娅·卡梅伦的《艺术之路》一书中推荐的一个叫做&quot;晨间日记&quot;的习惯,即每天早上写三页,不用担心技巧或内容。这样做让我养成了不想写作时也要写作的习惯,我发现随之而来的是写作动力和实际写作时间的增加。当一个行为成为习惯时,它就不需要任何意志力了。(关于习惯的重要性,可以看查尔斯·杜希格的《习惯的力量》一书)。</p>
+<p>根据2009年的一项研究,自我肯定也有助于增强意志力。试着对自己说或写一段积极的话,或者留意自己的消极想法并修正它们(例如,把&quot;不能&quot;变成&quot;能&quot;)。这听起来可能有点俗气,但似乎很有效。</p>
+<p>尽管意志力是可塑的,但重要的是不要以牺牲休闲和放松为代价过度工作。休息和腾出时间玩耍会帮助你学会喜欢自己的习惯,从而坚持下去。</p>
+<h2 id="神话7想象自己实现目标"><a class="markdownIt-Anchor" href="#神话7想象自己实现目标"></a> 神话7:想象自己实现目标。</h2>
+<p>实现目标与你的想象力之间唯一的障碍就是你自己,对吗?如果你能简单地看到自己达到目标——跑完马拉松的终点线,把小说寄给经纪人,得到梦想中的工作——你就会实现它。像&quot;秘密&quot;这样的可视化技巧听起来应该管用,但实际上往往不奏效。</p>
+<p>根据一篇直截了当地题为&quot;对理想化未来的积极幻想会消耗能量&quot;的论文,可视化不会激励我们跳得更高,反而会让我们变得自满。</p>
+<p>&quot;积极幻想预示着较差成就的一个原因是,它们不会产生追求理想未来的能量,&quot;作者总结道。</p>
+<p>人们也更容易因挫折而气馁,因为在我们的幻想版本中,一切都很顺利。</p>
+<h3 id="相反现实地运用你的想象力"><a class="markdownIt-Anchor" href="#相反现实地运用你的想象力"></a> 相反:现实地运用你的想象力。</h3>
+<p>论文作者建议尝试&quot;批判性可视化&quot;,即想象&quot;现实中的障碍、挫折和其他绝对不那么积极的因素&quot;,正如大卫·迪萨尔沃在《福布斯》杂志上总结的那样。例如,你可以想象如果没有得到理想的工作或不得不推迟旅行计划会发生什么。这有助于你不至于执着于一个特定的结果,同时保持实现目标的过程可行且更现实。</p>
+<h2 id="神话8保持忙碌"><a class="markdownIt-Anchor" href="#神话8保持忙碌"></a> 神话8:保持忙碌。</h2>
+<p>我们都抱怨自己很忙,但却不断地给自己安排过多的事情。这在一定程度上归因于现代工作文化。</p>
+<p>它也与一种信念有关,即我们做的事情越多,成就就越大。看看劳伦·麦古德温在《Self》杂志上的这段话吧,她是一名全职招聘人员,同时在洛杉矶攻读传播学硕士学位:</p>
+<p>那些偶尔允许自己思考这个问题的时候,她承认自己从排满日程、列一长串待办事项并全部完成中获得快感。这个长长的清单可能是焦虑的源头,有时她会把自己逼到筋疲力尽的地步。但一想到另一种可能——待办清单上几乎没有任何内容?这感觉不对劲。</p>
+<p>虽然哥伦比亚大学的一项研究提供了一些证据,表明忙碌的人之所以高效,是因为他们&quot;认为自己在有效利用时间&quot;,但忙碌往往意味着对优先事项的困惑。</p>
+<p>根据《欧洲心理学学生杂志》,忙碌和高效之间有几个关键区别:</p>
+<ul>
+<li>目标&quot;没有明确界定&quot;与&quot;明确界定&quot;</li>
+<li>“有多个优先事项,从事多任务处理&quot;与&quot;有明确的优先事项,专注于单一任务”</li>
+<li>&quot;对大多数事情说’好’(冲动的’好’)“与&quot;对许多事情说’不’(经过深思熟虑的’好’)”<br />
+-“立即回应任何给定的任务&quot;与&quot;安排任务”</li>
+</ul>
+<h3 id="相反尝试这些避免忙碌陷阱的技巧"><a class="markdownIt-Anchor" href="#相反尝试这些避免忙碌陷阱的技巧"></a> 相反:尝试这些避免忙碌陷阱的技巧。</h3>
+<p>有几种方法可以避免&quot;忙碌陷阱&quot;:</p>
+<ul>
+<li>企业家丹·沙利文建议,每天只专注于做三件重要的事情。</li>
+<li>哈佛商学院管理实践教授托马斯·J·德隆建议,每天有一个小时的电子设备断网期。</li>
+<li>商业心理学家托尼·克拉布说,认识到你的&quot;行动偏见&quot;——这在企业家中很常见——并意识到你不总是需要做点什么。</li>
+<li>对不能推进你目标的事情说不。</li>
+<li>养成一个晨间惯例,花时间思考你将如何安排这一天来实现你的一些价值观。</li>
+</ul>
+<h2 id="神话9不妥协的生活方式会让你保持高效"><a class="markdownIt-Anchor" href="#神话9不妥协的生活方式会让你保持高效"></a> 神话9:不妥协的生活方式会让你保持高效。</h2>
+<p>我们眼中高效的人是那些早上起床、喝蛋白质奶昔、在我们还没起床时就完成了待办事项的人。可能真的有人就是这么高效。但我们中的许多人之所以难以保持不妥协的作息,是有原因的。</p>
+<p>&quot;在我作为心理学家的工作中,我经常遇到一些militial高效心态带来的非常低效的副作用,其中最常见的就是苛责的自我对话,&quot;威格纳尔在他的博客上说。</p>
+<p>&quot;虽然一个严厉的内心批评者在短期内可以带来表面的激励作用,但从长远来看,它往往会因为导致焦虑和抑郁而对生产力产生严重影响,&quot;威格纳尔补充道。</p>
+<p>导致抑郁和焦虑的自我批评往往会让我们感到渺小。生产力来自于感觉轻松、开放,而不是封闭。</p>
+<h3 id="相反尝试积极的自我对话"><a class="markdownIt-Anchor" href="#相反尝试积极的自我对话"></a> 相反:尝试积极的自我对话</h3>
+<p>威格纳尔建议,当你试图激励自己做某事时,改变与自己对话的方式。当你没有达到自己的期望时,不要对自己太苛刻(“在理财方面我太没有纪律了”),要多支持自己,理解自己面临的挑战(“即使理财是我最不喜欢做的事情之一,我总是设法记录开支,而且在生活的其他领域我更有纪律”)。</p>
+<p>关于生产力的神话的问题在于,如果你无法达到那些标准,它们会让你觉得自己是个失败者。它们提倡为了提高生产力而提高生产力,而不是为了完成你真正在乎的事情。</p>
+<p>这就是为什么本文中大部分&quot;相反&quot;建议的要点都集中在设计方法,在管理期望的同时更好地享受工作和挑战自我——这样当你达不到目标时,你就不会觉得自己是个失败者,你会继续前进。</p>
+<p>你尝试过哪些生产力神话——你发现什么更有效?在评论区分享你的经验。</p>
 ]]></content>
       <tags>
         <tag>指南</tag>
@@ -1223,6 +1327,8 @@ Now it is SUCCESS.</p>
 <p>[!INFO]<br />
 Here is some INFO.</p>
 </blockquote>
+<div class="note primary"><p>primary 提示块标签</p>
+</div>
 <hr class="footnotes-sep" />
 <section class="footnotes">
 <ol class="footnotes-list">
@@ -4000,13 +4106,20 @@ Texinfo使用简单的文本文件格式，可以生成各种格式的输出，�
 <p>去重；不处理中间值</p>
 <span id="more"></span>
 <h1 id="stack"><a class="markdownIt-Anchor" href="#stack"></a> Stack</h1>
-<h2 id="每日温度"><a class="markdownIt-Anchor" href="#每日温度"></a> 每日温度</h2>
+<h1 id="单调栈"><a class="markdownIt-Anchor" href="#单调栈"></a> 单调栈</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> num: nums) &#123;</span><br><span class="line">    <span class="comment">// 没找到更大数就呆在栈里；找到更大数的出栈并存入Map</span></span><br><span class="line">    <span class="keyword">while</span> (!stk.isEmpty() &amp;&amp; num &gt; stk.peek()) &#123;</span><br><span class="line">        map.put(stk.peek(), num);</span><br><span class="line">        stk.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    stk.push(num);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="每日温度"><a class="markdownIt-Anchor" href="#每日温度"></a> 每日温度</h3>
 <p>给一个长度为N的每日温度数组，返回一个数组，记录每一天距离下次升温的天数。</p>
 <p>可以用双重循环，找到比当前温度大的那一天，但是这样效率太低。</p>
 <p>优化：<br />
 使用栈，存取没有找到升温日的index，找到升温日后，一次性处理完，减少一重循环。</p>
-<h3 id="关键思想-3"><a class="markdownIt-Anchor" href="#关键思想-3"></a> 关键思想</h3>
+<h4 id="关键思想-3"><a class="markdownIt-Anchor" href="#关键思想-3"></a> 关键思想</h4>
 <p>使用栈存储未处理的值，找到升温日后一次性处理，减少重复动作。</p>
+<h3 id="下一个更大元素-i"><a class="markdownIt-Anchor" href="#下一个更大元素-i"></a> 下一个更大元素 I</h3>
+<p>num1为num2子集，所以只遍历num2，找到num2[i]右边的大数，存入Map；将Map结果去到num1即可。</p>
+<h1 id="栈实现队列"><a class="markdownIt-Anchor" href="#栈实现队列"></a> 栈实现队列</h1>
+<h2 id="关键思想-4"><a class="markdownIt-Anchor" href="#关键思想-4"></a> 关键思想</h2>
+<p>两个栈<code>in</code>和<code>out</code>，只有<code>out</code>为空时，才将<code>in</code>pop到<code>out</code>中。否则会出错。</p>
 <h1 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h1>
 <h2 id="链表排序"><a class="markdownIt-Anchor" href="#链表排序"></a> 链表排序</h2>
 <p>链表的两种排序方法：插入排序和归并排序。<br />
@@ -4833,7 +4946,10 @@ Coprocessor：80年代的晶体管没办法把浮点运算和整数运算的单�
   <entry>
     <title>Spring Framework</title>
     <url>/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/</url>
-    <content><![CDATA[<h1 id="pomxml-更换-maven-源"><a class="markdownIt-Anchor" href="#pomxml-更换-maven-源"></a> Pom.xml 更换 Maven 源</h1>
+    <content><![CDATA[<blockquote>
+<p>所有的Java云平台都能够使用基于JAR的打包方式，WAR文件只在一些云平台上能够运行。</p>
+</blockquote>
+<h1 id="pomxml-更换-maven-源"><a class="markdownIt-Anchor" href="#pomxml-更换-maven-源"></a> Pom.xml 更换 Maven 源</h1>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.quoters<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quoters-incorporated<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>quoters-incorporated<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>REST service to support the guides<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">developers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">developer</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>gturnquist<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>Greg Turnquist<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">email</span>&gt;</span>gturnquist at vmware.com<span class="tag">&lt;/<span class="name">email</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">organization</span>&gt;</span>VMware, Inc.<span class="tag">&lt;/<span class="name">organization</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">roles</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">role</span>&gt;</span>Project Lead<span class="tag">&lt;/<span class="name">role</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">roles</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">developer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">developers</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">organization</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>VMware, Inc.<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://spring.io<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">organization</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">licenses</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">license</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>Apache License, Version 2.0<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://www.apache.org/licenses/LICENSE-2.0<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">comments</span>&gt;</span></span><br><span class="line">                Copyright 2011 the original author or authors.</span><br><span class="line"></span><br><span class="line">                Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span><br><span class="line">                you may not use this file except in compliance with the License.</span><br><span class="line">                You may obtain a copy of the License at</span><br><span class="line"></span><br><span class="line">                https://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line"></span><br><span class="line">                Unless required by applicable law or agreed to in writing, software</span><br><span class="line">                distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">                WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or</span><br><span class="line">                implied.</span><br><span class="line">                See the License for the specific language governing permissions and</span><br><span class="line">                limitations under the License.</span><br><span class="line">            <span class="tag">&lt;/<span class="name">comments</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">license</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">licenses</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.h2database<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>h2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置阿里云仓库 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun-repos<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">releases</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun-repos<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">releases</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h1 id="tight-coupling-紧耦合"><a class="markdownIt-Anchor" href="#tight-coupling-紧耦合"></a> Tight Coupling 紧耦合</h1>
 <p>在Spring框架以前，使用排序算法需要将算法实例化</p>
@@ -5965,6 +6081,10 @@ Some questions point out the number of repetitions, in that case, add one more l
 <li>类不应该派生自具体类。</li>
 <li>方法不覆盖基类已实现的方法。</li>
 </ol>
+<blockquote>
+<p>[!Warning]<br />
+注意：完全实现上面三条原则是不可能的。尽量遵循即可。</p>
+</blockquote>
 ]]></content>
       <tags>
         <tag>课程</tag>
