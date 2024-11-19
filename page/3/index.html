@@ -145,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-count">50</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,6 +179,112 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Github使用指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-20 12:23:57" itemprop="dateModified" datetime="2024-08-20T12:23:57+08:00">2024-08-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="git配置"><a class="markdownIt-Anchor" href="#git配置"></a> Git配置</h1>
+<p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/896954117292416">远程仓库 - 廖雪峰的官方网站 (liaoxuefeng.com)</a></p>
+<ol>
+<li>创建ssh key，在c盘用户目录.git文件夹中<br />
+<code>ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code><br />
+<code>ssh-keygen -l -f ~/.ssh/id_rsa</code> 可以查看秘钥的配置信息，包括邮箱</li>
+<li>在GitHub账号设置页面，添加ssh key，复制<code>.ssh/id_rsa.pub</code>的信息，点击创建即可</li>
+<li>测试是否成功：<code>ssh -T git@github.com</code><br />
+注意：如果测试不成功，可能是反向代理的问题</li>
+</ol>
+<h1 id="github-远程仓库"><a class="markdownIt-Anchor" href="#github-远程仓库"></a> Github 远程仓库</h1>
+<ol>
+<li>在github上新建一个仓库</li>
+<li><code>git remote add origin git@github.com:github账号名称/仓库名称.git</code> 关联仓库，origin是远程库的名字</li>
+<li><code>git push -u origin master</code>把本地库内容（master分支）推送到远程库（oringin），<code>-u</code> 参数表示会把本地master分支和远程master分支关联起来，方便后面简化命令</li>
+</ol>
+<ul>
+<li><code>git remote set-url origin &lt;URL&gt;</code>更改仓库地址</li>
+</ul>
+<h1 id="github-trending-热门软件"><a class="markdownIt-Anchor" href="#github-trending-热门软件"></a> github trending 热门软件</h1>
+<ul>
+<li>项目含金量 stars 1k+</li>
+<li>fork 拷贝项目到自己的仓库</li>
+<li>pull request 合并分支</li>
+</ul>
+<h1 id="nju"><a class="markdownIt-Anchor" href="#nju"></a> NJU</h1>
+<ul>
+<li>学习编程语言如C、Rust</li>
+<li>精选精读论文</li>
+<li>STFW：比百度更高效的办法</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1188,86 +1294,6 @@ ICMP：定义各种消息，如超时、无法到达、超出转发能力</p>
 <figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 根据主键删除多条数据</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">delete</span>([<span class="number">48</span>,<span class="number">49</span>,<span class="number">50</span>]);</span><br><span class="line"><span class="comment">// 匹配删除</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="number">47</span>)-&gt;<span class="title function_ invoke__">delete</span>();</span><br><span class="line"><span class="comment">// 全部删除</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">delete</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
 <h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer require topthink/think-view</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Windows%20scripts%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Windows%20scripts%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Windows scripts使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-07-16 00:00:00 / 修改时间：16:45:20" itemprop="dateCreated datePublished" datetime="2024-07-16T00:00:00+08:00">2024-07-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="task-scheduler"><a class="markdownIt-Anchor" href="#task-scheduler"></a> Task Scheduler</h1>
-<p>WIN+R, <code>taskschd.msc</code><br />
-在这里可以设置定时任务、登录任务。<br />
-有些软件的开机自启动就设置在这里。比起组策略有更多的可选项（延迟启动，网络和电源要求等）</p>
-<h1 id="group-policy-editor"><a class="markdownIt-Anchor" href="#group-policy-editor"></a> Group Policy Editor</h1>
-<p>WIN+R, <code>gpedit.msc</code><br />
-在这里可以设置一些开关机时执行的任务</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Computer Configuration -&gt; Windows settings -&gt; Scripts -&gt; Shutdown -&gt; Properties -&gt; Add</span><br></pre></td></tr></table></figure>
-<h1 id="静默运行脚本"><a class="markdownIt-Anchor" href="#静默运行脚本"></a> 静默运行脚本</h1>
-<p>Task Scheduler没有办法隐藏窗口<br />
-在Task Scheduler运行该vbs脚本，目标脚本路径作为参数即可实现静默运行。</p>
-<figure class="highlight vbs"><table><tr><td class="code"><pre><span class="line"><span class="comment">&#x27; minRun.vbs</span></span><br><span class="line"><span class="comment">&#x27; Run minRun.vbs Task Scheduler在可选参数提供实际脚本地址</span></span><br><span class="line"><span class="comment">&#x27; 检查是否提供了批处理文件路径参数</span></span><br><span class="line"><span class="keyword">If</span> WScript.Arguments.Count = <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">    WScript.Echo <span class="string">&quot;Error: No batch file path provided.&quot;</span></span><br><span class="line">    WScript.Quit <span class="number">1</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 获取批处理文件路径参数</span></span><br><span class="line"><span class="keyword">Dim</span> batchFilePath</span><br><span class="line">batchFilePath = WScript.Arguments(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 检查批处理文件是否存在</span></span><br><span class="line"><span class="keyword">If</span> <span class="keyword">Not</span> FileExists(batchFilePath) <span class="keyword">Then</span></span><br><span class="line">    WScript.Echo <span class="string">&quot;Error: Batch file not found at &quot;</span> &amp; batchFilePath</span><br><span class="line">    WScript.Quit <span class="number">1</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 创建 WScript.Shell 对象</span></span><br><span class="line"><span class="keyword">Set</span> oShell = <span class="built_in">CreateObject</span>(<span class="string">&quot;Wscript.Shell&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 执行批处理文件</span></span><br><span class="line"><span class="comment">&#x27; 使用 0 表示不等待批处理文件执行完成</span></span><br><span class="line"><span class="comment">&#x27; 使用 True 表示以同步方式运行（等待批处理执行完成）</span></span><br><span class="line">oShell.Run batchFilePath, <span class="number">0</span>, <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 清理</span></span><br><span class="line"><span class="keyword">Set</span> oShell = <span class="literal">Nothing</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 检查文件是否存在的辅助函数</span></span><br><span class="line"><span class="keyword">Function</span> FileExists(filePath)</span><br><span class="line">    <span class="keyword">Dim</span> fso</span><br><span class="line">    <span class="keyword">Set</span> fso = <span class="built_in">CreateObject</span>(<span class="string">&quot;Scripting.FileSystemObject&quot;</span>)</span><br><span class="line">    FileExists = fso.FileExists(filePath)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br></pre></td></tr></table></figure>
       
     </div>
 

@@ -6090,4 +6090,15 @@ Some questions point out the number of repetitions, in that case, add one more l
         <tag>课程</tag>
       </tags>
   </entry>
+  <entry>
+    <title></title>
+    <url>/ComputerScience/%E9%A1%B9%E7%9B%AE/%E5%9B%BE%E4%B9%A6%E9%A6%86%20Maven/</url>
+    <content><![CDATA[<h1 id="总体思路"><a class="markdownIt-Anchor" href="#总体思路"></a> 总体思路</h1>
+<ol>
+<li>设计数据库</li>
+<li>创建Entity</li>
+<li>创建Mapper定义增删查改</li>
+</ol>
+]]></content>
+  </entry>
 </search>

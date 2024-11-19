@@ -6,7 +6,7 @@
   <link href="http://simuleite.github.io/atom.xml" rel="self"/>
   
   <link href="http://simuleite.github.io/"/>
-  <updated>2024-11-03T07:05:46.129Z</updated>
+  <updated>2024-11-19T10:57:07.674Z</updated>
   <id>http://simuleite.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/%E5%9B%BE%E4%B9%A6%E9%A6%86%20Maven/"/>
+    <id>http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/%E5%9B%BE%E4%B9%A6%E9%A6%86%20Maven/</id>
+    <published>2024-11-19T10:53:54.299Z</published>
+    <updated>2024-11-19T10:57:07.674Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="总体思路"><a class="markdownIt-Anchor" href="#总体思路"></a> 总体思路</h1><ol><li>设计数据库</li><li>创建Entity</li><li>创建Mapper定义增删查改</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;总体思路&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#总体思路&quot;&gt;&lt;/a&gt; 总体思路&lt;/h1&gt;
+&lt;ol&gt;
+&lt;li&gt;设计数据库&lt;/li&gt;
+&lt;li&gt;创建Entity&lt;/li&gt;
+&lt;li&gt;创建Mapper定义增删查改&lt;/li&gt;
+&lt;/ol&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>DP 设计模式</title>
@@ -579,79 +605,6 @@ DNS从顶级域名开始根据网址查IP。DNS服务器通过缓存查过的IP�
     
     
     <category term="笔记" scheme="http://simuleite.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ICS5 PA</title>
-    <link href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS5%20PA/"/>
-    <id>http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS5%20PA/</id>
-    <published>2024-05-29T16:00:00.000Z</published>
-    <updated>2024-08-21T09:20:40.374Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="pa1-1-24530"><a class="markdownIt-Anchor" href="#pa1-1-24530"></a> PA1-1 24.5.30</h1><p>又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！</p><h2 id="target"><a class="markdownIt-Anchor" href="#target"></a> target</h2><p>第一课的目标是修正一个register错误声明</p><h2 id="insteresting"><a class="markdownIt-Anchor" href="#insteresting"></a> insteresting</h2><ul><li>中途网易源Bad Gateway 502了，更换清华源，学会了<code>:%s/163/tuna/g</code>非常爽！</li><li>又学了几个<a href="../%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8">终端快捷键</a></li><li>想到了用 <code>ccache</code> 加速我的PA</li></ul><h2 id="problems"><a class="markdownIt-Anchor" href="#problems"></a> problems</h2><ol><li><code>union</code> 和 <code>struct</code> 的区别？<br /><code>unioin</code> 在同一个内存空间中存储不同的数据类型。<br /><code>struct</code> 则是同时存储不同的数据类型。</li><li>为什么要用 <code>union</code>？阅读i386手册<br />2.3.1 General Registers<br />As <a href="https://nju-projectn.github.io/i386-manual/s02_03.htm#fig2-5">Figure 2-5</a> shows, the low-order word of each of these eight registers has a separate name and can be treated as a unit. This feature is useful for handling 16-bit data items and for compatibility with the 8086 and 80286 processors. The word registers are named AX, BX, CX, DX, BP, SP, SI, and DI.<br />对于CPU来说，可以把AH AX AL看成单独的单元，拆分成小块。所以它们是共用关系。</li></ol><h1 id="pa1-2-alu-2465"><a class="markdownIt-Anchor" href="#pa1-2-alu-2465"></a> PA1-2 ALU 24.6.5</h1><h2 id="target-2"><a class="markdownIt-Anchor" href="#target-2"></a> target</h2><p>实现ALU中的各类运算，包括设置标志位</p><h2 id="knowledge"><a class="markdownIt-Anchor" href="#knowledge"></a> knowledge</h2><h3 id="appendix-c"><a class="markdownIt-Anchor" href="#appendix-c"></a> Appendix C</h3><table><thead><tr><th>Name</th><th>Function</th></tr></thead><tbody><tr><td>CF</td><td>Carry Flag ── Set on high-order bit carry or borrow; cleared otherwise.</td></tr><tr><td>PF</td><td>Parity Flag ── Set if low-order eight bits of result contain an even number of 1 bits; cleared otherwise.</td></tr><tr><td>ZF</td><td>Zero Flag ── Set if result is zero; cleared otherwise.</td></tr><tr><td>SF</td><td>Sign Flag ── Set equal to high-order bit of result (0 is positive, 1 if negative).</td></tr><tr><td>OF<br></td><td>Overflow Flag ── Set if result is too large a positive number or too small a negative number (excluding sign-bit) to fit in destination operand; cleared otherwise.</td></tr></tbody></table><span id="more"></span><h3 id="add"><a class="markdownIt-Anchor" href="#add"></a> ADD</h3><p>Operation<br />DEST ← DEST + SRC;<br />Flags Affected<br />OF, SF, ZF, AF, CF, and PF as described in Appendix C</p><h3 id="adc"><a class="markdownIt-Anchor" href="#adc"></a> ADC</h3><p>ADD with Carry：“带进位的加法”操作，需要看操作数是否已经进位<br />Operation<br />DEST ← DEST + SRC + CF;<br />Flags Affected<br />OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />注意CF标志位需要特殊设置，考虑之前的进位状态</p><h3 id="sub"><a class="markdownIt-Anchor" href="#sub"></a> SUB</h3><p>借位：A - B，当A小于B时，结果为一个负数，产生了借位。<br />根据这个规则完成set_CF_sub()<br />在做减法时，<br />如果用一个正数减去一个负数得到一个负的结果，<br />或者用一个负数减去一个正数然后得到一个正的结果，<br />则发生了溢出 。<br />根据上面的规则比较符号，即可完成set_OF_sub()</p><h3 id="sbb"><a class="markdownIt-Anchor" href="#sbb"></a> SBB</h3><p>Sub with Borrow<br />什么时候产生借位？<br />1. 和普通减法一样10-1， 0&lt;1，产生借位<br />2. 已经借位的时候，130-31，3 不小于 3，但是3已经产生借位，所以(3-1借位)&lt;3的时候，产生借位<br />根据上面规则，即可完成set_CF_sbb()</p><h3 id="shl"><a class="markdownIt-Anchor" href="#shl"></a> SHL</h3><p>Shift Left<br />左移操作，CF位是最高位；只移1位时才需要设置OF（CF和操作数不相同时）<br />注意：符号位不等于最高位！</p><h3 id="div"><a class="markdownIt-Anchor" href="#div"></a> DIV</h3><p>实现除法需要完成MOD<br />注意，dest是被除数，src是除数</p><h1 id="pa1-3-fpu-24730"><a class="markdownIt-Anchor" href="#pa1-3-fpu-24730"></a> PA1-3 FPU 24.7.30</h1><p>按照手册和伪代码实现FPU的规格化操作，以及加法和乘法。注意NEMU的实现中，fraction包含Guard、Round、Sticky位，共23+3=26位。</p><h2 id="加法"><a class="markdownIt-Anchor" href="#加法"></a> 加法</h2><p>小阶向大阶对齐，shift right，exp–<br />根据guide处理各种情况即可</p><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="type">uint32_t</span> <span class="title function_">internal_normalize</span><span class="params">(<span class="type">uint32_t</span> sign, <span class="type">int32_t</span> <span class="built_in">exp</span>, <span class="type">uint64_t</span> sig_grs)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span>( <span class="comment">/* 需要进行右规 */</span> ) &#123;</span><br><span class="line">        <span class="keyword">while</span>( <span class="comment">/* 需要右规 且 未发生阶码上溢*/</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 右规一次 */</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>( <span class="comment">/* 发生了阶码上溢 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 根据符号将结果置为 +∞ 或 -∞ */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>( <span class="comment">/* 需要进行左规 */</span> ) &#123;</span><br><span class="line">        <span class="keyword">while</span>( <span class="comment">/* 需要左规 且 阶码大于0 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 左规一次 */</span>        </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>( <span class="comment">/* 发生了阶码==0 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 右移一次化为非规格化浮点数 */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>( <span class="comment">/* 两个非规格化数运算后得到了一个规格化数 */</span> ) &#123;</span><br><span class="line">        <span class="built_in">exp</span>++; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>( <span class="comment">/* 规格化过程中未发生溢出 */</span> ) &#123;</span><br><span class="line">        <span class="comment">/* 根据sig_grs最后三位GRS bits的取值决定舍入，采取就近舍入到偶数的方式 */</span></span><br><span class="line">        <span class="comment">/* 移除sig_grs最后三位保留的GRS bits*/</span></span><br><span class="line">        <span class="keyword">if</span>( <span class="comment">/* 舍入后破坏了规格化 */</span> ) &#123;</span><br><span class="line">            <span class="comment">/* 再进行规格化并判断溢出 */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 假设最后的结果的符号、阶码、尾数保留在sign, exp, sig_grs中</span></span><br><span class="line">    FLOAT f;</span><br><span class="line">    f.sign = sign;</span><br><span class="line">    f.exponent = (<span class="type">uint32_t</span>) (<span class="built_in">exp</span> &amp; <span class="number">0xff</span>);</span><br><span class="line">    f.fraction = sig_grs; <span class="comment">// here only the lowest 23 bits are kept</span></span><br><span class="line">    <span class="keyword">return</span> f.val;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><h2 id="乘法"><a class="markdownIt-Anchor" href="#乘法"></a> 乘法</h2><p>非常简单，浮点相乘就是尾数相乘，阶码相加</p><blockquote><p>加入GRS bits后，等同于约定中间结果的小数部分为26位。<br />对于除法而言，将被除数左移shift位后除以除数得到的小数部分为shift位，为了保证中间结果的小数部分为26位且真值不变，将多余的shift – 26位从阶码中减去，最后的阶码等于<code>fa.exponent - fb.exponent + 127 – (shift – 26)</code>。<br />对于乘法而言，用两个小数点后为23位的尾数相乘得到的乘积尾数小数点后为46位，为了保证中间结果的小数点后依然是26位，我们将多出来的46 – 26 = 20位归于阶码，因此阶码就是<code>fa.exponent + fb.exponent - 127 - 20</code>。</p></blockquote><h2 id="规格化"><a class="markdownIt-Anchor" href="#规格化"></a> 规格化</h2><blockquote><p>如果sig_grs &gt;&gt; (23 + 3) &gt; 1，则需要右规直至sig_grs &gt;&gt; (23 + 3) == 1；<br />反之如果sig_grs &gt;&gt; (23 + 3) == 0且不是非规格化浮点数（exp &gt; 0），则需要左规直至sig_grs &gt;&gt; (23 + 3) == 1。<br />注意这里的23 + 3的取值是因为我们在临时尾数的最低三位保留了GRS bits的缘故，也就是上文所述的等同于中间结果尾数sig_grs的小数部分约定为26位。<br />在规格化过程中，根据规格化的方向确定尾数右移还是左移，并对阶码进行增减操作。右规过程中需要保留粘位。<br />同时在每次右移前都要检查阶码上溢（exp &gt;= 0xff）的情形。<br />在左规过程中，则有可能发生结果出现非规格化浮点数的情况（阶码变为exp == 0），此时需要将尾数额外右移1位以对应非规格化浮点数阶码是2 ^-126的约定（否则单纯从数值上看阶码全0对应2 ^ -127）。</p></blockquote><p>整数部分不是1，(sig_grs &gt;&gt; 26) &gt; 1，，需要进行右移；整数部分 &lt; 1（也就是等于0）则需要进行左移</p><h2 id="舍入"><a class="markdownIt-Anchor" href="#舍入"></a> 舍入</h2><p>就近舍入偶数的规则可以参考视频和袁春风老师的书。</p><ol><li>Guard位为0，Round、Sticky不为0，舍去</li><li>Guard位为1，Round、Sticky为0，确保尾数是偶数</li><li>Guard位为1，Round、Sticky不为0，进位<br />注意最后要处理掉GRS位</li></ol><h1 id="pa2-1"><a class="markdownIt-Anchor" href="#pa2-1"></a> PA2-1</h1><p>示例修改文件</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">objdump -d ./testcase/bin/mov | less</span><br><span class="line"></span><br><span class="line">nemu/src/cpu/instr/jmp.c // 包含.h</span><br><span class="line">nemu/include/cpu/instr/jmp.h // 声明函数</span><br><span class="line"></span><br><span class="line">nemu/src/cpu/decode/opcode.c // 替换</span><br><span class="line"></span><br><span class="line">nemu/include/cpu/operand.h // OPERAND read/write</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-    <summary type="html">&lt;h1 id=&quot;pa1-1-24530&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#pa1-1-24530&quot;&gt;&lt;/a&gt; PA1-1 24.5.30&lt;/h1&gt;
-&lt;p&gt;又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！&lt;/p&gt;
-&lt;h2 id=&quot;target&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#target&quot;&gt;&lt;/a&gt; target&lt;/h2&gt;
-&lt;p&gt;第一课的目标是修正一个register错误声明&lt;/p&gt;
-&lt;h2 id=&quot;insteresting&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#insteresting&quot;&gt;&lt;/a&gt; insteresting&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;中途网易源Bad Gateway 502了，更换清华源，学会了&lt;code&gt;:%s/163/tuna/g&lt;/code&gt;非常爽！&lt;/li&gt;
-&lt;li&gt;又学了几个&lt;a href=&quot;../%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8&quot;&gt;终端快捷键&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;想到了用 &lt;code&gt;ccache&lt;/code&gt; 加速我的PA&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;problems&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#problems&quot;&gt;&lt;/a&gt; problems&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;code&gt;union&lt;/code&gt; 和 &lt;code&gt;struct&lt;/code&gt; 的区别？&lt;br /&gt;
-&lt;code&gt;unioin&lt;/code&gt; 在同一个内存空间中存储不同的数据类型。&lt;br /&gt;
-&lt;code&gt;struct&lt;/code&gt; 则是同时存储不同的数据类型。&lt;/li&gt;
-&lt;li&gt;为什么要用 &lt;code&gt;union&lt;/code&gt;？阅读i386手册&lt;br /&gt;
-2.3.1 General Registers&lt;br /&gt;
-As &lt;a href=&quot;https://nju-projectn.github.io/i386-manual/s02_03.htm#fig2-5&quot;&gt;Figure 2-5&lt;/a&gt; shows, the low-order word of each of these eight registers has a separate name and can be treated as a unit. This feature is useful for handling 16-bit data items and for compatibility with the 8086 and 80286 processors. The word registers are named AX, BX, CX, DX, BP, SP, SI, and DI.&lt;br /&gt;
-对于CPU来说，可以把AH AX AL看成单独的单元，拆分成小块。所以它们是共用关系。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h1 id=&quot;pa1-2-alu-2465&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#pa1-2-alu-2465&quot;&gt;&lt;/a&gt; PA1-2 ALU 24.6.5&lt;/h1&gt;
-&lt;h2 id=&quot;target-2&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#target-2&quot;&gt;&lt;/a&gt; target&lt;/h2&gt;
-&lt;p&gt;实现ALU中的各类运算，包括设置标志位&lt;/p&gt;
-&lt;h2 id=&quot;knowledge&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#knowledge&quot;&gt;&lt;/a&gt; knowledge&lt;/h2&gt;
-&lt;h3 id=&quot;appendix-c&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#appendix-c&quot;&gt;&lt;/a&gt; Appendix C&lt;/h3&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Name&lt;/th&gt;
-&lt;th&gt;Function&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;CF&lt;/td&gt;
-&lt;td&gt;Carry Flag ── Set on high-order bit carry or borrow; cleared otherwise.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;PF&lt;/td&gt;
-&lt;td&gt;Parity Flag ── Set if low-order eight bits of result contain an even number of 1 bits; cleared otherwise.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;ZF&lt;/td&gt;
-&lt;td&gt;Zero Flag ── Set if result is zero; cleared otherwise.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;SF&lt;/td&gt;
-&lt;td&gt;Sign Flag ── Set equal to high-order bit of result (0 is positive, 1 if negative).&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;OF&lt;br&gt;&lt;/td&gt;
-&lt;td&gt;Overflow Flag ── Set if result is too large a positive number or too small a negative number (excluding sign-bit) to fit in destination operand; cleared otherwise.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;</summary>
-    
-    
-    
-    
-    <category term="项目" scheme="http://simuleite.github.io/tags/%E9%A1%B9%E7%9B%AE/"/>
     
   </entry>
   
