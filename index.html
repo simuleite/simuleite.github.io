@@ -216,9 +216,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-11-28 00:00:00 / 修改时间：10:36:02" itemprop="dateCreated datePublished" datetime="2024-11-28T00:00:00+08:00">2024-11-28</time>
+      <time title="创建时间：2024-11-28 00:00:00" itemprop="dateCreated datePublished" datetime="2024-11-28T00:00:00+08:00">2024-11-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-11-29 11:19:54" itemprop="dateModified" datetime="2024-11-29T11:19:54+08:00">2024-11-29</time>
     </span>
 
   
@@ -240,36 +246,110 @@
 <p>生成一个JRE后，启动Tomcat，就会报错：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">WARNING: Unknown module: java.rmi specified to --add-opens</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError: java/util/logging/Logger</span><br><span class="line">    at org.apache.juli.logging.DirectJDKLog.&lt;init&gt;(DirectJDKLog.java:61)</span><br><span class="line">    at org.apache.juli.logging.DirectJDKLog.getInstance(DirectJDKLog.java:181)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:133)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:156)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getLog(LogFactory.java:211)</span><br><span class="line">    at org.apache.catalina.startup.Bootstrap.&lt;clinit&gt;(Bootstrap.java:49)</span><br><span class="line">Caused by: java.lang.ClassNotFoundException: java.util.logging.Logger</span><br><span class="line">    at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)</span><br><span class="line">    at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)</span><br><span class="line">    at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)</span><br><span class="line">    ... 6 more</span><br></pre></td></tr></table></figure>
 <p>这时候，只需要把jre文件和<code>JRE_HOME</code>环境变量删除，Tomcat就能正常启动</p>
-<h1 id="cookies"><a class="markdownIt-Anchor" href="#cookies"></a> Cookies</h1>
-<h2 id="remember-me"><a class="markdownIt-Anchor" href="#remember-me"></a> Remember-me</h2>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;记住密码&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remember-me&quot;</span>&gt;</span></span><br><span class="line">        记住密码</span><br><span class="line">    <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Post请求的表单数据</span></span><br><span class="line">Map&lt;String, String[]&gt; reqMap = req.getParameterMap();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(map.containsKey(<span class="string">&quot;remember-me&quot;</span>))&#123;   <span class="comment">//若勾选了勾选框，那么会此表单信息</span></span><br><span class="line">    <span class="type">Cookie</span> <span class="variable">cookie_username</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;username&quot;</span>, username);</span><br><span class="line">    cookie_username.setMaxAge(<span class="number">30</span>);</span><br><span class="line">    <span class="type">Cookie</span> <span class="variable">cookie_password</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;password&quot;</span>, password);</span><br><span class="line">    cookie_password.setMaxAge(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">    resp.addCookie(cookie_username);</span><br><span class="line">    resp.addCookie(cookie_password);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    Cookie[] cookies = req.getCookies();</span><br><span class="line">    <span class="keyword">if</span>(cookies != <span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (Cookie cookie : cookies) &#123;</span><br><span class="line">            <span class="keyword">if</span>(cookie.getName().equals(<span class="string">&quot;username&quot;</span>)) username = cookie.getValue();</span><br><span class="line">            <span class="keyword">if</span>(cookie.getName().equals(<span class="string">&quot;password&quot;</span>)) password = cookie.getValue();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(username != <span class="literal">null</span> &amp;&amp; password != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">// 登陆校验</span></span><br><span class="line">            <span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> factory.openSession(<span class="literal">true</span>))&#123;</span><br><span class="line">                <span class="type">UserMapper</span> <span class="variable">mapper</span> <span class="operator">=</span> sqlSession.getMapper(UserMapper.class);</span><br><span class="line">                <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> mapper.getUser(username, password);</span><br><span class="line">                <span class="keyword">if</span>(user != <span class="literal">null</span>)&#123;</span><br><span class="line">                    resp.sendRedirect(<span class="string">&quot;index&quot;</span>);</span><br><span class="line">                    <span class="keyword">return</span>;   <span class="comment">// 直接返回</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    req.getRequestDispatcher(<span class="string">&quot;/&quot;</span>).forward(req, resp);   <span class="comment">// 正常情况还是转发给默认的Servlet帮我们返回静态页面</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="session"><a class="markdownIt-Anchor" href="#session"></a> Session</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/Web%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/DP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/DP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">DP 设计模式</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-03 00:00:00" itemprop="dateCreated datePublished" datetime="2024-11-03T00:00:00+08:00">2024-11-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-11-29 11:06:01" itemprop="dateModified" datetime="2024-11-29T11:06:01+08:00">2024-11-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="策略模式"><a class="markdownIt-Anchor" href="#策略模式"></a> 策略模式</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MallardDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MallardDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        quackBehavior = <span class="keyword">new</span> <span class="title class_">Quack</span>();</span><br><span class="line">        flyBehavior = <span class="keyword">new</span> <span class="title class_">FlyWithWings</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ModelDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ModelDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        quackBehavior = <span class="keyword">new</span> <span class="title class_">Quack</span>();</span><br><span class="line">        flyBehavior = <span class="keyword">new</span> <span class="title class_">FlyNoWay</span>(); <span class="comment">// 组合不同的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Duck</span> <span class="variable">real</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MallardDuck</span>();</span><br><span class="line">        <span class="type">Duck</span> <span class="variable">model</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelDuck</span>();</span><br><span class="line"></span><br><span class="line">        real.fly();</span><br><span class="line">        model.fly(); <span class="comment">// 调用同样的接口</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>Session基于Cookies实现。Session使我们能够辨别不同用户的会话。</p>
+<p>识别应用中变化的方面，把它们和不变的方面分开。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> req.getSession();</span><br><span class="line"></span><br><span class="line">session.setAttribute(<span class="string">&quot;user&quot;</span>, user);</span><br><span class="line"><span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> (User) session.getAttribute(<span class="string">&quot;user&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h1 id="servlet"><a class="markdownIt-Anchor" href="#servlet"></a> Servlet</h1>
-<p>一个Servlet的生命周期为：</p>
-<ul>
-<li>首先执行构造方法完成 Servlet 初始化</li>
-<li>Servlet 初始化后调用 <code>init ()</code> 方法。</li>
-<li>Servlet 调用 <code>service()</code> 方法来处理客户端的请求。</li>
-<li>Servlet 销毁前调用 <code>destroy()</code> 方法。</li>
-<li>最后，Servlet 是由 JVM 的垃圾回收器进行垃圾回收的。</li>
-</ul>
 <blockquote>
-<p>Servlet 用于动态网页响应，使后端数据能够与前端通信。</p>
+<p>针对接口编程，而不是针对实现编程。</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/page&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PageServlet</span> <span class="keyword">implements</span> <span class="title class_">Servlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    doGet(req, resp) &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="上传文件"><a class="markdownIt-Anchor" href="#上传文件"></a> 上传文件</h2>
-<p><a target="_blank" rel="noopener" href="http://xn--commons-oc6k521z.io">使用commons.io</a></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>前端表单设置<code>multipart</code></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- multipart 传文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;file&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;test-file&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>上传文件<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>后端定义Post方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@MultipartConfig</span> <span class="comment">// 文件传输注解</span></span><br><span class="line"><span class="meta">@WebServlet(&quot;/file&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FileServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        <span class="keyword">try</span>(<span class="type">FileOutputStream</span> <span class="variable">stream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;/Users/nagocoler/Documents/IdeaProjects/WebTest/test.png&quot;</span>))&#123;</span><br><span class="line">            <span class="type">Part</span> <span class="variable">part</span> <span class="operator">=</span> req.getPart(<span class="string">&quot;test-file&quot;</span>);</span><br><span class="line">            IOUtils.copy(part.getInputStream(), stream);</span><br><span class="line">            resp.setContentType(<span class="string">&quot;text/html;charset=UTF-8&quot;</span>);</span><br><span class="line">            resp.getWriter().write(<span class="string">&quot;文件上传成功！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Implement</span></span><br><span class="line"><span class="type">Dog</span> <span class="variable">d</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">d.bark();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Interface</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">dog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">dog.makeSound(); <span class="comment">// abstract</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>优先使用组合而不是继承。</p>
+</blockquote>
+<h2 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> summary</h2>
+<p>策略模式定义了算法族并分别封装。策略让算法变化独立于使用它的客户。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/DP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1018,163 +1098,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Markdown%E6%A8%A1%E6%9D%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Markdown%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">Markdown模板</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-10 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-10T00:00:00+08:00">2023-11-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-11-03 15:06:48" itemprop="dateModified" datetime="2024-11-03T15:06:48+08:00">2024-11-03</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="一号标题"><a class="markdownIt-Anchor" href="#一号标题"></a> 一号标题</h1>
-<h2 id="title-2"><a class="markdownIt-Anchor" href="#title-2"></a> Title 2</h2>
-<h3 id="三号标题"><a class="markdownIt-Anchor" href="#三号标题"></a> 三号标题</h3>
-<h4 id="title-4"><a class="markdownIt-Anchor" href="#title-4"></a> Title 4</h4>
-<h5 id="五号标题"><a class="markdownIt-Anchor" href="#五号标题"></a> 五号标题</h5>
-<h6 id="title-6"><a class="markdownIt-Anchor" href="#title-6"></a> Title 6</h6>
-<hr />
-<table>
-<thead>
-<tr>
-<th style="text-align:left">标题</th>
-<th style="text-align:center">标题</th>
-<th style="text-align:right">标题</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">左对齐</td>
-<td style="text-align:center">两端对齐</td>
-<td style="text-align:right">右对齐</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>Unordered List
-<ul>
-<li>Unordered List</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>Ordered List<br />
-2. Ordered List</li>
-</ol>
-<ul>
-<li>[x] TO-DO List</li>
-<li>[] TO-DO List</li>
-</ul>
-<p><s>Delete Line</s><br />
-<strong>Blod</strong><br />
-<em>Italic</em><br />
-<code>Code</code><br />
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mi>M</mi><msup><mi>C</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = MC^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><br />
-<a href="#">Link</a></p>
-<p><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>Hello, World!</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="comment">--- auto_detect: ture</span></span><br><span class="line"><span class="comment">+++ auto_detect: false</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>No Silver Bullet</p>
-<blockquote>
-<p>By Brooks</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>[!NOTE]<br />
-Note that it is a note.</p>
-</blockquote>
-<blockquote>
-<p>[!WARNING]<br />
-WARNING!</p>
-</blockquote>
-<blockquote>
-<p>[!DANGER]<br />
-Notice the DANGER!</p>
-</blockquote>
-<blockquote>
-<p>[!SUCCESS]<br />
-Now it is SUCCESS.</p>
-</blockquote>
-<blockquote>
-<p>[!INFO]<br />
-Here is some INFO.</p>
-</blockquote>
-<div class="note primary"><p>primary 提示块标签</p>
-</div>
-<hr class="footnotes-sep" />
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>Hello World! <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
-
       
     </div>
 

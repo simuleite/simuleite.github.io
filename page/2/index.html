@@ -188,7 +188,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/DP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Markdown%E6%A8%A1%E6%9D%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -206,7 +206,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/DP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">DP 设计模式</a>
+          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Markdown%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">Markdown模板</a>
         </h2>
 
         <div class="post-meta-container">
@@ -216,9 +216,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-11-03 00:00:00 / 修改时间：15:05:46" itemprop="dateCreated datePublished" datetime="2024-11-03T00:00:00+08:00">2024-11-03</time>
+      <time title="创建时间：2023-11-10 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-10T00:00:00+08:00">2023-11-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-11-03 15:06:48" itemprop="dateModified" datetime="2024-11-03T15:06:48+08:00">2024-11-03</time>
     </span>
 
   
@@ -231,28 +237,89 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="策略模式"><a class="markdownIt-Anchor" href="#策略模式"></a> 策略模式</h1>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MallardDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MallardDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        quackBehavior = <span class="keyword">new</span> <span class="title class_">Quack</span>();</span><br><span class="line">        flyBehavior = <span class="keyword">new</span> <span class="title class_">FlyWithWings</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ModelDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ModelDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        quackBehavior = <span class="keyword">new</span> <span class="title class_">Quack</span>();</span><br><span class="line">        flyBehavior = <span class="keyword">new</span> <span class="title class_">FlyNoWay</span>(); <span class="comment">// 组合不同的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Duck</span> <span class="variable">real</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MallardDuck</span>();</span><br><span class="line">        <span class="type">Duck</span> <span class="variable">model</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelDuck</span>();</span><br><span class="line"></span><br><span class="line">        real.fly();</span><br><span class="line">        model.fly(); <span class="comment">// 调用同样的接口</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="一号标题"><a class="markdownIt-Anchor" href="#一号标题"></a> 一号标题</h1>
+<h2 id="title-2"><a class="markdownIt-Anchor" href="#title-2"></a> Title 2</h2>
+<h3 id="三号标题"><a class="markdownIt-Anchor" href="#三号标题"></a> 三号标题</h3>
+<h4 id="title-4"><a class="markdownIt-Anchor" href="#title-4"></a> Title 4</h4>
+<h5 id="五号标题"><a class="markdownIt-Anchor" href="#五号标题"></a> 五号标题</h5>
+<h6 id="title-6"><a class="markdownIt-Anchor" href="#title-6"></a> Title 6</h6>
+<hr />
+<table>
+<thead>
+<tr>
+<th style="text-align:left">标题</th>
+<th style="text-align:center">标题</th>
+<th style="text-align:right">标题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">左对齐</td>
+<td style="text-align:center">两端对齐</td>
+<td style="text-align:right">右对齐</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Unordered List
+<ul>
+<li>Unordered List</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>Ordered List<br />
+2. Ordered List</li>
+</ol>
+<ul>
+<li>[x] TO-DO List</li>
+<li>[] TO-DO List</li>
+</ul>
+<p><s>Delete Line</s><br />
+<strong>Blod</strong><br />
+<em>Italic</em><br />
+<code>Code</code><br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mi>M</mi><msup><mi>C</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = MC^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><br />
+<a href="#">Link</a></p>
+<p><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>Hello, World!</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="comment">--- auto_detect: ture</span></span><br><span class="line"><span class="comment">+++ auto_detect: false</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>识别应用中变化的方面，把它们和不变的方面分开。</p>
+<p>No Silver Bullet</p>
+<blockquote>
+<p>By Brooks</p>
+</blockquote>
 </blockquote>
 <blockquote>
-<p>针对接口编程，而不是针对实现编程。</p>
+<p>[!NOTE]<br />
+Note that it is a note.</p>
 </blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Implement</span></span><br><span class="line"><span class="type">Dog</span> <span class="variable">d</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">d.bark();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Interface</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">dog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">dog.makeSound(); <span class="comment">// abstract</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>优先使用组合而不是继承。</p>
+<p>[!WARNING]<br />
+WARNING!</p>
 </blockquote>
-<h2 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> summary</h2>
-<p>策略模式定义了算法族并分别封装。策略让算法变化独立于使用它的客户。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/DP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<blockquote>
+<p>[!DANGER]<br />
+Notice the DANGER!</p>
+</blockquote>
+<blockquote>
+<p>[!SUCCESS]<br />
+Now it is SUCCESS.</p>
+</blockquote>
+<blockquote>
+<p>[!INFO]<br />
+Here is some INFO.</p>
+</blockquote>
+<div class="note primary"><p>primary 提示块标签</p>
+</div>
+<hr class="footnotes-sep" />
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>Hello World! <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
       
     </div>
 
