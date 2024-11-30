@@ -6122,17 +6122,6 @@ Some questions point out the number of repetitions, in that case, add one more l
       </tags>
   </entry>
   <entry>
-    <title></title>
-    <url>/ComputerScience/%E9%A1%B9%E7%9B%AE/%E5%9B%BE%E4%B9%A6%E9%A6%86%20Maven/</url>
-    <content><![CDATA[<h1 id="总体思路"><a class="markdownIt-Anchor" href="#总体思路"></a> 总体思路</h1>
-<ol>
-<li>设计数据库</li>
-<li>创建Entity</li>
-<li>创建Mapper定义增删查改</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
     <title>Mybatis使用</title>
     <url>/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Mybatis%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="mybatis-configxml"><a class="markdownIt-Anchor" href="#mybatis-configxml"></a> mybatis-config.xml</h1>
@@ -6245,6 +6234,22 @@ Some questions point out the number of repetitions, in that case, add one more l
 </blockquote>
 <p>只有Filter允许通过的请求，才可以顺利到达Servlet。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@WebFileter(&quot;/*&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyFilter</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(req, resp, chain)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Spring核心技术</title>
+    <url>/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/</url>
+    <content><![CDATA[<h1 id="maven依赖"><a class="markdownIt-Anchor" href="#maven依赖"></a> Maven依赖</h1>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="注解开发"><a class="markdownIt-Anchor" href="#注解开发"></a> 注解开发</h1>
+<p>使用xml</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt; &lt;beans xmlns=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span> xmlns:xsi=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> xsi:schemaLocation=<span class="string">&quot;http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt; &lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="comment">//ApplicationContext是应用程序上下文的顶层接口，它有很多种实现，这里我们先介绍第一种</span></span><br><span class="line">      <span class="comment">//因为这里使用的是XML配置文件，所以说我们就使用 ClassPathXmlApplicationContext 这个实现类</span></span><br><span class="line">    <span class="type">ApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;application.xml&quot;</span>);  <span class="comment">//这里写上刚刚的名字</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用注解</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">ApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(MainConfiguration.class);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainConfiguration</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    SomeClass someClass;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
       <tags>
         <tag>笔记</tag>
       </tags>
