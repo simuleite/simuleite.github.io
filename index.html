@@ -145,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -188,7 +188,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/SpringMVC%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -206,7 +206,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">Spring核心技术</a>
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/SpringMVC%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">SpringMVC笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -218,7 +218,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-11-30 00:00:00 / 修改时间：15:37:45" itemprop="dateCreated datePublished" datetime="2024-11-30T00:00:00+08:00">2024-11-30</time>
+      <time title="创建时间：2024-12-04 00:00:00 / 修改时间：18:48:30" itemprop="dateCreated datePublished" datetime="2024-12-04T00:00:00+08:00">2024-12-04</time>
     </span>
 
   
@@ -231,14 +231,36 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="maven依赖"><a class="markdownIt-Anchor" href="#maven依赖"></a> Maven依赖</h1>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="注解开发"><a class="markdownIt-Anchor" href="#注解开发"></a> 注解开发</h1>
-<p>使用xml</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt; &lt;beans xmlns=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span> xmlns:xsi=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> xsi:schemaLocation=<span class="string">&quot;http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt; &lt;/beans&gt;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="comment">//ApplicationContext是应用程序上下文的顶层接口，它有很多种实现，这里我们先介绍第一种</span></span><br><span class="line">      <span class="comment">//因为这里使用的是XML配置文件，所以说我们就使用 ClassPathXmlApplicationContext 这个实现类</span></span><br><span class="line">    <span class="type">ApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;application.xml&quot;</span>);  <span class="comment">//这里写上刚刚的名字</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>使用注解</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">ApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(MainConfiguration.class);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainConfiguration</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    SomeClass someClass;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="mvc"><a class="markdownIt-Anchor" href="#mvc"></a> MVC</h1>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="controller"><a class="markdownIt-Anchor" href="#controller"></a> Controller</h1>
+<h2 id="页面"><a class="markdownIt-Anchor" href="#页面"></a> 页面</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span>   <span class="comment">//直接添加注解即可</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/index&quot;)</span>   <span class="comment">//直接填写访问路径</span></span><br><span class="line">    <span class="keyword">public</span> ModelAndView <span class="title function_">index</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">ModelAndView</span> <span class="variable">modelAndView</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>(<span class="string">&quot;index&quot;</span>);</span><br><span class="line">        modelAndView.getModel().put(<span class="string">&quot;arg&quot;</span>, <span class="string">&quot;value&quot;</span>);   <span class="comment">//将name传递给Model</span></span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">          <span class="comment">//返回后会经过视图解析器进行处理</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/index&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">index</span><span class="params">(Model model)</span>&#123;  <span class="comment">//这里不仅仅可以是Model，还可以是Map、ModelMap</span></span><br><span class="line">        model.addAttribute(<span class="string">&quot;arg&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="重定向"><a class="markdownIt-Anchor" href="#重定向"></a> 重定向</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/index&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;redirect:page&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="请求转发"><a class="markdownIt-Anchor" href="#请求转发"></a> 请求转发</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/index&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;forward:home&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="bean的web作用域"><a class="markdownIt-Anchor" href="#bean的web作用域"></a> Bean的Web作用域</h1>
+<p>Bean的作用域：</p>
+<ol>
+<li>Singleton</li>
+<li>Prototype</li>
+<li>Request HTTP请求产生新实例，结束后Bean消失</li>
+<li>Session 每一个会话</li>
+<li>Global Session</li>
+</ol>
+<h1 id="restful"><a class="markdownIt-Anchor" href="#restful"></a> RESTFul</h1>
+<blockquote>
+<p>一种设计风格。RESTful风格的设计允许将参数通过URL拼接传到服务端。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:8080/mvc/index/13579</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/index/&#123;str&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">(<span class="meta">@PathVariable</span> String str)</span> &#123;</span><br><span class="line">    System.out.println(str);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="文件上传"><a class="markdownIt-Anchor" href="#文件上传"></a> 文件上传</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainInitializer</span> <span class="keyword">extends</span> <span class="title class_">AbstractAnnotationConfigDispatcherServletInitializer</span> &#123;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">customizeRegistration</span><span class="params">(ServletRegistration.Dynamic registration)</span> &#123;</span><br><span class="line">          <span class="comment">// 直接通过registration配置Multipart相关配置，必须配置临时上传路径，建议选择方便打开的</span></span><br><span class="line">        <span class="comment">// 同样可以设置其他属性：maxFileSize, maxRequestSize, fileSizeThreshold</span></span><br><span class="line">        registration.setMultipartConfig(<span class="keyword">new</span> <span class="title class_">MultipartConfigElement</span>(<span class="string">&quot;/path/to/save&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Controller模板</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/upload&quot;, method = RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">upload</span><span class="params">(<span class="meta">@RequestParam</span> MultipartFile file)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">File</span> <span class="variable">fileObj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;filename.png&quot;</span>);</span><br><span class="line">    file.transferTo(fileObj);</span><br><span class="line">    System.out.println(<span class="string">&quot;用户上传的文件已保存到：&quot;</span>+fileObj.getAbsolutePath());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;文件上传成功！&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>前端模板</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;upload&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -301,7 +323,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-11-29 11:19:54" itemprop="dateModified" datetime="2024-11-29T11:19:54+08:00">2024-11-29</time>
+      <time title="修改时间：2024-12-04 15:07:41" itemprop="dateModified" datetime="2024-12-04T15:07:41+08:00">2024-12-04</time>
     </span>
 
   
@@ -331,6 +353,83 @@
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">Spring核心技术</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-11-30 00:00:00 / 修改时间：15:37:45" itemprop="dateCreated datePublished" datetime="2024-11-30T00:00:00+08:00">2024-11-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="maven依赖"><a class="markdownIt-Anchor" href="#maven依赖"></a> Maven依赖</h1>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="注解开发"><a class="markdownIt-Anchor" href="#注解开发"></a> 注解开发</h1>
+<p>使用xml</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt; &lt;beans xmlns=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span> xmlns:xsi=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> xsi:schemaLocation=<span class="string">&quot;http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd&quot;</span>&gt; &lt;/beans&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">      <span class="comment">//ApplicationContext是应用程序上下文的顶层接口，它有很多种实现，这里我们先介绍第一种</span></span><br><span class="line">      <span class="comment">//因为这里使用的是XML配置文件，所以说我们就使用 ClassPathXmlApplicationContext 这个实现类</span></span><br><span class="line">    <span class="type">ApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;application.xml&quot;</span>);  <span class="comment">//这里写上刚刚的名字</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用注解</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">ApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(MainConfiguration.class);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainConfiguration</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyClass</span> &#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    SomeClass someClass;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -993,108 +1092,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring%20Framework/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">LeetCode100 错题本</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-01T00:00:00+08:00">2024-10-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-11-05 11:27:07" itemprop="dateModified" datetime="2024-11-05T11:27:07+08:00">2024-11-05</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
-<h1 id="字母异位词"><a class="markdownIt-Anchor" href="#字母异位词"></a> 字母异位词</h1>
-<p>排序每一个单词，就知道是不是异位词。</p>
-<h2 id="两数之和"><a class="markdownIt-Anchor" href="#两数之和"></a> 两数之和</h2>
-<p>从数组中，找到<code>nums[i] + nums[j] == target</code>，并返回<code>&#123; i, j &#125;</code>。<br />
-思路是双重循环，遍历每一个元素，求和是否为target。<br />
-然而，双重循环需要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的复杂度。因此，可以使用一张表，使用<code>containsKey</code>方法识别是否存在当前i的<code>target - nums[i]</code>，即可减少一重循环。</p>
-<h3 id="关键思想"><a class="markdownIt-Anchor" href="#关键思想"></a> 关键思想</h3>
-<p>用Map高效率查找，减少一重循环。</p>
-<h2 id="最长连续序列"><a class="markdownIt-Anchor" href="#最长连续序列"></a> 最长连续序列</h2>
-<p>从乱序数组中，找到最长连续（数组中不一定连续）的序列。要求<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。<br />
-首先用数组的值存入哈希表，然后遍历数组，判断<code>map.constains(curNum++)</code>。<br />
-然而，即使这样还是效率不够高。</p>
-<p>优化</p>
-<ol>
-<li>中间值不进入循环，序列开始值才进入，使用<code>!contains(curNum - 1)</code>判断是否为序列开始值</li>
-<li>去重，不要哈希表，不需要键值对，使用哈希Set，只存储值。</li>
-</ol>
-<h3 id="关键思想-2"><a class="markdownIt-Anchor" href="#关键思想-2"></a> 关键思想</h3>
-<p>去重；不处理中间值</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

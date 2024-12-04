@@ -145,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,6 +179,108 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">LeetCode100 错题本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-01T00:00:00+08:00">2024-10-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-11-05 11:27:07" itemprop="dateModified" datetime="2024-11-05T11:27:07+08:00">2024-11-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
+<h1 id="字母异位词"><a class="markdownIt-Anchor" href="#字母异位词"></a> 字母异位词</h1>
+<p>排序每一个单词，就知道是不是异位词。</p>
+<h2 id="两数之和"><a class="markdownIt-Anchor" href="#两数之和"></a> 两数之和</h2>
+<p>从数组中，找到<code>nums[i] + nums[j] == target</code>，并返回<code>&#123; i, j &#125;</code>。<br />
+思路是双重循环，遍历每一个元素，求和是否为target。<br />
+然而，双重循环需要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的复杂度。因此，可以使用一张表，使用<code>containsKey</code>方法识别是否存在当前i的<code>target - nums[i]</code>，即可减少一重循环。</p>
+<h3 id="关键思想"><a class="markdownIt-Anchor" href="#关键思想"></a> 关键思想</h3>
+<p>用Map高效率查找，减少一重循环。</p>
+<h2 id="最长连续序列"><a class="markdownIt-Anchor" href="#最长连续序列"></a> 最长连续序列</h2>
+<p>从乱序数组中，找到最长连续（数组中不一定连续）的序列。要求<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。<br />
+首先用数组的值存入哈希表，然后遍历数组，判断<code>map.constains(curNum++)</code>。<br />
+然而，即使这样还是效率不够高。</p>
+<p>优化</p>
+<ol>
+<li>中间值不进入循环，序列开始值才进入，使用<code>!contains(curNum - 1)</code>判断是否为序列开始值</li>
+<li>去重，不要哈希表，不需要键值对，使用哈希Set，只存储值。</li>
+</ol>
+<h3 id="关键思想-2"><a class="markdownIt-Anchor" href="#关键思想-2"></a> 关键思想</h3>
+<p>去重；不处理中间值</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1123,100 +1225,6 @@ Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/ge
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/AI%E7%88%B1%E5%A4%96%E5%8D%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/AI%E7%88%B1%E5%A4%96%E5%8D%96/" class="post-title-link" itemprop="url">AI爱外卖</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-09-21 00:00:00" itemprop="dateCreated datePublished" datetime="2024-09-21T00:00:00+08:00">2024-09-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-09 20:03:43" itemprop="dateModified" datetime="2024-10-09T20:03:43+08:00">2024-10-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="项目心得"><a class="markdownIt-Anchor" href="#项目心得"></a> 项目心得</h1>
-<h2 id="24109"><a class="markdownIt-Anchor" href="#24109"></a> 24.10.9</h2>
-<p>将AliOss换成本地存储。可是一直插入不成功，使用Swagger调试，甚至数据库什么都接受不到！非常诡异的BUG<br />
-原来，是导入了错误的RequestBody，导致前端提交的表单怎么都接受不到！</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 导入了错误的包</span></span><br><span class="line"><span class="keyword">import</span> io.swagger.v3.oas.annotations.parameters.RequestBody;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestBody;</span><br></pre></td></tr></table></figure>
-<h1 id="nginx"><a class="markdownIt-Anchor" href="#nginx"></a> Nginx</h1>
-<h2 id="反向代理"><a class="markdownIt-Anchor" href="#反向代理"></a> 反向代理</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        # 反向代理,处理管理端发送的请求</span><br><span class="line">        location /api/ &#123;</span><br><span class="line">            # localhost/api/abc转发到下面admin/abc</span><br><span class="line">            proxy_pass   http://localhost:8080/admin/;</span><br><span class="line">            #proxy_pass   http://webservers/admin/;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>好处：</p>
-<ul>
-<li>不会暴露服务器，服务器可以安全放在内网，由nginx转发、缓存。</li>
-</ul>
-<h2 id="负载均衡"><a class="markdownIt-Anchor" href="#负载均衡"></a> 负载均衡</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">upstream webservers&#123;</span><br><span class="line">      # 服务器组，按权重分配</span><br><span class="line">      server 127.0.0.1:8080 weight=90 ;</span><br><span class="line">      server 127.0.0.1:8088 weight=10 ;</span><br><span class="line">      # ip_hash 根据ip分配</span><br><span class="line">      # least_conn 分配到最少链接的服务器</span><br><span class="line">      # url_hash 根据url分配</span><br><span class="line">      # fair 分配到响应时间最短的服务器</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        </span><br><span class="line">        # 反向代理,处理管理端发送的请求</span><br><span class="line">        location /api/ &#123;</span><br><span class="line">            # 负载均衡</span><br><span class="line">            proxy_pass   http://webservers/admin/;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="swagger"><a class="markdownIt-Anchor" href="#swagger"></a> Swagger</h1>
-<blockquote>
-<p>Knife4j：Java MVC框架集成Swagger</p>
-</blockquote>
-<p>API接口文档生成、测试</p>
-
       
     </div>
 
