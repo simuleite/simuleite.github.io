@@ -145,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,6 +179,216 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vscode%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vscode%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">vscode使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-02 00:00:00" itemprop="dateCreated datePublished" datetime="2024-05-02T00:00:00+08:00">2024-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-06 10:36:50" itemprop="dateModified" datetime="2024-07-06T10:36:50+08:00">2024-07-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="全键盘操作指南"><a class="markdownIt-Anchor" href="#全键盘操作指南"></a> 全键盘操作指南</h1>
+<h2 id="终端操作"><a class="markdownIt-Anchor" href="#终端操作"></a> 终端操作</h2>
+<ul>
+<li><code>code &lt;Folder&gt;</code> 打开工作区；相当于 <code>CTRL+K, CTRL+O</code></li>
+<li><code>code -diff file1 file2</code> 对比两个文件（颜色标注）</li>
+<li><code>code &lt;File&gt;</code> 打开文件</li>
+<li><strong><code>CTRL + ←/→</code> 逐词跳转</strong></li>
+<li><code>CTRL+K</code> 清理终端</li>
+<li><code>CTRL+P: &gt;Tasks</code> 新建任务，用 <code>CTRL+P: &gt;run</code> 运行；相当于 <code>make</code></li>
+</ul>
+<h2 id="panel操作"><a class="markdownIt-Anchor" href="#panel操作"></a> Panel操作</h2>
+<p><code>CTRL+P</code> 打开Panel</p>
+<ul>
+<li><code>@</code> 符号：寻找symbol，如函数名、变量名；相当于<code>CRTL+SHIFT+.</code></li>
+<li><code># &lt;String&gt;</code> 符号：全局搜索字符串</li>
+<li><code>&gt;join line</code> <strong>选中多行合并为一行</strong></li>
+</ul>
+<h2 id="编辑区操作"><a class="markdownIt-Anchor" href="#编辑区操作"></a> 编辑区操作</h2>
+<ul>
+<li><code>CTRL+G &lt;Line_Number&gt;</code> 跳到指定行</li>
+<li><code>CTRL + ←/→</code> 逐词跳转；相当于vim的 <code>w</code></li>
+<li><code>ALT + ↑/↓</code> 移动某行代码</li>
+<li><code>ALT + SHIGT+ ↑/↓</code> 复制某行代码</li>
+<li><code>CTRL+P: &gt;Snippets</code> 创建代码模板</li>
+<li><code>SHIFT+ALT+F12</code> 找到某个命名的全部引用（而不是简单的搜索）</li>
+<li><code>SHIFT+ALT+F</code> 格式化代码，相当于 <code>&gt;Format Document</code></li>
+</ul>
+<h1 id="设置-settingsjson"><a class="markdownIt-Anchor" href="#设置-settingsjson"></a> 设置 settings.json</h1>
+<h2 id="显示gitignore屏蔽文件"><a class="markdownIt-Anchor" href="#显示gitignore屏蔽文件"></a> 显示.gitignore屏蔽文件</h2>
+<p>关闭 <code>Search: Use Ignore Files</code>，或</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;search.useIgnoreFiles&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="自定义终端"><a class="markdownIt-Anchor" href="#自定义终端"></a> 自定义终端</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;terminal.integrated.defaultProfile.windows&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MSYS2-UCRT64&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;terminal.integrated.profiles.windows&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;MSYS2-UCRT64&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;D:\\your\\path\\MSYS2\\msys2_shell.cmd&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;-defterm&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;-no-start&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;-here&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;-ucrt64&quot;</span><span class="punctuation">]</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Computer%20Organization&Design%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Computer%20Organization&Design%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">Computer Organization&Design学习记录</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-06-08 00:00:00" itemprop="dateCreated datePublished" datetime="2024-06-08T00:00:00+08:00">2024-06-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-03 12:38:44" itemprop="dateModified" datetime="2024-07-03T12:38:44+08:00">2024-07-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="chapter2-指令计算机的语言"><a class="markdownIt-Anchor" href="#chapter2-指令计算机的语言"></a> Chapter2 指令：计算机的语言</h1>
+<p>本章将介绍MIPS汇编语言指令。</p>
+<h2 id="三条设计原则"><a class="markdownIt-Anchor" href="#三条设计原则"></a> 三条设计原则</h2>
+<ol>
+<li>简单源于规整 Simplicity favors regularity.</li>
+<li>越小越快 Smaller is faster.</li>
+<li>优秀的设计需要适宜的折中方案 Good design demands good compromises.</li>
+</ol>
+<h2 id="22-硬件的操作与操作数"><a class="markdownIt-Anchor" href="#22-硬件的操作与操作数"></a> 2.2 硬件的操作与操作数</h2>
+<h3 id="规整"><a class="markdownIt-Anchor" href="#规整"></a> 规整</h3>
+<p><code>add a, b, c // a = b + c</code> MIPS汇编语言使用这样的固定记法。<br />
+每条MIPS算术指令只执行1个操作，仅有3个变量。</p>
+<h3 id="操作数必须来自寄存器"><a class="markdownIt-Anchor" href="#操作数必须来自寄存器"></a> 操作数必须来自寄存器</h3>
+<p>变量f、g、h、i、j依次分配给$s0~$s4，编译下面的C语句</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f = (g + h) - (i + j);</span><br><span class="line">---</span><br><span class="line">add $t0, $s1, $s2 <span class="comment">// t0 = s1 + s2</span></span><br><span class="line">add $t1, $s3, $s4</span><br><span class="line">sub $s0, $t0, $t1 <span class="comment">// s0 = t0 + t1</span></span><br></pre></td></tr></table></figure>
+<h3 id="数据传输"><a class="markdownIt-Anchor" href="#数据传输"></a> 数据传输</h3>
+<p>只有少量数据存在寄存器中，因此需要在存储器和寄存器间传输数据</p>
+<p>A的基址是存在$s3，编译下面的C语句</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">A[<span class="number">12</span>] = h + A[<span class="number">8</span>]</span><br><span class="line">---</span><br><span class="line">lw  $t0, <span class="number">32</span>($s3) <span class="comment">// 先读数，再相加；32为偏移量，8*4byte</span></span><br><span class="line">add $t0, $s2, $t0</span><br><span class="line">sw  $t0, <span class="number">48</span>($s3) <span class="comment">// 存数</span></span><br></pre></td></tr></table></figure>
+<h3 id="立即数"><a class="markdownIt-Anchor" href="#立即数"></a> 立即数</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">addi $t0, $t1, <span class="number">4</span> <span class="comment">// t0 = t1 + 4；无需读取4，作为立即数相加</span></span><br><span class="line">subi $t0, $t1, <span class="number">4</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/Computer%20Organization&Design%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -957,207 +1167,6 @@ tags: Data Center, Linux, Open Source
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">%.o: %.c # 所有.o/.c结尾的文件</span></span><br></pre></td></tr></table></figure>
 <h1 id="变量"><a class="markdownIt-Anchor" href="#变量"></a> 变量</h1>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">txt = Hello World</span><br><span class="line"><span class="section">test:</span></span><br><span class="line">    @echo <span class="variable">$(txt)</span> <span class="comment"># 变量放在$()中，@表示不打印直接执行</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">PHP ADTP后台管理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-15 00:00:00 / 修改时间：17:34:06" itemprop="dateCreated datePublished" datetime="2024-04-15T00:00:00+08:00">2024-04-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="信息系统架构"><a class="markdownIt-Anchor" href="#信息系统架构"></a> 信息系统架构</h1>
-<ul>
-<li>信息化系统：前台 + 后台 + 数据库</li>
-<li>B/S 模式</li>
-<li>前端 -&gt; Server[Apache-&gt;PHP(TP6.0)] -&gt; SQL DataBase</li>
-<li>运行逻辑：
-<ul>
-<li>Client发送require请求(http协议)，包含header（length、refer信息）、body（数据）</li>
-<li>Apache接受请求，给PHP做处理</li>
-<li>PHP读取、处理数据；判断数据是否损毁、是否需要退回</li>
-<li>数据更新到前端，并返回结果(success/fail)</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">ICS 计算机系统</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-12-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-09T00:00:00+08:00">2023-12-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-09 15:14:32" itemprop="dateModified" datetime="2024-04-09T15:14:32+08:00">2024-04-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="第一阶段-程序的表示-转换与链接"><a class="markdownIt-Anchor" href="#第一阶段-程序的表示-转换与链接"></a> 第一阶段 程序的表示、转换与链接</h1>
-<pre><code>参考MOOC：NJU-1001625001
-</code></pre>
-<h2 id="10-计算机系统概述"><a class="markdownIt-Anchor" href="#10-计算机系统概述"></a> 1.0 计算机系统概述</h2>
-<h3 id="13-程序开发和执行过程"><a class="markdownIt-Anchor" href="#13-程序开发和执行过程"></a> 1.3 程序开发和执行过程</h3>
-<ol>
-<li>hello.c程序用ascii文本表示</li>
-<li>首先.c文件预处理为.i文件（把预处理指令翻译过来），然后.i文件编译成.s文件（汇编程序文本）,接着.s文件汇编成.o文件（二进制），与printf等函数的.o文件共同连接成可执行文件（二进制）</li>
-<li>高级语言编写程序所需环境：（1）语言处理程序； （2）语言处理系统； （3）语言运行时的系统； （4）操作系统内核； （5）操作系统； （6）指令集体系结构； （7）人机接口</li>
-</ol>
-<h3 id="14-计算机系统层次结构"><a class="markdownIt-Anchor" href="#14-计算机系统层次结构"></a> 1.4 计算机系统层次结构</h3>
-<ul>
-<li>过程式语言：如何做； 非过程化语言：做什么；语言发展是不断抽象的过程</li>
-<li>应用-&gt;算法-&gt;语言-&gt;操作系统-&gt;(软件)ISA指令集（硬件）-&gt;微体系、功能部件、电路和器件<br />
-非预期结果是硬件层次造成的。上层是下层的抽象，下层是上层的实现，底层为上层提供支撑环境</li>
-<li>题目：由机器语言编程的早期计算机系统中，没有ISA这一层次（F）；一直都有ISA，因此<strong>ISA是计算机体系层次中最重要的层次</strong>。<br />
-<strong>ISA， Instruction Set Architecture（结构）规定了如何使用硬件，是可以执行的指令的集合</strong>，包括指令格式、操作种类及操作数的类型的规定…<br />
-<strong>没有ISA，软件无法使用计算机硬件，一台计算机就不能成为“通用”计算机</strong></li>
-<li>计算机组成必须能够实现ISA规定的功能；同一种ISA可以由不同的计算机（硬件）组成，如乘法指令用ALU或乘法器都可以实现</li>
-<li>题目：有没有乘法指令是ISA考虑的问题，如何实现乘法指令是微体系结构考虑的问题</li>
-</ul>
-<h3 id="15-计算机系统基础学习目标"><a class="markdownIt-Anchor" href="#15-计算机系统基础学习目标"></a> 1.5 计算机系统基础学习目标</h3>
-<ul>
-<li>编写高效程序必须了解计算机底层结构</li>
-<li>必须掌握并行程序设计技术和工具</li>
-<li>课程目标：理解计算机如何生成和运行可执行文件</li>
-<li>涉及层次：C语言设计层，ISA和汇编层，微体系结构和硬件层</li>
-<li>第一部分 程序表示与转换；第二部分 执行控制流</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 

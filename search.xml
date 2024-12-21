@@ -5227,6 +5227,9 @@ Forward references: definition of terms (7.1.1), the exit function (7.22.4.4).</
 <li><code>app_name/class_name/method_name?attribute1=1&amp;attribute2=10</code>'?'后面的内容是参数</li>
 </ul>
 ]]></content>
+      <tags>
+        <tag>项目</tag>
+      </tags>
   </entry>
   <entry>
     <title>PyEcharts 数据可视化</title>
@@ -6331,7 +6334,7 @@ Some questions point out the number of repetitions, in that case, add one more l
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>SSM 项目 图书馆</title>
     <url>/ComputerScience/%E9%A1%B9%E7%9B%AE/SSM%20%E9%A1%B9%E7%9B%AE%20%E5%9B%BE%E4%B9%A6%E9%A6%86/</url>
     <content><![CDATA[<h1 id="导入依赖"><a class="markdownIt-Anchor" href="#导入依赖"></a> 导入依赖</h1>
 <ol>
@@ -6367,5 +6370,52 @@ Some questions point out the number of repetitions, in that case, add one more l
 <li>Java中，<code>DATE</code>包含年月日+时间；也可以用<code>String</code>表示时间，包括年月日</li>
 </ul>
 ]]></content>
+      <tags>
+        <tag>项目</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot笔记</title>
+    <url>/ComputerScience/%E7%AC%94%E8%AE%B0/SpringBoot%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="applicationproperties"><a class="markdownIt-Anchor" href="#applicationproperties"></a> application.properties</h1>
+<h2 id="property形式"><a class="markdownIt-Anchor" href="#property形式"></a> Property形式</h2>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">server.port</span>=<span class="string">80 // 端口号</span></span><br><span class="line"><span class="attr">aruge.arugement</span>=<span class="string">value</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;&#123;argue.argument&#125;&quot;)</span></span><br><span class="line">String argu;</span><br></pre></td></tr></table></figure>
+<h2 id="yaml形式"><a class="markdownIt-Anchor" href="#yaml形式"></a> YAML形式</h2>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">datasource:</span></span><br><span class="line">        <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/db_name</span></span><br><span class="line">        <span class="attr">username:</span></span><br><span class="line">        <span class="attr">password:</span></span><br><span class="line">        <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.Driver</span></span><br><span class="line">    <span class="attr">mvc:</span></span><br><span class="line">        <span class="attr">static-path-pattern:</span> <span class="string">/static/**</span></span><br><span class="line">    <span class="attr">security:</span></span><br><span class="line">        <span class="attr">filter:</span></span><br><span class="line">            <span class="attr">order:</span> <span class="number">-100</span> <span class="comment"># Spring Security Filter 优先级</span></span><br><span class="line">        <span class="attr">user:</span></span><br><span class="line">            <span class="attr">name:</span> <span class="string">&#x27;admin&#x27;</span></span><br><span class="line">            <span class="attr">password:</span> <span class="string">&#x27;Abc123.&#x27;</span></span><br><span class="line">            <span class="attr">roles:</span></span><br><span class="line">                <span class="bullet">-</span> <span class="string">admin</span></span><br><span class="line">                <span class="bullet">-</span> <span class="string">user</span></span><br></pre></td></tr></table></figure>
+<h1 id="package"><a class="markdownIt-Anchor" href="#package"></a> Package</h1>
+<h2 id="jar"><a class="markdownIt-Anchor" href="#jar"></a> JAR</h2>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn package</span><br><span class="line">java -jar yourProj.jar</span><br></pre></td></tr></table></figure>
+<h1 id="war"><a class="markdownIt-Anchor" href="#war"></a> WAR</h1>
+<ol>
+<li>排除SpringBoot内嵌Tomcat</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 使用exclusion排除 --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>添加Servlet依赖</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>jakarta.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jakarta.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>将打包方式修改为WAR</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>修改主类Application</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoApplication</span> <span class="keyword">extends</span> <span class="title class_">SpringBootServletInitializer</span> &#123;  <span class="comment">//继承专用的初始化器</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(DemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//重写configure方法，完成启动类配置</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> SpringApplicationBuilder <span class="title function_">configure</span><span class="params">(SpringApplicationBuilder builder)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> builder.sources(DemoApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>打包</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+<h2 id="graalvm-native-exe"><a class="markdownIt-Anchor" href="#graalvm-native-exe"></a> GraalVM Native EXE</h2>
+<blockquote>
+<p>[!WARNING]<br />
+Mybatis目前不支持Native-Image</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn -Pnative -DskipTests native:compile</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
   </entry>
 </search>

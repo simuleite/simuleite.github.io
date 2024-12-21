@@ -145,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,6 +179,187 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Mybatis%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Mybatis%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Mybatis使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-11-23 00:00:00 / 修改时间：17:21:00" itemprop="dateCreated datePublished" datetime="2024-11-23T00:00:00+08:00">2024-11-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="mybatis-configxml"><a class="markdownIt-Anchor" href="#mybatis-configxml"></a> mybatis-config.xml</h1>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta">  <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">  <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span> <span class="comment">&lt;!-- 设置环境 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;驱动类（含包名）&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;数据库连接URL&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;用户名&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;密码&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="util"><a class="markdownIt-Anchor" href="#util"></a> Util</h1>
+<p>一般只需要创建一次，所以创建一个工具类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisUtil</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在类加载时就进行创建</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SqlSessionFactory sqlSessionFactory;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            sqlSessionFactory = <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;mybatis-config.xml&quot;</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取一个新的会话</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> autoCommit 是否开启自动提交（跟JDBC是一样的，如果不自动提交，则会变成事务操作）</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> SqlSession对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SqlSession <span class="title function_">getSession</span><span class="params">(<span class="type">boolean</span> autoCommit)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sqlSessionFactory.openSession(autoCommit);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在其他函数里直接使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">session</span> <span class="operator">=</span> MybatisUtil.getSession(<span class="literal">true</span>)) &#123;</span><br><span class="line">    session.selectOne(<span class="string">&quot;id&quot;</span>, argu);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="mapper"><a class="markdownIt-Anchor" href="#mapper"></a> Mapper</h1>
+<h2 id="原始方法"><a class="markdownIt-Anchor" href="#原始方法"></a> 原始方法</h2>
+<ol>
+<li>在<code>mybatis-config.xml</code>中添加</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">url</span>=<span class="string">&quot;file:mappers/TestMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--    这里用的是url，也可以使用其他类型，我们会在后面讲解    --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>定义<code>TestMapper.xml</code></li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.test.mapper.TestMapper&quot;</span>&gt;</span> <span class="comment">&lt;!-- 命名空间指明mapper接口名 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudent&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.test.entity.Student&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- id：函数名；resultType：返回类型 --&gt;</span></span><br><span class="line">        select * from student</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectOneStudent&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.test.entity.Student&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- id：函数名；resultType：返回类型 --&gt;</span></span><br><span class="line">        select * from student where sid = #&#123;sid&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException &#123;</span><br><span class="line">    <span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;mybatis-config.xml&quot;</span>)); <span class="comment">// config 文件路径</span></span><br><span class="line">    <span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> sqlSessionFactory.openSession(<span class="literal">true</span>))&#123;</span><br><span class="line">        List&lt;Student&gt; student = sqlSession.selectList(<span class="string">&quot;selectStudent&quot;</span>); <span class="comment">// xml id</span></span><br><span class="line">        <span class="type">Student</span> <span class="variable">stu3</span> <span class="operator">=</span> sqlSession.selectOne(<span class="string">&quot;selectOneStudent&quot;</span>, <span class="number">3</span>); <span class="comment">// 传参</span></span><br><span class="line">        student.forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="接口方法"><a class="markdownIt-Anchor" href="#接口方法"></a> 接口方法</h2>
+<ol>
+<li>在<code>mybatis-config.xml</code>中添加</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;com/test/mapper/TestMapper.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>定义<code>TestMapper.xml</code>和接口<code>TestMapper.java</code></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">TestMapper</span> &#123;</span><br><span class="line">    List&lt;Student&gt; <span class="title function_">selectStudent</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="使用-2"><a class="markdownIt-Anchor" href="#使用-2"></a> 使用</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> MybatisUtil.getSession(<span class="literal">true</span>))&#123;</span><br><span class="line">        <span class="type">TestMapper</span> <span class="variable">testMapper</span> <span class="operator">=</span> sqlSession.getMapper(TestMapper.class);</span><br><span class="line">        List&lt;Student&gt; student = testMapper.selectStudent(); <span class="comment">// 已经定义好了类型</span></span><br><span class="line">        student.forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="注解方法"><a class="markdownIt-Anchor" href="#注解方法"></a> 注解方法</h2>
+<ol>
+<li>在<code>mybatis-config.xml</code>中添加</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">&quot;com.test.mapper.TestMapper&quot;</span>/&gt;</span> </span><br><span class="line">    // 单个java class</span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">package</span>=<span class="string">&quot;com.test.mapper&quot;</span>/&gt;</span> </span><br><span class="line">    // 整个包</span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用-3"><a class="markdownIt-Anchor" href="#使用-3"></a> 使用</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">TestMapper</span> &#123;</span><br><span class="line">    <span class="meta">@Results(&#123;</span></span><br><span class="line"><span class="meta">        @Result(id = true, column = &quot;id&quot;, property = &quot;sid&quot;, </span></span><br><span class="line"><span class="meta">                one = @One(select = &quot;method&quot;)),</span></span><br><span class="line"><span class="meta">    &#125;)</span></span><br><span class="line">    <span class="meta">@Select(&quot;select * from student&quot;)</span> <span class="comment">// 注解</span></span><br><span class="line">    List&lt;Student&gt; <span class="title function_">selectStudent</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Select(&quot;select * from student where sid = #&#123;s&#125;, bid = #&#123;book.bid&#125;&quot;)</span></span><br><span class="line">    Student <span class="title function_">selectStudentBySid</span><span class="params">(<span class="meta">@Param(&quot;s&quot;)</span> <span class="type">int</span> sid, <span class="meta">@Param(&quot;book&quot;)</span> Book book)</span> <span class="comment">// 标明变量</span></span><br><span class="line"></span><br><span class="line">    Type <span class="title function_">method</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="动态sql"><a class="markdownIt-Anchor" href="#动态sql"></a> <a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/dynamic-sql.html">动态SQL</a></h1>
+<h2 id="if"><a class="markdownIt-Anchor" href="#if"></a> if</h2>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;argu == value&quot;</span>&gt;</span></span><br><span class="line">    // your sql query.</span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Maven使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-11-23 00:00:00 / 修改时间：14:40:42" itemprop="dateCreated datePublished" datetime="2024-11-23T00:00:00+08:00">2024-11-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h1>
+<p><code>mvn package</code> 测试并打包到<code>target/</code>，使用<code>java -jar Project.jar</code>来运行</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -965,252 +1146,6 @@ Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/ge
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Redis使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-10-27 00:00:00 / 修改时间：15:06:48" itemprop="dateCreated datePublished" datetime="2024-10-27T00:00:00+08:00">2024-10-27</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="general"><a class="markdownIt-Anchor" href="#general"></a> General</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 返回给定模式的keys</span><br><span class="line">KEYS patter</span><br><span class="line">KEYS * # 返回全部</span><br><span class="line">KEYS set* # 返回set开头的keys</span><br><span class="line">EXISTS key</span><br><span class="line">TYPE key</span><br><span class="line">DEL key</span><br></pre></td></tr></table></figure>
-<h1 id="string"><a class="markdownIt-Anchor" href="#string"></a> String</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET key value</span><br><span class="line">GET key</span><br><span class="line"># Set Extend Time</span><br><span class="line">SETEX key seconds value</span><br><span class="line"># Set When Key Not Exist</span><br><span class="line">SETNX key value</span><br></pre></td></tr></table></figure>
-<h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HSET key field value</span><br><span class="line">HGET key field</span><br><span class="line">HDEL key field</span><br><span class="line"># Get All Fields</span><br><span class="line">HKEYS key</span><br><span class="line"># Get All Values</span><br><span class="line">HVALS key</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    key[key]</span><br><span class="line">    item[</span><br><span class="line">    field1: value1</span><br><span class="line">    field2: value2</span><br><span class="line">    ]</span><br><span class="line">    key --&gt; item</span><br></pre></td></tr></table></figure>
-<h1 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LPUSH key value1 value2</span><br><span class="line"># Get Key From Start To Stop</span><br><span class="line">LRANGE key start stop</span><br><span class="line"># Right POP</span><br><span class="line">RPOP key</span><br><span class="line"># List Length</span><br><span class="line">LLEN key</span><br></pre></td></tr></table></figure>
-<h1 id="set"><a class="markdownIt-Anchor" href="#set"></a> Set</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SADD key mem1 mem2</span><br><span class="line">SMEMBERS key</span><br><span class="line"># Set Size</span><br><span class="line">SCARD key</span><br><span class="line">SINTER key1 key2</span><br><span class="line">SUNION key1 key2</span><br><span class="line"># Delete</span><br><span class="line">SREM key mem1 mem2</span><br></pre></td></tr></table></figure>
-<h1 id="sorted-set-zset"><a class="markdownIt-Anchor" href="#sorted-set-zset"></a> Sorted Set / ZSet</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ZADD key score1 mem1 score2 mem2</span><br><span class="line"># Show List</span><br><span class="line">ZRANGE key start stop (WITHSCORES)</span><br><span class="line"># Increse Member</span><br><span class="line">ZINCRBY key increment member</span><br><span class="line">ZREM key mem1 mem2</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">vim基本操作</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-19 20:41:02" itemprop="dateModified" datetime="2024-10-19T20:41:02+08:00">2024-10-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
-<ul>
-<li><code>&lt;C-o&gt;, &lt;C-i&gt;</code>：回到前一个/后一个位置（例如，打开文件默认在第一行，<code>&lt;C-o&gt;</code>回到上次编辑位置）。<strong>注意这个操作是跨文件的</strong>。</li>
-<li><code>`0</code>：返回上次位置</li>
-<li>词：<code>w</code>（下一个词），<code>b</code>（词初），<code>e</code>（词尾）</li>
-<li>行：<code>0</code>（行初），<code>^</code>（第一个非空格字符），<code>$</code>（行尾）</li>
-<li>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</li>
-<li>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</li>
-<li><code>x</code>删除字符（等同于<code>dl</code>）</li>
-<li><code>s</code>(substitute)替换字符（等同于<code>xi</code>）
-<ul>
-<li>替换命令<code>:&#123;作用范围&#125;s/&#123;目标文本&#125;/&#123;替换文本&#125;/&#123;替换标志&#125;</code></li>
-<li><code>:%s/s_content/o_content/g</code> 全局替换</li>
-</ul>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Sign</th>
-<th>Range</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>%</td>
-<td>整个文件</td>
-</tr>
-<tr>
-<td>.</td>
-<td>当前行</td>
-</tr>
-<tr>
-<td>$</td>
-<td>最后一行</td>
-</tr>
-<tr>
-<td>,n</td>
-<td>当前行到n行</td>
-</tr>
-<tr>
-<td>n,</td>
-<td>n行到当前行</td>
-</tr>
-<tr>
-<td>+n</td>
-<td>当前行后n行</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>可视化模式 + 操作
-<ul>
-<li>选中文字,<code>d</code>删除（剪切） 或者<code>c</code>改变</li>
-</ul>
-</li>
-<li><code>u</code>撤销，<code>&lt;C-r&gt;</code>重做</li>
-<li><code>y</code>复制 / “yank” （其他一些命令比如<code>d</code>也会复制）</li>
-<li><code>p</code>粘贴
-<ul>
-<li><code>+p</code> 粘贴系统剪贴板</li>
-</ul>
-</li>
-<li><strong>更多值得学习的</strong>:
-<ul>
-<li><code>:&lt;line&gt;</code> 跳到line行</li>
-<li><code>~</code>改变字符的大小写</li>
-<li><code>3w</code>向前移动三个词</li>
-<li><code>A</code>（大写）可以迅速定位到行尾进行修改</li>
-<li><code>:!python prog.py</code> 使用！直接运行shell命令</li>
-</ul>
-</li>
-<li><code>%</code>匹配括号</li>
-</ul>
-<h2 id="多行操作"><a class="markdownIt-Anchor" href="#多行操作"></a> 多行操作</h2>
-<p><code>&lt;C-v&gt;</code> 选中多行，<code>Shift + i</code>输入后<code>Esc</code>，即可多行同步输入</p>
-<h1 id="文件操作"><a class="markdownIt-Anchor" href="#文件操作"></a> 文件操作</h1>
-<ul>
-<li><code>:e filename</code>切换到filename文件</li>
-<li><code>:bn/bp</code>切换到下/上个文件</li>
-<li><code>&lt;C-x&gt;&lt;C-f&gt;</code> 自动补全路径</li>
-</ul>
-
       
     </div>
 

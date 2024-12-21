@@ -145,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-count">57</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -188,6 +188,207 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/SpringBoot%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/SpringBoot%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">SpringBoot笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-12-21 00:00:00 / 修改时间：11:27:03" itemprop="dateCreated datePublished" datetime="2024-12-21T00:00:00+08:00">2024-12-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="applicationproperties"><a class="markdownIt-Anchor" href="#applicationproperties"></a> application.properties</h1>
+<h2 id="property形式"><a class="markdownIt-Anchor" href="#property形式"></a> Property形式</h2>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">server.port</span>=<span class="string">80 // 端口号</span></span><br><span class="line"><span class="attr">aruge.arugement</span>=<span class="string">value</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;&#123;argue.argument&#125;&quot;)</span></span><br><span class="line">String argu;</span><br></pre></td></tr></table></figure>
+<h2 id="yaml形式"><a class="markdownIt-Anchor" href="#yaml形式"></a> YAML形式</h2>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">datasource:</span></span><br><span class="line">        <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/db_name</span></span><br><span class="line">        <span class="attr">username:</span></span><br><span class="line">        <span class="attr">password:</span></span><br><span class="line">        <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.Driver</span></span><br><span class="line">    <span class="attr">mvc:</span></span><br><span class="line">        <span class="attr">static-path-pattern:</span> <span class="string">/static/**</span></span><br><span class="line">    <span class="attr">security:</span></span><br><span class="line">        <span class="attr">filter:</span></span><br><span class="line">            <span class="attr">order:</span> <span class="number">-100</span> <span class="comment"># Spring Security Filter 优先级</span></span><br><span class="line">        <span class="attr">user:</span></span><br><span class="line">            <span class="attr">name:</span> <span class="string">&#x27;admin&#x27;</span></span><br><span class="line">            <span class="attr">password:</span> <span class="string">&#x27;Abc123.&#x27;</span></span><br><span class="line">            <span class="attr">roles:</span></span><br><span class="line">                <span class="bullet">-</span> <span class="string">admin</span></span><br><span class="line">                <span class="bullet">-</span> <span class="string">user</span></span><br></pre></td></tr></table></figure>
+<h1 id="package"><a class="markdownIt-Anchor" href="#package"></a> Package</h1>
+<h2 id="jar"><a class="markdownIt-Anchor" href="#jar"></a> JAR</h2>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn package</span><br><span class="line">java -jar yourProj.jar</span><br></pre></td></tr></table></figure>
+<h1 id="war"><a class="markdownIt-Anchor" href="#war"></a> WAR</h1>
+<ol>
+<li>排除SpringBoot内嵌Tomcat</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 使用exclusion排除 --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">exclusions</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">             <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-tomcat<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">exclusions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>添加Servlet依赖</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>jakarta.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jakarta.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>将打包方式修改为WAR</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>修改主类Application</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">DemoApplication</span> <span class="keyword">extends</span> <span class="title class_">SpringBootServletInitializer</span> &#123;  <span class="comment">//继承专用的初始化器</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(DemoApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//重写configure方法，完成启动类配置</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> SpringApplicationBuilder <span class="title function_">configure</span><span class="params">(SpringApplicationBuilder builder)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> builder.sources(DemoApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>打包</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+<h2 id="graalvm-native-exe"><a class="markdownIt-Anchor" href="#graalvm-native-exe"></a> GraalVM Native EXE</h2>
+<blockquote>
+<p>[!WARNING]<br />
+Mybatis目前不支持Native-Image</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn -Pnative -DskipTests native:compile</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">PHP ADTP后台管理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-15 00:00:00" itemprop="dateCreated datePublished" datetime="2024-04-15T00:00:00+08:00">2024-04-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-21 10:46:05" itemprop="dateModified" datetime="2024-12-21T10:46:05+08:00">2024-12-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="信息系统架构"><a class="markdownIt-Anchor" href="#信息系统架构"></a> 信息系统架构</h1>
+<ul>
+<li>信息化系统：前台 + 后台 + 数据库</li>
+<li>B/S 模式</li>
+<li>前端 -&gt; Server[Apache-&gt;PHP(TP6.0)] -&gt; SQL DataBase</li>
+<li>运行逻辑：
+<ul>
+<li>Client发送require请求(http协议)，包含header（length、refer信息）、body（数据）</li>
+<li>Apache接受请求，给PHP做处理</li>
+<li>PHP读取、处理数据；判断数据是否损毁、是否需要退回</li>
+<li>数据更新到前端，并返回结果(success/fail)</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/SSM%20%E9%A1%B9%E7%9B%AE%20%E5%9B%BE%E4%B9%A6%E9%A6%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -206,7 +407,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/SSM%20%E9%A1%B9%E7%9B%AE%20%E5%9B%BE%E4%B9%A6%E9%A6%86/" class="post-title-link" itemprop="url">未命名</a>
+          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/SSM%20%E9%A1%B9%E7%9B%AE%20%E5%9B%BE%E4%B9%A6%E9%A6%86/" class="post-title-link" itemprop="url">SSM 项目 图书馆</a>
         </h2>
 
         <div class="post-meta-container">
@@ -216,15 +417,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2024-12-06 14:34:03" itemprop="dateCreated datePublished" datetime="2024-12-06T14:34:03+08:00">2024-12-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-12-11 11:20:24" itemprop="dateModified" datetime="2024-12-11T11:20:24+08:00">2024-12-11</time>
+      <time title="创建时间：2024-12-21 00:00:00 / 修改时间：10:45:45" itemprop="dateCreated datePublished" datetime="2024-12-21T00:00:00+08:00">2024-12-21</time>
     </span>
 
   
@@ -923,187 +1118,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Mybatis%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Mybatis%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Mybatis使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-11-23 00:00:00 / 修改时间：17:21:00" itemprop="dateCreated datePublished" datetime="2024-11-23T00:00:00+08:00">2024-11-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="mybatis-configxml"><a class="markdownIt-Anchor" href="#mybatis-configxml"></a> mybatis-config.xml</h1>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta">  <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">  <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span> <span class="comment">&lt;!-- 设置环境 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;驱动类（含包名）&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;数据库连接URL&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;用户名&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;密码&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="util"><a class="markdownIt-Anchor" href="#util"></a> Util</h1>
-<p>一般只需要创建一次，所以创建一个工具类</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisUtil</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在类加载时就进行创建</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SqlSessionFactory sqlSessionFactory;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            sqlSessionFactory = <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;mybatis-config.xml&quot;</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取一个新的会话</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> autoCommit 是否开启自动提交（跟JDBC是一样的，如果不自动提交，则会变成事务操作）</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> SqlSession对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SqlSession <span class="title function_">getSession</span><span class="params">(<span class="type">boolean</span> autoCommit)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sqlSessionFactory.openSession(autoCommit);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在其他函数里直接使用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">session</span> <span class="operator">=</span> MybatisUtil.getSession(<span class="literal">true</span>)) &#123;</span><br><span class="line">    session.selectOne(<span class="string">&quot;id&quot;</span>, argu);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="mapper"><a class="markdownIt-Anchor" href="#mapper"></a> Mapper</h1>
-<h2 id="原始方法"><a class="markdownIt-Anchor" href="#原始方法"></a> 原始方法</h2>
-<ol>
-<li>在<code>mybatis-config.xml</code>中添加</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">url</span>=<span class="string">&quot;file:mappers/TestMapper.xml&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--    这里用的是url，也可以使用其他类型，我们会在后面讲解    --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>定义<code>TestMapper.xml</code></li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span></span></span><br><span class="line"><span class="meta">        <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.test.mapper.TestMapper&quot;</span>&gt;</span> <span class="comment">&lt;!-- 命名空间指明mapper接口名 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectStudent&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.test.entity.Student&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- id：函数名；resultType：返回类型 --&gt;</span></span><br><span class="line">        select * from student</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectOneStudent&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.test.entity.Student&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- id：函数名；resultType：返回类型 --&gt;</span></span><br><span class="line">        select * from student where sid = #&#123;sid&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> FileNotFoundException &#123;</span><br><span class="line">    <span class="type">SqlSessionFactory</span> <span class="variable">sqlSessionFactory</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;mybatis-config.xml&quot;</span>)); <span class="comment">// config 文件路径</span></span><br><span class="line">    <span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> sqlSessionFactory.openSession(<span class="literal">true</span>))&#123;</span><br><span class="line">        List&lt;Student&gt; student = sqlSession.selectList(<span class="string">&quot;selectStudent&quot;</span>); <span class="comment">// xml id</span></span><br><span class="line">        <span class="type">Student</span> <span class="variable">stu3</span> <span class="operator">=</span> sqlSession.selectOne(<span class="string">&quot;selectOneStudent&quot;</span>, <span class="number">3</span>); <span class="comment">// 传参</span></span><br><span class="line">        student.forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="接口方法"><a class="markdownIt-Anchor" href="#接口方法"></a> 接口方法</h2>
-<ol>
-<li>在<code>mybatis-config.xml</code>中添加</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">&quot;com/test/mapper/TestMapper.xml&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>定义<code>TestMapper.xml</code>和接口<code>TestMapper.java</code></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">TestMapper</span> &#123;</span><br><span class="line">    List&lt;Student&gt; <span class="title function_">selectStudent</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="使用-2"><a class="markdownIt-Anchor" href="#使用-2"></a> 使用</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> MybatisUtil.getSession(<span class="literal">true</span>))&#123;</span><br><span class="line">        <span class="type">TestMapper</span> <span class="variable">testMapper</span> <span class="operator">=</span> sqlSession.getMapper(TestMapper.class);</span><br><span class="line">        List&lt;Student&gt; student = testMapper.selectStudent(); <span class="comment">// 已经定义好了类型</span></span><br><span class="line">        student.forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="注解方法"><a class="markdownIt-Anchor" href="#注解方法"></a> 注解方法</h2>
-<ol>
-<li>在<code>mybatis-config.xml</code>中添加</li>
-</ol>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">class</span>=<span class="string">&quot;com.test.mapper.TestMapper&quot;</span>/&gt;</span> </span><br><span class="line">    // 单个java class</span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>或者</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">package</span>=<span class="string">&quot;com.test.mapper&quot;</span>/&gt;</span> </span><br><span class="line">    // 整个包</span><br><span class="line"><span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="使用-3"><a class="markdownIt-Anchor" href="#使用-3"></a> 使用</h3>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">TestMapper</span> &#123;</span><br><span class="line">    <span class="meta">@Results(&#123;</span></span><br><span class="line"><span class="meta">        @Result(id = true, column = &quot;id&quot;, property = &quot;sid&quot;, </span></span><br><span class="line"><span class="meta">                one = @One(select = &quot;method&quot;)),</span></span><br><span class="line"><span class="meta">    &#125;)</span></span><br><span class="line">    <span class="meta">@Select(&quot;select * from student&quot;)</span> <span class="comment">// 注解</span></span><br><span class="line">    List&lt;Student&gt; <span class="title function_">selectStudent</span><span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Select(&quot;select * from student where sid = #&#123;s&#125;, bid = #&#123;book.bid&#125;&quot;)</span></span><br><span class="line">    Student <span class="title function_">selectStudentBySid</span><span class="params">(<span class="meta">@Param(&quot;s&quot;)</span> <span class="type">int</span> sid, <span class="meta">@Param(&quot;book&quot;)</span> Book book)</span> <span class="comment">// 标明变量</span></span><br><span class="line"></span><br><span class="line">    Type <span class="title function_">method</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="动态sql"><a class="markdownIt-Anchor" href="#动态sql"></a> <a target="_blank" rel="noopener" href="https://mybatis.org/mybatis-3/dynamic-sql.html">动态SQL</a></h1>
-<h2 id="if"><a class="markdownIt-Anchor" href="#if"></a> if</h2>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;argu == value&quot;</span>&gt;</span></span><br><span class="line">    // your sql query.</span><br><span class="line"><span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Maven使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-11-23 00:00:00 / 修改时间：14:40:42" itemprop="dateCreated datePublished" datetime="2024-11-23T00:00:00+08:00">2024-11-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h1>
-<p><code>mvn package</code> 测试并打包到<code>target/</code>，使用<code>java -jar Project.jar</code>来运行</p>
-
       
     </div>
 
