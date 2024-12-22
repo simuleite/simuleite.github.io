@@ -188,6 +188,204 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Spring%20Boot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/Spring%20Boot/" class="post-title-link" itemprop="url">Spring Boot</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-24 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-24T00:00:00+08:00">2024-07-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-11-25 18:16:31" itemprop="dateModified" datetime="2024-11-25T18:16:31+08:00">2024-11-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="devtools"><a class="markdownIt-Anchor" href="#devtools"></a> DevTools</h1>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-devtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">optional</span>&gt;</span>true<span class="tag">&lt;/<span class="name">optional</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="spring-cli"><a class="markdownIt-Anchor" href="#spring-cli"></a> Spring CLI</h1>
+<p>可以用<a target="_blank" rel="noopener" href="https://start.spring.io">Spring Initializr</a>或Spirng CLI来构建项目</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">spring init -list <span class="comment"># 列出参数</span></span><br><span class="line"><span class="comment"># 初始化项目</span></span><br><span class="line">spring init ( -d || --dependencies ) package1,package2 --build (maven/gradle) ( -p || --package) (war/jar) projectName</span><br><span class="line"><span class="comment"># Example</span></span><br><span class="line">spring init -d web,jpa,security --build maven -p jar basic-project</span><br><span class="line"></span><br><span class="line">spring init -d web,mustache,jpa,h2,devtools --package-name=com.example.blog --build maven mybloge</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Web: API服务</li>
+<li>JPA: 访问数据库的抽象<br />
+项目结构图</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ tree basic-project/</span><br><span class="line">basic-project/</span><br><span class="line">├── HELP.md</span><br><span class="line">├── mvnw # maven wrapper附带脚本</span><br><span class="line">├── mvnw.cmd</span><br><span class="line">├── pom.xml # maven 构建配置文件</span><br><span class="line">└── src</span><br><span class="line">    ├── main</span><br><span class="line">    │   ├── java</span><br><span class="line">    │   │   └── com</span><br><span class="line">    │   │       └── example</span><br><span class="line">    │   │           └── basic_project</span><br><span class="line">    │   │               └── DemoApplication.java # 入口</span><br><span class="line">    │   └── resources</span><br><span class="line">    │       ├── application.properties # Configuration</span><br><span class="line">    │       ├── static # 存放js/css,images</span><br><span class="line">    │       └── templates # 存放页面模板</span><br><span class="line">    └── test</span><br><span class="line">        └── java</span><br><span class="line">            └── com</span><br><span class="line">                └── example</span><br><span class="line">                    └── basic_project</span><br><span class="line">                        └── DemoApplicationTests.java</span><br><span class="line"></span><br><span class="line">15 directories, 7 files</span><br></pre></td></tr></table></figure>
+<h1 id="maven"><a class="markdownIt-Anchor" href="#maven"></a> Maven</h1>
+<h2 id="换源"><a class="markdownIt-Anchor" href="#换源"></a> 换源</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">distributionUrl=https://maven.aliyun.com/repository/central/org/apache/maven/apache-maven/(edition.number)/apache-maven-(edition.number)-bin.zip</span><br></pre></td></tr></table></figure>
+<h2 id="运行项目"><a class="markdownIt-Anchor" href="#运行项目"></a> 运行项目</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mvn spring-boot:run</span><br><span class="line"><span class="comment"># 将会在localhost:8080运行</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">git使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-11-25 10:23:09" itemprop="dateModified" datetime="2024-11-25T10:23:09+08:00">2024-11-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="00-代码合并流程"><a class="markdownIt-Anchor" href="#00-代码合并流程"></a> 0.0 代码合并流程</h1>
+<ol>
+<li>在各自的分支<code>self</code>上进行开发</li>
+<li>切换到<code>develop</code>分支，<code>git pull</code>同步最新代码</li>
+<li>切换到自己的分支<code>self</code>，<code>git rebase develop</code>对齐代码合并冲突</li>
+</ol>
+<h1 id="10-第一件事git-config"><a class="markdownIt-Anchor" href="#10-第一件事git-config"></a> 1.0 第一件事git config</h1>
+<ul>
+<li><code>git config --list --show-origin</code>查看所有git配置以及所在文件</li>
+<li>使用<code>git config --global</code>可以设置git的基本信息（如用户名、邮箱），使用<code>--unset</code>取消设置
+<ol>
+<li>配置你的名称、邮箱以及编辑器</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;191220000-Zhang San&quot;</span> </span><br><span class="line"><span class="comment"># 全局设置名称</span></span><br><span class="line">git config --global user.email <span class="string">&quot;zhang3@email.com&quot;</span></span><br><span class="line">git config --global core.editor vim</span><br></pre></td></tr></table></figure>
+<h1 id="20-初始化仓库"><a class="markdownIt-Anchor" href="#20-初始化仓库"></a> 2.0 初始化仓库</h1>
+<ol>
+<li>本地仓库：<code>git init</code>创建一个新的 git 仓库，其数据会存放在一个名为 <code>.git</code> 的目录下<br />
+删除仓库：删除 .git 文件夹</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add &lt;文件名字，*表示全部&gt;</span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span> </span><br><span class="line"><span class="comment"># 提交到暂存区，并附上注释</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>远程仓库：<code>git clone</code>克隆远端仓库</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &lt;网址&gt; &lt;仓库存放文件夹名&gt;</span><br><span class="line"><span class="comment"># 使用http克隆</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Mybatis%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -954,198 +1152,6 @@ Here is some INFO.</p>
 <a target="_blank" rel="noopener" href="https://gitee.com/52itstyle/spring-boot-pay/">Gitee项目</a><br />
 <a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_66490875/article/details/136842381">支付宝</a></p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">动态规划学习指南</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-22 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-22T00:00:00+08:00">2024-10-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-28 20:36:54" itemprop="dateModified" datetime="2024-10-28T20:36:54+08:00">2024-10-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Author：<strong><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/aatalyk">aatalyk</a></strong><br />
-Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns">Link</a></p>
-<p>Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to prepare for interviews two years ago. At that time I should say I could not solve the two sum problem. Easy problems seemed to me like hard ones so most of the time I had to look at editorials and discuss section. Currently, I have solved ~800 problems and time to time participate in contests. I usually solve 3 problems in a contest and sometimes 4 problems. Ok, lets come back to the topic.</p>
-<p>Recently I have concentrated my attention on Dynamic Programming cause its one of the hardest topics in an interview prep. After solving ~140 problems in DP I have noticed that there are few patterns that can be found in different problems. So I did a research on that and find the following topics. I will not give complete ways how to solve problems but these patterns may be helpful in solving DP.</p>
-<h2 id="patterns"><a class="markdownIt-Anchor" href="#patterns"></a> Patterns</h2>
-<ol>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Minimum-%28Maximum%29-Path-to-Reach-a-Target">Minimum (Maximum) Path to Reach a Target</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23distinct-ways">Distinct Ways</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Merging-Intervals">Merging Intervals</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23DP-on-Strings">DP on Strings</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Decision-Making">Decision Making</a></li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/" class="post-title-link" itemprop="url">ICS PA实验课</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2024-02-09T00:00:00+08:00">2024-02-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-28 10:57:57" itemprop="dateModified" datetime="2024-10-28T10:57:57+08:00">2024-10-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="tips"><a class="markdownIt-Anchor" href="#tips"></a> Tips</h1>
-<ul>
-<li>参考资料：<a target="_blank" rel="noopener" href="https://note.tonycrane.cc/cs/system/pa/">https://note.tonycrane.cc/cs/system/pa/</a></li>
-</ul>
-<ol>
-<li>使用反向代理时，<code>git</code>相关命令会出问题</li>
-<li>实验前，创建新分支<code>pa号</code>，在其中做修改，完成以后合并pa到master中，并转回master分支</li>
-</ol>
-<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># PA</span></span><br><span class="line"><span class="section">## notification</span></span><br><span class="line"><span class="bullet">-</span> </span><br><span class="line"><span class="section">## difficulties</span></span><br><span class="line"><span class="bullet">1.</span> </span><br><span class="line"><span class="section">## summary</span></span><br></pre></td></tr></table></figure>
-<h1 id="pa0"><a class="markdownIt-Anchor" href="#pa0"></a> PA0</h1>
-<h2 id="notification"><a class="markdownIt-Anchor" href="#notification"></a> notification</h2>
-<ul>
-<li>全程使用git</li>
-<li><code>git commit --allow-empty</code>可以使git空（无更改的）提交</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 

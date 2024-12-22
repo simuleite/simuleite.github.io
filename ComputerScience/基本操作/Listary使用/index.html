@@ -28,7 +28,7 @@
 <meta property="og:description" content="网络搜索    网站 URL 备注     哔哩哔哩 https:&#x2F;&#x2F;search.bilibili.com&#x2F;all?keyword&#x3D;{query}    知乎 https:&#x2F;&#x2F;www.zhihu.com&#x2F;search?type&#x3D;content&amp;q&#x3D;{query}    百度贴吧 https:&#x2F;&#x2F;tieba.baidu.com&#x2F;f?ie&#x3D;utf-8&amp;kw&#x3D;{query}&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-08-15T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-08-16T12:08:33.871Z">
+<meta property="article:modified_time" content="2024-12-22T09:03:16.051Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="基本操作">
 <meta name="twitter:card" content="summary">
@@ -138,7 +138,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%90%9C%E7%B4%A2"><span class="nav-text"> 网络搜索</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E6%90%9C%E7%B4%A2"><span class="nav-text"> 网络搜索</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E5%BA%94%E7%94%A8"><span class="nav-text"> 启动应用</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -223,9 +223,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-08-16 00:00:00 / 修改时间：20:08:33" itemprop="dateCreated datePublished" datetime="2024-08-16T00:00:00+08:00">2024-08-16</time>
+      <time title="创建时间：2024-08-16 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-16T00:00:00+08:00">2024-08-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-12-22 17:03:16" itemprop="dateModified" datetime="2024-12-22T17:03:16+08:00">2024-12-22</time>
     </span>
 
   
@@ -278,6 +284,11 @@
 <td></td>
 </tr>
 <tr>
+<td>咸鱼</td>
+<td><a target="_blank" rel="noopener" href="https://www.goofish.com/search?q=%7Bquery%7D">https://www.goofish.com/search?q={query}</a></td>
+<td></td>
+</tr>
+<tr>
 <td>Yandex</td>
 <td><a target="_blank" rel="noopener" href="https://yandex.com/search/?text=%7Bquery%7D">https://yandex.com/search/?text={query}</a></td>
 <td></td>
@@ -302,6 +313,21 @@
 <td><a target="_blank" rel="noopener" href="https://www.deepl.com/translator#en/zh/%7Bquery%7D">https://www.deepl.com/translator#en/zh/{query}</a></td>
 <td>英译中</td>
 </tr>
+<tr>
+<td>Wiki外部网站</td>
+<td><a target="_blank" rel="noopener" href="https://encyclopedia.thefreedictionary.com/%7Bquery%7D">https://encyclopedia.thefreedictionary.com/{query}</a></td>
+<td></td>
+</tr>
+<tr>
+<td>求闻百科</td>
+<td><a target="_blank" rel="noopener" href="https://www.qiuwenbaike.cn/wiki/%7Bquery%7D">https://www.qiuwenbaike.cn/wiki/{query}</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Wolfram|Alpha</td>
+<td><a target="_blank" rel="noopener" href="https://www.wolframalpha.com/input?i=%7Bquery%7D&amp;lang=zh">https://www.wolframalpha.com/input?i={query}&amp;lang=zh</a></td>
+<td></td>
+</tr>
 </tbody>
 </table>
 <ul>
@@ -309,6 +335,44 @@
 过滤站点：</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://&lt;ENGINE.URL&gt;/search?text=site%3A&lt;SITE.URL&gt;%20&#123;query&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="启动应用"><a class="markdownIt-Anchor" href="#启动应用"></a> 启动应用</h1>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>路径</th>
+<th>参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当前目录启动终端</td>
+<td>wt.exe</td>
+<td>-d “{current_folder}”</td>
+</tr>
+<tr>
+<td>Golden Dict查词</td>
+<td>GoldenDict.exe</td>
+<td>-s {query}</td>
+</tr>
+<tr>
+<td>启动ipython</td>
+<td>wt.exe</td>
+<td>ipython</td>
+</tr>
+<tr>
+<td>查看网络连接</td>
+<td>control.exe</td>
+<td>ncpa.cpl</td>
+</tr>
+<tr>
+<td>编辑环境变量（需要管理员权限）</td>
+<td>rundll32</td>
+<td>sysdm.cpl,EditEnvironmentVariables</td>
+</tr>
+</tbody>
+</table>
+
     </div>
 
     
