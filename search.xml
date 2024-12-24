@@ -78,6 +78,8 @@ log2(x) 以2为底数的对数
 <li><code>CTRL+U</code> 删除整行</li>
 <li><code>CTRL+R</code> 搜索整行，Esc退出</li>
 </ul>
+<h1 id="proxy"><a class="markdownIt-Anchor" href="#proxy"></a> Proxy</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export https_proxy=http://host:port;</span><br><span class="line">export http_proxy=http://host:port;</span><br><span class="line">export all_proxy=socks5://host:port;</span><br></pre></td></tr></table></figure>
 <h1 id="bash-prompt-string配置"><a class="markdownIt-Anchor" href="#bash-prompt-string配置"></a> Bash prompt string配置</h1>
 <blockquote>
 <p>使用Windows CMD比使用MinTTY更快！</p>
@@ -813,6 +815,15 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 </ul>
 <h2 id="多行操作"><a class="markdownIt-Anchor" href="#多行操作"></a> 多行操作</h2>
 <p><code>&lt;C-v&gt;</code> 选中多行，<code>Shift + i</code>输入后<code>Esc</code>，即可多行同步输入</p>
+<h1 id="宏"><a class="markdownIt-Anchor" href="#宏"></a> 宏</h1>
+<h2 id="录制宏"><a class="markdownIt-Anchor" href="#录制宏"></a> 录制宏</h2>
+<p>命令模式下，</p>
+<ol>
+<li>按<code>q&lt;marcoName&gt;</code>进行录制，<code>&lt;marcoName&gt;</code>是宏的名字，例如<code>qa</code></li>
+<li>执行一系列操作后，再次按<code>q</code>结束录制</li>
+</ol>
+<h2 id="使用宏"><a class="markdownIt-Anchor" href="#使用宏"></a> 使用宏</h2>
+<p>命令模式下，使用<code>@&lt;marcoName&gt;</code>即可执行；使用<code>5@&lt;marcoName&gt;</code>可以重复执行宏</p>
 <h1 id="文件操作"><a class="markdownIt-Anchor" href="#文件操作"></a> 文件操作</h1>
 <ul>
 <li><code>:e filename</code>切换到filename文件</li>
@@ -2472,6 +2483,8 @@ A. 00, 100, 101, 110, 111<br />
 </li>
 </ul>
 <h1 id="图"><a class="markdownIt-Anchor" href="#图"></a> 图</h1>
+<p><img src="../Source/Photo/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/GraphInMatrix.png" alt="" /><br />
+图的表示</p>
 <ul>
 <li><strong>树是一种特殊的图</strong></li>
 <li>表示多对多关系</li>
