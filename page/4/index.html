@@ -145,7 +145,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -179,6 +179,321 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/AI%E7%88%B1%E5%A4%96%E5%8D%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/AI%E7%88%B1%E5%A4%96%E5%8D%96/" class="post-title-link" itemprop="url">AI爱外卖</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-09-21 00:00:00" itemprop="dateCreated datePublished" datetime="2024-09-21T00:00:00+08:00">2024-09-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-09 20:03:43" itemprop="dateModified" datetime="2024-10-09T20:03:43+08:00">2024-10-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="项目心得"><a class="markdownIt-Anchor" href="#项目心得"></a> 项目心得</h1>
+<h2 id="24109"><a class="markdownIt-Anchor" href="#24109"></a> 24.10.9</h2>
+<p>将AliOss换成本地存储。可是一直插入不成功，使用Swagger调试，甚至数据库什么都接受不到！非常诡异的BUG<br />
+原来，是导入了错误的RequestBody，导致前端提交的表单怎么都接受不到！</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 导入了错误的包</span></span><br><span class="line"><span class="keyword">import</span> io.swagger.v3.oas.annotations.parameters.RequestBody;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestBody;</span><br></pre></td></tr></table></figure>
+<h1 id="nginx"><a class="markdownIt-Anchor" href="#nginx"></a> Nginx</h1>
+<h2 id="反向代理"><a class="markdownIt-Anchor" href="#反向代理"></a> 反向代理</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        # 反向代理,处理管理端发送的请求</span><br><span class="line">        location /api/ &#123;</span><br><span class="line">            # localhost/api/abc转发到下面admin/abc</span><br><span class="line">            proxy_pass   http://localhost:8080/admin/;</span><br><span class="line">            #proxy_pass   http://webservers/admin/;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>好处：</p>
+<ul>
+<li>不会暴露服务器，服务器可以安全放在内网，由nginx转发、缓存。</li>
+</ul>
+<h2 id="负载均衡"><a class="markdownIt-Anchor" href="#负载均衡"></a> 负载均衡</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">upstream webservers&#123;</span><br><span class="line">      # 服务器组，按权重分配</span><br><span class="line">      server 127.0.0.1:8080 weight=90 ;</span><br><span class="line">      server 127.0.0.1:8088 weight=10 ;</span><br><span class="line">      # ip_hash 根据ip分配</span><br><span class="line">      # least_conn 分配到最少链接的服务器</span><br><span class="line">      # url_hash 根据url分配</span><br><span class="line">      # fair 分配到响应时间最短的服务器</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        </span><br><span class="line">        # 反向代理,处理管理端发送的请求</span><br><span class="line">        location /api/ &#123;</span><br><span class="line">            # 负载均衡</span><br><span class="line">            proxy_pass   http://webservers/admin/;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="swagger"><a class="markdownIt-Anchor" href="#swagger"></a> Swagger</h1>
+<blockquote>
+<p>Knife4j：Java MVC框架集成Swagger</p>
+</blockquote>
+<p>API接口文档生成、测试</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">OS 操作系统</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-07 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-07T00:00:00+08:00">2024-08-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-06 16:24:22" itemprop="dateModified" datetime="2024-10-06T16:24:22+08:00">2024-10-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="chapter3-操作系统结构"><a class="markdownIt-Anchor" href="#chapter3-操作系统结构"></a> Chapter3 操作系统结构</h1>
+<h2 id="复杂度管理方法-malh"><a class="markdownIt-Anchor" href="#复杂度管理方法-malh"></a> 复杂度管理方法 M.A.L.H</h2>
+<p>Modularity: 模块化，分而治之<br />
+Abstraction: 抽象，接口与实现分离，遵循宽进严出原则。例如虚拟内存、文件系统</p>
+<blockquote>
+<p>对于大型系统，只有模块化和抽象，可能导致划分模块太多，交互关系复杂，因此还需要引入分层和层次结构控制复杂度。</p>
+</blockquote>
+<p>Layering: 分层，每个层级是一套完整机制。通常一个模块只能与本层和上下层交互，不能跨层。例如OSI、TCP/IP<br />
+Hierarchy: 层次结构，大的子系统由多个小的子系统组织成。即同级模块的分层</p>
+<blockquote>
+<p>宽进严出原则：容忍各种输入（包括恶意输入），严格控制模块的对外输出</p>
+</blockquote>
+<h2 id="微内核"><a class="markdownIt-Anchor" href="#微内核"></a> 微内核</h2>
+<p>宏内核架构：单点bug使整个系统崩溃。<br />
+微内核：解耦单个功能/模块（如文件系统、设备驱动）作为独立服务隔离运行，使内核成为一个最小功能集。</p>
+<blockquote>
+<p>微内核架构服务隔离，单点出问题系统不会崩溃</p>
+</blockquote>
+<blockquote>
+<p>内核态部分，称为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi><mi>k</mi><mi>e</mi><mi>r</mi><mi>n</mi><mi>e</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">\mu kernel</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span></p>
+</blockquote>
+<p>微内核优势：</p>
+<ol>
+<li>弹性硬件拓展能力</li>
+<li>硬件异构实现</li>
+<li>功能安全</li>
+<li>信息安全</li>
+<li>时延确定</li>
+</ol>
+<blockquote>
+<p>现代操作系统特征：1）虚拟内存；2）用户态、内核态隔离。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/CS61B%20sp18/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/CS61B%20sp18/" class="post-title-link" itemprop="url">CS61B sp18</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-21 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-21T00:00:00+08:00">2024-08-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-30 11:01:12" itemprop="dateModified" datetime="2024-09-30T11:01:12+08:00">2024-09-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="gradescope-autograder"><a class="markdownIt-Anchor" href="#gradescope-autograder"></a> Gradescope Autograder</h1>
+<h2 id="spring-2018"><a class="markdownIt-Anchor" href="#spring-2018"></a> <a target="_blank" rel="noopener" href="https://sp18.datastructur.es/">Spring 2018</a></h2>
+<p>44个Assn，偏向数据结构<br />
+邀请码：<code>MNXYKX</code><br />
+学校：<code>UC Berkeley</code><br />
+直接输入，不要选择<code>2U-UC Berkeley</code>，否则将提示<code>COURSE ENTRY CODE IS INVALID</code></p>
+<h2 id="spring-2021"><a class="markdownIt-Anchor" href="#spring-2021"></a> <a target="_blank" rel="noopener" href="https://sp21.datastructur.es/">Spring 2021</a></h2>
+<p>19个Assn，偏向软件工程<br />
+邀请码：<code>MB7ZPY</code></p>
+<h1 id="文章收录"><a class="markdownIt-Anchor" href="#文章收录"></a> 文章收录</h1>
+<p><a target="_blank" rel="noopener" href="https://mathwithbaddrawings.com/2015/04/08/the-math-ceiling-wheres-your-cognitive-breaking-point/">The Law of the Broken Futon</a> 浮沙筑高台法则</p>
+<blockquote>
+<p>“Since I’m fine now, can’t I add that missing piece later, when it’s actually needed?” Sometimes, yes. But it’s much harder.<br />
+Adding the missing piece later means waiting until the damage is already underway, and hellishly difficult to undo.</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://henrikwarne.com/2014/09/04/a-response-to-why-most-unit-testing-is-waste/">A Response to “Why Most Unit Testing is Waste”</a></p>
+<blockquote>
+<p>(Unit Tests) They are based on <em>programmers’ fantasies about how the function should work</em>. But programmers break down requirements into smaller components all the time – this is how you program. Sometimes there are misunderstandings, but that is the exception, not the rule, in my opinion.</p>
+</blockquote>
+<h1 id="21-mystery-of-java-restore"><a class="markdownIt-Anchor" href="#21-mystery-of-java-restore"></a> 2.1 Mystery of Java Restore</h1>
+<blockquote>
+<p>When instantiate an Object, <code>obj = new Object()</code>, <code>obj</code> <strong>stores the address</strong> of the Object, not the specific data struction.</p>
+</blockquote>
+<p>(That is why all type of variables create memory boxes of 64 bits. It is just the memory of the address.)</p>
+<p>Therefore, When we use <code>obj2 = obj</code>, Java simply copy the addr of <code>obj</code> and assign it to <code>obj2</code> (They are pointing to the same Object), that is why when we change <code>obj2.weight</code> it effects <code>obj.weight</code> too.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/CS61B%20sp18/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -918,300 +1233,6 @@ TCP需要确认对方收到数据，但是为了不浪费时间，实际上TCP�
 ICMP：定义各种消息，如超时、无法到达、超出转发能力</p>
 <p>UDP在发送的数据少于一个包（重发也只需要发一个包，代价小，如DNS查询控制信息）、发送的数据具有时效性（如音视频，必须快速发送，即使重发也没有意义）的情况下使用。UDP只负责收发数据，对方没收到就全部重发一遍。</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">tmux使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-25T00:00:00+08:00">2023-11-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-07-24 10:28:51" itemprop="dateModified" datetime="2024-07-24T10:28:51+08:00">2024-07-24</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <pre><code>参考教程： https://www.ruanyifeng.com/blog/2019/10/tmux.html
-</code></pre>
-<ul>
-<li>tmux使会话与窗口解绑，一个窗口<code>source .bashrc</code>更新了，另一个窗口可能没有</li>
-</ul>
-<ul>
-<li><strong><code>ctrl+b</code> 前缀键</strong><br />
-<code>%</code>  分成左右两栏<br />
-<code>&quot;</code>  分成上下两栏<br />
-<code>up</code>  选择上边的窗口<br />
-<code>[</code> 查看历史记录</li>
-</ul>
-<h1 id="窗口"><a class="markdownIt-Anchor" href="#窗口"></a> 窗口</h1>
-<ul>
-<li><code>&lt;C-d&gt;</code> <strong>删除窗口</strong></li>
-</ul>
-<ul>
-<li><code>&lt;C-b&gt; z</code> <strong>最大化/最小化一个窗口</strong></li>
-<li><code>&lt;C-b&gt; c</code> 创建一个新的窗口，使用 <code>&lt;C-d&gt;</code>关闭</li>
-<li><code>&lt;C-b&gt; N</code> 跳转到第 <em>N</em> 个窗口，注意每个窗口都是有编号的</li>
-<li><code>&lt;C-b&gt; p</code> 切换到前一个窗口</li>
-<li><code>&lt;C-b&gt; n</code> 切换到下一个窗口</li>
-<li><code>&lt;C-b&gt; w</code> 列出当前所有窗口</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/ThinkPHP%206/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/ThinkPHP%206/" class="post-title-link" itemprop="url">ThinkPHP 6</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-07-19 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-19T00:00:00+08:00">2024-07-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-07-23 15:29:59" itemprop="dateModified" datetime="2024-07-23T15:29:59+08:00">2024-07-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/manual/thinkphp6_0/1037479">ThinkPHP 6.0文档</a></p>
-<h1 id="composer安装"><a class="markdownIt-Anchor" href="#composer安装"></a> Composer安装</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer create-project topthink/think tp</span><br><span class="line"><span class="comment"># tp是应用根目录名称，可以修改</span></span><br></pre></td></tr></table></figure>
-<h1 id="访问"><a class="markdownIt-Anchor" href="#访问"></a> 访问</h1>
-<ol>
-<li><code>localhost/tp/public/</code> 首页</li>
-<li><code>首页/index.php/index</code> controller下的Index类</li>
-<li><code>首页/index.php/index/?s=hello/value</code> 调用controller下Index类的hello方法，并传入参数value(URL兼容模式)</li>
-<li><code>首页/index.php/hello_world</code> 调用controller下HelloWorld类</li>
-<li><code>首页/index.php/group.blog</code> 调用controller/group下的Blog类</li>
-</ol>
-<h1 id="输出数组"><a class="markdownIt-Anchor" href="#输出数组"></a> 输出数组</h1>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$data</span> = <span class="keyword">array</span>(<span class="string">&#x27;a&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span> =&gt; <span class="number">3</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="title function_ invoke__">json</span>(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
-<h1 id="开启调试"><a class="markdownIt-Anchor" href="#开启调试"></a> 开启调试</h1>
-<p>在应用根目录下新建.env文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">APP_DEBUG = true</span><br><span class="line"></span><br><span class="line">[APP]</span><br><span class="line">DEFAULT_TIMEZONE = Asia/Shanghai</span><br><span class="line"></span><br><span class="line">[DATABASE]</span><br><span class="line">TYPE = mysql</span><br><span class="line">HOSTNAME = 127.0.0.1</span><br><span class="line">DATABASE = test</span><br><span class="line">USERNAME = username</span><br><span class="line">PASSWORD = password</span><br><span class="line">HOSTPORT = 3306</span><br><span class="line">CHARSET = utf8</span><br><span class="line">DEBUG = true</span><br><span class="line"></span><br><span class="line">[LANG]</span><br><span class="line">default_lang = zh-cn</span><br></pre></td></tr></table></figure>
-<h1 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h1>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$user</span> = <span class="title class_">Db</span>::<span class="title function_ invoke__">connect</span>(<span class="string">&#x27;mysql&#x27;</span>)-&gt;<span class="title function_ invoke__">table</span>(<span class="string">&#x27;tp_user&#x27;</span>)-&gt;<span class="title function_ invoke__">select</span>();</span><br><span class="line"><span class="comment">// 确定数据库和数据表</span></span><br><span class="line"><span class="keyword">return</span> <span class="title function_ invoke__">json</span>(<span class="variable">$user</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者有Model User</span></span><br><span class="line"><span class="variable">$user</span> = <span class="title class_">User</span>::<span class="title function_ invoke__">select</span>();</span><br></pre></td></tr></table></figure>
-<h2 id="model"><a class="markdownIt-Anchor" href="#model"></a> Model</h2>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">app</span>\<span class="title class_">model</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Model</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Model</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$connection</span> = <span class="string">&#x27;databaseName&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="查询"><a class="markdownIt-Anchor" href="#查询"></a> 查询</h2>
-<p>Db::getLastSql();可以看上一条sql语句</p>
-<h4 id="一条数据"><a class="markdownIt-Anchor" href="#一条数据"></a> 一条数据</h4>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">table</span>(<span class="string">&#x27;tableName&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;fieldName&#x27;</span>, fieldValue)-&gt;<span class="title function_ invoke__">find</span>(); <span class="comment">// 查询不到返回null</span></span><br><span class="line"><span class="comment">// findFail在查询不到时抛出异常；findEmpty在查询不到时返回空数组</span></span><br></pre></td></tr></table></figure>
-<h3 id="整个表数据集"><a class="markdownIt-Anchor" href="#整个表数据集"></a> 整个表（数据集）</h3>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">table</span>(<span class="string">&#x27;tableName&#x27;</span>)-&gt;<span class="title function_ invoke__">select</span>();</span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;tableNameWithoutPrefix&#x27;</span>)-&gt;<span class="title function_ invoke__">select</span>();</span><br></pre></td></tr></table></figure>
-<h3 id="某条记录的字段值"><a class="markdownIt-Anchor" href="#某条记录的字段值"></a> 某条记录的字段值</h3>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;tableName&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="variable">$id</span>)-&gt;<span class="title function_ invoke__">value</span>(<span class="string">&#x27;field&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="一列键值对"><a class="markdownIt-Anchor" href="#一列键值对"></a> 一列（键值对）</h3>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;name&#x27;</span>)-&gt;<span class="title function_ invoke__">column</span>(<span class="string">&#x27;fieldAsValue&#x27;</span>, <span class="string">&#x27;fieldAsKey&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="插入"><a class="markdownIt-Anchor" href="#插入"></a> 插入</h2>
-<h3 id="一条数据-2"><a class="markdownIt-Anchor" href="#一条数据-2"></a> 一条数据</h3>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// strict 表示强行插入</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">strict</span>(<span class="literal">false</span>)-&gt;<span class="title function_ invoke__">insert</span>(<span class="variable">$data</span>);</span><br><span class="line"><span class="comment">// 有相同主键则替换</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">replace</span>()-&gt;<span class="title function_ invoke__">insert</span>(<span class="variable">$data</span>);</span><br><span class="line"><span class="comment">// 根据主键自动判断</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">save</span>(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="多条数据"><a class="markdownIt-Anchor" href="#多条数据"></a> 多条数据</h3>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">insertAll</span>(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="修改"><a class="markdownIt-Anchor" href="#修改"></a> 修改</h2>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="number">232</span>)</span><br><span class="line">                -&gt;<span class="title function_ invoke__">update</span>([ </span><br><span class="line">                  // 下面是SQL表达式</span><br><span class="line">                  <span class="string">&#x27;email&#x27;</span> =&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;UPPER(email)&#x27;</span>),</span><br><span class="line">                    <span class="string">&#x27;price&#x27;</span> =&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;price + 1&#x27;</span>),</span><br><span class="line">                  <span class="string">&#x27;status&#x27;</span>=&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;status - 2&#x27;</span>)</span><br><span class="line">                ]);</span><br></pre></td></tr></table></figure>
-<h2 id="删除"><a class="markdownIt-Anchor" href="#删除"></a> 删除</h2>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 根据主键删除多条数据</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">delete</span>([<span class="number">48</span>,<span class="number">49</span>,<span class="number">50</span>]);</span><br><span class="line"><span class="comment">// 匹配删除</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="number">47</span>)-&gt;<span class="title function_ invoke__">delete</span>();</span><br><span class="line"><span class="comment">// 全部删除</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">delete</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer require topthink/think-view</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Windows%20scripts%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Windows%20scripts%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Windows scripts使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-07-16 00:00:00 / 修改时间：16:45:20" itemprop="dateCreated datePublished" datetime="2024-07-16T00:00:00+08:00">2024-07-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="task-scheduler"><a class="markdownIt-Anchor" href="#task-scheduler"></a> Task Scheduler</h1>
-<p>WIN+R, <code>taskschd.msc</code><br />
-在这里可以设置定时任务、登录任务。<br />
-有些软件的开机自启动就设置在这里。比起组策略有更多的可选项（延迟启动，网络和电源要求等）</p>
-<h1 id="group-policy-editor"><a class="markdownIt-Anchor" href="#group-policy-editor"></a> Group Policy Editor</h1>
-<p>WIN+R, <code>gpedit.msc</code><br />
-在这里可以设置一些开关机时执行的任务</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Computer Configuration -&gt; Windows settings -&gt; Scripts -&gt; Shutdown -&gt; Properties -&gt; Add</span><br></pre></td></tr></table></figure>
-<h1 id="静默运行脚本"><a class="markdownIt-Anchor" href="#静默运行脚本"></a> 静默运行脚本</h1>
-<p>Task Scheduler没有办法隐藏窗口<br />
-在Task Scheduler运行该vbs脚本，目标脚本路径作为参数即可实现静默运行。</p>
-<figure class="highlight vbs"><table><tr><td class="code"><pre><span class="line"><span class="comment">&#x27; minRun.vbs</span></span><br><span class="line"><span class="comment">&#x27; Run minRun.vbs Task Scheduler在可选参数提供实际脚本地址</span></span><br><span class="line"><span class="comment">&#x27; 检查是否提供了批处理文件路径参数</span></span><br><span class="line"><span class="keyword">If</span> WScript.Arguments.Count = <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">    WScript.Echo <span class="string">&quot;Error: No batch file path provided.&quot;</span></span><br><span class="line">    WScript.Quit <span class="number">1</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 获取批处理文件路径参数</span></span><br><span class="line"><span class="keyword">Dim</span> batchFilePath</span><br><span class="line">batchFilePath = WScript.Arguments(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 检查批处理文件是否存在</span></span><br><span class="line"><span class="keyword">If</span> <span class="keyword">Not</span> FileExists(batchFilePath) <span class="keyword">Then</span></span><br><span class="line">    WScript.Echo <span class="string">&quot;Error: Batch file not found at &quot;</span> &amp; batchFilePath</span><br><span class="line">    WScript.Quit <span class="number">1</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 创建 WScript.Shell 对象</span></span><br><span class="line"><span class="keyword">Set</span> oShell = <span class="built_in">CreateObject</span>(<span class="string">&quot;Wscript.Shell&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 执行批处理文件</span></span><br><span class="line"><span class="comment">&#x27; 使用 0 表示不等待批处理文件执行完成</span></span><br><span class="line"><span class="comment">&#x27; 使用 True 表示以同步方式运行（等待批处理执行完成）</span></span><br><span class="line">oShell.Run batchFilePath, <span class="number">0</span>, <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 清理</span></span><br><span class="line"><span class="keyword">Set</span> oShell = <span class="literal">Nothing</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 检查文件是否存在的辅助函数</span></span><br><span class="line"><span class="keyword">Function</span> FileExists(filePath)</span><br><span class="line">    <span class="keyword">Dim</span> fso</span><br><span class="line">    <span class="keyword">Set</span> fso = <span class="built_in">CreateObject</span>(<span class="string">&quot;Scripting.FileSystemObject&quot;</span>)</span><br><span class="line">    FileExists = fso.FileExists(filePath)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br></pre></td></tr></table></figure>
       
     </div>
 
