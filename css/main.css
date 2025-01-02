@@ -520,7 +520,7 @@ pre figcaption a:hover {
 }
 pre,
 code {
-  font-family: IBM Plex Mono, consolas, Menlo, monospace, 'Noto Serif SC';
+  font-family: IBM Plex Mono Light, consolas, Menlo, monospace, 'Noto Serif SC';
 }
 code {
   border-radius: 3px;
@@ -1235,7 +1235,7 @@ pre code {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #2bb429;
+  background: #3cf941;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
@@ -2610,4 +2610,13 @@ header.header {
   .sidebar-active .footer-fixed {
     left: 320px;
   }
+}
+.post-body h1 {
+  color: #26267d;
+}
+.post-body h2 {
+  color: #5e5eae;
+}
+.post-body h3 {
+  color: #8b96b9;
 }
