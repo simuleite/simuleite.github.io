@@ -6,7 +6,7 @@
   <link href="http://simuleite.github.io/atom.xml" rel="self"/>
   
   <link href="http://simuleite.github.io/"/>
-  <updated>2025-01-01T12:33:01.080Z</updated>
+  <updated>2025-01-03T13:09:07.721Z</updated>
   <id>http://simuleite.github.io/</id>
   
   <author>
@@ -21,16 +21,16 @@
     <link href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/SpringCloud%E7%AC%94%E8%AE%B0/"/>
     <id>http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/SpringCloud%E7%AC%94%E8%AE%B0/</id>
     <published>2024-12-31T16:00:00.000Z</published>
-    <updated>2025-01-01T12:33:01.080Z</updated>
+    <updated>2025-01-03T13:09:07.721Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="微服务"><a class="markdownIt-Anchor" href="#微服务"></a> 微服务</h1><p>微服务：解决接口越来越多，单体应用运行缓慢问题。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="微服务"><a class="markdownIt-Anchor" href="#微服务"></a> 微服务</h1><p>微服务：解决接口越来越多，单体应用运行缓慢问题。</p><h1 id="踩坑记录"><a class="markdownIt-Anchor" href="#踩坑记录"></a> 踩坑记录</h1><h2 id="找不到mapper"><a class="markdownIt-Anchor" href="#找不到mapper"></a> 找不到Mapper</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">***************************</span><br><span class="line">APPLICATION FAILED TO START</span><br><span class="line">***************************</span><br><span class="line"></span><br><span class="line">Description:</span><br><span class="line"></span><br><span class="line">Field deviceMapper in com.esagent.es.EsDataInit required a bean of type &#x27;com.example.mapper.YourMapper&#x27; that could not be found.</span><br><span class="line"></span><br><span class="line">The injection point has the following annotations:</span><br><span class="line">    - @org.springframework.beans.factory.annotation.Autowired(required=true)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Action:</span><br><span class="line"></span><br><span class="line">Consider defining a bean of type &#x27;com.example.mapper.YourMapper&#x27; in your configuration.</span><br></pre></td></tr></table></figure><p>原因是mybatis版本有问题！</p><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 版本需要和其他依赖对上 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
     
     
       
       
     <summary type="html">&lt;h1 id=&quot;微服务&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#微服务&quot;&gt;&lt;/a&gt; 微服务&lt;/h1&gt;
 &lt;p&gt;微服务：解决接口越来越多，单体应用运行缓慢问题。&lt;/p&gt;
-</summary>
+&lt;h1 id=&quot;踩坑记录&quot;&gt;&lt;a class=&quot;markdownIt-Ancho</summary>
       
     
     
