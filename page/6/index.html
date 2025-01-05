@@ -148,13 +148,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">61</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -171,177 +171,6 @@
     </div>
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/LinuxC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/LinuxC/" class="post-title-link" itemprop="url">LinuxC</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-21 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-21T00:00:00+08:00">2023-11-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-05-31 17:54:37" itemprop="dateModified" datetime="2024-05-31T17:54:37+08:00">2024-05-31</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="90-代码风格"><a class="markdownIt-Anchor" href="#90-代码风格"></a> 9.0 代码风格</h3>
-<ol>
-<li>函数最好保持简单，只实现一种功能 (5-10个变量， 4个缩进以内)</li>
-<li>函数命名包括动词，如get_current</li>
-<li>使用下划线、详细地命名</li>
-</ol>
-<h2 id="第一阶段总结"><a class="markdownIt-Anchor" href="#第一阶段总结"></a> 第一阶段总结</h2>
-<p>（Kimi AI生成）在C语言中，源文件中的语法元素和规则如下：</p>
-<ol>
-<li>
-<p><strong>源文件中所有函数定义之外可以出现的语法元素</strong>：</p>
-<ul>
-<li>预处理指令（如<code>#include</code>, <code>#define</code>, <code>#ifdef</code>等）</li>
-<li>全局变量声明</li>
-<li>类型定义（如<code>typedef</code>）</li>
-<li>函数原型声明（函数声明）</li>
-<li>静态变量声明</li>
-<li>静态函数声明</li>
-<li>枚举类型声明</li>
-<li>结构体和联合体声明</li>
-<li>宏定义</li>
-</ul>
-</li>
-<li>
-<p><strong>函数定义之中可以出现的语法元素</strong>：</p>
-<ul>
-<li>局部变量声明</li>
-<li>语句（如赋值语句、控制流语句等）</li>
-<li>函数调用</li>
-<li>表达式</li>
-<li>语句块（由花括号<code>&#123;&#125;</code>包围的语句集合）</li>
-</ul>
-</li>
-<li>
-<p><strong>语句的种类</strong>：</p>
-<ul>
-<li>表达式语句</li>
-<li>复合语句（由花括号<code>&#123;&#125;</code>包围的语句集合）</li>
-<li>空语句（由分号<code>;</code>表示）</li>
-<li>标签语句（由标签标识符和冒号<code>:</code>组成）</li>
-<li>选择语句（<code>if</code>, <code>switch</code>）</li>
-<li>迭代语句（<code>while</code>, <code>do-while</code>, <code>for</code>）</li>
-<li>跳转语句（<code>break</code>, <code>continue</code>, <code>goto</code>, <code>return</code>）</li>
-</ul>
-</li>
-<li>
-<p><strong>需要遵循标识符命名规则的语法元素</strong>：</p>
-<ul>
-<li>变量名</li>
-<li>函数名</li>
-<li>类型名</li>
-<li>枚举常量名</li>
-<li>结构体和联合体成员名</li>
-<li>宏名</li>
-</ul>
-</li>
-<li>
-<p><strong>表达式由哪些语法元素组成</strong>：</p>
-<ul>
-<li>常量</li>
-<li>变量</li>
-<li>函数调用</li>
-<li>算术运算符和表达式</li>
-<li>逻辑运算符和表达式</li>
-<li>条件运算符和表达式</li>
-<li>逗号运算符和表达式</li>
-<li>位运算符和表达式</li>
-<li>赋值运算符和表达式</li>
-<li>地址运算符和表达式</li>
-<li>指针运算符和表达式</li>
-</ul>
-</li>
-<li>
-<p><strong>运算符的左值、整型操作数和Side Effect</strong>：</p>
-<ul>
-<li>取操作数的左值的运算符：赋值运算符（<code>=</code>, <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code>, <code>&amp;=</code>, <code>^=</code>, <code>|=</code>, <code>&lt;&lt;=</code>, <code>&gt;&gt;=</code>）</li>
-<li>操作数必须是整型的运算符：位移运算符（<code>&lt;&lt;</code>, <code>&gt;&gt;</code>）</li>
-<li>有Side Effect的运算符：赋值运算符，自增/自减运算符（<code>++</code>, <code>--</code>），递增/递减运算符（<code>++</code>, <code>--</code>），取地址运算符（<code>&amp;</code>），解引用运算符（<code>*</code>）</li>
-</ul>
-</li>
-<li>
-<p><strong>左值和右值</strong>：</p>
-<ul>
-<li>可以做左值的表达式：变量、数组元素、解引用指针、结构体成员、联合体成员</li>
-<li>只能做右值的表达式：字面量、函数调用、算术运算、逻辑运算、条件运算、逗号运算等</li>
-</ul>
-</li>
-<li>
-<p><strong>常量表达式和整数常量表达式</strong>：</p>
-<ul>
-<li>必须用常量表达式的地方：数组大小、枚举常量、类型定义、宏定义中的常量参数等</li>
-<li>必须用整数常量表达式的地方：数组大小、枚举常量等</li>
-</ul>
-</li>
-</ol>
-<p>请注意，C语言的语法规则可能会随着不同的编译器和标准（如C89, C90, C99, C11等）有所不同。上述信息基于C语言的一般规则。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -1226,8 +1055,95 @@ tags: Data Center, Linux, Open Source
 
 
 
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/LFS%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/LFS%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">LFS笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-11-26 11:12:35" itemprop="dateModified" datetime="2023-11-26T11:12:35+08:00">2023-11-26</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="lfs"><a class="markdownIt-Anchor" href="#lfs"></a> <strong>LFS</strong></h2>
+<pre><code>参考网站：https://www.linuxfromscratch.org/lfs/
+</code></pre>
+<p>Linux From Scratch，搭建你自己的Linux</p>
+<ul>
+<li><strong>bision：</strong> bison是属于 GNU 项目的一个语法分析器生成器</li>
+<li><strong>gawk：</strong> linux下查找替换文本工具</li>
+<li><strong>texinfo：</strong> Texinfo是一种用于创建文档的格式和工具集。<br />
+它最初是为GNU项目开发的，用于编写GNU的软件文档。<br />
+Texinfo使用简单的文本文件格式，可以生成各种格式的输出，如HTML、PDF、Info格式等。</li>
+<li><strong>sudo ln -sf bash /bin/sh：</strong> 令shell脚本指向bash</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
   </nav>
 
 </div>
