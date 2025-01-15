@@ -236,29 +236,6 @@ log2(x) 以2为底数的对数
       </tags>
   </entry>
   <entry>
-    <title>Maven使用</title>
-    <url>/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h1>
-<p><code>mvn package</code> 测试并打包到<code>target/</code>，使用<code>java -jar Project.jar</code>来运行</p>
-]]></content>
-      <tags>
-        <tag>基本操作</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mermaid使用</title>
-    <url>/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Mermaid%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="flowchart"><a class="markdownIt-Anchor" href="#flowchart"></a> Flowchart</h1>
-<h2 id="基本语法"><a class="markdownIt-Anchor" href="#基本语法"></a> 基本语法</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart LR/TD</span><br><span class="line">    id[Content]</span><br><span class="line">    item[Line1</span><br><span class="line">    Line2</span><br><span class="line">    Line3]</span><br><span class="line">    id --&gt; item</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    id[Content]</span><br><span class="line">    item[Line1</span><br><span class="line">    Line2</span><br><span class="line">    Line3]</span><br><span class="line">    id --&gt; item</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    item&#123;Relationship&#125;</span><br><span class="line">    id(Entity)</span><br><span class="line"></span><br><span class="line">    id -- Text --&gt; item</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart TD;</span><br><span class="line">    item&#123;Relationship&#125;;</span><br><span class="line">    id(Entity);</span><br><span class="line"></span><br><span class="line">    id -- Text --&gt; item;</span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>基本操作</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mybatis使用</title>
     <url>/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Mybatis%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<h1 id="mybatis-configxml"><a class="markdownIt-Anchor" href="#mybatis-configxml"></a> mybatis-config.xml</h1>
@@ -612,17 +589,24 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 </ol>
 </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;191220000-Zhang San&quot;</span> </span><br><span class="line"><span class="comment"># 全局设置名称</span></span><br><span class="line">git config --global user.email <span class="string">&quot;zhang3@email.com&quot;</span></span><br><span class="line">git config --global core.editor vim</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;191220000-Zhang San&quot;</span> </span><br><span class="line"><span class="comment"># 全局设置名称</span></span><br><span class="line">git config --global user.email <span class="string">&quot;zhang3@email.com&quot;</span></span><br><span class="line">git config --global core.editor vim</span><br><span class="line"></span><br><span class="line"><span class="comment"># instead of</span></span><br><span class="line">git config --global url.git@github.com:.insteadOf https://github.com/</span><br><span class="line"><span class="comment"># alias</span></span><br><span class="line">git config --global alias.cin <span class="string">&quot;commit --amend --no-edit&quot;</span></span><br></pre></td></tr></table></figure>
 <h1 id="20-初始化仓库"><a class="markdownIt-Anchor" href="#20-初始化仓库"></a> 2.0 初始化仓库</h1>
 <ol>
 <li>本地仓库：<code>git init</code>创建一个新的 git 仓库，其数据会存放在一个名为 <code>.git</code> 的目录下<br />
 删除仓库：删除 .git 文件夹</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add &lt;文件名字，*表示全部&gt;</span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span> </span><br><span class="line"><span class="comment"># 提交到暂存区，并附上注释</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add &lt;文件名字，*表示全部&gt;</span><br><span class="line"><span class="comment"># 提交到暂存区，并附上注释</span></span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span> </span><br><span class="line"><span class="comment"># 修改最近的一次提交</span></span><br><span class="line">git commit --ammend</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <ol start="2">
 <li>远程仓库：<code>git clone</code>克隆远端仓库</li>
 </ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &lt;网址&gt; &lt;仓库存放文件夹名&gt;</span><br><span class="line"><span class="comment"># 使用http克隆</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看remote</span></span><br><span class="line">git remote -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加remote</span></span><br><span class="line">git remote add origin project_repository_url.git</span><br><span class="line"><span class="comment"># 设置push分支为自己的仓库</span></span><br><span class="line">git remote set-url --add --push origin your_repository_url.git</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> &lt;网址&gt; &lt;仓库存放文件夹名&gt;</span><br><span class="line"><span class="comment"># 使用http克隆</span></span><br></pre></td></tr></table></figure>
+<h1 id="配置ssh"><a class="markdownIt-Anchor" href="#配置ssh"></a> 配置SSH</h1>
+<blockquote>
+<p>不推荐dsa和rsa，推荐ed25519</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C &quot;your_email@email.com&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="tag"><a class="markdownIt-Anchor" href="#tag"></a> Tag</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag v0.0.version</span><br><span class="line">git tag -a v0.version -m &quot;Your Comments to the version&quot;</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
 <h1 id="30-记录更新"><a class="markdownIt-Anchor" href="#30-记录更新"></a> 3.0 记录更新</h1>
 <ul>
@@ -680,7 +664,7 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 <li><code>git merge &lt;brach_name&gt;</code>: 合并到当前分支</li>
 </ul>
 <h1 id="70-gitigore"><a class="markdownIt-Anchor" href="#70-gitigore"></a> 7.0 gitigore</h1>
-<h2 id="-code3-"><a class="markdownIt-Anchor" href="#-code3-"></a> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 所有.c文件</span><br><span class="line">*.c </span><br><span class="line"># 所有chapter*/eg/文件夹的文件</span><br><span class="line">chapter*/eg/ </span><br><span class="line"># 所有子目录下的.class文件</span><br><span class="line">**/*.class </span><br><span class="line"># 不忽略hello.c文件</span><br><span class="line">!hello.c </span><br></pre></td></tr></table></figure></h2>
+<h2 id="-code5-"><a class="markdownIt-Anchor" href="#-code5-"></a> <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 所有.c文件</span><br><span class="line">*.c </span><br><span class="line"># 所有chapter*/eg/文件夹的文件</span><br><span class="line">chapter*/eg/ </span><br><span class="line"># 所有子目录下的.class文件</span><br><span class="line">**/*.class </span><br><span class="line"># 不忽略hello.c文件</span><br><span class="line">!hello.c </span><br></pre></td></tr></table></figure></h2>
 <h1 id="nju讲解"><a class="markdownIt-Anchor" href="#nju讲解"></a> NJU讲解</h1>
 <pre><code>B站王慧妍老师：BV1Bu4y1K7yr 
 </code></pre>
@@ -2345,26 +2329,6 @@ Coprocessor：80年代的晶体管没办法把浮点运算和整数运算的单�
       </tags>
   </entry>
   <entry>
-    <title>LFS笔记</title>
-    <url>/ComputerScience/%E7%AC%94%E8%AE%B0/LFS%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h2 id="lfs"><a class="markdownIt-Anchor" href="#lfs"></a> <strong>LFS</strong></h2>
-<pre><code>参考网站：https://www.linuxfromscratch.org/lfs/
-</code></pre>
-<p>Linux From Scratch，搭建你自己的Linux</p>
-<ul>
-<li><strong>bision：</strong> bison是属于 GNU 项目的一个语法分析器生成器</li>
-<li><strong>gawk：</strong> linux下查找替换文本工具</li>
-<li><strong>texinfo：</strong> Texinfo是一种用于创建文档的格式和工具集。<br />
-它最初是为GNU项目开发的，用于编写GNU的软件文档。<br />
-Texinfo使用简单的文本文件格式，可以生成各种格式的输出，如HTML、PDF、Info格式等。</li>
-<li><strong>sudo ln -sf bash /bin/sh：</strong> 令shell脚本指向bash</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode100 错题本</title>
     <url>/ComputerScience/%E7%AC%94%E8%AE%B0/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/</url>
     <content><![CDATA[<h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
@@ -2468,110 +2432,6 @@ Texinfo使用简单的文本文件格式，可以生成各种格式的输出，�
 <li>动态规划最小值核心算法</li>
 <li>验证dp是否被修改，没有被修改，说明凑不成，返回-1；否则返回<code>dp[amount]</code></li>
 </ol>
-]]></content>
-      <tags>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>LinuxC</title>
-    <url>/ComputerScience/%E7%AC%94%E8%AE%B0/LinuxC/</url>
-    <content><![CDATA[<h3 id="90-代码风格"><a class="markdownIt-Anchor" href="#90-代码风格"></a> 9.0 代码风格</h3>
-<ol>
-<li>函数最好保持简单，只实现一种功能 (5-10个变量， 4个缩进以内)</li>
-<li>函数命名包括动词，如get_current</li>
-<li>使用下划线、详细地命名</li>
-</ol>
-<h2 id="第一阶段总结"><a class="markdownIt-Anchor" href="#第一阶段总结"></a> 第一阶段总结</h2>
-<p>（Kimi AI生成）在C语言中，源文件中的语法元素和规则如下：</p>
-<ol>
-<li>
-<p><strong>源文件中所有函数定义之外可以出现的语法元素</strong>：</p>
-<ul>
-<li>预处理指令（如<code>#include</code>, <code>#define</code>, <code>#ifdef</code>等）</li>
-<li>全局变量声明</li>
-<li>类型定义（如<code>typedef</code>）</li>
-<li>函数原型声明（函数声明）</li>
-<li>静态变量声明</li>
-<li>静态函数声明</li>
-<li>枚举类型声明</li>
-<li>结构体和联合体声明</li>
-<li>宏定义</li>
-</ul>
-</li>
-<li>
-<p><strong>函数定义之中可以出现的语法元素</strong>：</p>
-<ul>
-<li>局部变量声明</li>
-<li>语句（如赋值语句、控制流语句等）</li>
-<li>函数调用</li>
-<li>表达式</li>
-<li>语句块（由花括号<code>&#123;&#125;</code>包围的语句集合）</li>
-</ul>
-</li>
-<li>
-<p><strong>语句的种类</strong>：</p>
-<ul>
-<li>表达式语句</li>
-<li>复合语句（由花括号<code>&#123;&#125;</code>包围的语句集合）</li>
-<li>空语句（由分号<code>;</code>表示）</li>
-<li>标签语句（由标签标识符和冒号<code>:</code>组成）</li>
-<li>选择语句（<code>if</code>, <code>switch</code>）</li>
-<li>迭代语句（<code>while</code>, <code>do-while</code>, <code>for</code>）</li>
-<li>跳转语句（<code>break</code>, <code>continue</code>, <code>goto</code>, <code>return</code>）</li>
-</ul>
-</li>
-<li>
-<p><strong>需要遵循标识符命名规则的语法元素</strong>：</p>
-<ul>
-<li>变量名</li>
-<li>函数名</li>
-<li>类型名</li>
-<li>枚举常量名</li>
-<li>结构体和联合体成员名</li>
-<li>宏名</li>
-</ul>
-</li>
-<li>
-<p><strong>表达式由哪些语法元素组成</strong>：</p>
-<ul>
-<li>常量</li>
-<li>变量</li>
-<li>函数调用</li>
-<li>算术运算符和表达式</li>
-<li>逻辑运算符和表达式</li>
-<li>条件运算符和表达式</li>
-<li>逗号运算符和表达式</li>
-<li>位运算符和表达式</li>
-<li>赋值运算符和表达式</li>
-<li>地址运算符和表达式</li>
-<li>指针运算符和表达式</li>
-</ul>
-</li>
-<li>
-<p><strong>运算符的左值、整型操作数和Side Effect</strong>：</p>
-<ul>
-<li>取操作数的左值的运算符：赋值运算符（<code>=</code>, <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code>, <code>&amp;=</code>, <code>^=</code>, <code>|=</code>, <code>&lt;&lt;=</code>, <code>&gt;&gt;=</code>）</li>
-<li>操作数必须是整型的运算符：位移运算符（<code>&lt;&lt;</code>, <code>&gt;&gt;</code>）</li>
-<li>有Side Effect的运算符：赋值运算符，自增/自减运算符（<code>++</code>, <code>--</code>），递增/递减运算符（<code>++</code>, <code>--</code>），取地址运算符（<code>&amp;</code>），解引用运算符（<code>*</code>）</li>
-</ul>
-</li>
-<li>
-<p><strong>左值和右值</strong>：</p>
-<ul>
-<li>可以做左值的表达式：变量、数组元素、解引用指针、结构体成员、联合体成员</li>
-<li>只能做右值的表达式：字面量、函数调用、算术运算、逻辑运算、条件运算、逗号运算等</li>
-</ul>
-</li>
-<li>
-<p><strong>常量表达式和整数常量表达式</strong>：</p>
-<ul>
-<li>必须用常量表达式的地方：数组大小、枚举常量、类型定义、宏定义中的常量参数等</li>
-<li>必须用整数常量表达式的地方：数组大小、枚举常量等</li>
-</ul>
-</li>
-</ol>
-<p>请注意，C语言的语法规则可能会随着不同的编译器和标准（如C89, C90, C99, C11等）有所不同。上述信息基于C语言的一般规则。</p>
 ]]></content>
       <tags>
         <tag>笔记</tag>
@@ -2692,65 +2552,6 @@ Debian官方软件源：官网/mirror/list</li>
 <ul>
 <li>在“编辑系统环境变量”中，找到“系统变量”下的PATH，编辑并新建即可添加</li>
 </ul>
-]]></content>
-      <tags>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Web笔记</title>
-    <url>/ComputerScience/%E7%AC%94%E8%AE%B0/Web%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="tomcat"><a class="markdownIt-Anchor" href="#tomcat"></a> Tomcat</h1>
-<h2 id="jre报错"><a class="markdownIt-Anchor" href="#jre报错"></a> JRE报错</h2>
-<p>一般教程会让我们配置<code>JAVA_HOME</code>和<code>JRE_HOME</code>，然后启动Tomcat；<br />
-然而，在JDK9以后，就不默认包含JRE了。<br />
-此时，我们使用命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jlink --module-path jmods --add-modules java.desktop --output jre</span><br></pre></td></tr></table></figure>
-<p>生成一个JRE后，启动Tomcat，就会报错：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">WARNING: Unknown module: java.rmi specified to --add-opens</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError: java/util/logging/Logger</span><br><span class="line">    at org.apache.juli.logging.DirectJDKLog.&lt;init&gt;(DirectJDKLog.java:61)</span><br><span class="line">    at org.apache.juli.logging.DirectJDKLog.getInstance(DirectJDKLog.java:181)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:133)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:156)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getLog(LogFactory.java:211)</span><br><span class="line">    at org.apache.catalina.startup.Bootstrap.&lt;clinit&gt;(Bootstrap.java:49)</span><br><span class="line">Caused by: java.lang.ClassNotFoundException: java.util.logging.Logger</span><br><span class="line">    at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)</span><br><span class="line">    at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)</span><br><span class="line">    at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)</span><br><span class="line">    ... 6 more</span><br></pre></td></tr></table></figure>
-<p>这时候，只需要把jre文件和<code>JRE_HOME</code>环境变量删除，Tomcat就能正常启动</p>
-<span id="more"></span>
-<h1 id="cookies"><a class="markdownIt-Anchor" href="#cookies"></a> Cookies</h1>
-<h2 id="remember-me"><a class="markdownIt-Anchor" href="#remember-me"></a> Remember-me</h2>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;记住密码&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remember-me&quot;</span>&gt;</span></span><br><span class="line">        记住密码</span><br><span class="line">    <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Post请求的表单数据</span></span><br><span class="line">Map&lt;String, String[]&gt; reqMap = req.getParameterMap();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(map.containsKey(<span class="string">&quot;remember-me&quot;</span>))&#123;   <span class="comment">//若勾选了勾选框，那么会此表单信息</span></span><br><span class="line">    <span class="type">Cookie</span> <span class="variable">cookie_username</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;username&quot;</span>, username);</span><br><span class="line">    cookie_username.setMaxAge(<span class="number">30</span>);</span><br><span class="line">    <span class="type">Cookie</span> <span class="variable">cookie_password</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;password&quot;</span>, password);</span><br><span class="line">    cookie_password.setMaxAge(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">    resp.addCookie(cookie_username);</span><br><span class="line">    resp.addCookie(cookie_password);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    Cookie[] cookies = req.getCookies();</span><br><span class="line">    <span class="keyword">if</span>(cookies != <span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (Cookie cookie : cookies) &#123;</span><br><span class="line">            <span class="keyword">if</span>(cookie.getName().equals(<span class="string">&quot;username&quot;</span>)) username = cookie.getValue();</span><br><span class="line">            <span class="keyword">if</span>(cookie.getName().equals(<span class="string">&quot;password&quot;</span>)) password = cookie.getValue();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(username != <span class="literal">null</span> &amp;&amp; password != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">// 登陆校验</span></span><br><span class="line">            <span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> factory.openSession(<span class="literal">true</span>))&#123;</span><br><span class="line">                <span class="type">UserMapper</span> <span class="variable">mapper</span> <span class="operator">=</span> sqlSession.getMapper(UserMapper.class);</span><br><span class="line">                <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> mapper.getUser(username, password);</span><br><span class="line">                <span class="keyword">if</span>(user != <span class="literal">null</span>)&#123;</span><br><span class="line">                    resp.sendRedirect(<span class="string">&quot;index&quot;</span>);</span><br><span class="line">                    <span class="keyword">return</span>;   <span class="comment">// 直接返回</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    req.getRequestDispatcher(<span class="string">&quot;/&quot;</span>).forward(req, resp);   <span class="comment">// 正常情况还是转发给默认的Servlet帮我们返回静态页面</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="session"><a class="markdownIt-Anchor" href="#session"></a> Session</h2>
-<blockquote>
-<p>Session基于Cookies实现。Session使我们能够辨别不同用户的会话。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> req.getSession();</span><br><span class="line"></span><br><span class="line">session.setAttribute(<span class="string">&quot;user&quot;</span>, user);</span><br><span class="line"><span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> (User) session.getAttribute(<span class="string">&quot;user&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h1 id="servlet"><a class="markdownIt-Anchor" href="#servlet"></a> Servlet</h1>
-<p>一个Servlet的生命周期为：</p>
-<ul>
-<li>首先执行构造方法完成 Servlet 初始化</li>
-<li>Servlet 初始化后调用 <code>init ()</code> 方法。</li>
-<li>Servlet 调用 <code>service()</code> 方法来处理客户端的请求。</li>
-<li>Servlet 销毁前调用 <code>destroy()</code> 方法。</li>
-<li>最后，Servlet 是由 JVM 的垃圾回收器进行垃圾回收的。</li>
-</ul>
-<blockquote>
-<p>Servlet 用于动态网页响应，使后端数据能够与前端通信。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/page&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PageServlet</span> <span class="keyword">implements</span> <span class="title class_">Servlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    doGet(req, resp) &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="上传文件"><a class="markdownIt-Anchor" href="#上传文件"></a> 上传文件</h2>
-<p><a href="http://xn--commons-oc6k521z.io">使用commons.io</a></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>前端表单设置<code>multipart</code></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- multipart 传文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;file&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;test-file&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>上传文件<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>后端定义Post方法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@MultipartConfig</span> <span class="comment">// 文件传输注解</span></span><br><span class="line"><span class="meta">@WebServlet(&quot;/file&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FileServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        <span class="keyword">try</span>(<span class="type">FileOutputStream</span> <span class="variable">stream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;/Users/nagocoler/Documents/IdeaProjects/WebTest/test.png&quot;</span>))&#123;</span><br><span class="line">            <span class="type">Part</span> <span class="variable">part</span> <span class="operator">=</span> req.getPart(<span class="string">&quot;test-file&quot;</span>);</span><br><span class="line">            IOUtils.copy(part.getInputStream(), stream);</span><br><span class="line">            resp.setContentType(<span class="string">&quot;text/html;charset=UTF-8&quot;</span>);</span><br><span class="line">            resp.getWriter().write(<span class="string">&quot;文件上传成功！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="context"><a class="markdownIt-Anchor" href="#context"></a> Context</h2>
-<blockquote>
-<p>ServeletContext属于整个Web应用程序，全局唯一</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">ServeltContext</span> <span class="variable">context</span> <span class="operator">=</span> getServletContext();</span><br><span class="line">context.setAttribute(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br></pre></td></tr></table></figure>
-<h1 id="filter"><a class="markdownIt-Anchor" href="#filter"></a> Filter</h1>
-<blockquote>
-<p>Filter相当于在所有访问前加了一堵墙，来自浏览器的所有访问请求都会首先经过Filter。</p>
-</blockquote>
-<p>只有Filter允许通过的请求，才可以顺利到达Servlet。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@WebFileter(&quot;/*&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyFilter</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(req, resp, chain)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>笔记</tag>
@@ -6489,58 +6290,6 @@ Mybatis目前不支持Native-Image</p>
       </tags>
   </entry>
   <entry>
-    <title>SpringCloud笔记</title>
-    <url>/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringCloud%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="微服务"><a class="markdownIt-Anchor" href="#微服务"></a> 微服务</h1>
-<p>微服务：解决接口越来越多，单体应用运行缓慢问题。</p>
-<h1 id="服务间调用"><a class="markdownIt-Anchor" href="#服务间调用"></a> 服务间调用</h1>
-<blockquote>
-<p>一个服务只调用一张表。当一个服务需要调用其他表时，使用HTTP调用其他微服务。</p>
-</blockquote>
-<h2 id="commons"><a class="markdownIt-Anchor" href="#commons"></a> Commons</h2>
-<p>新建一个commons模块，用于存放全局使用的Entity</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="resttemplate"><a class="markdownIt-Anchor" href="#resttemplate"></a> RestTemplate</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> UserBorrowDetail <span class="title function_">getUserBorrowDetailByUid</span><span class="params">(<span class="type">int</span> uid)</span> &#123;</span><br><span class="line">    List&lt;Borrow&gt; borrow = mapper.getBorrowsByUid(uid);</span><br><span class="line">    <span class="comment">//RestTemplate支持多种方式的远程调用</span></span><br><span class="line">    <span class="type">RestTemplate</span> <span class="variable">template</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    <span class="comment">//这里通过调用getForObject来请求其他服务，并将结果自动进行封装</span></span><br><span class="line">    <span class="comment">//获取User信息</span></span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> template.getForObject(<span class="string">&quot;http://localhost:8082/user/&quot;</span>+uid, User.class);</span><br><span class="line">    <span class="comment">//获取每一本书的详细信息</span></span><br><span class="line">    List&lt;Book&gt; bookList = borrow</span><br><span class="line">            .stream()</span><br><span class="line">            .map(b -&gt; template.getForObject(<span class="string">&quot;http://localhost:8080/book/&quot;</span>+b.getBid(), Book.class))</span><br><span class="line">            .collect(Collectors.toList());</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">UserBorrowDetail</span>(user, bookList);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="eureka"><a class="markdownIt-Anchor" href="#eureka"></a> Eureka</h1>
-<p>像上面这样直接调用微服务URL的方法是非常紧耦合的代码。Eureka可以帮我们解决这个问题。</p>
-<blockquote>
-<p><a href="../%E4%B8%AD%E9%97%B4%E4%BB%B6/Eureka%E7%AC%94%E8%AE%B0">Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理。当我们需要获取其他服务的信息时，只需要向Eureka进行查询。</a></p>
-</blockquote>
-<h2 id="添加依赖"><a class="markdownIt-Anchor" href="#添加依赖"></a> 添加依赖</h2>
-<ul>
-<li>父工程</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">2024.0</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">    &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">    &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Eureka模块</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="hystrix-服务熔断已弃用"><a class="markdownIt-Anchor" href="#hystrix-服务熔断已弃用"></a> Hystrix 服务熔断（已弃用）</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">direction: right</span><br><span class="line">服务1 -&gt; 服务2: 请求</span><br><span class="line">服务2 -&gt; 服务3: 请求</span><br><span class="line">服务3 -&gt; 服务4: 请求</span><br><span class="line">服务4 -&gt; 服务5: 故障 &#123;</span><br><span class="line">    style.stroke: red</span><br><span class="line">&#125;</span><br><span class="line">服务5.style.stroke-dash: 4</span><br><span class="line">服务5.style.stroke: red</span><br></pre></td></tr></table></figure>
-<h2 id="服务降级"><a class="markdownIt-Anchor" href="#服务降级"></a> 服务降级</h2>
-<p>当某个微服务宕机时，可以通过Hystrix返回备选方案。</p>
-<h2 id="服务熔断"><a class="markdownIt-Anchor" href="#服务熔断"></a> 服务熔断</h2>
-<p>当某个微服务过长时间没有响应，开启熔断器，直接不调用微服务的方法，只调用降级的服务。重新等待一段时间后，才继续尝试调用微服务方法，并根据响应情况关闭熔断器。</p>
-<h1 id="openfeign-服务降级"><a class="markdownIt-Anchor" href="#openfeign-服务降级"></a> OpenFeign 服务降级</h1>
-<blockquote>
-<p><a href="../%E4%B8%AD%E9%97%B4%E4%BB%B6/Eureka%E7%AC%94%E8%AE%B0#OpenFeign%20%E6%9B%B4%E6%96%B9%E4%BE%BF%E7%9A%84HTTP%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AF%B7%E6%B1%82%E5%B7%A5%E5%85%B7">OpenFeign 更方便的HTTP客户端请求工具</a></p>
-</blockquote>
-<p>实现一个<code>FallBackClient</code>类，并继承<code>Client</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span>   <span class="comment">// 注意，需要将其注册为Bean，Feign才能自动注入</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserFallbackClient</span> <span class="keyword">implements</span> <span class="title class_">UserClient</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> User <span class="title function_">getUserById</span><span class="params">(<span class="type">int</span> uid)</span> &#123;   <span class="comment">// 这里我们自行对其进行实现，并返回我们的替代方案</span></span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        user.setName(<span class="string">&quot;我是替代方案&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在<code>Client</code>中指定fallback参数</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// fallback参数指定为我们刚刚编写的实现类</span></span><br><span class="line"><span class="meta">@FeignClient(value = &quot;userservice&quot;, fallback = UserFallbackClient.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserClient</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/user/&#123;uid&#125;&quot;)</span></span><br><span class="line">    User <span class="title function_">getUserById</span><span class="params">(<span class="meta">@PathVariable(&quot;uid&quot;)</span> <span class="type">int</span> uid)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="踩坑记录"><a class="markdownIt-Anchor" href="#踩坑记录"></a> 踩坑记录</h1>
-<h2 id="找不到mapper"><a class="markdownIt-Anchor" href="#找不到mapper"></a> 找不到Mapper</h2>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">***************************</span><br><span class="line">APPLICATION FAILED TO START</span><br><span class="line">***************************</span><br><span class="line"></span><br><span class="line">Description:</span><br><span class="line"></span><br><span class="line">Field deviceMapper in com.esagent.es.EsDataInit required a bean of type &#x27;com.example.mapper.YourMapper&#x27; that could not be found.</span><br><span class="line"></span><br><span class="line">The injection point has the following annotations:</span><br><span class="line">    - @org.springframework.beans.factory.annotation.Autowired(required=true)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Action:</span><br><span class="line"></span><br><span class="line">Consider defining a bean of type &#x27;com.example.mapper.YourMapper&#x27; in your configuration.</span><br></pre></td></tr></table></figure>
-<p>原因是mybatis版本有问题！</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 版本需要和其他依赖对上 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>笔记</tag>
-        <tag>Spring</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SpringMVC笔记</title>
     <url>/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringMVC%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<h1 id="mvc"><a class="markdownIt-Anchor" href="#mvc"></a> MVC</h1>
@@ -6691,6 +6440,183 @@ Mybatis目前不支持Native-Image</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Resource</span></span><br><span class="line">UserClient userClient;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> UserBorrowDetail <span class="title function_">getUserBorrowDetailByUid</span><span class="params">(<span class="type">int</span> uid)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// RestTemplate方法</span></span><br><span class="line">    <span class="type">RestTemplate</span> <span class="variable">template</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> template.getForObject(<span class="string">&quot;http://userservice/user/&quot;</span>+uid, User.class);</span><br><span class="line">    <span class="comment">// OpenFeign方法，更直观的方法调用</span></span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> userClient.getUserById(uid);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>中间件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringAlibaba笔记</title>
+    <url>/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringAlibaba%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="nacos-更全能的注册中心"><a class="markdownIt-Anchor" href="#nacos-更全能的注册中心"></a> Nacos 更全能的注册中心</h1>
+<blockquote>
+<p>Nacos 相当于 Eureka + Config 的组合。</p>
+</blockquote>
+<h1 id="sentinel"><a class="markdownIt-Anchor" href="#sentinel"></a> Sentinel</h1>
+<blockquote>
+<p>相当于 Hystix，用于流量控制。</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>笔记</tag>
+        <tag>Spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaWeb笔记</title>
+    <url>/ComputerScience/%E7%AC%94%E8%AE%B0/JavaWeb%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="tomcat"><a class="markdownIt-Anchor" href="#tomcat"></a> Tomcat</h1>
+<h2 id="jre报错"><a class="markdownIt-Anchor" href="#jre报错"></a> JRE报错</h2>
+<p>一般教程会让我们配置<code>JAVA_HOME</code>和<code>JRE_HOME</code>，然后启动Tomcat；<br />
+然而，在JDK9以后，就不默认包含JRE了。<br />
+此时，我们使用命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jlink --module-path jmods --add-modules java.desktop --output jre</span><br></pre></td></tr></table></figure>
+<p>生成一个JRE后，启动Tomcat，就会报错：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">WARNING: Unknown module: java.rmi specified to --add-opens</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError: java/util/logging/Logger</span><br><span class="line">    at org.apache.juli.logging.DirectJDKLog.&lt;init&gt;(DirectJDKLog.java:61)</span><br><span class="line">    at org.apache.juli.logging.DirectJDKLog.getInstance(DirectJDKLog.java:181)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:133)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:156)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getLog(LogFactory.java:211)</span><br><span class="line">    at org.apache.catalina.startup.Bootstrap.&lt;clinit&gt;(Bootstrap.java:49)</span><br><span class="line">Caused by: java.lang.ClassNotFoundException: java.util.logging.Logger</span><br><span class="line">    at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)</span><br><span class="line">    at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)</span><br><span class="line">    at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)</span><br><span class="line">    ... 6 more</span><br></pre></td></tr></table></figure>
+<p>这时候，只需要把jre文件和<code>JRE_HOME</code>环境变量删除，Tomcat就能正常启动</p>
+<span id="more"></span>
+<h1 id="cookies"><a class="markdownIt-Anchor" href="#cookies"></a> Cookies</h1>
+<h2 id="remember-me"><a class="markdownIt-Anchor" href="#remember-me"></a> Remember-me</h2>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">label</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;记住密码&quot;</span> <span class="attr">name</span>=<span class="string">&quot;remember-me&quot;</span>&gt;</span></span><br><span class="line">        记住密码</span><br><span class="line">    <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Post请求的表单数据</span></span><br><span class="line">Map&lt;String, String[]&gt; reqMap = req.getParameterMap();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(map.containsKey(<span class="string">&quot;remember-me&quot;</span>))&#123;   <span class="comment">//若勾选了勾选框，那么会此表单信息</span></span><br><span class="line">    <span class="type">Cookie</span> <span class="variable">cookie_username</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;username&quot;</span>, username);</span><br><span class="line">    cookie_username.setMaxAge(<span class="number">30</span>);</span><br><span class="line">    <span class="type">Cookie</span> <span class="variable">cookie_password</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;password&quot;</span>, password);</span><br><span class="line">    cookie_password.setMaxAge(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">    resp.addCookie(cookie_username);</span><br><span class="line">    resp.addCookie(cookie_password);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">    Cookie[] cookies = req.getCookies();</span><br><span class="line">    <span class="keyword">if</span>(cookies != <span class="literal">null</span>)&#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">username</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (Cookie cookie : cookies) &#123;</span><br><span class="line">            <span class="keyword">if</span>(cookie.getName().equals(<span class="string">&quot;username&quot;</span>)) username = cookie.getValue();</span><br><span class="line">            <span class="keyword">if</span>(cookie.getName().equals(<span class="string">&quot;password&quot;</span>)) password = cookie.getValue();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(username != <span class="literal">null</span> &amp;&amp; password != <span class="literal">null</span>)&#123;</span><br><span class="line">            <span class="comment">// 登陆校验</span></span><br><span class="line">            <span class="keyword">try</span> (<span class="type">SqlSession</span> <span class="variable">sqlSession</span> <span class="operator">=</span> factory.openSession(<span class="literal">true</span>))&#123;</span><br><span class="line">                <span class="type">UserMapper</span> <span class="variable">mapper</span> <span class="operator">=</span> sqlSession.getMapper(UserMapper.class);</span><br><span class="line">                <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> mapper.getUser(username, password);</span><br><span class="line">                <span class="keyword">if</span>(user != <span class="literal">null</span>)&#123;</span><br><span class="line">                    resp.sendRedirect(<span class="string">&quot;index&quot;</span>);</span><br><span class="line">                    <span class="keyword">return</span>;   <span class="comment">// 直接返回</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    req.getRequestDispatcher(<span class="string">&quot;/&quot;</span>).forward(req, resp);   <span class="comment">// 正常情况还是转发给默认的Servlet帮我们返回静态页面</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="session"><a class="markdownIt-Anchor" href="#session"></a> Session</h2>
+<blockquote>
+<p>Session基于Cookies实现。Session使我们能够辨别不同用户的会话。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">HttpSession</span> <span class="variable">session</span> <span class="operator">=</span> req.getSession();</span><br><span class="line"></span><br><span class="line">session.setAttribute(<span class="string">&quot;user&quot;</span>, user);</span><br><span class="line"><span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> (User) session.getAttribute(<span class="string">&quot;user&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="servlet"><a class="markdownIt-Anchor" href="#servlet"></a> Servlet</h1>
+<p>一个Servlet的生命周期为：</p>
+<ul>
+<li>首先执行构造方法完成 Servlet 初始化</li>
+<li>Servlet 初始化后调用 <code>init ()</code> 方法。</li>
+<li>Servlet 调用 <code>service()</code> 方法来处理客户端的请求。</li>
+<li>Servlet 销毁前调用 <code>destroy()</code> 方法。</li>
+<li>最后，Servlet 是由 JVM 的垃圾回收器进行垃圾回收的。</li>
+</ul>
+<blockquote>
+<p>Servlet 用于动态网页响应，使后端数据能够与前端通信。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@WebServlet(&quot;/page&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PageServlet</span> <span class="keyword">implements</span> <span class="title class_">Servlet</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    doGet(req, resp) &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="上传文件"><a class="markdownIt-Anchor" href="#上传文件"></a> 上传文件</h2>
+<p><a href="http://xn--commons-oc6k521z.io">使用commons.io</a></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-io<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.6<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>前端表单设置<code>multipart</code></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- multipart 传文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;file&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;test-file&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span>&gt;</span>上传文件<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>后端定义Post方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@MultipartConfig</span> <span class="comment">// 文件传输注解</span></span><br><span class="line"><span class="meta">@WebServlet(&quot;/file&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FileServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">        <span class="keyword">try</span>(<span class="type">FileOutputStream</span> <span class="variable">stream</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(<span class="string">&quot;/Users/nagocoler/Documents/IdeaProjects/WebTest/test.png&quot;</span>))&#123;</span><br><span class="line">            <span class="type">Part</span> <span class="variable">part</span> <span class="operator">=</span> req.getPart(<span class="string">&quot;test-file&quot;</span>);</span><br><span class="line">            IOUtils.copy(part.getInputStream(), stream);</span><br><span class="line">            resp.setContentType(<span class="string">&quot;text/html;charset=UTF-8&quot;</span>);</span><br><span class="line">            resp.getWriter().write(<span class="string">&quot;文件上传成功！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="context"><a class="markdownIt-Anchor" href="#context"></a> Context</h2>
+<blockquote>
+<p>ServeletContext属于整个Web应用程序，全局唯一</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">ServeltContext</span> <span class="variable">context</span> <span class="operator">=</span> getServletContext();</span><br><span class="line">context.setAttribute(<span class="string">&quot;key&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="filter"><a class="markdownIt-Anchor" href="#filter"></a> Filter</h1>
+<blockquote>
+<p>Filter相当于在所有访问前加了一堵墙，来自浏览器的所有访问请求都会首先经过Filter。</p>
+</blockquote>
+<p>只有Filter允许通过的请求，才可以顺利到达Servlet。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@WebFileter(&quot;/*&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyFilter</span> <span class="keyword">implements</span> <span class="title class_">Filter</span> &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doFilter</span><span class="params">(req, resp, chain)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringCloud Netflix笔记</title>
+    <url>/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringCloud%20Netfilx%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="微服务"><a class="markdownIt-Anchor" href="#微服务"></a> 微服务</h1>
+<p>微服务：解决接口越来越多，单体应用运行缓慢问题。</p>
+<h1 id="踩坑记录"><a class="markdownIt-Anchor" href="#踩坑记录"></a> 踩坑记录</h1>
+<h2 id="找不到mapper"><a class="markdownIt-Anchor" href="#找不到mapper"></a> 找不到Mapper</h2>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">***************************</span><br><span class="line">APPLICATION FAILED TO START</span><br><span class="line">***************************</span><br><span class="line"></span><br><span class="line">Description:</span><br><span class="line"></span><br><span class="line">Field deviceMapper in com.esagent.es.EsDataInit required a bean of type &#x27;com.example.mapper.YourMapper&#x27; that could not be found.</span><br><span class="line"></span><br><span class="line">The injection point has the following annotations:</span><br><span class="line">    - @org.springframework.beans.factory.annotation.Autowired(required=true)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Action:</span><br><span class="line"></span><br><span class="line">Consider defining a bean of type &#x27;com.example.mapper.YourMapper&#x27; in your configuration.</span><br></pre></td></tr></table></figure>
+<p>原因是mybatis版本有问题！</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 版本需要和其他依赖对上 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h1 id="服务间调用"><a class="markdownIt-Anchor" href="#服务间调用"></a> 服务间调用</h1>
+<blockquote>
+<p>一个服务只调用一张表。当一个服务需要调用其他表时，使用HTTP调用其他微服务。</p>
+</blockquote>
+<h2 id="commons"><a class="markdownIt-Anchor" href="#commons"></a> Commons</h2>
+<p>新建一个commons模块，用于存放全局使用的Entity</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="resttemplate"><a class="markdownIt-Anchor" href="#resttemplate"></a> RestTemplate</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> UserBorrowDetail <span class="title function_">getUserBorrowDetailByUid</span><span class="params">(<span class="type">int</span> uid)</span> &#123;</span><br><span class="line">    List&lt;Borrow&gt; borrow = mapper.getBorrowsByUid(uid);</span><br><span class="line">    <span class="comment">//RestTemplate支持多种方式的远程调用</span></span><br><span class="line">    <span class="type">RestTemplate</span> <span class="variable">template</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    <span class="comment">//这里通过调用getForObject来请求其他服务，并将结果自动进行封装</span></span><br><span class="line">    <span class="comment">//获取User信息</span></span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> template.getForObject(<span class="string">&quot;http://localhost:8082/user/&quot;</span>+uid, User.class);</span><br><span class="line">    <span class="comment">//获取每一本书的详细信息</span></span><br><span class="line">    List&lt;Book&gt; bookList = borrow</span><br><span class="line">            .stream()</span><br><span class="line">            .map(b -&gt; template.getForObject(<span class="string">&quot;http://localhost:8080/book/&quot;</span>+b.getBid(), Book.class))</span><br><span class="line">            .collect(Collectors.toList());</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">UserBorrowDetail</span>(user, bookList);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="eureka-注册中心"><a class="markdownIt-Anchor" href="#eureka-注册中心"></a> Eureka 注册中心</h1>
+<p>像上面这样直接调用微服务URL的方法是非常紧耦合的代码。Eureka可以帮我们解决这个问题。</p>
+<blockquote>
+<p><a href="../%E4%B8%AD%E9%97%B4%E4%BB%B6/Eureka%E7%AC%94%E8%AE%B0">Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理。当我们需要获取其他服务的信息时，只需要向Eureka进行查询。</a></p>
+</blockquote>
+<h2 id="添加依赖"><a class="markdownIt-Anchor" href="#添加依赖"></a> 添加依赖</h2>
+<ul>
+<li>父工程</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">2024.0</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">    &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">    &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Eureka模块</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="hystrix-服务熔断已弃用"><a class="markdownIt-Anchor" href="#hystrix-服务熔断已弃用"></a> Hystrix 服务熔断（已弃用）</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">direction: right</span><br><span class="line">服务1 -&gt; 服务2: 请求</span><br><span class="line">服务2 -&gt; 服务3: 请求</span><br><span class="line">服务3 -&gt; 服务4: 请求</span><br><span class="line">服务4 -&gt; 服务5: 故障 &#123;</span><br><span class="line">    style.stroke: red</span><br><span class="line">&#125;</span><br><span class="line">服务5.style.stroke-dash: 4</span><br><span class="line">服务5.style.stroke: red</span><br></pre></td></tr></table></figure>
+<h2 id="服务降级"><a class="markdownIt-Anchor" href="#服务降级"></a> 服务降级</h2>
+<p>当某个微服务宕机时，可以通过Hystrix返回备选方案。</p>
+<h2 id="服务熔断"><a class="markdownIt-Anchor" href="#服务熔断"></a> 服务熔断</h2>
+<p>当某个微服务过长时间没有响应，开启熔断器，直接不调用微服务的方法，只调用降级的服务。重新等待一段时间后，才继续尝试调用微服务方法，并根据响应情况关闭熔断器。</p>
+<h1 id="openfeign-服务降级"><a class="markdownIt-Anchor" href="#openfeign-服务降级"></a> OpenFeign 服务降级</h1>
+<blockquote>
+<p><a href="../%E4%B8%AD%E9%97%B4%E4%BB%B6/Eureka%E7%AC%94%E8%AE%B0#OpenFeign%20%E6%9B%B4%E6%96%B9%E4%BE%BF%E7%9A%84HTTP%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AF%B7%E6%B1%82%E5%B7%A5%E5%85%B7">OpenFeign 更方便的HTTP客户端请求工具</a></p>
+</blockquote>
+<p>实现一个<code>FallBackClient</code>类，并继承<code>Client</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Component</span>   <span class="comment">// 注意，需要将其注册为Bean，Feign才能自动注入</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserFallbackClient</span> <span class="keyword">implements</span> <span class="title class_">UserClient</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> User <span class="title function_">getUserById</span><span class="params">(<span class="type">int</span> uid)</span> &#123;   <span class="comment">// 这里我们自行对其进行实现，并返回我们的替代方案</span></span><br><span class="line">        <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">User</span>();</span><br><span class="line">        user.setName(<span class="string">&quot;我是替代方案&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> user;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>Client</code>中指定fallback参数</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// fallback参数指定为我们刚刚编写的实现类</span></span><br><span class="line"><span class="meta">@FeignClient(value = &quot;userservice&quot;, fallback = UserFallbackClient.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserClient</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/user/&#123;uid&#125;&quot;)</span></span><br><span class="line">    User <span class="title function_">getUserById</span><span class="params">(<span class="meta">@PathVariable(&quot;uid&quot;)</span> <span class="type">int</span> uid)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后，在配置文件中开启熔断支持</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">feign:</span></span><br><span class="line">    <span class="attr">circuitbreaker:</span></span><br><span class="line">        <span class="attr">enabled:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h1 id="gateway-网关"><a class="markdownIt-Anchor" href="#gateway-网关"></a> Gateway 网关</h1>
+<blockquote>
+<p>并不是所有的微服务都需要直接暴露给外部调用。使用网关隔离内外网、转发微服务请求，并实现负载均衡。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Gateway &lt;-&gt; Internet</span><br><span class="line">Eureka -&gt; Gateway: 查询服务列表</span><br><span class="line">Internet.shape: cloud</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Gateway -&gt; 微服务1</span><br><span class="line">多个实例: &#123;</span><br><span class="line">    微服务2-1 &lt;-&gt; 微服务2-2</span><br><span class="line">&#125;</span><br><span class="line">Gateway -&gt; 多个实例: 负载均衡</span><br><span class="line"></span><br><span class="line">微服务1 -&gt; Eureka: 注册</span><br><span class="line">多个实例 -&gt; Eureka: 注册</span><br></pre></td></tr></table></figure>
+<h2 id="gateway-server模块"><a class="markdownIt-Anchor" href="#gateway-server模块"></a> gateway-server模块</h2>
+<p>依赖项</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-gateway<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>路由配置</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="string">gateway-port</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://localhost:eureka-port-1/eureka,</span> <span class="string">http://localhost:eureka-port-2/eureka</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">gateway</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">gateway:</span></span><br><span class="line">        <span class="comment"># 配置路由，注意这里是个列表，每一项都包含了很多信息</span></span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">borrow-service</span>   <span class="comment"># 路由名称</span></span><br><span class="line">        <span class="attr">uri:</span> <span class="string">lb://borrowservice</span>  <span class="comment"># 路由的地址，lb表示使用负载均衡到微服务，也可以使用http正常转发</span></span><br><span class="line">        <span class="attr">predicates:</span> <span class="comment"># 路由规则，断言什么请求会被路由</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Path=/borrow/**</span>  <span class="comment"># 只要是访问的这个路径，一律都被路由到上面指定的服务</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">id:</span> <span class="string">book-service</span></span><br><span class="line">        <span class="attr">uri:</span> <span class="string">lb://bookservice</span></span><br><span class="line">        <span class="attr">predicates:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Path=/book/**</span></span><br><span class="line">          <span class="attr">filters:</span> <span class="comment"># 添加过滤器</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">AddRequestHeader=Header,</span> <span class="string">HeaderContent</span></span><br><span class="line">            <span class="comment"># 添加请求头信息</span></span><br></pre></td></tr></table></figure>
+<h1 id="config-配置中心"><a class="markdownIt-Anchor" href="#config-配置中心"></a> Config 配置中心</h1>
+<p>Spring Cloud Config可以在云端集中地管理所有环境中应用程序的外部配置。</p>
+<h2 id="服务端配置"><a class="markdownIt-Anchor" href="#服务端配置"></a> 服务端配置</h2>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-config-server<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8700</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">configserver</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">      <span class="attr">server:</span></span><br><span class="line">        <span class="attr">git:</span></span><br><span class="line">            <span class="comment"># 远程仓库地址</span></span><br><span class="line">          <span class="attr">uri:</span> <span class="string">http://git.../config-repo</span></span><br><span class="line">          <span class="comment"># 默认分支设定为远程分支的名称</span></span><br><span class="line">          <span class="attr">default-label:</span> <span class="string">main</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://localhost:eureka-port-1/eureka,</span> <span class="string">http://localhost:eureka-port-1/eureka</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableConfigServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ConfigApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(ConfigApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置文件命名规则</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;服务名称&#125;-&#123;环境&#125;.yml</span><br></pre></td></tr></table></figure>
+<p>根据网址即可访问配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://your-host:your-port/&#123;服务名称&#125;/&#123;环境&#125;/&#123;分支名称&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="客户端配置"><a class="markdownIt-Anchor" href="#客户端配置"></a> 客户端配置</h2>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-bootstrap<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># boostrap.yml</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">cloud:</span></span><br><span class="line">    <span class="attr">config:</span></span><br><span class="line">      <span class="comment"># 名称，其实就是文件名称</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">bookservice</span></span><br><span class="line">      <span class="comment"># 配置服务器的地址</span></span><br><span class="line">      <span class="attr">uri:</span> <span class="string">http://localhost:8700</span></span><br><span class="line">      <span class="comment"># 环境</span></span><br><span class="line">      <span class="attr">profile:</span> <span class="string">prod</span></span><br><span class="line">      <span class="comment"># 分支</span></span><br><span class="line">      <span class="attr">label:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+<h1 id="微服务cap原则"><a class="markdownIt-Anchor" href="#微服务cap原则"></a> 微服务CAP原则</h1>
+<blockquote>
+<p>Consistency、Availability、Partition-Tolerance 三者不可同时保证，最多只能保证两个。</p>
+</blockquote>
+<ul>
+<li>Consistency 一致性：在分布式系统中，所有数据备份在同一时刻都是同样的最新值。</li>
+<li>Availability 可用性：系统非故障节点收到每个请求都必须回应。熔断和降级就是维持可用性。</li>
+<li>Parition-Tolerance 分区容错性：分布式系统中，节点之间的网络可能因为故障导致不连通。需要容忍这些意外情况。</li>
+</ul>
+<p>高容忍性，将数据存放在多个节点，复制次数增加，一致性难以保证；<br />
+高一致性，更新所有节点数据所需的时间变长，可用性会降低。</p>
+<h2 id="ac-可用性-一致性"><a class="markdownIt-Anchor" href="#ac-可用性-一致性"></a> AC 可用性 + 一致性</h2>
+<p>高可用性和高一致性，意味着某个节点数据更新后，需要尽可能快地同步数据到其他节点，对网络要求非常高。在实际情况下，网络不可靠，容易丢包。最好的办法就是违反分布式系统的概念，将数据集中存放。</p>
+<h2 id="cp-一致性-分区容错性"><a class="markdownIt-Anchor" href="#cp-一致性-分区容错性"></a> CP 一致性 + 分区容错性</h2>
+<p>高一致性，意味着某个节点数据更新后，需要完全同步给其他节点；高分区容错性，意味着我们将容忍网络的不可靠问题，网络出现卡顿也继续传输。因此服务会在一段时间内完全失效，可用性无法保证。</p>
+<h2 id="ap-可用性-分区容错性"><a class="markdownIt-Anchor" href="#ap-可用性-分区容错性"></a> AP 可用性 + 分区容错性</h2>
+<p>高可用性和高分区容错性，意味着保证服务可用，而放弃节点数据的高度统一，使数据在不一致的情况下进行响应。<br />
+虽然这种办法拿不到最新的数据，但是只要数据同步在后台继续运行，在某个时刻一定能够成功同步数据，实现最终的一致性。</p>
+<blockquote>
+<p>AP是实际上最能被接受的方案。</p>
+</blockquote>
+<p>例如Eureka集群就使用了AP方案，在一台服务器宕机的情况下立刻切换另外一台服务器，保证可用性，即使这台服务器的数据可能不是最新数据。</p>
+]]></content>
+      <tags>
+        <tag>笔记</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
 </search>
