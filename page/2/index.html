@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,303 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringSecurity%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringSecurity%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">SpringSecurity笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-05 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-05T00:00:00+08:00">2024-12-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-04 10:49:55" itemprop="dateModified" datetime="2025-01-04T10:49:55+08:00">2025-01-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="spring-security-初始化"><a class="markdownIt-Anchor" href="#spring-security-初始化"></a> Spring Security 初始化</h1>
+<ol>
+<li>导入依赖</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.security<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-security-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.security<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-security-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建<code>SecurityInitializer</code></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.init</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityInitializer</span> <span class="keyword">extends</span> <span class="title class_">AbstractSecurityWebApplicationInitializer</span> &#123;</span><br><span class="line">    <span class="comment">//不用重写任何内容</span></span><br><span class="line">      <span class="comment">//这里实际上会自动注册一个Filter，SpringSecurity底层就是依靠N个过滤器实现的，我们之后再探讨</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>创建配置类</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.config</span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span>   <span class="comment">//开启WebSecurity相关功能</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><code>MainInitializer</code>添加配置文件</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;MainConfiguration.class, SecurityConfiguration.class&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="post表单认证"><a class="markdownIt-Anchor" href="#post表单认证"></a> Post表单认证</h1>
+<p>在POST请求中需要携带页面中的csrfToken，否则一律进行拦截操作</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">th:id</span>=<span class="string">&quot;$&#123;_csrf.getParameterName()&#125;&quot;</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;_csrf.token&#125;&quot;</span> <span class="attr">hidden</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="密码加密"><a class="markdownIt-Anchor" href="#密码加密"></a> 密码加密</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line">    </span><br><span class="line">      <span class="comment">//将BCryptPasswordEncoder直接注册为Bean，Security会自动进行选择</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> PasswordEncoder <span class="title function_">passwordEncoder</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">encoder.encode(yourPassword);</span><br></pre></td></tr></table></figure>
+<h1 id="关闭csfr"><a class="markdownIt-Anchor" href="#关闭csfr"></a> 关闭CSFR</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SecurityFilterChain <span class="title function_">filterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> http</span><br><span class="line">                .csfr(conf -&gt; &#123;</span><br><span class="line">                    <span class="comment">// 关闭CSFR</span></span><br><span class="line">                    conf.disable();</span><br><span class="line">                &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="自定义登录页"><a class="markdownIt-Anchor" href="#自定义登录页"></a> 自定义登录页</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SecurityFilterChain <span class="title function_">filterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> http</span><br><span class="line">                <span class="comment">// 验证请求拦截和放行配置</span></span><br><span class="line">                .authorizeHttpRequests(auth -&gt; &#123;</span><br><span class="line">                    <span class="comment">// 将所有请求全部拦截，一律需要验证</span></span><br><span class="line">                    auth.anyRequest().authenticated();    </span><br><span class="line">                &#125;)</span><br><span class="line">                <span class="comment">// 表单登录相关配置</span></span><br><span class="line">                .formLogin(conf -&gt; &#123;</span><br><span class="line">                    conf.loginPage(<span class="string">&quot;/login&quot;</span>);   <span class="comment">// 将登录页设置为我们自己的登录页面</span></span><br><span class="line">                    conf.loginProcessingUrl(<span class="string">&quot;/doLogin&quot;</span>); <span class="comment">// 登录表单提交的地址，可以自定义</span></span><br><span class="line">                    conf.defaultSuccessUrl(<span class="string">&quot;/&quot;</span>);   <span class="comment">// 登录成功后跳转的页面</span></span><br><span class="line">                    conf.permitAll();    <span class="comment">// 将登录相关的地址放行，否则未登录的用户无法进入登录界面</span></span><br><span class="line">                      <span class="comment">// 用户名和密码的表单字段名称</span></span><br><span class="line">                    conf.usernameParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">                    conf.passwordParameter(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">                &#125;)</span><br><span class="line">                <span class="comment">// 退出登录</span></span><br><span class="line">                .logout(conf -&gt; &#123;</span><br><span class="line">                    ...</span><br><span class="line">                &#125;)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="记住密码"><a class="markdownIt-Anchor" href="#记住密码"></a> 记住密码</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SecurityFilterChain <span class="title function_">filterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> http</span><br><span class="line">                .rememberMe(conf -&gt; &#123;</span><br><span class="line">                    conf.alwaysRemember(<span class="literal">false</span>);</span><br><span class="line">                &#125;)</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringMVC%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringMVC%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">SpringMVC笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-04 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-04T00:00:00+08:00">2024-12-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-04 10:49:51" itemprop="dateModified" datetime="2025-01-04T10:49:51+08:00">2025-01-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="mvc"><a class="markdownIt-Anchor" href="#mvc"></a> MVC</h1>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="controller"><a class="markdownIt-Anchor" href="#controller"></a> Controller</h1>
+<h2 id="页面"><a class="markdownIt-Anchor" href="#页面"></a> 页面</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span>   <span class="comment">//直接添加注解即可</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/index&quot;)</span>   <span class="comment">//直接填写访问路径</span></span><br><span class="line">    <span class="keyword">public</span> ModelAndView <span class="title function_">index</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">ModelAndView</span> <span class="variable">modelAndView</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>(<span class="string">&quot;index&quot;</span>);</span><br><span class="line">        modelAndView.getModel().put(<span class="string">&quot;arg&quot;</span>, <span class="string">&quot;value&quot;</span>);   <span class="comment">//将name传递给Model</span></span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">          <span class="comment">//返回后会经过视图解析器进行处理</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/index&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">index</span><span class="params">(Model model)</span>&#123;  <span class="comment">//这里不仅仅可以是Model，还可以是Map、ModelMap</span></span><br><span class="line">        model.addAttribute(<span class="string">&quot;arg&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="重定向"><a class="markdownIt-Anchor" href="#重定向"></a> 重定向</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/index&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;redirect:page&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="请求转发"><a class="markdownIt-Anchor" href="#请求转发"></a> 请求转发</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/index&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;forward:home&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="bean的web作用域"><a class="markdownIt-Anchor" href="#bean的web作用域"></a> Bean的Web作用域</h1>
+<p>Bean的作用域：</p>
+<ol>
+<li>Singleton</li>
+<li>Prototype</li>
+<li>Request HTTP请求产生新实例，结束后Bean消失</li>
+<li>Session 每一个会话</li>
+<li>Global Session</li>
+</ol>
+<h1 id="restful"><a class="markdownIt-Anchor" href="#restful"></a> RESTFul</h1>
+<blockquote>
+<p>一种设计风格。RESTful风格的设计允许将参数通过URL拼接传到服务端。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:8080/mvc/index/13579</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/index/&#123;str&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">(<span class="meta">@PathVariable</span> String str)</span> &#123;</span><br><span class="line">    System.out.println(str);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="文件上传"><a class="markdownIt-Anchor" href="#文件上传"></a> 文件上传</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainInitializer</span> <span class="keyword">extends</span> <span class="title class_">AbstractAnnotationConfigDispatcherServletInitializer</span> &#123;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">customizeRegistration</span><span class="params">(ServletRegistration.Dynamic registration)</span> &#123;</span><br><span class="line">          <span class="comment">// 直接通过registration配置Multipart相关配置，必须配置临时上传路径，建议选择方便打开的</span></span><br><span class="line">        <span class="comment">// 同样可以设置其他属性：maxFileSize, maxRequestSize, fileSizeThreshold</span></span><br><span class="line">        registration.setMultipartConfig(<span class="keyword">new</span> <span class="title class_">MultipartConfigElement</span>(<span class="string">&quot;/path/to/save&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Controller模板</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/upload&quot;, method = RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">upload</span><span class="params">(<span class="meta">@RequestParam</span> MultipartFile file)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">File</span> <span class="variable">fileObj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;filename.png&quot;</span>);</span><br><span class="line">    file.transferTo(fileObj);</span><br><span class="line">    System.out.println(<span class="string">&quot;用户上传的文件已保存到：&quot;</span>+fileObj.getAbsolutePath());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;文件上传成功！&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>前端模板</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;upload&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringBoot%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringBoot%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">SpringBoot笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-21 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-21T00:00:00+08:00">2024-12-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-04 10:49:41" itemprop="dateModified" datetime="2025-01-04T10:49:41+08:00">2025-01-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="applicationproperties"><a class="markdownIt-Anchor" href="#applicationproperties"></a> application.properties</h1>
+<h2 id="property形式"><a class="markdownIt-Anchor" href="#property形式"></a> Property形式</h2>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">server.port</span>=<span class="string">80 // 端口号</span></span><br><span class="line"><span class="attr">aruge.arugement</span>=<span class="string">value</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;&#123;argue.argument&#125;&quot;)</span></span><br><span class="line">String argu;</span><br></pre></td></tr></table></figure>
+<h2 id="yaml形式"><a class="markdownIt-Anchor" href="#yaml形式"></a> YAML形式</h2>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">datasource:</span></span><br><span class="line">        <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/db_name</span></span><br><span class="line">        <span class="attr">username:</span></span><br><span class="line">        <span class="attr">password:</span></span><br><span class="line">        <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.Driver</span></span><br><span class="line">    <span class="attr">mvc:</span></span><br><span class="line">        <span class="attr">static-path-pattern:</span> <span class="string">/static/**</span></span><br><span class="line">    <span class="attr">security:</span></span><br><span class="line">        <span class="attr">filter:</span></span><br><span class="line">            <span class="attr">order:</span> <span class="number">-100</span> <span class="comment"># Spring Security Filter 优先级</span></span><br><span class="line">        <span class="attr">user:</span></span><br><span class="line">            <span class="attr">name:</span> <span class="string">&#x27;admin&#x27;</span></span><br><span class="line">            <span class="attr">password:</span> <span class="string">&#x27;Abc123.&#x27;</span></span><br><span class="line">            <span class="attr">roles:</span></span><br><span class="line">                <span class="bullet">-</span> <span class="string">admin</span></span><br><span class="line">                <span class="bullet">-</span> <span class="string">user</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringBoot%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -632,172 +929,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">vim基本操作</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-12-24 09:59:14" itemprop="dateModified" datetime="2024-12-24T09:59:14+08:00">2024-12-24</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
-<ul>
-<li><code>&lt;C-o&gt;, &lt;C-i&gt;</code>：回到前一个/后一个位置（例如，打开文件默认在第一行，<code>&lt;C-o&gt;</code>回到上次编辑位置）。<strong>注意这个操作是跨文件的</strong>。</li>
-<li><code>`0</code>：返回上次位置</li>
-<li>词：<code>w</code>（下一个词），<code>b</code>（词初），<code>e</code>（词尾）</li>
-<li>行：<code>0</code>（行初），<code>^</code>（第一个非空格字符），<code>$</code>（行尾）</li>
-<li>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</li>
-<li>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</li>
-<li><code>x</code>删除字符（等同于<code>dl</code>）</li>
-<li><code>s</code>(substitute)替换字符（等同于<code>xi</code>）
-<ul>
-<li>替换命令<code>:&#123;作用范围&#125;s/&#123;目标文本&#125;/&#123;替换文本&#125;/&#123;替换标志&#125;</code></li>
-<li><code>:%s/s_content/o_content/g</code> 全局替换</li>
-</ul>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Sign</th>
-<th>Range</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>%</td>
-<td>整个文件</td>
-</tr>
-<tr>
-<td>.</td>
-<td>当前行</td>
-</tr>
-<tr>
-<td>$</td>
-<td>最后一行</td>
-</tr>
-<tr>
-<td>,n</td>
-<td>当前行到n行</td>
-</tr>
-<tr>
-<td>n,</td>
-<td>n行到当前行</td>
-</tr>
-<tr>
-<td>+n</td>
-<td>当前行后n行</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>可视化模式 + 操作
-<ul>
-<li>选中文字,<code>d</code>删除（剪切） 或者<code>c</code>改变</li>
-</ul>
-</li>
-<li><code>u</code>撤销，<code>&lt;C-r&gt;</code>重做</li>
-<li><code>y</code>复制 / “yank” （其他一些命令比如<code>d</code>也会复制）</li>
-<li><code>p</code>粘贴
-<ul>
-<li><code>+p</code> 粘贴系统剪贴板</li>
-</ul>
-</li>
-<li><strong>更多值得学习的</strong>:
-<ul>
-<li><code>:&lt;line&gt;</code> 跳到line行</li>
-<li><code>~</code>改变字符的大小写</li>
-<li><code>3w</code>向前移动三个词</li>
-<li><code>A</code>（大写）可以迅速定位到行尾进行修改</li>
-<li><code>:!python prog.py</code> 使用！直接运行shell命令</li>
-</ul>
-</li>
-<li><code>%</code>匹配括号</li>
-</ul>
-<h2 id="多行操作"><a class="markdownIt-Anchor" href="#多行操作"></a> 多行操作</h2>
-<p><code>&lt;C-v&gt;</code> 选中多行，<code>Shift + i</code>输入后<code>Esc</code>，即可多行同步输入</p>
-<h1 id="宏"><a class="markdownIt-Anchor" href="#宏"></a> 宏</h1>
-<h2 id="录制宏"><a class="markdownIt-Anchor" href="#录制宏"></a> 录制宏</h2>
-<p>命令模式下，</p>
-<ol>
-<li>按<code>q&lt;marcoName&gt;</code>进行录制，<code>&lt;marcoName&gt;</code>是宏的名字，例如<code>qa</code></li>
-<li>执行一系列操作后，再次按<code>q</code>结束录制</li>
-</ol>
-<h2 id="使用宏"><a class="markdownIt-Anchor" href="#使用宏"></a> 使用宏</h2>
-<p>命令模式下，使用<code>@&lt;marcoName&gt;</code>即可执行；使用<code>5@&lt;marcoName&gt;</code>可以重复执行宏</p>
-<h1 id="文件操作"><a class="markdownIt-Anchor" href="#文件操作"></a> 文件操作</h1>
-<ul>
-<li><code>:e filename</code>切换到filename文件</li>
-<li><code>:bn/bp</code>切换到下/上个文件</li>
-<li><code>&lt;C-x&gt;&lt;C-f&gt;</code> 自动补全路径</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1004,306 +1135,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Listary%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Listary%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Listary使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-08-16 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-16T00:00:00+08:00">2024-08-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-12-22 17:03:16" itemprop="dateModified" datetime="2024-12-22T17:03:16+08:00">2024-12-22</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="网络搜索"><a class="markdownIt-Anchor" href="#网络搜索"></a> 网络搜索</h1>
-<table>
-<thead>
-<tr>
-<th>网站</th>
-<th>URL</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>哔哩哔哩</td>
-<td><a target="_blank" rel="noopener" href="https://search.bilibili.com/all?keyword=%7Bquery%7D">https://search.bilibili.com/all?keyword={query}</a></td>
-<td></td>
-</tr>
-<tr>
-<td>知乎</td>
-<td><a target="_blank" rel="noopener" href="https://www.zhihu.com/search?type=content&amp;q=%7Bquery%7D">https://www.zhihu.com/search?type=content&amp;q={query}</a></td>
-<td></td>
-</tr>
-<tr>
-<td>百度贴吧</td>
-<td><a target="_blank" rel="noopener" href="https://tieba.baidu.com/f?ie=utf-8&amp;kw=%7Bquery%7D&amp;fr=search">https://tieba.baidu.com/f?ie=utf-8&amp;kw={query}&amp;fr=search</a></td>
-<td>优先搜索吧名</td>
-</tr>
-<tr>
-<td>小红书</td>
-<td><a target="_blank" rel="noopener" href="https://www.xiaohongshu.com/search_result?keyword=%7Bquery%7D&amp;source=web_search_result_notes">https://www.xiaohongshu.com/search_result?keyword={query}&amp;source=web_search_result_notes</a></td>
-<td>需要登录</td>
-</tr>
-<tr>
-<td>淘宝</td>
-<td><a target="_blank" rel="noopener" href="https://s.taobao.com/search?q=%7Bquery%7D&amp;commend=all&amp;search_type=item&amp;sourceId=tb.index&amp;ie=utf8">https://s.taobao.com/search?q={query}&amp;commend=all&amp;search_type=item&amp;sourceId=tb.index&amp;ie=utf8</a></td>
-<td></td>
-</tr>
-<tr>
-<td>京东</td>
-<td><a target="_blank" rel="noopener" href="https://search.jd.com/Search?keyword=%7Bquery%7D&amp;enc=utf-8">https://search.jd.com/Search?keyword={query}&amp;enc=utf-8</a></td>
-<td></td>
-</tr>
-<tr>
-<td>咸鱼</td>
-<td><a target="_blank" rel="noopener" href="https://www.goofish.com/search?q=%7Bquery%7D">https://www.goofish.com/search?q={query}</a></td>
-<td></td>
-</tr>
-<tr>
-<td>Yandex</td>
-<td><a target="_blank" rel="noopener" href="https://yandex.com/search/?text=%7Bquery%7D">https://yandex.com/search/?text={query}</a></td>
-<td></td>
-</tr>
-<tr>
-<td>GitHub</td>
-<td><a target="_blank" rel="noopener" href="https://github.com/search?q=%7Bquery%7D&amp;type=repositories">https://github.com/search?q={query}&amp;type=repositories</a></td>
-<td></td>
-</tr>
-<tr>
-<td>tldr</td>
-<td><a target="_blank" rel="noopener" href="https://tldr.inbrowser.app/pages/common/%7Bquery%7D">https://tldr.inbrowser.app/pages/common/{query}</a></td>
-<td>mannual查Linux命令</td>
-</tr>
-<tr>
-<td>必应翻译</td>
-<td><a target="_blank" rel="noopener" href="https://cn.bing.com/translator?ref=TThis&amp;text=%7Bquery%7D&amp;from=en&amp;to=zh-Hant">https://cn.bing.com/translator?ref=TThis&amp;text={query}&amp;from=en&amp;to=zh-Hant</a></td>
-<td>英译中</td>
-</tr>
-<tr>
-<td>DeepL翻译</td>
-<td><a target="_blank" rel="noopener" href="https://www.deepl.com/translator#en/zh/%7Bquery%7D">https://www.deepl.com/translator#en/zh/{query}</a></td>
-<td>英译中</td>
-</tr>
-<tr>
-<td>Wiki外部网站</td>
-<td><a target="_blank" rel="noopener" href="https://encyclopedia.thefreedictionary.com/%7Bquery%7D">https://encyclopedia.thefreedictionary.com/{query}</a></td>
-<td></td>
-</tr>
-<tr>
-<td>求闻百科</td>
-<td><a target="_blank" rel="noopener" href="https://www.qiuwenbaike.cn/wiki/%7Bquery%7D">https://www.qiuwenbaike.cn/wiki/{query}</a></td>
-<td></td>
-</tr>
-<tr>
-<td>Wolfram|Alpha</td>
-<td><a target="_blank" rel="noopener" href="https://www.wolframalpha.com/input?i=%7Bquery%7D&amp;lang=zh">https://www.wolframalpha.com/input?i={query}&amp;lang=zh</a></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>有时候站内搜索没有搜索引擎准确，可以使用搜索引擎过滤网站<br />
-过滤站点：</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://&lt;ENGINE.URL&gt;/search?text=site%3A&lt;SITE.URL&gt;%20&#123;query&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="启动应用"><a class="markdownIt-Anchor" href="#启动应用"></a> 启动应用</h1>
-<table>
-<thead>
-<tr>
-<th>功能</th>
-<th>路径</th>
-<th>参数</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>当前目录启动终端</td>
-<td>wt.exe</td>
-<td>-d “{current_folder}”</td>
-</tr>
-<tr>
-<td>Golden Dict查词</td>
-<td>GoldenDict.exe</td>
-<td>-s {query}</td>
-</tr>
-<tr>
-<td>启动ipython</td>
-<td>wt.exe</td>
-<td>ipython</td>
-</tr>
-<tr>
-<td>查看网络连接</td>
-<td>control.exe</td>
-<td>ncpa.cpl</td>
-</tr>
-<tr>
-<td>编辑环境变量（需要管理员权限）</td>
-<td>rundll32</td>
-<td>sysdm.cpl,EditEnvironmentVariables</td>
-</tr>
-</tbody>
-</table>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">PHP ADTP后台管理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-04-15 00:00:00" itemprop="dateCreated datePublished" datetime="2024-04-15T00:00:00+08:00">2024-04-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-12-21 10:46:05" itemprop="dateModified" datetime="2024-12-21T10:46:05+08:00">2024-12-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="信息系统架构"><a class="markdownIt-Anchor" href="#信息系统架构"></a> 信息系统架构</h1>
-<ul>
-<li>信息化系统：前台 + 后台 + 数据库</li>
-<li>B/S 模式</li>
-<li>前端 -&gt; Server[Apache-&gt;PHP(TP6.0)] -&gt; SQL DataBase</li>
-<li>运行逻辑：
-<ul>
-<li>Client发送require请求(http协议)，包含header（length、refer信息）、body（数据）</li>
-<li>Apache接受请求，给PHP做处理</li>
-<li>PHP读取、处理数据；判断数据是否损毁、是否需要退回</li>
-<li>数据更新到前端，并返回结果(success/fail)</li>
-</ul>
-</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E9%A1%B9%E7%9B%AE/PHP%20ADTP%E5%90%8E%E5%8F%B0%E7%AE%A1%E7%90%86/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
