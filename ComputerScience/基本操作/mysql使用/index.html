@@ -20,16 +20,16 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="使用  启动数据库 # 需要管理员权限net start &lt;mysql-service_name&gt;  登录数据库 mysql -u &lt;username&gt; -p$ &lt;password&gt;  导入数据库 -- 设置中文字符集mysql&gt; SET NAMES &#x27;utf8mb4&#x27;;mysql&gt; SET character_set_serv">
+    <meta name="description" content="索引原理 MySQL使用的是B+树作为索引的数据结构  B树是一个分支内按顺序存放多个节点数据的数据结构；而B+树在此基础上，在分支内只存储索引，只在叶子节点存储数据（这样每一层可以存储更多索引，减少层数），并且在叶节点之间用指针互相连接，提高访问效率。   引擎 MyISAM，B+树存储的Data就是数据的地址（非聚集索引、稀疏索引） InnoDB，直接存储数据（聚集索引）  为什么InnoD">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql使用">
 <meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
-<meta property="og:description" content="使用  启动数据库 # 需要管理员权限net start &lt;mysql-service_name&gt;  登录数据库 mysql -u &lt;username&gt; -p$ &lt;password&gt;  导入数据库 -- 设置中文字符集mysql&gt; SET NAMES &#x27;utf8mb4&#x27;;mysql&gt; SET character_set_serv">
+<meta property="og:description" content="索引原理 MySQL使用的是B+树作为索引的数据结构  B树是一个分支内按顺序存放多个节点数据的数据结构；而B+树在此基础上，在分支内只存储索引，只在叶子节点存储数据（这样每一层可以存储更多索引，减少层数），并且在叶节点之间用指针互相连接，提高访问效率。   引擎 MyISAM，B+树存储的Data就是数据的地址（非聚集索引、稀疏索引） InnoDB，直接存储数据（聚集索引）  为什么InnoD">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Source/Photo/SQL%20JOIN.jpg">
 <meta property="article:published_time" content="2024-07-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-10T11:55:08.178Z">
+<meta property="article:modified_time" content="2025-02-14T11:56:18.815Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="基本操作">
 <meta name="twitter:card" content="summary">
@@ -143,7 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text"> 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text"> 启动数据库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text"> 登录数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text"> 导入数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text"> 数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8"><span class="nav-text"> 表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2"><span class="nav-text"> 查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F"><span class="nav-text"> 排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%9B%E9%80%89"><span class="nav-text"> 筛选</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-text"> 逻辑操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%92%E5%85%A5"><span class="nav-text"> 插入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0"><span class="nav-text"> 更新</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4"><span class="nav-text"> 删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%81%94%E7%BB%93"><span class="nav-text"> 联结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text"> 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E5%8C%85%E5%AE%89%E8%A3%85"><span class="nav-text"> 压缩包安装</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86"><span class="nav-text"> 索引原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E6%93%8E"><span class="nav-text"> 引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88innodb%E5%BB%BA%E8%AE%AE%E6%AF%8F%E5%BC%A0%E8%A1%A8%E5%BF%85%E9%A1%BB%E5%BB%BA%E7%AB%8B%E4%B8%BB%E9%94%AE%E5%B9%B6%E7%94%A8%E8%87%AA%E5%A2%9E%E6%95%B4%E5%9E%8B"><span class="nav-text"> 为什么InnoDB建议每张表必须建立主键，并用自增整型？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#b%E6%A0%91%E5%A6%82%E4%BD%95%E6%94%AF%E6%8C%81%E8%8C%83%E5%9B%B4%E6%9F%A5%E8%AF%A2"><span class="nav-text"> B+树如何支持范围查询</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-text"> 事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7-atomicity"><span class="nav-text"> 原子性 Atomicity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7-consistency"><span class="nav-text"> 一致性 Consistency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%94%E7%A6%BB%E6%80%A7-isolation"><span class="nav-text"> 隔离性 Isolation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E6%80%A7-durability"><span class="nav-text"> 持久性 Durability</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text"> 使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text"> 启动数据库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text"> 登录数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text"> 导入数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text"> 数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8"><span class="nav-text"> 表</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9F%A5%E8%AF%A2"><span class="nav-text"> 查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F"><span class="nav-text"> 排序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AD%9B%E9%80%89"><span class="nav-text"> 筛选</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E6%93%8D%E4%BD%9C%E7%AC%A6"><span class="nav-text"> 逻辑操作符</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8F%92%E5%85%A5"><span class="nav-text"> 插入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0"><span class="nav-text"> 更新</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A0%E9%99%A4"><span class="nav-text"> 删除</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%81%94%E7%BB%93"><span class="nav-text"> 联结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text"> 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E5%8C%85%E5%AE%89%E8%A3%85"><span class="nav-text"> 压缩包安装</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -225,7 +225,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-10 19:55:08" itemprop="dateModified" datetime="2024-10-10T19:55:08+08:00">2024-10-10</time>
+      <time title="修改时间：2025-02-14 19:56:18" itemprop="dateModified" datetime="2025-02-14T19:56:18+08:00">2025-02-14</time>
     </span>
 
   
@@ -237,7 +237,45 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h1>
+    <div class="post-body" itemprop="articleBody"><h1 id="索引原理"><a class="markdownIt-Anchor" href="#索引原理"></a> 索引原理</h1>
+<p>MySQL使用的是B+树作为索引的数据结构</p>
+<blockquote>
+<p>B树是一个分支内<strong>按顺序</strong>存放多个节点数据的数据结构；而B+树在此基础上，在分支内只存储索引，只在叶子节点存储数据（这样每一层可以存储更多索引，减少层数），并且在叶节点之间用指针互相连接，提高访问效率。</p>
+</blockquote>
+<h2 id="引擎"><a class="markdownIt-Anchor" href="#引擎"></a> 引擎</h2>
+<p>MyISAM，B+树存储的Data就是数据的地址（非聚集索引、稀疏索引）<br />
+InnoDB，直接存储数据（聚集索引）</p>
+<h2 id="为什么innodb建议每张表必须建立主键并用自增整型"><a class="markdownIt-Anchor" href="#为什么innodb建议每张表必须建立主键并用自增整型"></a> 为什么InnoDB建议每张表必须建立主键，并用自增整型？</h2>
+<p>ibd必须用B+树索引，而整型是天然的索引；否则ibd会自己维护一个唯一id行（隐藏的主键）。<br />
+因此UUID比较效率会比整型更低。<br />
+而自增则根本避免了重复，并且只在一端变化，已经有的数据无需做修改，减少了维持有序的成本。<br />
+如果不自增，而是随机添加，那么新增的数很可能会触发分裂、平衡，造成冗余索引。</p>
+<h2 id="b树如何支持范围查询"><a class="markdownIt-Anchor" href="#b树如何支持范围查询"></a> B+树如何支持范围查询</h2>
+<p>Hash结构的索引，不支持范围查询；而B+树只用找到两端，然后顺着指针拿到所有节点就好了（叶节点是双指针连接的，并且有序）。</p>
+<h1 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h1>
+<h2 id="原子性-atomicity"><a class="markdownIt-Anchor" href="#原子性-atomicity"></a> 原子性 Atomicity</h2>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">BUSINESS</span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">1</span></span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">2</span></span><br><span class="line"><span class="keyword">COMMIT</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>原子性：事务操作要么同时发生，要么同时失败，不存在中间情况</p>
+</blockquote>
+<p>通过Undo Log回滚实现</p>
+<h2 id="一致性-consistency"><a class="markdownIt-Anchor" href="#一致性-consistency"></a> 一致性 Consistency</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">账户500元 -&gt; 扣除1000元 -&gt; 账户-500元</span><br><span class="line">-- 非法操作</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一致性：每个操作都必须是合法的，账户信息应该从一个有效状态到另一个有效状态。</p>
+</blockquote>
+<h2 id="隔离性-isolation"><a class="markdownIt-Anchor" href="#隔离性-isolation"></a> 隔离性 Isolation</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">商户1转账500元 -&gt; 余额更新为500元</span><br><span class="line">商户2转账500元 -&gt; 余额更新为500元</span><br><span class="line">-- 没有隔离性</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>隔离性：两个操作对同一个账户并发操作时，应该表现为不相互影响类似串行的操作。</p>
+</blockquote>
+<h2 id="持久性-durability"><a class="markdownIt-Anchor" href="#持久性-durability"></a> 持久性 Durability</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">转账500元到余额 --服务器宕机--&gt; 余额0元</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>持久性：操作更新成功后，更新的结果应该永久地保留下来，不会因为宕机等问题而丢失。</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h1>
 <h2 id="启动数据库"><a class="markdownIt-Anchor" href="#启动数据库"></a> 启动数据库</h2>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 需要管理员权限</span></span><br><span class="line">net start &lt;mysql-service_name&gt;</span><br></pre></td></tr></table></figure>
 <h1 id="登录数据库"><a class="markdownIt-Anchor" href="#登录数据库"></a> 登录数据库</h1>
@@ -248,7 +286,6 @@
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建数据库</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE yourDatabase</span><br><span class="line">  <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看所有数据库</span></span><br><span class="line"><span class="keyword">show</span> databases;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 进入数据库</span></span><br><span class="line">use yourDatabase</span><br></pre></td></tr></table></figure>
 <h2 id="表"><a class="markdownIt-Anchor" href="#表"></a> 表</h2>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 建表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> yourTable (</span><br><span class="line">  id   <span class="type">INT</span>         AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>       <span class="keyword">DEFAULT</span> <span class="string">&#x27;worker&#x27;</span>,</span><br><span class="line">  age  <span class="type">INT</span>         ,</span><br><span class="line">  addr <span class="type">varchar</span>(<span class="number">50</span>) </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除表</span></span><br><span class="line"><span class="keyword">drop</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看表 </span></span><br><span class="line"><span class="keyword">show</span> tables;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改表</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">add</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="type">char</span>(<span class="number">20</span>)</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">column</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除整张表</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
 <h1 id="查询"><a class="markdownIt-Anchor" href="#查询"></a> 查询</h1>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- \G 参数单独展示每一行，避免过宽</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>\G</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询多列</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>column1<span class="operator">&gt;</span>, <span class="operator">&lt;</span>column2<span class="operator">&gt;</span>, <span class="operator">&lt;</span>column3<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 只显示不同项</span></span><br><span class="line"><span class="comment">-- 注意，对多列使用时，两列完全一样才会被屏蔽</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> <span class="operator">&lt;</span><span class="keyword">column</span><span class="operator">&gt;</span> <span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 检错前5行</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span> limit <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
 <h1 id="排序"><a class="markdownIt-Anchor" href="#排序"></a> 排序</h1>

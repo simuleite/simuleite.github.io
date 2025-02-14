@@ -28,7 +28,7 @@
 <meta property="og:description" content="基本操作  &lt;C-o&gt;, &lt;C-i&gt;：回到前一个&#x2F;后一个位置（例如，打开文件默认在第一行，&lt;C-o&gt;回到上次编辑位置）。注意这个操作是跨文件的。 &#96;0：返回上次位置 词：w（下一个词），b（词初），e（词尾） 行：0（行初），^（第一个非空格字符），$（行尾） 文件：gg（文件头），G（文件尾） 搜索:&#x2F;&#123;正则表达式&#125;,n&#x2F;N用于导航匹配">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-01-17T02:52:38.598Z">
+<meta property="article:modified_time" content="2025-01-26T08:58:02.143Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="基本操作">
 <meta name="twitter:card" content="summary">
@@ -141,7 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text"> 基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="nav-text"> 多行操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8F"><span class="nav-text"> 宏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%95%E5%88%B6%E5%AE%8F"><span class="nav-text"> 录制宏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%AE%8F"><span class="nav-text"> 使用宏</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-text"> 文件操作</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text"> 基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#change"><span class="nav-text"> Change</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%A1%8C%E6%93%8D%E4%BD%9C"><span class="nav-text"> 多行操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#esc-map"><span class="nav-text"> Esc Map</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%8F"><span class="nav-text"> 宏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BD%95%E5%88%B6%E5%AE%8F"><span class="nav-text"> 录制宏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%AE%8F"><span class="nav-text"> 使用宏</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-text"> 文件操作</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -223,7 +223,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-17 10:52:38" itemprop="dateModified" datetime="2025-01-17T10:52:38+08:00">2025-01-17</time>
+      <time title="修改时间：2025-01-26 16:58:02" itemprop="dateModified" datetime="2025-01-26T16:58:02+08:00">2025-01-26</time>
     </span>
 
   
@@ -244,7 +244,7 @@
 <li>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</li>
 <li>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</li>
 <li><code>x</code>删除字符（等同于<code>dl</code>）</li>
-<li><code>s</code>(substitute)替换字符（等同于<code>xi</code>）
+<li><code>:s</code>(substitute)替换字符（等同于<code>xi</code>）
 <ul>
 <li>替换命令<code>:&#123;作用范围&#125;s/&#123;目标文本&#125;/&#123;替换文本&#125;/&#123;替换标志&#125;</code></li>
 <li><code>:%s/s_content/o_content/g</code> 全局替换</li>
@@ -309,8 +309,14 @@
 </li>
 <li><code>%</code>匹配括号</li>
 </ul>
+<h2 id="change"><a class="markdownIt-Anchor" href="#change"></a> Change</h2>
+<p><code>ce</code> 替换一个单词<br />
+<code>cs&quot;'</code> 把当前词块的&quot;全部替换成’</p>
 <h2 id="多行操作"><a class="markdownIt-Anchor" href="#多行操作"></a> 多行操作</h2>
 <p><code>&lt;C-v&gt;</code> 选中多行，<code>Shift + i</code>输入后<code>Esc</code>，即可多行同步输入</p>
+<h2 id="esc-map"><a class="markdownIt-Anchor" href="#esc-map"></a> Esc Map</h2>
+<p>Vim和NeoVim内置了<code>&lt;C-[&gt;</code>作为<code>&lt;Esc&gt;</code>的映射；<br />
+还可以通过<code>&lt;A-&gt;</code>Alt加上任何键（Meta键）的方式触发<code>&lt;Esc&gt;-</code>。</p>
 <h1 id="宏"><a class="markdownIt-Anchor" href="#宏"></a> 宏</h1>
 <h2 id="录制宏"><a class="markdownIt-Anchor" href="#录制宏"></a> 录制宏</h2>
 <p>命令模式下，</p>

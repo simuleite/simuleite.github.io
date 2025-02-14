@@ -472,6 +472,8 @@ log2(x) 以2为底数的对数
 <p>文本格式转换</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pandoc --from markdown --to docx source.md -o dest.docx</span><br><span class="line">pandoc -f markdown source.md -t docx -o dest.docx</span><br><span class="line">pandoc source.md -o dest.docx --ignore-args # 忽略参数</span><br></pre></td></tr></table></figure>
 <p><strong>注意</strong>：为了最佳转换效果，markdown文件每行后都要空行</p>
+<h2 id="默认启动tmux"><a class="markdownIt-Anchor" href="#默认启动tmux"></a> 默认启动Tmux</h2>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">if [[ -z &quot;$TMUX&quot; ]] &amp;&amp; [ &quot;$SSH_CONNECTION&quot; != &quot;&quot; ]; then</span><br><span class="line">tmux attach-session -t ssh_tmux || tmux new-session -s ssh_tmux</span><br><span class="line">exit</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
         <tag>基本操作</tag>
@@ -716,7 +718,45 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
   <entry>
     <title>mysql使用</title>
     <url>/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h1>
+    <content><![CDATA[<h1 id="索引原理"><a class="markdownIt-Anchor" href="#索引原理"></a> 索引原理</h1>
+<p>MySQL使用的是B+树作为索引的数据结构</p>
+<blockquote>
+<p>B树是一个分支内<strong>按顺序</strong>存放多个节点数据的数据结构；而B+树在此基础上，在分支内只存储索引，只在叶子节点存储数据（这样每一层可以存储更多索引，减少层数），并且在叶节点之间用指针互相连接，提高访问效率。</p>
+</blockquote>
+<h2 id="引擎"><a class="markdownIt-Anchor" href="#引擎"></a> 引擎</h2>
+<p>MyISAM，B+树存储的Data就是数据的地址（非聚集索引、稀疏索引）<br />
+InnoDB，直接存储数据（聚集索引）</p>
+<h2 id="为什么innodb建议每张表必须建立主键并用自增整型"><a class="markdownIt-Anchor" href="#为什么innodb建议每张表必须建立主键并用自增整型"></a> 为什么InnoDB建议每张表必须建立主键，并用自增整型？</h2>
+<p>ibd必须用B+树索引，而整型是天然的索引；否则ibd会自己维护一个唯一id行（隐藏的主键）。<br />
+因此UUID比较效率会比整型更低。<br />
+而自增则根本避免了重复，并且只在一端变化，已经有的数据无需做修改，减少了维持有序的成本。<br />
+如果不自增，而是随机添加，那么新增的数很可能会触发分裂、平衡，造成冗余索引。</p>
+<h2 id="b树如何支持范围查询"><a class="markdownIt-Anchor" href="#b树如何支持范围查询"></a> B+树如何支持范围查询</h2>
+<p>Hash结构的索引，不支持范围查询；而B+树只用找到两端，然后顺着指针拿到所有节点就好了（叶节点是双指针连接的，并且有序）。</p>
+<h1 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h1>
+<h2 id="原子性-atomicity"><a class="markdownIt-Anchor" href="#原子性-atomicity"></a> 原子性 Atomicity</h2>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">BUSINESS</span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">1</span></span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">2</span></span><br><span class="line"><span class="keyword">COMMIT</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>原子性：事务操作要么同时发生，要么同时失败，不存在中间情况</p>
+</blockquote>
+<p>通过Undo Log回滚实现</p>
+<h2 id="一致性-consistency"><a class="markdownIt-Anchor" href="#一致性-consistency"></a> 一致性 Consistency</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">账户500元 -&gt; 扣除1000元 -&gt; 账户-500元</span><br><span class="line">-- 非法操作</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一致性：每个操作都必须是合法的，账户信息应该从一个有效状态到另一个有效状态。</p>
+</blockquote>
+<h2 id="隔离性-isolation"><a class="markdownIt-Anchor" href="#隔离性-isolation"></a> 隔离性 Isolation</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">商户1转账500元 -&gt; 余额更新为500元</span><br><span class="line">商户2转账500元 -&gt; 余额更新为500元</span><br><span class="line">-- 没有隔离性</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>隔离性：两个操作对同一个账户并发操作时，应该表现为不相互影响类似串行的操作。</p>
+</blockquote>
+<h2 id="持久性-durability"><a class="markdownIt-Anchor" href="#持久性-durability"></a> 持久性 Durability</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">转账500元到余额 --服务器宕机--&gt; 余额0元</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>持久性：操作更新成功后，更新的结果应该永久地保留下来，不会因为宕机等问题而丢失。</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="使用"><a class="markdownIt-Anchor" href="#使用"></a> 使用</h1>
 <h2 id="启动数据库"><a class="markdownIt-Anchor" href="#启动数据库"></a> 启动数据库</h2>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 需要管理员权限</span></span><br><span class="line">net start &lt;mysql-service_name&gt;</span><br></pre></td></tr></table></figure>
 <h1 id="登录数据库"><a class="markdownIt-Anchor" href="#登录数据库"></a> 登录数据库</h1>
@@ -727,7 +767,6 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 创建数据库</span></span><br><span class="line"><span class="keyword">CREATE</span> DATABASE yourDatabase</span><br><span class="line">  <span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8mb4;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看所有数据库</span></span><br><span class="line"><span class="keyword">show</span> databases;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 进入数据库</span></span><br><span class="line">use yourDatabase</span><br></pre></td></tr></table></figure>
 <h2 id="表"><a class="markdownIt-Anchor" href="#表"></a> 表</h2>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 建表</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> yourTable (</span><br><span class="line">  id   <span class="type">INT</span>         AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">  name <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>       <span class="keyword">DEFAULT</span> <span class="string">&#x27;worker&#x27;</span>,</span><br><span class="line">  age  <span class="type">INT</span>         ,</span><br><span class="line">  addr <span class="type">varchar</span>(<span class="number">50</span>) </span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除表</span></span><br><span class="line"><span class="keyword">drop</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查看表 </span></span><br><span class="line"><span class="keyword">show</span> tables;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 修改表</span></span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">add</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="type">char</span>(<span class="number">20</span>)</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">column</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 删除整张表</span></span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
 <h1 id="查询"><a class="markdownIt-Anchor" href="#查询"></a> 查询</h1>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- \G 参数单独展示每一行，避免过宽</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>\G</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询多列</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>column1<span class="operator">&gt;</span>, <span class="operator">&lt;</span>column2<span class="operator">&gt;</span>, <span class="operator">&lt;</span>column3<span class="operator">&gt;</span></span><br><span class="line"><span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 只显示不同项</span></span><br><span class="line"><span class="comment">-- 注意，对多列使用时，两列完全一样才会被屏蔽</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> <span class="operator">&lt;</span><span class="keyword">column</span><span class="operator">&gt;</span> <span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 检错前5行</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">&lt;</span>col<span class="operator">&gt;</span> <span class="keyword">from</span> <span class="operator">&lt;</span><span class="keyword">table</span><span class="operator">&gt;</span> limit <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
 <h1 id="排序"><a class="markdownIt-Anchor" href="#排序"></a> 排序</h1>
@@ -849,7 +888,7 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 <li>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</li>
 <li>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</li>
 <li><code>x</code>删除字符（等同于<code>dl</code>）</li>
-<li><code>s</code>(substitute)替换字符（等同于<code>xi</code>）
+<li><code>:s</code>(substitute)替换字符（等同于<code>xi</code>）
 <ul>
 <li>替换命令<code>:&#123;作用范围&#125;s/&#123;目标文本&#125;/&#123;替换文本&#125;/&#123;替换标志&#125;</code></li>
 <li><code>:%s/s_content/o_content/g</code> 全局替换</li>
@@ -914,8 +953,14 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 </li>
 <li><code>%</code>匹配括号</li>
 </ul>
+<h2 id="change"><a class="markdownIt-Anchor" href="#change"></a> Change</h2>
+<p><code>ce</code> 替换一个单词<br />
+<code>cs&quot;'</code> 把当前词块的&quot;全部替换成’</p>
 <h2 id="多行操作"><a class="markdownIt-Anchor" href="#多行操作"></a> 多行操作</h2>
 <p><code>&lt;C-v&gt;</code> 选中多行，<code>Shift + i</code>输入后<code>Esc</code>，即可多行同步输入</p>
+<h2 id="esc-map"><a class="markdownIt-Anchor" href="#esc-map"></a> Esc Map</h2>
+<p>Vim和NeoVim内置了<code>&lt;C-[&gt;</code>作为<code>&lt;Esc&gt;</code>的映射；<br />
+还可以通过<code>&lt;A-&gt;</code>Alt加上任何键（Meta键）的方式触发<code>&lt;Esc&gt;-</code>。</p>
 <h1 id="宏"><a class="markdownIt-Anchor" href="#宏"></a> 宏</h1>
 <h2 id="录制宏"><a class="markdownIt-Anchor" href="#录制宏"></a> 录制宏</h2>
 <p>命令模式下，</p>
