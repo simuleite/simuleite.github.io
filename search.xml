@@ -733,6 +733,10 @@ InnoDB，直接存储数据（聚集索引）</p>
 如果不自增，而是随机添加，那么新增的数很可能会触发分裂、平衡，造成冗余索引。</p>
 <h2 id="b树如何支持范围查询"><a class="markdownIt-Anchor" href="#b树如何支持范围查询"></a> B+树如何支持范围查询</h2>
 <p>Hash结构的索引，不支持范围查询；而B+树只用找到两端，然后顺着指针拿到所有节点就好了（叶节点是双指针连接的，并且有序）。</p>
+<h2 id="联合主键索引为什么是最左前缀原则"><a class="markdownIt-Anchor" href="#联合主键索引为什么是最左前缀原则"></a> 联合主键索引，为什么是最左前缀原则？</h2>
+<p>最左前缀原则：不能跳过左边的索引，必须从最左边索引开始，逐步增加条件。<br />
+因为联合主键索引底层的B+树就是按照主键顺序排序的，会从左到右进行比较；如果跳过了左边的主键，那就找不到了，因为第二个主键不一定是排好序的！。<br />
+首先按照第一个主键排序，然后按照第二个主键排序。在同一个主键内，二级主键是有序的，但是跳出这个圈，就是无序的。</p>
 <h1 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h1>
 <h2 id="原子性-atomicity"><a class="markdownIt-Anchor" href="#原子性-atomicity"></a> 原子性 Atomicity</h2>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">BUSINESS</span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">1</span></span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">2</span></span><br><span class="line"><span class="keyword">COMMIT</span></span><br></pre></td></tr></table></figure>
@@ -1556,8 +1560,6 @@ Now it is SUCCESS.</p>
 <p>[!INFO]<br />
 Here is some INFO.</p>
 </blockquote>
-<div class="note primary"><p>primary 提示块标签</p>
-</div>
 <hr class="footnotes-sep" />
 <section class="footnotes">
 <ol class="footnotes-list">
