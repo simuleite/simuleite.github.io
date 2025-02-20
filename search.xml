@@ -737,6 +737,49 @@ InnoDB，直接存储数据（聚集索引）</p>
 <p>最左前缀原则：不能跳过左边的索引，必须从最左边索引开始，逐步增加条件。<br />
 因为联合主键索引底层的B+树就是按照主键顺序排序的，会从左到右进行比较；如果跳过了左边的主键，那就找不到了，因为第二个主键不一定是排好序的！。<br />
 首先按照第一个主键排序，然后按照第二个主键排序。在同一个主键内，二级主键是有序的，但是跳出这个圈，就是无序的。</p>
+<h1 id="索引优化原则"><a class="markdownIt-Anchor" href="#索引优化原则"></a> 索引优化原则</h1>
+<h2 id="explain性能分析"><a class="markdownIt-Anchor" href="#explain性能分析"></a> explain性能分析</h2>
+<p><code>explain extended</code>: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>o</mi><mi>w</mi><mi>s</mi><mo>∗</mo><mi>f</mi><mi>i</mi><mi>l</mi><mi>t</mi><mi>e</mi><mi>r</mi><mi>e</mi><mi>d</mi><mi mathvariant="normal">/</mi><mn>100</mn></mrow><annotation encoding="application/x-tex">rows * filtered/100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord">/</span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span></span></span></span>可以估算出将要和explain中前一个表达式进行连接的行数。<br />
+<code>show warning</code>: Mysql的提示信息，可能会帮你优化。</p>
+<h3 id="字段解释"><a class="markdownIt-Anchor" href="#字段解释"></a> 字段解释</h3>
+<p>select_type</p>
+<ul>
+<li>Primary 最外层的select。</li>
+<li>Subquery 不在from语句中，包含在select中的子查询。</li>
+<li>Derived 包含在from语句中的子查询。派生表。<br />
+id</li>
+<li>表示执行顺序，顺序越靠后优先级越高<br />
+<strong>type</strong><br />
+效率优先级 system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL</li>
+</ul>
+<blockquote>
+<p>一般来说range是及格线，最好达到ref</p>
+</blockquote>
+<ul>
+<li>NULL mysql通过优化和底层原理，不访问表或索引就取到值。如求最小值，通过B+树直接拿到。</li>
+<li>system, const system是const的特例，const表示常量查询。表只有一行，为const查询。只有一条元组匹配，为system查询。</li>
+<li>eq_ref 主键关联查询，表有几行。</li>
+<li>ref 使用非主键（不唯一）索引，表有很多行。使用普通索引或唯一索引的部分前缀。</li>
+<li>range 范围查找，包括比较符号。</li>
+<li>index 无查询条件，全选。扫描全索引就能拿到结果，一般扫描二级索引（Mysql优先选择同等条件下更小的索引）。</li>
+<li>ALL 全表扫描。扫描聚集索引，比index更大</li>
+</ul>
+<h2 id="sql语句优化"><a class="markdownIt-Anchor" href="#sql语句优化"></a> sql语句优化</h2>
+<ul>
+<li>尽量使用覆盖索引</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 推荐，其中name和age都有索引</span></span><br><span class="line"><span class="keyword">select</span> name, age <span class="keyword">from</span> your_table <span class="keyword">where</span> <span class="keyword">condition</span></span><br><span class="line"><span class="comment">-- 不推荐</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> your_table <span class="keyword">where</span> <span class="keyword">condition</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>少用or或in；不对索引用函数；不让索引发生隐式转换</li>
+<li>减少搜索范围；范围过大，mysql会认为全表扫描更快，从而不走索引</li>
+<li><code>force index(your_index)</code> 强制索引（注意，不一定更快！可能更多回表）</li>
+<li>试试用<code>like</code>代替范围查询</li>
+</ul>
+<h1 id="缓存"><a class="markdownIt-Anchor" href="#缓存"></a> 缓存</h1>
+<p>Mysql8以后移除了缓存。</p>
+<blockquote>
+<p>Mysql缓存的本质是KV Map。然而，对于高频修改的数据，Map缓存下来的是<strong>脏数据</strong>，因此不实用。</p>
+</blockquote>
 <h1 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h1>
 <h2 id="原子性-atomicity"><a class="markdownIt-Anchor" href="#原子性-atomicity"></a> 原子性 Atomicity</h2>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">BUSINESS</span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">1</span></span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">2</span></span><br><span class="line"><span class="keyword">COMMIT</span></span><br></pre></td></tr></table></figure>
