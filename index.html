@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-count">60</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -180,7 +180,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/MarsCode%20%E9%94%99%E9%A2%98%E6%9C%AC/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%B4%9B%E8%B0%B7%20%E9%94%99%E9%A2%98%E6%9C%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/MarsCode%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">MarsCode 错题本</a>
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%B4%9B%E8%B0%B7%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">洛谷 错题本</a>
         </h2>
 
         <div class="post-meta-container">
@@ -208,15 +208,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2025-01-19 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-19T00:00:00+08:00">2025-01-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-21 22:10:16" itemprop="dateModified" datetime="2025-02-21T22:10:16+08:00">2025-02-21</time>
+      <time title="创建时间：2025-03-01 00:00:00 / 修改时间：20:25:47" itemprop="dateCreated datePublished" datetime="2025-03-01T00:00:00+08:00">2025-03-01</time>
     </span>
 
   
@@ -229,60 +223,110 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="51-和的逆运算"><a class="markdownIt-Anchor" href="#51-和的逆运算"></a> 51 和的逆运算</h1>
-<p>#全排列<br />
-这题在给定的和<strong>不重复</strong>的情况下很简单：</p>
-<ol>
-<li>首先升序排序好数组sums，生成答案数组<code>nums[n]</code>。</li>
-<li><code>nums[0] + nums[1]</code> 必然等于<code>sums[0]</code>（最小值），<code>nums[0] + nums[2]</code> 必然等于<code>sums[1]</code>（次小值）, … , <code>nums[n-2] + nums[n-1]</code> 必然等于<code>sums[lastIndex]</code>（最大值）。</li>
-<li>可以反向推测出<code>nums[0] = (sums[0] + sums[1] - sums[n-1]) / 2</code>，论证看下方：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nums[n] = &#123;a, b, c, d, e&#125; 从小到大排列</span><br><span class="line">a + b = sums[0] (1) // 最小</span><br><span class="line">a + c = sums[1] (2)</span><br><span class="line">a + d = sums[2]</span><br><span class="line">a + e = sums[3]</span><br><span class="line">b + c = sums[4] (3)</span><br><span class="line">...</span><br><span class="line">(1) + (2) = 2a + (3)</span><br><span class="line">2a = sums[0] + sums[1] - sums[n-1] = (1) + (2) - (3)</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>得出了<code>nums[0]</code>，其他数字都可以用<code>nums[i] = sums[i-1] - nums[0]</code>推出来</li>
-</ol>
-<p>但是给定的和重复的情况下，上面的第2条就不成立了。例如测试用例3：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sums[] = &#123; 223, 224, 225, 225, 226, 226, 227, 227, 228, 229 &#125;</span><br><span class="line">nums[n] = &#123; 111, 112, 113, 114, 115 &#125;</span><br><span class="line">a + b = 223</span><br><span class="line">a + c = 224</span><br><span class="line">a + d = 225</span><br><span class="line">a + e = 226</span><br><span class="line">b + c = 225 // 打破了第2条假设，不是按升序排序！</span><br></pre></td></tr></table></figure>
-<p>在给定的和有重复元素的情况下，我们再按照上面的步骤1排序好数组sums，算出来的<code>nums[0]</code>就是错误的，因为这个时候<code>b+c &lt; a+e</code>，<code>a+e</code>排到了<code>b+c</code>的位置，再套用步骤3的算法就不对了。<br />
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>a</mi><mo>+</mo><mi>c</mi><mi mathvariant="normal">≠</mi><mn>2</mn><mi>a</mi><mo>+</mo><mi>a</mi><mo>+</mo><mi>e</mi></mrow><annotation encoding="application/x-tex">a + b + a + c \neq 2a + a + e</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">c</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">e</span></span></span></span></p>
-<p>综上所述，重新整理后我们会发现，排序数组不是目的。真正的目的是能够让数组符合步骤3的公式<code>nums[0] = (sums[0] + sums[1] - sums[n-1]) / 2</code>，让<code>b+c</code>能够正确地出现在<code>sums[n-1]</code>的位置。<br />
-可是，我们并没有原数组，怎么做的出来呢？</p>
-<blockquote>
-<p>数学家思维：给定一个有序的数组nums，其中元素按升序排列，一定存在一个有序两两和序列sums。</p>
-</blockquote>
-<p>找到这个有序两两和序列，就可以根据上面的算法反推出原来的数组。</p>
-<p>我不知道有没有一种数学算法可以优雅地找到有序两两和序列sums，一举这个问题。但是全排列一定能找到这个sums。以下是第51题的全部代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">static</span> String ans;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">solution</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span>[] sums)</span> &#123;</span><br><span class="line">        ans = <span class="string">&quot;Impossible&quot;</span>;</span><br><span class="line">        fullArrange(sums, <span class="number">0</span>, n);</span><br><span class="line">        <span class="comment">// System.out.println(ans);</span></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">check</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span>[] sums)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[] nums = <span class="keyword">new</span> <span class="title class_">int</span>[n];</span><br><span class="line">        nums[<span class="number">0</span>] = (<span class="type">int</span>) Math.round((sums[<span class="number">0</span>] + sums[<span class="number">1</span>] - sums[n-<span class="number">1</span>]) / <span class="number">2.0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; i += <span class="number">1</span>) &#123;</span><br><span class="line">            nums[i] = sums[i-<span class="number">1</span>] - nums[<span class="number">0</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, k = <span class="number">0</span>; i &lt; n; i += <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i+<span class="number">1</span>; j &lt; n; j += <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] != sums[k++]) &#123;</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">result</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> num: nums) &#123;</span><br><span class="line">            result.append(num + <span class="string">&quot; &quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        ans = <span class="keyword">new</span> <span class="title class_">String</span>(result.deleteCharAt(result.length()-<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 全排列，确定sums第k位的值</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">fullArrange</span><span class="params">(<span class="type">int</span>[] sums, <span class="type">int</span> k, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (k == sums.length) &#123;</span><br><span class="line">            check(n, sums);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> k, l = sums.length; i &lt; l; i += <span class="number">1</span>) &#123;</span><br><span class="line">            swap(sums, i, k);</span><br><span class="line">            fullArrange(sums, k + <span class="number">1</span>, n);</span><br><span class="line">            swap(sums, i, k);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>[] a, <span class="type">int</span> i, <span class="type">int</span> j)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="454-最少时间收集rgb灯"><a class="markdownIt-Anchor" href="#454-最少时间收集rgb灯"></a> 454 最少时间收集RGB灯</h1>
-<p>#滑动窗口<br />
-之前做过滑动窗口的题目，如最长不重复数组，但是没有理解滑动窗口的本质，遇到这题还是没有思路。</p>
-<blockquote>
-<p>滑动窗口的本质：给定一个数组，你需要遍历所有的子数组才能得到答案，但是并不需要每次都从头扫描。你需要的结果中，有一部分是始终存在的、重复的。</p>
-</blockquote>
-<p>例如这个RGB问题，最先想到的方法就是遍历所有的子数组，检查每个子数组是否包含RGB，然后求最短长度。<br />
-但是，扫描<code>RRGGGBR</code>，我们得到两个RGB，分别是<code>RGGGB</code>和<code>GBR</code>。可见，我们不需要重复扫描中间的3个G来得到最终结果。而是要确定开头和结尾，确定范围仅此而已。</p>
-<p>滑动窗口就是双指针，确定开头与结尾。<br />
-而其中一个指针，结尾，是必定要遍历整个数组的，不然得不到答案。<br />
-那么，怎样确定开头呢？</p>
-<blockquote>
-<p>满足条件后，确定本次开头，并寻找下一个开头。</p>
-</blockquote>
-<ul>
-<li>判断满足条件：在我们的题目里，可以维护一个Set，来检查是否找到了RGB三个字母。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (charSet.size() == <span class="number">3</span>) &#123; <span class="comment">// 满足条件</span></span><br><span class="line">    <span class="comment">// 1. 确认本次长度</span></span><br><span class="line">    <span class="comment">// 2. 从Set中移除第一个字母</span></span><br><span class="line">    <span class="comment">// 3. 确定下一个start</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>确定本次开头：三个字母找到后，我们需要做的是，找到第一个字母最后出现的位置，确认长度。<br />
-我们可以分别用<code>R, G, B</code>来记录字母最后下标。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (ch == <span class="string">&#x27;R&#x27;</span>) R = end;</span><br><span class="line"><span class="keyword">if</span> (ch == <span class="string">&#x27;G&#x27;</span>) G = end;</span><br><span class="line"><span class="keyword">if</span> (ch == <span class="string">&#x27;B&#x27;</span>) B = end;</span><br><span class="line"><span class="keyword">if</span> (charSet.size() == <span class="number">3</span>) &#123; <span class="comment">// 满足条件</span></span><br><span class="line">    <span class="comment">// 1. 确认本次长度</span></span><br><span class="line">    start = min(R, G, B); <span class="comment">// 第一个字母最后位置</span></span><br><span class="line">    length = Math.min(length, end - start);</span><br><span class="line">    <span class="comment">// 2. 从Set中移除第一个字母</span></span><br><span class="line">    charSet.remove(S.charAt(start));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>寻找下一个开头：下一个开头，就是第二个字母最后出现的位置。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">start = secondRGB(R, G, B);</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">secondRGB</span><span class="params">(<span class="type">int</span> R, <span class="type">int</span> G, <span class="type">int</span> B)</span> &#123;</span><br><span class="line">    <span class="type">int</span>[] arr = &#123;R, G, B&#125;; </span><br><span class="line">    Arrays.sort(arr); </span><br><span class="line">    <span class="keyword">return</span> arr[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以下是454全部代码（两个函数合并为一次数组排序）：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.HashSet;</span><br><span class="line"><span class="keyword">import</span> java.util.Set;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">solution</span><span class="params">(<span class="type">int</span> N, String S)</span> &#123;</span><br><span class="line">        <span class="type">int</span> start, end;</span><br><span class="line">        <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> Integer.MAX_VALUE;</span><br><span class="line">        Set&lt;Character&gt; charSet = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">        <span class="type">int</span> R, G, B;</span><br><span class="line">        R = G = B = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (start = end = <span class="number">0</span>; end &lt; N; end += <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">char</span> <span class="variable">ch</span> <span class="operator">=</span> S.charAt(end);</span><br><span class="line">            charSet.add(ch);</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">&#x27;R&#x27;</span>) R = end;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">&#x27;G&#x27;</span>) G = end;</span><br><span class="line">            <span class="keyword">if</span> (ch == <span class="string">&#x27;B&#x27;</span>) B = end;</span><br><span class="line">            <span class="keyword">if</span> (charSet.size() == <span class="number">3</span>) &#123;</span><br><span class="line">                <span class="type">int</span>[] charIndex = &#123;R, G, B&#125;;</span><br><span class="line">                Arrays.sort(charIndex);</span><br><span class="line">                start = charIndex[<span class="number">0</span>];</span><br><span class="line">                length = Math.min(length, end - start);</span><br><span class="line">                charSet.remove(S.charAt(start));</span><br><span class="line">                start = charIndex[<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// System.out.println(length);</span></span><br><span class="line">        <span class="keyword">return</span> length == Integer.MAX_VALUE ? -<span class="number">1</span> : length;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        System.out.println(solution(<span class="number">5</span>, <span class="string">&quot;RRGGB&quot;</span>) == <span class="number">3</span>);</span><br><span class="line">        System.out.println(solution(<span class="number">4</span>, <span class="string">&quot;RRRR&quot;</span>) == -<span class="number">1</span>);</span><br><span class="line">        System.out.println(solution(<span class="number">6</span>, <span class="string">&quot;RGBRGB&quot;</span>) == <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <h1 id="p1004-noip-2000-提高组-方格取数"><a class="markdownIt-Anchor" href="#p1004-noip-2000-提高组-方格取数"></a> P1004 [NOIP 2000 提高组] 方格取数</h1>
+<p>#走两次dp<br />
+如果只走一次，这题是非常经典的DP。但是要走两次，就变得非常有难度。<br />
+首先，可以简单地推广：要走两次，dp就存四个下标：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>[][][][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[N][N][N][N];</span><br></pre></td></tr></table></figure>
+<p>我们只需要遍历所有可能，并且比较四种走法（同下、同右、一下一右），取最大值就可以了。<br />
+注意，一个数只能取一次，需要一个判断防止重复取数。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i1</span> <span class="operator">=</span> <span class="number">1</span>; i1 &lt; N; i1 += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i2</span> <span class="operator">=</span> <span class="number">1</span>; i2 &lt; N; i2 += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j1</span> <span class="operator">=</span> <span class="number">1</span>; j1 &lt; N; j1 += <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j2</span> <span class="operator">=</span> <span class="number">1</span>; j2 &lt; N; j2 += <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">step</span> <span class="operator">=</span> map[i1][j1];</span><br><span class="line">                <span class="keyword">if</span> (i2 != i1 &amp;&amp; j2 != j1) step += map[i2][j2];</span><br><span class="line">                </span><br><span class="line">                dp[i1][j1][i2][j2] = </span><br><span class="line">                    Math.max(dp[i1-<span class="number">1</span>][j1][i2-<span class="number">1</span>][j2], </span><br><span class="line">                    Math.max(dp[i1-<span class="number">1</span>][j1][i2][j2-<span class="number">1</span>], </span><br><span class="line">                    Math.max(dp[i1][j1-<span class="number">1</span>][i2-<span class="number">1</span>][j2], </span><br><span class="line">                             dp[i1][j1-<span class="number">1</span>][i2][j2-<span class="number">1</span>]))) + step;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(dp[N-<span class="number">1</span>][N-<span class="number">1</span>][N-<span class="number">1</span>][N-<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+<p>当然，4个循环时间复杂度太高了。我们可以用一个<code>k == i1 + j1 == i2 + j2</code>来减少一重循环。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>[][][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>*N][N][N];</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">1</span>; k &lt; <span class="number">2</span>*N; k += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i1</span> <span class="operator">=</span> <span class="number">1</span>; i1 &lt; N; i1 += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i2</span> <span class="operator">=</span> <span class="number">1</span>; i2 &lt; N; i2 += <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">j1</span> <span class="operator">=</span> k - i1, j2 = k - i2;</span><br><span class="line">            <span class="keyword">if</span> (j1 &lt; <span class="number">0</span> || j1 &gt;= N || j2 &lt; <span class="number">0</span> || j2 &gt;= N) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> <span class="variable">step</span> <span class="operator">=</span> map[i1][j1];</span><br><span class="line">            <span class="keyword">if</span> (i1 != i2) step += map[i2][j2];</span><br><span class="line">            dp[k][i1][i2] = Math.max(dp[k-<span class="number">1</span>][i1-<span class="number">1</span>][i2-<span class="number">1</span>], Math.max(dp[k-<span class="number">1</span>][i1][i2],</span><br><span class="line">            Math.max(dp[k-<span class="number">1</span>][i1-<span class="number">1</span>][i2], dp[k-<span class="number">1</span>][i1][i2-<span class="number">1</span>]))) + step;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(dp[<span class="number">2</span> * (N-<span class="number">1</span>)][N-<span class="number">1</span>][N-<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+      
+    </div>
 
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">动态规划学习指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-22 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-22T00:00:00+08:00">2024-10-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-01 08:58:27" itemprop="dateModified" datetime="2025-03-01T08:58:27+08:00">2025-03-01</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Author：<strong><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/aatalyk">aatalyk</a></strong><br />
+Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns">Link</a></p>
+<p>Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to prepare for interviews two years ago. At that time I should say I could not solve the two sum problem. Easy problems seemed to me like hard ones so most of the time I had to look at editorials and discuss section. Currently, I have solved ~800 problems and time to time participate in contests. I usually solve 3 problems in a contest and sometimes 4 problems. Ok, lets come back to the topic.</p>
+<p>Recently I have concentrated my attention on Dynamic Programming cause its one of the hardest topics in an interview prep. After solving ~140 problems in DP I have noticed that there are few patterns that can be found in different problems. So I did a research on that and find the following topics. I will not give complete ways how to solve problems but these patterns may be helpful in solving DP.</p>
+<h2 id="patterns"><a class="markdownIt-Anchor" href="#patterns"></a> Patterns</h2>
+<ol>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Minimum-%28Maximum%29-Path-to-Reach-a-Target">Minimum (Maximum) Path to Reach a Target</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23distinct-ways">Distinct Ways</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Merging-Intervals">Merging Intervals</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23DP-on-Strings">DP on Strings</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Decision-Making">Decision Making</a></li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -344,7 +388,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-20 20:55:09" itemprop="dateModified" datetime="2025-02-20T20:55:09+08:00">2025-02-20</time>
+      <time title="修改时间：2025-02-25 19:51:20" itemprop="dateModified" datetime="2025-02-25T19:51:20+08:00">2025-02-25</time>
     </span>
 
   
@@ -357,69 +401,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="索引原理"><a class="markdownIt-Anchor" href="#索引原理"></a> 索引原理</h1>
-<p>MySQL使用的是B+树作为索引的数据结构</p>
-<blockquote>
-<p>B树是一个分支内<strong>按顺序</strong>存放多个节点数据的数据结构；而B+树在此基础上，在分支内只存储索引，只在叶子节点存储数据（这样每一层可以存储更多索引，减少层数），并且在叶节点之间用指针互相连接，提高访问效率。</p>
-</blockquote>
-<h2 id="引擎"><a class="markdownIt-Anchor" href="#引擎"></a> 引擎</h2>
-<p>MyISAM，B+树存储的Data就是数据的地址（非聚集索引、稀疏索引）<br />
-InnoDB，直接存储数据（聚集索引）</p>
-<h2 id="为什么innodb建议每张表必须建立主键并用自增整型"><a class="markdownIt-Anchor" href="#为什么innodb建议每张表必须建立主键并用自增整型"></a> 为什么InnoDB建议每张表必须建立主键，并用自增整型？</h2>
-<p>ibd必须用B+树索引，而整型是天然的索引；否则ibd会自己维护一个唯一id行（隐藏的主键）。<br />
-因此UUID比较效率会比整型更低。<br />
-而自增则根本避免了重复，并且只在一端变化，已经有的数据无需做修改，减少了维持有序的成本。<br />
-如果不自增，而是随机添加，那么新增的数很可能会触发分裂、平衡，造成冗余索引。</p>
-<h2 id="b树如何支持范围查询"><a class="markdownIt-Anchor" href="#b树如何支持范围查询"></a> B+树如何支持范围查询</h2>
-<p>Hash结构的索引，不支持范围查询；而B+树只用找到两端，然后顺着指针拿到所有节点就好了（叶节点是双指针连接的，并且有序）。</p>
-<h2 id="联合主键索引为什么是最左前缀原则"><a class="markdownIt-Anchor" href="#联合主键索引为什么是最左前缀原则"></a> 联合主键索引，为什么是最左前缀原则？</h2>
-<p>最左前缀原则：不能跳过左边的索引，必须从最左边索引开始，逐步增加条件。<br />
-因为联合主键索引底层的B+树就是按照主键顺序排序的，会从左到右进行比较；如果跳过了左边的主键，那就找不到了，因为第二个主键不一定是排好序的！。<br />
-首先按照第一个主键排序，然后按照第二个主键排序。在同一个主键内，二级主键是有序的，但是跳出这个圈，就是无序的。</p>
-<h1 id="索引优化原则"><a class="markdownIt-Anchor" href="#索引优化原则"></a> 索引优化原则</h1>
-<h2 id="explain性能分析"><a class="markdownIt-Anchor" href="#explain性能分析"></a> explain性能分析</h2>
-<p><code>explain extended</code>: <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>o</mi><mi>w</mi><mi>s</mi><mo>∗</mo><mi>f</mi><mi>i</mi><mi>l</mi><mi>t</mi><mi>e</mi><mi>r</mi><mi>e</mi><mi>d</mi><mi mathvariant="normal">/</mi><mn>100</mn></mrow><annotation encoding="application/x-tex">rows * filtered/100</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mord mathdefault">i</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault">d</span><span class="mord">/</span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span></span></span></span>可以估算出将要和explain中前一个表达式进行连接的行数。<br />
-<code>show warning</code>: Mysql的提示信息，可能会帮你优化。</p>
-<h3 id="字段解释"><a class="markdownIt-Anchor" href="#字段解释"></a> 字段解释</h3>
-<p>select_type</p>
-<ul>
-<li>Primary 最外层的select。</li>
-<li>Subquery 不在from语句中，包含在select中的子查询。</li>
-<li>Derived 包含在from语句中的子查询。派生表。<br />
-id</li>
-<li>表示执行顺序，顺序越靠后优先级越高<br />
-<strong>type</strong><br />
-效率优先级 system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL</li>
-</ul>
-<blockquote>
-<p>一般来说range是及格线，最好达到ref</p>
-</blockquote>
-<ul>
-<li>NULL mysql通过优化和底层原理，不访问表或索引就取到值。如求最小值，通过B+树直接拿到。</li>
-<li>system, const system是const的特例，const表示常量查询。表只有一行，为const查询。只有一条元组匹配，为system查询。</li>
-<li>eq_ref 主键关联查询，表有几行。</li>
-<li>ref 使用非主键（不唯一）索引，表有很多行。使用普通索引或唯一索引的部分前缀。</li>
-<li>range 范围查找，包括比较符号。</li>
-<li>index 无查询条件，全选。扫描全索引就能拿到结果，一般扫描二级索引（Mysql优先选择同等条件下更小的索引）。</li>
-<li>ALL 全表扫描。扫描聚集索引，比index更大</li>
-</ul>
-<h2 id="sql语句优化"><a class="markdownIt-Anchor" href="#sql语句优化"></a> sql语句优化</h2>
-<ul>
-<li>尽量使用覆盖索引</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 推荐，其中name和age都有索引</span></span><br><span class="line"><span class="keyword">select</span> name, age <span class="keyword">from</span> your_table <span class="keyword">where</span> <span class="keyword">condition</span></span><br><span class="line"><span class="comment">-- 不推荐</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> your_table <span class="keyword">where</span> <span class="keyword">condition</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>少用or或in；不对索引用函数；不让索引发生隐式转换</li>
-<li>减少搜索范围；范围过大，mysql会认为全表扫描更快，从而不走索引</li>
-<li><code>force index(your_index)</code> 强制索引（注意，不一定更快！可能更多回表）</li>
-<li>试试用<code>like</code>代替范围查询</li>
-</ul>
-<h1 id="缓存"><a class="markdownIt-Anchor" href="#缓存"></a> 缓存</h1>
-<p>Mysql8以后移除了缓存。</p>
-<blockquote>
-<p>Mysql缓存的本质是KV Map。然而，对于高频修改的数据，Map缓存下来的是<strong>脏数据</strong>，因此不实用。</p>
-</blockquote>
-<h1 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h1>
+          <h1 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h1>
 <h2 id="原子性-atomicity"><a class="markdownIt-Anchor" href="#原子性-atomicity"></a> 原子性 Atomicity</h2>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">BUSINESS</span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">1</span></span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">2</span></span><br><span class="line"><span class="keyword">COMMIT</span></span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -444,6 +426,101 @@ id</li>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/MarsCode%20%E9%94%99%E9%A2%98%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/MarsCode%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">MarsCode 错题本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-19 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-19T00:00:00+08:00">2025-01-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-21 22:14:04" itemprop="dateModified" datetime="2025-02-21T22:14:04+08:00">2025-02-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="51-和的逆运算"><a class="markdownIt-Anchor" href="#51-和的逆运算"></a> 51 和的逆运算</h1>
+<p>#全排列<br />
+这题在给定的和<strong>不重复</strong>的情况下很简单：</p>
+<ol>
+<li>首先升序排序好数组sums，生成答案数组<code>nums[n]</code>。</li>
+<li><code>nums[0] + nums[1]</code> 必然等于<code>sums[0]</code>（最小值），<code>nums[0] + nums[2]</code> 必然等于<code>sums[1]</code>（次小值）, … , <code>nums[n-2] + nums[n-1]</code> 必然等于<code>sums[lastIndex]</code>（最大值）。</li>
+<li>可以反向推测出<code>nums[0] = (sums[0] + sums[1] - sums[n-1]) / 2</code>，论证看下方：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nums[n] = &#123;a, b, c, d, e&#125; 从小到大排列</span><br><span class="line">a + b = sums[0] (1) // 最小</span><br><span class="line">a + c = sums[1] (2)</span><br><span class="line">a + d = sums[2]</span><br><span class="line">a + e = sums[3]</span><br><span class="line">b + c = sums[4] (3)</span><br><span class="line">...</span><br><span class="line">(1) + (2) = 2a + (3)</span><br><span class="line">2a = sums[0] + sums[1] - sums[n-1] = (1) + (2) - (3)</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>得出了<code>nums[0]</code>，其他数字都可以用<code>nums[i] = sums[i-1] - nums[0]</code>推出来</li>
+</ol>
+<p>但是给定的和重复的情况下，上面的第2条就不成立了。例如测试用例3：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/MarsCode%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1193,186 +1270,6 @@ Here is some INFO.</p>
 <p>相当于 Hystix，用于流量控制。</p>
 </blockquote>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/JavaWeb%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/JavaWeb%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">JavaWeb笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-11-28 00:00:00" itemprop="dateCreated datePublished" datetime="2024-11-28T00:00:00+08:00">2024-11-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-08 10:02:19" itemprop="dateModified" datetime="2025-01-08T10:02:19+08:00">2025-01-08</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="tomcat"><a class="markdownIt-Anchor" href="#tomcat"></a> Tomcat</h1>
-<h2 id="jre报错"><a class="markdownIt-Anchor" href="#jre报错"></a> JRE报错</h2>
-<p>一般教程会让我们配置<code>JAVA_HOME</code>和<code>JRE_HOME</code>，然后启动Tomcat；<br />
-然而，在JDK9以后，就不默认包含JRE了。<br />
-此时，我们使用命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jlink --module-path jmods --add-modules java.desktop --output jre</span><br></pre></td></tr></table></figure>
-<p>生成一个JRE后，启动Tomcat，就会报错：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">WARNING: Unknown module: java.rmi specified to --add-opens</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError: java/util/logging/Logger</span><br><span class="line">    at org.apache.juli.logging.DirectJDKLog.&lt;init&gt;(DirectJDKLog.java:61)</span><br><span class="line">    at org.apache.juli.logging.DirectJDKLog.getInstance(DirectJDKLog.java:181)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:133)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:156)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getLog(LogFactory.java:211)</span><br><span class="line">    at org.apache.catalina.startup.Bootstrap.&lt;clinit&gt;(Bootstrap.java:49)</span><br><span class="line">Caused by: java.lang.ClassNotFoundException: java.util.logging.Logger</span><br><span class="line">    at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)</span><br><span class="line">    at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)</span><br><span class="line">    at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)</span><br><span class="line">    ... 6 more</span><br></pre></td></tr></table></figure>
-<p>这时候，只需要把jre文件和<code>JRE_HOME</code>环境变量删除，Tomcat就能正常启动</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/JavaWeb%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringCloud%20Netfilx%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringCloud%20Netfilx%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">SpringCloud Netflix笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-08 10:01:22" itemprop="dateModified" datetime="2025-01-08T10:01:22+08:00">2025-01-08</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="微服务"><a class="markdownIt-Anchor" href="#微服务"></a> 微服务</h1>
-<p>微服务：解决接口越来越多，单体应用运行缓慢问题。</p>
-<h1 id="踩坑记录"><a class="markdownIt-Anchor" href="#踩坑记录"></a> 踩坑记录</h1>
-<h2 id="找不到mapper"><a class="markdownIt-Anchor" href="#找不到mapper"></a> 找不到Mapper</h2>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">***************************</span><br><span class="line">APPLICATION FAILED TO START</span><br><span class="line">***************************</span><br><span class="line"></span><br><span class="line">Description:</span><br><span class="line"></span><br><span class="line">Field deviceMapper in com.esagent.es.EsDataInit required a bean of type &#x27;com.example.mapper.YourMapper&#x27; that could not be found.</span><br><span class="line"></span><br><span class="line">The injection point has the following annotations:</span><br><span class="line">    - @org.springframework.beans.factory.annotation.Autowired(required=true)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Action:</span><br><span class="line"></span><br><span class="line">Consider defining a bean of type &#x27;com.example.mapper.YourMapper&#x27; in your configuration.</span><br></pre></td></tr></table></figure>
-<p>原因是mybatis版本有问题！</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 版本需要和其他依赖对上 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/Spring/SpringCloud%20Netfilx%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
