@@ -866,6 +866,7 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
     <url>/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
 <ul>
+<li><code>:%y *</code>：复制全部到系统剪贴板</li>
 <li><code>&lt;C-o&gt;, &lt;C-i&gt;</code>：回到前一个/后一个位置（例如，打开文件默认在第一行，<code>&lt;C-o&gt;</code>回到上次编辑位置）。<strong>注意这个操作是跨文件的</strong>。</li>
 <li><code>`0</code>：返回上次位置</li>
 <li>词：<code>w</code>（下一个词），<code>b</code>（词初），<code>e</code>（词尾）</li>
@@ -876,7 +877,7 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 <li><code>:s</code>(substitute)替换字符（等同于<code>xi</code>）
 <ul>
 <li>替换命令<code>:&#123;作用范围&#125;s/&#123;目标文本&#125;/&#123;替换文本&#125;/&#123;替换标志&#125;</code></li>
-<li><code>:%s/s_content/o_content/g</code> 全局替换</li>
+<li><code>:%s/s_content/o_content/gc</code> 全局替换，附带确认提示</li>
 </ul>
 </li>
 </ul>
@@ -929,7 +930,7 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 </li>
 <li><strong>更多值得学习的</strong>:
 <ul>
-<li><code>:&lt;line&gt;</code> 跳到line行</li>
+<li><code>:&lt;line&gt;</code> 跳到line行，相当于<code>&lt;line&gt;G</code></li>
 <li><code>~</code>改变字符的大小写</li>
 <li><code>3w</code>向前移动三个词</li>
 <li><code>A</code>（大写）可以迅速定位到行尾进行修改</li>
@@ -1479,31 +1480,31 @@ aren’t always the best ones for you.</p>
 <thead>
 <tr>
 <th style="text-align:left">标题</th>
-<th style="text-align:center">标题</th>
+<th style="text-align:center">Title</th>
 <th style="text-align:right">标题</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left">左对齐</td>
-<td style="text-align:center">两端对齐</td>
+<td style="text-align:center">Justify Align</td>
 <td style="text-align:right">右对齐</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li>Unordered List
+<li>无序列表
 <ul>
 <li>Unordered List</li>
 </ul>
 </li>
 </ul>
 <ol>
-<li>Ordered List<br />
+<li>有序列表<br />
 2. Ordered List</li>
 </ol>
 <ul>
-<li>[x] TO-DO List</li>
+<li>[x] 待办事项</li>
 <li>[] TO-DO List</li>
 </ul>
 <p><s>Delete Line</s><br />
@@ -1759,13 +1760,13 @@ Some questions point out the number of repetitions, in that case, add one more l
 <ul>
 <li>状态表示
 <ul>
-<li>集合：所有到该点路线的集合</li>
+<li>集合：所有到该点路线的集合/所有以i下标结尾的递增子序列</li>
 <li>属性：Max/Min/Count</li>
 </ul>
 </li>
 <li>状态计算
 <ul>
-<li>集合划分：（根据最后一步反过来划分），如二位矩阵问题，要么是从左边走过来的路线、要么是右边走来的路线，构成了所有集合<br />
+<li>集合划分：（根据最后不同的一步反过来划分），如二位矩阵问题，要么是从左边走过来的路线、要么是右边走来的路线，构成了所有集合；而递增子序列问题，要从i-1思考（不同的一步）<br />
 集合划分原则：不漏、不重复</li>
 </ul>
 </li>
@@ -6746,8 +6747,16 @@ Mybatis目前不支持Native-Image</p>
 <p>我们只需要遍历所有可能，并且比较四种走法（同下、同右、一下一右），取最大值就可以了。<br />
 注意，一个数只能取一次，需要一个判断防止重复取数。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i1</span> <span class="operator">=</span> <span class="number">1</span>; i1 &lt; N; i1 += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i2</span> <span class="operator">=</span> <span class="number">1</span>; i2 &lt; N; i2 += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j1</span> <span class="operator">=</span> <span class="number">1</span>; j1 &lt; N; j1 += <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j2</span> <span class="operator">=</span> <span class="number">1</span>; j2 &lt; N; j2 += <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">step</span> <span class="operator">=</span> map[i1][j1];</span><br><span class="line">                <span class="keyword">if</span> (i2 != i1 &amp;&amp; j2 != j1) step += map[i2][j2];</span><br><span class="line">                </span><br><span class="line">                dp[i1][j1][i2][j2] = </span><br><span class="line">                    Math.max(dp[i1-<span class="number">1</span>][j1][i2-<span class="number">1</span>][j2], </span><br><span class="line">                    Math.max(dp[i1-<span class="number">1</span>][j1][i2][j2-<span class="number">1</span>], </span><br><span class="line">                    Math.max(dp[i1][j1-<span class="number">1</span>][i2-<span class="number">1</span>][j2], </span><br><span class="line">                             dp[i1][j1-<span class="number">1</span>][i2][j2-<span class="number">1</span>]))) + step;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(dp[N-<span class="number">1</span>][N-<span class="number">1</span>][N-<span class="number">1</span>][N-<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
-<p>当然，4个循环时间复杂度太高了。我们可以用一个<code>k == i1 + j1 == i2 + j2</code>来减少一重循环。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>[][][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>*N][N][N];</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">1</span>; k &lt; <span class="number">2</span>*N; k += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i1</span> <span class="operator">=</span> <span class="number">1</span>; i1 &lt; N; i1 += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i2</span> <span class="operator">=</span> <span class="number">1</span>; i2 &lt; N; i2 += <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">j1</span> <span class="operator">=</span> k - i1, j2 = k - i2;</span><br><span class="line">            <span class="keyword">if</span> (j1 &lt; <span class="number">0</span> || j1 &gt;= N || j2 &lt; <span class="number">0</span> || j2 &gt;= N) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> <span class="variable">step</span> <span class="operator">=</span> map[i1][j1];</span><br><span class="line">            <span class="keyword">if</span> (i1 != i2) step += map[i2][j2];</span><br><span class="line">            dp[k][i1][i2] = Math.max(dp[k-<span class="number">1</span>][i1-<span class="number">1</span>][i2-<span class="number">1</span>], Math.max(dp[k-<span class="number">1</span>][i1][i2],</span><br><span class="line">            Math.max(dp[k-<span class="number">1</span>][i1-<span class="number">1</span>][i2], dp[k-<span class="number">1</span>][i1][i2-<span class="number">1</span>]))) + step;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(dp[<span class="number">2</span> * (N-<span class="number">1</span>)][N-<span class="number">1</span>][N-<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>]]></content>
+<p>当然，4个循环时间复杂度太高了。我们可以用一个<code>k == i1 + j1 == i2 + j2</code>来减少一重循环。<br />
+这个k利用得很巧妙，因为每次要么向下走，要么向右走，所以<code>k-1 == i-1 + j == i + j-1</code>，全程使用<code>k-1</code>就能代表所有情况。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>[][][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>*N][N][N];</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">1</span>; k &lt; <span class="number">2</span>*N; k += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i1</span> <span class="operator">=</span> <span class="number">1</span>; i1 &lt; N; i1 += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i2</span> <span class="operator">=</span> <span class="number">1</span>; i2 &lt; N; i2 += <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">j1</span> <span class="operator">=</span> k - i1, j2 = k - i2;</span><br><span class="line">            <span class="keyword">if</span> (j1 &lt; <span class="number">0</span> || j1 &gt;= N || j2 &lt; <span class="number">0</span> || j2 &gt;= N) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> <span class="variable">step</span> <span class="operator">=</span> map[i1][j1];</span><br><span class="line">            <span class="keyword">if</span> (i1 != i2) step += map[i2][j2];</span><br><span class="line">            dp[k][i1][i2] = Math.max(dp[k-<span class="number">1</span>][i1-<span class="number">1</span>][i2-<span class="number">1</span>], Math.max(dp[k-<span class="number">1</span>][i1][i2],</span><br><span class="line">            Math.max(dp[k-<span class="number">1</span>][i1-<span class="number">1</span>][i2], dp[k-<span class="number">1</span>][i1][i2-<span class="number">1</span>]))) + step;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(dp[<span class="number">2</span> * (N-<span class="number">1</span>)][N-<span class="number">1</span>][N-<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
+<h1 id="b3637-最长上升子序列"><a class="markdownIt-Anchor" href="#b3637-最长上升子序列"></a> B3637 最长上升子序列</h1>
+<p>#单维dp</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>[] dp = <span class="keyword">new</span> <span class="title class_">int</span>[N];</span><br><span class="line"><span class="type">int</span> <span class="variable">max</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; N; i += <span class="number">1</span>) &#123;</span><br><span class="line">    dp[i] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; i; j += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt; nums[j]) &#123;</span><br><span class="line">            dp[i] = Math.max(dp[i], dp[j] + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (dp[i] &gt; max) &#123;</span><br><span class="line">        max = dp[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(max);</span><br></pre></td></tr></table></figure>
+<p>如何理解<code>dp[i] = Math.max(dp[i], dp[j] + 1)</code>?<br />
+这里dp[j]存储的是以j为结尾的LIS，而+1代表的是dp[i]自己。<br />
+我们通过计算出前面的所有dp[j]，最后只需要看对于每个nums[j]，它是否小于nums[i]，小于，就添加一个就可以了。</p>
+]]></content>
       <tags>
         <tag>笔记</tag>
       </tags>
