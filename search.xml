@@ -866,6 +866,8 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
     <url>/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
     <content><![CDATA[<h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
 <ul>
+<li><code>gg=G</code>：代码格式化</li>
+<li><code>GX, GF</code>：打开链接/文件</li>
 <li><code>:%y *</code>：复制全部到系统剪贴板</li>
 <li><code>&lt;C-o&gt;, &lt;C-i&gt;</code>：回到前一个/后一个位置（例如，打开文件默认在第一行，<code>&lt;C-o&gt;</code>回到上次编辑位置）。<strong>注意这个操作是跨文件的</strong>。</li>
 <li><code>`0</code>：返回上次位置</li>
