@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">56</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,398 +171,6 @@
     </div>
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" class="post-title-link" itemprop="url">PyEcharts 数据可视化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-19 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-19T00:00:00+08:00">2024-03-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-28 20:43:34" itemprop="dateModified" datetime="2024-10-28T20:43:34+08:00">2024-10-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="10-bar-柱状图"><a class="markdownIt-Anchor" href="#10-bar-柱状图"></a> 1.0 Bar 柱状图</h1>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Bar</span><br><span class="line"></span><br><span class="line">bar = Bar()</span><br><span class="line">bar.add_xaxis([<span class="string">&quot;衬衣&quot;</span>, <span class="string">&quot;羊毛衫&quot;</span>, <span class="string">&quot;西装&quot;</span>, <span class="string">&quot;裤子&quot;</span>, <span class="string">&quot;鞋子&quot;</span>, <span class="string">&quot;袜子&quot;</span>])</span><br><span class="line">bar.add_yaxis(<span class="string">&quot;商家&quot;</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">10</span>, <span class="number">70</span>, <span class="number">90</span>])</span><br><span class="line"><span class="comment"># 相当于</span></span><br><span class="line">bar = (</span><br><span class="line">    Bar()</span><br><span class="line">    .add_xaxis([<span class="string">&quot;衬衣&quot;</span>, <span class="string">&quot;羊毛衫&quot;</span>, <span class="string">&quot;西装&quot;</span>, <span class="string">&quot;裤子&quot;</span>, <span class="string">&quot;鞋子&quot;</span>, <span class="string">&quot;袜子&quot;</span>])</span><br><span class="line">    .add_yaxis(<span class="string">&quot;商家&quot;</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">10</span>, <span class="number">70</span>, <span class="number">90</span>])</span><br><span class="line">    .add_yaxis(<span class="string">&quot;商家B&quot;</span>, [<span class="number">15</span>, <span class="number">6</span>, <span class="number">45</span>, <span class="number">20</span>, <span class="number">35</span>, <span class="number">66</span>]) <span class="comment"># 支持两个柱子同时生成</span></span><br><span class="line">    .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;主标题&quot;</span>, subtitle=<span class="string">&quot;副标题&quot;</span>)) <span class="comment"># 生成标题</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bar.render(<span class="string">&quot;bar.html&quot;</span>) <span class="comment"># 渲染为 bar.html，默认是 render.html</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>效果</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E9%A1%B9%E7%9B%AE/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/" class="post-title-link" itemprop="url">ICS PA实验课</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2024-02-09T00:00:00+08:00">2024-02-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-28 10:57:57" itemprop="dateModified" datetime="2024-10-28T10:57:57+08:00">2024-10-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="tips"><a class="markdownIt-Anchor" href="#tips"></a> Tips</h1>
-<ul>
-<li>参考资料：<a target="_blank" rel="noopener" href="https://note.tonycrane.cc/cs/system/pa/">https://note.tonycrane.cc/cs/system/pa/</a></li>
-</ul>
-<ol>
-<li>使用反向代理时，<code>git</code>相关命令会出问题</li>
-<li>实验前，创建新分支<code>pa号</code>，在其中做修改，完成以后合并pa到master中，并转回master分支</li>
-</ol>
-<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># PA</span></span><br><span class="line"><span class="section">## notification</span></span><br><span class="line"><span class="bullet">-</span> </span><br><span class="line"><span class="section">## difficulties</span></span><br><span class="line"><span class="bullet">1.</span> </span><br><span class="line"><span class="section">## summary</span></span><br></pre></td></tr></table></figure>
-<h1 id="pa0"><a class="markdownIt-Anchor" href="#pa0"></a> PA0</h1>
-<h2 id="notification"><a class="markdownIt-Anchor" href="#notification"></a> notification</h2>
-<ul>
-<li>全程使用git</li>
-<li><code>git commit --allow-empty</code>可以使git空（无更改的）提交</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E9%A1%B9%E7%9B%AE/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">Hexo博客教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-12 10:45:05" itemprop="dateModified" datetime="2024-10-12T10:45:05+08:00">2024-10-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="笔记"><a class="markdownIt-Anchor" href="#笔记"></a> 笔记</h1>
-<h2 id="命令"><a class="markdownIt-Anchor" href="#命令"></a> 命令</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;postName&quot;</span> <span class="comment"># 新建文章</span></span><br><span class="line">hexo new page <span class="string">&quot;pageName&quot;</span> <span class="comment"># 新建页面</span></span><br><span class="line">hexo generate <span class="comment"># 生成静态页面至public目录</span></span><br><span class="line">hexo server <span class="comment"># 开启预览访问端口（默认端口4000，&#x27;ctrl + c&#x27;关闭server）</span></span><br><span class="line">hexo deploy <span class="comment"># 部署到GitHub</span></span><br><span class="line">hexo <span class="built_in">help</span>  <span class="comment"># 查看帮助</span></span><br><span class="line">hexo version  <span class="comment"># 查看Hexo的版本</span></span><br></pre></td></tr></table></figure>
-<h1 id="按文章更新时间排序"><a class="markdownIt-Anchor" href="#按文章更新时间排序"></a> 按文章更新时间排序</h1>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="comment"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-updated</span> <span class="comment"># 默认是-date</span></span><br></pre></td></tr></table></figure>
-<h2 id="背景设置"><a class="markdownIt-Anchor" href="#背景设置"></a> 背景设置</h2>
-<p>把你挑选的背景图片命名为：background.jpg，放在blog\themes\next\source\images里，在blog\themes\next\source\css_custom文件的custom.styl首部添加</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">/images/background.jpg</span>);</span><br><span class="line">  <span class="attribute">background-attachment</span>: fixed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="符号链接"><a class="markdownIt-Anchor" href="#符号链接"></a> <a href="../%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0##%E5%AE%9E%E7%94%A8%E6%96%B9%E6%B3%95">符号链接</a></h2>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"># Windows，有些文件需要文件名相同才能打开</span><br><span class="line"># -d 目录符号链接</span><br><span class="line">mklink /d C:\file\<span class="built_in">path</span>\Target C:\file\<span class="built_in">path</span>\Source</span><br></pre></td></tr></table></figure>
-<h2 id="安装主题"><a class="markdownIt-Anchor" href="#安装主题"></a> 安装主题</h2>
-<ol>
-<li>npm安装在modules下</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> hexo-site</span><br><span class="line">npm install hexo-theme-next</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>git clone安装</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> hexo-site</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br><span class="line"><span class="comment"># Upgrade</span></span><br><span class="line"><span class="built_in">cd</span> themes/next</span><br><span class="line">git pull origin master</span><br><span class="line"><span class="comment"># Configuration</span></span><br><span class="line"><span class="built_in">cp</span> themes/next/_config.yml _config.next.yml</span><br></pre></td></tr></table></figure>
-<h1 id="hexo"><a class="markdownIt-Anchor" href="#hexo"></a> Hexo</h1>
-<h2 id="我的配置"><a class="markdownIt-Anchor" href="#我的配置"></a> 我的配置</h2>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置英文字体</span></span><br><span class="line"><span class="attr">global:</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Source</span> <span class="string">Serif</span> <span class="string">Pro</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># layout\_partials\head\head.njk 设置中文字体</span></span><br><span class="line">&#123;&#123; <span class="string">next_font()</span> &#125;&#125;</span><br><span class="line">&#123;&#123; <span class="string">next_vendors(&#x27;fontawesome&#x27;)</span> &#125;&#125;</span><br><span class="line"><span class="string">&lt;link</span> <span class="string">href=&quot;https://fonts.googleapis.com/css?family=Noto+Serif+SC&amp;display=swap&quot;</span> <span class="string">rel=&quot;stylesheet&quot;&gt;</span></span><br><span class="line"><span class="comment"># source\css\_variables\base.styl 添加中文字体</span></span><br><span class="line"><span class="string">$font-family-chinese</span> <span class="string">=</span> <span class="string">&quot;Noto Serif SC&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">codes:</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">IBM</span> <span class="string">Plex</span> <span class="string">Mono</span></span><br><span class="line"></span><br><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">stackoverflow-light</span></span><br></pre></td></tr></table></figure>
-<hr />
-<h1 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blogFolderName</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/AI%E7%88%B1%E5%A4%96%E5%8D%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/AI%E7%88%B1%E5%A4%96%E5%8D%96/" class="post-title-link" itemprop="url">AI爱外卖</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-09-21 00:00:00" itemprop="dateCreated datePublished" datetime="2024-09-21T00:00:00+08:00">2024-09-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-09 20:03:43" itemprop="dateModified" datetime="2024-10-09T20:03:43+08:00">2024-10-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="项目心得"><a class="markdownIt-Anchor" href="#项目心得"></a> 项目心得</h1>
-<h2 id="24109"><a class="markdownIt-Anchor" href="#24109"></a> 24.10.9</h2>
-<p>将AliOss换成本地存储。可是一直插入不成功，使用Swagger调试，甚至数据库什么都接受不到！非常诡异的BUG<br />
-原来，是导入了错误的RequestBody，导致前端提交的表单怎么都接受不到！</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 导入了错误的包</span></span><br><span class="line"><span class="keyword">import</span> io.swagger.v3.oas.annotations.parameters.RequestBody;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestBody;</span><br></pre></td></tr></table></figure>
-<h1 id="nginx"><a class="markdownIt-Anchor" href="#nginx"></a> Nginx</h1>
-<h2 id="反向代理"><a class="markdownIt-Anchor" href="#反向代理"></a> 反向代理</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        # 反向代理,处理管理端发送的请求</span><br><span class="line">        location /api/ &#123;</span><br><span class="line">            # localhost/api/abc转发到下面admin/abc</span><br><span class="line">            proxy_pass   http://localhost:8080/admin/;</span><br><span class="line">            #proxy_pass   http://webservers/admin/;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>好处：</p>
-<ul>
-<li>不会暴露服务器，服务器可以安全放在内网，由nginx转发、缓存。</li>
-</ul>
-<h2 id="负载均衡"><a class="markdownIt-Anchor" href="#负载均衡"></a> 负载均衡</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">upstream webservers&#123;</span><br><span class="line">      # 服务器组，按权重分配</span><br><span class="line">      server 127.0.0.1:8080 weight=90 ;</span><br><span class="line">      server 127.0.0.1:8088 weight=10 ;</span><br><span class="line">      # ip_hash 根据ip分配</span><br><span class="line">      # least_conn 分配到最少链接的服务器</span><br><span class="line">      # url_hash 根据url分配</span><br><span class="line">      # fair 分配到响应时间最短的服务器</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        </span><br><span class="line">        # 反向代理,处理管理端发送的请求</span><br><span class="line">        location /api/ &#123;</span><br><span class="line">            # 负载均衡</span><br><span class="line">            proxy_pass   http://webservers/admin/;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="swagger"><a class="markdownIt-Anchor" href="#swagger"></a> Swagger</h1>
-<blockquote>
-<p>Knife4j：Java MVC框架集成Swagger</p>
-</blockquote>
-<p>API接口文档生成、测试</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -1183,6 +791,445 @@ As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-m
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/gdb%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/gdb%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">gdb使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-29 16:11:51" itemprop="dateModified" datetime="2024-07-29T16:11:51+08:00">2024-07-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="nju-gdb六步走"><a class="markdownIt-Anchor" href="#nju-gdb六步走"></a> NJU gdb六步走</h2>
+<ol>
+<li>启动gdb，加载可执行文件</li>
+<li>设置断点 <code>break main</code> 入口处设置断点</li>
+<li>启动程序 <code>run （参数）</code></li>
+<li>查看程序当然状态
+<ul>
+<li><code>info register (EIP)</code>: 显示所有寄存器（或只有EIP寄存器）的内容</li>
+<li>栈：保存过程执行时的数据信息</li>
+</ul>
+</li>
+<li>继续下一条指令
+<ul>
+<li><code>step</code> 或  <code>si</code>（机器指令）</li>
+</ul>
+</li>
+<li>退出 <code>quit</code></li>
+</ol>
+<h1 id="10-cprograming"><a class="markdownIt-Anchor" href="#10-cprograming"></a> 1.0 Cprograming</h1>
+<p>原网址： <a target="_blank" rel="noopener" href="https://www.cprogramming.com/gdb.html">https://www.cprogramming.com/gdb.html</a></p>
+<pre><code>gcc main.c -g -Wall -Werror -o main    启动编译
+gdb main    开始debug
+list 列出代码
+break 行    设置断点
+	info break    断点信息
+run   运行程序
+next或step  进行单步编译(next跳过函数)
+print &lt;value&gt;    打印变量的值
+continue    跳到下一个断点位置
+quit     退出
+</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/gdb%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Linux笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-29 15:53:28" itemprop="dateModified" datetime="2024-07-29T15:53:28+08:00">2024-07-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="基本配置"><a class="markdownIt-Anchor" href="#基本配置"></a> 基本配置</h1>
+<ol>
+<li>sudo权限: 修改<code>/etc/sudoers</code>，或者root<code>adduser &lt;username&gt; sudo</code>并重启</li>
+<li>apt软件包管理系统换源：<code>/etc/apt/sources.list</code>修改软件发布源<br />
+<code>deb http://站点/目录名/stretch版本名 main contrib non-free三类软件包</code><br />
+Debian官方软件源：官网/mirror/list</li>
+<li><code>/usr/share/doc</code> 有安装软件的信息</li>
+</ol>
+<h1 id="10-命令篇"><a class="markdownIt-Anchor" href="#10-命令篇"></a> 1.0 命令篇</h1>
+<h2 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h2>
+<pre><code>参考资料 https://missing-semester-cn.github.io/2020/course-shell/
+</code></pre>
+<ul>
+<li>
+<p>关机、重启<br />
+<code>shutdown</code><br />
+<code>-h now</code> halt，挂起，相当于 <code>halt</code><br />
+<code>-r now</code> reboot，重启<br />
+<code>poweroff</code><br />
+<code>reboot</code></p>
+</li>
+<li>
+<p>手册<br />
+<code>man</code> 命令</p>
+</li>
+<li>
+<p>导航<br />
+<code>pwd 显示当前所在目录</code><br />
+<code>cd</code> 进入文件夹  <code>'..'</code> 上级目录   <code>'.'</code>当前目录   <code>'/'</code>开头的是绝对路径`</p>
+</li>
+<li>
+<p>查看文件<br />
+<code>ls</code> 列出所有文件<br />
+<code>ls -l</code> 查看文件权限信息</p>
+</li>
+<li>
+<p>创建文件夹<br />
+<code>mkdir</code> 文件夹名<br />
+<code>rmdir</code> 删除文件夹</p>
+</li>
+<li>
+<p>没有vim的时候如何创建、编辑、查看文件<br />
+<code>touch 文件</code> 创建文件<br />
+<code>echo 文本 &gt; 文件</code>  echo+重定向输入文件（会把原来内容覆盖）<br />
+<code>echo 文本 &gt;&gt; 文件</code> 追加输入（在原来内容的结尾另起一行输入）<br />
+<code>cat 文件</code> 查看文件<br />
+除了使用<code>cat</code>看文件，还有<code>tac</code>（从最后一行开始显示），<code>more, less</code>（可以翻页，好用）</p>
+</li>
+</ul>
+<ul>
+<li>
+<p>压缩<br />
+压缩一整个目录，使用 <code>tar</code><br />
+压缩单个文件 <code>bzip2 gzip（-d解压）</code><br />
+<code>tar -cvf 目标名 文件名</code> 压缩 ， <code>tar -xvf</code>解压</p>
+</li>
+<li>
+<p>查找<br />
+<code>grep</code> 用法 <code>grep &quot;word&quot; filename</code></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep <span class="string">&quot;string&quot;</span> * <span class="comment"># 在所有文件中搜索string</span></span><br><span class="line">grep -r <span class="string">&quot;string&quot;</span> <span class="comment"># 递归搜索</span></span><br></pre></td></tr></table></figure>
+<pre><code>`find`用法 `find filename`
+</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/" class="post-title-link" itemprop="url">网络是怎样连接的</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-07-25 00:00:00 / 修改时间：08:33:01" itemprop="dateCreated datePublished" datetime="2024-07-25T00:00:00+08:00">2024-07-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="web浏览器"><a class="markdownIt-Anchor" href="#web浏览器"></a> Web浏览器</h1>
+<p>网址就是请求服务器上对应的文件<br />
+DNS从顶级域名开始根据网址查IP。DNS服务器通过缓存查过的IP来加快服务响应（缓存拥有有效期）。<br />
+浏览器调用Socket库建立连接管道</p>
+<h1 id="tcpip协议栈"><a class="markdownIt-Anchor" href="#tcpip协议栈"></a> TCP/IP协议栈</h1>
+<p>应用将数据分割为许多个网络包，TCP加上头部发送出去。需要发送的信息会缓存起来，<strong>超出计时时间</strong>或者<strong>数据量大于一个包大小</strong>时才发出去。<br />
+TCP需要确认对方收到数据，但是为了不浪费时间，实际上TCP在等待确认信息的过程中也在发送包，这个方法称为<strong>滑动窗口</strong>。<br />
+为了使接收方有足够的时间处理数据，接收方有一个接收缓存，当缓存满了会在TCP头部中通知发送方；处理完成，缓冲区有空余时也会通过TCP头部通知发送方。<br />
+通信完成后，发送方会保留套接字一段时间，以防对方的FINISH信号发送有延迟，把新的相同端口的套接字错误删除。</p>
+<p>用电信号传输数据时，用高电平表示1，低电平表示0.为了防止连续的低电平读不出来，会有一条时钟信号（固定切换高低电平）<br />
+ICMP：定义各种消息，如超时、无法到达、超出转发能力</p>
+<p>UDP在发送的数据少于一个包（重发也只需要发一个包，代价小，如DNS查询控制信息）、发送的数据具有时效性（如音视频，必须快速发送，即使重发也没有意义）的情况下使用。UDP只负责收发数据，对方没收到就全部重发一遍。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">tmux使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-25T00:00:00+08:00">2023-11-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-24 10:28:51" itemprop="dateModified" datetime="2024-07-24T10:28:51+08:00">2024-07-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <pre><code>参考教程： https://www.ruanyifeng.com/blog/2019/10/tmux.html
+</code></pre>
+<ul>
+<li>tmux使会话与窗口解绑，一个窗口<code>source .bashrc</code>更新了，另一个窗口可能没有</li>
+</ul>
+<ul>
+<li><strong><code>ctrl+b</code> 前缀键</strong><br />
+<code>%</code>  分成左右两栏<br />
+<code>&quot;</code>  分成上下两栏<br />
+<code>up</code>  选择上边的窗口<br />
+<code>[</code> 查看历史记录</li>
+</ul>
+<h1 id="窗口"><a class="markdownIt-Anchor" href="#窗口"></a> 窗口</h1>
+<ul>
+<li><code>&lt;C-d&gt;</code> <strong>删除窗口</strong></li>
+</ul>
+<ul>
+<li><code>&lt;C-b&gt; z</code> <strong>最大化/最小化一个窗口</strong></li>
+<li><code>&lt;C-b&gt; c</code> 创建一个新的窗口，使用 <code>&lt;C-d&gt;</code>关闭</li>
+<li><code>&lt;C-b&gt; N</code> 跳转到第 <em>N</em> 个窗口，注意每个窗口都是有编号的</li>
+<li><code>&lt;C-b&gt; p</code> 切换到前一个窗口</li>
+<li><code>&lt;C-b&gt; n</code> 切换到下一个窗口</li>
+<li><code>&lt;C-b&gt; w</code> 列出当前所有窗口</li>
+</ul>
+
       
     </div>
 
