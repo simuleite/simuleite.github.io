@@ -584,7 +584,7 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 <blockquote>
 <p>不要使用Git Pull<br />
 <code>git pull</code>会创建一个新的<code>merge commit</code>，这样提交历史不是一条清晰的线，包含无意义的分支合并，非常混乱。<br />
-而<code>git pull --rebase</code>会解决这个问题，这个命令首先把你的<code>commit</code>放到一变，拉取最新分支状态，最后为你自动变基到最新状态。<br />
+而<code>git pull --rebase</code>会解决这个问题，这个命令首先把你的<code>commit</code>放到一边，拉取最新分支状态，最后为你自动变基到最新状态。<br />
 如果遇到合并冲突，使用<code>git rebase --abort</code>撤回<code>rebase</code>，然后使用<code>git pull</code>或者使用交互式变基。</p>
 </blockquote>
 <ol start="3">
@@ -1523,7 +1523,7 @@ aren’t always the best ones for you.</p>
 <code>Code</code><br />
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mi>M</mi><msup><mi>C</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = MC^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><br />
 <a href="#">Link</a></p>
-<p><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>Hello, World!</p>
+<p><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>Hello, World!<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="comment">--- auto_detect: ture</span></span><br><span class="line"><span class="comment">+++ auto_detect: false</span></span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -1556,6 +1556,8 @@ Here is some INFO.</p>
 <section class="footnotes">
 <ol class="footnotes-list">
 <li id="fn1" class="footnote-item"><p>Hello World! <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>Footnote <a href="#fnref2" class="footnote-backref">↩︎</a></p>
 </li>
 </ol>
 </section>
