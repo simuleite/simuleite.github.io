@@ -180,7 +180,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Markdown%E6%A8%A1%E6%9D%BF/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Markdown%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">Markdown模板</a>
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">OS 操作系统</a>
         </h2>
 
         <div class="post-meta-container">
@@ -209,14 +209,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2023-11-10 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-10T00:00:00+08:00">2023-11-10</time>
+      <time title="创建时间：2024-08-07 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-07T00:00:00+08:00">2024-08-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-14 09:58:28" itemprop="dateModified" datetime="2025-03-14T09:58:28+08:00">2025-03-14</time>
+      <time title="修改时间：2025-03-15 14:31:46" itemprop="dateModified" datetime="2025-03-15T14:31:46+08:00">2025-03-15</time>
     </span>
 
   
@@ -229,207 +229,42 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="一号标题"><a class="markdownIt-Anchor" href="#一号标题"></a> 一号标题</h1>
-<h2 id="title-2"><a class="markdownIt-Anchor" href="#title-2"></a> Title 2</h2>
-<h3 id="三号标题"><a class="markdownIt-Anchor" href="#三号标题"></a> 三号标题</h3>
-<h4 id="title-4"><a class="markdownIt-Anchor" href="#title-4"></a> Title 4</h4>
-<h5 id="五号标题"><a class="markdownIt-Anchor" href="#五号标题"></a> 五号标题</h5>
-<h6 id="title-6"><a class="markdownIt-Anchor" href="#title-6"></a> Title 6</h6>
-<hr />
-<table>
-<thead>
-<tr>
-<th style="text-align:left">标题</th>
-<th style="text-align:center">Title</th>
-<th style="text-align:right">标题</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">左对齐</td>
-<td style="text-align:center">Justify Align</td>
-<td style="text-align:right">右对齐</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>无序列表
-<ul>
-<li>Unordered List</li>
-</ul>
-</li>
-</ul>
+          <h1 id="操作系统原理与实现"><a class="markdownIt-Anchor" href="#操作系统原理与实现"></a> 操作系统：原理与实现</h1>
+<h1 id="chapter3-操作系统结构"><a class="markdownIt-Anchor" href="#chapter3-操作系统结构"></a> Chapter3 操作系统结构</h1>
+<h2 id="复杂度管理方法-malh"><a class="markdownIt-Anchor" href="#复杂度管理方法-malh"></a> 复杂度管理方法 M.A.L.H</h2>
+<p>Modularity: 模块化，分而治之<br />
+Abstraction: 抽象，接口与实现分离，遵循宽进严出原则。例如虚拟内存、文件系统</p>
+<blockquote>
+<p>对于大型系统，只有模块化和抽象，可能导致划分模块太多，交互关系复杂，因此还需要引入分层和层次结构控制复杂度。</p>
+</blockquote>
+<p>Layering: 分层，每个层级是一套完整机制。通常一个模块只能与本层和上下层交互，不能跨层。例如OSI、TCP/IP<br />
+Hierarchy: 层次结构，大的子系统由多个小的子系统组织成。即同级模块的分层</p>
+<blockquote>
+<p>宽进严出原则：容忍各种输入（包括恶意输入），严格控制模块的对外输出</p>
+</blockquote>
+<h2 id="微内核"><a class="markdownIt-Anchor" href="#微内核"></a> 微内核</h2>
+<p>宏内核架构：单点bug使整个系统崩溃。<br />
+微内核：解耦单个功能/模块（如文件系统、设备驱动）作为独立服务隔离运行，使内核成为一个最小功能集。</p>
+<blockquote>
+<p>微内核架构服务隔离，单点出问题系统不会崩溃</p>
+</blockquote>
+<blockquote>
+<p>内核态部分，称为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi><mi>k</mi><mi>e</mi><mi>r</mi><mi>n</mi><mi>e</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">\mu kernel</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span></p>
+</blockquote>
+<p>微内核优势：</p>
 <ol>
-<li>有序列表<br />
-2. Ordered List</li>
-</ol>
-<ul>
-<li>[x] 待办事项</li>
-<li>[] TO-DO List</li>
-</ul>
-<p><s>Delete Line</s><br />
-<strong>Blod</strong><br />
-<em>Italic</em><br />
-<code>Code</code><br />
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>E</mi><mo>=</mo><mi>M</mi><msup><mi>C</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">E = MC^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><br />
-<a href="#">Link</a></p>
-<p><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>Hello, World!<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Hello World!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="comment">--- auto_detect: ture</span></span><br><span class="line"><span class="comment">+++ auto_detect: false</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>No Silver Bullet</p>
-<blockquote>
-<p>By Brooks</p>
-</blockquote>
-</blockquote>
-<blockquote>
-<p>[!NOTE]<br />
-Note that it is a note.</p>
-</blockquote>
-<blockquote>
-<p>[!WARNING]<br />
-WARNING!</p>
-</blockquote>
-<blockquote>
-<p>[!DANGER]<br />
-Notice the DANGER!</p>
-</blockquote>
-<blockquote>
-<p>[!SUCCESS]<br />
-Now it is SUCCESS.</p>
-</blockquote>
-<blockquote>
-<p>[!INFO]<br />
-Here is some INFO.</p>
-</blockquote>
-<hr class="footnotes-sep" />
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>Hello World! <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-<li id="fn2" class="footnote-item"><p>Footnote <a href="#fnref2" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">git使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-13 10:56:18" itemprop="dateModified" datetime="2025-03-13T10:56:18+08:00">2025-03-13</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="00-代码合并流程"><a class="markdownIt-Anchor" href="#00-代码合并流程"></a> 0.0 代码合并流程</h1>
-<ol>
-<li>在各自的分支<code>self</code>上进行开发</li>
-<li>切换到<code>develop</code>分支，<code>git pull --rebase</code>同步最新代码</li>
+<li>弹性硬件拓展能力</li>
+<li>硬件异构实现</li>
+<li>功能安全</li>
+<li>信息安全</li>
+<li>时延确定</li>
 </ol>
 <blockquote>
-<p>不要使用Git Pull<br />
-<code>git pull</code>会创建一个新的<code>merge commit</code>，这样提交历史不是一条清晰的线，包含无意义的分支合并，非常混乱。<br />
-而<code>git pull --rebase</code>会解决这个问题，这个命令首先把你的<code>commit</code>放到一边，拉取最新分支状态，最后为你自动变基到最新状态。<br />
-如果遇到合并冲突，使用<code>git rebase --abort</code>撤回<code>rebase</code>，然后使用<code>git pull</code>或者使用交互式变基。</p>
+<p>现代操作系统特征：1）虚拟内存；2）用户态、内核态隔离。</p>
 </blockquote>
-<ol start="3">
-<li>切换到自己的分支<code>self</code>，<code>git rebase develop</code>对齐代码合并冲突</li>
-</ol>
-<h1 id="10-第一件事git-config"><a class="markdownIt-Anchor" href="#10-第一件事git-config"></a> 1.0 第一件事git config</h1>
-<ul>
-<li><code>git config --list --show-origin</code>查看所有git配置以及所在文件</li>
-<li>使用<code>git config --global</code>可以设置git的基本信息（如用户名、邮箱），使用<code>--unset</code>取消设置
-<ol>
-<li>配置你的名称、邮箱以及编辑器</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;191220000-Zhang San&quot;</span> </span><br><span class="line"><span class="comment"># 全局设置名称</span></span><br><span class="line">git config --global user.email <span class="string">&quot;zhang3@email.com&quot;</span></span><br><span class="line">git config --global core.editor vim</span><br><span class="line"></span><br><span class="line"><span class="comment"># instead of</span></span><br><span class="line">git config --global url.git@github.com:.insteadOf https://github.com/</span><br><span class="line"><span class="comment"># alias</span></span><br><span class="line">git config --global alias.cin <span class="string">&quot;commit --amend --no-edit&quot;</span></span><br></pre></td></tr></table></figure>
-<h1 id="20-初始化仓库"><a class="markdownIt-Anchor" href="#20-初始化仓库"></a> 2.0 初始化仓库</h1>
-<ol>
-<li>本地仓库：<code>git init</code>创建一个新的 git 仓库，其数据会存放在一个名为 <code>.git</code> 的目录下<br />
-删除仓库：删除 .git 文件夹</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add &lt;文件名字，*表示全部&gt;</span><br><span class="line"><span class="comment"># 提交到暂存区，并附上注释</span></span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span> </span><br><span class="line"><span class="comment"># 修改最近的一次提交</span></span><br><span class="line">git commit --ammend</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>远程仓库：<code>git clone</code>克隆远端仓库</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看remote</span></span><br><span class="line">git remote -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加remote</span></span><br><span class="line">git remote add origin project_repository_url.git</span><br><span class="line"><span class="comment"># 设置push分支为自己的仓库</span></span><br><span class="line">git remote set-url --add --push origin your_repository_url.git</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> &lt;网址&gt; &lt;仓库存放文件夹名&gt;</span><br><span class="line"><span class="comment"># 使用http克隆</span></span><br></pre></td></tr></table></figure>
-<h1 id="配置ssh"><a class="markdownIt-Anchor" href="#配置ssh"></a> 配置SSH</h1>
-<blockquote>
-<p>不推荐dsa和rsa，推荐ed25519</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C &quot;your_email@email.com&quot;</span><br></pre></td></tr></table></figure>
-<h1 id="tag"><a class="markdownIt-Anchor" href="#tag"></a> Tag</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag v0.0.version</span><br><span class="line">git tag -a v0.version -m &quot;Your Comments to the version&quot;</span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/#more" rel="contents">
+              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -460,7 +295,7 @@ Here is some INFO.</p>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%B4%9B%E8%B0%B7%20%E9%94%99%E9%A2%98%E6%9C%AC/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -478,7 +313,7 @@ Here is some INFO.</p>
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%B4%9B%E8%B0%B7%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">洛谷 错题本</a>
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/" class="post-title-link" itemprop="url">网络是怎样连接的</a>
         </h2>
 
         <div class="post-meta-container">
@@ -489,14 +324,14 @@ Here is some INFO.</p>
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2025-03-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-03-01T00:00:00+08:00">2025-03-01</time>
+      <time title="创建时间：2024-07-25 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-25T00:00:00+08:00">2024-07-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-12 09:32:05" itemprop="dateModified" datetime="2025-03-12T09:32:05+08:00">2025-03-12</time>
+      <time title="修改时间：2025-03-15 13:57:06" itemprop="dateModified" datetime="2025-03-15T13:57:06+08:00">2025-03-15</time>
     </span>
 
   
@@ -509,24 +344,19 @@ Here is some INFO.</p>
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="p1004-noip-2000-提高组-方格取数"><a class="markdownIt-Anchor" href="#p1004-noip-2000-提高组-方格取数"></a> P1004 [NOIP 2000 提高组] 方格取数</h1>
-<p>#走两次dp<br />
-如果只走一次，这题是非常经典的DP。但是要走两次，就变得非常有难度。<br />
-首先，可以简单地推广：要走两次，dp就存四个下标：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span>[][][][] dp = <span class="keyword">new</span> <span class="title class_">int</span>[N][N][N][N];</span><br></pre></td></tr></table></figure>
-<p>我们只需要遍历所有可能，并且比较四种走法（同下、同右、一下一右），取最大值就可以了。<br />
-注意，一个数只能取一次，需要一个判断防止重复取数。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i1</span> <span class="operator">=</span> <span class="number">1</span>; i1 &lt; N; i1 += <span class="number">1</span>) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i2</span> <span class="operator">=</span> <span class="number">1</span>; i2 &lt; N; i2 += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j1</span> <span class="operator">=</span> <span class="number">1</span>; j1 &lt; N; j1 += <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j2</span> <span class="operator">=</span> <span class="number">1</span>; j2 &lt; N; j2 += <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">step</span> <span class="operator">=</span> map[i1][j1];</span><br><span class="line">                <span class="keyword">if</span> (i2 != i1 &amp;&amp; j2 != j1) step += map[i2][j2];</span><br><span class="line">                </span><br><span class="line">                dp[i1][j1][i2][j2] = </span><br><span class="line">                    Math.max(dp[i1-<span class="number">1</span>][j1][i2-<span class="number">1</span>][j2], </span><br><span class="line">                    Math.max(dp[i1-<span class="number">1</span>][j1][i2][j2-<span class="number">1</span>], </span><br><span class="line">                    Math.max(dp[i1][j1-<span class="number">1</span>][i2-<span class="number">1</span>][j2], </span><br><span class="line">                             dp[i1][j1-<span class="number">1</span>][i2][j2-<span class="number">1</span>]))) + step;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(dp[N-<span class="number">1</span>][N-<span class="number">1</span>][N-<span class="number">1</span>][N-<span class="number">1</span>]);</span><br></pre></td></tr></table></figure>
-<p>当然，4个循环时间复杂度太高了。我们可以用一个<code>k == i1 + j1 == i2 + j2</code>来减少一重循环。<br />
-这个k利用得很巧妙，因为每次要么向下走，要么向右走，所以<code>k-1 == i-1 + j == i + j-1</code>，全程使用<code>k-1</code>就能代表所有情况。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%B4%9B%E8%B0%B7%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h1 id="web浏览器"><a class="markdownIt-Anchor" href="#web浏览器"></a> Web浏览器</h1>
+<p>网址就是请求服务器上对应的文件<br />
+DNS从顶级域名开始根据网址查IP。DNS服务器通过缓存查过的IP来加快服务响应（缓存拥有有效期）。<br />
+浏览器调用Socket库建立连接管道</p>
+<h1 id="tcpip协议栈"><a class="markdownIt-Anchor" href="#tcpip协议栈"></a> TCP/IP协议栈</h1>
+<p>应用将数据分割为许多个网络包，TCP加上头部发送出去。需要发送的信息会缓存起来，<strong>超出计时时间</strong>或者<strong>数据量大于一个包大小</strong>时才发出去。<br />
+TCP需要确认对方收到数据，但是为了不浪费时间，实际上TCP在等待确认信息的过程中也在发送包，这个方法称为<strong>滑动窗口</strong>。<br />
+为了使接收方有足够的时间处理数据，接收方有一个接收缓存，当缓存满了会在TCP头部中通知发送方；处理完成，缓冲区有空余时也会通过TCP头部通知发送方。<br />
+通信完成后，发送方会保留套接字一段时间，以防对方的FINISH信号发送有延迟，把新的相同端口的套接字错误删除。</p>
+<p>用电信号传输数据时，用高电平表示1，低电平表示0.为了防止连续的低电平读不出来，会有一条时钟信号（固定切换高低电平）<br />
+ICMP：定义各种消息，如超时、无法到达、超出转发能力</p>
+<p>UDP在发送的数据少于一个包（重发也只需要发一个包，代价小，如DNS查询控制信息）、发送的数据具有时效性（如音视频，必须快速发送，即使重发也没有意义）的情况下使用。UDP只负责收发数据，对方没收到就全部重发一遍。</p>
+
       
     </div>
 
@@ -552,7 +382,7 @@ Here is some INFO.</p>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/DS%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -570,7 +400,7 @@ Here is some INFO.</p>
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/DS%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">DS 数据结构与算法</a>
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" class="post-title-link" itemprop="url">前后端分离</a>
         </h2>
 
         <div class="post-meta-container">
@@ -581,14 +411,14 @@ Here is some INFO.</p>
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2024-03-08 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-08T00:00:00+08:00">2024-03-08</time>
+      <time title="创建时间：2024-12-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-27T00:00:00+08:00">2024-12-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-09 14:52:55" itemprop="dateModified" datetime="2025-03-09T14:52:55+08:00">2025-03-09</time>
+      <time title="修改时间：2025-03-15 13:56:55" itemprop="dateModified" datetime="2025-03-15T13:56:55+08:00">2025-03-15</time>
     </span>
 
   
@@ -601,20 +431,29 @@ Here is some INFO.</p>
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="00-pta实录"><a class="markdownIt-Anchor" href="#00-pta实录"></a> 0.0 PTA实录</h1>
-<h2 id="011-最大子列和plus"><a class="markdownIt-Anchor" href="#011-最大子列和plus"></a> 0.1.1 最大子列和plus</h2>
+          <h1 id="10-session"><a class="markdownIt-Anchor" href="#10-session"></a> 1.0 Session</h1>
+<p>有状态：用户请求接口 -&gt; <strong>从Session中读取用户信息</strong> -&gt; 根据当前的用户来处理业务 -&gt; 返回</p>
+<p>缺点：<strong>不支持分布式</strong></p>
+<h1 id="20-token"><a class="markdownIt-Anchor" href="#20-token"></a> 2.0 Token</h1>
+<p>无状态：用户携带Token请求接口 -&gt; <strong>从请求中获取用户信息</strong> -&gt; 根据当前的用户来处理业务 -&gt; 返回</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.auth0<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-jwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>如何利用语句先后顺序记录上一条信息<code>pre_start_tag</code></li>
+<li>工具类</li>
 </ul>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">sum_max_sequence</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> <span class="type">int</span> this_sum, max_sum;</span><br><span class="line">    <span class="type">int</span> start_tag, end_tag, pre_start_tag, neg_tag;</span><br><span class="line">    </span><br><span class="line">    start_tag = pre_start_tag = end_tag = <span class="number">0</span>;</span><br><span class="line">    this_sum = max_sum = <span class="number">0</span>;</span><br><span class="line">    neg_tag = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; num; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">list</span>[i] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            neg_tag = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        this_sum += <span class="built_in">list</span>[i];</span><br><span class="line">        <span class="keyword">if</span> (this_sum &gt; max_sum)</span><br><span class="line">        &#123;</span><br><span class="line">            max_sum = this_sum;</span><br><span class="line">            end_tag = i;</span><br><span class="line">            pre_start_tag = start_tag; <span class="comment">// 我没有想到的代码！</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (this_sum &lt; <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            this_sum = <span class="number">0</span>;</span><br><span class="line">            start_tag = i+<span class="number">1</span>;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(neg_tag) <span class="comment">// 输出0，第一个和最后一个数</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld %d %d\n&quot;</span>, max_sum, <span class="built_in">list</span>[<span class="number">0</span>], <span class="built_in">list</span>[num<span class="number">-1</span>]);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (max_sum == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;0 0 0\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld %d %d\n&quot;</span>, max_sum, <span class="built_in">list</span>[pre_start_tag], <span class="built_in">list</span>[end_tag]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/DS%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JwtUtils</span> &#123;</span><br><span class="line">      <span class="comment">//Jwt秘钥</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> <span class="string">&quot;abcdefghijklmn&quot;</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 根据用户信息创建Jwt令牌</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">createJwt</span><span class="params">(UserDetails user)</span>&#123;</span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(key);</span><br><span class="line">        <span class="type">Calendar</span> <span class="variable">calendar</span> <span class="operator">=</span> Calendar.getInstance();</span><br><span class="line">        <span class="type">Date</span> <span class="variable">now</span> <span class="operator">=</span> calendar.getTime();</span><br><span class="line">        calendar.add(Calendar.SECOND, <span class="number">3600</span> * <span class="number">24</span> * <span class="number">7</span>);</span><br><span class="line">        <span class="keyword">return</span> JWT.create()</span><br><span class="line">                .withClaim(<span class="string">&quot;name&quot;</span>, user.getUsername())  <span class="comment">// 配置JWT自定义信息</span></span><br><span class="line">                .withClaim(<span class="string">&quot;authorities&quot;</span>, user.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())</span><br><span class="line">                .withExpiresAt(calendar.getTime())  <span class="comment">// 设置过期时间</span></span><br><span class="line">                .withIssuedAt(now)    <span class="comment">// 设置创建创建时间</span></span><br><span class="line">                .sign(algorithm);   <span class="comment">// 最终签名</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 根据Jwt验证并解析用户信息</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> UserDetails <span class="title function_">resolveJwt</span><span class="params">(String token)</span>&#123;</span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(key);</span><br><span class="line">        <span class="type">JWTVerifier</span> <span class="variable">jwtVerifier</span> <span class="operator">=</span> JWT.require(algorithm).build();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">DecodedJWT</span> <span class="variable">verify</span> <span class="operator">=</span> jwtVerifier.verify(token);  <span class="comment">// 对JWT令牌进行验证，看看是否被修改</span></span><br><span class="line">            Map&lt;String, Claim&gt; claims = verify.getClaims();  <span class="comment">// 获取令牌中内容</span></span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">new</span> <span class="title class_">Date</span>().after(claims.get(<span class="string">&quot;exp&quot;</span>).asDate())) <span class="comment">// 如果是过期令牌则返回null</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                  <span class="comment">// 重新组装为UserDetails对象，包括用户名、授权信息等</span></span><br><span class="line">                <span class="keyword">return</span> User</span><br><span class="line">                        .withUsername(claims.get(<span class="string">&quot;name&quot;</span>).asString())</span><br><span class="line">                        .password(<span class="string">&quot;&quot;</span>)</span><br><span class="line">                        .authorities(claims.get(<span class="string">&quot;authorities&quot;</span>).asArray(String.class))</span><br><span class="line">                        .build();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JWTVerificationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Filter</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JwtAuthenticationFilter</span> <span class="keyword">extends</span> <span class="title class_">OncePerRequestFilter</span> &#123;  </span><br><span class="line"><span class="comment">// 继承OncePerRequestFilter表示每次请求过滤一次，用于快速编写JWT校验规则</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doFilterInternal</span><span class="params">(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">          <span class="comment">// 首先从Header中取出JWT</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">authorization</span> <span class="operator">=</span> request.getHeader(<span class="string">&quot;Authorization&quot;</span>);</span><br><span class="line">          <span class="comment">// 判断是否包含JWT且格式正确</span></span><br><span class="line">        <span class="keyword">if</span> (authorization != <span class="literal">null</span> &amp;&amp; authorization.startsWith(<span class="string">&quot;Bearer &quot;</span>)) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> authorization.substring(<span class="number">7</span>);    </span><br><span class="line">              <span class="comment">// 开始解析成UserDetails对象，如果得到的是null说明解析失败，JWT有问题</span></span><br><span class="line">            <span class="type">UserDetails</span> <span class="variable">user</span> <span class="operator">=</span> JwtUtils.resolveJwt(token);</span><br><span class="line">            <span class="keyword">if</span>(user != <span class="literal">null</span>) &#123;</span><br><span class="line">                  <span class="comment">// 验证没有问题，那么就可以开始创建Authentication了，这里我们跟默认情况保持一致</span></span><br><span class="line">                  <span class="comment">// 使用UsernamePasswordAuthenticationToken作为实体，填写相关用户信息进去</span></span><br><span class="line">                <span class="type">UsernamePasswordAuthenticationToken</span> <span class="variable">authentication</span> <span class="operator">=</span></span><br><span class="line">                        <span class="keyword">new</span> <span class="title class_">UsernamePasswordAuthenticationToken</span>(user, <span class="literal">null</span>, user.getAuthorities());</span><br><span class="line">                authentication.setDetails(<span class="keyword">new</span> <span class="title class_">WebAuthenticationDetailsSource</span>().buildDetails(request));</span><br><span class="line">                  <span class="comment">// 然后直接把配置好的Authentication塞给SecurityContext表示已经完成验证</span></span><br><span class="line">                SecurityContextHolder.getContext().setAuthentication(authentication);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">          <span class="comment">// 最后放行，继续下一个过滤器</span></span><br><span class="line">          <span class="comment">// 可能各位小伙伴会好奇，要是没验证成功不是应该拦截吗？这个其实没有关系的</span></span><br><span class="line">          <span class="comment">// 因为如果没有验证失败上面是不会给SecurityContext设置Authentication的，后面直接就被拦截掉了</span></span><br><span class="line">          <span class="comment">// 而且有可能用户发起的是用户名密码登录请求，这种情况也要放行的，不然怎么登录，所以说直接放行就好</span></span><br><span class="line">        filterChain.doFilter(request, response);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Security修改为无状态</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 将Session管理创建策略改成无状态，这样SpringSecurity就不会创建会话了，也不会采用之前那套机制记录用户，因为现在我们可以直接从JWT中获取信息</span></span><br><span class="line">.sessionManagement(conf -&gt; &#123;</span><br><span class="line">    conf.sessionCreationPolicy(SessionCreationPolicy.STATELESS);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 添加我们用于处理JWT的过滤器到Security过滤器链中，注意要放在UsernamePasswordAuthenticationFilter之前</span></span><br><span class="line">.addFilterBefore(<span class="keyword">new</span> <span class="title class_">JwtAuthenticationFilter</span>(), UsernamePasswordAuthenticationFilter.class)</span><br></pre></td></tr></table></figure>
+<h2 id="jwt退出登录"><a class="markdownIt-Anchor" href="#jwt退出登录"></a> JWT退出登录</h2>
+<p>采用黑名单方案。一台服务器存储JWT黑名单，共享给所有微服务。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">JWT.create()</span><br><span class="line">    <span class="comment">// 额外添加一个UUID用于记录黑名单，将其作为JWT的ID属性jti</span></span><br><span class="line">    .withJWTId(UUID.randomUUID().toString())</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JwtUtils</span> &#123;    </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> HashSet&lt;String&gt; blackList = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">// 加入黑名单方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">invalidate</span><span class="params">(String token)</span>&#123;</span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(key);</span><br><span class="line">        <span class="type">JWTVerifier</span> <span class="variable">jwtVerifier</span> <span class="operator">=</span> JWT.require(algorithm).build();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">DecodedJWT</span> <span class="variable">verify</span> <span class="operator">=</span> jwtVerifier.verify(token);</span><br><span class="line">            Map&lt;String, Claim&gt; claims = verify.getClaims();</span><br><span class="line">              <span class="comment">//取出UUID丢进黑名单中</span></span><br><span class="line">            <span class="keyword">return</span> blackList.add(verify.getId());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JWTVerificationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> UserDetails <span class="title function_">resolveJwt</span><span class="params">(String token)</span>&#123;</span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(key);</span><br><span class="line">        <span class="type">JWTVerifier</span> <span class="variable">jwtVerifier</span> <span class="operator">=</span> JWT.require(algorithm).build();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">DecodedJWT</span> <span class="variable">verify</span> <span class="operator">=</span> jwtVerifier.verify(token);</span><br><span class="line">            <span class="comment">// 判断是否存在于黑名单中，如果存在，则返回null表示失效</span></span><br><span class="line">            <span class="keyword">if</span>(blackList.contains(verify.getId()))</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            Map&lt;String, Claim&gt; claims = verify.getClaims();</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">new</span> <span class="title class_">Date</span>().after(claims.get(<span class="string">&quot;exp&quot;</span>).asDate()))</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">return</span> User</span><br><span class="line">                    .withUsername(claims.get(<span class="string">&quot;name&quot;</span>).asString())</span><br><span class="line">                    .password(<span class="string">&quot;&quot;</span>)</span><br><span class="line">                    .authorities(claims.get(<span class="string">&quot;authorities&quot;</span>).asArray(String.class))</span><br><span class="line">                    .build();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JWTVerificationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -640,7 +479,7 @@ Here is some INFO.</p>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Computer%20Organization&Design%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -658,7 +497,7 @@ Here is some INFO.</p>
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">vim基本操作</a>
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/Computer%20Organization&Design%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="post-title-link" itemprop="url">Computer Organization&Design学习记录</a>
         </h2>
 
         <div class="post-meta-container">
@@ -669,14 +508,14 @@ Here is some INFO.</p>
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+      <time title="创建时间：2024-06-08 00:00:00" itemprop="dateCreated datePublished" datetime="2024-06-08T00:00:00+08:00">2024-06-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-05 09:46:23" itemprop="dateModified" datetime="2025-03-05T09:46:23+08:00">2025-03-05</time>
+      <time title="修改时间：2025-03-15 13:56:41" itemprop="dateModified" datetime="2025-03-15T13:56:41+08:00">2025-03-15</time>
     </span>
 
   
@@ -689,196 +528,30 @@ Here is some INFO.</p>
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
-<ul>
-<li><code>gg=G</code>：代码格式化</li>
-<li><code>GX, GF</code>：打开链接/文件</li>
-<li><code>:%y *</code>：复制全部到系统剪贴板</li>
-<li><code>&lt;C-o&gt;, &lt;C-i&gt;</code>：回到前一个/后一个位置（例如，打开文件默认在第一行，<code>&lt;C-o&gt;</code>回到上次编辑位置）。<strong>注意这个操作是跨文件的</strong>。</li>
-<li><code>`0</code>：返回上次位置</li>
-<li>词：<code>w</code>（下一个词），<code>b</code>（词初），<code>e</code>（词尾）</li>
-<li>行：<code>0</code>（行初），<code>^</code>（第一个非空格字符），<code>$</code>（行尾）</li>
-<li>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</li>
-<li>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</li>
-<li><code>x</code>删除字符（等同于<code>dl</code>）</li>
-<li><code>:s</code>(substitute)替换字符（等同于<code>xi</code>）
-<ul>
-<li>替换命令<code>:&#123;作用范围&#125;s/&#123;目标文本&#125;/&#123;替换文本&#125;/&#123;替换标志&#125;</code></li>
-<li><code>:%s/s_content/o_content/gc</code> 全局替换，附带确认提示</li>
-</ul>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Sign</th>
-<th>Range</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>%</td>
-<td>整个文件</td>
-</tr>
-<tr>
-<td>.</td>
-<td>当前行</td>
-</tr>
-<tr>
-<td>$</td>
-<td>最后一行</td>
-</tr>
-<tr>
-<td>,n</td>
-<td>当前行到n行</td>
-</tr>
-<tr>
-<td>n,</td>
-<td>n行到当前行</td>
-</tr>
-<tr>
-<td>+n</td>
-<td>当前行后n行</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>可视化模式 + 操作
-<ul>
-<li>选中文字,<code>d</code>删除（剪切） 或者<code>c</code>改变</li>
-</ul>
-</li>
-<li><code>u</code>撤销，<code>&lt;C-r&gt;</code>重做</li>
-<li><code>y</code>复制 / “yank” （其他一些命令比如<code>d</code>也会复制）</li>
-<li><code>p</code>粘贴
-<ul>
-<li><code>+p</code> 粘贴系统剪贴板</li>
-</ul>
-</li>
-<li><strong>更多值得学习的</strong>:
-<ul>
-<li><code>:&lt;line&gt;</code> 跳到line行，相当于<code>&lt;line&gt;G</code></li>
-<li><code>~</code>改变字符的大小写</li>
-<li><code>3w</code>向前移动三个词</li>
-<li><code>A</code>（大写）可以迅速定位到行尾进行修改</li>
-<li><code>:!python prog.py</code> 使用！直接运行shell命令</li>
-</ul>
-</li>
-<li><code>%</code>匹配括号</li>
-</ul>
-<h2 id="change"><a class="markdownIt-Anchor" href="#change"></a> Change</h2>
-<p><code>ce</code> 替换一个单词<br />
-<code>cs&quot;'</code> 把当前词块的&quot;全部替换成’</p>
-<h2 id="多行操作"><a class="markdownIt-Anchor" href="#多行操作"></a> 多行操作</h2>
-<p><code>&lt;C-v&gt;</code> 选中多行，<code>Shift + i</code>输入后<code>Esc</code>，即可多行同步输入</p>
-<h2 id="esc-map"><a class="markdownIt-Anchor" href="#esc-map"></a> Esc Map</h2>
-<p>Vim和NeoVim内置了<code>&lt;C-[&gt;</code>作为<code>&lt;Esc&gt;</code>的映射；<br />
-还可以通过<code>&lt;A-&gt;</code>Alt加上任何键（Meta键）的方式触发<code>&lt;Esc&gt;-</code>。</p>
-<h1 id="宏"><a class="markdownIt-Anchor" href="#宏"></a> 宏</h1>
-<h2 id="录制宏"><a class="markdownIt-Anchor" href="#录制宏"></a> 录制宏</h2>
-<p>命令模式下，</p>
+          <h1 id="chapter2-指令计算机的语言"><a class="markdownIt-Anchor" href="#chapter2-指令计算机的语言"></a> Chapter2 指令：计算机的语言</h1>
+<p>本章将介绍MIPS汇编语言指令。</p>
+<h2 id="三条设计原则"><a class="markdownIt-Anchor" href="#三条设计原则"></a> 三条设计原则</h2>
 <ol>
-<li>按<code>q&lt;marcoName&gt;</code>进行录制，<code>&lt;marcoName&gt;</code>是宏的名字，例如<code>qa</code></li>
-<li>执行一系列操作后，再次按<code>q</code>结束录制</li>
+<li>简单源于规整 Simplicity favors regularity.</li>
+<li>越小越快 Smaller is faster.</li>
+<li>优秀的设计需要适宜的折中方案 Good design demands good compromises.</li>
 </ol>
-<h2 id="使用宏"><a class="markdownIt-Anchor" href="#使用宏"></a> 使用宏</h2>
-<p>命令模式下，使用<code>@&lt;marcoName&gt;</code>即可执行；使用<code>5@&lt;marcoName&gt;</code>可以重复执行宏</p>
-<h1 id="文件操作"><a class="markdownIt-Anchor" href="#文件操作"></a> 文件操作</h1>
-<ul>
-<li><code>:e filename</code>切换到filename文件</li>
-<li><code>:bn/bp</code>切换到下/上个文件</li>
-<li><code>&lt;C-x&gt;&lt;C-f&gt;</code> 自动补全路径</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">动态规划学习指南</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-22 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-22T00:00:00+08:00">2024-10-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-02 09:27:56" itemprop="dateModified" datetime="2025-03-02T09:27:56+08:00">2025-03-02</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Author：<strong><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/aatalyk">aatalyk</a></strong><br />
-Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns">Link</a></p>
-<p>Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to prepare for interviews two years ago. At that time I should say I could not solve the two sum problem. Easy problems seemed to me like hard ones so most of the time I had to look at editorials and discuss section. Currently, I have solved ~800 problems and time to time participate in contests. I usually solve 3 problems in a contest and sometimes 4 problems. Ok, lets come back to the topic.</p>
-<p>Recently I have concentrated my attention on Dynamic Programming cause its one of the hardest topics in an interview prep. After solving ~140 problems in DP I have noticed that there are few patterns that can be found in different problems. So I did a research on that and find the following topics. I will not give complete ways how to solve problems but these patterns may be helpful in solving DP.</p>
-<h2 id="patterns"><a class="markdownIt-Anchor" href="#patterns"></a> Patterns</h2>
-<ol>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Minimum-%28Maximum%29-Path-to-Reach-a-Target">Minimum (Maximum) Path to Reach a Target</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23distinct-ways">Distinct Ways</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Merging-Intervals">Merging Intervals</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23DP-on-Strings">DP on Strings</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Decision-Making">Decision Making</a></li>
-</ol>
+<h2 id="22-硬件的操作与操作数"><a class="markdownIt-Anchor" href="#22-硬件的操作与操作数"></a> 2.2 硬件的操作与操作数</h2>
+<h3 id="规整"><a class="markdownIt-Anchor" href="#规整"></a> 规整</h3>
+<p><code>add a, b, c // a = b + c</code> MIPS汇编语言使用这样的固定记法。<br />
+每条MIPS算术指令只执行1个操作，仅有3个变量。</p>
+<h3 id="操作数必须来自寄存器"><a class="markdownIt-Anchor" href="#操作数必须来自寄存器"></a> 操作数必须来自寄存器</h3>
+<p>变量f、g、h、i、j依次分配给$s0~$s4，编译下面的C语句</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f = (g + h) - (i + j);</span><br><span class="line">---</span><br><span class="line">add $t0, $s1, $s2 <span class="comment">// t0 = s1 + s2</span></span><br><span class="line">add $t1, $s3, $s4</span><br><span class="line">sub $s0, $t0, $t1 <span class="comment">// s0 = t0 + t1</span></span><br></pre></td></tr></table></figure>
+<h3 id="数据传输"><a class="markdownIt-Anchor" href="#数据传输"></a> 数据传输</h3>
+<p>只有少量数据存在寄存器中，因此需要在存储器和寄存器间传输数据</p>
+<p>A的基址是存在$s3，编译下面的C语句</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">A[<span class="number">12</span>] = h + A[<span class="number">8</span>]</span><br><span class="line">---</span><br><span class="line">lw  $t0, <span class="number">32</span>($s3) <span class="comment">// 先读数，再相加；32为偏移量，8*4byte</span></span><br><span class="line">add $t0, $s2, $t0</span><br><span class="line">sw  $t0, <span class="number">48</span>($s3) <span class="comment">// 存数</span></span><br></pre></td></tr></table></figure>
+<h3 id="立即数"><a class="markdownIt-Anchor" href="#立即数"></a> 立即数</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">addi $t0, $t1, <span class="number">4</span> <span class="comment">// t0 = t1 + 4；无需读取4，作为立即数相加</span></span><br><span class="line">subi $t0, $t1, <span class="number">4</span></span><br></pre></td></tr></table></figure>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/#more" rel="contents">
+              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/Computer%20Organization&Design%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -909,7 +582,7 @@ Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/ge
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/DP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -927,7 +600,7 @@ Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/ge
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">mysql使用</a>
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/DP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">DP 设计模式</a>
         </h2>
 
         <div class="post-meta-container">
@@ -938,14 +611,14 @@ Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/ge
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2024-07-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-27T00:00:00+08:00">2024-07-27</time>
+      <time title="创建时间：2024-11-03 00:00:00" itemprop="dateCreated datePublished" datetime="2024-11-03T00:00:00+08:00">2024-11-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-25 19:51:20" itemprop="dateModified" datetime="2025-02-25T19:51:20+08:00">2025-02-25</time>
+      <time title="修改时间：2025-03-15 13:56:35" itemprop="dateModified" datetime="2025-03-15T13:56:35+08:00">2025-03-15</time>
     </span>
 
   
@@ -958,31 +631,23 @@ Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/ge
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h1>
-<h2 id="原子性-atomicity"><a class="markdownIt-Anchor" href="#原子性-atomicity"></a> 原子性 Atomicity</h2>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">BUSINESS</span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">1</span></span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">2</span></span><br><span class="line"><span class="keyword">COMMIT</span></span><br></pre></td></tr></table></figure>
+          <h1 id="策略模式"><a class="markdownIt-Anchor" href="#策略模式"></a> 策略模式</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MallardDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MallardDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        quackBehavior = <span class="keyword">new</span> <span class="title class_">Quack</span>();</span><br><span class="line">        flyBehavior = <span class="keyword">new</span> <span class="title class_">FlyWithWings</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ModelDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ModelDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        quackBehavior = <span class="keyword">new</span> <span class="title class_">Quack</span>();</span><br><span class="line">        flyBehavior = <span class="keyword">new</span> <span class="title class_">FlyNoWay</span>(); <span class="comment">// 组合不同的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Duck</span> <span class="variable">real</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MallardDuck</span>();</span><br><span class="line">        <span class="type">Duck</span> <span class="variable">model</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelDuck</span>();</span><br><span class="line"></span><br><span class="line">        real.fly();</span><br><span class="line">        model.fly(); <span class="comment">// 调用同样的接口</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>原子性：事务操作要么同时发生，要么同时失败，不存在中间情况</p>
+<p>识别应用中变化的方面，把它们和不变的方面分开。</p>
 </blockquote>
-<p>通过Undo Log回滚实现</p>
-<h2 id="一致性-consistency"><a class="markdownIt-Anchor" href="#一致性-consistency"></a> 一致性 Consistency</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">账户500元 -&gt; 扣除1000元 -&gt; 账户-500元</span><br><span class="line">-- 非法操作</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>一致性：每个操作都必须是合法的，账户信息应该从一个有效状态到另一个有效状态。</p>
+<p>针对接口编程，而不是针对实现编程。</p>
 </blockquote>
-<h2 id="隔离性-isolation"><a class="markdownIt-Anchor" href="#隔离性-isolation"></a> 隔离性 Isolation</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">商户1转账500元 -&gt; 余额更新为500元</span><br><span class="line">商户2转账500元 -&gt; 余额更新为500元</span><br><span class="line">-- 没有隔离性</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Implement</span></span><br><span class="line"><span class="type">Dog</span> <span class="variable">d</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">d.bark();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Interface</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">dog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">dog.makeSound(); <span class="comment">// abstract</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>隔离性：两个操作对同一个账户并发操作时，应该表现为不相互影响类似串行的操作。</p>
+<p>优先使用组合而不是继承。</p>
 </blockquote>
-<h2 id="持久性-durability"><a class="markdownIt-Anchor" href="#持久性-durability"></a> 持久性 Durability</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">转账500元到余额 --服务器宕机--&gt; 余额0元</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>持久性：操作更新成功后，更新的结果应该永久地保留下来，不会因为宕机等问题而丢失。</p>
-</blockquote>
+<h2 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> summary</h2>
+<p>策略模式定义了算法族并分别封装。策略让算法变化独立于使用它的客户。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/#more" rel="contents">
+              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/DP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1013,7 +678,7 @@ Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/ge
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/MarsCode%20%E9%94%99%E9%A2%98%E6%9C%AC/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringCloud%20Netfilx%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1031,7 +696,7 @@ Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/ge
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/MarsCode%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">MarsCode 错题本</a>
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringCloud%20Netfilx%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">SpringCloud Netflix笔记</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1042,251 +707,14 @@ Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/ge
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2025-01-19 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-19T00:00:00+08:00">2025-01-19</time>
+      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-02-21 22:14:04" itemprop="dateModified" datetime="2025-02-21T22:14:04+08:00">2025-02-21</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="51-和的逆运算"><a class="markdownIt-Anchor" href="#51-和的逆运算"></a> 51 和的逆运算</h1>
-<p>#全排列<br />
-这题在给定的和<strong>不重复</strong>的情况下很简单：</p>
-<ol>
-<li>首先升序排序好数组sums，生成答案数组<code>nums[n]</code>。</li>
-<li><code>nums[0] + nums[1]</code> 必然等于<code>sums[0]</code>（最小值），<code>nums[0] + nums[2]</code> 必然等于<code>sums[1]</code>（次小值）, … , <code>nums[n-2] + nums[n-1]</code> 必然等于<code>sums[lastIndex]</code>（最大值）。</li>
-<li>可以反向推测出<code>nums[0] = (sums[0] + sums[1] - sums[n-1]) / 2</code>，论证看下方：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nums[n] = &#123;a, b, c, d, e&#125; 从小到大排列</span><br><span class="line">a + b = sums[0] (1) // 最小</span><br><span class="line">a + c = sums[1] (2)</span><br><span class="line">a + d = sums[2]</span><br><span class="line">a + e = sums[3]</span><br><span class="line">b + c = sums[4] (3)</span><br><span class="line">...</span><br><span class="line">(1) + (2) = 2a + (3)</span><br><span class="line">2a = sums[0] + sums[1] - sums[n-1] = (1) + (2) - (3)</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>得出了<code>nums[0]</code>，其他数字都可以用<code>nums[i] = sums[i-1] - nums[0]</code>推出来</li>
-</ol>
-<p>但是给定的和重复的情况下，上面的第2条就不成立了。例如测试用例3：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/MarsCode%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Shell终端使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-19 18:54:50" itemprop="dateModified" datetime="2025-01-19T18:54:50+08:00">2025-01-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="shortcuts-快捷键"><a class="markdownIt-Anchor" href="#shortcuts-快捷键"></a> Shortcuts 快捷键</h1>
-<ul>
-<li><code>CTRL+N|P</code> 下、上一条命令</li>
-<li><code>CTRL+A|E</code> 跳到行首、行尾</li>
-<li><code>ALT+F|B</code> 或 <code>CTRL+←|→</code> 下、上一个单词（右ALT开始使用~）</li>
-<li><code>CTRL+W</code> 删除前面的单词</li>
-<li><code>CTRL+D|H</code> 删除一个字符（D向后删除=Delete，H向前删除=Backspace）</li>
-<li><code>CTRL+U</code> 删除整行</li>
-<li><code>CTRL+R</code> 搜索整行，Esc退出</li>
-</ul>
-<h1 id="proxy"><a class="markdownIt-Anchor" href="#proxy"></a> Proxy</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export https_proxy=http://host:port;</span><br><span class="line">export http_proxy=http://host:port;</span><br><span class="line">export all_proxy=socks5://host:port;</span><br></pre></td></tr></table></figure>
-<h1 id="bash-prompt-string配置"><a class="markdownIt-Anchor" href="#bash-prompt-string配置"></a> Bash prompt string配置</h1>
-<blockquote>
-<p>使用Windows CMD比使用MinTTY更快！</p>
-</blockquote>
-<ul>
-<li>PS(prompt string): 是命令行的默认显示文本，如：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">username@hostname /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
-<ul>
-<li>可以在<code>~/.bash_profile</code>或<code>.bashrc</code>中修改默认显示（Windows Git Bash是<code>git-prompt.sh</code>）</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Windows Git Bash默认配置，其中\007前面的$TITLEPREFIX和$PWD是标签栏的内容，git_ps1会显示git工作分支</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&quot;\[\e]0;<span class="variable">$TITLEPREFIX</span>:<span class="variable">$PWD</span>\007\]\n\[\e[32m\]\u@\h \[\e[35m\]<span class="variable">$MSYSTEM</span> \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &quot;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@hostname MINGW /work_directory</span><br><span class="line">$ </span><br><span class="line"></span><br><span class="line"><span class="comment"># 简洁配置，将\h换成了指定文本，保留了命令行前的换行，将标签名改为当前目录</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&quot;\[\e]0;\W\007\] \n\[\e[32m\]\u@Host \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &quot;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@Host /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
-<ul>
-<li>Windows虚拟环境后不会换行：设置<code>venv/Scripts/activate</code></li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -z <span class="string">&quot;<span class="variable">$&#123;VIRTUAL_ENV_DISABLE_PROMPT-&#125;</span>&quot;</span> ] ; <span class="keyword">then</span></span><br><span class="line">    _OLD_VIRTUAL_PS1=<span class="string">&quot;<span class="variable">$&#123;PS1-&#125;</span>&quot;</span></span><br><span class="line">    PS1=<span class="string">&quot;\n(<span class="variable">$&#123;VIRTUAL_ENV_PROMPT&#125;</span>) <span class="variable">$&#123;PS1-&#125;</span>&quot;</span> <span class="comment"># 添加换行符</span></span><br><span class="line">    <span class="built_in">export</span> PS1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>MSYS2显示git prompt</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># etc/profile.d/git-prompt.sh</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -f /etc/profile.d/git-sdk.sh</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        TITLEPREFIX=SDK-<span class="variable">$&#123;MSYSTEM#MINGW&#125;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        TITLEPREFIX=<span class="variable">$MSYSTEM</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -f ~/.config/git/git-prompt.sh</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        . ~/.config/git/git-prompt.sh</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        PS1=<span class="string">&#x27;\[\033]0;$TITLEPREFIX:$PWD\007\]&#x27;</span> <span class="comment"># set window title</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\n&#x27;</span>                 <span class="comment"># new line</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[32m\]&#x27;</span>       <span class="comment"># change to green</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\u@\h &#x27;</span>             <span class="comment"># user@host&lt;space&gt;</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[35m\]&#x27;</span>       <span class="comment"># change to purple</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;$MSYSTEM &#x27;</span>          <span class="comment"># show MSYSTEM</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[33m\]&#x27;</span>       <span class="comment"># change to brownish yellow</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\w&#x27;</span>                 <span class="comment"># current working directory</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$WINELOADERNOEXEC</span>&quot;</span></span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                GIT_EXEC_PATH=<span class="string">&quot;<span class="subst">$(git --exec-path 2&gt;/dev/null)</span>&quot;</span></span><br><span class="line">                COMPLETION_PATH=<span class="string">&quot;<span class="variable">$&#123;GIT_EXEC_PATH%/libexec/git-core&#125;</span>&quot;</span></span><br><span class="line">                COMPLETION_PATH=<span class="string">&quot;<span class="variable">$&#123;COMPLETION_PATH%/lib/git-core&#125;</span>&quot;</span></span><br><span class="line">                COMPLETION_PATH=<span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/share/git/completion&quot;</span></span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">test</span> -f <span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/git-prompt.sh&quot;</span></span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        . <span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/git-completion.bash&quot;</span></span><br><span class="line">                        . <span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/git-prompt.sh&quot;</span></span><br><span class="line">                        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[36m\]&#x27;</span>  <span class="comment"># change color to cyan</span></span><br><span class="line">                        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;`__git_ps1`&#x27;</span>   <span class="comment"># bash function</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[0m\]&#x27;</span>        <span class="comment"># change color</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\n&#x27;</span>                 <span class="comment"># new line</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;$ &#x27;</span>                 <span class="comment"># prompt: always $</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"> </span><br><span class="line">MSYS2_PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span>               <span class="comment"># for detection by MSYS2 SDK&#x27;s bash.basrc</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># Evaluate all user-specific Bash completion scripts (if any)</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$WINELOADERNOEXEC</span>&quot;</span></span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$HOME</span>&quot;</span>/bash_completion.d/*.bash</span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">                <span class="comment"># Handle absence of any scripts (or the folder) gracefully</span></span><br><span class="line">                <span class="built_in">test</span> ! -f <span class="string">&quot;<span class="variable">$c</span>&quot;</span> ||</span><br><span class="line">                . <span class="string">&quot;<span class="variable">$c</span>&quot;</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ~/.bashrc || ~/.bash_profile</span></span><br><span class="line"><span class="built_in">shopt</span> -q login_shell || . /etc/profile.d/git-prompt.sh</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">syntax</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">\u</td>
-<td>username</td>
-</tr>
-<tr>
-<td style="text-align:center">\h</td>
-<td>hostname</td>
-</tr>
-<tr>
-<td style="text-align:center">\e</td>
-<td>set colors</td>
-</tr>
-<tr>
-<td style="text-align:center">\w</td>
-<td>work directory</td>
-</tr>
-<tr>
-<td style="text-align:center">\W</td>
-<td>current diretory</td>
-</tr>
-<tr>
-<td style="text-align:center">\n</td>
-<td>line feed</td>
-</tr>
-</tbody>
-</table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Maven使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-01-16 00:00:00 / 修改时间：17:57:31" itemprop="dateCreated datePublished" datetime="2025-01-16T00:00:00+08:00">2025-01-16</time>
+      <time title="修改时间：2025-03-15 13:54:39" itemprop="dateModified" datetime="2025-03-15T13:54:39+08:00">2025-03-15</time>
     </span>
 
   
@@ -1300,8 +728,457 @@ Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/ge
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="微服务"><a class="markdownIt-Anchor" href="#微服务"></a> 微服务</h1>
-<p>非单体项目，可以用下面的脚本启动微服务。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取用户输入的服务名称</span></span><br><span class="line">SERVICE_NAME=$1</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否输入参数</span></span><br><span class="line">if [ -z &quot;$SERVICE_NAME&quot; ]; then</span><br><span class="line">  echo &quot;Usage: ./run.sh &lt;servicename|all&gt;&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">定义运行单个服务的函数</span></span><br><span class="line">run_service() &#123;</span><br><span class="line">  local service=$1</span><br><span class="line">  echo &quot;Building and running $service...&quot;</span><br><span class="line">  mvn clean install -pl $service -am</span><br><span class="line">  mvn spring-boot:run -pl $service</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果输入 <span class="string">&quot;all&quot;</span>，运行所有服务</span></span><br><span class="line">if [ &quot;$SERVICE_NAME&quot; == &quot;all&quot; ]; then</span><br><span class="line">  echo &quot;Building and running all services...&quot;</span><br><span class="line">  mvn clean install</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">假设所有 Spring Boot 模块都在根目录下</span></span><br><span class="line">  for module in $(mvn help:evaluate -Dexpression=project.modules -q -DforceStdout | sed -e &#x27;s/&lt;[^&gt;]*&gt;//g&#x27; -e &#x27;s/\s*//g&#x27; | tr &#x27;,&#x27; &#x27;\n&#x27;); do</span><br><span class="line">    echo &quot;Running $module...&quot;</span><br><span class="line">    mvn spring-boot:run -pl $module &amp;</span><br><span class="line">  done</span><br><span class="line">else</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">运行指定的单个服务</span></span><br><span class="line">  run_service $SERVICE_NAME</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>微服务：解决接口越来越多，单体应用运行缓慢问题。</p>
+<h1 id="踩坑记录"><a class="markdownIt-Anchor" href="#踩坑记录"></a> 踩坑记录</h1>
+<h2 id="找不到mapper"><a class="markdownIt-Anchor" href="#找不到mapper"></a> 找不到Mapper</h2>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">***************************</span><br><span class="line">APPLICATION FAILED TO START</span><br><span class="line">***************************</span><br><span class="line"></span><br><span class="line">Description:</span><br><span class="line"></span><br><span class="line">Field deviceMapper in com.esagent.es.EsDataInit required a bean of type &#x27;com.example.mapper.YourMapper&#x27; that could not be found.</span><br><span class="line"></span><br><span class="line">The injection point has the following annotations:</span><br><span class="line">    - @org.springframework.beans.factory.annotation.Autowired(required=true)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Action:</span><br><span class="line"></span><br><span class="line">Consider defining a bean of type &#x27;com.example.mapper.YourMapper&#x27; in your configuration.</span><br></pre></td></tr></table></figure>
+<p>原因是mybatis版本有问题！</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 版本需要和其他依赖对上 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringCloud%20Netfilx%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS5%20PA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS5%20PA/" class="post-title-link" itemprop="url">ICS5 PA</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2024-05-30T00:00:00+08:00">2024-05-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-15 13:54:10" itemprop="dateModified" datetime="2025-03-15T13:54:10+08:00">2025-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="pa1-1-24530"><a class="markdownIt-Anchor" href="#pa1-1-24530"></a> PA1-1 24.5.30</h1>
+<p>又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！</p>
+<h2 id="target"><a class="markdownIt-Anchor" href="#target"></a> target</h2>
+<p>第一课的目标是修正一个register错误声明</p>
+<h2 id="insteresting"><a class="markdownIt-Anchor" href="#insteresting"></a> insteresting</h2>
+<ul>
+<li>中途网易源Bad Gateway 502了，更换清华源，学会了<code>:%s/163/tuna/g</code>非常爽！</li>
+<li>又学了几个<a href="../%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8">终端快捷键</a></li>
+<li>想到了用 <code>ccache</code> 加速我的PA</li>
+</ul>
+<h2 id="problems"><a class="markdownIt-Anchor" href="#problems"></a> problems</h2>
+<ol>
+<li><code>union</code> 和 <code>struct</code> 的区别？<br />
+<code>unioin</code> 在同一个内存空间中存储不同的数据类型。<br />
+<code>struct</code> 则是同时存储不同的数据类型。</li>
+<li>为什么要用 <code>union</code>？阅读i386手册<br />
+2.3.1 General Registers<br />
+As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-manual/s02_03.htm#fig2-5">Figure 2-5</a> shows, the low-order word of each of these eight registers has a separate name and can be treated as a unit. This feature is useful for handling 16-bit data items and for compatibility with the 8086 and 80286 processors. The word registers are named AX, BX, CX, DX, BP, SP, SI, and DI.<br />
+对于CPU来说，可以把AH AX AL看成单独的单元，拆分成小块。所以它们是共用关系。</li>
+</ol>
+<h1 id="pa1-2-alu-2465"><a class="markdownIt-Anchor" href="#pa1-2-alu-2465"></a> PA1-2 ALU 24.6.5</h1>
+<h2 id="target-2"><a class="markdownIt-Anchor" href="#target-2"></a> target</h2>
+<p>实现ALU中的各类运算，包括设置标志位</p>
+<h2 id="knowledge"><a class="markdownIt-Anchor" href="#knowledge"></a> knowledge</h2>
+<h3 id="appendix-c"><a class="markdownIt-Anchor" href="#appendix-c"></a> Appendix C</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CF</td>
+<td>Carry Flag ── Set on high-order bit carry or borrow; cleared otherwise.</td>
+</tr>
+<tr>
+<td>PF</td>
+<td>Parity Flag ── Set if low-order eight bits of result contain an even number of 1 bits; cleared otherwise.</td>
+</tr>
+<tr>
+<td>ZF</td>
+<td>Zero Flag ── Set if result is zero; cleared otherwise.</td>
+</tr>
+<tr>
+<td>SF</td>
+<td>Sign Flag ── Set equal to high-order bit of result (0 is positive, 1 if negative).</td>
+</tr>
+<tr>
+<td>OF<br></td>
+<td>Overflow Flag ── Set if result is too large a positive number or too small a negative number (excluding sign-bit) to fit in destination operand; cleared otherwise.</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS5%20PA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/" class="post-title-link" itemprop="url">ICS PA实验课</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2024-02-09T00:00:00+08:00">2024-02-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-15 13:53:58" itemprop="dateModified" datetime="2025-03-15T13:53:58+08:00">2025-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="tips"><a class="markdownIt-Anchor" href="#tips"></a> Tips</h1>
+<ul>
+<li>参考资料：<a target="_blank" rel="noopener" href="https://note.tonycrane.cc/cs/system/pa/">https://note.tonycrane.cc/cs/system/pa/</a></li>
+</ul>
+<ol>
+<li>使用反向代理时，<code>git</code>相关命令会出问题</li>
+<li>实验前，创建新分支<code>pa号</code>，在其中做修改，完成以后合并pa到master中，并转回master分支</li>
+</ol>
+<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># PA</span></span><br><span class="line"><span class="section">## notification</span></span><br><span class="line"><span class="bullet">-</span> </span><br><span class="line"><span class="section">## difficulties</span></span><br><span class="line"><span class="bullet">1.</span> </span><br><span class="line"><span class="section">## summary</span></span><br></pre></td></tr></table></figure>
+<h1 id="pa0"><a class="markdownIt-Anchor" href="#pa0"></a> PA0</h1>
+<h2 id="notification"><a class="markdownIt-Anchor" href="#notification"></a> notification</h2>
+<ul>
+<li>全程使用git</li>
+<li><code>git commit --allow-empty</code>可以使git空（无更改的）提交</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/ThinkPHP%206/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/ThinkPHP%206/" class="post-title-link" itemprop="url">ThinkPHP 6</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-19 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-19T00:00:00+08:00">2024-07-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-15 13:53:41" itemprop="dateModified" datetime="2025-03-15T13:53:41+08:00">2025-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/manual/thinkphp6_0/1037479">ThinkPHP 6.0文档</a></p>
+<h1 id="composer安装"><a class="markdownIt-Anchor" href="#composer安装"></a> Composer安装</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer create-project topthink/think tp</span><br><span class="line"><span class="comment"># tp是应用根目录名称，可以修改</span></span><br></pre></td></tr></table></figure>
+<h1 id="访问"><a class="markdownIt-Anchor" href="#访问"></a> 访问</h1>
+<ol>
+<li><code>localhost/tp/public/</code> 首页</li>
+<li><code>首页/index.php/index</code> controller下的Index类</li>
+<li><code>首页/index.php/index/?s=hello/value</code> 调用controller下Index类的hello方法，并传入参数value(URL兼容模式)</li>
+<li><code>首页/index.php/hello_world</code> 调用controller下HelloWorld类</li>
+<li><code>首页/index.php/group.blog</code> 调用controller/group下的Blog类</li>
+</ol>
+<h1 id="输出数组"><a class="markdownIt-Anchor" href="#输出数组"></a> 输出数组</h1>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$data</span> = <span class="keyword">array</span>(<span class="string">&#x27;a&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span> =&gt; <span class="number">3</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="title function_ invoke__">json</span>(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="开启调试"><a class="markdownIt-Anchor" href="#开启调试"></a> 开启调试</h1>
+<p>在应用根目录下新建.env文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">APP_DEBUG = true</span><br><span class="line"></span><br><span class="line">[APP]</span><br><span class="line">DEFAULT_TIMEZONE = Asia/Shanghai</span><br><span class="line"></span><br><span class="line">[DATABASE]</span><br><span class="line">TYPE = mysql</span><br><span class="line">HOSTNAME = 127.0.0.1</span><br><span class="line">DATABASE = test</span><br><span class="line">USERNAME = username</span><br><span class="line">PASSWORD = password</span><br><span class="line">HOSTPORT = 3306</span><br><span class="line">CHARSET = utf8</span><br><span class="line">DEBUG = true</span><br><span class="line"></span><br><span class="line">[LANG]</span><br><span class="line">default_lang = zh-cn</span><br></pre></td></tr></table></figure>
+<h1 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h1>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$user</span> = <span class="title class_">Db</span>::<span class="title function_ invoke__">connect</span>(<span class="string">&#x27;mysql&#x27;</span>)-&gt;<span class="title function_ invoke__">table</span>(<span class="string">&#x27;tp_user&#x27;</span>)-&gt;<span class="title function_ invoke__">select</span>();</span><br><span class="line"><span class="comment">// 确定数据库和数据表</span></span><br><span class="line"><span class="keyword">return</span> <span class="title function_ invoke__">json</span>(<span class="variable">$user</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者有Model User</span></span><br><span class="line"><span class="variable">$user</span> = <span class="title class_">User</span>::<span class="title function_ invoke__">select</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="model"><a class="markdownIt-Anchor" href="#model"></a> Model</h2>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">app</span>\<span class="title class_">model</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Model</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Model</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$connection</span> = <span class="string">&#x27;databaseName&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="查询"><a class="markdownIt-Anchor" href="#查询"></a> 查询</h2>
+<p>Db::getLastSql();可以看上一条sql语句</p>
+<h4 id="一条数据"><a class="markdownIt-Anchor" href="#一条数据"></a> 一条数据</h4>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">table</span>(<span class="string">&#x27;tableName&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;fieldName&#x27;</span>, fieldValue)-&gt;<span class="title function_ invoke__">find</span>(); <span class="comment">// 查询不到返回null</span></span><br><span class="line"><span class="comment">// findFail在查询不到时抛出异常；findEmpty在查询不到时返回空数组</span></span><br></pre></td></tr></table></figure>
+<h3 id="整个表数据集"><a class="markdownIt-Anchor" href="#整个表数据集"></a> 整个表（数据集）</h3>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">table</span>(<span class="string">&#x27;tableName&#x27;</span>)-&gt;<span class="title function_ invoke__">select</span>();</span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;tableNameWithoutPrefix&#x27;</span>)-&gt;<span class="title function_ invoke__">select</span>();</span><br></pre></td></tr></table></figure>
+<h3 id="某条记录的字段值"><a class="markdownIt-Anchor" href="#某条记录的字段值"></a> 某条记录的字段值</h3>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;tableName&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="variable">$id</span>)-&gt;<span class="title function_ invoke__">value</span>(<span class="string">&#x27;field&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="一列键值对"><a class="markdownIt-Anchor" href="#一列键值对"></a> 一列（键值对）</h3>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;name&#x27;</span>)-&gt;<span class="title function_ invoke__">column</span>(<span class="string">&#x27;fieldAsValue&#x27;</span>, <span class="string">&#x27;fieldAsKey&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="插入"><a class="markdownIt-Anchor" href="#插入"></a> 插入</h2>
+<h3 id="一条数据-2"><a class="markdownIt-Anchor" href="#一条数据-2"></a> 一条数据</h3>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// strict 表示强行插入</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">strict</span>(<span class="literal">false</span>)-&gt;<span class="title function_ invoke__">insert</span>(<span class="variable">$data</span>);</span><br><span class="line"><span class="comment">// 有相同主键则替换</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">replace</span>()-&gt;<span class="title function_ invoke__">insert</span>(<span class="variable">$data</span>);</span><br><span class="line"><span class="comment">// 根据主键自动判断</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">save</span>(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="多条数据"><a class="markdownIt-Anchor" href="#多条数据"></a> 多条数据</h3>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">insertAll</span>(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="修改"><a class="markdownIt-Anchor" href="#修改"></a> 修改</h2>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="number">232</span>)</span><br><span class="line">                -&gt;<span class="title function_ invoke__">update</span>([ </span><br><span class="line">                  // 下面是SQL表达式</span><br><span class="line">                  <span class="string">&#x27;email&#x27;</span> =&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;UPPER(email)&#x27;</span>),</span><br><span class="line">                    <span class="string">&#x27;price&#x27;</span> =&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;price + 1&#x27;</span>),</span><br><span class="line">                  <span class="string">&#x27;status&#x27;</span>=&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;status - 2&#x27;</span>)</span><br><span class="line">                ]);</span><br></pre></td></tr></table></figure>
+<h2 id="删除"><a class="markdownIt-Anchor" href="#删除"></a> 删除</h2>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 根据主键删除多条数据</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">delete</span>([<span class="number">48</span>,<span class="number">49</span>,<span class="number">50</span>]);</span><br><span class="line"><span class="comment">// 匹配删除</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="number">47</span>)-&gt;<span class="title function_ invoke__">delete</span>();</span><br><span class="line"><span class="comment">// 全部删除</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">delete</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer require topthink/think-view</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" class="post-title-link" itemprop="url">PyEcharts 数据可视化</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-19 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-19T00:00:00+08:00">2024-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-15 13:53:36" itemprop="dateModified" datetime="2025-03-15T13:53:36+08:00">2025-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="10-bar-柱状图"><a class="markdownIt-Anchor" href="#10-bar-柱状图"></a> 1.0 Bar 柱状图</h1>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Bar</span><br><span class="line"></span><br><span class="line">bar = Bar()</span><br><span class="line">bar.add_xaxis([<span class="string">&quot;衬衣&quot;</span>, <span class="string">&quot;羊毛衫&quot;</span>, <span class="string">&quot;西装&quot;</span>, <span class="string">&quot;裤子&quot;</span>, <span class="string">&quot;鞋子&quot;</span>, <span class="string">&quot;袜子&quot;</span>])</span><br><span class="line">bar.add_yaxis(<span class="string">&quot;商家&quot;</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">10</span>, <span class="number">70</span>, <span class="number">90</span>])</span><br><span class="line"><span class="comment"># 相当于</span></span><br><span class="line">bar = (</span><br><span class="line">    Bar()</span><br><span class="line">    .add_xaxis([<span class="string">&quot;衬衣&quot;</span>, <span class="string">&quot;羊毛衫&quot;</span>, <span class="string">&quot;西装&quot;</span>, <span class="string">&quot;裤子&quot;</span>, <span class="string">&quot;鞋子&quot;</span>, <span class="string">&quot;袜子&quot;</span>])</span><br><span class="line">    .add_yaxis(<span class="string">&quot;商家&quot;</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">10</span>, <span class="number">70</span>, <span class="number">90</span>])</span><br><span class="line">    .add_yaxis(<span class="string">&quot;商家B&quot;</span>, [<span class="number">15</span>, <span class="number">6</span>, <span class="number">45</span>, <span class="number">20</span>, <span class="number">35</span>, <span class="number">66</span>]) <span class="comment"># 支持两个柱子同时生成</span></span><br><span class="line">    .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;主标题&quot;</span>, subtitle=<span class="string">&quot;副标题&quot;</span>)) <span class="comment"># 生成标题</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bar.render(<span class="string">&quot;bar.html&quot;</span>) <span class="comment"># 渲染为 bar.html，默认是 render.html</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>效果</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

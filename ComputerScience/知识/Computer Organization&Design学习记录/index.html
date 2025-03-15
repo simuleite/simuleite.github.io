@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono+Light:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Chapter2 指令：计算机的语言 本章将介绍MIPS汇编语言指令。  三条设计原则  简单源于规整 Simplicity favors regularity. 越小越快 Smaller is faster. 优秀的设计需要适宜的折中方案 Good design demands good compromises.   2.2 硬件的操作与操作数  规整 add a, b, c &#x2F;&#x2F; a &#x3D; b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Computer Organization&amp;Design学习记录">
+<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Computer%20Organization&Design%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="Chapter2 指令：计算机的语言 本章将介绍MIPS汇编语言指令。  三条设计原则  简单源于规整 Simplicity favors regularity. 越小越快 Smaller is faster. 优秀的设计需要适宜的折中方案 Good design demands good compromises.   2.2 硬件的操作与操作数  规整 add a, b, c &#x2F;&#x2F; a &#x3D; b">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-07T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-03-15T05:56:41.434Z">
+<meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="知识">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Computer%20Organization&Design%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Computer%20Organization&Design%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/","path":"ComputerScience/知识/Computer Organization&Design学习记录/","title":"Computer Organization&Design学习记录"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Computer Organization&Design学习记录 | SMULET's BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="SMULET's BLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SMULET's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-技术链"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>技术链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-知识库"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>知识库</a></li><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter2-%E6%8C%87%E4%BB%A4%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="nav-text"> Chapter2 指令：计算机的语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E6%9D%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="nav-text"> 三条设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#22-%E7%A1%AC%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C%E4%B8%8E%E6%93%8D%E4%BD%9C%E6%95%B0"><span class="nav-text"> 2.2 硬件的操作与操作数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%84%E6%95%B4"><span class="nav-text"> 规整</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E5%BF%85%E9%A1%BB%E6%9D%A5%E8%87%AA%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-text"> 操作数必须来自寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93"><span class="nav-text"> 数据传输</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AB%8B%E5%8D%B3%E6%95%B0"><span class="nav-text"> 立即数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#25-%E6%8C%87%E4%BB%A4%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 2.5 指令的表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mips%E5%AD%97%E6%AE%B5"><span class="nav-text"> MIPS字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E5%87%86%E5%88%99"><span class="nav-text"> 两个准则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#26-%E9%80%BB%E8%BE%91%E6%93%8D%E4%BD%9C"><span class="nav-text"> 2.6 逻辑操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#27-%E5%86%B3%E7%AD%96%E6%8C%87%E4%BB%A4"><span class="nav-text"> 2.7 决策指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#branch-if"><span class="nav-text"> branch if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E4%BA%8E"><span class="nav-text"> 小于</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#caseswitch%E8%AF%AD%E5%8F%A5"><span class="nav-text"> case&#x2F;switch语句</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#28-%E8%BF%87%E7%A8%8B"><span class="nav-text"> 2.8 过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mips%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8%E7%A1%AC%E4%BB%B6"><span class="nav-text"> MIPS过程调用硬件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8%E6%8C%87%E4%BB%A4jal"><span class="nav-text"> 过程调用指令jal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88"><span class="nav-text"> 栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E4%BF%9D%E5%AD%98%E7%BA%A6%E5%AE%9A"><span class="nav-text"> 寄存器保存约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B5%8C%E5%A5%97"><span class="nav-text"> 嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A7%E6%8C%87%E9%92%88%E4%B8%8E%E5%A0%86"><span class="nav-text"> 帧指针与堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%A7%E6%8C%87%E9%92%88"><span class="nav-text"> 帧指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86"><span class="nav-text"> 堆</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#29-%E5%8F%96%E5%AD%97%E8%8A%828bit%E6%88%96%E6%9B%B4%E9%AB%98%E4%BD%8D32bit%E6%95%B0"><span class="nav-text"> 2.9 取字节（8bit）或更高位（32bit）数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 字符串的表示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#210-%E6%8C%87%E4%BB%A4%E6%8B%93%E5%B1%95"><span class="nav-text"> 2.10 指令拓展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2101-32bit%E7%AB%8B%E5%8D%B3%E6%95%B0"><span class="nav-text"> 2.10.1 32bit立即数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2102-%E5%AF%BB%E5%9D%80%E6%A8%A1%E5%BC%8F"><span class="nav-text"> 2.10.2 寻址模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#pc%E7%9B%B8%E5%AF%B9%E5%AF%BB%E5%9D%80"><span class="nav-text"> PC相对寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%95%BF%E8%B7%B3%E8%BD%AC%E5%AF%BB%E5%9D%80"><span class="nav-text"> 长跳转寻址</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BB%E5%9D%80%E6%A8%A1%E5%BC%8F%E6%80%BB%E7%BB%93"><span class="nav-text"> 寻址模式总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#211-%E5%90%8C%E6%AD%A5"><span class="nav-text"> 2.11 同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#lock%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-text"> lock基本原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#212-%E4%BB%8E%E8%AF%AD%E8%A8%80%E5%88%B0%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%A8%8B%E5%BA%8F"><span class="nav-text"> 2.12 从语言到可执行程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80"><span class="nav-text"> C语言</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E7%BC%96%E8%AF%91"><span class="nav-text"> 1. 编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E6%B1%87%E7%BC%96"><span class="nav-text"> 2. 汇编</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%93%BE%E6%8E%A5"><span class="nav-text"> 3. 链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%8A%A0%E8%BD%BD"><span class="nav-text"> 4. 加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93-dll"><span class="nav-text"> 动态链接库 DLL</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java"><span class="nav-text"> JAVA</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E4%B8%8E%E8%A7%A3%E9%87%8A"><span class="nav-text"> 编译与解释</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#213-%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B"><span class="nav-text"> 2.13 一个完整程序示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#213-%E6%95%B0%E7%BB%84%E5%92%8C%E6%8C%87%E9%92%88"><span class="nav-text"> 2.13 数组和指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#214-%E7%BC%96%E8%AF%91%E8%A7%A3%E9%87%8A%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80"><span class="nav-text"> 2.14 编译&#x2F;解释高级语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#215-%E5%85%B6%E4%BB%96%E6%8C%87%E4%BB%A4%E9%9B%86"><span class="nav-text"> 2.15 其他指令集</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#armv7"><span class="nav-text"> ARMv7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x86"><span class="nav-text"> x86</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#armv8"><span class="nav-text"> ARMv8</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#219-%E8%B0%AC%E8%AF%AF%E4%B8%8E%E9%99%B7%E9%98%B1"><span class="nav-text"> 2.19 谬误与陷阱</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chapter3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97"><span class="nav-text"> Chapter3 计算机的算术运算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#31-%E5%BC%95%E8%A8%80"><span class="nav-text"> 3.1 引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#32-%E5%8A%A0%E5%87%8F%E6%B3%95"><span class="nav-text"> 3.2 加减法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#33-%E4%B9%98%E6%B3%95"><span class="nav-text"> 3.3 乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#34-%E9%99%A4%E6%B3%95"><span class="nav-text"> 3.4 除法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#35-%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-text"> 3.5 浮点数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#351-%E6%B5%AE%E7%82%B9%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="nav-text"> 3.5.1 浮点数表示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bias-%E5%81%8F%E9%98%B6"><span class="nav-text"> Bias 偏阶</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%81%E8%BF%9B%E5%88%B6%E6%95%B0%E8%BD%AC%E6%B5%AE%E7%82%B9"><span class="nav-text"> 十进制数转浮点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#352-%E6%B5%AE%E7%82%B9%E6%95%B0%E5%8A%A0%E6%B3%95"><span class="nav-text"> 3.5.2 浮点数加法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#353-%E6%B5%AE%E7%82%B9%E6%95%B0%E4%B9%98%E6%B3%95"><span class="nav-text"> 3.5.3 浮点数乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#354-mips-%E6%B5%AE%E7%82%B9%E6%8C%87%E4%BB%A4"><span class="nav-text"> 3.5.4 MIPS 浮点指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#355-%E7%AE%97%E6%9C%AF%E7%B2%BE%E7%A1%AE%E9%97%AE%E9%A2%98"><span class="nav-text"> 3.5.5 算术精确问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#39-%E8%B0%AC%E8%AF%AF%E4%B8%8E%E9%99%B7%E9%98%B1"><span class="nav-text"> 3.9 谬误与陷阱</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SIMULEITE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Computer%20Organization&Design%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Computer Organization&Design学习记录 | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Computer Organization&Design学习记录
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-06-08 00:00:00" itemprop="dateCreated datePublished" datetime="2024-06-08T00:00:00+08:00">2024-06-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-15 13:56:41" itemprop="dateModified" datetime="2025-03-15T13:56:41+08:00">2025-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="chapter2-指令计算机的语言"><a class="markdownIt-Anchor" href="#chapter2-指令计算机的语言"></a> Chapter2 指令：计算机的语言</h1>
+<p>本章将介绍MIPS汇编语言指令。</p>
+<h2 id="三条设计原则"><a class="markdownIt-Anchor" href="#三条设计原则"></a> 三条设计原则</h2>
+<ol>
+<li>简单源于规整 Simplicity favors regularity.</li>
+<li>越小越快 Smaller is faster.</li>
+<li>优秀的设计需要适宜的折中方案 Good design demands good compromises.</li>
+</ol>
+<h2 id="22-硬件的操作与操作数"><a class="markdownIt-Anchor" href="#22-硬件的操作与操作数"></a> 2.2 硬件的操作与操作数</h2>
+<h3 id="规整"><a class="markdownIt-Anchor" href="#规整"></a> 规整</h3>
+<p><code>add a, b, c // a = b + c</code> MIPS汇编语言使用这样的固定记法。<br />
+每条MIPS算术指令只执行1个操作，仅有3个变量。</p>
+<h3 id="操作数必须来自寄存器"><a class="markdownIt-Anchor" href="#操作数必须来自寄存器"></a> 操作数必须来自寄存器</h3>
+<p>变量f、g、h、i、j依次分配给$s0~$s4，编译下面的C语句</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">f = (g + h) - (i + j);</span><br><span class="line">---</span><br><span class="line">add $t0, $s1, $s2 <span class="comment">// t0 = s1 + s2</span></span><br><span class="line">add $t1, $s3, $s4</span><br><span class="line">sub $s0, $t0, $t1 <span class="comment">// s0 = t0 + t1</span></span><br></pre></td></tr></table></figure>
+<h3 id="数据传输"><a class="markdownIt-Anchor" href="#数据传输"></a> 数据传输</h3>
+<p>只有少量数据存在寄存器中，因此需要在存储器和寄存器间传输数据</p>
+<p>A的基址是存在$s3，编译下面的C语句</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">A[<span class="number">12</span>] = h + A[<span class="number">8</span>]</span><br><span class="line">---</span><br><span class="line">lw  $t0, <span class="number">32</span>($s3) <span class="comment">// 先读数，再相加；32为偏移量，8*4byte</span></span><br><span class="line">add $t0, $s2, $t0</span><br><span class="line">sw  $t0, <span class="number">48</span>($s3) <span class="comment">// 存数</span></span><br></pre></td></tr></table></figure>
+<h3 id="立即数"><a class="markdownIt-Anchor" href="#立即数"></a> 立即数</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">addi $t0, $t1, <span class="number">4</span> <span class="comment">// t0 = t1 + 4；无需读取4，作为立即数相加</span></span><br><span class="line">subi $t0, $t1, <span class="number">4</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="25-指令的表示"><a class="markdownIt-Anchor" href="#25-指令的表示"></a> 2.5 指令的表示</h2>
+<h3 id="mips字段"><a class="markdownIt-Anchor" href="#mips字段"></a> MIPS字段</h3>
+<ul>
+<li>op: operation code</li>
+<li>rs: source register</li>
+<li>rt: target register</li>
+<li>rd: destionation register</li>
+<li>shamt: shift amount</li>
+<li>funct: function code</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>格式</th>
+<th>op</th>
+<th>rs</th>
+<th>rt</th>
+<th>rd</th>
+<th>shamt</th>
+<th>funct</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>共32位</td>
+<td>register</td>
+<td>6位</td>
+<td>5位</td>
+<td>5位</td>
+<td>5位</td>
+<td>5位</td>
+<td>6位</td>
+</tr>
+<tr>
+<td>add</td>
+<td>R</td>
+<td>0</td>
+<td>reg</td>
+<td>reg</td>
+<td>reg</td>
+<td>0</td>
+<td>32</td>
+</tr>
+<tr>
+<td>sub</td>
+<td>R</td>
+<td>0</td>
+<td>reg</td>
+<td>reg</td>
+<td>reg</td>
+<td>0</td>
+<td>34</td>
+</tr>
+</tbody>
+</table>
+<p>5位字段太小，用处不大，取常数也取不了多大范围；所以设计了I型指令，支持16位字段</p>
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>格式</th>
+<th>op</th>
+<th>rs</th>
+<th>rt</th>
+<th>|-----address----|</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>共32位</td>
+<td>Immeidate</td>
+<td>6位</td>
+<td>5位</td>
+<td>5位</td>
+<td>16位</td>
+</tr>
+<tr>
+<td>addi</td>
+<td>I</td>
+<td>8</td>
+<td>reg</td>
+<td>reg</td>
+<td>常数</td>
+</tr>
+<tr>
+<td>lw</td>
+<td>I</td>
+<td>35</td>
+<td>reg</td>
+<td>reg</td>
+<td>地址</td>
+</tr>
+<tr>
+<td>sw</td>
+<td>I</td>
+<td>43</td>
+<td>reg</td>
+<td>reg</td>
+<td>地址</td>
+</tr>
+</tbody>
+</table>
+<p>大部分CPU只有16或32个寄存器，再增加，rs和rt字段都必须额外增加位，很难满足指令32位字长的要求。</p>
+<p>将下面C语句编译成MIPS，并写出机器代码</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">A[<span class="number">300</span>] = h + A[<span class="number">300</span>];</span><br><span class="line">---</span><br><span class="line">lw $t0, <span class="number">1200</span>($t1) <span class="comment">// 注意t1存的是A的基址，不能当做temp随意修改！</span></span><br><span class="line">add $t0, $s2, $t0 </span><br><span class="line">sw $t0, <span class="number">1200</span>($t1)</span><br></pre></td></tr></table></figure>
+<h3 id="两个准则"><a class="markdownIt-Anchor" href="#两个准则"></a> 两个准则</h3>
+<ol>
+<li>指令用数的形式表示</li>
+<li>和数据一样，程序存储在存储器中，并且可以读写<br />
+这两个原则引出&quot;stored-program&quot;概念，释放了计算机的潜力。程序可以编译好放到存储器中，需要时再读取。</li>
+</ol>
+<h2 id="26-逻辑操作"><a class="markdownIt-Anchor" href="#26-逻辑操作"></a> 2.6 逻辑操作</h2>
+<table>
+<thead>
+<tr>
+<th>Logical Operation</th>
+<th>MIPS Instructions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shift Left Logical</td>
+<td>sll</td>
+</tr>
+<tr>
+<td>Shift Right Logical</td>
+<td>sdl</td>
+</tr>
+<tr>
+<td>And &amp;</td>
+<td>and, andi</td>
+</tr>
+<tr>
+<td>Or |</td>
+<td>or, ori</td>
+</tr>
+<tr>
+<td>Not ~</td>
+<td>nor</td>
+</tr>
+</tbody>
+</table>
+<p>均为R型指令，Not通过nor 0（或非0）来实现</p>
+<h2 id="27-决策指令"><a class="markdownIt-Anchor" href="#27-决策指令"></a> 2.7 决策指令</h2>
+<h3 id="branch-if"><a class="markdownIt-Anchor" href="#branch-if"></a> branch if</h3>
+<p>i, k分别存放在$s3, $s5， save基址存放在$s6，编译下面的C语句</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (save[i] == k)</span><br><span class="line">    i += <span class="number">1</span>;</span><br><span class="line">---</span><br><span class="line">Loop: sll $t1, $s3, <span class="number">2</span> <span class="comment">// 左移2，相当于i*4</span></span><br><span class="line">add  $t1, $t1, $s6 <span class="comment">// 下标*4与基址相加，得到save[i]</span></span><br><span class="line">lw   $t0, <span class="number">0</span>($s6) <span class="comment">// 取save[i]</span></span><br><span class="line"><span class="comment">// beq 与 bne，两条判断相等、不等的指令</span></span><br><span class="line">bne  $t0, $s5, Exit <span class="comment">// branch if not equal, jump to Exit</span></span><br><span class="line">addi $s3, $s3, <span class="number">1</span> <span class="comment">// i++</span></span><br><span class="line">   j Loop <span class="comment">// jump to Loop</span></span><br><span class="line">Exit:</span><br></pre></td></tr></table></figure>
+<p>可以看出对i不仅要做程序的加法处理，作为下标还要做*4处理。save[i]是通过每次加i的地址到&amp;save[0]，再取数取出来的。</p>
+<h3 id="小于"><a class="markdownIt-Anchor" href="#小于"></a> 小于</h3>
+<p>检查数组下标是否越界</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// set on less than (unsigned)</span></span><br><span class="line">sltu $t0, $s1, $t2 <span class="comment">// t0 = 0 if s1 &gt;= t2(length) or s1 &lt; 0</span></span><br><span class="line"><span class="comment">// 小于则为1，大于则为0</span></span><br><span class="line">beq $t0, $zero, IndexOutOfBounds</span><br></pre></td></tr></table></figure>
+<p>用无符号数，正树正常比较，负数会被解释为一个很大的数，所以$t0会被置0，完成越界判断</p>
+<h3 id="caseswitch语句"><a class="markdownIt-Anchor" href="#caseswitch语句"></a> case/switch语句</h3>
+<p>实际上被汇编转换成了<code>if-then-else</code></p>
+<h2 id="28-过程"><a class="markdownIt-Anchor" href="#28-过程"></a> 2.8 过程</h2>
+<p>根据<strong>提供的参数</strong>执行一定任务的<strong>存储子程序</strong><br />
+六个步骤：</p>
+<ol>
+<li>参数放到可访问位置</li>
+<li>控制权交给过程</li>
+<li>获取过程所需存储空间</li>
+<li>执行任务</li>
+<li>结果放到调用程序可访问位置</li>
+<li>返回控制权</li>
+</ol>
+<h3 id="mips过程调用硬件"><a class="markdownIt-Anchor" href="#mips过程调用硬件"></a> MIPS过程调用硬件</h3>
+<ul>
+<li><code>$a0 - $a3</code> 四个参数寄存器</li>
+<li><code>$v0 ~ $v1</code> 两个返回值寄存器（为什么是两个？返回值不是只有1个吗？）</li>
+<li><code>$ra</code> return address register</li>
+</ul>
+<h3 id="过程调用指令jal"><a class="markdownIt-Anchor" href="#过程调用指令jal"></a> 过程调用指令jal</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">jal ProcedureAddr // jump and link，把下条指令地址PC+4放到$ra</span><br></pre></td></tr></table></figure>
+<h3 id="栈"><a class="markdownIt-Anchor" href="#栈"></a> 栈</h3>
+<p>在MIPS中，栈从高地址开始<br />
+栈指针寄存器为<code>$sp</code>，stack pointer</p>
+<p>将下面的C语句编译成MIPS汇编代码</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">leaf_example</span><span class="params">(<span class="type">int</span> g, <span class="type">int</span> h, <span class="type">int</span> i, <span class="type">int</span> j)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> f;</span><br><span class="line">    </span><br><span class="line">    f = (g + h) - (i + j);</span><br><span class="line">    <span class="keyword">return</span> f;</span><br><span class="line">&#125;</span><br><span class="line">---</span><br><span class="line">leaf_example:</span><br><span class="line">addi $sp, $sp, <span class="number">-12</span> <span class="comment">// 分配地址，需要保存3个寄存器（看下面操作），-4*3</span></span><br><span class="line">sw $t1, <span class="number">8</span>($sp) <span class="comment">// 8~11</span></span><br><span class="line">sw $t0, <span class="number">4</span>($sp)</span><br><span class="line">sw $s0, <span class="number">0</span>($sp) <span class="comment">// 从高地址到低地址压栈push</span></span><br><span class="line"><span class="comment">// 操作用到3个寄存器</span></span><br><span class="line">add $t0, $a0, $a1</span><br><span class="line">add $t1, $a2, $a3</span><br><span class="line">add $s0, $t0, $t1</span><br><span class="line"><span class="comment">// return f</span></span><br><span class="line">add $v0, $s0, $zero</span><br><span class="line"><span class="comment">// 释放栈空间，pop</span></span><br><span class="line">lw $s0, <span class="number">0</span>($sp)</span><br><span class="line">lw $t0, <span class="number">4</span>($sp)</span><br><span class="line">lw $t1, <span class="number">8</span>($sp)</span><br><span class="line"><span class="comment">// 跳出函数，返回控制权</span></span><br><span class="line">jr $ra</span><br></pre></td></tr></table></figure>
+<h3 id="寄存器保存约定"><a class="markdownIt-Anchor" href="#寄存器保存约定"></a> 寄存器保存约定</h3>
+<p><code>$t0 ~ $t9</code> 是10个临时寄存器，不一定要保存（使用t寄存器就默认使用者不指望保存）<br />
+<code>$s0 ~ $s7</code> 是8个保留寄存器，必须保存<br />
+上面的示例中，可以不保存t1、t0，节省步骤</p>
+<h3 id="嵌套"><a class="markdownIt-Anchor" href="#嵌套"></a> 嵌套</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">factorial</span><span class="params">(<span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> (n * factorial(n - <span class="number">1</span>));</span><br><span class="line">&#125;</span><br><span class="line">---</span><br><span class="line">factorial:</span><br><span class="line">addi $sp, $sp, <span class="number">-8</span> <span class="comment">// 分配栈，push</span></span><br><span class="line">sw $ra, <span class="number">4</span>($sp) <span class="comment">// 保存地址</span></span><br><span class="line">sw $a0, <span class="number">0</span>($sp) <span class="comment">// 嵌套函数，需要保存调用时的参数</span></span><br><span class="line"></span><br><span class="line">slti $t0, $a0, <span class="number">1</span></span><br><span class="line">beq $t0, $zero, L1 <span class="comment">// if(n &gt;= 1) L1</span></span><br><span class="line"></span><br><span class="line">addi $v0, $zero, <span class="number">1</span> <span class="comment">// n &lt; 1时执行</span></span><br><span class="line">addi $sp, $sp, <span class="number">8</span> <span class="comment">// 释放，原来sw的寄存器没有变，所有不lw</span></span><br><span class="line">jr $ra</span><br><span class="line"><span class="comment">// 递</span></span><br><span class="line">L1: addi $a0, $a0, <span class="number">-1</span> <span class="comment">// n - 1</span></span><br><span class="line">    jal factorial</span><br><span class="line"><span class="comment">// 归</span></span><br><span class="line">lw $a0, <span class="number">0</span>($sp) <span class="comment">// 释放栈，pop</span></span><br><span class="line">lw $ra, <span class="number">4</span>($sp)</span><br><span class="line">addi $sp, $sp, <span class="number">8</span></span><br><span class="line">mul $v0, $a0, $v0 <span class="comment">// 返回v = n * factorial(n - 1)</span></span><br><span class="line">jr $ra <span class="comment">// 跳出，返回控制权</span></span><br></pre></td></tr></table></figure>
+<h3 id="帧指针与堆"><a class="markdownIt-Anchor" href="#帧指针与堆"></a> 帧指针与堆</h3>
+<h4 id="帧指针"><a class="markdownIt-Anchor" href="#帧指针"></a> 帧指针</h4>
+<p>当存储<strong>局部</strong>数组或结构体时，这些局部变量无法放入寄存器（过大），就需要一个帧指针<strong>统一偏移量</strong>，保存变量到栈中。（函数多于四个参数时，多余参数也会存到栈中。<br />
+<strong>帧指针不是必须的</strong>，它方便了统一偏移量；有的编译器将$fp用作$s8。</p>
+<h4 id="堆"><a class="markdownIt-Anchor" href="#堆"></a> 堆</h4>
+<p>动态数据类型，例如指针，存放在堆里。<br />
+在C中，<code>malloc()</code>即申请堆空间，<code>free()</code>即释放堆空间。忘记释放就会占满内存导致泄漏！提前释放就会导致指针指向错误的位置。在Java，有自动的内存分配和无用单元回收避免泄漏和错误指向。</p>
+<p>在内存中，从低地址往高地址依次是保留空间、代码段、静态变量段，然后是<strong>从低到高的堆空间</strong>和<strong>从高到低的栈空间</strong>。堆与栈相互增长，最大化利用空间。</p>
+<table>
+<thead>
+<tr>
+<th>内存空间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>栈↓</td>
+</tr>
+<tr>
+<td>（空间）</td>
+</tr>
+<tr>
+<td>堆↑</td>
+</tr>
+<tr>
+<td>静态数据（常量）</td>
+</tr>
+<tr>
+<td>代码段</td>
+</tr>
+<tr>
+<td>保留</td>
+</tr>
+</tbody>
+</table>
+<h2 id="29-取字节8bit或更高位32bit数"><a class="markdownIt-Anchor" href="#29-取字节8bit或更高位32bit数"></a> 2.9 取字节（8bit）或更高位（32bit）数</h2>
+<p>C使用ASCII码表示字符，每个ASCII码是8bit；Java使用Unicode，每个Unicode是16bit。因此寄存器也有<code>lb (load byte)、lh (load halfword)、lhu</code>指令</p>
+<h3 id="字符串的表示"><a class="markdownIt-Anchor" href="#字符串的表示"></a> 字符串的表示</h3>
+<p>三种选择</p>
+<ol>
+<li>保留第一个位置给出字符串长度（Java）</li>
+<li>附加一个带有字符串长度的变量（结构体）</li>
+<li>字符串结尾设置一个字符标识（C, ‘\0’)<br />
+注意，读取字符串的每个字符时，str[i]不需要每次把i*4。</li>
+</ol>
+<h2 id="210-指令拓展"><a class="markdownIt-Anchor" href="#210-指令拓展"></a> 2.10 指令拓展</h2>
+<h3 id="2101-32bit立即数"><a class="markdownIt-Anchor" href="#2101-32bit立即数"></a> 2.10.1 32bit立即数</h3>
+<p>把32bit常量加载到寄存器</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">32bit constant:</span><br><span class="line">0000 0000 0011 1101 0000 1001 0000 0000</span><br><span class="line">---</span><br><span class="line">lui $t0, 61 // load upper immediate</span><br><span class="line">---</span><br><span class="line">001111 00000 01000  0000_0000_0011_1101 // MIPS指令</span><br><span class="line">0000_0000_0011_1101 0000_0000_0000_0000 // $t0, 把61拷贝到高16bit</span><br><span class="line">---</span><br><span class="line">ori $t0, $t0, 2304 // or immediate</span><br><span class="line">---</span><br><span class="line">0000_0000_0011_1101 0000_1001_0000_0000 // 把2304拷贝到低16bit</span><br></pre></td></tr></table></figure>
+<h3 id="2102-寻址模式"><a class="markdownIt-Anchor" href="#2102-寻址模式"></a> 2.10.2 寻址模式</h3>
+<p>J型指令除了6位操作码，其余位都是地址字段：</p>
+<table>
+<thead>
+<tr>
+<th>操作码</th>
+<th>操作数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6位</td>
+<td>26位</td>
+</tr>
+</tbody>
+</table>
+<p>bne条件分支指令：</p>
+<table>
+<thead>
+<tr>
+<th>操作码</th>
+<th>操作数1</th>
+<th>操作数2</th>
+<th>地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6位</td>
+<td>5位</td>
+<td>5位</td>
+<td>16位</td>
+</tr>
+</tbody>
+</table>
+<p>如果地址只有16位就太小了，所以PC=寄存器+分支地址，地址成为了求和，变成了32位。</p>
+<h4 id="pc相对寻址"><a class="markdownIt-Anchor" href="#pc相对寻址"></a> PC相对寻址</h4>
+<p>实际上，<strong>MIPS寻址是对于下一条指令</strong>（而不是当前指令），这个设计加速了<strong>大概率事件</strong>。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 2.7.1的while循环，i存在$s3，k存在$s5，save[0]基址存在$s6</span></span><br><span class="line"><span class="keyword">while</span> (save[i] == k)</span><br><span class="line">    i += <span class="number">1</span>;</span><br><span class="line">---</span><br><span class="line">Loop: sll  $t1, $s3, <span class="number">2</span> <span class="comment">// i * 4</span></span><br><span class="line">add  $t1, $t1, $s6 <span class="comment">// 加地址，save[i*4]</span></span><br><span class="line">lw   $t0, <span class="number">0</span>($t1)</span><br><span class="line">bne  $t0, $s5, Exit</span><br><span class="line">addi $s3, $s3, <span class="number">1</span></span><br><span class="line">j    Loop</span><br><span class="line">Exit:</span><br><span class="line">---</span><br><span class="line"><span class="comment">// Q: 把Loop存在80_000，MIPS代码是什么？</span></span><br><span class="line"><span class="comment">// Loop:</span></span><br><span class="line"><span class="number">80000</span>: |<span class="number">0</span> |<span class="number">0</span> |<span class="number">19</span>|<span class="number">9</span> |<span class="number">2</span> |<span class="number">0</span> | <span class="comment">// sll</span></span><br><span class="line"><span class="number">80004</span>: |<span class="number">0</span> |<span class="number">9</span> |<span class="number">22</span>|<span class="number">9</span> |<span class="number">0</span> |<span class="number">32</span>| <span class="comment">// add</span></span><br><span class="line"><span class="number">80008</span>: |<span class="number">35</span>|<span class="number">9</span> |<span class="number">8</span> |   <span class="number">0</span>    | <span class="comment">// lw</span></span><br><span class="line"><span class="comment">// 注意：</span></span><br><span class="line"><span class="number">80012</span>: |<span class="number">5</span> |<span class="number">8</span> |<span class="number">21</span>|<span class="number">2</span>(<span class="number">8B</span>yte)| <span class="comment">// bne，MIPS用字寻址，1word = 4Byte</span></span><br><span class="line"><span class="comment">// 8 + 80016，实际上16位存的是偏移量，利用下一跳地址来寻址</span></span><br><span class="line"><span class="number">80016</span>: |<span class="number">8</span> |<span class="number">19</span>|<span class="number">19</span>|   <span class="number">1</span>    | <span class="comment">// addi</span></span><br><span class="line"><span class="number">80020</span>: |<span class="number">2</span> |     <span class="number">20000</span>    | <span class="comment">// j，完整的2000word*4 Byte</span></span><br><span class="line"><span class="number">80024</span>: ... <span class="comment">// Exit</span></span><br></pre></td></tr></table></figure>
+<h4 id="长跳转寻址"><a class="markdownIt-Anchor" href="#长跳转寻址"></a> 长跳转寻址</h4>
+<p>对于距离远的跳转，bne的16位地址不够用，可以间接利用j来跳更远距离。</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">bne $s0, $s1, L2</span><br><span class="line">j   L1</span><br><span class="line">L2:</span><br></pre></td></tr></table></figure>
+<h4 id="寻址模式总结"><a class="markdownIt-Anchor" href="#寻址模式总结"></a> 寻址模式总结</h4>
+<ol>
+<li>立即数寻址</li>
+<li>寄存器寻址</li>
+<li>基址寻址</li>
+<li>PC相对寻址：bne指令用的方法</li>
+<li>伪直接寻址：J型指令用的方法</li>
+</ol>
+<p>Q：MIPS中，条件分支beq指令的地址范围多大？（K = 1024）<br />
+A：beq指令地址前后±128K，beq使用相对PC寻址，相对寻址有1个符号位，PC相对寻址模式把16位地址左移2位与PC相加，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>±</mo><msup><mn>2</mn><mn>15</mn></msup><mo>∗</mo><msup><mn>2</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">\pm2^{15} * 2^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">±</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">5</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>。</p>
+<p>Q：MIPS中，跳转和跳转链接j、jal指令的地址范围多大？（M = 1024K）<br />
+A：256M任意地址，J型指令使用伪直接寻址，26位地址左移2位与PC高4位相连，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mn>2</mn><mn>26</mn></msup><mo>∗</mo><msup><mn>2</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">2^{26} * 2^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">6</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span>。</p>
+<h2 id="211-同步"><a class="markdownIt-Anchor" href="#211-同步"></a> 2.11 同步</h2>
+<p>计算机进行数据操作必须要知道能不能目标地址读写，也就是任务之间需要同步sync，否则就会竞争race。同步使用lock和unlock操作。</p>
+<h3 id="lock基本原理"><a class="markdownIt-Anchor" href="#lock基本原理"></a> lock基本原理</h3>
+<p>实际上就是用0表示解锁，1表示加锁，把锁的值和对应的寄存器交换就可以了。lock操作是在硬件层面实现的，不在硬件层实现会很麻烦。<br />
+两条指令：load linked、store conditional</p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">again:</span><br><span class="line">addi $t0, $zero, <span class="number">1</span> <span class="comment">// 加上锁的值，1表示加锁</span></span><br><span class="line">ll   $t1, <span class="number">0</span>($s1) <span class="comment">// 取寄存器s1的值</span></span><br><span class="line">sc   $t0, <span class="number">0</span>($s1) <span class="comment">// 给s1加锁</span></span><br><span class="line">beq  $t0, $zero, again <span class="comment">// 如果是0（解锁状态），加锁失败，就重试</span></span><br><span class="line">add  $s4, $zero, $t1 <span class="comment">// 把取来的值加载到寄存器s4上操作</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>实际上，不仅仅是多处理需要这样的lock操作；单处理器也需要lock来保证程序运行独立不受干扰、保证写入无错、指令执行成功。</p>
+<h2 id="212-从语言到可执行程序"><a class="markdownIt-Anchor" href="#212-从语言到可执行程序"></a> 2.12 从语言到可执行程序</h2>
+<h3 id="c语言"><a class="markdownIt-Anchor" href="#c语言"></a> C语言</h3>
+<table>
+<thead>
+<tr>
+<th>系统</th>
+<th>源文件</th>
+<th>汇编文件</th>
+<th>目标文件</th>
+<th>静态链接库</th>
+<th>动态链接库</th>
+<th>可执行文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UNIX</td>
+<td>.c</td>
+<td>.s</td>
+<td>.o</td>
+<td>.a</td>
+<td>.so</td>
+<td>.out / no suffix</td>
+</tr>
+<tr>
+<td>MS-DOS</td>
+<td>.C</td>
+<td>.ASM</td>
+<td>.OBJ</td>
+<td>.LIB</td>
+<td>.DLL</td>
+<td>.EXE</td>
+</tr>
+</tbody>
+</table>
+<h4 id="1-编译"><a class="markdownIt-Anchor" href="#1-编译"></a> 1. 编译</h4>
+<p>编译器把高级语言转换成汇编语言</p>
+<h4 id="2-汇编"><a class="markdownIt-Anchor" href="#2-汇编"></a> 2. 汇编</h4>
+<p>汇编器把汇编语言汇编成机器代码，生成obj file，包括了机器语言指令、数据和指令正确放入内存所需的信息。<br />
+汇编语言有硬件层没有实现的<strong>伪指令</strong>，如<code>move dest, tar</code>移动，实际上在硬件层是<code>add dest, 0, tar</code><br />
+MIPS汇编器使用16进制Hex<br />
+为了把汇编语言转换成二进制，有一个符号表。表由标号、地址对构成</p>
+<h4 id="3-链接"><a class="markdownIt-Anchor" href="#3-链接"></a> 3. 链接</h4>
+<p>链接器把独立汇编的机器语言程序拼接到一起，生成可执行文件。链接器做到拼接操作，使程序每次只需要重新编译和汇编<strong>一部分代码</strong>。修补代码比重新编译和汇编快得多（ccache）。<br />
+工作步骤：</p>
+<ol>
+<li>将代码、数据块象征性地放入内存</li>
+<li>决定数据、指令标签的地址</li>
+<li>修补内部、外部引用<br />
+也就是它寻找旧地址并用新地址取代它们。</li>
+</ol>
+<h4 id="4-加载"><a class="markdownIt-Anchor" href="#4-加载"></a> 4. 加载</h4>
+<p>工作步骤：</p>
+<ol>
+<li>读取exe文件头，确定代码段、数据段大小</li>
+<li>为内容、数据创建足够的地址空间</li>
+<li>将exe中的指令、数据复制到内存</li>
+<li>主程序参数复制到栈顶</li>
+<li>初始化寄存器，栈指针指向第一个空位置</li>
+<li>跳转到启动例程，把参数复制到寄存器，调用main()；并在return 0后调用exit终止程序</li>
+</ol>
+<h4 id="动态链接库-dll"><a class="markdownIt-Anchor" href="#动态链接库-dll"></a> 动态链接库 DLL</h4>
+<p>传统的链接静态链接库的方法很快。但是静态链接库有更新问题，并且库可能很大，静态库需要全部装载到程序。<br />
+而动态链接库，只有程序运行的时候才链接和加载例程。（第一次调用库例程会把整个库走一遍，以后会按需调用）<br />
+DLL需要额外空间存储动态链接库信息，但是不需要复制或链接整个库。</p>
+<h3 id="java"><a class="markdownIt-Anchor" href="#java"></a> JAVA</h3>
+<h4 id="编译与解释"><a class="markdownIt-Anchor" href="#编译与解释"></a> 编译与解释</h4>
+<p>编译依赖特定指令集，而Java是为了兼容性而发明的。<br />
+Java程序被编译成Java字节码，经过JVM虚拟机解释字节码运行。<br />
+解释的优势是可移植性，也导致了它更慢、性能较差。<br />
+现代的方法是使用即时编译器（Just In Time complier），<strong>编译过的部分保存起来，下次运行直接调用</strong>，这样每次运行都会更快。在今天，实际上Java与C的性能差距越来越小了。</p>
+<blockquote>
+<p>思考：“缓存”的概念真的很伟大，在计算机的世界中几乎无处不在。</p>
+</blockquote>
+<h2 id="213-一个完整程序示例"><a class="markdownIt-Anchor" href="#213-一个完整程序示例"></a> 2.13 一个完整程序示例</h2>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span> v[], <span class="type">int</span> k)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> temp; <span class="comment">// 交换相邻项</span></span><br><span class="line">    temp = v[k];</span><br><span class="line">    v[k] = v[k+<span class="number">1</span>];</span><br><span class="line">    v[k+<span class="number">1</span>] = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">sort</span><span class="params">(<span class="type">int</span> v[], <span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i, j;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span> &amp;&amp; v[j] &gt; v[j+<span class="number">1</span>]; j -= <span class="number">1</span>) &#123;</span><br><span class="line">            swap(v, j); <span class="comment">// 数组后项比前项大，则交换相邻项</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">---</span><br><span class="line">swap:</span><br><span class="line">sll $t1, $a1, <span class="number">2</span></span><br><span class="line">add $t1, $a0, $t1 <span class="comment">// 取址</span></span><br><span class="line"><span class="comment">// 取数</span></span><br><span class="line">lw $t0, <span class="number">0</span>($t1) </span><br><span class="line">lw $t2, <span class="number">4</span>($t1)</span><br><span class="line"><span class="comment">// 交换</span></span><br><span class="line">sw $t2, <span class="number">0</span>($t1) </span><br><span class="line">sw $t0, <span class="number">4</span>($t1)</span><br><span class="line"></span><br><span class="line">sort:</span><br><span class="line">addi $sp, $sp, <span class="number">-20</span> <span class="comment">// 分配栈空间，并保存寄存器值</span></span><br><span class="line">sw   $ra, <span class="number">16</span>($sp)</span><br><span class="line">sw   $s3, <span class="number">12</span>($sp)</span><br><span class="line">sw   $s2,  <span class="number">8</span>($sp)</span><br><span class="line">sw   $s1,  <span class="number">4</span>($sp)</span><br><span class="line">sw   $s0,  <span class="number">0</span>($sp)</span><br><span class="line"></span><br><span class="line">move $s2, $a0 <span class="comment">// 复制参数到寄存器, int v[]</span></span><br><span class="line">move $s3, $a1 <span class="comment">// int n</span></span><br><span class="line"></span><br><span class="line">move $s0, $zero <span class="comment">// 循环初始化i = 0</span></span><br><span class="line">for1tst:</span><br><span class="line">slt  $t0, $s0, $s3 <span class="comment">// i &lt; n ?</span></span><br><span class="line">beq  $t0, $zero, exit1 <span class="comment">// i &gt; n =&gt; exit1，跳出循环</span></span><br><span class="line"></span><br><span class="line">addi $s1, $s0, <span class="number">-1</span> <span class="comment">// j = i-1</span></span><br><span class="line">for2tst:</span><br><span class="line">slti $t0, $s1, <span class="number">0</span> <span class="comment">// j &lt; 0 ?</span></span><br><span class="line">bne  $t0, $zero, exit2 <span class="comment">// j &lt; 0 =&gt; exit2</span></span><br><span class="line">sll  $t1, $s1, <span class="number">2</span></span><br><span class="line">add  $t2, $s2, $t1 <span class="comment">// 得到v[j],v[j+1]</span></span><br><span class="line">lw   $t3, <span class="number">0</span>($t2)</span><br><span class="line">lw   $t4, <span class="number">4</span>($t2)</span><br><span class="line">slt  $t0, $t4, $t3 <span class="comment">// v[j+1] &lt; v[j] ?</span></span><br><span class="line">beq  $t0, $zero, exit2 <span class="comment">// v[j+1] &gt; v[j]，从小到大 =&gt; exit2</span></span><br><span class="line"></span><br><span class="line">move $a0, $s2 <span class="comment">// int v[]</span></span><br><span class="line">move $a1, $s1 <span class="comment">// int j</span></span><br><span class="line">jal  swap</span><br><span class="line"></span><br><span class="line">addi $s1, $s1, <span class="number">-1</span> <span class="comment">// j--</span></span><br><span class="line">j    for2tst <span class="comment">// 下一轮循环</span></span><br><span class="line"></span><br><span class="line">exit2:</span><br><span class="line">addi $s0, $s0, <span class="number">-1</span></span><br><span class="line">j    for1tst</span><br><span class="line"></span><br><span class="line">exit1:</span><br><span class="line">lw   $s0, <span class="number">0</span>($sp)</span><br><span class="line">lw   $s1, <span class="number">4</span>($sp)</span><br><span class="line">lw   $s2, <span class="number">8</span>($sp)</span><br><span class="line">lw   $s3, <span class="number">12</span>($sp)</span><br><span class="line">lw   $ra, <span class="number">16</span>($sp)</span><br><span class="line">addi $sp, $sp, <span class="number">20</span></span><br><span class="line"></span><br><span class="line">j    $ra</span><br></pre></td></tr></table></figure>
+<p>上面的程序，不适用jal swap，直接把swap复制到程序里，叫做<strong>内联程序</strong>，可以省掉指令。<br />
+然而，如果内联程序在多个地方调用，代码复用率会降低，有可能导致<strong>cache不命中</strong>，从而性能下降。</p>
+<p><strong>执行时间是衡量程序性能的唯一指标</strong>，不是代码量，也不是CPI</p>
+<p>MIPS的编译器总是会-16来保存四个参数寄存器，不管有没有这么多参数。</p>
+<h2 id="213-数组和指针"><a class="markdownIt-Anchor" href="#213-数组和指针"></a> 2.13 数组和指针</h2>
+<p>在硬件中，指针*p++会智能地增加地址长度(+4而不是1)<br />
+数组必须要做下标*4，再加上首地址，指针不需要。<br />
+然而，现代编译器会优化数组的代码；所以，为了写出可读的程序，放心用数组吧！</p>
+<h2 id="214-编译解释高级语言"><a class="markdownIt-Anchor" href="#214-编译解释高级语言"></a> 2.14 编译/解释高级语言</h2>
+<p>面向对象语言：针对对象而不是过程；<strong>针对数据而不是逻辑</strong></p>
+<h2 id="215-其他指令集"><a class="markdownIt-Anchor" href="#215-其他指令集"></a> 2.15 其他指令集</h2>
+<h3 id="armv7"><a class="markdownIt-Anchor" href="#armv7"></a> ARMv7</h3>
+<ul>
+<li>有更多（9种）寻址模式，没有专门寄存器保存0</li>
+<li>有4位条件码决定分支是否执行</li>
+<li>每一条代码有可选执行条件（占用代码空间少，节省运行时间）</li>
+<li>解释12位立即数字段的方式很新颖：低8位填0，变成32位，然后循环右移，由此可以用32位字的范围<strong>表示所有2的幂次</strong></li>
+</ul>
+<h3 id="x86"><a class="markdownIt-Anchor" href="#x86"></a> x86</h3>
+<ul>
+<li>ARM和MIPS是单独的小组在1985年推出的；x86是很多个互相独立小组开发的，并且持续改进了35+年。</li>
+<li><strong>兼容性是一个“金手铐”</strong></li>
+<li>x86要求算术、逻辑运算中一个操作数必须又是源操作数，又是目的操作数（Dest = Dest + Source）</li>
+<li>x86的操作数可以存在存储器里</li>
+</ul>
+<h3 id="armv8"><a class="markdownIt-Anchor" href="#armv8"></a> ARMv8</h3>
+<ul>
+<li>ARMv8更像MIPS</li>
+<li>为了使寄存器加宽为64位，做了完全的改进（与x86只做了很小改进）</li>
+<li>PC不再是寄存器</li>
+<li>有一个zero寄存器，32个通用寄存器</li>
+</ul>
+<h2 id="219-谬误与陷阱"><a class="markdownIt-Anchor" href="#219-谬误与陷阱"></a> 2.19 谬误与陷阱</h2>
+<ul>
+<li>x86很强大，可以循环执行某条指令。然而，这导致了额外的性能开销。代码复制比循环快1.5倍；用更大的浮点寄存器，比用x86整数寄存器，复制操作比复杂指令快2倍</li>
+<li>C语言有register，把变量存在寄存器；但是<strong>编译器能比程序员更好地分配寄存器</strong></li>
+<li>一旦代码写好，下一个危险是它变成一个流行的程序</li>
+</ul>
+<h1 id="chapter3-计算机的算术运算"><a class="markdownIt-Anchor" href="#chapter3-计算机的算术运算"></a> Chapter3 计算机的算术运算</h1>
+<h2 id="31-引言"><a class="markdownIt-Anchor" href="#31-引言"></a> 3.1 引言</h2>
+<ul>
+<li>计算机小数和其他实数如何表示？</li>
+<li>操作生成了一个无法表示的大数该怎样处理？</li>
+<li>硬件的乘除法是怎样的？</li>
+</ul>
+<h2 id="32-加减法"><a class="markdownIt-Anchor" href="#32-加减法"></a> 3.2 加减法</h2>
+<p>用加法表示减法，取反相加<br />
+用补码表示整数，好处是符合硬件的特征（溢出容易判断）<br />
+<strong>加法，只有符号相同才会溢出，异号相加最多变成全2</strong>；减法是反过来。</p>
+<p>在做减法时，<br />
+如果用一个正数减去一个负数得到一个负的结果，<br />
+或者用一个负数减去一个正数然后得到一个正的结果，<br />
+则发生了溢出 。</p>
+<p>无符号数可以忽略溢出，因为无符号一般表示地址</p>
+<p>溢出时产生异常，也称为中断，交给操作系统处理。<br />
+遇到异常，会跳到预设好的指令异常处理程序的地址。有EPC（Exception Program Counter，异常PC）来存储异常发生的地址，方便后序跳转。<br />
+EPC有一个问题：跳转到中断的位置，先恢复寄存器，EPC的值就没了；恢复寄存器同时保留EPC，那么有一个寄存器的值就没了。<br />
+针对这个问题，MIPS使用$k1、$k0两个异常时不会恢复的寄存器。异常处理程序会把返回地址放在其中一个寄存器里面。<br />
+小测验：MIPS对字节和半字用lb、lh，sw、sh指令，但是算术运算就是用普通的add。MIPS没有针对半字的运算。</p>
+<p>饱和：溢出后，设置数值为最大数或最小数。例如，收音机，不断调大音量后，如果采用没有溢出的那几位，会发生：最大音量突然变小声的情况。<br />
+MIPS没有检测溢出的条件分支。只能用一系列指令实现。</p>
+<p>更快的加法：使用超前进位加法器（carry lookahead）</p>
+<h2 id="33-乘法"><a class="markdownIt-Anchor" href="#33-乘法"></a> 3.3 乘法</h2>
+<p>乘法就是复制：</p>
+<ol>
+<li>当乘数为1，把被乘数复制到合适位置</li>
+<li>当乘数为0，填0<br />
+乘法经常要处理溢出，因为总是有32位×32位的情况<br />
+编译器使用移位来优化乘法</li>
+</ol>
+<p>有符号的乘法：记住符号位，转为正数相乘；单独处理符号<br />
+更快的乘法：并行加法运算，无需等待</p>
+<h2 id="34-除法"><a class="markdownIt-Anchor" href="#34-除法"></a> 3.4 除法</h2>
+<p>除法和乘法差不多，但是计算机只能一位一位尝试做减法来运算。<br />
+除法：得到商和余数</p>
+<p>有符号的除法：使用 <em>被除数 = 商 x 除数 + 余数</em> 这个公式来处理符号<br />
+更快的除法：使用SRT算法，通过查找表来猜测商。还有一种算法，商为负数时，不要马上加回去，而是依照另一个等式来继续运算。</p>
+<p>MIPS的硬件既可以做乘法，又可以做除法，Hi存放余数、Lo存放商</p>
+<h2 id="35-浮点数"><a class="markdownIt-Anchor" href="#35-浮点数"></a> 3.5 浮点数</h2>
+<h3 id="351-浮点数表示"><a class="markdownIt-Anchor" href="#351-浮点数表示"></a> 3.5.1 浮点数表示</h3>
+<table>
+<thead>
+<tr>
+<th>单精度</th>
+<th>1</th>
+<th>8</th>
+<th>23</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>func</td>
+<td>sign</td>
+<td>Exp</td>
+<td>Frac</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>双精度</th>
+<th>1</th>
+<th>11</th>
+<th>52(20+32)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>func</td>
+<td>sign</td>
+<td>Exp</td>
+<td>Frac</td>
+</tr>
+</tbody>
+</table>
+<h4 id="bias-偏阶"><a class="markdownIt-Anchor" href="#bias-偏阶"></a> Bias 偏阶</h4>
+<p>为了让最小的负指数表示为全0，最大的正指数表示为全1。浮点数使用Biased Notion<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mrow><mi>s</mi><mi>i</mi><mi>g</mi><mi>n</mi></mrow></msup><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>F</mi><mi>r</mi><mi>a</mi><mi>c</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mo stretchy="false">)</mo><mo>×</mo><msup><mn>2</mn><mrow><mi>E</mi><mi>x</mi><mi>p</mi><mi>o</mi><mi>n</mi><mi>e</mi><mi>n</mi><mi>t</mi><mo>+</mo><mi>B</mi><mi>i</mi><mi>a</mi><mi>s</mi></mrow></msup></mrow><annotation encoding="application/x-tex">(-1)^{sign} \times (1 + Fraction) \times 2^{Exponent + Bias}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0746639999999998em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.824664em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">g</span><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">a</span><span class="mord mathdefault">c</span><span class="mord mathdefault">t</span><span class="mord mathdefault">i</span><span class="mord mathdefault">o</span><span class="mord mathdefault">n</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8413309999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">E</span><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">n</span><span class="mord mathdefault mtight">t</span><span class="mbin mtight">+</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">s</span></span></span></span></span></span></span></span></span></span></span></span><br />
+IEEE 754使用127作为单精度Bias，即指数为-1，表示为126 0111 1110B；指数为1，表示为1000 0000B，正指数看起来比负指数大。</p>
+<h4 id="十进制数转浮点"><a class="markdownIt-Anchor" href="#十进制数转浮点"></a> 十进制数转浮点</h4>
+<ul>
+<li>-0.75如何用浮点数表示？<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>0.75</mn><mo>=</mo><mo>−</mo><mn>3</mn><mi mathvariant="normal">/</mi><mn>4</mn><mo>=</mo><mrow><mo>−</mo><mn mathvariant="bold">3</mn><mi mathvariant="bold">/</mi><msup><mn mathvariant="bold">2</mn><mn mathvariant="bold">2</mn></msup></mrow><mo>=</mo><mo>−</mo><mn>1</mn><msub><mn>1</mn><mn>2</mn></msub><mi mathvariant="normal">/</mi><msup><mn>2</mn><mn>2</mn></msup><mo>=</mo><mo>−</mo><mn>1.1</mn><mo>×</mo><msup><mn>2</mn><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">-0.75 = -3/4 = \mathbf{-3/2^2} = -11_2/2^2 = -1.1 \times 2^{-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">0</span><span class="mord">.</span><span class="mord">7</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">−</span><span class="mord">3</span><span class="mord">/</span><span class="mord">4</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">−</span><span class="mord mathbf">3</span><span class="mord mathbf">/</span><span class="mord"><span class="mord mathbf">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathbf mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord">−</span><span class="mord">1</span><span class="mord"><span class="mord">1</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord">/</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">1</span><span class="mord">.</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span><br />
+套公式，-1+127=126</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>sign</th>
+<th>Biased Exponent</th>
+<th>Fraction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0111 1110</td>
+<td>1000 0000 0000 0000 0000 000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>技巧：表示成“除以2的次方”的形式</strong></p>
+<table>
+<thead>
+<tr>
+<th>sign</th>
+<th>Biased Exponent</th>
+<th>Fraction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1000 0001</td>
+<td>0100 0000 0000 0000 0000 000</td>
+</tr>
+</tbody>
+</table>
+<p>套公式，129-127=2<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mn>0.25</mn><mo stretchy="false">)</mo><mo>×</mo><msup><mn>2</mn><mn>2</mn></msup><mo>=</mo><mo>−</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">(-1) \times (1 + 0.25) \times 2^2 = -5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span><span class="mord">5</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">5</span></span></span></span></p>
+<h3 id="352-浮点数加法"><a class="markdownIt-Anchor" href="#352-浮点数加法"></a> 3.5.2 浮点数加法</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    start(开始)</span><br><span class="line">    step1[1. 比较两个数的指数；将指数小的数右移，直到指数匹配]</span><br><span class="line">    step2[2. 尾数相加]</span><br><span class="line">    step3[3. 结果规格化]</span><br><span class="line">    jdg1&#123;&quot;上溢、下溢？&quot;&#125;</span><br><span class="line">    err(异常)</span><br><span class="line">    step4[4. 尾数舍入，保留适当位数]</span><br><span class="line">    jdg2&#123;&quot;是否为规格化数？&quot;&#125;</span><br><span class="line">    ed(结束)</span><br><span class="line"></span><br><span class="line">    start --&gt; step1 --&gt; step2 --&gt; step3 --&gt; jdg1 </span><br><span class="line">    </span><br><span class="line">    jdg1 -- N --&gt; step4 --&gt; jdg2</span><br><span class="line">    jdg2 -- Y --&gt; ed</span><br><span class="line">    jdg2 -- N --&gt; step3</span><br><span class="line">    </span><br><span class="line">    jdg1 -- Y --&gt; err</span><br><span class="line">    </span><br></pre></td></tr></table></figure>
+<h3 id="353-浮点数乘法"><a class="markdownIt-Anchor" href="#353-浮点数乘法"></a> 3.5.3 浮点数乘法</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    start(开始)</span><br><span class="line">    stp1[1. 指数相加，加上偏阶值得到新的Bias Exponent]</span><br><span class="line">    stp2[2. 尾数相乘]</span><br><span class="line">    stp3[3. 规格化乘积；乘积右移，指数增大]</span><br><span class="line">    jdg1&#123;上溢或下溢？&#125;</span><br><span class="line">    err(异常)</span><br><span class="line">    stp4[4. 尾数舍入]</span><br><span class="line">    jdg2&#123;是否仍为规格化数？&#125;</span><br><span class="line">    stp6[6. 符号相同正，符号相异负]</span><br><span class="line">    ed(结束)</span><br><span class="line"></span><br><span class="line">    start --&gt; stp1 --&gt; stp2 --&gt; stp3 --&gt; jdg1 --&gt;|N| stp4</span><br><span class="line">    jdg1 --&gt;|Y| err</span><br><span class="line">    </span><br><span class="line">    stp4 --&gt; jdg2 --&gt;|Y| stp6 --&gt; ed</span><br><span class="line">    jdg2 --&gt;|N| stp3</span><br></pre></td></tr></table></figure>
+<h3 id="354-mips-浮点指令"><a class="markdownIt-Anchor" href="#354-mips-浮点指令"></a> 3.5.4 MIPS 浮点指令</h3>
+<p>lwc1 (Load Word into Coprocessor1)：取浮点<br />
+swc1：存浮点<br />
+Coprocessor：80年代的晶体管没办法把浮点运算和整数运算的单元放在同一个芯片上，所以有了协同处理器。</p>
+<p>add.s/add.d：单、双精度浮点运算<br />
+双精度如何储存？用$f2 $f3一对浮点寄存器，用偶数作为名字<br />
+<strong>实际上，为了避免浮点运算，编译器会把程序中的浮点运算的结果直接存到内存里。</strong></p>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">float</span> <span class="title function_">f2c</span><span class="params">(<span class="type">float</span> fahr)</span> </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> ((<span class="number">5.0</span> / <span class="number">9.0</span>) * (fahr - <span class="number">32.0</span>));</span><br><span class="line">    <span class="comment">// 5.0 / 9.0 直接存入内存</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="355-算术精确问题"><a class="markdownIt-Anchor" href="#355-算术精确问题"></a> 3.5.5 算术精确问题</h3>
+<p>在IEEE 753中，中间计算会保留多2位，称为保护位和舍入位，根据这两位来舍入，提升精确度。<br />
+衡量精确度：尾数最低位ulp (unit in the last place) 这个术语可以衡量精确度。IEEE 754保证浮点运算在半个ulp以内</p>
+<h2 id="39-谬误与陷阱"><a class="markdownIt-Anchor" href="#39-谬误与陷阱"></a> 3.9 谬误与陷阱</h2>
+<ol>
+<li>右移指令无法代替2次幂相除！</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// -5</span><br><span class="line">1111 1111 1111 1111 1111 1111 1111 1011B </span><br><span class="line">// -5 &gt;&gt; 2 = -2，而答案是-1</span><br><span class="line">1111 1111 1111 1111 1111 1111 1111 1110B </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>浮点加法不能使用结合律！舍入会毁掉一切。</li>
+<li>对于浮点运算，顺序执行正常的程序，不一定能正常并行执行。同样是精度问题，会导致每次输出不同结果。</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%9F%A5%E8%AF%86/" rel="tag"># 知识</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS5%20PA/" rel="prev" title="ICS5 PA">
+                  <i class="fa fa-angle-left"></i> ICS5 PA
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Huorong%E4%BD%BF%E7%94%A8/" rel="next" title="Huorong使用">
+                  Huorong使用 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa-solid fa-pen-nib"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SIMULEITE</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

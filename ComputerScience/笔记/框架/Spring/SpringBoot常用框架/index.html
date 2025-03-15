@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono+Light:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="SpringBoot Mail 邮箱验证码 &lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;spring-boot-starter-mail&lt;&#x2F;artifactId&gt;&lt;&#x2F;dependency&gt; spring:  mail:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot常用框架">
+<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="SpringBoot Mail 邮箱验证码 &lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;&#x2F;groupId&gt;    &lt;artifactId&gt;spring-boot-starter-mail&lt;&#x2F;artifactId&gt;&lt;&#x2F;dependency&gt; spring:  mail:">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-01-05T02:06:15.119Z">
+<meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/","path":"ComputerScience/笔记/框架/Spring/SpringBoot常用框架/","title":"SpringBoot常用框架"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>SpringBoot常用框架 | SMULET's BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="SMULET's BLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SMULET's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-技术链"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>技术链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-知识库"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>知识库</a></li><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#springboot-mail-%E9%82%AE%E7%AE%B1%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="nav-text"> SpringBoot Mail 邮箱验证码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#springboot-validation-%E6%8E%A5%E5%8F%A3%E5%8F%82%E6%95%B0%E6%A0%A1%E9%AA%8C"><span class="nav-text"> SpringBoot Validation 接口参数校验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#validation"><span class="nav-text"> Validation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%951%E5%8F%82%E6%95%B0%E5%89%8D%E6%B3%A8%E8%A7%A3"><span class="nav-text"> 方法1：参数前注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E6%B3%952entity%E6%B3%A8%E8%A7%A3"><span class="nav-text"> 方法2：Entity注解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#swagger-%E8%87%AA%E5%8A%A8%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3"><span class="nav-text"> Swagger 自动接口文档</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#springdoc"><span class="nav-text"> SpringDoc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%96%87%E6%A1%A3%E8%AF%B4%E6%98%8E"><span class="nav-text"> 添加文档说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%8E%AF%E5%A2%83%E4%B8%80%E9%94%AE%E5%85%B3%E9%97%AD%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3"><span class="nav-text"> 生成环境一键关闭接口文档</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jpa"><span class="nav-text"> JPA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB%E6%B3%A8%E8%A7%A3%E6%98%A0%E5%B0%84%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-text"> 实体类注解映射数据表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8repository%E5%B8%AE%E4%BD%A0%E7%BC%96%E5%86%99sql"><span class="nav-text"> 使用Repository帮你编写sql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E6%96%B9%E6%B3%95%E5%90%8D%E8%87%AA%E5%8A%A8%E5%8C%B9%E9%85%8Dsql"><span class="nav-text"> 根据方法名自动匹配sql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB%E5%85%B3%E8%81%94%E5%A4%96%E9%94%AE"><span class="nav-text"> 实体类关联外键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jpql-%E8%87%AA%E5%AE%9A%E4%B9%89-sql"><span class="nav-text"> JPQL 自定义 SQL</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mybatisplus"><span class="nav-text"> MyBatisPlus</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%A0%E5%B0%84%E5%AE%9E%E4%BD%93%E7%B1%BB%E7%BB%A7%E6%89%BFbasemapper"><span class="nav-text"> 映射实体类，继承BaseMapper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E6%9D%82%E6%9D%A1%E4%BB%B6wrapper"><span class="nav-text"> 复杂条件Wrapper</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%93%E5%8D%B0%E8%BE%93%E5%87%BA"><span class="nav-text"> 打印输出</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iservice"><span class="nav-text"> IService</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B9%E6%8D%AE%E6%95%B0%E6%8D%AE%E5%BA%93%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81"><span class="nav-text"> 根据数据库生成代码</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SIMULEITE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="SpringBoot常用框架 | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SpringBoot常用框架
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-24 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-24T00:00:00+08:00">2024-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-05 10:06:15" itemprop="dateModified" datetime="2025-01-05T10:06:15+08:00">2025-01-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="springboot-mail-邮箱验证码"><a class="markdownIt-Anchor" href="#springboot-mail-邮箱验证码"></a> SpringBoot Mail 邮箱验证码</h1>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-mail<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">mail:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="string">your.SMTP.host</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">your_server_email@email.com</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">your_passowrd</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Resource</span></span><br><span class="line">JavaMailSender sender;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PostMapping(&quot;/verification-email&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">sendVerificationEmail</span><span class="params">(<span class="meta">@RequestParam</span> String targetEmail,</span></span><br><span class="line"><span class="params">                                    HttpSession session)</span> &#123;</span><br><span class="line">        <span class="type">SimpleMailMessage</span> <span class="variable">message</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleMailMessage</span>();</span><br><span class="line">        message.setSubject(EMAIL_TITLE);</span><br><span class="line">        <span class="type">int</span> <span class="variable">vCode</span> <span class="operator">=</span> getVerificationCode();</span><br><span class="line">        session.setAttribute(<span class="string">&quot;vcode&quot;</span>, vCode);</span><br><span class="line">        session.setAttribute(<span class="string">&quot;uemail&quot;</span>, email);</span><br><span class="line"></span><br><span class="line">        message.setText(EMAIL_CONTEXT + code);</span><br><span class="line">        message.setTo(targetEmail);</span><br><span class="line">        message.setFrom(EMAIL_SERVEREMAIL); <span class="comment">// 与配置文件中的保持一致</span></span><br><span class="line"></span><br><span class="line">        sender.send(message);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;发送成功&quot;</span>; <span class="comment">// 前端弹窗可以接受此参数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PostMapping(&quot;/register&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">register</span><span class="params">(<span class="meta">@RequestParam</span> String username,</span></span><br><span class="line"><span class="params">                       <span class="meta">@RequestParam</span> String email,</span></span><br><span class="line"><span class="params">                       <span class="meta">@RequestParam</span> String code,</span></span><br><span class="line"><span class="params">                       <span class="meta">@RequestParam</span> String password,</span></span><br><span class="line"><span class="params">                       HttpSession session)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">sessionCode</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;vcode&quot;</span>).toString;</span><br><span class="line">    <span class="type">String</span> <span class="variable">sessionEmail</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;uemail&quot;</span>).toString;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (sessionCode == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;验证码为空&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!sessionCode.equals(code)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;验证码错误！&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!sessionEmail.equals(email)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;请获取验证码&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h1 id="springboot-validation-接口参数校验"><a class="markdownIt-Anchor" href="#springboot-validation-接口参数校验"></a> SpringBoot Validation 接口参数校验</h1>
+<h2 id="validation"><a class="markdownIt-Anchor" href="#validation"></a> Validation</h2>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-validation<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="方法1参数前注解"><a class="markdownIt-Anchor" href="#方法1参数前注解"></a> 方法1：参数前注解</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Validation</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SomeController</span> &#123;</span><br><span class="line">    <span class="meta">@PostMapping(&quot;/submit&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">submit</span><span class="params">(<span class="meta">@Length(min = 3)</span> String username, <span class="meta">@Length(min = 8)</span> String password)</span> &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="方法2entity注解"><a class="markdownIt-Anchor" href="#方法2entity注解"></a> 方法2：Entity注解</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SomeEntity</span> &#123;</span><br><span class="line">    <span class="meta">@Length(min = 3)</span></span><br><span class="line">    String username;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Validation</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SomeController</span> &#123;</span><br><span class="line">    <span class="meta">@PostMapping(&quot;/submit&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">submit</span><span class="params">(<span class="meta">@Valid</span> String username, <span class="meta">@Valid</span> String password)</span> &#123;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="swagger-自动接口文档"><a class="markdownIt-Anchor" href="#swagger-自动接口文档"></a> Swagger 自动接口文档</h1>
+<h2 id="springdoc"><a class="markdownIt-Anchor" href="#springdoc"></a> SpringDoc</h2>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springdoc<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springdoc-openapi-starter-webmvc-ui<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>访问<code>localhost/swagger-ui/index.html</code>即可查看文档。</p>
+<h2 id="添加文档说明"><a class="markdownIt-Anchor" href="#添加文档说明"></a> 添加文档说明</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line"><span class="keyword">public</span> OpenAPI <span class="title function_">springDocOpenAPI</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">OpenAPI</span>().info(<span class="keyword">new</span> <span class="title class_">Info</span>()</span><br><span class="line">                        .title(<span class="string">&quot;Title of your Document&quot;</span>)</span><br><span class="line">                        .description(<span class="string">&quot;Description of your Document&quot;</span>)</span><br><span class="line">                        .version(<span class="string">&quot;Version&quot;</span>)   <span class="comment">// 当前API版本</span></span><br><span class="line">                        .license(<span class="keyword">new</span> <span class="title class_">License</span>().name(<span class="string">&quot;License Name&quot;</span>)</span><br><span class="line">                                .url(<span class="string">&quot;https://your.url&quot;</span>)));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用@Tag注解来添加Controller描述信息</span></span><br><span class="line"><span class="meta">@Tag(name = &quot;XX功能相关&quot;, description = &quot;包括 ... 等操作。&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SomeController</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="meta">@ApiResponses(&#123;</span></span><br><span class="line"><span class="meta">           @ApiResponse(responseCode = &quot;200&quot;, description = &quot;测试成功&quot;),</span></span><br><span class="line"><span class="meta">           @ApiResponse(responseCode = &quot;500&quot;, description = &quot;测试失败&quot;)   // 不同返回状态码描述</span></span><br><span class="line"><span class="meta">    &#125;)</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Operation(summary = &quot;请求用户数据测试接口&quot;)</span>   <span class="comment">// 接口功能描述</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/hello&quot;)</span></span><br><span class="line">    <span class="comment">// 请求参数描述和样例</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">hello</span><span class="params">(<span class="meta">@Parameter(description = &quot;测试文本数据&quot;, example = &quot;KFCvivo50&quot;)</span> <span class="meta">@RequestParam</span> String text)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Hello World&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 使用@Hidden忽略接口</span></span><br><span class="line">    <span class="meta">@Hidden</span></span><br><span class="line">    <span class="keyword">private</span> String <span class="title function_">helperMethod</span><span class="params">()</span> &#123; ... &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实体类</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Schema(description = &quot;用户信息实体类&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="meta">@Schema(description = &quot;用户编号&quot;)</span></span><br><span class="line">    <span class="type">int</span> id;</span><br><span class="line">    <span class="meta">@Schema(description = &quot;用户名称&quot;)</span></span><br><span class="line">    String name;</span><br><span class="line">    <span class="meta">@Schema(description = &quot;用户邮箱&quot;)</span></span><br><span class="line">    String email;</span><br><span class="line">    <span class="meta">@Schema(description = &quot;用户密码&quot;)</span></span><br><span class="line">    String password;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="生成环境一键关闭接口文档"><a class="markdownIt-Anchor" href="#生成环境一键关闭接口文档"></a> 生成环境一键关闭接口文档</h2>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">springdoc:</span></span><br><span class="line">  <span class="attr">api-docs:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h1 id="jpa"><a class="markdownIt-Anchor" href="#jpa"></a> JPA</h1>
+<blockquote>
+<p>优点：不用手写SQL<br />
+缺点：使用Hibernate重量级框架；完全屏蔽了底层SQL显示，对后期优化不友好；方法名太长</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="实体类注解映射数据表"><a class="markdownIt-Anchor" href="#实体类注解映射数据表"></a> 实体类注解映射数据表</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Entity</span> <span class="comment">// 表示这个类是一个实体类</span></span><br><span class="line"><span class="meta">@Table(name = &quot;your_table_name&quot;)</span> <span class="comment">// 对应的数据库中表名称</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SomeEntity</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span></span><br><span class="line">    <span class="comment">// 生成策略，这里配置为自增</span></span><br><span class="line">    <span class="meta">@Column(name = &quot;id&quot;)</span>    <span class="comment">// 对应表中id这一列</span></span><br><span class="line">    <span class="meta">@Id</span>     <span class="comment">// 此属性为主键</span></span><br><span class="line">    <span class="type">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column(name = &quot;username&quot;)</span>   <span class="comment">// 对应表中username这一列</span></span><br><span class="line">    String username;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column(name = &quot;password&quot;)</span>   <span class="comment">// 对应表中password这一列</span></span><br><span class="line">    String password;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用repository帮你编写sql"><a class="markdownIt-Anchor" href="#使用repository帮你编写sql"></a> 使用Repository帮你编写sql</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AccountRepository</span> <span class="keyword">extends</span> <span class="title class_">JpaRepository</span>&lt;Account, Integer&gt; &#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用</span></span><br><span class="line"><span class="meta">@Resource</span></span><br><span class="line">AccountRepository repository;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">contextLoads</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">Account</span> <span class="variable">account</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Account</span>();</span><br><span class="line">    account.setUsername(<span class="string">&quot;小红&quot;</span>);</span><br><span class="line">    account.setPassword(<span class="string">&quot;1234567&quot;</span>);</span><br><span class="line">    System.out.println(repository.save(account).getId());   </span><br><span class="line"><span class="comment">// 使用save来快速插入数据，并且会返回插入的对象，如果存在自增ID，对象的自增id属性会自动被赋值，这就很方便了</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="根据方法名自动匹配sql"><a class="markdownIt-Anchor" href="#根据方法名自动匹配sql"></a> 根据方法名自动匹配sql</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AccountRepository</span> <span class="keyword">extends</span> <span class="title class_">JpaRepository</span>&lt;Account, Integer&gt; &#123;</span><br><span class="line">    <span class="comment">// 模糊匹配用户名</span></span><br><span class="line">    List&lt;Account&gt; <span class="title function_">findAllByUsernameLike</span><span class="params">(String input)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="实体类关联外键"><a class="markdownIt-Anchor" href="#实体类关联外键"></a> 实体类关联外键</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@Entity</span> <span class="comment">// 表示这个类是一个实体类</span></span><br><span class="line"><span class="meta">@Table(name = &quot;your_table_name&quot;)</span> <span class="comment">// 对应的数据库中表名称</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SomeEntity</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span></span><br><span class="line">    <span class="comment">// 生成策略，这里配置为自增</span></span><br><span class="line">    <span class="meta">@Column(name = &quot;id&quot;)</span>    <span class="comment">// 对应表中id这一列</span></span><br><span class="line">    <span class="meta">@Id</span>     <span class="comment">// 此属性为主键</span></span><br><span class="line">    <span class="type">int</span> id;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column(name = &quot;username&quot;)</span>   <span class="comment">// 对应表中username这一列</span></span><br><span class="line">    String username;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Column(name = &quot;password&quot;)</span>   <span class="comment">// 对应表中password这一列</span></span><br><span class="line">    String password;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@JoinColumn(name = &quot;foreign_column_name&quot;)</span>   <span class="comment">// 指定存储外键的字段名称</span></span><br><span class="line">    <span class="meta">@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)</span>    <span class="comment">// 声明为一对一关系</span></span><br><span class="line">    <span class="comment">// LAZY 懒加载（需要时才加载）</span></span><br><span class="line">    <span class="comment">// cascade 级联操作</span></span><br><span class="line">    AccountDetail detail;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="jpql-自定义-sql"><a class="markdownIt-Anchor" href="#jpql-自定义-sql"></a> JPQL 自定义 SQL</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">AccountRepository</span> <span class="keyword">extends</span> <span class="title class_">JpaRepository</span>&lt;Account, Integer&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Transactional</span> <span class="comment">// DML操作需要事务环境，可以不在这里声明，但是调用时一定要处于事务环境下</span></span><br><span class="line">        <span class="meta">@Modifying</span> <span class="comment">// 表示这是DML操作</span></span><br><span class="line">    <span class="comment">/* 使用实体类 */</span></span><br><span class="line">    <span class="meta">@Query(&quot;update Account set password = ?2 where id = ?1&quot;)</span></span><br><span class="line">    <span class="comment">// 这里操作的是一个实体类对应的表，参数使用?代表，后面接第n个参数</span></span><br><span class="line">    <span class="comment">/* 使用原生写法 */</span></span><br><span class="line">    <span class="meta">@Query(value = &quot;update users set password = :pwd where username = :name&quot;, nativeQuery = true)</span> </span><br><span class="line">    <span class="comment">// 使用原生SQL，和Mybatis一样，这里使用 :名称 表示参数，当然也可以继续用上面那种方式。</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">updatePasswordByUsername</span><span class="params">(<span class="meta">@Param(&quot;name&quot;)</span> String username, //我们可以使用<span class="meta">@Param</span>指定名称</span></span><br><span class="line"><span class="params">                                 <span class="meta">@Param(&quot;pwd&quot;)</span> String newPassword)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="mybatisplus"><a class="markdownIt-Anchor" href="#mybatisplus"></a> MyBatisPlus</h1>
+<blockquote>
+<p>是国内开发的用于增强MyBatis的<strong>非侵入型</strong>框架。相当于JPA+MyBatis。</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="映射实体类继承basemapper"><a class="markdownIt-Anchor" href="#映射实体类继承basemapper"></a> 映射实体类，继承BaseMapper</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@TableName(&quot;user&quot;)</span>  <span class="comment">//对应的表名</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    <span class="meta">@TableId(type = IdType.AUTO)</span>   <span class="comment">//对应的主键</span></span><br><span class="line">    <span class="type">int</span> id;</span><br><span class="line">    <span class="meta">@TableField(&quot;name&quot;)</span>   <span class="comment">//对应的字段</span></span><br><span class="line">    String name;</span><br><span class="line">    <span class="meta">@TableField(&quot;email&quot;)</span></span><br><span class="line">    String email;</span><br><span class="line">    <span class="meta">@TableField(&quot;password&quot;)</span></span><br><span class="line">    String password;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserMapper</span> <span class="keyword">extends</span> <span class="title class_">BaseMapper</span>&lt;User&gt; &#123;</span><br><span class="line">      <span class="comment">// 使用方式与JPA极其相似，同样是继承一个基础的模版Mapper</span></span><br><span class="line">      <span class="comment">// 这个模版里面提供了预设的大量方法直接使用，跟JPA如出一辙</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="复杂条件wrapper"><a class="markdownIt-Anchor" href="#复杂条件wrapper"></a> 复杂条件Wrapper</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">QueryWrapper&lt;User&gt; wrapper = <span class="keyword">new</span> <span class="title class_">QueryWrapper</span>&lt;&gt;();    <span class="comment">// 复杂查询可以使用QueryWrapper来完成</span></span><br><span class="line">wrapper</span><br><span class="line">    .select(<span class="string">&quot;id&quot;</span>, <span class="string">&quot;name&quot;</span>, <span class="string">&quot;email&quot;</span>, <span class="string">&quot;password&quot;</span>)    <span class="comment">// 可以自定义选择哪些字段</span></span><br><span class="line">    .ge(<span class="string">&quot;id&quot;</span>, <span class="number">2</span>)                 <span class="comment">// 选择判断id大于等于1的所有数据</span></span><br><span class="line">    .orderByDesc(<span class="string">&quot;id&quot;</span>);   <span class="comment">// 根据id字段进行降序排序</span></span><br><span class="line">System.out.println(mapper.selectList(wrapper));   <span class="comment">// Mapper同样支持使用QueryWrapper进行查询</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="打印输出"><a class="markdownIt-Anchor" href="#打印输出"></a> 打印输出</h4>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">mybatis-plus:</span></span><br><span class="line">  <span class="attr">configuration:</span></span><br><span class="line">    <span class="attr">log-impl:</span> <span class="string">org.apache.ibatis.logging.stdout.StdOutImpl</span></span><br></pre></td></tr></table></figure>
+<h2 id="iservice"><a class="markdownIt-Anchor" href="#iservice"></a> IService</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserService</span> <span class="keyword">extends</span> <span class="title class_">IService</span>&lt;User&gt; &#123;</span><br><span class="line">      <span class="comment">// 除了继承模版，我们也可以把它当成普通Service添加自己需要的方法</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Service</span>   <span class="comment">// 需要继承ServiceImpl才能实现那些默认的CRUD方法</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">UserServiceImpl</span> <span class="keyword">extends</span> <span class="title class_">ServiceImpl</span>&lt;UserMapper, User&gt; <span class="keyword">implements</span> <span class="title class_">UserService</span> &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="根据数据库生成代码"><a class="markdownIt-Anchor" href="#根据数据库生成代码"></a> 根据数据库生成代码</h2>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-generator<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.velocity<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>velocity-engine-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">void</span> <span class="title function_">contextLoads</span><span class="params">()</span> &#123;</span><br><span class="line">    FastAutoGenerator</span><br><span class="line">            .create(<span class="keyword">new</span> <span class="title class_">DataSourceConfig</span>.Builder(dataSource))</span><br><span class="line">            .globalConfig(builder -&gt; &#123;</span><br><span class="line">                builder.author(<span class="string">&quot;author&quot;</span>);              <span class="comment">// 作者信息，一会会变成注释</span></span><br><span class="line">                builder.commentDate(<span class="string">&quot;YY-MM-DD&quot;</span>);  <span class="comment">// 日期信息，一会会变成注释</span></span><br><span class="line">                builder.outputDir(<span class="string">&quot;src/main/java&quot;</span>); <span class="comment">// 输出目录设置为当前项目的目录</span></span><br><span class="line">            &#125;)</span><br><span class="line">            </span><br><span class="line">            .packageConfig(builder -&gt; builder.parent(<span class="string">&quot;com.example&quot;</span>))</span><br><span class="line">            .strategyConfig(builder -&gt; &#123;</span><br><span class="line">                <span class="comment">// 设置为所有Mapper添加@Mapper注解</span></span><br><span class="line">                builder</span><br><span class="line">                        .mapperBuilder()</span><br><span class="line">                        .mapperAnnotation(Mapper.class)</span><br><span class="line">                        .build();</span><br><span class="line">                &#125;)</span><br><span class="line">            .execute();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag"># 笔记</a>
+              <a href="/tags/Spring/" rel="tag"># Spring</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E7%AC%94%E8%AE%B0/" rel="prev" title="SpringBoot笔记">
+                  <i class="fa fa-angle-left"></i> SpringBoot笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/scp%E4%BD%BF%E7%94%A8/" rel="next" title="scp使用">
+                  scp使用 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa-solid fa-pen-nib"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SIMULEITE</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
