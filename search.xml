@@ -628,6 +628,11 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 <li><code>git ls-files</code> 查看git已跟踪文件</li>
 <li><code>git commit -m &quot;comment&quot;</code> 创建一个新的提交</li>
 <li><code>git rm</code> 移除文件，<code>--cached</code>表明只删除版本文件，保留本地文件</li>
+</ul>
+<blockquote>
+<p>本地删除文件后，使用<code>git add -u file</code>来删除索引文件</p>
+</blockquote>
+<ul>
 <li><code>git rm -r --cache .</code> 取消跟踪所有文件</li>
 <li><code>git mv</code> 移动文件</li>
 </ul>
@@ -733,6 +738,9 @@ x(/7bx) input 从input第一个字节开始，打印7个字节；
 <h1 id="git如何进行多人协作"><a class="markdownIt-Anchor" href="#git如何进行多人协作"></a> Git如何进行多人协作</h1>
 <p>使用Git多人协作，就要用到分支。<br />
 分支的特点是，将不同功能分配给不同的人开发，各个分支之间彼此独立、不受干扰。等待开发完成，只需要合并代码就可以了。</p>
+<h1 id="head详解"><a class="markdownIt-Anchor" href="#head详解"></a> HEAD详解</h1>
+<p>HEAD指向当前所在分支，使用HEAD可以方便地标记版本。<br />
+例如HEAD<sub>1，表示从HEAD往前1个版本。遇到Merge的情况，HEAD^2</sub>2表示选择第2个分支，在此基础上往前2个版本。</p>
 ]]></content>
       <tags>
         <tag>基本操作</tag>
@@ -1798,7 +1806,9 @@ Some questions point out the number of repetitions, in that case, add one more l
 </ul>
 </li>
 </ul>
-]]></content>
+<h2 id="背包问题"><a class="markdownIt-Anchor" href="#背包问题"></a> 背包问题</h2>
+<p>完全背包问题优化为1维后，依赖前一项递推，是从小到大；其余背包问题遍历体积都是从大到小。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for 物品</span><br><span class="line">    for 体积</span><br><span class="line">        for 决策</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>指南</tag>
       </tags>
@@ -6557,6 +6567,21 @@ OF, SF, ZF, AF, CF, and PF as described in Appendix C<br />
 <li>动态规划最小值核心算法</li>
 <li>验证dp是否被修改，没有被修改，说明凑不成，返回-1；否则返回<code>dp[amount]</code></li>
 </ol>
+<h3 id="零钱兑换2"><a class="markdownIt-Anchor" href="#零钱兑换2"></a> 零钱兑换2</h3>
+<ol>
+<li>首先初始化dp，并初始化凑成0元只有1种组合<code>dp[0] = 1</code>。</li>
+<li>接着，背包问题算法</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> coin: coins) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> coin; i &lt;= amount; i += <span class="number">1</span>) &#123;</span><br><span class="line">        dp[i] += dp[i - coin];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> dp[amount];</span><br></pre></td></tr></table></figure>
+<p>在这里，<code>dp[i]</code>表示不适用当前硬币，凑成amount的组合数；<code>dp[i - coin]</code>表示使用当前硬币的方法数。<br />
+什么意思呢？让我们把dp打印出来</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Solution.java</span></span><br><span class="line">dp[i] += dp[i - coin];</span><br><span class="line">System.out.printf(<span class="string">&quot;dp[%d]: %d, &quot;</span>, i, dp[i]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Test.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Solution</span> <span class="variable">solver</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Solution</span>();</span><br><span class="line">        solver.change(<span class="number">5</span>, <span class="keyword">new</span> <span class="title class_">int</span>[] &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">5</span> &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Shell</span></span><br><span class="line">$ java Test</span><br><span class="line">dp[<span class="number">1</span>]: <span class="number">1</span>, dp[<span class="number">2</span>]: <span class="number">1</span>, dp[<span class="number">3</span>]: <span class="number">1</span>, dp[<span class="number">4</span>]: <span class="number">1</span>, dp[<span class="number">5</span>]: <span class="number">1</span>, <span class="comment">// 只用硬币1的组合数</span></span><br><span class="line">dp[<span class="number">2</span>]: <span class="number">2</span>, dp[<span class="number">3</span>]: <span class="number">2</span>, dp[<span class="number">4</span>]: <span class="number">3</span>, dp[<span class="number">5</span>]: <span class="number">3</span>,</span><br><span class="line">dp[<span class="number">5</span>]: <span class="number">4</span>,</span><br></pre></td></tr></table></figure>
+<p>从第二行看，</p>
+<ul>
+<li>不使用硬币2的时候，<code>dp[2]</code>只有1种组合(1+1)；使用硬币2，<code>dp[2]</code>有2种组合(1+1, 2)</li>
+<li>不使用硬币2，<code>dp[4]</code>只有1种组合(1+1+1+1)；使用硬币2，<code>dp[4]</code>有<code>2+(1+1), 2+(2)</code>两个新组合，正好对应<code>dp[2]</code>的组合数。<br />
+这就是<code>dp[i] = dp[i] + dp[i - coin]</code>这个状态方程能奏效的原因。</li>
+</ul>
 ]]></content>
       <tags>
         <tag>笔记</tag>

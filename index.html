@@ -180,6 +180,328 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">LeetCode100 错题本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-01T00:00:00+08:00">2024-10-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-16 15:04:45" itemprop="dateModified" datetime="2025-03-16T15:04:45+08:00">2025-03-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
+<h1 id="字母异位词"><a class="markdownIt-Anchor" href="#字母异位词"></a> 字母异位词</h1>
+<p>排序每一个单词，就知道是不是异位词。</p>
+<h2 id="两数之和"><a class="markdownIt-Anchor" href="#两数之和"></a> 两数之和</h2>
+<p>从数组中，找到<code>nums[i] + nums[j] == target</code>，并返回<code>&#123; i, j &#125;</code>。<br />
+思路是双重循环，遍历每一个元素，求和是否为target。<br />
+然而，双重循环需要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的复杂度。因此，可以使用一张表，使用<code>containsKey</code>方法识别是否存在当前i的<code>target - nums[i]</code>，即可减少一重循环。</p>
+<h3 id="关键思想"><a class="markdownIt-Anchor" href="#关键思想"></a> 关键思想</h3>
+<p>用Map高效率查找，减少一重循环。</p>
+<h2 id="最长连续序列"><a class="markdownIt-Anchor" href="#最长连续序列"></a> 最长连续序列</h2>
+<p>从乱序数组中，找到最长连续（数组中不一定连续）的序列。要求<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。<br />
+首先用数组的值存入哈希表，然后遍历数组，判断<code>map.constains(curNum++)</code>。<br />
+然而，即使这样还是效率不够高。</p>
+<p>优化</p>
+<ol>
+<li>中间值不进入循环，序列开始值才进入，使用<code>!contains(curNum - 1)</code>判断是否为序列开始值</li>
+<li>去重，不要哈希表，不需要键值对，使用哈希Set，只存储值。</li>
+</ol>
+<h3 id="关键思想-2"><a class="markdownIt-Anchor" href="#关键思想-2"></a> 关键思想</h3>
+<p>去重；不处理中间值</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">git使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-16 09:45:57" itemprop="dateModified" datetime="2025-03-16T09:45:57+08:00">2025-03-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="00-代码合并流程"><a class="markdownIt-Anchor" href="#00-代码合并流程"></a> 0.0 代码合并流程</h1>
+<ol>
+<li>在各自的分支<code>self</code>上进行开发</li>
+<li>切换到<code>develop</code>分支，<code>git pull --rebase</code>同步最新代码</li>
+</ol>
+<blockquote>
+<p>不要使用Git Pull<br />
+<code>git pull</code>会创建一个新的<code>merge commit</code>，这样提交历史不是一条清晰的线，包含无意义的分支合并，非常混乱。<br />
+而<code>git pull --rebase</code>会解决这个问题，这个命令首先把你的<code>commit</code>放到一边，拉取最新分支状态，最后为你自动变基到最新状态。<br />
+如果遇到合并冲突，使用<code>git rebase --abort</code>撤回<code>rebase</code>，然后使用<code>git pull</code>或者使用交互式变基。</p>
+</blockquote>
+<ol start="3">
+<li>切换到自己的分支<code>self</code>，<code>git rebase develop</code>对齐代码合并冲突</li>
+</ol>
+<blockquote>
+<p>分支是临时的，完成了分支的职责后，就删除此分支。不要重复用分支，而是从主分支再创建一条特性分支。</p>
+</blockquote>
+<h1 id="10-第一件事git-config"><a class="markdownIt-Anchor" href="#10-第一件事git-config"></a> 1.0 第一件事git config</h1>
+<ul>
+<li><code>git config --list --show-origin</code>查看所有git配置以及所在文件</li>
+<li>使用<code>git config --global</code>可以设置git的基本信息（如用户名、邮箱），使用<code>--unset</code>取消设置
+<ol>
+<li>配置你的名称、邮箱以及编辑器</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;191220000-Zhang San&quot;</span> </span><br><span class="line"><span class="comment"># 全局设置名称</span></span><br><span class="line">git config --global user.email <span class="string">&quot;zhang3@email.com&quot;</span></span><br><span class="line">git config --global core.editor vim</span><br><span class="line"></span><br><span class="line"><span class="comment"># instead of</span></span><br><span class="line">git config --global url.git@github.com:.insteadOf https://github.com/</span><br><span class="line"><span class="comment"># alias</span></span><br><span class="line">git config --global alias.cin <span class="string">&quot;commit --amend --no-edit&quot;</span></span><br></pre></td></tr></table></figure>
+<h1 id="20-初始化仓库"><a class="markdownIt-Anchor" href="#20-初始化仓库"></a> 2.0 初始化仓库</h1>
+<ol>
+<li>本地仓库：<code>git init</code>创建一个新的 git 仓库，其数据会存放在一个名为 <code>.git</code> 的目录下<br />
+删除仓库：删除 .git 文件夹</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add &lt;文件名字，*表示全部&gt;</span><br><span class="line"><span class="comment"># 提交到暂存区，并附上注释</span></span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span> </span><br><span class="line"><span class="comment"># 修改最近的一次提交</span></span><br><span class="line">git commit --ammend</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>远程仓库：<code>git clone</code>克隆远端仓库</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看remote</span></span><br><span class="line">git remote -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加remote</span></span><br><span class="line">git remote add origin project_repository_url.git</span><br><span class="line"><span class="comment"># 设置push分支为自己的仓库</span></span><br><span class="line">git remote set-url --add --push origin your_repository_url.git</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> &lt;网址&gt; &lt;仓库存放文件夹名&gt;</span><br><span class="line"><span class="comment"># 使用http克隆</span></span><br></pre></td></tr></table></figure>
+<h1 id="配置ssh"><a class="markdownIt-Anchor" href="#配置ssh"></a> 配置SSH</h1>
+<blockquote>
+<p>不推荐dsa和rsa，推荐ed25519</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C &quot;your_email@email.com&quot;</span><br></pre></td></tr></table></figure>
+<h1 id="tag"><a class="markdownIt-Anchor" href="#tag"></a> Tag</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag v0.0.version</span><br><span class="line">git tag -a v0.version -m &quot;Your Comments to the version&quot;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">动态规划学习指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-22 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-22T00:00:00+08:00">2024-10-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-16 08:56:44" itemprop="dateModified" datetime="2025-03-16T08:56:44+08:00">2025-03-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Author：<strong><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/aatalyk">aatalyk</a></strong><br />
+Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns">Link</a></p>
+<p>Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to prepare for interviews two years ago. At that time I should say I could not solve the two sum problem. Easy problems seemed to me like hard ones so most of the time I had to look at editorials and discuss section. Currently, I have solved ~800 problems and time to time participate in contests. I usually solve 3 problems in a contest and sometimes 4 problems. Ok, lets come back to the topic.</p>
+<p>Recently I have concentrated my attention on Dynamic Programming cause its one of the hardest topics in an interview prep. After solving ~140 problems in DP I have noticed that there are few patterns that can be found in different problems. So I did a research on that and find the following topics. I will not give complete ways how to solve problems but these patterns may be helpful in solving DP.</p>
+<h2 id="patterns"><a class="markdownIt-Anchor" href="#patterns"></a> Patterns</h2>
+<ol>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Minimum-%28Maximum%29-Path-to-Reach-a-Target">Minimum (Maximum) Path to Reach a Target</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23distinct-ways">Distinct Ways</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Merging-Intervals">Merging Intervals</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23DP-on-Strings">DP on Strings</a></li>
+<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Decision-Making">Decision Making</a></li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -874,306 +1196,6 @@ As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-m
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS5%20PA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/" class="post-title-link" itemprop="url">ICS PA实验课</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2024-02-09T00:00:00+08:00">2024-02-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 13:53:58" itemprop="dateModified" datetime="2025-03-15T13:53:58+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="tips"><a class="markdownIt-Anchor" href="#tips"></a> Tips</h1>
-<ul>
-<li>参考资料：<a target="_blank" rel="noopener" href="https://note.tonycrane.cc/cs/system/pa/">https://note.tonycrane.cc/cs/system/pa/</a></li>
-</ul>
-<ol>
-<li>使用反向代理时，<code>git</code>相关命令会出问题</li>
-<li>实验前，创建新分支<code>pa号</code>，在其中做修改，完成以后合并pa到master中，并转回master分支</li>
-</ol>
-<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># PA</span></span><br><span class="line"><span class="section">## notification</span></span><br><span class="line"><span class="bullet">-</span> </span><br><span class="line"><span class="section">## difficulties</span></span><br><span class="line"><span class="bullet">1.</span> </span><br><span class="line"><span class="section">## summary</span></span><br></pre></td></tr></table></figure>
-<h1 id="pa0"><a class="markdownIt-Anchor" href="#pa0"></a> PA0</h1>
-<h2 id="notification"><a class="markdownIt-Anchor" href="#notification"></a> notification</h2>
-<ul>
-<li>全程使用git</li>
-<li><code>git commit --allow-empty</code>可以使git空（无更改的）提交</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/ThinkPHP%206/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/ThinkPHP%206/" class="post-title-link" itemprop="url">ThinkPHP 6</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-07-19 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-19T00:00:00+08:00">2024-07-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 13:53:41" itemprop="dateModified" datetime="2025-03-15T13:53:41+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/manual/thinkphp6_0/1037479">ThinkPHP 6.0文档</a></p>
-<h1 id="composer安装"><a class="markdownIt-Anchor" href="#composer安装"></a> Composer安装</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer create-project topthink/think tp</span><br><span class="line"><span class="comment"># tp是应用根目录名称，可以修改</span></span><br></pre></td></tr></table></figure>
-<h1 id="访问"><a class="markdownIt-Anchor" href="#访问"></a> 访问</h1>
-<ol>
-<li><code>localhost/tp/public/</code> 首页</li>
-<li><code>首页/index.php/index</code> controller下的Index类</li>
-<li><code>首页/index.php/index/?s=hello/value</code> 调用controller下Index类的hello方法，并传入参数value(URL兼容模式)</li>
-<li><code>首页/index.php/hello_world</code> 调用controller下HelloWorld类</li>
-<li><code>首页/index.php/group.blog</code> 调用controller/group下的Blog类</li>
-</ol>
-<h1 id="输出数组"><a class="markdownIt-Anchor" href="#输出数组"></a> 输出数组</h1>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$data</span> = <span class="keyword">array</span>(<span class="string">&#x27;a&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span> =&gt; <span class="number">3</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="title function_ invoke__">json</span>(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
-<h1 id="开启调试"><a class="markdownIt-Anchor" href="#开启调试"></a> 开启调试</h1>
-<p>在应用根目录下新建.env文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">APP_DEBUG = true</span><br><span class="line"></span><br><span class="line">[APP]</span><br><span class="line">DEFAULT_TIMEZONE = Asia/Shanghai</span><br><span class="line"></span><br><span class="line">[DATABASE]</span><br><span class="line">TYPE = mysql</span><br><span class="line">HOSTNAME = 127.0.0.1</span><br><span class="line">DATABASE = test</span><br><span class="line">USERNAME = username</span><br><span class="line">PASSWORD = password</span><br><span class="line">HOSTPORT = 3306</span><br><span class="line">CHARSET = utf8</span><br><span class="line">DEBUG = true</span><br><span class="line"></span><br><span class="line">[LANG]</span><br><span class="line">default_lang = zh-cn</span><br></pre></td></tr></table></figure>
-<h1 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h1>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$user</span> = <span class="title class_">Db</span>::<span class="title function_ invoke__">connect</span>(<span class="string">&#x27;mysql&#x27;</span>)-&gt;<span class="title function_ invoke__">table</span>(<span class="string">&#x27;tp_user&#x27;</span>)-&gt;<span class="title function_ invoke__">select</span>();</span><br><span class="line"><span class="comment">// 确定数据库和数据表</span></span><br><span class="line"><span class="keyword">return</span> <span class="title function_ invoke__">json</span>(<span class="variable">$user</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者有Model User</span></span><br><span class="line"><span class="variable">$user</span> = <span class="title class_">User</span>::<span class="title function_ invoke__">select</span>();</span><br></pre></td></tr></table></figure>
-<h2 id="model"><a class="markdownIt-Anchor" href="#model"></a> Model</h2>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">app</span>\<span class="title class_">model</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Model</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Model</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$connection</span> = <span class="string">&#x27;databaseName&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="查询"><a class="markdownIt-Anchor" href="#查询"></a> 查询</h2>
-<p>Db::getLastSql();可以看上一条sql语句</p>
-<h4 id="一条数据"><a class="markdownIt-Anchor" href="#一条数据"></a> 一条数据</h4>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">table</span>(<span class="string">&#x27;tableName&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;fieldName&#x27;</span>, fieldValue)-&gt;<span class="title function_ invoke__">find</span>(); <span class="comment">// 查询不到返回null</span></span><br><span class="line"><span class="comment">// findFail在查询不到时抛出异常；findEmpty在查询不到时返回空数组</span></span><br></pre></td></tr></table></figure>
-<h3 id="整个表数据集"><a class="markdownIt-Anchor" href="#整个表数据集"></a> 整个表（数据集）</h3>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">table</span>(<span class="string">&#x27;tableName&#x27;</span>)-&gt;<span class="title function_ invoke__">select</span>();</span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;tableNameWithoutPrefix&#x27;</span>)-&gt;<span class="title function_ invoke__">select</span>();</span><br></pre></td></tr></table></figure>
-<h3 id="某条记录的字段值"><a class="markdownIt-Anchor" href="#某条记录的字段值"></a> 某条记录的字段值</h3>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;tableName&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="variable">$id</span>)-&gt;<span class="title function_ invoke__">value</span>(<span class="string">&#x27;field&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="一列键值对"><a class="markdownIt-Anchor" href="#一列键值对"></a> 一列（键值对）</h3>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;name&#x27;</span>)-&gt;<span class="title function_ invoke__">column</span>(<span class="string">&#x27;fieldAsValue&#x27;</span>, <span class="string">&#x27;fieldAsKey&#x27;</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="插入"><a class="markdownIt-Anchor" href="#插入"></a> 插入</h2>
-<h3 id="一条数据-2"><a class="markdownIt-Anchor" href="#一条数据-2"></a> 一条数据</h3>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// strict 表示强行插入</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">strict</span>(<span class="literal">false</span>)-&gt;<span class="title function_ invoke__">insert</span>(<span class="variable">$data</span>);</span><br><span class="line"><span class="comment">// 有相同主键则替换</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">replace</span>()-&gt;<span class="title function_ invoke__">insert</span>(<span class="variable">$data</span>);</span><br><span class="line"><span class="comment">// 根据主键自动判断</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">save</span>(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
-<h3 id="多条数据"><a class="markdownIt-Anchor" href="#多条数据"></a> 多条数据</h3>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">insertAll</span>(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="修改"><a class="markdownIt-Anchor" href="#修改"></a> 修改</h2>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="number">232</span>)</span><br><span class="line">                -&gt;<span class="title function_ invoke__">update</span>([ </span><br><span class="line">                  // 下面是SQL表达式</span><br><span class="line">                  <span class="string">&#x27;email&#x27;</span> =&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;UPPER(email)&#x27;</span>),</span><br><span class="line">                    <span class="string">&#x27;price&#x27;</span> =&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;price + 1&#x27;</span>),</span><br><span class="line">                  <span class="string">&#x27;status&#x27;</span>=&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;status - 2&#x27;</span>)</span><br><span class="line">                ]);</span><br></pre></td></tr></table></figure>
-<h2 id="删除"><a class="markdownIt-Anchor" href="#删除"></a> 删除</h2>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 根据主键删除多条数据</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">delete</span>([<span class="number">48</span>,<span class="number">49</span>,<span class="number">50</span>]);</span><br><span class="line"><span class="comment">// 匹配删除</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="number">47</span>)-&gt;<span class="title function_ invoke__">delete</span>();</span><br><span class="line"><span class="comment">// 全部删除</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">delete</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
-<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer require topthink/think-view</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" class="post-title-link" itemprop="url">PyEcharts 数据可视化</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-19 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-19T00:00:00+08:00">2024-03-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 13:53:36" itemprop="dateModified" datetime="2025-03-15T13:53:36+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="10-bar-柱状图"><a class="markdownIt-Anchor" href="#10-bar-柱状图"></a> 1.0 Bar 柱状图</h1>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Bar</span><br><span class="line"></span><br><span class="line">bar = Bar()</span><br><span class="line">bar.add_xaxis([<span class="string">&quot;衬衣&quot;</span>, <span class="string">&quot;羊毛衫&quot;</span>, <span class="string">&quot;西装&quot;</span>, <span class="string">&quot;裤子&quot;</span>, <span class="string">&quot;鞋子&quot;</span>, <span class="string">&quot;袜子&quot;</span>])</span><br><span class="line">bar.add_yaxis(<span class="string">&quot;商家&quot;</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">10</span>, <span class="number">70</span>, <span class="number">90</span>])</span><br><span class="line"><span class="comment"># 相当于</span></span><br><span class="line">bar = (</span><br><span class="line">    Bar()</span><br><span class="line">    .add_xaxis([<span class="string">&quot;衬衣&quot;</span>, <span class="string">&quot;羊毛衫&quot;</span>, <span class="string">&quot;西装&quot;</span>, <span class="string">&quot;裤子&quot;</span>, <span class="string">&quot;鞋子&quot;</span>, <span class="string">&quot;袜子&quot;</span>])</span><br><span class="line">    .add_yaxis(<span class="string">&quot;商家&quot;</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">10</span>, <span class="number">70</span>, <span class="number">90</span>])</span><br><span class="line">    .add_yaxis(<span class="string">&quot;商家B&quot;</span>, [<span class="number">15</span>, <span class="number">6</span>, <span class="number">45</span>, <span class="number">20</span>, <span class="number">35</span>, <span class="number">66</span>]) <span class="comment"># 支持两个柱子同时生成</span></span><br><span class="line">    .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;主标题&quot;</span>, subtitle=<span class="string">&quot;副标题&quot;</span>)) <span class="comment"># 生成标题</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bar.render(<span class="string">&quot;bar.html&quot;</span>) <span class="comment"># 渲染为 bar.html，默认是 render.html</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>效果</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
