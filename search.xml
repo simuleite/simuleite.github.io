@@ -298,10 +298,32 @@ log2(x) 以2为底数的对数
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    key[key]</span><br><span class="line">    item[</span><br><span class="line">    field1: value1</span><br><span class="line">    field2: value2</span><br><span class="line">    ]</span><br><span class="line">    key --&gt; item</span><br></pre></td></tr></table></figure>
 <h2 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LPUSH key value1 value2</span><br><span class="line"># Get Key From Start To Stop</span><br><span class="line">LRANGE key start stop</span><br><span class="line"># Right POP</span><br><span class="line">RPOP key</span><br><span class="line"># List Length</span><br><span class="line">LLEN key</span><br></pre></td></tr></table></figure>
+<h3 id="典型场景"><a class="markdownIt-Anchor" href="#典型场景"></a> 典型场景</h3>
+<h4 id="栈"><a class="markdownIt-Anchor" href="#栈"></a> 栈</h4>
+<h4 id="订阅消息"><a class="markdownIt-Anchor" href="#订阅消息"></a> 订阅消息</h4>
+<p>队列，先来后到</p>
+<ul>
+<li>如微信、微博订阅消息</li>
+<li>阻塞队列<code>B&lt;L|R&gt;POP</code>，队列为空就等待</li>
+</ul>
 <h2 id="set"><a class="markdownIt-Anchor" href="#set"></a> Set</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SADD key mem1 mem2</span><br><span class="line">SMEMBERS key</span><br><span class="line"># Set Size</span><br><span class="line">SCARD key</span><br><span class="line">SINTER key1 key2</span><br><span class="line">SUNION key1 key2</span><br><span class="line"># Delete</span><br><span class="line">SREM key mem1 mem2</span><br></pre></td></tr></table></figure>
+<h3 id="典型场景-2"><a class="markdownIt-Anchor" href="#典型场景-2"></a> 典型场景</h3>
+<h4 id="抽奖"><a class="markdownIt-Anchor" href="#抽奖"></a> 抽奖</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SADD lottery &#123;user_id&#125;</span><br><span class="line">SMEMBERS lottery</span><br><span class="line"># 开奖（适用于单个奖品）</span><br><span class="line">SRANDMEMBER lottery &#123;drawing_count&#125;</span><br><span class="line"># 开奖并删除（适用于多项奖品，不重复得奖）</span><br><span class="line">SPOP lottery &#123;drawing_count&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="点赞-收藏-标签"><a class="markdownIt-Anchor" href="#点赞-收藏-标签"></a> 点赞、收藏、标签</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 点赞</span><br><span class="line">SADD like:&#123;msg_id&#125; &#123;user_id&#125;</span><br><span class="line"># 取消</span><br><span class="line">SREM like:&#123;msg_id&#125; &#123;user_id&#125;</span><br><span class="line"># 用户是否点赞</span><br><span class="line">SISMEMBER like:&#123;msg_id&#125; &#123;user_id&#125;</span><br><span class="line"># 点赞用户列表</span><br><span class="line">SMEMBERS like:&#123;msg_id&#125;</span><br><span class="line"># 点赞用户数</span><br><span class="line">SCARD like:&#123;msg_id&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关注-商品筛选"><a class="markdownIt-Anchor" href="#关注-商品筛选"></a> 关注、商品筛选</h4>
+<p>利用集合特性运算</p>
+<ul>
+<li>如共同关注、推荐关注</li>
+<li>商品筛选</li>
+</ul>
 <h2 id="sorted-set-zset"><a class="markdownIt-Anchor" href="#sorted-set-zset"></a> Sorted Set / ZSet</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ZADD key score1 mem1 score2 mem2</span><br><span class="line"># Show List</span><br><span class="line">ZRANGE key start stop (WITHSCORES)</span><br><span class="line"># Increse Member</span><br><span class="line">ZINCRBY key increment member</span><br><span class="line">ZREM key mem1 mem2</span><br></pre></td></tr></table></figure>
+<h3 id="典型场景-3"><a class="markdownIt-Anchor" href="#典型场景-3"></a> 典型场景</h3>
+<h4 id="日月年热点排行榜"><a class="markdownIt-Anchor" href="#日月年热点排行榜"></a> 日/月/年热点排行榜</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 记录浏览量</span><br><span class="line">ZINCRBY hotNews:&#123;date&#125; 1 &#123;news_id&#125;</span><br><span class="line"># Top 10</span><br><span class="line">ZREVRANGE hotNews:&#123;date&#125; 0 9 WITHSCORES</span><br><span class="line"># Recent 7 days</span><br><span class="line">ZUNIONSTORE hotNews:&#123;start_date&#125;-&#123;end_date&#125; 0 9 WITHSCORES</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
 <h1 id="redis-for-java"><a class="markdownIt-Anchor" href="#redis-for-java"></a> Redis for Java</h1>
 <ul>
@@ -326,7 +348,33 @@ log2(x) 以2为底数的对数
 <blockquote>
 <p>乐观锁会比较数据是否和原数据一致，一致，说明没有人抢占资源，可以修改。</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">watch key</span><br><span class="line"># 通过版本号，而不通过值来判断</span><br><span class="line">unwatch key</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">watch key</span><br><span class="line"># 通过版本号，而不通过值来判断</span><br><span class="line">unwatch key</span><br></pre></td></tr></table></figure>
+<h1 id="典型场景-4"><a class="markdownIt-Anchor" href="#典型场景-4"></a> 典型场景</h1>
+<h2 id="对象缓存"><a class="markdownIt-Anchor" href="#对象缓存"></a> 对象缓存</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET user:1 &lt;json&gt;</span><br><span class="line">MSET user:1:name the_name user1:age the_age</span><br></pre></td></tr></table></figure>
+<h2 id="分布式锁"><a class="markdownIt-Anchor" href="#分布式锁"></a> 分布式锁</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SETNX product:10003 true ex 10 nx</span><br><span class="line"># success return 1, or fail return 0</span><br><span class="line"></span><br><span class="line">... # your operation</span><br><span class="line"></span><br><span class="line"># release the lock</span><br><span class="line">DEL product:10003</span><br></pre></td></tr></table></figure>
+<h2 id="计数器"><a class="markdownIt-Anchor" href="#计数器"></a> 计数器</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INCR article:readcount:&#123;article_id&#125;</span><br><span class="line">GET article:readcount:&#123;article_id&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="web集群共享session"><a class="markdownIt-Anchor" href="#web集群共享session"></a> Web集群共享session</h2>
+<p>Spring Session + Redis</p>
+<h2 id="分布式系统全局序列号"><a class="markdownIt-Anchor" href="#分布式系统全局序列号"></a> 分布式系统全局序列号</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INCRBY order_id 1000</span><br></pre></td></tr></table></figure>
+<h1 id="scan-流式遍历"><a class="markdownIt-Anchor" href="#scan-流式遍历"></a> Scan 流式遍历</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SCAN cursor &lt;KEY RegularExpression&gt; &lt;Count&gt;</span><br></pre></td></tr></table></figure>
+<p>cursor相当于一个下标，每次查询，<code>scan</code>会给出下一次开始的cursor，由此实现分批查询。</p>
+<h1 id="redis-lua"><a class="markdownIt-Anchor" href="#redis-lua"></a> Redis Lua</h1>
+<p>Lua脚本可以一次性<strong>原子地</strong>执行多条redis语句。减少网络开销、替代Redis事务。</p>
+<blockquote>
+<p>A Redis script is transactional by defination, so everything your can do with a Redis transaction, you can also do with a script, and usually <strong>the script will be both simpler and faster</strong>.</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">EVAL script numkeys key [key...] arg [arg...]</span><br></pre></td></tr></table></figure>
+<p>numkeys: 键名参数个数<br />
+接着可以以1为基址访问keys，如KEYS[1]</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ eval &quot;return &#123;KEYS[1], KEYS[2], ARGV[1], ARGV[2]&#125;&quot; 2 key1 key2 first second</span><br><span class="line"></span><br><span class="line">key1</span><br><span class="line">key2</span><br><span class="line">first</span><br><span class="line">second</span><br></pre></td></tr></table></figure>
+<p>Jedis使用lua脚本</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">jedis.set(<span class="string">&quot;prod_stock_10016&quot;</span>, <span class="string">&quot;15&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">script</span> <span class="operator">=</span> <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    local count = redis.call(&#x27;get&#x27;, KEYS[1])</span></span><br><span class="line"><span class="string">    local a = tonumber(count)</span></span><br><span class="line"><span class="string">    local b = tonumber(ARGV[1])</span></span><br><span class="line"><span class="string">    if a &gt;= b then</span></span><br><span class="line"><span class="string">        redis.call(&#x27;set&#x27;, KEYS[1], a - b)</span></span><br><span class="line"><span class="string">        return 1 </span></span><br><span class="line"><span class="string">    end</span></span><br><span class="line"><span class="string">    return 0</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> jedis.eval(script, Arrays.asList(<span class="string">&quot;prod_stock_10016&quot;</span>), Arrays.asList(<span class="string">&quot;10&quot;</span>));</span><br></pre></td></tr></table></figure>
+]]></content>
       <tags>
         <tag>基本操作</tag>
       </tags>
