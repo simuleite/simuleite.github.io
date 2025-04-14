@@ -6,7 +6,7 @@
   <link href="http://simuleite.github.io/atom.xml" rel="self"/>
   
   <link href="http://simuleite.github.io/"/>
-  <updated>2025-03-19T10:48:35.665Z</updated>
+  <updated>2025-04-13T06:01:36.381Z</updated>
   <id>http://simuleite.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/"/>
+    <id>http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/</id>
+    <published>2025-04-13T05:45:50.458Z</published>
+    <updated>2025-04-13T06:01:36.381Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="ssh登录"><a class="markdownIt-Anchor" href="#ssh登录"></a> ssh登录</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt;</span><br></pre></td></tr></table></figure><h1 id="ssh端口映射"><a class="markdownIt-Anchor" href="#ssh端口映射"></a> ssh端口映射</h1><p>可以用于不保留端口的情况下，远程连接数据库等。</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -N -L &lt;local_port&gt;:localhost:&lt;remote_port&gt; &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt; </span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;ssh登录&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#ssh登录&quot;&gt;&lt;/a&gt; ssh登录&lt;/h1&gt;
+&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>蓝桥杯 错题本</title>
@@ -561,29 +582,6 @@ Origin：&lt;a href=&quot;https://leetcode.com/discuss/general-discussion/458695
 &lt;/ol&gt;
 &lt;h3 id=&quot;关键思想-2&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#关键思想-2&quot;&gt;&lt;/a&gt; 关键思想&lt;/h3&gt;
 &lt;p&gt;去重；不处理中间值&lt;/p&gt;</summary>
-    
-    
-    
-    
-    <category term="笔记" scheme="http://simuleite.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>DNS Over Https</title>
-    <link href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/DNS%20Over%20Https/"/>
-    <id>http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/DNS%20Over%20Https/</id>
-    <published>2024-09-09T16:00:00.000Z</published>
-    <updated>2024-09-10T11:25:58.299Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="windows"><a class="markdownIt-Anchor" href="#windows"></a> Windows</h1><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">模板</span></span><br><span class="line">netsh dns add encryption server=&lt;IP Address&gt; dohtemplate=&lt;DOH Template&gt; autoupgrade=yes udpfallback=no</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">腾讯</span></span><br><span class="line">netsh dns add encryption server=1.12.12.12 dohtemplate=https://doh.pub/dns-query autoupgrade=yes udpfallback=no</span><br><span class="line"></span><br><span class="line">netsh dns add encryption server=120.53.53.53 dohtemplate=https://doh.360.cn/dns-query autoupgrade=yes udpfallback=no</span><br></pre></td></tr></table></figure><p>查看DoH模板：</p><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">netsh dns show encryption</span></span><br><span class="line"></span><br><span class="line">223.5.5.5 加密设置</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">DNS-over-HTTPS 模板     : https://dns.alidns.com/dns-query</span><br><span class="line">自动升级                : yes</span><br><span class="line">UDP 回退                : no</span><br></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;windows&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#windows&quot;&gt;&lt;/a&gt; Windows&lt;/h1&gt;
-&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;</summary>
-      
     
     
     

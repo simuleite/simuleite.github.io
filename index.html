@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-count">58</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,720 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Linux笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-14 08:37:58" itemprop="dateModified" datetime="2025-04-14T08:37:58+08:00">2025-04-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="基本配置"><a class="markdownIt-Anchor" href="#基本配置"></a> 基本配置</h1>
+<ol>
+<li>sudo权限: 修改<code>/etc/sudoers</code>，或者root<code>adduser &lt;username&gt; sudo</code>并重启</li>
+<li>apt软件包管理系统换源：<code>/etc/apt/sources.list</code>修改软件发布源<br />
+<code>deb http://站点/目录名/stretch版本名 main contrib non-free三类软件包</code><br />
+Debian官方软件源：官网/mirror/list</li>
+<li><code>/usr/share/doc</code> 有安装软件的信息</li>
+</ol>
+<h1 id="10-命令篇"><a class="markdownIt-Anchor" href="#10-命令篇"></a> 1.0 命令篇</h1>
+<h2 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h2>
+<pre><code>参考资料 https://missing-semester-cn.github.io/2020/course-shell/
+</code></pre>
+<ul>
+<li>
+<p>关机、重启<br />
+<code>shutdown</code><br />
+<code>-h now</code> halt，挂起，相当于 <code>halt</code><br />
+<code>-r now</code> reboot，重启<br />
+<code>poweroff</code><br />
+<code>reboot</code></p>
+</li>
+<li>
+<p>手册<br />
+<code>man</code> 命令</p>
+</li>
+<li>
+<p>导航<br />
+<code>pwd 显示当前所在目录</code><br />
+<code>cd</code> 进入文件夹  <code>'..'</code> 上级目录   <code>'.'</code>当前目录   <code>'/'</code>开头的是绝对路径`</p>
+</li>
+<li>
+<p>查看文件<br />
+<code>ls</code> 列出所有文件<br />
+<code>ls -l</code> 查看文件权限信息</p>
+</li>
+<li>
+<p>创建文件夹<br />
+<code>mkdir</code> 文件夹名<br />
+<code>rmdir</code> 删除文件夹</p>
+</li>
+<li>
+<p>没有vim的时候如何创建、编辑、查看文件<br />
+<code>touch 文件</code> 创建文件<br />
+<code>echo 文本 &gt; 文件</code>  echo+重定向输入文件（会把原来内容覆盖）<br />
+<code>echo 文本 &gt;&gt; 文件</code> 追加输入（在原来内容的结尾另起一行输入）<br />
+<code>cat 文件</code> 查看文件<br />
+除了使用<code>cat</code>看文件，还有<code>tac</code>（从最后一行开始显示），<code>more, less</code>（可以翻页，好用）</p>
+</li>
+</ul>
+<ul>
+<li>
+<p>压缩<br />
+压缩一整个目录，使用 <code>tar</code><br />
+压缩单个文件 <code>bzip2 gzip（-d解压）</code><br />
+<code>tar -cvf 目标名 文件名</code> 压缩 ， <code>tar -xvf</code>解压</p>
+</li>
+<li>
+<p>查找<br />
+<code>grep</code> 用法 <code>grep &quot;word&quot; filename</code></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep <span class="string">&quot;string&quot;</span> * <span class="comment"># 在所有文件中搜索string</span></span><br><span class="line">grep -r <span class="string">&quot;string&quot;</span> <span class="comment"># 递归搜索</span></span><br></pre></td></tr></table></figure>
+<pre><code>`find`用法 `find filename`
+</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">vim基本操作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-14 08:37:02" itemprop="dateModified" datetime="2025-04-14T08:37:02+08:00">2025-04-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
+<ul>
+<li><code>gg=G</code>：代码格式化</li>
+<li><code>GX, GF</code>：打开链接/文件</li>
+<li><code>:%y *</code>：复制全部到系统剪贴板</li>
+<li><code>&lt;C-o&gt;, &lt;C-i&gt;</code>：回到前一个/后一个位置（例如，打开文件默认在第一行，<code>&lt;C-o&gt;</code>回到上次编辑位置）。<strong>注意这个操作是跨文件的</strong>。</li>
+<li><code>`0</code>：返回上次位置</li>
+<li>词：<code>w</code>（下一个词），<code>b</code>（词初），<code>e</code>（词尾）</li>
+<li>行：<code>0</code>（行初），<code>^</code>（第一个非空格字符），<code>$</code>（行尾）</li>
+<li>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</li>
+<li>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</li>
+<li><code>x</code>删除字符（等同于<code>dl</code>）</li>
+<li><code>:s</code>(substitute)替换字符（等同于<code>xi</code>）
+<ul>
+<li>替换命令<code>:&#123;作用范围&#125;s/&#123;目标文本&#125;/&#123;替换文本&#125;/&#123;替换标志&#125;</code></li>
+<li><code>:%s/s_content/o_content/gc</code> 全局替换，附带确认提示</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Sign</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%</td>
+<td>整个文件</td>
+</tr>
+<tr>
+<td>.</td>
+<td>当前行</td>
+</tr>
+<tr>
+<td>$</td>
+<td>最后一行</td>
+</tr>
+<tr>
+<td>,n</td>
+<td>当前行到n行</td>
+</tr>
+<tr>
+<td>n,</td>
+<td>n行到当前行</td>
+</tr>
+<tr>
+<td>+n</td>
+<td>当前行后n行</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>可视化模式 + 操作
+<ul>
+<li>选中文字,<code>d</code>删除（剪切） 或者<code>c</code>改变</li>
+</ul>
+</li>
+<li><code>u</code>撤销，<code>&lt;C-r&gt;</code>重做</li>
+<li><code>y</code>复制 / “yank” （其他一些命令比如<code>d</code>也会复制）</li>
+<li><code>p</code>粘贴
+<ul>
+<li><code>+p</code> 粘贴系统剪贴板</li>
+</ul>
+</li>
+<li><strong>更多值得学习的</strong>:
+<ul>
+<li><code>:&lt;line&gt;</code> 跳到line行，相当于<code>&lt;line&gt;G</code></li>
+<li><code>~</code>改变字符的大小写</li>
+<li><code>3w</code>向前移动三个词</li>
+<li><code>A</code>（大写）可以迅速定位到行尾进行修改</li>
+<li><code>:!python prog.py</code> 使用！直接运行shell命令</li>
+</ul>
+</li>
+<li><code>%</code>匹配括号</li>
+</ul>
+<h2 id="change"><a class="markdownIt-Anchor" href="#change"></a> Change</h2>
+<p><code>ce</code> 替换一个单词<br />
+<code>cs&quot;'</code> 把当前词块的&quot;全部替换成’</p>
+<h2 id="多行操作"><a class="markdownIt-Anchor" href="#多行操作"></a> 多行操作</h2>
+<p><code>&lt;C-v&gt;</code> 选中多行，<code>Shift + i</code>输入后<code>Esc</code>，即可多行同步输入</p>
+<h2 id="esc-map"><a class="markdownIt-Anchor" href="#esc-map"></a> Esc Map</h2>
+<p>Vim和NeoVim内置了<code>&lt;C-[&gt;</code>作为<code>&lt;Esc&gt;</code>的映射；<br />
+还可以通过<code>&lt;A-&gt;</code>Alt加上任何键（Meta键）的方式触发<code>&lt;Esc&gt;-</code>。</p>
+<h1 id="宏"><a class="markdownIt-Anchor" href="#宏"></a> 宏</h1>
+<h2 id="录制宏"><a class="markdownIt-Anchor" href="#录制宏"></a> 录制宏</h2>
+<p>命令模式下，</p>
+<ol>
+<li>按<code>q&lt;marcoName&gt;</code>进行录制，<code>&lt;marcoName&gt;</code>是宏的名字，例如<code>qa</code></li>
+<li>执行一系列操作后，再次按<code>q</code>结束录制</li>
+</ol>
+<h2 id="使用宏"><a class="markdownIt-Anchor" href="#使用宏"></a> 使用宏</h2>
+<p>命令模式下，使用<code>@&lt;marcoName&gt;</code>即可执行；使用<code>5@&lt;marcoName&gt;</code>可以重复执行宏</p>
+<h1 id="文件操作"><a class="markdownIt-Anchor" href="#文件操作"></a> 文件操作</h1>
+<ul>
+<li><code>:e filename</code>切换到filename文件</li>
+<li><code>:bn/bp</code>切换到下/上个文件</li>
+<li><code>&lt;C-x&gt;&lt;C-f&gt;</code> 自动补全路径</li>
+</ul>
+<h1 id="lazyvim-安装"><a class="markdownIt-Anchor" href="#lazyvim-安装"></a> LazyVim 安装</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">最新稳定版nvim</span></span><br><span class="line">tar xzvf nvim-linux64.tar.gz</span><br><span class="line">sudo mv nvim-linux64 /usr/local/nvim</span><br><span class="line">sudo ln -s /usr/local/nvim/bin/nvim /usr/bin/nvim</span><br><span class="line">nvim --version</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">lazyvim</span></span><br><span class="line">sudo apt install git curl python3-pip nodejs npm ripgrep fd-find</span><br><span class="line">mv ~/.config/nvim ~/.config/nvim.bak</span><br><span class="line">mv ~/.local/share/nvim ~/.local/share/nvim.bak</span><br><span class="line">mv ~/.local/state/nvim ~/.local/state/nvim.bak</span><br><span class="line">mv ~/.cache/nvim ~/.cache/nvim.bak</span><br><span class="line"></span><br><span class="line">git clone git@github.com:LazyVim/starter ~/.config/nvim</span><br><span class="line">rm -rf ~/.config/nvim/.git</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">tmux使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-25T00:00:00+08:00">2023-11-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-14 08:20:33" itemprop="dateModified" datetime="2025-04-14T08:20:33+08:00">2025-04-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <pre><code>参考教程： https://www.ruanyifeng.com/blog/2019/10/tmux.html
+</code></pre>
+<ul>
+<li>tmux使会话与窗口解绑，一个窗口<code>source .bashrc</code>更新了，另一个窗口可能没有</li>
+</ul>
+<ul>
+<li><strong><code>ctrl+b</code> 前缀键</strong><br />
+<code>%</code>  分成左右两栏<br />
+<code>&quot;</code>  分成上下两栏<br />
+<code>up</code>  选择上边的窗口<br />
+<code>[</code> 查看历史记录</li>
+</ul>
+<h1 id="窗口"><a class="markdownIt-Anchor" href="#窗口"></a> 窗口</h1>
+<ul>
+<li><code>&lt;C-d&gt;</code> <strong>删除窗口</strong></li>
+</ul>
+<ul>
+<li><code>&lt;C-b&gt; z</code> <strong>最大化/最小化一个窗口</strong></li>
+<li><code>&lt;C-b&gt; c</code> 创建一个新的窗口，使用 <code>&lt;C-d&gt;</code>关闭</li>
+<li><code>&lt;C-b&gt; N</code> 跳转到第 <em>N</em> 个窗口，注意每个窗口都是有编号的</li>
+<li><code>&lt;C-b&gt; p</code> 切换到前一个窗口</li>
+<li><code>&lt;C-b&gt; n</code> 切换到下一个窗口</li>
+<li><code>&lt;C-b&gt; w</code> 列出当前所有窗口</li>
+</ul>
+<h1 id="tmux-path-双向绑定"><a class="markdownIt-Anchor" href="#tmux-path-双向绑定"></a> Tmux-Path 双向绑定</h1>
+<p>使用tmux会存在一个问题：在1个窗口设置了环境变量，在其他窗口并不会生效。<br />
+下面的脚本会帮助我们解决问题，它将tmux白名单内的全局变量值自动同步到Shell环境变量。</p>
+<ol>
+<li>首先，编写<code>~/.tmux.conf</code>白名单</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 参考源（zsh版本）</span><br><span class="line"># https://www.mankier.com/1/tmux#Options</span><br><span class="line"># https://www.mankier.com/1/tmux#Global_and_Session_Environment</span><br><span class="line">set-option -g update-environment \</span><br><span class="line">&#x27;DISPLAY KRB5CCNAME SSH_AGENT_PID SSH_ASKPASS SSH_AUTH_SOCK SSH_CLIENT SSH_CONNECTION SSH_TTY \</span><br><span class="line">SSH_USER_AUTH WINDOWID XAUTHORITY&#x27;</span><br><span class="line">set -g update-environment &quot;NACOS_USERNAME NACOS_PASSWORD&quot;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>接着编写<code>~/.bashrc</code>同步脚本，下面的脚本兼容了自动打开tmux操作。</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Tmux</span></span><br><span class="line"><span class="function"><span class="title">tm</span></span>() &#123;</span><br><span class="line">  <span class="built_in">local</span> SESSION_NAME=<span class="string">&quot;<span class="variable">$&#123;1:-default&#125;</span>&quot;</span></span><br><span class="line">  <span class="built_in">shift</span>  <span class="comment"># 移除第一个参数，保留其他参数</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$1</span>&quot;</span> == <span class="string">&quot;attach&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">    tmux attach -t <span class="string">&quot;<span class="variable">$SESSION_NAME</span>&quot;</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    tmux new-session -AD -s <span class="string">&quot;<span class="variable">$SESSION_NAME</span>&quot;</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 同步环境变量到 tmux 全局环境</span></span><br><span class="line"><span class="function"><span class="title">tmux_global_update_var</span></span>() &#123;</span><br><span class="line">  <span class="built_in">local</span> VAR=<span class="string">&quot;<span class="variable">$1</span>&quot;</span></span><br><span class="line">  <span class="built_in">local</span> VALUE=<span class="string">&quot;<span class="variable">$2</span>&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> [[ -z <span class="string">&quot;<span class="variable">$VALUE</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 如果未指定值且当前 shell 中变量未设置，则从 tmux 全局环境中移除</span></span><br><span class="line">    tmux set-environment -gru -- <span class="string">&quot;<span class="variable">$VAR</span>&quot;</span> &amp;&gt;/dev/null</span><br><span class="line">    <span class="built_in">return</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 将当前值设置到 tmux 全局环境</span></span><br><span class="line">  tmux set-environment -g -- <span class="string">&quot;<span class="variable">$VAR</span>&quot;</span> <span class="string">&quot;<span class="variable">$VALUE</span>&quot;</span> &amp;&gt;/dev/null</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从 tmux 全局环境同步变量到当前 shell</span></span><br><span class="line"><span class="function"><span class="title">tmux_shell_update_var</span></span>() &#123;</span><br><span class="line">  <span class="built_in">local</span> VAR=<span class="string">&quot;<span class="variable">$1</span>&quot;</span></span><br><span class="line">  <span class="built_in">local</span> TMUX_OUTPUT</span><br><span class="line">  <span class="built_in">local</span> TMUX_ERROR_CODE</span><br><span class="line"></span><br><span class="line">  TMUX_OUTPUT=$(tmux show-environment -gs -- <span class="string">&quot;<span class="variable">$VAR</span>&quot;</span> 2&gt;/dev/null)</span><br><span class="line">  TMUX_ERROR_CODE=$?</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> [[ <span class="variable">$TMUX_ERROR_CODE</span> -eq 0 ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 使用 eval 执行 tmux 输出的变量赋值（存在注入风险，需谨慎）</span></span><br><span class="line">    <span class="built_in">eval</span> <span class="string">&quot;<span class="variable">$TMUX_OUTPUT</span>&quot;</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="comment"># 变量不存在时清除本地环境</span></span><br><span class="line">    <span class="built_in">unset</span> <span class="string">&quot;<span class="variable">$VAR</span>&quot;</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 主同步函数</span></span><br><span class="line"><span class="function"><span class="title">tmux_update_environment</span></span>() &#123;</span><br><span class="line">  <span class="comment"># 检查 tmux 是否存在</span></span><br><span class="line">  <span class="keyword">if</span> ! <span class="built_in">command</span> -v tmux &amp;&gt;/dev/null; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">return</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 获取需要同步的变量列表（与 tmux.conf 中的 update-environment 一致）</span></span><br><span class="line">  <span class="built_in">local</span> -a VARS</span><br><span class="line">  <span class="built_in">mapfile</span> -t VARS &lt; &lt;(tmux show-options -gv update-environment | <span class="built_in">tr</span> <span class="string">&#x27; &#x27;</span> <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># 根据是否在 tmux 会话中选择同步方向</span></span><br><span class="line">  <span class="keyword">if</span> [[ -z <span class="string">&quot;<span class="variable">$TMUX</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 不在 tmux 中：将当前 shell 的变量同步到 tmux 全局环境</span></span><br><span class="line">    <span class="keyword">for</span> var <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;VARS[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">      tmux_global_update_var <span class="string">&quot;<span class="variable">$var</span>&quot;</span> <span class="string">&quot;<span class="variable">$&#123;!var&#125;</span>&quot;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="comment"># 在 tmux 中：从 tmux 全局环境同步变量到当前 shell</span></span><br><span class="line">    <span class="keyword">for</span> var <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;VARS[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">      tmux_shell_update_var <span class="string">&quot;<span class="variable">$var</span>&quot;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绑定到 PROMPT_COMMAND（每次命令执行前触发同步）</span></span><br><span class="line">PROMPT_COMMAND=<span class="string">&quot;tmux_update_environment; <span class="variable">$PROMPT_COMMAND</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">command</span> -v tmux &amp;&gt; /dev/null; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 检查是否在SSH连接中（可选）</span></span><br><span class="line">    <span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$SSH_CONNECTION</span>&quot;</span> ] &amp;&amp; [ -z <span class="string">&quot;<span class="variable">$TMUX</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="comment"># 检查是否存在默认会话</span></span><br><span class="line">        <span class="keyword">if</span> tmux has-session -t default 2&gt;/dev/null; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">exec</span> tmux attach -t default</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">exec</span> tmux new -s default</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-04-13 13:45:50 / 修改时间：14:01:36" itemprop="dateCreated datePublished" datetime="2025-04-13T13:45:50+08:00">2025-04-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="ssh登录"><a class="markdownIt-Anchor" href="#ssh登录"></a> ssh登录</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="ssh端口映射"><a class="markdownIt-Anchor" href="#ssh端口映射"></a> ssh端口映射</h1>
+<p>可以用于不保留端口的情况下，远程连接数据库等。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -N -L &lt;local_port&gt;:localhost:&lt;remote_port&gt; &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt; </span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">mysql使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-27T00:00:00+08:00">2024-07-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-13 13:45:37" itemprop="dateModified" datetime="2025-04-13T13:45:37+08:00">2025-04-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h1>
+<h2 id="原子性-atomicity"><a class="markdownIt-Anchor" href="#原子性-atomicity"></a> 原子性 Atomicity</h2>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">BUSINESS</span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">1</span></span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">2</span></span><br><span class="line"><span class="keyword">COMMIT</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>原子性：事务操作要么同时发生，要么同时失败，不存在中间情况</p>
+</blockquote>
+<p>通过Undo Log回滚实现</p>
+<h2 id="一致性-consistency"><a class="markdownIt-Anchor" href="#一致性-consistency"></a> 一致性 Consistency</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">账户500元 -&gt; 扣除1000元 -&gt; 账户-500元</span><br><span class="line">-- 非法操作</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一致性：每个操作都必须是合法的，账户信息应该从一个有效状态到另一个有效状态。</p>
+</blockquote>
+<h2 id="隔离性-isolation"><a class="markdownIt-Anchor" href="#隔离性-isolation"></a> 隔离性 Isolation</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">商户1转账500元 -&gt; 余额更新为500元</span><br><span class="line">商户2转账500元 -&gt; 余额更新为500元</span><br><span class="line">-- 没有隔离性</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>隔离性：两个操作对同一个账户并发操作时，应该表现为不相互影响类似串行的操作。</p>
+</blockquote>
+<h2 id="持久性-durability"><a class="markdownIt-Anchor" href="#持久性-durability"></a> 持久性 Durability</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">转账500元到余额 --服务器宕机--&gt; 余额0元</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>持久性：操作更新成功后，更新的结果应该永久地保留下来，不会因为宕机等问题而丢失。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Github使用指南</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-12 15:49:15" itemprop="dateModified" datetime="2025-04-12T15:49:15+08:00">2025-04-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="git配置"><a class="markdownIt-Anchor" href="#git配置"></a> Git配置</h1>
+<p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/896954117292416">远程仓库 - 廖雪峰的官方网站 (liaoxuefeng.com)</a></p>
+<ol>
+<li>创建ssh key，在c盘用户目录.git文件夹中<br />
+<code>ssh-keygen -t ed25519 -C &quot;youremail@example.com&quot;</code><br />
+<code>ssh-keygen -l -f ~/.ssh/id_rsa</code> 可以查看秘钥的配置信息，包括邮箱</li>
+<li>在GitHub账号设置页面，添加ssh key，复制<code>.ssh/id_rsa.pub</code>的信息，点击创建即可</li>
+<li>测试是否成功：<code>ssh -T git@github.com</code><br />
+注意：如果测试不成功，可能是反向代理的问题</li>
+</ol>
+<h1 id="github-远程仓库"><a class="markdownIt-Anchor" href="#github-远程仓库"></a> Github 远程仓库</h1>
+<ol>
+<li>在github上新建一个仓库</li>
+<li><code>git remote add origin git@github.com:github账号名称/仓库名称.git</code> 关联仓库，origin是远程库的名字</li>
+<li><code>git push -u origin master</code>把本地库内容（master分支）推送到远程库（oringin），<code>-u</code> 参数表示会把本地master分支和远程master分支关联起来，方便后面简化命令</li>
+</ol>
+<ul>
+<li><code>git remote set-url origin &lt;URL&gt;</code>更改仓库地址</li>
+</ul>
+<h1 id="github-trending-热门软件"><a class="markdownIt-Anchor" href="#github-trending-热门软件"></a> github trending 热门软件</h1>
+<ul>
+<li>项目含金量 stars 1k+</li>
+<li>fork 拷贝项目到自己的仓库</li>
+<li>pull request 合并分支</li>
+</ul>
+<h1 id="nju"><a class="markdownIt-Anchor" href="#nju"></a> NJU</h1>
+<ul>
+<li>学习编程语言如C、Rust</li>
+<li>精选精读论文</li>
+<li>STFW：比百度更高效的办法</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -529,627 +1243,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">LeetCode100 错题本</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-01T00:00:00+08:00">2024-10-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-16 15:04:45" itemprop="dateModified" datetime="2025-03-16T15:04:45+08:00">2025-03-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
-<h1 id="字母异位词"><a class="markdownIt-Anchor" href="#字母异位词"></a> 字母异位词</h1>
-<p>排序每一个单词，就知道是不是异位词。</p>
-<h2 id="两数之和"><a class="markdownIt-Anchor" href="#两数之和"></a> 两数之和</h2>
-<p>从数组中，找到<code>nums[i] + nums[j] == target</code>，并返回<code>&#123; i, j &#125;</code>。<br />
-思路是双重循环，遍历每一个元素，求和是否为target。<br />
-然而，双重循环需要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的复杂度。因此，可以使用一张表，使用<code>containsKey</code>方法识别是否存在当前i的<code>target - nums[i]</code>，即可减少一重循环。</p>
-<h3 id="关键思想"><a class="markdownIt-Anchor" href="#关键思想"></a> 关键思想</h3>
-<p>用Map高效率查找，减少一重循环。</p>
-<h2 id="最长连续序列"><a class="markdownIt-Anchor" href="#最长连续序列"></a> 最长连续序列</h2>
-<p>从乱序数组中，找到最长连续（数组中不一定连续）的序列。要求<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。<br />
-首先用数组的值存入哈希表，然后遍历数组，判断<code>map.constains(curNum++)</code>。<br />
-然而，即使这样还是效率不够高。</p>
-<p>优化</p>
-<ol>
-<li>中间值不进入循环，序列开始值才进入，使用<code>!contains(curNum - 1)</code>判断是否为序列开始值</li>
-<li>去重，不要哈希表，不需要键值对，使用哈希Set，只存储值。</li>
-</ol>
-<h3 id="关键思想-2"><a class="markdownIt-Anchor" href="#关键思想-2"></a> 关键思想</h3>
-<p>去重；不处理中间值</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">git使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-16 09:45:57" itemprop="dateModified" datetime="2025-03-16T09:45:57+08:00">2025-03-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="00-代码合并流程"><a class="markdownIt-Anchor" href="#00-代码合并流程"></a> 0.0 代码合并流程</h1>
-<ol>
-<li>在各自的分支<code>self</code>上进行开发</li>
-<li>切换到<code>develop</code>分支，<code>git pull --rebase</code>同步最新代码</li>
-</ol>
-<blockquote>
-<p>不要使用Git Pull<br />
-<code>git pull</code>会创建一个新的<code>merge commit</code>，这样提交历史不是一条清晰的线，包含无意义的分支合并，非常混乱。<br />
-而<code>git pull --rebase</code>会解决这个问题，这个命令首先把你的<code>commit</code>放到一边，拉取最新分支状态，最后为你自动变基到最新状态。<br />
-如果遇到合并冲突，使用<code>git rebase --abort</code>撤回<code>rebase</code>，然后使用<code>git pull</code>或者使用交互式变基。</p>
-</blockquote>
-<ol start="3">
-<li>切换到自己的分支<code>self</code>，<code>git rebase develop</code>对齐代码合并冲突</li>
-</ol>
-<blockquote>
-<p>分支是临时的，完成了分支的职责后，就删除此分支。不要重复用分支，而是从主分支再创建一条特性分支。</p>
-</blockquote>
-<h1 id="10-第一件事git-config"><a class="markdownIt-Anchor" href="#10-第一件事git-config"></a> 1.0 第一件事git config</h1>
-<ul>
-<li><code>git config --list --show-origin</code>查看所有git配置以及所在文件</li>
-<li>使用<code>git config --global</code>可以设置git的基本信息（如用户名、邮箱），使用<code>--unset</code>取消设置
-<ol>
-<li>配置你的名称、邮箱以及编辑器</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;191220000-Zhang San&quot;</span> </span><br><span class="line"><span class="comment"># 全局设置名称</span></span><br><span class="line">git config --global user.email <span class="string">&quot;zhang3@email.com&quot;</span></span><br><span class="line">git config --global core.editor vim</span><br><span class="line"></span><br><span class="line"><span class="comment"># instead of</span></span><br><span class="line">git config --global url.git@github.com:.insteadOf https://github.com/</span><br><span class="line"><span class="comment"># alias</span></span><br><span class="line">git config --global alias.cin <span class="string">&quot;commit --amend --no-edit&quot;</span></span><br></pre></td></tr></table></figure>
-<h1 id="20-初始化仓库"><a class="markdownIt-Anchor" href="#20-初始化仓库"></a> 2.0 初始化仓库</h1>
-<ol>
-<li>本地仓库：<code>git init</code>创建一个新的 git 仓库，其数据会存放在一个名为 <code>.git</code> 的目录下<br />
-删除仓库：删除 .git 文件夹</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add &lt;文件名字，*表示全部&gt;</span><br><span class="line"><span class="comment"># 提交到暂存区，并附上注释</span></span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span> </span><br><span class="line"><span class="comment"># 修改最近的一次提交</span></span><br><span class="line">git commit --ammend</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>远程仓库：<code>git clone</code>克隆远端仓库</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看remote</span></span><br><span class="line">git remote -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加remote</span></span><br><span class="line">git remote add origin project_repository_url.git</span><br><span class="line"><span class="comment"># 设置push分支为自己的仓库</span></span><br><span class="line">git remote set-url --add --push origin your_repository_url.git</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> &lt;网址&gt; &lt;仓库存放文件夹名&gt;</span><br><span class="line"><span class="comment"># 使用http克隆</span></span><br></pre></td></tr></table></figure>
-<h1 id="配置ssh"><a class="markdownIt-Anchor" href="#配置ssh"></a> 配置SSH</h1>
-<blockquote>
-<p>不推荐dsa和rsa，推荐ed25519</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C &quot;your_email@email.com&quot;</span><br></pre></td></tr></table></figure>
-<h1 id="tag"><a class="markdownIt-Anchor" href="#tag"></a> Tag</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag v0.0.version</span><br><span class="line">git tag -a v0.version -m &quot;Your Comments to the version&quot;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">动态规划学习指南</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-22 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-22T00:00:00+08:00">2024-10-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-16 08:56:44" itemprop="dateModified" datetime="2025-03-16T08:56:44+08:00">2025-03-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Author：<strong><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/aatalyk">aatalyk</a></strong><br />
-Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns">Link</a></p>
-<p>Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to prepare for interviews two years ago. At that time I should say I could not solve the two sum problem. Easy problems seemed to me like hard ones so most of the time I had to look at editorials and discuss section. Currently, I have solved ~800 problems and time to time participate in contests. I usually solve 3 problems in a contest and sometimes 4 problems. Ok, lets come back to the topic.</p>
-<p>Recently I have concentrated my attention on Dynamic Programming cause its one of the hardest topics in an interview prep. After solving ~140 problems in DP I have noticed that there are few patterns that can be found in different problems. So I did a research on that and find the following topics. I will not give complete ways how to solve problems but these patterns may be helpful in solving DP.</p>
-<h2 id="patterns"><a class="markdownIt-Anchor" href="#patterns"></a> Patterns</h2>
-<ol>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Minimum-%28Maximum%29-Path-to-Reach-a-Target">Minimum (Maximum) Path to Reach a Target</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23distinct-ways">Distinct Ways</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Merging-Intervals">Merging Intervals</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23DP-on-Strings">DP on Strings</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Decision-Making">Decision Making</a></li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">OS 操作系统</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-08-07 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-07T00:00:00+08:00">2024-08-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 14:31:46" itemprop="dateModified" datetime="2025-03-15T14:31:46+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="操作系统原理与实现"><a class="markdownIt-Anchor" href="#操作系统原理与实现"></a> 操作系统：原理与实现</h1>
-<h1 id="chapter3-操作系统结构"><a class="markdownIt-Anchor" href="#chapter3-操作系统结构"></a> Chapter3 操作系统结构</h1>
-<h2 id="复杂度管理方法-malh"><a class="markdownIt-Anchor" href="#复杂度管理方法-malh"></a> 复杂度管理方法 M.A.L.H</h2>
-<p>Modularity: 模块化，分而治之<br />
-Abstraction: 抽象，接口与实现分离，遵循宽进严出原则。例如虚拟内存、文件系统</p>
-<blockquote>
-<p>对于大型系统，只有模块化和抽象，可能导致划分模块太多，交互关系复杂，因此还需要引入分层和层次结构控制复杂度。</p>
-</blockquote>
-<p>Layering: 分层，每个层级是一套完整机制。通常一个模块只能与本层和上下层交互，不能跨层。例如OSI、TCP/IP<br />
-Hierarchy: 层次结构，大的子系统由多个小的子系统组织成。即同级模块的分层</p>
-<blockquote>
-<p>宽进严出原则：容忍各种输入（包括恶意输入），严格控制模块的对外输出</p>
-</blockquote>
-<h2 id="微内核"><a class="markdownIt-Anchor" href="#微内核"></a> 微内核</h2>
-<p>宏内核架构：单点bug使整个系统崩溃。<br />
-微内核：解耦单个功能/模块（如文件系统、设备驱动）作为独立服务隔离运行，使内核成为一个最小功能集。</p>
-<blockquote>
-<p>微内核架构服务隔离，单点出问题系统不会崩溃</p>
-</blockquote>
-<blockquote>
-<p>内核态部分，称为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi><mi>k</mi><mi>e</mi><mi>r</mi><mi>n</mi><mi>e</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">\mu kernel</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span></p>
-</blockquote>
-<p>微内核优势：</p>
-<ol>
-<li>弹性硬件拓展能力</li>
-<li>硬件异构实现</li>
-<li>功能安全</li>
-<li>信息安全</li>
-<li>时延确定</li>
-</ol>
-<blockquote>
-<p>现代操作系统特征：1）虚拟内存；2）用户态、内核态隔离。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/" class="post-title-link" itemprop="url">网络是怎样连接的</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-07-25 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-25T00:00:00+08:00">2024-07-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 13:57:06" itemprop="dateModified" datetime="2025-03-15T13:57:06+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="web浏览器"><a class="markdownIt-Anchor" href="#web浏览器"></a> Web浏览器</h1>
-<p>网址就是请求服务器上对应的文件<br />
-DNS从顶级域名开始根据网址查IP。DNS服务器通过缓存查过的IP来加快服务响应（缓存拥有有效期）。<br />
-浏览器调用Socket库建立连接管道</p>
-<h1 id="tcpip协议栈"><a class="markdownIt-Anchor" href="#tcpip协议栈"></a> TCP/IP协议栈</h1>
-<p>应用将数据分割为许多个网络包，TCP加上头部发送出去。需要发送的信息会缓存起来，<strong>超出计时时间</strong>或者<strong>数据量大于一个包大小</strong>时才发出去。<br />
-TCP需要确认对方收到数据，但是为了不浪费时间，实际上TCP在等待确认信息的过程中也在发送包，这个方法称为<strong>滑动窗口</strong>。<br />
-为了使接收方有足够的时间处理数据，接收方有一个接收缓存，当缓存满了会在TCP头部中通知发送方；处理完成，缓冲区有空余时也会通过TCP头部通知发送方。<br />
-通信完成后，发送方会保留套接字一段时间，以防对方的FINISH信号发送有延迟，把新的相同端口的套接字错误删除。</p>
-<p>用电信号传输数据时，用高电平表示1，低电平表示0.为了防止连续的低电平读不出来，会有一条时钟信号（固定切换高低电平）<br />
-ICMP：定义各种消息，如超时、无法到达、超出转发能力</p>
-<p>UDP在发送的数据少于一个包（重发也只需要发一个包，代价小，如DNS查询控制信息）、发送的数据具有时效性（如音视频，必须快速发送，即使重发也没有意义）的情况下使用。UDP只负责收发数据，对方没收到就全部重发一遍。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" class="post-title-link" itemprop="url">前后端分离</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-12-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-27T00:00:00+08:00">2024-12-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 13:56:55" itemprop="dateModified" datetime="2025-03-15T13:56:55+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="10-session"><a class="markdownIt-Anchor" href="#10-session"></a> 1.0 Session</h1>
-<p>有状态：用户请求接口 -&gt; <strong>从Session中读取用户信息</strong> -&gt; 根据当前的用户来处理业务 -&gt; 返回</p>
-<p>缺点：<strong>不支持分布式</strong></p>
-<h1 id="20-token"><a class="markdownIt-Anchor" href="#20-token"></a> 2.0 Token</h1>
-<p>无状态：用户携带Token请求接口 -&gt; <strong>从请求中获取用户信息</strong> -&gt; 根据当前的用户来处理业务 -&gt; 返回</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.auth0<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-jwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>工具类</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JwtUtils</span> &#123;</span><br><span class="line">      <span class="comment">//Jwt秘钥</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> <span class="string">&quot;abcdefghijklmn&quot;</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 根据用户信息创建Jwt令牌</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">createJwt</span><span class="params">(UserDetails user)</span>&#123;</span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(key);</span><br><span class="line">        <span class="type">Calendar</span> <span class="variable">calendar</span> <span class="operator">=</span> Calendar.getInstance();</span><br><span class="line">        <span class="type">Date</span> <span class="variable">now</span> <span class="operator">=</span> calendar.getTime();</span><br><span class="line">        calendar.add(Calendar.SECOND, <span class="number">3600</span> * <span class="number">24</span> * <span class="number">7</span>);</span><br><span class="line">        <span class="keyword">return</span> JWT.create()</span><br><span class="line">                .withClaim(<span class="string">&quot;name&quot;</span>, user.getUsername())  <span class="comment">// 配置JWT自定义信息</span></span><br><span class="line">                .withClaim(<span class="string">&quot;authorities&quot;</span>, user.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())</span><br><span class="line">                .withExpiresAt(calendar.getTime())  <span class="comment">// 设置过期时间</span></span><br><span class="line">                .withIssuedAt(now)    <span class="comment">// 设置创建创建时间</span></span><br><span class="line">                .sign(algorithm);   <span class="comment">// 最终签名</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 根据Jwt验证并解析用户信息</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> UserDetails <span class="title function_">resolveJwt</span><span class="params">(String token)</span>&#123;</span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(key);</span><br><span class="line">        <span class="type">JWTVerifier</span> <span class="variable">jwtVerifier</span> <span class="operator">=</span> JWT.require(algorithm).build();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">DecodedJWT</span> <span class="variable">verify</span> <span class="operator">=</span> jwtVerifier.verify(token);  <span class="comment">// 对JWT令牌进行验证，看看是否被修改</span></span><br><span class="line">            Map&lt;String, Claim&gt; claims = verify.getClaims();  <span class="comment">// 获取令牌中内容</span></span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">new</span> <span class="title class_">Date</span>().after(claims.get(<span class="string">&quot;exp&quot;</span>).asDate())) <span class="comment">// 如果是过期令牌则返回null</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                  <span class="comment">// 重新组装为UserDetails对象，包括用户名、授权信息等</span></span><br><span class="line">                <span class="keyword">return</span> User</span><br><span class="line">                        .withUsername(claims.get(<span class="string">&quot;name&quot;</span>).asString())</span><br><span class="line">                        .password(<span class="string">&quot;&quot;</span>)</span><br><span class="line">                        .authorities(claims.get(<span class="string">&quot;authorities&quot;</span>).asArray(String.class))</span><br><span class="line">                        .build();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JWTVerificationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Filter</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JwtAuthenticationFilter</span> <span class="keyword">extends</span> <span class="title class_">OncePerRequestFilter</span> &#123;  </span><br><span class="line"><span class="comment">// 继承OncePerRequestFilter表示每次请求过滤一次，用于快速编写JWT校验规则</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doFilterInternal</span><span class="params">(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">          <span class="comment">// 首先从Header中取出JWT</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">authorization</span> <span class="operator">=</span> request.getHeader(<span class="string">&quot;Authorization&quot;</span>);</span><br><span class="line">          <span class="comment">// 判断是否包含JWT且格式正确</span></span><br><span class="line">        <span class="keyword">if</span> (authorization != <span class="literal">null</span> &amp;&amp; authorization.startsWith(<span class="string">&quot;Bearer &quot;</span>)) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> authorization.substring(<span class="number">7</span>);    </span><br><span class="line">              <span class="comment">// 开始解析成UserDetails对象，如果得到的是null说明解析失败，JWT有问题</span></span><br><span class="line">            <span class="type">UserDetails</span> <span class="variable">user</span> <span class="operator">=</span> JwtUtils.resolveJwt(token);</span><br><span class="line">            <span class="keyword">if</span>(user != <span class="literal">null</span>) &#123;</span><br><span class="line">                  <span class="comment">// 验证没有问题，那么就可以开始创建Authentication了，这里我们跟默认情况保持一致</span></span><br><span class="line">                  <span class="comment">// 使用UsernamePasswordAuthenticationToken作为实体，填写相关用户信息进去</span></span><br><span class="line">                <span class="type">UsernamePasswordAuthenticationToken</span> <span class="variable">authentication</span> <span class="operator">=</span></span><br><span class="line">                        <span class="keyword">new</span> <span class="title class_">UsernamePasswordAuthenticationToken</span>(user, <span class="literal">null</span>, user.getAuthorities());</span><br><span class="line">                authentication.setDetails(<span class="keyword">new</span> <span class="title class_">WebAuthenticationDetailsSource</span>().buildDetails(request));</span><br><span class="line">                  <span class="comment">// 然后直接把配置好的Authentication塞给SecurityContext表示已经完成验证</span></span><br><span class="line">                SecurityContextHolder.getContext().setAuthentication(authentication);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">          <span class="comment">// 最后放行，继续下一个过滤器</span></span><br><span class="line">          <span class="comment">// 可能各位小伙伴会好奇，要是没验证成功不是应该拦截吗？这个其实没有关系的</span></span><br><span class="line">          <span class="comment">// 因为如果没有验证失败上面是不会给SecurityContext设置Authentication的，后面直接就被拦截掉了</span></span><br><span class="line">          <span class="comment">// 而且有可能用户发起的是用户名密码登录请求，这种情况也要放行的，不然怎么登录，所以说直接放行就好</span></span><br><span class="line">        filterChain.doFilter(request, response);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Security修改为无状态</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 将Session管理创建策略改成无状态，这样SpringSecurity就不会创建会话了，也不会采用之前那套机制记录用户，因为现在我们可以直接从JWT中获取信息</span></span><br><span class="line">.sessionManagement(conf -&gt; &#123;</span><br><span class="line">    conf.sessionCreationPolicy(SessionCreationPolicy.STATELESS);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 添加我们用于处理JWT的过滤器到Security过滤器链中，注意要放在UsernamePasswordAuthenticationFilter之前</span></span><br><span class="line">.addFilterBefore(<span class="keyword">new</span> <span class="title class_">JwtAuthenticationFilter</span>(), UsernamePasswordAuthenticationFilter.class)</span><br></pre></td></tr></table></figure>
-<h2 id="jwt退出登录"><a class="markdownIt-Anchor" href="#jwt退出登录"></a> JWT退出登录</h2>
-<p>采用黑名单方案。一台服务器存储JWT黑名单，共享给所有微服务。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">JWT.create()</span><br><span class="line">    <span class="comment">// 额外添加一个UUID用于记录黑名单，将其作为JWT的ID属性jti</span></span><br><span class="line">    .withJWTId(UUID.randomUUID().toString())</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JwtUtils</span> &#123;    </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> HashSet&lt;String&gt; blackList = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">// 加入黑名单方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">invalidate</span><span class="params">(String token)</span>&#123;</span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(key);</span><br><span class="line">        <span class="type">JWTVerifier</span> <span class="variable">jwtVerifier</span> <span class="operator">=</span> JWT.require(algorithm).build();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">DecodedJWT</span> <span class="variable">verify</span> <span class="operator">=</span> jwtVerifier.verify(token);</span><br><span class="line">            Map&lt;String, Claim&gt; claims = verify.getClaims();</span><br><span class="line">              <span class="comment">//取出UUID丢进黑名单中</span></span><br><span class="line">            <span class="keyword">return</span> blackList.add(verify.getId());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JWTVerificationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> UserDetails <span class="title function_">resolveJwt</span><span class="params">(String token)</span>&#123;</span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(key);</span><br><span class="line">        <span class="type">JWTVerifier</span> <span class="variable">jwtVerifier</span> <span class="operator">=</span> JWT.require(algorithm).build();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">DecodedJWT</span> <span class="variable">verify</span> <span class="operator">=</span> jwtVerifier.verify(token);</span><br><span class="line">            <span class="comment">// 判断是否存在于黑名单中，如果存在，则返回null表示失效</span></span><br><span class="line">            <span class="keyword">if</span>(blackList.contains(verify.getId()))</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            Map&lt;String, Claim&gt; claims = verify.getClaims();</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">new</span> <span class="title class_">Date</span>().after(claims.get(<span class="string">&quot;exp&quot;</span>).asDate()))</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">return</span> User</span><br><span class="line">                    .withUsername(claims.get(<span class="string">&quot;name&quot;</span>).asString())</span><br><span class="line">                    .password(<span class="string">&quot;&quot;</span>)</span><br><span class="line">                    .authorities(claims.get(<span class="string">&quot;authorities&quot;</span>).asArray(String.class))</span><br><span class="line">                    .build();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JWTVerificationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
       
     </div>
 
