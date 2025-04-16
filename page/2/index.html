@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,299 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Redis使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-27T00:00:00+08:00">2024-10-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-09 20:16:11" itemprop="dateModified" datetime="2025-04-09T20:16:11+08:00">2025-04-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
+<h2 id="general"><a class="markdownIt-Anchor" href="#general"></a> General</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 返回给定模式的keys</span><br><span class="line">KEYS patter</span><br><span class="line">KEYS * # 返回全部</span><br><span class="line">KEYS set* # 返回set开头的keys</span><br><span class="line">EXISTS key</span><br><span class="line">TYPE key</span><br><span class="line">DEL key</span><br></pre></td></tr></table></figure>
+<h2 id="string"><a class="markdownIt-Anchor" href="#string"></a> String</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET key value</span><br><span class="line">GET key</span><br><span class="line"># Set Extend Time</span><br><span class="line">SETEX key seconds value</span><br><span class="line"># Set When Key Not Exist</span><br><span class="line">SETNX key value</span><br></pre></td></tr></table></figure>
+<h2 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HSET key field value</span><br><span class="line">HGET key field</span><br><span class="line">HDEL key field</span><br><span class="line"># Get All Fields</span><br><span class="line">HKEYS key</span><br><span class="line"># Get All Values</span><br><span class="line">HVALS key</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    key[key]</span><br><span class="line">    item[</span><br><span class="line">    field1: value1</span><br><span class="line">    field2: value2</span><br><span class="line">    ]</span><br><span class="line">    key --&gt; item</span><br></pre></td></tr></table></figure>
+<h2 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LPUSH key value1 value2</span><br><span class="line"># Get Key From Start To Stop</span><br><span class="line">LRANGE key start stop</span><br><span class="line"># Right POP</span><br><span class="line">RPOP key</span><br><span class="line"># List Length</span><br><span class="line">LLEN key</span><br></pre></td></tr></table></figure>
+<h3 id="典型场景"><a class="markdownIt-Anchor" href="#典型场景"></a> 典型场景</h3>
+<h4 id="栈"><a class="markdownIt-Anchor" href="#栈"></a> 栈</h4>
+<h4 id="订阅消息"><a class="markdownIt-Anchor" href="#订阅消息"></a> 订阅消息</h4>
+<p>队列，先来后到</p>
+<ul>
+<li>如微信、微博订阅消息</li>
+<li>阻塞队列<code>B&lt;L|R&gt;POP</code>，队列为空就等待</li>
+</ul>
+<h2 id="set"><a class="markdownIt-Anchor" href="#set"></a> Set</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SADD key mem1 mem2</span><br><span class="line">SMEMBERS key</span><br><span class="line"># Set Size</span><br><span class="line">SCARD key</span><br><span class="line">SINTER key1 key2</span><br><span class="line">SUNION key1 key2</span><br><span class="line"># Delete</span><br><span class="line">SREM key mem1 mem2</span><br></pre></td></tr></table></figure>
+<h3 id="典型场景-2"><a class="markdownIt-Anchor" href="#典型场景-2"></a> 典型场景</h3>
+<h4 id="抽奖"><a class="markdownIt-Anchor" href="#抽奖"></a> 抽奖</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SADD lottery &#123;user_id&#125;</span><br><span class="line">SMEMBERS lottery</span><br><span class="line"># 开奖（适用于单个奖品）</span><br><span class="line">SRANDMEMBER lottery &#123;drawing_count&#125;</span><br><span class="line"># 开奖并删除（适用于多项奖品，不重复得奖）</span><br><span class="line">SPOP lottery &#123;drawing_count&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="点赞-收藏-标签"><a class="markdownIt-Anchor" href="#点赞-收藏-标签"></a> 点赞、收藏、标签</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 点赞</span><br><span class="line">SADD like:&#123;msg_id&#125; &#123;user_id&#125;</span><br><span class="line"># 取消</span><br><span class="line">SREM like:&#123;msg_id&#125; &#123;user_id&#125;</span><br><span class="line"># 用户是否点赞</span><br><span class="line">SISMEMBER like:&#123;msg_id&#125; &#123;user_id&#125;</span><br><span class="line"># 点赞用户列表</span><br><span class="line">SMEMBERS like:&#123;msg_id&#125;</span><br><span class="line"># 点赞用户数</span><br><span class="line">SCARD like:&#123;msg_id&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="关注-商品筛选"><a class="markdownIt-Anchor" href="#关注-商品筛选"></a> 关注、商品筛选</h4>
+<p>利用集合特性运算</p>
+<ul>
+<li>如共同关注、推荐关注</li>
+<li>商品筛选</li>
+</ul>
+<h2 id="sorted-set-zset"><a class="markdownIt-Anchor" href="#sorted-set-zset"></a> Sorted Set / ZSet</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ZADD key score1 mem1 score2 mem2</span><br><span class="line"># Show List</span><br><span class="line">ZRANGE key start stop (WITHSCORES)</span><br><span class="line"># Increse Member</span><br><span class="line">ZINCRBY key increment member</span><br><span class="line">ZREM key mem1 mem2</span><br></pre></td></tr></table></figure>
+<h3 id="典型场景-3"><a class="markdownIt-Anchor" href="#典型场景-3"></a> 典型场景</h3>
+<h4 id="日月年热点排行榜"><a class="markdownIt-Anchor" href="#日月年热点排行榜"></a> 日/月/年热点排行榜</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 记录浏览量</span><br><span class="line">ZINCRBY hotNews:&#123;date&#125; 1 &#123;news_id&#125;</span><br><span class="line"># Top 10</span><br><span class="line">ZREVRANGE hotNews:&#123;date&#125; 0 9 WITHSCORES</span><br><span class="line"># Recent 7 days</span><br><span class="line">ZUNIONSTORE hotNews:&#123;start_date&#125;-&#123;end_date&#125; 0 9 WITHSCORES</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-20 08:47:06" itemprop="dateModified" datetime="2025-03-20T08:47:06+08:00">2025-03-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <ul>
+<li><strong>复杂度分析</strong>：数据结构和算法的评价维度与方法。时间复杂度、空间复杂度的推算方法、常见类型、示例等。</li>
+<li><strong>数据结构</strong>：基本数据类型，数据结构的分类方法。数组、链表、栈、队列、哈希表、树、堆、图等数据结构的定义、优缺点、常用操作、常见类型、典型应用、实现方法等。</li>
+<li><strong>算法</strong>：搜索、排序、分治、回溯、动态规划、贪心等算法的定义、优缺点、效率、应用场景、解题步骤、示例题目等。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">蓝桥杯 错题本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-19 00:00:00 / 修改时间：18:48:35" itemprop="dateCreated datePublished" datetime="2025-03-19T00:00:00+08:00">2025-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="3513-岛屿个数"><a class="markdownIt-Anchor" href="#3513-岛屿个数"></a> 3513 岛屿个数</h1>
+<p>#外岛数量 #bfs</p>
+<h2 id="杰克船长算法"><a class="markdownIt-Anchor" href="#杰克船长算法"></a> 杰克船长算法</h2>
+<blockquote>
+<p>杰克船长在公海上游荡，每发现一处岛屿，他就会绕着岛走一圈，并把这个岛标记到地图上。</p>
+</blockquote>
+<p>这个问题的解决方法就在这里：我们<strong>一定</strong>要有一片完全连通的公海，只有在公海上遇到岛屿，才标记岛屿数量；绝不踏入内海。</p>
+<p>可是测试用例是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5 5</span><br><span class="line">01111</span><br><span class="line">11001</span><br><span class="line">10101</span><br><span class="line">10001</span><br><span class="line">11111</span><br></pre></td></tr></table></figure>
+<p>这个测试用例，只有<code>(0, 0)</code>是公海，怎么办呢？<br />
+我们用一圈公海把测试用例包围起来：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">processInput</span><span class="params">(Scanner sc)</span> &#123;</span><br><span class="line">    M = sc.nextInt();</span><br><span class="line">    N = sc.nextInt();</span><br><span class="line">    sc.nextLine();</span><br><span class="line">    map = <span class="keyword">new</span> <span class="title class_">int</span>[M + <span class="number">2</span>][N + <span class="number">2</span>]; <span class="comment">// 注意+2，多一圈&#x27;0&#x27;表示公海</span></span><br><span class="line">    visitedSea = <span class="keyword">new</span> <span class="title class_">boolean</span>[M + <span class="number">2</span>][N + <span class="number">2</span>];</span><br><span class="line">    visitedIsland = <span class="keyword">new</span> <span class="title class_">boolean</span>[M + <span class="number">2</span>][N + <span class="number">2</span>];</span><br><span class="line">    cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">1</span>; x &lt;= M; x += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> sc.nextLine();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> <span class="number">1</span>; y &lt;= N; y += <span class="number">1</span>) &#123;</span><br><span class="line">            map[x][y] = line.charAt(y - <span class="number">1</span>) - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -874,328 +1167,6 @@ ICMP：定义各种消息，如超时、无法到达、超出转发能力</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/Computer%20Organization&Design%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/DP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/DP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-title-link" itemprop="url">DP 设计模式</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-11-03 00:00:00" itemprop="dateCreated datePublished" datetime="2024-11-03T00:00:00+08:00">2024-11-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 13:56:35" itemprop="dateModified" datetime="2025-03-15T13:56:35+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="策略模式"><a class="markdownIt-Anchor" href="#策略模式"></a> 策略模式</h1>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MallardDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MallardDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        quackBehavior = <span class="keyword">new</span> <span class="title class_">Quack</span>();</span><br><span class="line">        flyBehavior = <span class="keyword">new</span> <span class="title class_">FlyWithWings</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ModelDuck</span> <span class="keyword">extends</span> <span class="title class_">Duck</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">ModelDuck</span><span class="params">()</span> &#123;</span><br><span class="line">        quackBehavior = <span class="keyword">new</span> <span class="title class_">Quack</span>();</span><br><span class="line">        flyBehavior = <span class="keyword">new</span> <span class="title class_">FlyNoWay</span>(); <span class="comment">// 组合不同的方法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Duck</span> <span class="variable">real</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MallardDuck</span>();</span><br><span class="line">        <span class="type">Duck</span> <span class="variable">model</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelDuck</span>();</span><br><span class="line"></span><br><span class="line">        real.fly();</span><br><span class="line">        model.fly(); <span class="comment">// 调用同样的接口</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>识别应用中变化的方面，把它们和不变的方面分开。</p>
-</blockquote>
-<blockquote>
-<p>针对接口编程，而不是针对实现编程。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Implement</span></span><br><span class="line"><span class="type">Dog</span> <span class="variable">d</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">d.bark();</span><br><span class="line"></span><br><span class="line"><span class="comment">// Interface</span></span><br><span class="line"><span class="type">Animal</span> <span class="variable">dog</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Dog</span>();</span><br><span class="line">dog.makeSound(); <span class="comment">// abstract</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>优先使用组合而不是继承。</p>
-</blockquote>
-<h2 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> summary</h2>
-<p>策略模式定义了算法族并分别封装。策略让算法变化独立于使用它的客户。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/DP%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringCloud%20Netfilx%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringCloud%20Netfilx%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">SpringCloud Netflix笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-01 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-01T00:00:00+08:00">2025-01-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 13:54:39" itemprop="dateModified" datetime="2025-03-15T13:54:39+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="微服务"><a class="markdownIt-Anchor" href="#微服务"></a> 微服务</h1>
-<p>微服务：解决接口越来越多，单体应用运行缓慢问题。</p>
-<h1 id="踩坑记录"><a class="markdownIt-Anchor" href="#踩坑记录"></a> 踩坑记录</h1>
-<h2 id="找不到mapper"><a class="markdownIt-Anchor" href="#找不到mapper"></a> 找不到Mapper</h2>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">***************************</span><br><span class="line">APPLICATION FAILED TO START</span><br><span class="line">***************************</span><br><span class="line"></span><br><span class="line">Description:</span><br><span class="line"></span><br><span class="line">Field deviceMapper in com.esagent.es.EsDataInit required a bean of type &#x27;com.example.mapper.YourMapper&#x27; that could not be found.</span><br><span class="line"></span><br><span class="line">The injection point has the following annotations:</span><br><span class="line">    - @org.springframework.beans.factory.annotation.Autowired(required=true)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Action:</span><br><span class="line"></span><br><span class="line">Consider defining a bean of type &#x27;com.example.mapper.YourMapper&#x27; in your configuration.</span><br></pre></td></tr></table></figure>
-<p>原因是mybatis版本有问题！</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 版本需要和其他依赖对上 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencyManagement</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringCloud%20Netfilx%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS5%20PA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS5%20PA/" class="post-title-link" itemprop="url">ICS5 PA</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2024-05-30T00:00:00+08:00">2024-05-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 13:54:10" itemprop="dateModified" datetime="2025-03-15T13:54:10+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="pa1-1-24530"><a class="markdownIt-Anchor" href="#pa1-1-24530"></a> PA1-1 24.5.30</h1>
-<p>又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！</p>
-<h2 id="target"><a class="markdownIt-Anchor" href="#target"></a> target</h2>
-<p>第一课的目标是修正一个register错误声明</p>
-<h2 id="insteresting"><a class="markdownIt-Anchor" href="#insteresting"></a> insteresting</h2>
-<ul>
-<li>中途网易源Bad Gateway 502了，更换清华源，学会了<code>:%s/163/tuna/g</code>非常爽！</li>
-<li>又学了几个<a href="../%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8">终端快捷键</a></li>
-<li>想到了用 <code>ccache</code> 加速我的PA</li>
-</ul>
-<h2 id="problems"><a class="markdownIt-Anchor" href="#problems"></a> problems</h2>
-<ol>
-<li><code>union</code> 和 <code>struct</code> 的区别？<br />
-<code>unioin</code> 在同一个内存空间中存储不同的数据类型。<br />
-<code>struct</code> 则是同时存储不同的数据类型。</li>
-<li>为什么要用 <code>union</code>？阅读i386手册<br />
-2.3.1 General Registers<br />
-As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-manual/s02_03.htm#fig2-5">Figure 2-5</a> shows, the low-order word of each of these eight registers has a separate name and can be treated as a unit. This feature is useful for handling 16-bit data items and for compatibility with the 8086 and 80286 processors. The word registers are named AX, BX, CX, DX, BP, SP, SI, and DI.<br />
-对于CPU来说，可以把AH AX AL看成单独的单元，拆分成小块。所以它们是共用关系。</li>
-</ol>
-<h1 id="pa1-2-alu-2465"><a class="markdownIt-Anchor" href="#pa1-2-alu-2465"></a> PA1-2 ALU 24.6.5</h1>
-<h2 id="target-2"><a class="markdownIt-Anchor" href="#target-2"></a> target</h2>
-<p>实现ALU中的各类运算，包括设置标志位</p>
-<h2 id="knowledge"><a class="markdownIt-Anchor" href="#knowledge"></a> knowledge</h2>
-<h3 id="appendix-c"><a class="markdownIt-Anchor" href="#appendix-c"></a> Appendix C</h3>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Function</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CF</td>
-<td>Carry Flag ── Set on high-order bit carry or borrow; cleared otherwise.</td>
-</tr>
-<tr>
-<td>PF</td>
-<td>Parity Flag ── Set if low-order eight bits of result contain an even number of 1 bits; cleared otherwise.</td>
-</tr>
-<tr>
-<td>ZF</td>
-<td>Zero Flag ── Set if result is zero; cleared otherwise.</td>
-</tr>
-<tr>
-<td>SF</td>
-<td>Sign Flag ── Set equal to high-order bit of result (0 is positive, 1 if negative).</td>
-</tr>
-<tr>
-<td>OF<br></td>
-<td>Overflow Flag ── Set if result is too large a positive number or too small a negative number (excluding sign-bit) to fit in destination operand; cleared otherwise.</td>
-</tr>
-</tbody>
-</table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS5%20PA/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

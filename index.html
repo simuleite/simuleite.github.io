@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">58</span>
+          <span class="site-state-item-count">59</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,771 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Shell终端使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-15 17:11:04" itemprop="dateModified" datetime="2025-04-15T17:11:04+08:00">2025-04-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="shortcuts-快捷键"><a class="markdownIt-Anchor" href="#shortcuts-快捷键"></a> Shortcuts 快捷键</h1>
+<ul>
+<li><code>CTRL+N|P</code> 下、上一条命令</li>
+<li><code>CTRL+A|E</code> 跳到行首、行尾</li>
+<li><code>ALT+F|B</code> 或 <code>CTRL+←|→</code> 下、上一个单词（右ALT开始使用~）</li>
+<li><code>CTRL+W</code> 删除前面的单词</li>
+<li><code>CTRL+D|H</code> 删除一个字符（D向后删除=Delete，H向前删除=Backspace）</li>
+<li><code>CTRL+U</code> 删除整行</li>
+<li><code>CTRL+R</code> 搜索整行，Esc退出</li>
+</ul>
+<h1 id="proxy"><a class="markdownIt-Anchor" href="#proxy"></a> Proxy</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export https_proxy=http://host:port;</span><br><span class="line">export http_proxy=http://host:port;</span><br><span class="line">export all_proxy=socks5://host:port;</span><br></pre></td></tr></table></figure>
+<h1 id="bash-prompt-string配置"><a class="markdownIt-Anchor" href="#bash-prompt-string配置"></a> Bash prompt string配置</h1>
+<blockquote>
+<p>使用Windows CMD比使用MinTTY更快！</p>
+</blockquote>
+<ul>
+<li>PS(prompt string): 是命令行的默认显示文本，如：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">username@hostname /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以在<code>~/.bash_profile</code>或<code>.bashrc</code>中修改默认显示（Windows Git Bash是<code>git-prompt.sh</code>）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Windows Git Bash默认配置，其中\007前面的$TITLEPREFIX和$PWD是标签栏的内容，git_ps1会显示git工作分支</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;\[\e]0;$TITLEPREFIX:$PWD\007\]\n\[\e[32m\]\u@\h \[\e[35m\]$MSYSTEM \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &#x27;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@hostname MINGW /work_directory</span><br><span class="line">$ </span><br><span class="line"></span><br><span class="line"><span class="comment"># 简洁配置，将\h换成了指定文本，保留了命令行前的换行，将标签名改为当前目录</span></span><br><span class="line"><span class="comment"># 注意，使用单引号才有动态解析效果</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;\[\e]0;\W\007\] \n\[\e[32m\]\u@Host \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &#x27;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@Host /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
+<ul>
+<li>Windows虚拟环境后不会换行：设置<code>venv/Scripts/activate</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -z <span class="string">&quot;<span class="variable">$&#123;VIRTUAL_ENV_DISABLE_PROMPT-&#125;</span>&quot;</span> ] ; <span class="keyword">then</span></span><br><span class="line">    _OLD_VIRTUAL_PS1=<span class="string">&quot;<span class="variable">$&#123;PS1-&#125;</span>&quot;</span></span><br><span class="line">    PS1=<span class="string">&quot;\n(<span class="variable">$&#123;VIRTUAL_ENV_PROMPT&#125;</span>) <span class="variable">$&#123;PS1-&#125;</span>&quot;</span> <span class="comment"># 添加换行符</span></span><br><span class="line">    <span class="built_in">export</span> PS1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>MSYS2显示git prompt</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># etc/profile.d/git-prompt.sh</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -f /etc/profile.d/git-sdk.sh</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        TITLEPREFIX=SDK-<span class="variable">$&#123;MSYSTEM#MINGW&#125;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        TITLEPREFIX=<span class="variable">$MSYSTEM</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -f ~/.config/git/git-prompt.sh</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        . ~/.config/git/git-prompt.sh</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        PS1=<span class="string">&#x27;\[\033]0;$TITLEPREFIX:$PWD\007\]&#x27;</span> <span class="comment"># set window title</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\n&#x27;</span>                 <span class="comment"># new line</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[32m\]&#x27;</span>       <span class="comment"># change to green</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\u@\h &#x27;</span>             <span class="comment"># user@host&lt;space&gt;</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[35m\]&#x27;</span>       <span class="comment"># change to purple</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;$MSYSTEM &#x27;</span>          <span class="comment"># show MSYSTEM</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[33m\]&#x27;</span>       <span class="comment"># change to brownish yellow</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\w&#x27;</span>                 <span class="comment"># current working directory</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$WINELOADERNOEXEC</span>&quot;</span></span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                GIT_EXEC_PATH=<span class="string">&quot;<span class="subst">$(git --exec-path 2&gt;/dev/null)</span>&quot;</span></span><br><span class="line">                COMPLETION_PATH=<span class="string">&quot;<span class="variable">$&#123;GIT_EXEC_PATH%/libexec/git-core&#125;</span>&quot;</span></span><br><span class="line">                COMPLETION_PATH=<span class="string">&quot;<span class="variable">$&#123;COMPLETION_PATH%/lib/git-core&#125;</span>&quot;</span></span><br><span class="line">                COMPLETION_PATH=<span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/share/git/completion&quot;</span></span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">test</span> -f <span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/git-prompt.sh&quot;</span></span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        . <span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/git-completion.bash&quot;</span></span><br><span class="line">                        . <span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/git-prompt.sh&quot;</span></span><br><span class="line">                        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[36m\]&#x27;</span>  <span class="comment"># change color to cyan</span></span><br><span class="line">                        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;`__git_ps1`&#x27;</span>   <span class="comment"># bash function</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[0m\]&#x27;</span>        <span class="comment"># change color</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\n&#x27;</span>                 <span class="comment"># new line</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;$ &#x27;</span>                 <span class="comment"># prompt: always $</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"> </span><br><span class="line">MSYS2_PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span>               <span class="comment"># for detection by MSYS2 SDK&#x27;s bash.basrc</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># Evaluate all user-specific Bash completion scripts (if any)</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$WINELOADERNOEXEC</span>&quot;</span></span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$HOME</span>&quot;</span>/bash_completion.d/*.bash</span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">                <span class="comment"># Handle absence of any scripts (or the folder) gracefully</span></span><br><span class="line">                <span class="built_in">test</span> ! -f <span class="string">&quot;<span class="variable">$c</span>&quot;</span> ||</span><br><span class="line">                . <span class="string">&quot;<span class="variable">$c</span>&quot;</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ~/.bashrc || ~/.bash_profile</span></span><br><span class="line"><span class="built_in">shopt</span> -q login_shell || . /etc/profile.d/git-prompt.sh</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">syntax</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\u</td>
+<td>username</td>
+</tr>
+<tr>
+<td style="text-align:center">\h</td>
+<td>hostname</td>
+</tr>
+<tr>
+<td style="text-align:center">\e</td>
+<td>set colors</td>
+</tr>
+<tr>
+<td style="text-align:center">\w</td>
+<td>work directory</td>
+</tr>
+<tr>
+<td style="text-align:center">\W</td>
+<td>current diretory</td>
+</tr>
+<tr>
+<td style="text-align:center">\n</td>
+<td>line feed</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Maven使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-16T00:00:00+08:00">2025-01-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-15 10:24:14" itemprop="dateModified" datetime="2025-04-15T10:24:14+08:00">2025-04-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="微服务"><a class="markdownIt-Anchor" href="#微服务"></a> 微服务</h1>
+<p>非单体项目，可以用下面的脚本启动微服务。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取服务名称和额外参数</span></span><br><span class="line">SERVICE_NAME=$1</span><br><span class="line">shift  # 移除第一个参数（服务名），将剩余参数保存到 $@</span><br><span class="line">EXTRA_ARGS=&quot;$@&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否输入服务名称</span></span><br><span class="line">if [ -z &quot;$SERVICE_NAME&quot; ]; then</span><br><span class="line">  echo &quot;Usage: ./run.sh &lt;servicename|all&gt; [additional_maven_args]&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">定义运行单个服务的函数</span></span><br><span class="line">run_service() &#123;</span><br><span class="line">  local service=$1</span><br><span class="line">  local args=$2</span><br><span class="line">  echo &quot;Building and running $service with args: $args...&quot;</span><br><span class="line">  mvn clean install -pl $service -am</span><br><span class="line">  if [ &quot;$service&quot; == &quot;gateway/&quot; ]; then</span><br><span class="line">    echo &quot;Gateway starting...&quot;</span><br><span class="line">    mvn spring-boot:run -pl $service -Dreactor.netty.http.server.accessLogEnabled=true $args</span><br><span class="line">  else</span><br><span class="line">    mvn spring-boot:run -pl $service $args</span><br><span class="line">  fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果输入 <span class="string">&quot;all&quot;</span>，运行所有服务（默认不传参）</span></span><br><span class="line">if [ &quot;$SERVICE_NAME&quot; == &quot;all&quot; ]; then</span><br><span class="line">  echo &quot;Building and running all services...&quot;</span><br><span class="line">  mvn clean install -pl &quot;!generator&quot;</span><br><span class="line">  for module in $(mvn help:evaluate -Dexpression=project.modules -q -DforceStdout | sed -e &#x27;s/&lt;[^&gt;]*&gt;//g&#x27; -e &#x27;s/\s*//g&#x27; | tr &#x27;,&#x27; &#x27;\n&#x27;); do</span><br><span class="line">    if [ &quot;$module&quot; != &quot;generator&quot; ]; then</span><br><span class="line">      echo &quot;Running $module...&quot;</span><br><span class="line">      mvn spring-boot:run -pl $module</span><br><span class="line">    fi</span><br><span class="line">  done</span><br><span class="line">else</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">运行指定的单个服务，并传递额外参数</span></span><br><span class="line">  run_service $SERVICE_NAME &quot;$EXTRA_ARGS&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>核心命令是这一条：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn spring-boot:run -pl $your_service</span><br></pre></td></tr></table></figure>
+<p>想要增加JVM参数，指定端口可以加上</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-Dspring-boot.run.arguments=--server.port=$your_port</span><br></pre></td></tr></table></figure>
+<h1 id="全局换源"><a class="markdownIt-Anchor" href="#全局换源"></a> 全局换源</h1>
+<p>找到 <code>settings.xml</code> 文件：</p>
+<ul>
+<li>全局配置：位于 Maven 安装目录的 <code>conf</code> 文件夹下（例如<code>/usr/local/maven/conf/settings.xml</code>）。</li>
+<li>用户配置：位于用户主目录下的 .m2 文件夹中（例如<code>~/.m2/settings.xml</code>）。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;settings&gt;</span><br><span class="line">  &lt;!-- 其他配置 --&gt;</span><br><span class="line">  &lt;mirrors&gt;</span><br><span class="line">    &lt;!-- 阿里云 Maven 镜像 --&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">      &lt;id&gt;aliyun-maven&lt;/id&gt;</span><br><span class="line">      &lt;name&gt;阿里云公共仓库&lt;/name&gt;</span><br><span class="line">      &lt;url&gt;https://maven.aliyun.com/repository/public&lt;/url&gt;</span><br><span class="line">      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;!-- 指定替换中央仓库 --&gt;</span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">    &lt;!-- 华为云 Maven 镜像 --&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">      &lt;id&gt;huaweicloud&lt;/id&gt;</span><br><span class="line">      &lt;name&gt;华为云 Maven&lt;/name&gt;</span><br><span class="line">      &lt;url&gt;https://mirrors.huaweicloud.com/repository/maven/&lt;/url&gt;</span><br><span class="line">      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">  &lt;/mirrors&gt;</span><br><span class="line">  &lt;!-- 其他配置 --&gt;</span><br><span class="line">&lt;/settings&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/nginx%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/nginx%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">nginx使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-04-14 00:00:00 / 修改时间：21:42:28" itemprop="dateCreated datePublished" datetime="2025-04-14T00:00:00+08:00">2025-04-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="port2domain"><a class="markdownIt-Anchor" href="#port2domain"></a> port2domain</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/nginx/sites-available/yourdomain.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name yourdomain.com www.yourdomain.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:9000;  # 项目运行的端口</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # 日志配置（可选）</span><br><span class="line">    error_log /var/log/nginx/yourdomain.error.log;</span><br><span class="line">    access_log /var/log/nginx/yourdomain.access.log;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>启用</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo ln -s /etc/nginx/sites-available/yourdomain.conf /etc/nginx/sites-enabled/</span><br><span class="line">sudo nginx -t  # 检查配置是否正确</span><br><span class="line">sudo systemctl restart nginx</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/scp%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/scp%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">scp使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-25 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-25T00:00:00+08:00">2024-12-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-14 20:24:12" itemprop="dateModified" datetime="2025-04-14T20:24:12+08:00">2025-04-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="上传文件"><a class="markdownIt-Anchor" href="#上传文件"></a> 上传文件</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp ./upload/path/file.postfix user@host.com:/path/to/file</span><br><span class="line">scp -P &lt;port&gt; -i &lt;key&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">文件夹</span></span><br><span class="line">scp -r ./upload/path/folder user@host.com:/path/to/folder</span><br></pre></td></tr></table></figure>
+<h1 id="下载文件"><a class="markdownIt-Anchor" href="#下载文件"></a> 下载文件</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp user@host.com:/path/to/file.postfix ./download/path</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">文件夹</span></span><br><span class="line">scp -r user@host.com:/path/to/folader ./download/path</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">tmux使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-25T00:00:00+08:00">2023-11-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-14 20:20:58" itemprop="dateModified" datetime="2025-04-14T20:20:58+08:00">2025-04-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <pre><code>参考教程： https://www.ruanyifeng.com/blog/2019/10/tmux.html
+</code></pre>
+<ul>
+<li>tmux使会话与窗口解绑，一个窗口<code>source .bashrc</code>更新了，另一个窗口可能没有</li>
+</ul>
+<ul>
+<li><strong><code>ctrl+b</code> 前缀键</strong><br />
+<code>%</code>  分成左右两栏<br />
+<code>&quot;</code>  分成上下两栏<br />
+<code>up</code>  选择上边的窗口<br />
+<code>[</code> 查看历史记录</li>
+</ul>
+<h1 id="窗口"><a class="markdownIt-Anchor" href="#窗口"></a> 窗口</h1>
+<ul>
+<li><code>&lt;C-d&gt;</code> <strong>删除窗口</strong></li>
+</ul>
+<ul>
+<li><code>&lt;C-b&gt; z</code> <strong>最大化/最小化一个窗口</strong></li>
+<li><code>&lt;C-b&gt; c</code> 创建一个新的窗口，使用 <code>&lt;C-d&gt;</code>关闭</li>
+<li><code>&lt;C-b&gt; N</code> 跳转到第 <em>N</em> 个窗口，注意每个窗口都是有编号的</li>
+<li><code>&lt;C-b&gt; p</code> 切换到前一个窗口</li>
+<li><code>&lt;C-b&gt; n</code> 切换到下一个窗口</li>
+<li><code>&lt;C-b&gt; w</code> 列出当前所有窗口</li>
+</ul>
+<h1 id="tmux-path-双向绑定"><a class="markdownIt-Anchor" href="#tmux-path-双向绑定"></a> Tmux-Path 双向绑定</h1>
+<p>使用tmux会存在一个问题：在1个窗口设置了环境变量，在其他窗口并不会生效。<br />
+下面的脚本会帮助我们解决问题，它将tmux白名单内的全局变量值自动同步到Shell环境变量。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">ssh使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-04-14 00:00:00 / 修改时间：20:19:36" itemprop="dateCreated datePublished" datetime="2025-04-14T00:00:00+08:00">2025-04-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="ssh登录"><a class="markdownIt-Anchor" href="#ssh登录"></a> ssh登录</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="ssh端口映射"><a class="markdownIt-Anchor" href="#ssh端口映射"></a> ssh端口映射</h1>
+<p>可以用于不保留端口的情况下，远程连接数据库等。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -N -L &lt;local_port&gt;:localhost:&lt;remote_port&gt; &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt; </span><br></pre></td></tr></table></figure>
+<h2 id="脚本批量映射"><a class="markdownIt-Anchor" href="#脚本批量映射"></a> 脚本批量映射</h2>
+<p>需要注意，Nacos有gRPC，除了8848端口外，9848端口也要一起开放。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Port Mapping</span></span><br><span class="line">PORTS=(</span><br><span class="line">    &quot;ulocalport:localhost:uremoteport&quot;</span><br><span class="line">    # MySQL</span><br><span class="line">    &quot;53306:localhost:3306&quot;</span><br><span class="line">    # Nacos</span><br><span class="line">    &quot;58848:localhost:8848&quot;</span><br><span class="line">    &quot;59848:localhost:9848&quot;</span><br><span class="line">    # Redis</span><br><span class="line">    &quot;56379:localhost:6379&quot;</span><br><span class="line">    # RocketMQ</span><br><span class="line">    &quot;59876:localhost:9876&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ARGS=()</span><br><span class="line">for port in &quot;$&#123;PORTS[@]&#125;&quot;; do</span><br><span class="line">    ARGS+=(-L &quot;$port&quot;)</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">ssh -o ServerAliveInterval=60 -N &quot;$&#123;ARGS[@]&#125;&quot; &lt;username&gt;@&lt;remote_ip&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="密钥登录"><a class="markdownIt-Anchor" href="#密钥登录"></a> 密钥登录</h1>
+<ol>
+<li>首先在本地生成一份密钥，然后将公钥上传到remote的<code>~/.ssh/authorized_keys</code></li>
+<li>修改remote<code>/etc/ssh/sshd_config</code></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新端口</span></span><br><span class="line">Port 22</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启用密钥认证</span></span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">禁用密码登录</span></span><br><span class="line">PasswordAuthentication no</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">允许Root登录但禁止密码验证</span></span><br><span class="line">PermitRootLogin prohibit-password</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>重启ssh</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Ubuntu/Debian</span></span><br><span class="line">sudo systemctl restart ssh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">CentOS/RHEL</span></span><br><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">vim基本操作</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-14 10:38:28" itemprop="dateModified" datetime="2025-04-14T10:38:28+08:00">2025-04-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
+<ul>
+<li><code>gg=G</code>：代码格式化</li>
+<li><code>GX, GF</code>：打开链接/文件</li>
+<li><code>:%y *</code>：复制全部到系统剪贴板</li>
+<li><code>&lt;C-o&gt;, &lt;C-i&gt;</code>：回到前一个/后一个位置（例如，打开文件默认在第一行，<code>&lt;C-o&gt;</code>回到上次编辑位置）。<strong>注意这个操作是跨文件的</strong>。</li>
+<li><code>`0</code>：返回上次位置</li>
+<li>词：<code>w</code>（下一个词），<code>b</code>（词初），<code>e</code>（词尾）</li>
+<li>行：<code>0</code>（行初），<code>^</code>（第一个非空格字符），<code>$</code>（行尾）</li>
+<li>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</li>
+<li>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</li>
+<li><code>x</code>删除字符（等同于<code>dl</code>）</li>
+<li><code>:s</code>(substitute)替换字符（等同于<code>xi</code>）
+<ul>
+<li>替换命令<code>:&#123;作用范围&#125;s/&#123;目标文本&#125;/&#123;替换文本&#125;/&#123;替换标志&#125;</code></li>
+<li><code>:%s/s_content/o_content/gc</code> 全局替换，附带确认提示</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Sign</th>
+<th>Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%</td>
+<td>整个文件</td>
+</tr>
+<tr>
+<td>.</td>
+<td>当前行</td>
+</tr>
+<tr>
+<td>$</td>
+<td>最后一行</td>
+</tr>
+<tr>
+<td>,n</td>
+<td>当前行到n行</td>
+</tr>
+<tr>
+<td>n,</td>
+<td>n行到当前行</td>
+</tr>
+<tr>
+<td>+n</td>
+<td>当前行后n行</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>可视化模式 + 操作
+<ul>
+<li>选中文字,<code>d</code>删除（剪切） 或者<code>c</code>改变</li>
+</ul>
+</li>
+<li><code>u</code>撤销，<code>&lt;C-r&gt;</code>重做</li>
+<li><code>y</code>复制 / “yank” （其他一些命令比如<code>d</code>也会复制）</li>
+<li><code>p</code>粘贴
+<ul>
+<li><code>+p</code> 粘贴系统剪贴板</li>
+</ul>
+</li>
+<li><strong>更多值得学习的</strong>:
+<ul>
+<li><code>:&lt;line&gt;</code> 跳到line行，相当于<code>&lt;line&gt;G</code></li>
+<li><code>~</code>改变字符的大小写</li>
+<li><code>3w</code>向前移动三个词</li>
+<li><code>A</code>（大写）可以迅速定位到行尾进行修改</li>
+<li><code>:!python prog.py</code> 使用！直接运行shell命令</li>
+</ul>
+</li>
+<li><code>%</code>匹配括号</li>
+</ul>
+<h2 id="change"><a class="markdownIt-Anchor" href="#change"></a> Change</h2>
+<p><code>ce</code> 替换一个单词<br />
+<code>cs&quot;'</code> 把当前词块的&quot;全部替换成’</p>
+<h2 id="多行操作"><a class="markdownIt-Anchor" href="#多行操作"></a> 多行操作</h2>
+<p><code>&lt;C-v&gt;</code> 选中多行，<code>Shift + i</code>输入后<code>Esc</code>，即可多行同步输入</p>
+<h2 id="esc-map"><a class="markdownIt-Anchor" href="#esc-map"></a> Esc Map</h2>
+<p>Vim和NeoVim内置了<code>&lt;C-[&gt;</code>作为<code>&lt;Esc&gt;</code>的映射；<br />
+还可以通过<code>&lt;A-&gt;</code>Alt加上任何键（Meta键）的方式触发<code>&lt;Esc&gt;-</code>。</p>
+<h1 id="宏"><a class="markdownIt-Anchor" href="#宏"></a> 宏</h1>
+<h2 id="录制宏"><a class="markdownIt-Anchor" href="#录制宏"></a> 录制宏</h2>
+<p>命令模式下，</p>
+<ol>
+<li>按<code>q&lt;marcoName&gt;</code>进行录制，<code>&lt;marcoName&gt;</code>是宏的名字，例如<code>qa</code></li>
+<li>执行一系列操作后，再次按<code>q</code>结束录制</li>
+</ol>
+<h2 id="使用宏"><a class="markdownIt-Anchor" href="#使用宏"></a> 使用宏</h2>
+<p>命令模式下，使用<code>@&lt;marcoName&gt;</code>即可执行；使用<code>5@&lt;marcoName&gt;</code>可以重复执行宏</p>
+<h1 id="文件操作"><a class="markdownIt-Anchor" href="#文件操作"></a> 文件操作</h1>
+<ul>
+<li><code>:e filename</code>切换到filename文件</li>
+<li><code>:bn/bp</code>切换到下/上个文件</li>
+<li><code>&lt;C-x&gt;&lt;C-f&gt;</code> 自动补全路径</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -301,364 +1066,6 @@ Debian官方软件源：官网/mirror/list</li>
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">vim基本操作</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-14 08:37:02" itemprop="dateModified" datetime="2025-04-14T08:37:02+08:00">2025-04-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
-<ul>
-<li><code>gg=G</code>：代码格式化</li>
-<li><code>GX, GF</code>：打开链接/文件</li>
-<li><code>:%y *</code>：复制全部到系统剪贴板</li>
-<li><code>&lt;C-o&gt;, &lt;C-i&gt;</code>：回到前一个/后一个位置（例如，打开文件默认在第一行，<code>&lt;C-o&gt;</code>回到上次编辑位置）。<strong>注意这个操作是跨文件的</strong>。</li>
-<li><code>`0</code>：返回上次位置</li>
-<li>词：<code>w</code>（下一个词），<code>b</code>（词初），<code>e</code>（词尾）</li>
-<li>行：<code>0</code>（行初），<code>^</code>（第一个非空格字符），<code>$</code>（行尾）</li>
-<li>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</li>
-<li>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</li>
-<li><code>x</code>删除字符（等同于<code>dl</code>）</li>
-<li><code>:s</code>(substitute)替换字符（等同于<code>xi</code>）
-<ul>
-<li>替换命令<code>:&#123;作用范围&#125;s/&#123;目标文本&#125;/&#123;替换文本&#125;/&#123;替换标志&#125;</code></li>
-<li><code>:%s/s_content/o_content/gc</code> 全局替换，附带确认提示</li>
-</ul>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Sign</th>
-<th>Range</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>%</td>
-<td>整个文件</td>
-</tr>
-<tr>
-<td>.</td>
-<td>当前行</td>
-</tr>
-<tr>
-<td>$</td>
-<td>最后一行</td>
-</tr>
-<tr>
-<td>,n</td>
-<td>当前行到n行</td>
-</tr>
-<tr>
-<td>n,</td>
-<td>n行到当前行</td>
-</tr>
-<tr>
-<td>+n</td>
-<td>当前行后n行</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>可视化模式 + 操作
-<ul>
-<li>选中文字,<code>d</code>删除（剪切） 或者<code>c</code>改变</li>
-</ul>
-</li>
-<li><code>u</code>撤销，<code>&lt;C-r&gt;</code>重做</li>
-<li><code>y</code>复制 / “yank” （其他一些命令比如<code>d</code>也会复制）</li>
-<li><code>p</code>粘贴
-<ul>
-<li><code>+p</code> 粘贴系统剪贴板</li>
-</ul>
-</li>
-<li><strong>更多值得学习的</strong>:
-<ul>
-<li><code>:&lt;line&gt;</code> 跳到line行，相当于<code>&lt;line&gt;G</code></li>
-<li><code>~</code>改变字符的大小写</li>
-<li><code>3w</code>向前移动三个词</li>
-<li><code>A</code>（大写）可以迅速定位到行尾进行修改</li>
-<li><code>:!python prog.py</code> 使用！直接运行shell命令</li>
-</ul>
-</li>
-<li><code>%</code>匹配括号</li>
-</ul>
-<h2 id="change"><a class="markdownIt-Anchor" href="#change"></a> Change</h2>
-<p><code>ce</code> 替换一个单词<br />
-<code>cs&quot;'</code> 把当前词块的&quot;全部替换成’</p>
-<h2 id="多行操作"><a class="markdownIt-Anchor" href="#多行操作"></a> 多行操作</h2>
-<p><code>&lt;C-v&gt;</code> 选中多行，<code>Shift + i</code>输入后<code>Esc</code>，即可多行同步输入</p>
-<h2 id="esc-map"><a class="markdownIt-Anchor" href="#esc-map"></a> Esc Map</h2>
-<p>Vim和NeoVim内置了<code>&lt;C-[&gt;</code>作为<code>&lt;Esc&gt;</code>的映射；<br />
-还可以通过<code>&lt;A-&gt;</code>Alt加上任何键（Meta键）的方式触发<code>&lt;Esc&gt;-</code>。</p>
-<h1 id="宏"><a class="markdownIt-Anchor" href="#宏"></a> 宏</h1>
-<h2 id="录制宏"><a class="markdownIt-Anchor" href="#录制宏"></a> 录制宏</h2>
-<p>命令模式下，</p>
-<ol>
-<li>按<code>q&lt;marcoName&gt;</code>进行录制，<code>&lt;marcoName&gt;</code>是宏的名字，例如<code>qa</code></li>
-<li>执行一系列操作后，再次按<code>q</code>结束录制</li>
-</ol>
-<h2 id="使用宏"><a class="markdownIt-Anchor" href="#使用宏"></a> 使用宏</h2>
-<p>命令模式下，使用<code>@&lt;marcoName&gt;</code>即可执行；使用<code>5@&lt;marcoName&gt;</code>可以重复执行宏</p>
-<h1 id="文件操作"><a class="markdownIt-Anchor" href="#文件操作"></a> 文件操作</h1>
-<ul>
-<li><code>:e filename</code>切换到filename文件</li>
-<li><code>:bn/bp</code>切换到下/上个文件</li>
-<li><code>&lt;C-x&gt;&lt;C-f&gt;</code> 自动补全路径</li>
-</ul>
-<h1 id="lazyvim-安装"><a class="markdownIt-Anchor" href="#lazyvim-安装"></a> LazyVim 安装</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">最新稳定版nvim</span></span><br><span class="line">tar xzvf nvim-linux64.tar.gz</span><br><span class="line">sudo mv nvim-linux64 /usr/local/nvim</span><br><span class="line">sudo ln -s /usr/local/nvim/bin/nvim /usr/bin/nvim</span><br><span class="line">nvim --version</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">lazyvim</span></span><br><span class="line">sudo apt install git curl python3-pip nodejs npm ripgrep fd-find</span><br><span class="line">mv ~/.config/nvim ~/.config/nvim.bak</span><br><span class="line">mv ~/.local/share/nvim ~/.local/share/nvim.bak</span><br><span class="line">mv ~/.local/state/nvim ~/.local/state/nvim.bak</span><br><span class="line">mv ~/.cache/nvim ~/.cache/nvim.bak</span><br><span class="line"></span><br><span class="line">git clone git@github.com:LazyVim/starter ~/.config/nvim</span><br><span class="line">rm -rf ~/.config/nvim/.git</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">tmux使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-25T00:00:00+08:00">2023-11-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-14 08:20:33" itemprop="dateModified" datetime="2025-04-14T08:20:33+08:00">2025-04-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <pre><code>参考教程： https://www.ruanyifeng.com/blog/2019/10/tmux.html
-</code></pre>
-<ul>
-<li>tmux使会话与窗口解绑，一个窗口<code>source .bashrc</code>更新了，另一个窗口可能没有</li>
-</ul>
-<ul>
-<li><strong><code>ctrl+b</code> 前缀键</strong><br />
-<code>%</code>  分成左右两栏<br />
-<code>&quot;</code>  分成上下两栏<br />
-<code>up</code>  选择上边的窗口<br />
-<code>[</code> 查看历史记录</li>
-</ul>
-<h1 id="窗口"><a class="markdownIt-Anchor" href="#窗口"></a> 窗口</h1>
-<ul>
-<li><code>&lt;C-d&gt;</code> <strong>删除窗口</strong></li>
-</ul>
-<ul>
-<li><code>&lt;C-b&gt; z</code> <strong>最大化/最小化一个窗口</strong></li>
-<li><code>&lt;C-b&gt; c</code> 创建一个新的窗口，使用 <code>&lt;C-d&gt;</code>关闭</li>
-<li><code>&lt;C-b&gt; N</code> 跳转到第 <em>N</em> 个窗口，注意每个窗口都是有编号的</li>
-<li><code>&lt;C-b&gt; p</code> 切换到前一个窗口</li>
-<li><code>&lt;C-b&gt; n</code> 切换到下一个窗口</li>
-<li><code>&lt;C-b&gt; w</code> 列出当前所有窗口</li>
-</ul>
-<h1 id="tmux-path-双向绑定"><a class="markdownIt-Anchor" href="#tmux-path-双向绑定"></a> Tmux-Path 双向绑定</h1>
-<p>使用tmux会存在一个问题：在1个窗口设置了环境变量，在其他窗口并不会生效。<br />
-下面的脚本会帮助我们解决问题，它将tmux白名单内的全局变量值自动同步到Shell环境变量。</p>
-<ol>
-<li>首先，编写<code>~/.tmux.conf</code>白名单</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 参考源（zsh版本）</span><br><span class="line"># https://www.mankier.com/1/tmux#Options</span><br><span class="line"># https://www.mankier.com/1/tmux#Global_and_Session_Environment</span><br><span class="line">set-option -g update-environment \</span><br><span class="line">&#x27;DISPLAY KRB5CCNAME SSH_AGENT_PID SSH_ASKPASS SSH_AUTH_SOCK SSH_CLIENT SSH_CONNECTION SSH_TTY \</span><br><span class="line">SSH_USER_AUTH WINDOWID XAUTHORITY&#x27;</span><br><span class="line">set -g update-environment &quot;NACOS_USERNAME NACOS_PASSWORD&quot;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>接着编写<code>~/.bashrc</code>同步脚本，下面的脚本兼容了自动打开tmux操作。</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Tmux</span></span><br><span class="line"><span class="function"><span class="title">tm</span></span>() &#123;</span><br><span class="line">  <span class="built_in">local</span> SESSION_NAME=<span class="string">&quot;<span class="variable">$&#123;1:-default&#125;</span>&quot;</span></span><br><span class="line">  <span class="built_in">shift</span>  <span class="comment"># 移除第一个参数，保留其他参数</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$1</span>&quot;</span> == <span class="string">&quot;attach&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">    tmux attach -t <span class="string">&quot;<span class="variable">$SESSION_NAME</span>&quot;</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    tmux new-session -AD -s <span class="string">&quot;<span class="variable">$SESSION_NAME</span>&quot;</span> <span class="string">&quot;<span class="variable">$@</span>&quot;</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 同步环境变量到 tmux 全局环境</span></span><br><span class="line"><span class="function"><span class="title">tmux_global_update_var</span></span>() &#123;</span><br><span class="line">  <span class="built_in">local</span> VAR=<span class="string">&quot;<span class="variable">$1</span>&quot;</span></span><br><span class="line">  <span class="built_in">local</span> VALUE=<span class="string">&quot;<span class="variable">$2</span>&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> [[ -z <span class="string">&quot;<span class="variable">$VALUE</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 如果未指定值且当前 shell 中变量未设置，则从 tmux 全局环境中移除</span></span><br><span class="line">    tmux set-environment -gru -- <span class="string">&quot;<span class="variable">$VAR</span>&quot;</span> &amp;&gt;/dev/null</span><br><span class="line">    <span class="built_in">return</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 将当前值设置到 tmux 全局环境</span></span><br><span class="line">  tmux set-environment -g -- <span class="string">&quot;<span class="variable">$VAR</span>&quot;</span> <span class="string">&quot;<span class="variable">$VALUE</span>&quot;</span> &amp;&gt;/dev/null</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从 tmux 全局环境同步变量到当前 shell</span></span><br><span class="line"><span class="function"><span class="title">tmux_shell_update_var</span></span>() &#123;</span><br><span class="line">  <span class="built_in">local</span> VAR=<span class="string">&quot;<span class="variable">$1</span>&quot;</span></span><br><span class="line">  <span class="built_in">local</span> TMUX_OUTPUT</span><br><span class="line">  <span class="built_in">local</span> TMUX_ERROR_CODE</span><br><span class="line"></span><br><span class="line">  TMUX_OUTPUT=$(tmux show-environment -gs -- <span class="string">&quot;<span class="variable">$VAR</span>&quot;</span> 2&gt;/dev/null)</span><br><span class="line">  TMUX_ERROR_CODE=$?</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> [[ <span class="variable">$TMUX_ERROR_CODE</span> -eq 0 ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 使用 eval 执行 tmux 输出的变量赋值（存在注入风险，需谨慎）</span></span><br><span class="line">    <span class="built_in">eval</span> <span class="string">&quot;<span class="variable">$TMUX_OUTPUT</span>&quot;</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="comment"># 变量不存在时清除本地环境</span></span><br><span class="line">    <span class="built_in">unset</span> <span class="string">&quot;<span class="variable">$VAR</span>&quot;</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 主同步函数</span></span><br><span class="line"><span class="function"><span class="title">tmux_update_environment</span></span>() &#123;</span><br><span class="line">  <span class="comment"># 检查 tmux 是否存在</span></span><br><span class="line">  <span class="keyword">if</span> ! <span class="built_in">command</span> -v tmux &amp;&gt;/dev/null; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">return</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 获取需要同步的变量列表（与 tmux.conf 中的 update-environment 一致）</span></span><br><span class="line">  <span class="built_in">local</span> -a VARS</span><br><span class="line">  <span class="built_in">mapfile</span> -t VARS &lt; &lt;(tmux show-options -gv update-environment | <span class="built_in">tr</span> <span class="string">&#x27; &#x27;</span> <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment"># 根据是否在 tmux 会话中选择同步方向</span></span><br><span class="line">  <span class="keyword">if</span> [[ -z <span class="string">&quot;<span class="variable">$TMUX</span>&quot;</span> ]]; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 不在 tmux 中：将当前 shell 的变量同步到 tmux 全局环境</span></span><br><span class="line">    <span class="keyword">for</span> var <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;VARS[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">      tmux_global_update_var <span class="string">&quot;<span class="variable">$var</span>&quot;</span> <span class="string">&quot;<span class="variable">$&#123;!var&#125;</span>&quot;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="comment"># 在 tmux 中：从 tmux 全局环境同步变量到当前 shell</span></span><br><span class="line">    <span class="keyword">for</span> var <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;VARS[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">      tmux_shell_update_var <span class="string">&quot;<span class="variable">$var</span>&quot;</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 绑定到 PROMPT_COMMAND（每次命令执行前触发同步）</span></span><br><span class="line">PROMPT_COMMAND=<span class="string">&quot;tmux_update_environment; <span class="variable">$PROMPT_COMMAND</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">command</span> -v tmux &amp;&gt; /dev/null; <span class="keyword">then</span></span><br><span class="line">    <span class="comment"># 检查是否在SSH连接中（可选）</span></span><br><span class="line">    <span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$SSH_CONNECTION</span>&quot;</span> ] &amp;&amp; [ -z <span class="string">&quot;<span class="variable">$TMUX</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="comment"># 检查是否存在默认会话</span></span><br><span class="line">        <span class="keyword">if</span> tmux has-session -t default 2&gt;/dev/null; <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">exec</span> tmux attach -t default</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">exec</span> tmux new -s default</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-04-13 13:45:50 / 修改时间：14:01:36" itemprop="dateCreated datePublished" datetime="2025-04-13T13:45:50+08:00">2025-04-13</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="ssh登录"><a class="markdownIt-Anchor" href="#ssh登录"></a> ssh登录</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="ssh端口映射"><a class="markdownIt-Anchor" href="#ssh端口映射"></a> ssh端口映射</h1>
-<p>可以用于不保留端口的情况下，远程连接数据库等。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -N -L &lt;local_port&gt;:localhost:&lt;remote_port&gt; &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt; </span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -869,380 +1276,6 @@ Debian官方软件源：官网/mirror/list</li>
 <li>STFW：比百度更高效的办法</li>
 </ul>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Redis使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-27T00:00:00+08:00">2024-10-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-09 20:16:11" itemprop="dateModified" datetime="2025-04-09T20:16:11+08:00">2025-04-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
-<h2 id="general"><a class="markdownIt-Anchor" href="#general"></a> General</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 返回给定模式的keys</span><br><span class="line">KEYS patter</span><br><span class="line">KEYS * # 返回全部</span><br><span class="line">KEYS set* # 返回set开头的keys</span><br><span class="line">EXISTS key</span><br><span class="line">TYPE key</span><br><span class="line">DEL key</span><br></pre></td></tr></table></figure>
-<h2 id="string"><a class="markdownIt-Anchor" href="#string"></a> String</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET key value</span><br><span class="line">GET key</span><br><span class="line"># Set Extend Time</span><br><span class="line">SETEX key seconds value</span><br><span class="line"># Set When Key Not Exist</span><br><span class="line">SETNX key value</span><br></pre></td></tr></table></figure>
-<h2 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HSET key field value</span><br><span class="line">HGET key field</span><br><span class="line">HDEL key field</span><br><span class="line"># Get All Fields</span><br><span class="line">HKEYS key</span><br><span class="line"># Get All Values</span><br><span class="line">HVALS key</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    key[key]</span><br><span class="line">    item[</span><br><span class="line">    field1: value1</span><br><span class="line">    field2: value2</span><br><span class="line">    ]</span><br><span class="line">    key --&gt; item</span><br></pre></td></tr></table></figure>
-<h2 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LPUSH key value1 value2</span><br><span class="line"># Get Key From Start To Stop</span><br><span class="line">LRANGE key start stop</span><br><span class="line"># Right POP</span><br><span class="line">RPOP key</span><br><span class="line"># List Length</span><br><span class="line">LLEN key</span><br></pre></td></tr></table></figure>
-<h3 id="典型场景"><a class="markdownIt-Anchor" href="#典型场景"></a> 典型场景</h3>
-<h4 id="栈"><a class="markdownIt-Anchor" href="#栈"></a> 栈</h4>
-<h4 id="订阅消息"><a class="markdownIt-Anchor" href="#订阅消息"></a> 订阅消息</h4>
-<p>队列，先来后到</p>
-<ul>
-<li>如微信、微博订阅消息</li>
-<li>阻塞队列<code>B&lt;L|R&gt;POP</code>，队列为空就等待</li>
-</ul>
-<h2 id="set"><a class="markdownIt-Anchor" href="#set"></a> Set</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SADD key mem1 mem2</span><br><span class="line">SMEMBERS key</span><br><span class="line"># Set Size</span><br><span class="line">SCARD key</span><br><span class="line">SINTER key1 key2</span><br><span class="line">SUNION key1 key2</span><br><span class="line"># Delete</span><br><span class="line">SREM key mem1 mem2</span><br></pre></td></tr></table></figure>
-<h3 id="典型场景-2"><a class="markdownIt-Anchor" href="#典型场景-2"></a> 典型场景</h3>
-<h4 id="抽奖"><a class="markdownIt-Anchor" href="#抽奖"></a> 抽奖</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SADD lottery &#123;user_id&#125;</span><br><span class="line">SMEMBERS lottery</span><br><span class="line"># 开奖（适用于单个奖品）</span><br><span class="line">SRANDMEMBER lottery &#123;drawing_count&#125;</span><br><span class="line"># 开奖并删除（适用于多项奖品，不重复得奖）</span><br><span class="line">SPOP lottery &#123;drawing_count&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="点赞-收藏-标签"><a class="markdownIt-Anchor" href="#点赞-收藏-标签"></a> 点赞、收藏、标签</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 点赞</span><br><span class="line">SADD like:&#123;msg_id&#125; &#123;user_id&#125;</span><br><span class="line"># 取消</span><br><span class="line">SREM like:&#123;msg_id&#125; &#123;user_id&#125;</span><br><span class="line"># 用户是否点赞</span><br><span class="line">SISMEMBER like:&#123;msg_id&#125; &#123;user_id&#125;</span><br><span class="line"># 点赞用户列表</span><br><span class="line">SMEMBERS like:&#123;msg_id&#125;</span><br><span class="line"># 点赞用户数</span><br><span class="line">SCARD like:&#123;msg_id&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="关注-商品筛选"><a class="markdownIt-Anchor" href="#关注-商品筛选"></a> 关注、商品筛选</h4>
-<p>利用集合特性运算</p>
-<ul>
-<li>如共同关注、推荐关注</li>
-<li>商品筛选</li>
-</ul>
-<h2 id="sorted-set-zset"><a class="markdownIt-Anchor" href="#sorted-set-zset"></a> Sorted Set / ZSet</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ZADD key score1 mem1 score2 mem2</span><br><span class="line"># Show List</span><br><span class="line">ZRANGE key start stop (WITHSCORES)</span><br><span class="line"># Increse Member</span><br><span class="line">ZINCRBY key increment member</span><br><span class="line">ZREM key mem1 mem2</span><br></pre></td></tr></table></figure>
-<h3 id="典型场景-3"><a class="markdownIt-Anchor" href="#典型场景-3"></a> 典型场景</h3>
-<h4 id="日月年热点排行榜"><a class="markdownIt-Anchor" href="#日月年热点排行榜"></a> 日/月/年热点排行榜</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 记录浏览量</span><br><span class="line">ZINCRBY hotNews:&#123;date&#125; 1 &#123;news_id&#125;</span><br><span class="line"># Top 10</span><br><span class="line">ZREVRANGE hotNews:&#123;date&#125; 0 9 WITHSCORES</span><br><span class="line"># Recent 7 days</span><br><span class="line">ZUNIONSTORE hotNews:&#123;start_date&#125;-&#123;end_date&#125; 0 9 WITHSCORES</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Maven使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-16T00:00:00+08:00">2025-01-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-23 15:32:12" itemprop="dateModified" datetime="2025-03-23T15:32:12+08:00">2025-03-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="微服务"><a class="markdownIt-Anchor" href="#微服务"></a> 微服务</h1>
-<p>非单体项目，可以用下面的脚本启动微服务。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取服务名称和额外参数</span></span><br><span class="line">SERVICE_NAME=$1</span><br><span class="line">shift  # 移除第一个参数（服务名），将剩余参数保存到 $@</span><br><span class="line">EXTRA_ARGS=&quot;$@&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否输入服务名称</span></span><br><span class="line">if [ -z &quot;$SERVICE_NAME&quot; ]; then</span><br><span class="line">  echo &quot;Usage: ./run.sh &lt;servicename|all&gt; [additional_maven_args]&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">定义运行单个服务的函数</span></span><br><span class="line">run_service() &#123;</span><br><span class="line">  local service=$1</span><br><span class="line">  local args=$2</span><br><span class="line">  echo &quot;Building and running $service with args: $args...&quot;</span><br><span class="line">  mvn clean install -pl $service -am</span><br><span class="line">  if [ &quot;$service&quot; == &quot;gateway/&quot; ]; then</span><br><span class="line">    echo &quot;Gateway starting...&quot;</span><br><span class="line">    mvn spring-boot:run -pl $service -Dreactor.netty.http.server.accessLogEnabled=true $args</span><br><span class="line">  else</span><br><span class="line">    mvn spring-boot:run -pl $service $args</span><br><span class="line">  fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果输入 <span class="string">&quot;all&quot;</span>，运行所有服务（默认不传参）</span></span><br><span class="line">if [ &quot;$SERVICE_NAME&quot; == &quot;all&quot; ]; then</span><br><span class="line">  echo &quot;Building and running all services...&quot;</span><br><span class="line">  mvn clean install -pl &quot;!generator&quot;</span><br><span class="line">  for module in $(mvn help:evaluate -Dexpression=project.modules -q -DforceStdout | sed -e &#x27;s/&lt;[^&gt;]*&gt;//g&#x27; -e &#x27;s/\s*//g&#x27; | tr &#x27;,&#x27; &#x27;\n&#x27;); do</span><br><span class="line">    if [ &quot;$module&quot; != &quot;generator&quot; ]; then</span><br><span class="line">      echo &quot;Running $module...&quot;</span><br><span class="line">      mvn spring-boot:run -pl $module</span><br><span class="line">    fi</span><br><span class="line">  done</span><br><span class="line">else</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">运行指定的单个服务，并传递额外参数</span></span><br><span class="line">  run_service $SERVICE_NAME &quot;$EXTRA_ARGS&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p>核心命令是这一条：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn spring-boot:run -pl $your_service</span><br></pre></td></tr></table></figure>
-<p>想要增加JVM参数，指定端口可以加上</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-Dspring-boot.run.arguments=--server.port=$your_port</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">算法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-20 08:47:06" itemprop="dateModified" datetime="2025-03-20T08:47:06+08:00">2025-03-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ul>
-<li><strong>复杂度分析</strong>：数据结构和算法的评价维度与方法。时间复杂度、空间复杂度的推算方法、常见类型、示例等。</li>
-<li><strong>数据结构</strong>：基本数据类型，数据结构的分类方法。数组、链表、栈、队列、哈希表、树、堆、图等数据结构的定义、优缺点、常用操作、常见类型、典型应用、实现方法等。</li>
-<li><strong>算法</strong>：搜索、排序、分治、回溯、动态规划、贪心等算法的定义、优缺点、效率、应用场景、解题步骤、示例题目等。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">蓝桥杯 错题本</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-03-19 00:00:00 / 修改时间：18:48:35" itemprop="dateCreated datePublished" datetime="2025-03-19T00:00:00+08:00">2025-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="3513-岛屿个数"><a class="markdownIt-Anchor" href="#3513-岛屿个数"></a> 3513 岛屿个数</h1>
-<p>#外岛数量 #bfs</p>
-<h2 id="杰克船长算法"><a class="markdownIt-Anchor" href="#杰克船长算法"></a> 杰克船长算法</h2>
-<blockquote>
-<p>杰克船长在公海上游荡，每发现一处岛屿，他就会绕着岛走一圈，并把这个岛标记到地图上。</p>
-</blockquote>
-<p>这个问题的解决方法就在这里：我们<strong>一定</strong>要有一片完全连通的公海，只有在公海上遇到岛屿，才标记岛屿数量；绝不踏入内海。</p>
-<p>可是测试用例是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5 5</span><br><span class="line">01111</span><br><span class="line">11001</span><br><span class="line">10101</span><br><span class="line">10001</span><br><span class="line">11111</span><br></pre></td></tr></table></figure>
-<p>这个测试用例，只有<code>(0, 0)</code>是公海，怎么办呢？<br />
-我们用一圈公海把测试用例包围起来：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">processInput</span><span class="params">(Scanner sc)</span> &#123;</span><br><span class="line">    M = sc.nextInt();</span><br><span class="line">    N = sc.nextInt();</span><br><span class="line">    sc.nextLine();</span><br><span class="line">    map = <span class="keyword">new</span> <span class="title class_">int</span>[M + <span class="number">2</span>][N + <span class="number">2</span>]; <span class="comment">// 注意+2，多一圈&#x27;0&#x27;表示公海</span></span><br><span class="line">    visitedSea = <span class="keyword">new</span> <span class="title class_">boolean</span>[M + <span class="number">2</span>][N + <span class="number">2</span>];</span><br><span class="line">    visitedIsland = <span class="keyword">new</span> <span class="title class_">boolean</span>[M + <span class="number">2</span>][N + <span class="number">2</span>];</span><br><span class="line">    cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">1</span>; x &lt;= M; x += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> sc.nextLine();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> <span class="number">1</span>; y &lt;= N; y += <span class="number">1</span>) &#123;</span><br><span class="line">            map[x][y] = line.charAt(y - <span class="number">1</span>) - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
