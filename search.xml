@@ -7285,4 +7285,24 @@ Mybatis目前不支持Native-Image</p>
         <tag>基本操作</tag>
       </tags>
   </entry>
+  <entry>
+    <title>pandoc使用</title>
+    <url>/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/pandoc%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h1 id="文本格式转换"><a class="markdownIt-Anchor" href="#文本格式转换"></a> 文本格式转换</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pandoc --from markdown --to docx source.md -o dest.docx</span><br><span class="line">pandoc -f markdown source.md -t docx -o dest.docx</span><br><span class="line">pandoc source.md -o dest.docx --ignore-args # 忽略参数</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意</strong>：为了最佳转换效果，markdown文件每行后都要空行</p>
+</blockquote>
+<h1 id="md2epub"><a class="markdownIt-Anchor" href="#md2epub"></a> md2epub</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">首先把所有的md文件列出来</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 递归查找所有 .md 文件（排除 README.md 和 SUMMARY.md）</span></span></span><br><span class="line">find . -name &quot;*.md&quot; ! -name &quot;README.md&quot; ! -name &quot;SUMMARY.md&quot; | sort &gt; filelist.txt</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 然后编辑 `filelist.txt`，确保文件顺序正确（例如按 `SUMMARY.md` 的目录结构排序）。</span></span></span><br><span class="line"></span><br><span class="line">pandoc --standalone --toc \</span><br><span class="line">--metadata title=&quot;MIT6.824 分布式系统&quot; \</span><br><span class="line">--metadata author=&quot;Robert Morris&quot; \</span><br><span class="line">-o output.epub $(cat filelist.txt) </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意</strong>：对于gitbook，pandoc可能不能正确处理路径，推荐使用honkit。</p>
+</blockquote>
+<h2 id="honkit"><a class="markdownIt-Anchor" href="#honkit"></a> honkit</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// book.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MIT6.824 分布式系统&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Robert Morris&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;hints&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;pluginsConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;hints&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;info&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fa fa-info-circle&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;warning&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fa fa-exclamation-triangle&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装honkit</span></span><br><span class="line">npm install honkit --save-dev</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">需要calibre转换</span></span><br><span class="line">ebook-convert --version</span><br><span class="line"></span><br><span class="line">npm init -y</span><br><span class="line">npx honkit epub ./ ./mybook.epub</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>基本操作</tag>
+      </tags>
+  </entry>
 </search>
