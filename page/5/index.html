@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,192 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">SpringBoot笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-21 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-21T00:00:00+08:00">2024-12-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-04 10:49:41" itemprop="dateModified" datetime="2025-01-04T10:49:41+08:00">2025-01-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="applicationproperties"><a class="markdownIt-Anchor" href="#applicationproperties"></a> application.properties</h1>
+<h2 id="property形式"><a class="markdownIt-Anchor" href="#property形式"></a> Property形式</h2>
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">server.port</span>=<span class="string">80 // 端口号</span></span><br><span class="line"><span class="attr">aruge.arugement</span>=<span class="string">value</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value(&quot;&#123;argue.argument&#125;&quot;)</span></span><br><span class="line">String argu;</span><br></pre></td></tr></table></figure>
+<h2 id="yaml形式"><a class="markdownIt-Anchor" href="#yaml形式"></a> YAML形式</h2>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">datasource:</span></span><br><span class="line">        <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/db_name</span></span><br><span class="line">        <span class="attr">username:</span></span><br><span class="line">        <span class="attr">password:</span></span><br><span class="line">        <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.Driver</span></span><br><span class="line">    <span class="attr">mvc:</span></span><br><span class="line">        <span class="attr">static-path-pattern:</span> <span class="string">/static/**</span></span><br><span class="line">    <span class="attr">security:</span></span><br><span class="line">        <span class="attr">filter:</span></span><br><span class="line">            <span class="attr">order:</span> <span class="number">-100</span> <span class="comment"># Spring Security Filter 优先级</span></span><br><span class="line">        <span class="attr">user:</span></span><br><span class="line">            <span class="attr">name:</span> <span class="string">&#x27;admin&#x27;</span></span><br><span class="line">            <span class="attr">password:</span> <span class="string">&#x27;Abc123.&#x27;</span></span><br><span class="line">            <span class="attr">roles:</span></span><br><span class="line">                <span class="bullet">-</span> <span class="string">admin</span></span><br><span class="line">                <span class="bullet">-</span> <span class="string">user</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/Spring%20Framework/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/Spring%20Framework/" class="post-title-link" itemprop="url">Spring Framework</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-11 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-11T00:00:00+08:00">2024-08-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-04 10:49:33" itemprop="dateModified" datetime="2025-01-04T10:49:33+08:00">2025-01-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>所有的Java云平台都能够使用基于JAR的打包方式，WAR文件只在一些云平台上能够运行。</p>
+</blockquote>
+<h1 id="pomxml-更换-maven-源"><a class="markdownIt-Anchor" href="#pomxml-更换-maven-源"></a> Pom.xml 更换 Maven 源</h1>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.quoters<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>quoters-incorporated<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>quoters-incorporated<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">description</span>&gt;</span>REST service to support the guides<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">developers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">developer</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>gturnquist<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>Greg Turnquist<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">email</span>&gt;</span>gturnquist at vmware.com<span class="tag">&lt;/<span class="name">email</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">organization</span>&gt;</span>VMware, Inc.<span class="tag">&lt;/<span class="name">organization</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">roles</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">role</span>&gt;</span>Project Lead<span class="tag">&lt;/<span class="name">role</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">roles</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">developer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">developers</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">organization</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>VMware, Inc.<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://spring.io<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">organization</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">licenses</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">license</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">name</span>&gt;</span>Apache License, Version 2.0<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://www.apache.org/licenses/LICENSE-2.0<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">comments</span>&gt;</span></span><br><span class="line">                Copyright 2011 the original author or authors.</span><br><span class="line"></span><br><span class="line">                Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span><br><span class="line">                you may not use this file except in compliance with the License.</span><br><span class="line">                You may obtain a copy of the License at</span><br><span class="line"></span><br><span class="line">                https://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line"></span><br><span class="line">                Unless required by applicable law or agreed to in writing, software</span><br><span class="line">                distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line">                WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or</span><br><span class="line">                implied.</span><br><span class="line">                See the License for the specific language governing permissions and</span><br><span class="line">                limitations under the License.</span><br><span class="line">            <span class="tag">&lt;/<span class="name">comments</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">license</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">licenses</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.h2database<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>h2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 配置阿里云仓库 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun-repos<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">releases</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyun-repos<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">releases</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="tight-coupling-紧耦合"><a class="markdownIt-Anchor" href="#tight-coupling-紧耦合"></a> Tight Coupling 紧耦合</h1>
+<p>在Spring框架以前，使用排序算法需要将算法实例化</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line">  <span class="type">SortAlgorithm</span> <span class="variable">sortAlgorithm</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BubbleSortAlgorithm</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BubbleSortAlgorithm</span> <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Good code has loose coupling.</p>
+</blockquote>
+<p>移除依赖项的实例化可以移除紧耦合</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ComplexBusinessService</span> &#123;</span><br><span class="line">  SortAlgorithm sortAlgorithm; <span class="comment">// = new BubbleSortAlgorithm();</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">public</span> <span class="title function_">ComplexBusinessService</span><span class="params">(SortAlgorithm sortAlgorithm)</span> &#123; <span class="comment">// 创建构造函数</span></span><br><span class="line">      <span class="built_in">this</span>.sortAlgorithm = sortAlgorithm;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> classBubbleSortAlgorithm <span class="keyword">implements</span> <span class="title class_">SortAlgorithm</span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Spring Framework instantiates objects and populates the dependencies.</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/Spring%20Framework/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1071,180 +1257,8 @@ quit     退出
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Windows%20scripts%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Windows%20scripts%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Windows scripts使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-07-16 00:00:00 / 修改时间：16:45:20" itemprop="dateCreated datePublished" datetime="2024-07-16T00:00:00+08:00">2024-07-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="task-scheduler"><a class="markdownIt-Anchor" href="#task-scheduler"></a> Task Scheduler</h1>
-<p>WIN+R, <code>taskschd.msc</code><br />
-在这里可以设置定时任务、登录任务。<br />
-有些软件的开机自启动就设置在这里。比起组策略有更多的可选项（延迟启动，网络和电源要求等）</p>
-<h1 id="group-policy-editor"><a class="markdownIt-Anchor" href="#group-policy-editor"></a> Group Policy Editor</h1>
-<p>WIN+R, <code>gpedit.msc</code><br />
-在这里可以设置一些开关机时执行的任务</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Computer Configuration -&gt; Windows settings -&gt; Scripts -&gt; Shutdown -&gt; Properties -&gt; Add</span><br></pre></td></tr></table></figure>
-<h1 id="静默运行脚本"><a class="markdownIt-Anchor" href="#静默运行脚本"></a> 静默运行脚本</h1>
-<p>Task Scheduler没有办法隐藏窗口<br />
-在Task Scheduler运行该vbs脚本，目标脚本路径作为参数即可实现静默运行。</p>
-<figure class="highlight vbs"><table><tr><td class="code"><pre><span class="line"><span class="comment">&#x27; minRun.vbs</span></span><br><span class="line"><span class="comment">&#x27; Run minRun.vbs Task Scheduler在可选参数提供实际脚本地址</span></span><br><span class="line"><span class="comment">&#x27; 检查是否提供了批处理文件路径参数</span></span><br><span class="line"><span class="keyword">If</span> WScript.Arguments.Count = <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">    WScript.Echo <span class="string">&quot;Error: No batch file path provided.&quot;</span></span><br><span class="line">    WScript.Quit <span class="number">1</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 获取批处理文件路径参数</span></span><br><span class="line"><span class="keyword">Dim</span> batchFilePath</span><br><span class="line">batchFilePath = WScript.Arguments(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 检查批处理文件是否存在</span></span><br><span class="line"><span class="keyword">If</span> <span class="keyword">Not</span> FileExists(batchFilePath) <span class="keyword">Then</span></span><br><span class="line">    WScript.Echo <span class="string">&quot;Error: Batch file not found at &quot;</span> &amp; batchFilePath</span><br><span class="line">    WScript.Quit <span class="number">1</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 创建 WScript.Shell 对象</span></span><br><span class="line"><span class="keyword">Set</span> oShell = <span class="built_in">CreateObject</span>(<span class="string">&quot;Wscript.Shell&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 执行批处理文件</span></span><br><span class="line"><span class="comment">&#x27; 使用 0 表示不等待批处理文件执行完成</span></span><br><span class="line"><span class="comment">&#x27; 使用 True 表示以同步方式运行（等待批处理执行完成）</span></span><br><span class="line">oShell.Run batchFilePath, <span class="number">0</span>, <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 清理</span></span><br><span class="line"><span class="keyword">Set</span> oShell = <span class="literal">Nothing</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 检查文件是否存在的辅助函数</span></span><br><span class="line"><span class="keyword">Function</span> FileExists(filePath)</span><br><span class="line">    <span class="keyword">Dim</span> fso</span><br><span class="line">    <span class="keyword">Set</span> fso = <span class="built_in">CreateObject</span>(<span class="string">&quot;Scripting.FileSystemObject&quot;</span>)</span><br><span class="line">    FileExists = fso.FileExists(filePath)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Matlab%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Matlab%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Matlab使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-26 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-26T00:00:00+08:00">2023-11-26</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-07-09 10:49:01" itemprop="dateModified" datetime="2024-07-09T10:49:01+08:00">2024-07-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="10-编辑"><a class="markdownIt-Anchor" href="#10-编辑"></a> 1.0 编辑</h1>
-<pre><code>% 表示注释
-; 表示不显示结果，只执行语句
-clear 清除内存变量
-clc 清除全部
-pretty 用分式表示公式
-simplify 化简命令
-exp(x) 指数, e^x
-log2(x) 以2为底数的对数
-</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Matlab%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/6/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/6/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

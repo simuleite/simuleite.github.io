@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,110 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">mysql使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-27T00:00:00+08:00">2024-07-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-13 13:45:37" itemprop="dateModified" datetime="2025-04-13T13:45:37+08:00">2025-04-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h1>
+<h2 id="原子性-atomicity"><a class="markdownIt-Anchor" href="#原子性-atomicity"></a> 原子性 Atomicity</h2>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">BUSINESS</span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">1</span></span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">2</span></span><br><span class="line"><span class="keyword">COMMIT</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>原子性：事务操作要么同时发生，要么同时失败，不存在中间情况</p>
+</blockquote>
+<p>通过Undo Log回滚实现</p>
+<h2 id="一致性-consistency"><a class="markdownIt-Anchor" href="#一致性-consistency"></a> 一致性 Consistency</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">账户500元 -&gt; 扣除1000元 -&gt; 账户-500元</span><br><span class="line">-- 非法操作</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一致性：每个操作都必须是合法的，账户信息应该从一个有效状态到另一个有效状态。</p>
+</blockquote>
+<h2 id="隔离性-isolation"><a class="markdownIt-Anchor" href="#隔离性-isolation"></a> 隔离性 Isolation</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">商户1转账500元 -&gt; 余额更新为500元</span><br><span class="line">商户2转账500元 -&gt; 余额更新为500元</span><br><span class="line">-- 没有隔离性</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>隔离性：两个操作对同一个账户并发操作时，应该表现为不相互影响类似串行的操作。</p>
+</blockquote>
+<h2 id="持久性-durability"><a class="markdownIt-Anchor" href="#持久性-durability"></a> 持久性 Durability</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">转账500元到余额 --服务器宕机--&gt; 余额0元</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>持久性：操作更新成功后，更新的结果应该永久地保留下来，不会因为宕机等问题而丢失。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -379,6 +483,166 @@
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">JUC并发编程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-22 00:00:00" itemprop="dateCreated datePublished" datetime="2025-03-22T00:00:00+08:00">2025-03-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-25 20:12:16" itemprop="dateModified" datetime="2025-03-25T20:12:16+08:00">2025-03-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="java多线程"><a class="markdownIt-Anchor" href="#java多线程"></a> Java多线程</h1>
+<p>回顾：操作系统的<a href="obsidian://open?vault=Obsidian%20Vault&amp;file=ComputerScience%2F%E7%9F%A5%E8%AF%86%2FOS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">进程</a>概念。进程的问题：上下文切换开销。为了解决这个问题，出现了线程。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> (() -&gt; &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    System.out.pirntln(<span class="string">&quot;Sub Thread&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">thread.start();</span><br><span class="line">System.out.println(<span class="string">&quot;Main Thread&quot;</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Main Thread # 主线程先输出结果，说明两个线程同时运行！</span><br><span class="line">Sub Thread</span><br></pre></td></tr></table></figure>
+<h2 id="线程优先级"><a class="markdownIt-Anchor" href="#线程优先级"></a> 线程优先级</h2>
+<p>Java使用抢占式调度，有以下三种优先级</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MIN_PRIORITY</span><br><span class="line">MAX_PRIORITY</span><br><span class="line">NOM_PRIORITY</span><br></pre></td></tr></table></figure>
+<h2 id="线程同步"><a class="markdownIt-Anchor" href="#线程同步"></a> 线程同步</h2>
+<p>共享内存会出现缓存一致性问题，因此需要<strong>线程锁</strong>机制保证数据安全性（原子性）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> <span class="comment">// 悲观锁</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">synchronized</span> (Class.class / <span class="built_in">this</span>) &#123; ... &#125; <span class="comment">// 类锁</span></span><br><span class="line"><span class="keyword">synchronized</span> (<span class="keyword">new</span> <span class="title class_">Class</span>() / instanceOfClass) &#123; ... &#125; <span class="comment">// 实例锁</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">operation</span><span class="params">()</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="锁"><a class="markdownIt-Anchor" href="#锁"></a> 锁</h1>
+<p><code>synchronized</code>使用的锁存储在Java对象头中。</p>
+<h3 id="重量级锁"><a class="markdownIt-Anchor" href="#重量级锁"></a> 重量级锁</h3>
+<p>JDK6以前，<code>synchronized</code>被称为重量级锁。因为Java的线程是映射在OS原生线程上，上下文切换成本高；直到JDK6以后才优化了锁的实现。<br />
+简单来说，每个等待锁都会被封装成ObjectWaiter对象，分为三个区域</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">direction: right</span><br><span class="line">Entry Set -&gt; The Owner</span><br><span class="line">The Owner &lt;-&gt; Wait Set</span><br></pre></td></tr></table></figure>
+<p>Entry Set会排队，直到它成为The Owner，享有资源。当The Owner调用<code>wait()</code>方法，就会挂起进入Wait Set，直到<code>wait()</code>所等待的操作完成。<br />
+但是每个线程占用同步代码块的时间并不长，完全不需要挂起又唤醒。<br />
+因此，可以使用<strong>自旋锁</strong></p>
+<h3 id="自旋锁"><a class="markdownIt-Anchor" href="#自旋锁"></a> 自旋锁</h3>
+<p>调用<code>wait()</code>，自旋锁并不是被挂起，而是无限循环是否能够获取锁；当等待时间太长，会恢复重量锁机制。<br />
+JDK6以后，自旋时间是动态变化的。如果某个线程经常自旋失败，它会直接使用重量级锁；反之，则会延长自旋时间。</p>
+<h2 id="轻量级锁"><a class="markdownIt-Anchor" href="#轻量级锁"></a> 轻量级锁</h2>
+<p>JDK6后，为了减少获得和释放锁的消耗，引入了轻量级锁。<br />
+轻量级锁的设计目标是，在无竞争状态下减少重量级锁带来的性能消耗（切换内核态、线程阻塞引发线程切换）。</p>
+<blockquote>
+<p>如果只有一个线程占用资源，那就不要加锁、解锁。<br />
+轻量级锁需要向系统申请互斥量。</p>
+</blockquote>
+<h3 id="cas算法"><a class="markdownIt-Anchor" href="#cas算法"></a> CAS算法</h3>
+<p>Compare and Swap<br />
+CAS算法不是加锁，而是通过比较来判断对象是否已被修改，如果没有直接替换；如果被修改，那么修改失败。</p>
+<p>轻量级锁就是使用CAS算法，如果CAS失败，那么进入重量级锁状态。</p>
+<h2 id="偏向锁"><a class="markdownIt-Anchor" href="#偏向锁"></a> 偏向锁</h2>
+<p>Biased Locking<br />
+<code>-XX:UserBiasLock</code><br />
+当只有一个线程反复访问同步代码块，JVM直接让该线程获取锁，避免不必要的不同步操作。<br />
+根据对象头底层数据结构，如果对象调用过<code>hashCode()</code>通过哈希值来检查一致性，那么对象头就没有空间存放ThreadId了（JVM通过这个id判断是否频繁访问），此时该线程只能使用轻量级锁。</p>
+<h2 id="锁消除和锁粗化"><a class="markdownIt-Anchor" href="#锁消除和锁粗化"></a> 锁消除和锁粗化</h2>
+<p>如果在运行过程中，根本没有出现资源竞争，那就会直接把锁消除掉。<br />
+如果某个资源频繁地开锁解锁（比如在循环内部<code>synchronized</code>），JVM会把锁的范围放大，避免加锁解锁的开销。</p>
+<h1 id="java-memory-model"><a class="markdownIt-Anchor" href="#java-memory-model"></a> Java Memory Model</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Java Thread 1 &lt;-&gt; Working Memory 1 &lt;-&gt; Save/Load Operation </span><br><span class="line">Java Thread 2 &lt;-&gt; Working Memory 2 &lt;-&gt; Save/Load Operation </span><br><span class="line">Java Thread 3 &lt;-&gt; Working Memory 3 &lt;-&gt; Save/Load Operation </span><br><span class="line">Save/Load Operation &lt;-&gt; Main Memory</span><br></pre></td></tr></table></figure>
+<p>JMM内存模型中有以下规定：</p>
+<ol>
+<li>所有变量存储在主内存</li>
+<li>每条线程有自己的工作内存，不能直接操作主内存</li>
+<li>不同线程间互相隔离，要传递内容，必须通过主内存</li>
+</ol>
+<h1 id="volatile"><a class="markdownIt-Anchor" href="#volatile"></a> volatile</h1>
+<p><code>volatile</code>的最大作用是保证变量<strong>可见性</strong>，即发生修改后强制刷新到主内存中，使其他线程的缓存失效；相当于通知了其他线程要更新变量为最新版本。<br />
+注意，<code>volatile</code>不能保证原子性。</p>
+<h1 id="lockcondition"><a class="markdownIt-Anchor" href="#lockcondition"></a> Lock&amp;Condition</h1>
+<p>Lock用法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Lock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>(); <span class="comment">// 可重入锁</span></span><br><span class="line"><span class="type">Runnable</span> <span class="variable">action</span> <span class="operator">=</span> () -&gt; &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">100000</span>; i += <span class="number">1</span>) &#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        i += <span class="number">1</span>; <span class="comment">// 保证同一时刻只有一个线程操作i</span></span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(action).start();</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(action).start();</span><br></pre></td></tr></table></figure>
+<p>Condition用法：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Condition</span> <span class="variable">cond</span> <span class="operator">=</span> lock.newCondition();</span><br><span class="line"></span><br><span class="line"><span class="type">Thread</span> <span class="variable">thread1</span> <span class="operator">=</span> () -&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">    cond.await(); <span class="comment">// 等待</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">Thread</span> <span class="variable">thread2</span> <span class="operator">=</span> () -&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">    cond.signal(); <span class="comment">// 唤醒await线程</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(thread1).start();</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(thread2).start();</span><br></pre></td></tr></table></figure>
+<h2 id="leetcode-1114-顺序打印123"><a class="markdownIt-Anchor" href="#leetcode-1114-顺序打印123"></a> LeetCode 1114 顺序打印123</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Foo</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">Lock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">Condition</span> <span class="variable">cond1</span> <span class="operator">=</span> lock.newCondition();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">Condition</span> <span class="variable">cond2</span> <span class="operator">=</span> lock.newCondition();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="type">int</span> <span class="variable">state</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Foo</span><span class="params">()</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">first</span><span class="params">(Runnable printFirst)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// printFirst.run() outputs &quot;first&quot;. Do not change or remove this line.</span></span><br><span class="line">            printFirst.run();</span><br><span class="line">            state = <span class="number">1</span>;</span><br><span class="line">            cond1.signal();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">second</span><span class="params">(Runnable printSecond)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (state != <span class="number">1</span>) &#123;</span><br><span class="line">                cond1.await();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// printSecond.run() outputs &quot;second&quot;. Do not change or remove this line.</span></span><br><span class="line">            printSecond.run();</span><br><span class="line">            state = <span class="number">2</span>;</span><br><span class="line">            cond2.signal();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">third</span><span class="params">(Runnable printThird)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (state != <span class="number">2</span>) &#123;</span><br><span class="line">                cond2.await();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// printThird.run() outputs &quot;third&quot;. Do not change or remove this line.</span></span><br><span class="line">            printThird.run();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="可重入锁"><a class="markdownIt-Anchor" href="#可重入锁"></a> 可重入锁</h2>
+<p>Re-entrant-Lock<br />
+这种锁可以多次加锁，同时也要多次解锁才算真的解锁了。</p>
+<blockquote>
+<p>可重入锁是一种排他锁，其他线程必须等锁释放了才可以获取到锁。</p>
+</blockquote>
+<h3 id="公平锁与非公平锁"><a class="markdownIt-Anchor" href="#公平锁与非公平锁"></a> 公平锁与非公平锁</h3>
+<ul>
+<li>公平锁：按照申请锁的时间去获得锁，会进入队列排队</li>
+<li>非公平：抢占式获取锁</li>
+</ul>
+<h2 id="读写锁"><a class="markdownIt-Anchor" href="#读写锁"></a> 读写锁</h2>
+<blockquote>
+<p>读写锁在同一时刻，可以让多个线程获取到锁。</p>
+</blockquote>
+<ul>
+<li>读锁：没有线程占用<strong>写锁</strong>的情况下，同一时间可以有多个线程加读锁。</li>
+<li>写锁：没有线程占用<strong>读锁</strong>的情况下，只有一个线程可以加写锁。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Lock</span> <span class="variable">reEntLock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLockReadWriteLock</span>();</span><br><span class="line">reEntLock.readLock().lock();</span><br><span class="line">reEntLock.writeLock().lock();</span><br></pre></td></tr></table></figure>
+<h2 id="锁降级-锁升级"><a class="markdownIt-Anchor" href="#锁降级-锁升级"></a> 锁降级、锁升级</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">reEntLock.writeLock().lock();</span><br><span class="line"><span class="comment">// 先加写锁，后加读锁，降级</span></span><br><span class="line">reEntLock.readLock().lock();</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">// 然后释放写锁，只留下读锁，锁降级</span></span><br><span class="line">reEntLock.writeLock().unlock();</span><br></pre></td></tr></table></figure>
+<h2 id="aqs实现"><a class="markdownIt-Anchor" href="#aqs实现"></a> AQS实现</h2>
+<p>Abstract Queued Synchronizer<br />
+在AQS中，一个线程获取锁后，其他线程进入等待队列。<br />
+等待队列由双向链表实现。</p>
+
       
     </div>
 
@@ -1008,192 +1272,8 @@ Hierarchy: 层次结构，大的子系统由多个小的子系统组织成。即
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%BD%91%E7%BB%9C%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%9E%E6%8E%A5%E7%9A%84/" class="post-title-link" itemprop="url">网络是怎样连接的</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-07-25 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-25T00:00:00+08:00">2024-07-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 13:57:06" itemprop="dateModified" datetime="2025-03-15T13:57:06+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="web浏览器"><a class="markdownIt-Anchor" href="#web浏览器"></a> Web浏览器</h1>
-<p>网址就是请求服务器上对应的文件<br />
-DNS从顶级域名开始根据网址查IP。DNS服务器通过缓存查过的IP来加快服务响应（缓存拥有有效期）。<br />
-浏览器调用Socket库建立连接管道</p>
-<h1 id="tcpip协议栈"><a class="markdownIt-Anchor" href="#tcpip协议栈"></a> TCP/IP协议栈</h1>
-<p>应用将数据分割为许多个网络包，TCP加上头部发送出去。需要发送的信息会缓存起来，<strong>超出计时时间</strong>或者<strong>数据量大于一个包大小</strong>时才发出去。<br />
-TCP需要确认对方收到数据，但是为了不浪费时间，实际上TCP在等待确认信息的过程中也在发送包，这个方法称为<strong>滑动窗口</strong>。<br />
-为了使接收方有足够的时间处理数据，接收方有一个接收缓存，当缓存满了会在TCP头部中通知发送方；处理完成，缓冲区有空余时也会通过TCP头部通知发送方。<br />
-通信完成后，发送方会保留套接字一段时间，以防对方的FINISH信号发送有延迟，把新的相同端口的套接字错误删除。</p>
-<p>用电信号传输数据时，用高电平表示1，低电平表示0.为了防止连续的低电平读不出来，会有一条时钟信号（固定切换高低电平）<br />
-ICMP：定义各种消息，如超时、无法到达、超出转发能力</p>
-<p>UDP在发送的数据少于一个包（重发也只需要发一个包，代价小，如DNS查询控制信息）、发送的数据具有时效性（如音视频，必须快速发送，即使重发也没有意义）的情况下使用。UDP只负责收发数据，对方没收到就全部重发一遍。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB/" class="post-title-link" itemprop="url">前后端分离</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-12-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-27T00:00:00+08:00">2024-12-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 13:56:55" itemprop="dateModified" datetime="2025-03-15T13:56:55+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="10-session"><a class="markdownIt-Anchor" href="#10-session"></a> 1.0 Session</h1>
-<p>有状态：用户请求接口 -&gt; <strong>从Session中读取用户信息</strong> -&gt; 根据当前的用户来处理业务 -&gt; 返回</p>
-<p>缺点：<strong>不支持分布式</strong></p>
-<h1 id="20-token"><a class="markdownIt-Anchor" href="#20-token"></a> 2.0 Token</h1>
-<p>无状态：用户携带Token请求接口 -&gt; <strong>从请求中获取用户信息</strong> -&gt; 根据当前的用户来处理业务 -&gt; 返回</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.auth0<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>java-jwt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>工具类</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JwtUtils</span> &#123;</span><br><span class="line">      <span class="comment">//Jwt秘钥</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">key</span> <span class="operator">=</span> <span class="string">&quot;abcdefghijklmn&quot;</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 根据用户信息创建Jwt令牌</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> String <span class="title function_">createJwt</span><span class="params">(UserDetails user)</span>&#123;</span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(key);</span><br><span class="line">        <span class="type">Calendar</span> <span class="variable">calendar</span> <span class="operator">=</span> Calendar.getInstance();</span><br><span class="line">        <span class="type">Date</span> <span class="variable">now</span> <span class="operator">=</span> calendar.getTime();</span><br><span class="line">        calendar.add(Calendar.SECOND, <span class="number">3600</span> * <span class="number">24</span> * <span class="number">7</span>);</span><br><span class="line">        <span class="keyword">return</span> JWT.create()</span><br><span class="line">                .withClaim(<span class="string">&quot;name&quot;</span>, user.getUsername())  <span class="comment">// 配置JWT自定义信息</span></span><br><span class="line">                .withClaim(<span class="string">&quot;authorities&quot;</span>, user.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())</span><br><span class="line">                .withExpiresAt(calendar.getTime())  <span class="comment">// 设置过期时间</span></span><br><span class="line">                .withIssuedAt(now)    <span class="comment">// 设置创建创建时间</span></span><br><span class="line">                .sign(algorithm);   <span class="comment">// 最终签名</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 根据Jwt验证并解析用户信息</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> UserDetails <span class="title function_">resolveJwt</span><span class="params">(String token)</span>&#123;</span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(key);</span><br><span class="line">        <span class="type">JWTVerifier</span> <span class="variable">jwtVerifier</span> <span class="operator">=</span> JWT.require(algorithm).build();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">DecodedJWT</span> <span class="variable">verify</span> <span class="operator">=</span> jwtVerifier.verify(token);  <span class="comment">// 对JWT令牌进行验证，看看是否被修改</span></span><br><span class="line">            Map&lt;String, Claim&gt; claims = verify.getClaims();  <span class="comment">// 获取令牌中内容</span></span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">new</span> <span class="title class_">Date</span>().after(claims.get(<span class="string">&quot;exp&quot;</span>).asDate())) <span class="comment">// 如果是过期令牌则返回null</span></span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                  <span class="comment">// 重新组装为UserDetails对象，包括用户名、授权信息等</span></span><br><span class="line">                <span class="keyword">return</span> User</span><br><span class="line">                        .withUsername(claims.get(<span class="string">&quot;name&quot;</span>).asString())</span><br><span class="line">                        .password(<span class="string">&quot;&quot;</span>)</span><br><span class="line">                        .authorities(claims.get(<span class="string">&quot;authorities&quot;</span>).asArray(String.class))</span><br><span class="line">                        .build();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JWTVerificationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Filter</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JwtAuthenticationFilter</span> <span class="keyword">extends</span> <span class="title class_">OncePerRequestFilter</span> &#123;  </span><br><span class="line"><span class="comment">// 继承OncePerRequestFilter表示每次请求过滤一次，用于快速编写JWT校验规则</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doFilterInternal</span><span class="params">(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)</span> <span class="keyword">throws</span> ServletException, IOException &#123;</span><br><span class="line">          <span class="comment">// 首先从Header中取出JWT</span></span><br><span class="line">        <span class="type">String</span> <span class="variable">authorization</span> <span class="operator">=</span> request.getHeader(<span class="string">&quot;Authorization&quot;</span>);</span><br><span class="line">          <span class="comment">// 判断是否包含JWT且格式正确</span></span><br><span class="line">        <span class="keyword">if</span> (authorization != <span class="literal">null</span> &amp;&amp; authorization.startsWith(<span class="string">&quot;Bearer &quot;</span>)) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">token</span> <span class="operator">=</span> authorization.substring(<span class="number">7</span>);    </span><br><span class="line">              <span class="comment">// 开始解析成UserDetails对象，如果得到的是null说明解析失败，JWT有问题</span></span><br><span class="line">            <span class="type">UserDetails</span> <span class="variable">user</span> <span class="operator">=</span> JwtUtils.resolveJwt(token);</span><br><span class="line">            <span class="keyword">if</span>(user != <span class="literal">null</span>) &#123;</span><br><span class="line">                  <span class="comment">// 验证没有问题，那么就可以开始创建Authentication了，这里我们跟默认情况保持一致</span></span><br><span class="line">                  <span class="comment">// 使用UsernamePasswordAuthenticationToken作为实体，填写相关用户信息进去</span></span><br><span class="line">                <span class="type">UsernamePasswordAuthenticationToken</span> <span class="variable">authentication</span> <span class="operator">=</span></span><br><span class="line">                        <span class="keyword">new</span> <span class="title class_">UsernamePasswordAuthenticationToken</span>(user, <span class="literal">null</span>, user.getAuthorities());</span><br><span class="line">                authentication.setDetails(<span class="keyword">new</span> <span class="title class_">WebAuthenticationDetailsSource</span>().buildDetails(request));</span><br><span class="line">                  <span class="comment">// 然后直接把配置好的Authentication塞给SecurityContext表示已经完成验证</span></span><br><span class="line">                SecurityContextHolder.getContext().setAuthentication(authentication);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">          <span class="comment">// 最后放行，继续下一个过滤器</span></span><br><span class="line">          <span class="comment">// 可能各位小伙伴会好奇，要是没验证成功不是应该拦截吗？这个其实没有关系的</span></span><br><span class="line">          <span class="comment">// 因为如果没有验证失败上面是不会给SecurityContext设置Authentication的，后面直接就被拦截掉了</span></span><br><span class="line">          <span class="comment">// 而且有可能用户发起的是用户名密码登录请求，这种情况也要放行的，不然怎么登录，所以说直接放行就好</span></span><br><span class="line">        filterChain.doFilter(request, response);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Security修改为无状态</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 将Session管理创建策略改成无状态，这样SpringSecurity就不会创建会话了，也不会采用之前那套机制记录用户，因为现在我们可以直接从JWT中获取信息</span></span><br><span class="line">.sessionManagement(conf -&gt; &#123;</span><br><span class="line">    conf.sessionCreationPolicy(SessionCreationPolicy.STATELESS);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 添加我们用于处理JWT的过滤器到Security过滤器链中，注意要放在UsernamePasswordAuthenticationFilter之前</span></span><br><span class="line">.addFilterBefore(<span class="keyword">new</span> <span class="title class_">JwtAuthenticationFilter</span>(), UsernamePasswordAuthenticationFilter.class)</span><br></pre></td></tr></table></figure>
-<h2 id="jwt退出登录"><a class="markdownIt-Anchor" href="#jwt退出登录"></a> JWT退出登录</h2>
-<p>采用黑名单方案。一台服务器存储JWT黑名单，共享给所有微服务。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">JWT.create()</span><br><span class="line">    <span class="comment">// 额外添加一个UUID用于记录黑名单，将其作为JWT的ID属性jti</span></span><br><span class="line">    .withJWTId(UUID.randomUUID().toString())</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JwtUtils</span> &#123;    </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> HashSet&lt;String&gt; blackList = <span class="keyword">new</span> <span class="title class_">HashSet</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">// 加入黑名单方法</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="type">boolean</span> <span class="title function_">invalidate</span><span class="params">(String token)</span>&#123;</span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(key);</span><br><span class="line">        <span class="type">JWTVerifier</span> <span class="variable">jwtVerifier</span> <span class="operator">=</span> JWT.require(algorithm).build();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">DecodedJWT</span> <span class="variable">verify</span> <span class="operator">=</span> jwtVerifier.verify(token);</span><br><span class="line">            Map&lt;String, Claim&gt; claims = verify.getClaims();</span><br><span class="line">              <span class="comment">//取出UUID丢进黑名单中</span></span><br><span class="line">            <span class="keyword">return</span> blackList.add(verify.getId());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JWTVerificationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> UserDetails <span class="title function_">resolveJwt</span><span class="params">(String token)</span>&#123;</span><br><span class="line">        <span class="type">Algorithm</span> <span class="variable">algorithm</span> <span class="operator">=</span> Algorithm.HMAC256(key);</span><br><span class="line">        <span class="type">JWTVerifier</span> <span class="variable">jwtVerifier</span> <span class="operator">=</span> JWT.require(algorithm).build();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">DecodedJWT</span> <span class="variable">verify</span> <span class="operator">=</span> jwtVerifier.verify(token);</span><br><span class="line">            <span class="comment">// 判断是否存在于黑名单中，如果存在，则返回null表示失效</span></span><br><span class="line">            <span class="keyword">if</span>(blackList.contains(verify.getId()))</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            Map&lt;String, Claim&gt; claims = verify.getClaims();</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">new</span> <span class="title class_">Date</span>().after(claims.get(<span class="string">&quot;exp&quot;</span>).asDate()))</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">            <span class="keyword">return</span> User</span><br><span class="line">                    .withUsername(claims.get(<span class="string">&quot;name&quot;</span>).asString())</span><br><span class="line">                    .password(<span class="string">&quot;&quot;</span>)</span><br><span class="line">                    .authorities(claims.get(<span class="string">&quot;authorities&quot;</span>).asArray(String.class))</span><br><span class="line">                    .build();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (JWTVerificationException e) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/3/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>

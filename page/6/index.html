@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">62</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,178 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Windows%20scripts%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Windows%20scripts%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Windows scripts使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-07-16 00:00:00 / 修改时间：16:45:20" itemprop="dateCreated datePublished" datetime="2024-07-16T00:00:00+08:00">2024-07-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="task-scheduler"><a class="markdownIt-Anchor" href="#task-scheduler"></a> Task Scheduler</h1>
+<p>WIN+R, <code>taskschd.msc</code><br />
+在这里可以设置定时任务、登录任务。<br />
+有些软件的开机自启动就设置在这里。比起组策略有更多的可选项（延迟启动，网络和电源要求等）</p>
+<h1 id="group-policy-editor"><a class="markdownIt-Anchor" href="#group-policy-editor"></a> Group Policy Editor</h1>
+<p>WIN+R, <code>gpedit.msc</code><br />
+在这里可以设置一些开关机时执行的任务</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Computer Configuration -&gt; Windows settings -&gt; Scripts -&gt; Shutdown -&gt; Properties -&gt; Add</span><br></pre></td></tr></table></figure>
+<h1 id="静默运行脚本"><a class="markdownIt-Anchor" href="#静默运行脚本"></a> 静默运行脚本</h1>
+<p>Task Scheduler没有办法隐藏窗口<br />
+在Task Scheduler运行该vbs脚本，目标脚本路径作为参数即可实现静默运行。</p>
+<figure class="highlight vbs"><table><tr><td class="code"><pre><span class="line"><span class="comment">&#x27; minRun.vbs</span></span><br><span class="line"><span class="comment">&#x27; Run minRun.vbs Task Scheduler在可选参数提供实际脚本地址</span></span><br><span class="line"><span class="comment">&#x27; 检查是否提供了批处理文件路径参数</span></span><br><span class="line"><span class="keyword">If</span> WScript.Arguments.Count = <span class="number">0</span> <span class="keyword">Then</span></span><br><span class="line">    WScript.Echo <span class="string">&quot;Error: No batch file path provided.&quot;</span></span><br><span class="line">    WScript.Quit <span class="number">1</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 获取批处理文件路径参数</span></span><br><span class="line"><span class="keyword">Dim</span> batchFilePath</span><br><span class="line">batchFilePath = WScript.Arguments(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 检查批处理文件是否存在</span></span><br><span class="line"><span class="keyword">If</span> <span class="keyword">Not</span> FileExists(batchFilePath) <span class="keyword">Then</span></span><br><span class="line">    WScript.Echo <span class="string">&quot;Error: Batch file not found at &quot;</span> &amp; batchFilePath</span><br><span class="line">    WScript.Quit <span class="number">1</span></span><br><span class="line"><span class="keyword">End</span> <span class="keyword">If</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 创建 WScript.Shell 对象</span></span><br><span class="line"><span class="keyword">Set</span> oShell = <span class="built_in">CreateObject</span>(<span class="string">&quot;Wscript.Shell&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 执行批处理文件</span></span><br><span class="line"><span class="comment">&#x27; 使用 0 表示不等待批处理文件执行完成</span></span><br><span class="line"><span class="comment">&#x27; 使用 True 表示以同步方式运行（等待批处理执行完成）</span></span><br><span class="line">oShell.Run batchFilePath, <span class="number">0</span>, <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 清理</span></span><br><span class="line"><span class="keyword">Set</span> oShell = <span class="literal">Nothing</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&#x27; 检查文件是否存在的辅助函数</span></span><br><span class="line"><span class="keyword">Function</span> FileExists(filePath)</span><br><span class="line">    <span class="keyword">Dim</span> fso</span><br><span class="line">    <span class="keyword">Set</span> fso = <span class="built_in">CreateObject</span>(<span class="string">&quot;Scripting.FileSystemObject&quot;</span>)</span><br><span class="line">    FileExists = fso.FileExists(filePath)</span><br><span class="line"><span class="keyword">End</span> <span class="keyword">Function</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Matlab%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Matlab%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Matlab使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-26 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-26T00:00:00+08:00">2023-11-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-09 10:49:01" itemprop="dateModified" datetime="2024-07-09T10:49:01+08:00">2024-07-09</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="10-编辑"><a class="markdownIt-Anchor" href="#10-编辑"></a> 1.0 编辑</h1>
+<pre><code>% 表示注释
+; 表示不显示结果，只执行语句
+clear 清除内存变量
+clc 清除全部
+pretty 用分式表示公式
+simplify 化简命令
+exp(x) 指数, e^x
+log2(x) 以2为底数的对数
+</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Matlab%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -965,193 +1137,8 @@ tags: Data Center, Linux, Open Source
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/DD%20%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/DD%20%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/" class="post-title-link" itemprop="url">DD 数字逻辑</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-12-06 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-06T00:00:00+08:00">2023-12-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-02-02 15:47:30" itemprop="dateModified" datetime="2024-02-02T15:47:30+08:00">2024-02-02</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="30-数据选择器分配器"><a class="markdownIt-Anchor" href="#30-数据选择器分配器"></a> 3.0 数据选择器&amp;分配器</h3>
-<h4 id="1-数据分配器"><a class="markdownIt-Anchor" href="#1-数据分配器"></a> 1 数据分配器</h4>
-<ul>
-<li>根据输入（地址信号）将一路数据分配到指定输出通道</li>
-<li>一路输入，多路输出<br />
-![[…/Source/Photo/数字逻辑/数据分配器.png]]</li>
-</ul>
-<h4 id="2-数据选择器"><a class="markdownIt-Anchor" href="#2-数据选择器"></a> 2 数据选择器</h4>
-<ul>
-<li>从多路输入选择一条输出</li>
-<li>又称为多路选择器，多路开关</li>
-<li>多路输入，一路输出<br />
-![[…/Source/Photo/数字逻辑/数据选择——定义.png]]</li>
-</ul>
-<h4 id="3-ls151制图步骤"><a class="markdownIt-Anchor" href="#3-ls151制图步骤"></a> 3 LS151制图步骤</h4>
-<ul>
-<li>情况1：三个输入端正好对应三个变量</li>
-<li>根据Y = A2、A1、A0列出最小项，按顺序写出Y=1时有D几</li>
-<li>存在的项D取1<br />
-![[…/Source/Photo/数字逻辑/151制图步骤.png]]</li>
-<li>情况2：三个输入端对应四个变量</li>
-<li>列出最小项，尽可能合并成只有三项的形式</li>
-<li>将第四项作为变量接入<br />
-![[…/Source/Photo/数字逻辑/151制图-3输入4变量情况1.png]]<br />
-![[…/Source/Photo/数字逻辑/151制图-3输入4变量情况2.png]]</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/DD%20%E6%95%B0%E5%AD%97%E9%80%BB%E8%BE%91/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/objdump%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/objdump%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">objdump使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-01-17 00:00:00 / 修改时间：17:51:41" itemprop="dateCreated datePublished" datetime="2024-01-17T00:00:00+08:00">2024-01-17</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="objdump反汇编文件"><a class="markdownIt-Anchor" href="#objdump反汇编文件"></a> objdump反汇编文件</h1>
-<ul>
-<li>需要配合<code>gcc -g</code>使用</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">objdump -S file.o &gt; fileo.txt  // -S 表示显示源代码</span><br><span class="line">objdump -S file &gt; file.txt</span><br><span class="line"></span><br><span class="line">// gcc编译步骤</span><br><span class="line">-E // .c  -&gt; .i</span><br><span class="line">-S // .i -&gt; .s</span><br><span class="line">-c // .s -&gt; .o</span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>.o</code>文件的地址一般从0开始，可执行文件的地址是操作系统给定的虚拟地址</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+    <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/7/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
