@@ -399,6 +399,107 @@ log2(x) 以2为底数的对数
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ eval &quot;return &#123;KEYS[1], KEYS[2], ARGV[1], ARGV[2]&#125;&quot; 2 key1 key2 first second</span><br><span class="line"></span><br><span class="line">key1</span><br><span class="line">key2</span><br><span class="line">first</span><br><span class="line">second</span><br></pre></td></tr></table></figure>
 <p>Jedis使用lua脚本</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line">jedis.set(<span class="string">&quot;prod_stock_10016&quot;</span>, <span class="string">&quot;15&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">script</span> <span class="operator">=</span> <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    local count = redis.call(&#x27;get&#x27;, KEYS[1])</span></span><br><span class="line"><span class="string">    local a = tonumber(count)</span></span><br><span class="line"><span class="string">    local b = tonumber(ARGV[1])</span></span><br><span class="line"><span class="string">    if a &gt;= b then</span></span><br><span class="line"><span class="string">        redis.call(&#x27;set&#x27;, KEYS[1], a - b)</span></span><br><span class="line"><span class="string">        return 1 </span></span><br><span class="line"><span class="string">    end</span></span><br><span class="line"><span class="string">    return 0</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> jedis.eval(script, Arrays.asList(<span class="string">&quot;prod_stock_10016&quot;</span>), Arrays.asList(<span class="string">&quot;10&quot;</span>));</span><br></pre></td></tr></table></figure>
+<h1 id="缓存"><a class="markdownIt-Anchor" href="#缓存"></a> 缓存</h1>
+<h2 id="缓存穿透"><a class="markdownIt-Anchor" href="#缓存穿透"></a> 缓存穿透</h2>
+<blockquote>
+<p>缓存穿透：查询不存在的数据。缓存层、存储层都不命中，造成无效的数据库访问。</p>
+</blockquote>
+<p>缓存的存在是为了控制流量和服务压力、保护后端，防止请求直接查询数据库。<br />
+但是查询不存在的数据，或者遭受恶意的缓存穿透攻击，后端服务就容易宕机。</p>
+<h3 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h3>
+<ol>
+<li>缓存空对象，即使恶意攻击也不能到达数据库。</li>
+<li>布隆过滤器：<strong>不存在的数据一定不存在</strong>。直接丢弃恶意请求。</li>
+</ol>
+<blockquote>
+<p>布隆过滤器是一个大型bit数组和几个不同的无偏（均匀分布的）Hash函数。</p>
+</blockquote>
+<ul>
+<li>Set：布隆过滤器会使用多个Hash函数（如CRC16、CRC32）对Key进行哈希、取模，得到索引值。每个Hash函数都得到一个slot，然后将这些slot都设为1.</li>
+<li>Get：布隆过滤器会使用同样的哈希计算，如果得出的slot中存在0，那么数据不存在，抛弃。<br />
+但是由于使用多个Hash函数，所以即使slot全为1，也不能说明数据一定存在，只是很可能存在。<br />
+布隆过滤器的优点是缓存空间占用少，适用于以下场景：</li>
+<li>缓存命中率低</li>
+<li>数据固定</li>
+<li>实时性低（数据集大）</li>
+</ul>
+<h4 id="redission布隆过滤器"><a class="markdownIt-Anchor" href="#redission布隆过滤器"></a> Redission布隆过滤器</h4>
+<p>BloomFilter只有add操作，不能更新数据（可能破坏其他数据slot）；想要更新，需要重新初始化。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">RBloomFilter&lt;String&gt; bloomFilter = redission.getBloomFilter(<span class="string">&quot;name&quot;</span>);</span><br><span class="line"><span class="comment">// 预计元素规模100_000_000，误差率3%</span></span><br><span class="line">bloomFilter.tryInit(<span class="number">100000000L</span>, <span class="number">0.03</span>);</span><br><span class="line"></span><br><span class="line">bloomFilter.add(<span class="string">&quot;value&quot;</span>);</span><br><span class="line"><span class="keyword">if</span> (!bloomFilter.contains(<span class="string">&quot;value&quot;</span>)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Exception</span>(Enum.DATA_NOT_EXISTS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="缓存失效"><a class="markdownIt-Anchor" href="#缓存失效"></a> 缓存失效</h2>
+<blockquote>
+<p>缓存失效：同一时间大量缓存同时失效，导致数据库压力过大宕机。</p>
+</blockquote>
+<h3 id="解决方案-2"><a class="markdownIt-Anchor" href="#解决方案-2"></a> 解决方案</h3>
+<ol>
+<li>设置随机的过期时间</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">expireTime</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Random</span>().nextInt(<span class="number">300</span>) + <span class="number">300</span>;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>设置互斥锁，同一个类型的请求，只访问一次数据库并重建缓存。</li>
+</ol>
+<h2 id="缓存雪崩"><a class="markdownIt-Anchor" href="#缓存雪崩"></a> 缓存雪崩</h2>
+<blockquote>
+<p>缓存雪崩：缓存层宕机，所有请求直接访问数据库。</p>
+</blockquote>
+<h3 id="解决方案-3"><a class="markdownIt-Anchor" href="#解决方案-3"></a> 解决方案</h3>
+<ol>
+<li>保证高可用性，Redis集群</li>
+<li>设置令牌，服务熔断、降级；让用户错峰重试</li>
+<li>异步削峰，消息队列异步排队处理请求</li>
+<li>做好冗余和备用方案</li>
+</ol>
+<h2 id="缓存双写一致性"><a class="markdownIt-Anchor" href="#缓存双写一致性"></a> 缓存双写一致性</h2>
+<blockquote>
+<p>两个线程并发更新数据库，由于线程切换，可能导致最终缓存结果与数据库实际数据不一致。</p>
+</blockquote>
+<p>正确的更新方式：</p>
+<ul>
+<li>更新数据库后，删除缓存。<br />
+但是如果多个线程并发读写，写完后没来得及删除缓存，读请求仍然会缓存脏数据。</li>
+</ul>
+<h3 id="解决方案-4"><a class="markdownIt-Anchor" href="#解决方案-4"></a> 解决方案</h3>
+<ol>
+<li>牺牲一致性，容忍短时间不一致<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>
+<ul>
+<li>延迟双删：隔一段时间再删除一次缓存</li>
+</ul>
+</li>
+<li>牺牲性能，读写锁串行执行，保证并发读写/写写原子执行
+<ul>
+<li>适合读多写少场景。Redission读写锁实现如下：</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 读写锁用同一把key</span></span><br><span class="line"><span class="type">RReadWriteLock</span> <span class="variable">rwlock</span> <span class="operator">=</span> redission.getReadWriteLock(lockKey);</span><br><span class="line"><span class="type">RLock</span> <span class="variable">rlock</span> <span class="operator">=</span> rwlock.readLock();</span><br><span class="line"><span class="type">RLock</span> <span class="variable">wlock</span> <span class="operator">=</span> rwlock.writeLock();</span><br><span class="line"></span><br><span class="line">rlock.lock();</span><br><span class="line">...</span><br><span class="line">wlock.lcok();</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>两全，增加复杂度，Cannal监听binlog，同步数据；用这个方案不需要手动更新/删除缓存</li>
+<li>写多读多场景，不适合用缓存；缓存适合实时性、一致性要求不高的场景。</li>
+</ol>
+<h1 id="规范"><a class="markdownIt-Anchor" href="#规范"></a> 规范</h1>
+<h2 id="键值设计"><a class="markdownIt-Anchor" href="#键值设计"></a> 键值设计</h2>
+<p>Key：<code>业务:数据库名:id</code>，如<code>u:&#123;uid&#125;:fr:msg:&#123;mid&#125;</code><br />
+Value：拒绝BigKey，String &lt; 10KB、数据结构元素 &lt; 5k<br />
+非字符串BigKey，不要使用del，而是使用scan渐进删除；也要预防过期自动删除（自动删除使用del）造成阻塞。</p>
+<h2 id="优化bigkey"><a class="markdownIt-Anchor" href="#优化bigkey"></a> 优化BigKey</h2>
+<p>容易设计出BigKey的场景：</p>
+<ol>
+<li>大V的粉丝列表</li>
+<li>按天存储的统计/用户集合</li>
+<li>将数据库所有字段Serializable存到Redis</li>
+</ol>
+<p>优化思路：</p>
+<ol>
+<li>拆分成list或hash，分段存储</li>
+<li>局部读取、删除，而不是对整个BigKey操作</li>
+</ol>
+<hr class="footnotes-sep" />
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>12306余票查询经常与实际库存不一致：查到有余票2，提交订单提示没票 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 ]]></content>
       <tags>
         <tag>基本操作</tag>
