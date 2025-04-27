@@ -288,7 +288,31 @@ log2(x) 以2为底数的对数
   <entry>
     <title>Redis使用</title>
     <url>/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
+    <content><![CDATA[<h1 id="分布式锁"><a class="markdownIt-Anchor" href="#分布式锁"></a> 分布式锁</h1>
+<h2 id="redission"><a class="markdownIt-Anchor" href="#redission"></a> Redission</h2>
+<p>使用原生Redis设置锁的问题：</p>
+<ol>
+<li>服务器拿到锁后宕机，锁不能释放，导致阻塞。<br />
+设置锁失效时间可以解决上面的问题，但是会导致新的问题：</li>
+<li>设置锁失效时间，在服务器负载过高的时候，会发生锁失效业务还没完成的情况，导致业务代码不互斥。</li>
+</ol>
+<blockquote>
+<p>0信任：不要期待网络服务器按照理想情况运行。</p>
+</blockquote>
+<p>使用Redission自动为锁续命，可以解决上述问题。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">lockKey</span> <span class="operator">=</span> req.getTrainDate() + <span class="string">&quot;-&quot;</span> + req.getTrainCode();</span><br><span class="line"><span class="type">RLock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    lock = redissonClient.getLock(lockKey);</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">tryLock</span> <span class="operator">=</span> lock.tryLock(<span class="number">0</span>, TimeUnit.SECONDS);</span><br><span class="line">    <span class="keyword">if</span> (!tryLock) &#123;</span><br><span class="line">        LOG.info(<span class="string">&quot;获取锁失败&quot;</span>);</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">BusinessException</span>(BusinessExceptionEnum.CONFIRM_ORDER_TICKET_COUNT_ERROR);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Business Code</span></span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    LOG.info(<span class="string">&quot;释放锁&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (lock != <span class="literal">null</span> &amp;&amp; lock.isHeldByCurrentThread()) &#123;</span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>锁设计原则：谁持有锁，谁才有资格释放锁。</p>
+</blockquote>
+<p>不过，使用这个方案有问题：Redis Master加锁后宕机，新的Master没有同步到加锁的数据，就会存在多把锁。<br />
+这时我们需要引入ZooKeeper保持强一致性；或者可以使用RedLock，即集群半数以上机器加锁成功，才是真的加锁成功。<br />
+然而，这两种方法都会带来性能开销。</p>
+<blockquote>
+<p>对于难以解决的棘手问题，应该思考如何避免问题发生。</p>
+</blockquote>
+<h2 id="高性能分布式锁分段锁"><a class="markdownIt-Anchor" href="#高性能分布式锁分段锁"></a> 高性能分布式锁：分段锁</h2>
+<p>针对不同段进行加锁，这样就能允许多把锁存在，从而获得一定并发性能。</p>
+<h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
 <h2 id="general"><a class="markdownIt-Anchor" href="#general"></a> General</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 返回给定模式的keys</span><br><span class="line">KEYS patter</span><br><span class="line">KEYS * # 返回全部</span><br><span class="line">KEYS set* # 返回set开头的keys</span><br><span class="line">EXISTS key</span><br><span class="line">TYPE key</span><br><span class="line">DEL key</span><br></pre></td></tr></table></figure>
 <h2 id="string"><a class="markdownIt-Anchor" href="#string"></a> String</h2>
@@ -299,7 +323,9 @@ log2(x) 以2为底数的对数
 <h2 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LPUSH key value1 value2</span><br><span class="line"># Get Key From Start To Stop</span><br><span class="line">LRANGE key start stop</span><br><span class="line"># Right POP</span><br><span class="line">RPOP key</span><br><span class="line"># List Length</span><br><span class="line">LLEN key</span><br></pre></td></tr></table></figure>
 <h3 id="典型场景"><a class="markdownIt-Anchor" href="#典型场景"></a> 典型场景</h3>
+<span id="more"></span>
 <h4 id="栈"><a class="markdownIt-Anchor" href="#栈"></a> 栈</h4>
+<p>当作栈使用</p>
 <h4 id="订阅消息"><a class="markdownIt-Anchor" href="#订阅消息"></a> 订阅消息</h4>
 <p>队列，先来后到</p>
 <ul>
@@ -324,7 +350,6 @@ log2(x) 以2为底数的对数
 <h3 id="典型场景-3"><a class="markdownIt-Anchor" href="#典型场景-3"></a> 典型场景</h3>
 <h4 id="日月年热点排行榜"><a class="markdownIt-Anchor" href="#日月年热点排行榜"></a> 日/月/年热点排行榜</h4>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 记录浏览量</span><br><span class="line">ZINCRBY hotNews:&#123;date&#125; 1 &#123;news_id&#125;</span><br><span class="line"># Top 10</span><br><span class="line">ZREVRANGE hotNews:&#123;date&#125; 0 9 WITHSCORES</span><br><span class="line"># Recent 7 days</span><br><span class="line">ZUNIONSTORE hotNews:&#123;start_date&#125;-&#123;end_date&#125; 0 9 WITHSCORES</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
 <h1 id="redis-for-java"><a class="markdownIt-Anchor" href="#redis-for-java"></a> Redis for Java</h1>
 <ul>
 <li>Jedis (Official Recommand)</li>
@@ -352,7 +377,7 @@ log2(x) 以2为底数的对数
 <h1 id="典型场景-4"><a class="markdownIt-Anchor" href="#典型场景-4"></a> 典型场景</h1>
 <h2 id="对象缓存"><a class="markdownIt-Anchor" href="#对象缓存"></a> 对象缓存</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET user:1 &lt;json&gt;</span><br><span class="line">MSET user:1:name the_name user1:age the_age</span><br></pre></td></tr></table></figure>
-<h2 id="分布式锁"><a class="markdownIt-Anchor" href="#分布式锁"></a> 分布式锁</h2>
+<h2 id="分布式锁-2"><a class="markdownIt-Anchor" href="#分布式锁-2"></a> 分布式锁</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SETNX product:10003 true ex 10 nx</span><br><span class="line"># success return 1, or fail return 0</span><br><span class="line"></span><br><span class="line">... # your operation</span><br><span class="line"></span><br><span class="line"># release the lock</span><br><span class="line">DEL product:10003</span><br></pre></td></tr></table></figure>
 <h2 id="计数器"><a class="markdownIt-Anchor" href="#计数器"></a> 计数器</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INCR article:readcount:&#123;article_id&#125;</span><br><span class="line">GET article:readcount:&#123;article_id&#125;</span><br></pre></td></tr></table></figure>
@@ -7410,7 +7435,7 @@ CAS算法不是加锁，而是通过比较来判断对象是否已被修改，�
       </tags>
   </entry>
   <entry>
-    <title>JVM</title>
+    <title>JVM原理</title>
     <url>/ComputerScience/%E7%9F%A5%E8%AF%86/JVM%E5%8E%9F%E7%90%86/</url>
     <content><![CDATA[<h1 id="程序如何装载"><a class="markdownIt-Anchor" href="#程序如何装载"></a> 程序如何装载</h1>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Main\.java, Minor\.java -&gt; jar包.java Main\.main(): 编译打包</span><br><span class="line">jar包.java Main\.main() -&gt; 验证: 加载</span><br><span class="line">jar包.java Main\.main() -&gt; Minor\.class: 使用</span><br><span class="line">Minor\.class -&gt; JVM: 加载</span><br><span class="line">验证 -&gt; 准备 -&gt; 解析 -&gt; 初始化 -&gt; JVM</span><br><span class="line"></span><br></pre></td></tr></table></figure>
@@ -7428,6 +7453,7 @@ CAS算法不是加锁，而是通过比较来判断对象是否已被修改，�
 <li>其他加载器：加载自定义路径下的类包</li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java com\.site\.jvm\.Math\.class -&gt; java\.exe调用底层jvm\.dll创建Java虚拟机 -&gt; 创建引导类加载器实例</span><br><span class="line">创建引导类加载器实例 -&gt; sum\.misc\.Launcher\.getLauncher(): C++调用Java代码，创建JVM启动器实例，这个实例负责创建其他类加载器</span><br><span class="line">sum\.misc\.Launcher\.getLauncher() -&gt; launcher\.getClassLoader(): 获取运行类自己的加载器ClassLoader（AppClassLoader实例）</span><br><span class="line">launcher\.getClassLoader() -&gt; classLoader\.loadClass(&quot;com\.site\.jvm\.Math&quot;):调用loadClass加载即将要运行的类</span><br><span class="line">classLoader\.loadClass(&quot;com\.site\.jvm\.Math&quot;) -&gt; Math\.main(): 加载完成后，JVM执行Math.main()</span><br><span class="line">创建引导类加载器实例 -&gt; Math\.main(): C++发起调用 </span><br><span class="line">Math\.main()-&gt; JVM销毁: Java程序运行结束</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 <h1 id="双亲委派机制"><a class="markdownIt-Anchor" href="#双亲委派机制"></a> 双亲委派机制</h1>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">direction: up</span><br><span class="line">应用程序类加载器 -&gt; 拓展类加载器: 向上委托</span><br><span class="line">拓展类加载器 -&gt; 引导类加载器: 向上委托</span><br><span class="line">引导类加载器 -&gt; 拓展类加载器: 父加载器加载失败，由子加载器自己加载</span><br><span class="line">拓展类加载器 -&gt; 应用程序类加载器: 父加载器加载失败，由子加载器自己加载</span><br></pre></td></tr></table></figure>
 <p>pros:</p>
