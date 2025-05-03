@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">63</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,173 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Maven使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-16T00:00:00+08:00">2025-01-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-15 10:24:14" itemprop="dateModified" datetime="2025-04-15T10:24:14+08:00">2025-04-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="微服务"><a class="markdownIt-Anchor" href="#微服务"></a> 微服务</h1>
+<p>非单体项目，可以用下面的脚本启动微服务。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取服务名称和额外参数</span></span><br><span class="line">SERVICE_NAME=$1</span><br><span class="line">shift  # 移除第一个参数（服务名），将剩余参数保存到 $@</span><br><span class="line">EXTRA_ARGS=&quot;$@&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否输入服务名称</span></span><br><span class="line">if [ -z &quot;$SERVICE_NAME&quot; ]; then</span><br><span class="line">  echo &quot;Usage: ./run.sh &lt;servicename|all&gt; [additional_maven_args]&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">定义运行单个服务的函数</span></span><br><span class="line">run_service() &#123;</span><br><span class="line">  local service=$1</span><br><span class="line">  local args=$2</span><br><span class="line">  echo &quot;Building and running $service with args: $args...&quot;</span><br><span class="line">  mvn clean install -pl $service -am</span><br><span class="line">  if [ &quot;$service&quot; == &quot;gateway/&quot; ]; then</span><br><span class="line">    echo &quot;Gateway starting...&quot;</span><br><span class="line">    mvn spring-boot:run -pl $service -Dreactor.netty.http.server.accessLogEnabled=true $args</span><br><span class="line">  else</span><br><span class="line">    mvn spring-boot:run -pl $service $args</span><br><span class="line">  fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果输入 <span class="string">&quot;all&quot;</span>，运行所有服务（默认不传参）</span></span><br><span class="line">if [ &quot;$SERVICE_NAME&quot; == &quot;all&quot; ]; then</span><br><span class="line">  echo &quot;Building and running all services...&quot;</span><br><span class="line">  mvn clean install -pl &quot;!generator&quot;</span><br><span class="line">  for module in $(mvn help:evaluate -Dexpression=project.modules -q -DforceStdout | sed -e &#x27;s/&lt;[^&gt;]*&gt;//g&#x27; -e &#x27;s/\s*//g&#x27; | tr &#x27;,&#x27; &#x27;\n&#x27;); do</span><br><span class="line">    if [ &quot;$module&quot; != &quot;generator&quot; ]; then</span><br><span class="line">      echo &quot;Running $module...&quot;</span><br><span class="line">      mvn spring-boot:run -pl $module</span><br><span class="line">    fi</span><br><span class="line">  done</span><br><span class="line">else</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">运行指定的单个服务，并传递额外参数</span></span><br><span class="line">  run_service $SERVICE_NAME &quot;$EXTRA_ARGS&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>核心命令是这一条：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn spring-boot:run -pl $your_service</span><br></pre></td></tr></table></figure>
+<p>想要增加JVM参数，指定端口可以加上</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-Dspring-boot.run.arguments=--server.port=$your_port</span><br></pre></td></tr></table></figure>
+<h1 id="全局换源"><a class="markdownIt-Anchor" href="#全局换源"></a> 全局换源</h1>
+<p>找到 <code>settings.xml</code> 文件：</p>
+<ul>
+<li>全局配置：位于 Maven 安装目录的 <code>conf</code> 文件夹下（例如<code>/usr/local/maven/conf/settings.xml</code>）。</li>
+<li>用户配置：位于用户主目录下的 .m2 文件夹中（例如<code>~/.m2/settings.xml</code>）。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;settings&gt;</span><br><span class="line">  &lt;!-- 其他配置 --&gt;</span><br><span class="line">  &lt;mirrors&gt;</span><br><span class="line">    &lt;!-- 阿里云 Maven 镜像 --&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">      &lt;id&gt;aliyun-maven&lt;/id&gt;</span><br><span class="line">      &lt;name&gt;阿里云公共仓库&lt;/name&gt;</span><br><span class="line">      &lt;url&gt;https://maven.aliyun.com/repository/public&lt;/url&gt;</span><br><span class="line">      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;!-- 指定替换中央仓库 --&gt;</span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">    &lt;!-- 华为云 Maven 镜像 --&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">      &lt;id&gt;huaweicloud&lt;/id&gt;</span><br><span class="line">      &lt;name&gt;华为云 Maven&lt;/name&gt;</span><br><span class="line">      &lt;url&gt;https://mirrors.huaweicloud.com/repository/maven/&lt;/url&gt;</span><br><span class="line">      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">  &lt;/mirrors&gt;</span><br><span class="line">  &lt;!-- 其他配置 --&gt;</span><br><span class="line">&lt;/settings&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/scp%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/scp%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">scp使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-25 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-25T00:00:00+08:00">2024-12-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-14 20:24:12" itemprop="dateModified" datetime="2025-04-14T20:24:12+08:00">2025-04-14</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="上传文件"><a class="markdownIt-Anchor" href="#上传文件"></a> 上传文件</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp ./upload/path/file.postfix user@host.com:/path/to/file</span><br><span class="line">scp -P &lt;port&gt; -i &lt;key&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">文件夹</span></span><br><span class="line">scp -r ./upload/path/folder user@host.com:/path/to/folder</span><br></pre></td></tr></table></figure>
+<h1 id="下载文件"><a class="markdownIt-Anchor" href="#下载文件"></a> 下载文件</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp user@host.com:/path/to/file.postfix ./download/path</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">文件夹</span></span><br><span class="line">scp -r user@host.com:/path/to/folader ./download/path</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1105,215 +1272,6 @@ CAS算法不是加锁，而是通过比较来判断对象是否已被修改，�
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">动态规划学习指南</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-22 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-22T00:00:00+08:00">2024-10-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-16 08:56:44" itemprop="dateModified" datetime="2025-03-16T08:56:44+08:00">2025-03-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Author：<strong><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/aatalyk">aatalyk</a></strong><br />
-Origin：<a target="_blank" rel="noopener" href="https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns">Link</a></p>
-<p>Before starting the topic let me introduce myself. I am a Mobile Developer currently working in Warsaw and spending my free time for interview preparations. I started to prepare for interviews two years ago. At that time I should say I could not solve the two sum problem. Easy problems seemed to me like hard ones so most of the time I had to look at editorials and discuss section. Currently, I have solved ~800 problems and time to time participate in contests. I usually solve 3 problems in a contest and sometimes 4 problems. Ok, lets come back to the topic.</p>
-<p>Recently I have concentrated my attention on Dynamic Programming cause its one of the hardest topics in an interview prep. After solving ~140 problems in DP I have noticed that there are few patterns that can be found in different problems. So I did a research on that and find the following topics. I will not give complete ways how to solve problems but these patterns may be helpful in solving DP.</p>
-<h2 id="patterns"><a class="markdownIt-Anchor" href="#patterns"></a> Patterns</h2>
-<ol>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Minimum-%28Maximum%29-Path-to-Reach-a-Target">Minimum (Maximum) Path to Reach a Target</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23distinct-ways">Distinct Ways</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Merging-Intervals">Merging Intervals</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23DP-on-Strings">DP on Strings</a></li>
-<li><a href="https://link.zhihu.com/?target=https%3A//leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns%23Decision-Making">Decision Making</a></li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E6%8C%87%E5%8D%97/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">OS 操作系统</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-08-07 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-07T00:00:00+08:00">2024-08-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 14:31:46" itemprop="dateModified" datetime="2025-03-15T14:31:46+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="操作系统原理与实现"><a class="markdownIt-Anchor" href="#操作系统原理与实现"></a> 操作系统：原理与实现</h1>
-<h1 id="chapter3-操作系统结构"><a class="markdownIt-Anchor" href="#chapter3-操作系统结构"></a> Chapter3 操作系统结构</h1>
-<h2 id="复杂度管理方法-malh"><a class="markdownIt-Anchor" href="#复杂度管理方法-malh"></a> 复杂度管理方法 M.A.L.H</h2>
-<p>Modularity: 模块化，分而治之<br />
-Abstraction: 抽象，接口与实现分离，遵循宽进严出原则。例如虚拟内存、文件系统</p>
-<blockquote>
-<p>对于大型系统，只有模块化和抽象，可能导致划分模块太多，交互关系复杂，因此还需要引入分层和层次结构控制复杂度。</p>
-</blockquote>
-<p>Layering: 分层，每个层级是一套完整机制。通常一个模块只能与本层和上下层交互，不能跨层。例如OSI、TCP/IP<br />
-Hierarchy: 层次结构，大的子系统由多个小的子系统组织成。即同级模块的分层</p>
-<blockquote>
-<p>宽进严出原则：容忍各种输入（包括恶意输入），严格控制模块的对外输出</p>
-</blockquote>
-<h2 id="微内核"><a class="markdownIt-Anchor" href="#微内核"></a> 微内核</h2>
-<p>宏内核架构：单点bug使整个系统崩溃。<br />
-微内核：解耦单个功能/模块（如文件系统、设备驱动）作为独立服务隔离运行，使内核成为一个最小功能集。</p>
-<blockquote>
-<p>微内核架构服务隔离，单点出问题系统不会崩溃</p>
-</blockquote>
-<blockquote>
-<p>内核态部分，称为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>μ</mi><mi>k</mi><mi>e</mi><mi>r</mi><mi>n</mi><mi>e</mi><mi>l</mi></mrow><annotation encoding="application/x-tex">\mu kernel</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">μ</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">n</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span></span></span></span></p>
-</blockquote>
-<p>微内核优势：</p>
-<ol>
-<li>弹性硬件拓展能力</li>
-<li>硬件异构实现</li>
-<li>功能安全</li>
-<li>信息安全</li>
-<li>时延确定</li>
-</ol>
-<blockquote>
-<p>现代操作系统特征：1）虚拟内存；2）用户态、内核态隔离。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/OS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">63</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,195 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/" class="post-title-link" itemprop="url">PyEcharts 数据可视化</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-19 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-19T00:00:00+08:00">2024-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-15 13:53:36" itemprop="dateModified" datetime="2025-03-15T13:53:36+08:00">2025-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="10-bar-柱状图"><a class="markdownIt-Anchor" href="#10-bar-柱状图"></a> 1.0 Bar 柱状图</h1>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Bar</span><br><span class="line"></span><br><span class="line">bar = Bar()</span><br><span class="line">bar.add_xaxis([<span class="string">&quot;衬衣&quot;</span>, <span class="string">&quot;羊毛衫&quot;</span>, <span class="string">&quot;西装&quot;</span>, <span class="string">&quot;裤子&quot;</span>, <span class="string">&quot;鞋子&quot;</span>, <span class="string">&quot;袜子&quot;</span>])</span><br><span class="line">bar.add_yaxis(<span class="string">&quot;商家&quot;</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">10</span>, <span class="number">70</span>, <span class="number">90</span>])</span><br><span class="line"><span class="comment"># 相当于</span></span><br><span class="line">bar = (</span><br><span class="line">    Bar()</span><br><span class="line">    .add_xaxis([<span class="string">&quot;衬衣&quot;</span>, <span class="string">&quot;羊毛衫&quot;</span>, <span class="string">&quot;西装&quot;</span>, <span class="string">&quot;裤子&quot;</span>, <span class="string">&quot;鞋子&quot;</span>, <span class="string">&quot;袜子&quot;</span>])</span><br><span class="line">    .add_yaxis(<span class="string">&quot;商家&quot;</span>, [<span class="number">5</span>, <span class="number">20</span>, <span class="number">40</span>, <span class="number">10</span>, <span class="number">70</span>, <span class="number">90</span>])</span><br><span class="line">    .add_yaxis(<span class="string">&quot;商家B&quot;</span>, [<span class="number">15</span>, <span class="number">6</span>, <span class="number">45</span>, <span class="number">20</span>, <span class="number">35</span>, <span class="number">66</span>]) <span class="comment"># 支持两个柱子同时生成</span></span><br><span class="line">    .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;主标题&quot;</span>, subtitle=<span class="string">&quot;副标题&quot;</span>)) <span class="comment"># 生成标题</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bar.render(<span class="string">&quot;bar.html&quot;</span>) <span class="comment"># 渲染为 bar.html，默认是 render.html</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>效果</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/PyEcharts%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/InnoDB%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/InnoDB%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">InnoDB原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-25 00:00:00" itemprop="dateCreated datePublished" datetime="2025-02-25T00:00:00+08:00">2025-02-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-15 13:48:10" itemprop="dateModified" datetime="2025-03-15T13:48:10+08:00">2025-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="mysql体系结构"><a class="markdownIt-Anchor" href="#mysql体系结构"></a> Mysql体系结构</h1>
+<h2 id="db与instance"><a class="markdownIt-Anchor" href="#db与instance"></a> DB与Instance</h2>
+<p>DB：数据库可以是ibd文件、放在内存的文件，是物理操作系统文件或其他形式文件类型的集合。<br />
+Instance：Mysql数据库由后台线程及一个共享内存区组成。</p>
+<blockquote>
+<p>数据库实例才是真正操作数据库文件的。在集群情况下，可能存在一个DB被多个Instance使用的情况。</p>
+</blockquote>
+<p>Mysql被设计为单进程多线程，在OS上的表现是一个进程。</p>
+<h2 id="插件式表存储引擎"><a class="markdownIt-Anchor" href="#插件式表存储引擎"></a> 插件式表存储引擎</h2>
+<blockquote>
+<p>存储引擎基于表，而不是DB。</p>
+</blockquote>
+<blockquote>
+<p>存储引擎对开发人员透明。</p>
+</blockquote>
+<h1 id="索引原理"><a class="markdownIt-Anchor" href="#索引原理"></a> 索引原理</h1>
+<p>MySQL使用的是B+树作为索引的数据结构</p>
+<blockquote>
+<p>B树是一个分支内<strong>按顺序</strong>存放多个节点数据的数据结构；而B+树在此基础上，在分支内只存储索引，只在叶子节点存储数据（这样每一层可以存储更多索引，减少层数），并且在叶节点之间用指针互相连接，提高访问效率。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/InnoDB%E5%8E%9F%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -703,132 +892,6 @@ Here is some INFO.</p>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E4%B8%AD%E9%97%B4%E4%BB%B6/Eureka%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E4%B8%AD%E9%97%B4%E4%BB%B6/Eureka%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Eureka中间件</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-04 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-04T00:00:00+08:00">2025-01-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-06 19:59:12" itemprop="dateModified" datetime="2025-01-06T19:59:12+08:00">2025-01-06</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="注册中心"><a class="markdownIt-Anchor" href="#注册中心"></a> 注册中心</h1>
-<p>Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理。当我们需要获取其他服务的信息时，只需要向Eureka进行查询。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a: 微服务1</span><br><span class="line">b: 微服务2</span><br><span class="line">c: 微服务3</span><br><span class="line">E: Eureka注册中心</span><br><span class="line"></span><br><span class="line">a -&gt; E: 注册</span><br><span class="line">b -&gt; E: 注册</span><br><span class="line">c -&gt; E: 注册</span><br></pre></td></tr></table></figure>
-<h1 id="依赖"><a class="markdownIt-Anchor" href="#依赖"></a> 依赖</h1>
-<h2 id="父项目"><a class="markdownIt-Anchor" href="#父项目"></a> 父项目</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">2024.0</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">    &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">    &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="eureka模块"><a class="markdownIt-Anchor" href="#eureka模块"></a> Eureka模块</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="配置"><a class="markdownIt-Anchor" href="#配置"></a> 配置</h2>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">fetch-registry:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">registry-with-eureka:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">service-url:</span></span><br><span class="line">    <span class="attr">defaultZone:</span> <span class="string">http://yourhost:port/eureka</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EurekaApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(EurekaApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="注册服务"><a class="markdownIt-Anchor" href="#注册服务"></a> 注册服务</h1>
-<p>首先在需要注册的微服务下导入Eureka依赖：</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>然后修改配置<code>appllication.yml</code>：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">application:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">yourservice</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">      <span class="comment"># 跟上面一样，需要指向Eureka服务端地址，这样才能进行注册</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://yourhost:port/eureka</span></span><br></pre></td></tr></table></figure>
-<h1 id="服务发现"><a class="markdownIt-Anchor" href="#服务发现"></a> 服务发现</h1>
-<h2 id="注册resttemplate"><a class="markdownIt-Anchor" href="#注册resttemplate"></a> 注册RestTemplate</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BeanConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@LoadBalanced</span></span><br><span class="line">    <span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="使用spring-application-name代替url"><a class="markdownIt-Anchor" href="#使用spring-application-name代替url"></a> 使用spring-application-name代替URL</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> UserBorrowDetail <span class="title function_">getUserBorrowDetailByUid</span><span class="params">(<span class="type">int</span> uid)</span> &#123;</span><br><span class="line">    List&lt;Borrow&gt; borrow = borrowMapper.getBorrowByUid(uid);</span><br><span class="line">    <span class="type">RestTemplate</span> <span class="variable">restTemplate</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> restTemplate.getForObject(<span class="string">&quot;http://userservice/user/&quot;</span>+uid, User.class);</span><br><span class="line">    List&lt;Book&gt; bookList = borrow</span><br><span class="line">            .stream()</span><br><span class="line">            .map(b -&gt; restTemplate.getForObject(<span class="string">&quot;http://bookservice/book/&quot;</span>+b.getBid(), Book.class))</span><br><span class="line">            .collect(Collectors.toList());</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">UserBorrowDetail</span>(user, bookList);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="负载均衡"><a class="markdownIt-Anchor" href="#负载均衡"></a> 负载均衡</h3>
-<p>同一个服务可以注册多个端口，Eureka会为同一服务的多个端口分别进行注册。<br />
-使用上面的代码，Eureka会自动地均衡分发请求到不同端口上。</p>
-<blockquote>
-<p>负载均衡保证了服务的安全性，只要不是所有端口的微服务都宕机，Eureka就能够分配请求到可用的端口。</p>
-</blockquote>
-<h1 id="eureka高可用集群"><a class="markdownIt-Anchor" href="#eureka高可用集群"></a> Eureka高可用集群</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">E: Eureka高可用集群</span><br><span class="line">E: &#123;</span><br><span class="line">    E1: Eureka服务器1</span><br><span class="line">    E2: Eureka服务器2</span><br><span class="line">    E3: Eureka服务器3</span><br><span class="line"></span><br><span class="line">    E1 -&gt; E2</span><br><span class="line">    E2 -&gt; E3</span><br><span class="line">    E3 -&gt; E1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a: 微服务1</span><br><span class="line">b: 微服务2</span><br><span class="line">c: 微服务3</span><br><span class="line">a -&gt; E: 注册</span><br><span class="line">b -&gt; E: 注册</span><br><span class="line">c -&gt; E: 注册</span><br></pre></td></tr></table></figure>
-<h2 id="编写多个applicationyml"><a class="markdownIt-Anchor" href="#编写多个applicationyml"></a> 编写多个application.yml</h2>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># application-01.yml</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8801</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">eurekaserver</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">      <span class="comment"># 由于不支持多个localhost的Eureka服务器，但是又只有本地测试环境，所以就只能自定义主机名称了</span></span><br><span class="line">      <span class="comment"># 主机名称改为eureka01</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">eureka01</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">fetch-registry:</span> <span class="literal">false</span></span><br><span class="line">    <span class="comment"># 去掉register-with-eureka选项，让Eureka服务器自己注册到其他Eureka服务器，这样才能相互启用</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">        <span class="comment"># 注意这里填写其他Eureka服务器的地址，不用写自己的</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://eureka01:8802/eureka</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># application-02.yml</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8802</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">eurekaserver</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">eureka02</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">fetch-registry:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://eureka01:8801/eureka</span></span><br></pre></td></tr></table></figure>
-<h2 id="微服务写入所有eureka服务器的地址"><a class="markdownIt-Anchor" href="#微服务写入所有eureka服务器的地址"></a> 微服务写入所有Eureka服务器的地址</h2>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">        <span class="comment"># 将两个Eureka的地址都加入，这样就算有一个Eureka挂掉，也能完成注册</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://localhost:8801/eureka,</span> <span class="string">http://localhost:8802/eureka</span></span><br></pre></td></tr></table></figure>
-<h1 id="loadbalance-随机分配"><a class="markdownIt-Anchor" href="#loadbalance-随机分配"></a> LoadBalance 随机分配</h1>
-<p>默认的LoadBalance是轮询模式，想修改为随机分配，需要修改<code>LoadBalancerConfig</code>（注意，不需要<code>@Configuration</code>注解）并在<code>BeanConfiguration</code>中启用</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoadBalancerConfig</span> &#123;</span><br><span class="line">      <span class="comment">//将官方提供的 RandomLoadBalancer 注册为Bean</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> ReactorLoadBalancer&lt;ServiceInstance&gt; <span class="title function_">randomLoadBalancer</span><span class="params">(Environment environment, LoadBalancerClientFactory loadBalancerClientFactory)</span>&#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> environment.getProperty(LoadBalancerClientFactory.PROPERTY_NAME);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RandomLoadBalancer</span>(loadBalancerClientFactory.getLazyProvider(name, ServiceInstanceListSupplier.class), name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@LoadBalancerClient(value = &quot;userservice&quot;,</span></span><br><span class="line"><span class="meta">                    configuration = LoadBalancerConfig.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BeanConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@LoadBalanced</span></span><br><span class="line">    <span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="openfeign-更方便的http客户端请求工具"><a class="markdownIt-Anchor" href="#openfeign-更方便的http客户端请求工具"></a> OpenFeign 更方便的HTTP客户端请求工具</h1>
-<p>OpenFeign和RestTemplate有一样的功能，但是使用起来更加方便</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>使用方法与Mybatis非常类似。</p>
-<ol>
-<li>首先，启用OpenFeign</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableFeignClients</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SomeApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(SomeApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>接下来注册一个<code>interface</code></li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FeignClient(&quot;userservice&quot;)</span>   <span class="comment">// 声明为userservice服务的HTTP请求客户端</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserClient</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 路径保证和UserService微服务提供的一致即可</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/user/&#123;uid&#125;&quot;)</span></span><br><span class="line">    User <span class="title function_">getUserById</span><span class="params">(<span class="meta">@PathVariable(&quot;uid&quot;)</span> <span class="type">int</span> uid)</span>;  <span class="comment">// 参数和返回值也保持一致</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>直接注入使用</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Resource</span></span><br><span class="line">UserClient userClient;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> UserBorrowDetail <span class="title function_">getUserBorrowDetailByUid</span><span class="params">(<span class="type">int</span> uid)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// RestTemplate方法</span></span><br><span class="line">    <span class="type">RestTemplate</span> <span class="variable">template</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> template.getForObject(<span class="string">&quot;http://userservice/user/&quot;</span>+uid, User.class);</span><br><span class="line">    <span class="comment">// OpenFeign方法，更直观的方法调用</span></span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> userClient.getUserById(uid);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Mybatis%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1081,111 +1144,6 @@ Here is some INFO.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SecurityFilterChain <span class="title function_">filterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> http</span><br><span class="line">                <span class="comment">// 验证请求拦截和放行配置</span></span><br><span class="line">                .authorizeHttpRequests(auth -&gt; &#123;</span><br><span class="line">                    <span class="comment">// 将所有请求全部拦截，一律需要验证</span></span><br><span class="line">                    auth.anyRequest().authenticated();    </span><br><span class="line">                &#125;)</span><br><span class="line">                <span class="comment">// 表单登录相关配置</span></span><br><span class="line">                .formLogin(conf -&gt; &#123;</span><br><span class="line">                    conf.loginPage(<span class="string">&quot;/login&quot;</span>);   <span class="comment">// 将登录页设置为我们自己的登录页面</span></span><br><span class="line">                    conf.loginProcessingUrl(<span class="string">&quot;/doLogin&quot;</span>); <span class="comment">// 登录表单提交的地址，可以自定义</span></span><br><span class="line">                    conf.defaultSuccessUrl(<span class="string">&quot;/&quot;</span>);   <span class="comment">// 登录成功后跳转的页面</span></span><br><span class="line">                    conf.permitAll();    <span class="comment">// 将登录相关的地址放行，否则未登录的用户无法进入登录界面</span></span><br><span class="line">                      <span class="comment">// 用户名和密码的表单字段名称</span></span><br><span class="line">                    conf.usernameParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">                    conf.passwordParameter(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">                &#125;)</span><br><span class="line">                <span class="comment">// 退出登录</span></span><br><span class="line">                .logout(conf -&gt; &#123;</span><br><span class="line">                    ...</span><br><span class="line">                &#125;)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="记住密码"><a class="markdownIt-Anchor" href="#记住密码"></a> 记住密码</h1>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SecurityFilterChain <span class="title function_">filterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> http</span><br><span class="line">                .rememberMe(conf -&gt; &#123;</span><br><span class="line">                    conf.alwaysRemember(<span class="literal">false</span>);</span><br><span class="line">                &#125;)</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringMVC%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringMVC%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">SpringMVC笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-12-04 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-04T00:00:00+08:00">2024-12-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-04 10:49:51" itemprop="dateModified" datetime="2025-01-04T10:49:51+08:00">2025-01-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="mvc"><a class="markdownIt-Anchor" href="#mvc"></a> MVC</h1>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="controller"><a class="markdownIt-Anchor" href="#controller"></a> Controller</h1>
-<h2 id="页面"><a class="markdownIt-Anchor" href="#页面"></a> 页面</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span>   <span class="comment">//直接添加注解即可</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/index&quot;)</span>   <span class="comment">//直接填写访问路径</span></span><br><span class="line">    <span class="keyword">public</span> ModelAndView <span class="title function_">index</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">ModelAndView</span> <span class="variable">modelAndView</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>(<span class="string">&quot;index&quot;</span>);</span><br><span class="line">        modelAndView.getModel().put(<span class="string">&quot;arg&quot;</span>, <span class="string">&quot;value&quot;</span>);   <span class="comment">//将name传递给Model</span></span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">          <span class="comment">//返回后会经过视图解析器进行处理</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/index&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">index</span><span class="params">(Model model)</span>&#123;  <span class="comment">//这里不仅仅可以是Model，还可以是Map、ModelMap</span></span><br><span class="line">        model.addAttribute(<span class="string">&quot;arg&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="重定向"><a class="markdownIt-Anchor" href="#重定向"></a> 重定向</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/index&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;redirect:page&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="请求转发"><a class="markdownIt-Anchor" href="#请求转发"></a> 请求转发</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/index&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;forward:home&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="bean的web作用域"><a class="markdownIt-Anchor" href="#bean的web作用域"></a> Bean的Web作用域</h1>
-<p>Bean的作用域：</p>
-<ol>
-<li>Singleton</li>
-<li>Prototype</li>
-<li>Request HTTP请求产生新实例，结束后Bean消失</li>
-<li>Session 每一个会话</li>
-<li>Global Session</li>
-</ol>
-<h1 id="restful"><a class="markdownIt-Anchor" href="#restful"></a> RESTFul</h1>
-<blockquote>
-<p>一种设计风格。RESTful风格的设计允许将参数通过URL拼接传到服务端。</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:8080/mvc/index/13579</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/index/&#123;str&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">(<span class="meta">@PathVariable</span> String str)</span> &#123;</span><br><span class="line">    System.out.println(str);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="文件上传"><a class="markdownIt-Anchor" href="#文件上传"></a> 文件上传</h1>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainInitializer</span> <span class="keyword">extends</span> <span class="title class_">AbstractAnnotationConfigDispatcherServletInitializer</span> &#123;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">customizeRegistration</span><span class="params">(ServletRegistration.Dynamic registration)</span> &#123;</span><br><span class="line">          <span class="comment">// 直接通过registration配置Multipart相关配置，必须配置临时上传路径，建议选择方便打开的</span></span><br><span class="line">        <span class="comment">// 同样可以设置其他属性：maxFileSize, maxRequestSize, fileSizeThreshold</span></span><br><span class="line">        registration.setMultipartConfig(<span class="keyword">new</span> <span class="title class_">MultipartConfigElement</span>(<span class="string">&quot;/path/to/save&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Controller模板</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/upload&quot;, method = RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">upload</span><span class="params">(<span class="meta">@RequestParam</span> MultipartFile file)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">File</span> <span class="variable">fileObj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;filename.png&quot;</span>);</span><br><span class="line">    file.transferTo(fileObj);</span><br><span class="line">    System.out.println(<span class="string">&quot;用户上传的文件已保存到：&quot;</span>+fileObj.getAbsolutePath());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;文件上传成功！&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>前端模板</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;upload&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
       
     </div>
 

@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">62</span>
+          <span class="site-state-item-count">63</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,383 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/" class="post-title-link" itemprop="url">Advanced Java</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-28 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-28T00:00:00+08:00">2025-04-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-03 20:43:30" itemprop="dateModified" datetime="2025-05-03T20:43:30+08:00">2025-05-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="代理"><a class="markdownIt-Anchor" href="#代理"></a> 代理</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">Payment</span> <span class="variable">payment</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Payment</span>(<span class="string">&quot;AliPay&quot;</span>);</span><br><span class="line">    <span class="type">Pay</span> <span class="variable">proxy</span> <span class="operator">=</span> ProxyUtil.createProxy(payment);</span><br><span class="line"></span><br><span class="line">    proxy.pay(amount);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Payment</span> <span class="keyword">implements</span> <span class="title class_">Pay</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Overide</span></span><br><span class="line">    <span class="keyword">public</span> payResp <span class="title function_">pay</span><span class="params">(BigDecimal payAmount)</span> &#123;</span><br><span class="line">        <span class="comment">// Payment Business...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Pay</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> payResp <span class="title function_">pay</span><span class="params">(BigDecimal payAmount)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ProxyUtils</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Pay <span class="title function_">createProxy</span><span class="params">(Payment payment)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (Pay) Proxy.newProxyInstance(</span><br><span class="line">            ProxyUtil.class.getClassLoader(),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123; Pay.class &#125;,</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">InvocationHandler</span>() &#123;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Overide</span></span><br><span class="line">                <span class="keyword">public</span> Object <span class="title function_">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">                    <span class="comment">// Payment Environment Init...</span></span><br><span class="line">                    <span class="comment">// Payment Safe Guard...</span></span><br><span class="line">                    <span class="keyword">return</span> method.invoke(payment, args);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="反射"><a class="markdownIt-Anchor" href="#反射"></a> 反射</h1>
+<blockquote>
+<p>反射允许对成员变量、成员方法、构造方法信息进行编程访问。</p>
+</blockquote>
+<p>例如，IDE的智能补全、参数提示，就是使用反射实现。</p>
+<h2 id="class字节码获取"><a class="markdownIt-Anchor" href="#class字节码获取"></a> Class字节码获取</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class clazz;</span><br><span class="line">clazz = Class.forName(<span class="string">&quot;com.yourpackage.TargetClass&quot;</span>);</span><br><span class="line"><span class="comment">// 参数</span></span><br><span class="line">clazz = TargetClass.class;</span><br><span class="line"><span class="comment">// 有实例时</span></span><br><span class="line">clazz = instance.getClass();</span><br></pre></td></tr></table></figure>
+<h2 id="场景"><a class="markdownIt-Anchor" href="#场景"></a> 场景</h2>
+<p>反射可以与配置文件结合，从而动态地创建对象。例如<code>application.yml</code>里数据库的配置、端口号等。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Properties</span> <span class="variable">prop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line"><span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(ROOT + <span class="string">&quot;src/main/resources/application.properties&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">dataSourceUrl</span> <span class="operator">=</span> (String) perp.get(<span class="string">&quot;dataSource&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">dbName</span> <span class="operator">=</span> (String) extractDbName(dataSourceUrl);</span><br><span class="line"></span><br><span class="line"><span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> Class.forName(dbName);</span><br><span class="line"><span class="type">Constructor</span> <span class="variable">con</span> <span class="operator">=</span> clazz.getDeclaredConstructor();</span><br><span class="line"><span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> con.newInstance();</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h1 id="hashmap"><a class="markdownIt-Anchor" href="#hashmap"></a> HashMap</h1>
+<h2 id="jdk17"><a class="markdownIt-Anchor" href="#jdk17"></a> jdk1.7</h2>
+<blockquote>
+<p>jdk1.7的HashMap数据结构是：数组 + 单向链表</p>
+</blockquote>
+<p>当哈希后，得到的数组槽位已经存放了其他元素，这时候就需要运用指针在同一个槽位存放多个元素。</p>
+<h2 id="头插法"><a class="markdownIt-Anchor" href="#头插法"></a> 头插法</h2>
+<p>jdk1.7使用的方法是头插法，这样就不需要遍历到链表尾部再插入，性能高。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">createEntry</span><span class="params">(<span class="type">int</span> hash, K key, V value, <span class="type">int</span> bucketIdx)</span> &#123;</span><br><span class="line">    Entry&lt;K, V&gt; e = table[bucketIdx];</span><br><span class="line">    <span class="comment">// 这里使用头插法，在槽位头部插入新元素，并指向e，成为新的槽位引用</span></span><br><span class="line">    table[bucketIdx] = <span class="keyword">new</span> <span class="title class_">Entry</span>&lt;&gt;(hash, key, value, e); </span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">Entry</span><span class="params">(<span class="type">int</span> h, K k, V v, Entry&lt;K, V&gt; n)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.value = v;</span><br><span class="line">    <span class="built_in">this</span>.next = n;</span><br><span class="line">    <span class="built_in">this</span>.key = k;</span><br><span class="line">    <span class="built_in">this</span>.hash = h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方法需要最终更新槽位指向新插入的节点，否则单向链表找不到新插入的元素。</p>
+<h2 id="利用2次方机器特性"><a class="markdownIt-Anchor" href="#利用2次方机器特性"></a> 利用2次方机器特性</h2>
+<blockquote>
+<p>HashMap实际初始化时，不是根据用户传入的容量，而是向上取整2的次方。</p>
+</blockquote>
+<p>这是因为2次方可以将<strong>取模</strong>优化为<strong>位运算</strong>，避免除法（在机器中是暴力试除）<br />
+2的幂次取模小技巧：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi><mspace></mspace><mspace width="0.6666666666666666em"/><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mtext> </mtext><mtext> </mtext><msup><mn>2</mn><mi>n</mi></msup><mo>=</mo><mi>X</mi><mtext> &amp; </mtext><mo stretchy="false">(</mo><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \mod 2^n = X \text{ \&amp; } (2^n - 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:0.6666666666666666em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord text"><span class="mord"> &amp; </span></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="type">int</span> <span class="title function_">indexFor</span><span class="params">(<span class="type">int</span> h, <span class="type">int</span> length)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> h &amp; (length-<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 以2^4 = 16为例</span><br><span class="line">    0101 ****</span><br><span class="line">mod 0001 0000</span><br><span class="line">// 优化为位运算</span><br><span class="line">    0101 ****</span><br><span class="line">&amp;   0000 1111</span><br><span class="line">// ****与操作后，一定小于16</span><br></pre></td></tr></table></figure>
+<p>位运算取最高位算法，翻倍<code>(number - 1) &lt;&lt; 1</code>后取高位1</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">roundUpToPowerOf2</span><span class="params">(<span class="type">int</span> number)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> number &gt;= MAXIMUM_CAPACITY</span><br><span class="line">            ? MAXIUM_CAPACITY</span><br><span class="line">            : (number &gt; <span class="number">1</span>) ? Integer.highestOneBit((number - <span class="number">1</span>) &lt;&lt; <span class="number">1</span>) : <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">highestOneBit</span><span class="params">(<span class="type">int</span> i)</span> &#123;</span><br><span class="line">    i |= (i &gt;&gt;  <span class="number">1</span>);</span><br><span class="line">    i |= (i &gt;&gt;  <span class="number">2</span>);</span><br><span class="line">    i |= (i &gt;&gt;  <span class="number">4</span>);</span><br><span class="line">    i |= (i &gt;&gt;  <span class="number">8</span>);</span><br><span class="line">    i |= (i &gt;&gt; <span class="number">16</span>);</span><br><span class="line">    <span class="keyword">return</span> i - (i &gt;&gt; <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>highestOneBit()</code>位运算原理</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 任意一个数</span><br><span class="line">  0001 ****</span><br><span class="line">// i |= (i &gt;&gt;  1);</span><br><span class="line">  0001 ****</span><br><span class="line">| 0000 1***</span><br><span class="line">= 0001 1***</span><br><span class="line">// i |= (i &gt;&gt;  2);</span><br><span class="line">  0001 1***</span><br><span class="line">| 0000 011*</span><br><span class="line">= 0001 111*</span><br><span class="line">// i |= (i &gt;&gt;  4);</span><br><span class="line">  0001 111*</span><br><span class="line">| 0000 0001</span><br><span class="line">= 0001 1111</span><br><span class="line">// 至此，*全部变为1</span><br><span class="line">// i |= (i &gt;&gt;  8);</span><br><span class="line">// i |= (i &gt;&gt; 16); </span><br><span class="line">// int类型最多4Byte = 32bit，此时原数i最大已经覆盖了16位1，右移即可全部覆盖</span><br><span class="line"></span><br><span class="line">// return i - (i &gt;&gt; 1);</span><br><span class="line">  0001 1111</span><br><span class="line">- 0000 1111</span><br><span class="line">= 0001 0000</span><br><span class="line">// 得到最高位的1</span><br></pre></td></tr></table></figure>
+<h2 id="搅动算法扩散哈希差异"><a class="markdownIt-Anchor" href="#搅动算法扩散哈希差异"></a> 搅动算法扩散哈希差异</h2>
+<blockquote>
+<p>实际上，HashMap除了调用<code>hashCode()</code>方法以外，还会使用位运算进行搅动，达到均匀分布的效果。</p>
+</blockquote>
+<p>jdk1.7通过​<strong>​位运算混合哈希码的高低位信息​</strong>​，从而减少哈希冲突。<br />
+（如<code>0x10000000</code>和<code>0x20000000</code>），扰动后差异会扩散到更多低位（<code>0x12000000</code>和<code>0x24000000</code>），避免仅依赖低位导致冲突。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">int</span> <span class="title function_">hash</span><span class="params">(Object k)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">h</span> <span class="operator">=</span> hashSeed;</span><br><span class="line">    <span class="keyword">if</span> (<span class="number">0</span> != h &amp;&amp; k instanceOf String) &#123;</span><br><span class="line">        <span class="keyword">return</span> stringHash32((String) k);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    h ^= k.hashCode();</span><br><span class="line">    <span class="comment">// 确保“仅在每个比特位存在常数倍差异”的哈希码，其冲突次数有上限（默认负载因子下约8次）​。</span></span><br><span class="line">    <span class="comment">// &#x27;&gt;&gt;&gt;&#x27; 是无符号右移</span></span><br><span class="line">    h ^= (h &gt;&gt;&gt; <span class="number">20</span>) ^ (h &gt;&gt;&gt; <span class="number">12</span>);</span><br><span class="line">    <span class="keyword">return</span> h ^ (h &gt;&gt;&gt; <span class="number">7</span>) ^ (h &gt;&gt;&gt; <span class="number">4</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>jdk1.8<a href="###%E6%9B%B4%E7%AE%80%E6%B4%81%E7%9A%84%E6%90%85%E5%8A%A8%E7%AE%97%E6%B3%95">优化</a>了这里的搅动逻辑<code>(h = key.hashCode()) ^ (h &gt;&gt;&gt; 16)</code>，保证搅动足够均匀的情况下减少运算，并结合红黑树进行优化。</p>
+<h2 id="resize重新哈希"><a class="markdownIt-Anchor" href="#resize重新哈希"></a> resize重新哈希</h2>
+<p>resize直接*2，扩容成原来的两倍。由于初始化就设置capacity为2的幂次，所有扩容后仍然为2的幂次。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">transfer</span><span class="params">(Entry[] newTable, <span class="type">boolean</span> rehash)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">newCapacity</span> <span class="operator">=</span> newTable.length;</span><br><span class="line">    <span class="keyword">for</span> (Entry&lt;K, V&gt; e: table) &#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">null</span> != e) &#123;</span><br><span class="line">            Entry&lt;K, V&gt; next = e.next;</span><br><span class="line">            <span class="keyword">if</span> (rehash) &#123;</span><br><span class="line">                <span class="comment">// 基于新capacity，重新哈希</span></span><br><span class="line">                e.hash = (<span class="literal">null</span> == e.key ? <span class="number">0</span> : hash(e.key));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> indexFor(e.hash, newCapacity);</span><br><span class="line">            <span class="comment">// 头插法，e对应对象的next指向到newTable</span></span><br><span class="line">            e.next = newTable[i];</span><br><span class="line">            <span class="comment">// newTable[i]这个槽位指向e对应对象，保证能遍历到新插入对象</span></span><br><span class="line">            newTable[i] = e;</span><br><span class="line">            e = e.next;</span><br><span class="line">        &#125;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>transfer()</code>仍然使用头插法，这样会调转原来的顺序</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 原来可能是这样的</span><br><span class="line">e -&gt; 1</span><br><span class="line">1 -&gt; 2 -&gt; 3 -&gt; null</span><br><span class="line"></span><br><span class="line">// 头插法, e.next = newTable[i];</span><br><span class="line">1 -&gt; null(newTable[i]初始化的Entry默认为null)</span><br><span class="line">// 调整i指针, newTable[i] = e;</span><br><span class="line">i -&gt; 1</span><br><span class="line">e -&gt; 2</span><br><span class="line"></span><br><span class="line">// 头插法</span><br><span class="line">// 此时 1 -&gt; null, 头部插入 2 -&gt; 1</span><br><span class="line">2 -&gt; 1 -&gt; null</span><br><span class="line">i -&gt; 2</span><br><span class="line">e -&gt; 3</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">// 最终结果</span><br><span class="line">3 -&gt; 2 -&gt; 1 -&gt; null</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>从<code>transfer()</code>核心的2行代码可以看出，HashMap扩容时操作不原子，并发执行有问题。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Thread1: e.next = newTable[i]; <span class="comment">// old</span></span><br><span class="line">Thread2: e.next = newTable[i]; <span class="comment">// old</span></span><br><span class="line"></span><br><span class="line">Thread2: newTable[i] = e; <span class="comment">// i -&gt; 1 -&gt; old</span></span><br><span class="line">Thread1: newTable[i] = e; <span class="comment">// i -&gt; 2 -&gt; old</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>更严重的问题是，并发<code>transfer()</code>会出现循环链表</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 原来的链表</span></span><br><span class="line"><span class="number">1</span> -&gt; <span class="number">2</span> -&gt; <span class="number">3</span> -&gt; <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 并发resize()</span></span><br><span class="line"><span class="comment">// Thread1完成resize()</span></span><br><span class="line"><span class="number">3</span> -&gt; <span class="number">2</span> -&gt; <span class="number">1</span> -&gt; <span class="literal">null</span></span><br><span class="line"><span class="comment">// 这时Thread2刚开始transfer，但是拿到的是旧链表 1 -&gt; 2 -&gt; 3</span></span><br><span class="line"><span class="comment">// 从1开始</span></span><br><span class="line">i -&gt; <span class="number">1</span> -&gt; old <span class="comment">// 实际上old已经变成3 -&gt; 2 -&gt; 1了</span></span><br><span class="line"><span class="comment">// 死循环！</span></span><br><span class="line">i -&gt; <span class="number">1</span> -&gt; <span class="number">3</span> -&gt; <span class="number">2</span> -&gt; <span class="number">1</span> -&gt; <span class="number">3</span> ...</span><br></pre></td></tr></table></figure>
+<h4 id="rehash规律"><a class="markdownIt-Anchor" href="#rehash规律"></a> rehash规律</h4>
+<p>在rehash里有一个规律：由于扩容后还是2的幂次，因此rehash的结果要么和原来相同；要么是原来的位置+高位</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">// 假设原来capacity是16，hash后使用indexFor取模</span><br><span class="line">// 原来的slot</span><br><span class="line">  0101 0101</span><br><span class="line">&amp; 0000 1111</span><br><span class="line">= 0000 0101</span><br><span class="line">// capacity &gt;&gt; 1，变成32后</span><br><span class="line">  0101 0101</span><br><span class="line">&amp; 0001 1111</span><br><span class="line">= 0001 0101</span><br><span class="line">// 取模结果是原来加上高位16；</span><br><span class="line"></span><br><span class="line">// 如果原数在高位不为1，那rehash结果和原来一致</span><br><span class="line">  0110 0101</span><br><span class="line">&amp; 0000 1111  </span><br><span class="line">&amp; 0001 1111</span><br><span class="line">= 0000 0101</span><br></pre></td></tr></table></figure>
+<h2 id="jdk18"><a class="markdownIt-Anchor" href="#jdk18"></a> jdk1.8</h2>
+<blockquote>
+<p>jdk1.8的HashMap数据结构是：数组 + (单向+双向)两种链表 + 红黑树</p>
+</blockquote>
+<p>说用到双向链表是因为红黑树会记录父节点和子节点，相当于双向的。<br />
+当数组长度达到64且哈希冲突使链表长度达到8，<strong>该槽位</strong>会改用红黑树结构。<br />
+如果数组未达到64，只是链表长度达到8，那么会扩容。</p>
+<h3 id="拓展为什么是8和64"><a class="markdownIt-Anchor" href="#拓展为什么是8和64"></a> 拓展：为什么是8和64</h3>
+<ul>
+<li>红黑树效率高，但是数组大小小于64的时候，红黑树频繁使用平衡算法开销比较大，而且红黑树存储空间是数组+链表的2倍（例如，树存储父、子节点，2个指针而不是1个）</li>
+<li>泊松分布：链表长度为0的概率是60%，为1的概率是30%，为2的概率是7%…为8的概率几乎可以忽略，是非常极端的情况；并且达到8的时候，链表查询的平均开销<strong>数学上</strong>大于红黑树。</li>
+</ul>
+<h3 id="更简洁的搅动算法"><a class="markdownIt-Anchor" href="#更简洁的搅动算法"></a> 更简洁的搅动算法</h3>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> <span class="type">int</span> <span class="title function_">hash</span><span class="params">(Object key)</span> &#123;</span><br><span class="line">    <span class="type">int</span> h;</span><br><span class="line">    <span class="keyword">return</span> (key == <span class="literal">null</span>) ? <span class="number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="懒初始化"><a class="markdownIt-Anchor" href="#懒初始化"></a> 懒初始化</h3>
+<blockquote>
+<p>jdk1.8只有在第一次调用<code>put()</code>时才真正为HashMap分配内存。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> V <span class="title function_">putVal</span><span class="params">(<span class="type">int</span> hash, K key, V value, <span class="type">boolean</span> onlyIfAbsent, <span class="type">boolean</span> evict)</span> &#123;</span><br><span class="line">    Node&lt;K, V&gt;[] tab; Node&lt;K, V&gt; p; <span class="type">int</span> n, i;</span><br><span class="line">    <span class="comment">// 如果为空就初始化</span></span><br><span class="line">    <span class="keyword">if</span> ((tab = table) == <span class="literal">null</span> || (n = tab.length) == <span class="number">0</span>)</span><br><span class="line">        n = (tab = resize()).length;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="尾插法"><a class="markdownIt-Anchor" href="#尾插法"></a> 尾插法</h3>
+<p>jdk1.8使用尾插法，避免头插法在并发下的问题</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> V <span class="title function_">putVal</span><span class="params">(<span class="type">int</span> hash, K key, V value, <span class="type">boolean</span> onlyIfAbsent, <span class="type">boolean</span> evict)</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// 使用for循环，binCount充当计数器，哈希冲突导致链表长度为8，就转为红黑树</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">binCount</span> <span class="operator">=</span> <span class="number">0</span>; ; ++binCount) &#123;</span><br><span class="line">        <span class="comment">// 遍历到尾节点</span></span><br><span class="line">        <span class="keyword">if</span> ((e = p.next) == <span class="literal">null</span>) &#123;</span><br><span class="line">            p.next = newNode(hash, key, value, <span class="literal">null</span>);</span><br><span class="line">            <span class="keyword">if</span> (binCount &gt;= TREEIFY_THRESHOLD - <span class="number">1</span>)</span><br><span class="line">                <span class="comment">// 实际上会检查数组容量是否大于64，小于则只调用resize()</span></span><br><span class="line">                treeifyBin(tab, hash); </span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 遍历过程中发现相同Key，那么跳出循环，在代码最后做一个替换操作，并返回oldValue</span></span><br><span class="line">        <span class="keyword">if</span> (e.hash == hash &amp;&amp; ((k = e.kay) == key || (key != <span class="literal">null</span> &amp;&amp; key.equals(k))))</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="comment">// 否则 p = p.next</span></span><br><span class="line">        p = e;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 替换返回旧值</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="keyword">void</span> <span class="title function_">treeifyBin</span><span class="params">(Node&lt;K, V&gt;[] tab, <span class="type">int</span> hash)</span> &#123;</span><br><span class="line">    <span class="type">int</span> n, index; Node&lt;K, V&gt; e;</span><br><span class="line">    <span class="comment">// 数组长度小于64，只扩容不转红黑树</span></span><br><span class="line">    <span class="keyword">if</span> (tab == <span class="literal">null</span> || (n = tab.length) &lt; MIN_TREEIFY_CAPACITY)</span><br><span class="line">        resize();</span><br><span class="line">    <span class="keyword">else</span> ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="resize批量迁移"><a class="markdownIt-Anchor" href="#resize批量迁移"></a> resize批量迁移</h3>
+<p>在链表情况下，hash后的槽位依然符合<a href="####rehash%E8%A7%84%E5%BE%8B">规律</a>：<br />
+rehash的结果要么和原来相同；要么是原来的位置+高位</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">final</span> Node&lt;K, V&gt;[] resize() &#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">// 槽位不为空才需要迁移</span></span><br><span class="line">    <span class="keyword">if</span> ((e = oldTab[j]) != <span class="literal">null</span>) &#123;</span><br><span class="line">        oldTab[j] = <span class="literal">null</span>;</span><br><span class="line">        <span class="comment">// e.next为空，只有1个元素，直接迁移</span></span><br><span class="line">        <span class="keyword">if</span> (e.next == <span class="literal">null</span>)</span><br><span class="line">            <span class="comment">// hash并取模newCap，得到新槽位</span></span><br><span class="line">            newTab[e.hash &amp; (newCap - <span class="number">1</span>)] = e;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (e <span class="keyword">instanceof</span> TreeNode)</span><br><span class="line">            ((TreeNode&lt;K, V&gt;) e).split(<span class="built_in">this</span>, newTab, j, oldCap);</span><br><span class="line">        <span class="comment">// 槽位引用为列表</span></span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 因为容量变了，hash()取模后不一定得到原来的槽位，需要全部重新hash</span></span><br><span class="line">            <span class="comment">// 要么hash和原来一致</span></span><br><span class="line">            Node&lt;K, V&gt; loHead = <span class="literal">null</span>, loTail = <span class="literal">null</span>;</span><br><span class="line">            <span class="comment">// 要么hash为原值 + 高位</span></span><br><span class="line">            Node&lt;K, V&gt; hiHead = <span class="literal">null</span>, hiTail = <span class="literal">null</span>;</span><br><span class="line">            Node&lt;K, V&gt; next;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                next = e.next;</span><br><span class="line">                <span class="comment">// hash后高位不为1，和原来一致</span></span><br><span class="line">                <span class="keyword">if</span> ((e.hash &amp; oldCap) == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (loTail == <span class="literal">null</span>)</span><br><span class="line">                        <span class="comment">// 初始化更新头节点</span></span><br><span class="line">                        loHead = e;</span><br><span class="line">                    <span class="keyword">else</span></span><br><span class="line">                        <span class="comment">// 其他时候更新尾节点</span></span><br><span class="line">                        loTail.next = e;</span><br><span class="line">                    <span class="comment">// loTail = loTail.next</span></span><br><span class="line">                    loTail = e;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">// 同样的逻辑处理高位</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">while</span> ((e = next) != <span class="literal">null</span>);</span><br><span class="line">            <span class="keyword">if</span> (loTail != <span class="literal">null</span>) &#123;</span><br><span class="line">                loTail.next = <span class="literal">null</span>;</span><br><span class="line">                newTab[j] = loHead;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (hiTail != <span class="literal">null</span>) &#123;</span><br><span class="line">                hiTail.next = <span class="literal">null</span>;</span><br><span class="line">                <span class="comment">// 容量都是2的幂次，等于+高位</span></span><br><span class="line">                newTab[j + oldCap] = hiHead;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">return</span> newTab;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>对于树的迁移，因为hash取模newCapacity导致槽位变化，也要分割。分割逻辑和链表一样，只不过多了判断：</p>
+<ol>
+<li>分割后，是否需要退化为链表？红黑树节点少于6就退化；否则重新生成红黑树</li>
+<li>如果全部hash取模后都在低位/高位，那直接迁移整棵红黑树。</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E4%B8%AD%E9%97%B4%E4%BB%B6/Eureka%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E4%B8%AD%E9%97%B4%E4%BB%B6/Eureka%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Eureka中间件</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-04 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-04T00:00:00+08:00">2025-01-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-29 14:16:34" itemprop="dateModified" datetime="2025-04-29T14:16:34+08:00">2025-04-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="注册中心"><a class="markdownIt-Anchor" href="#注册中心"></a> 注册中心</h1>
+<p>Eureka能够自动注册并发现微服务，然后对服务的状态、信息进行集中管理。当我们需要获取其他服务的信息时，只需要向Eureka进行查询。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a: 微服务1</span><br><span class="line">b: 微服务2</span><br><span class="line">c: 微服务3</span><br><span class="line">E: Eureka注册中心</span><br><span class="line"></span><br><span class="line">a -&gt; E: 注册</span><br><span class="line">b -&gt; E: 注册</span><br><span class="line">c -&gt; E: 注册</span><br></pre></td></tr></table></figure>
+<h1 id="依赖"><a class="markdownIt-Anchor" href="#依赖"></a> 依赖</h1>
+<h2 id="父项目"><a class="markdownIt-Anchor" href="#父项目"></a> 父项目</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">2024.0</span><span class="number">.0</span>&lt;/version&gt;</span><br><span class="line">    &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">    &lt;scope&gt;<span class="keyword">import</span>&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="eureka模块"><a class="markdownIt-Anchor" href="#eureka模块"></a> Eureka模块</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="配置"><a class="markdownIt-Anchor" href="#配置"></a> 配置</h2>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">fetch-registry:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">registry-with-eureka:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">service-url:</span></span><br><span class="line">    <span class="attr">defaultZone:</span> <span class="string">http://yourhost:port/eureka</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">EurekaApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(EurekaApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="注册服务"><a class="markdownIt-Anchor" href="#注册服务"></a> 注册服务</h1>
+<p>首先在需要注册的微服务下导入Eureka依赖：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-netflix-eureka-client<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后修改配置<code>appllication.yml</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">    <span class="attr">application:</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">yourservice</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">      <span class="comment"># 跟上面一样，需要指向Eureka服务端地址，这样才能进行注册</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://yourhost:port/eureka</span></span><br></pre></td></tr></table></figure>
+<h1 id="服务发现"><a class="markdownIt-Anchor" href="#服务发现"></a> 服务发现</h1>
+<h2 id="注册resttemplate"><a class="markdownIt-Anchor" href="#注册resttemplate"></a> 注册RestTemplate</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BeanConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@LoadBalanced</span></span><br><span class="line">    <span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用spring-application-name代替url"><a class="markdownIt-Anchor" href="#使用spring-application-name代替url"></a> 使用spring-application-name代替URL</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> UserBorrowDetail <span class="title function_">getUserBorrowDetailByUid</span><span class="params">(<span class="type">int</span> uid)</span> &#123;</span><br><span class="line">    List&lt;Borrow&gt; borrow = borrowMapper.getBorrowByUid(uid);</span><br><span class="line">    <span class="type">RestTemplate</span> <span class="variable">restTemplate</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> restTemplate.getForObject(<span class="string">&quot;http://userservice/user/&quot;</span>+uid, User.class);</span><br><span class="line">    List&lt;Book&gt; bookList = borrow</span><br><span class="line">            .stream()</span><br><span class="line">            .map(b -&gt; restTemplate.getForObject(<span class="string">&quot;http://bookservice/book/&quot;</span>+b.getBid(), Book.class))</span><br><span class="line">            .collect(Collectors.toList());</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">UserBorrowDetail</span>(user, bookList);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="负载均衡"><a class="markdownIt-Anchor" href="#负载均衡"></a> 负载均衡</h3>
+<p>同一个服务可以注册多个端口，Eureka会为同一服务的多个端口分别进行注册。<br />
+使用上面的代码，Eureka会自动地均衡分发请求到不同端口上。</p>
+<blockquote>
+<p>负载均衡保证了服务的安全性，只要不是所有端口的微服务都宕机，Eureka就能够分配请求到可用的端口。</p>
+</blockquote>
+<h1 id="eureka高可用集群"><a class="markdownIt-Anchor" href="#eureka高可用集群"></a> Eureka高可用集群</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">E: Eureka高可用集群</span><br><span class="line">E: &#123;</span><br><span class="line">    E1: Eureka服务器1</span><br><span class="line">    E2: Eureka服务器2</span><br><span class="line">    E3: Eureka服务器3</span><br><span class="line"></span><br><span class="line">    E1 -&gt; E2</span><br><span class="line">    E2 -&gt; E3</span><br><span class="line">    E3 -&gt; E1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a: 微服务1</span><br><span class="line">b: 微服务2</span><br><span class="line">c: 微服务3</span><br><span class="line">a -&gt; E: 注册</span><br><span class="line">b -&gt; E: 注册</span><br><span class="line">c -&gt; E: 注册</span><br></pre></td></tr></table></figure>
+<h2 id="编写多个applicationyml"><a class="markdownIt-Anchor" href="#编写多个applicationyml"></a> 编写多个application.yml</h2>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># application-01.yml</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8801</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">eurekaserver</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">      <span class="comment"># 由于不支持多个localhost的Eureka服务器，但是又只有本地测试环境，所以就只能自定义主机名称了</span></span><br><span class="line">      <span class="comment"># 主机名称改为eureka01</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">eureka01</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">fetch-registry:</span> <span class="literal">false</span></span><br><span class="line">    <span class="comment"># 去掉register-with-eureka选项，让Eureka服务器自己注册到其他Eureka服务器，这样才能相互启用</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">        <span class="comment"># 注意这里填写其他Eureka服务器的地址，不用写自己的</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://eureka01:8802/eureka</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># application-02.yml</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8802</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">eurekaserver</span></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">instance:</span></span><br><span class="line">    <span class="attr">hostname:</span> <span class="string">eureka02</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">fetch-registry:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://eureka01:8801/eureka</span></span><br></pre></td></tr></table></figure>
+<h2 id="微服务写入所有eureka服务器的地址"><a class="markdownIt-Anchor" href="#微服务写入所有eureka服务器的地址"></a> 微服务写入所有Eureka服务器的地址</h2>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line">  <span class="attr">client:</span></span><br><span class="line">    <span class="attr">service-url:</span></span><br><span class="line">        <span class="comment"># 将两个Eureka的地址都加入，这样就算有一个Eureka挂掉，也能完成注册</span></span><br><span class="line">      <span class="attr">defaultZone:</span> <span class="string">http://localhost:8801/eureka,</span> <span class="string">http://localhost:8802/eureka</span></span><br></pre></td></tr></table></figure>
+<h1 id="loadbalance-随机分配"><a class="markdownIt-Anchor" href="#loadbalance-随机分配"></a> LoadBalance 随机分配</h1>
+<p>默认的LoadBalance是轮询模式，想修改为随机分配，需要修改<code>LoadBalancerConfig</code>（注意，不需要<code>@Configuration</code>注解）并在<code>BeanConfiguration</code>中启用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LoadBalancerConfig</span> &#123;</span><br><span class="line">      <span class="comment">//将官方提供的 RandomLoadBalancer 注册为Bean</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> ReactorLoadBalancer&lt;ServiceInstance&gt; <span class="title function_">randomLoadBalancer</span><span class="params">(Environment environment, LoadBalancerClientFactory loadBalancerClientFactory)</span>&#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> environment.getProperty(LoadBalancerClientFactory.PROPERTY_NAME);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RandomLoadBalancer</span>(loadBalancerClientFactory.getLazyProvider(name, ServiceInstanceListSupplier.class), name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@LoadBalancerClient(value = &quot;userservice&quot;,</span></span><br><span class="line"><span class="meta">                    configuration = LoadBalancerConfig.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">BeanConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@LoadBalanced</span></span><br><span class="line">    <span class="keyword">public</span> RestTemplate <span class="title function_">restTemplate</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="openfeign-更方便的http客户端请求工具"><a class="markdownIt-Anchor" href="#openfeign-更方便的http客户端请求工具"></a> OpenFeign 更方便的HTTP客户端请求工具</h1>
+<p>OpenFeign和RestTemplate有一样的功能，但是使用起来更加方便</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.cloud<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-cloud-starter-openfeign<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>使用方法与Mybatis非常类似。</p>
+<ol>
+<li>首先，启用OpenFeign</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableFeignClients</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SomeApplication</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        SpringApplication.run(SomeApplication.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>接下来注册一个<code>interface</code></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FeignClient(&quot;userservice&quot;)</span>   <span class="comment">// 声明为userservice服务的HTTP请求客户端</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">UserClient</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 路径保证和UserService微服务提供的一致即可</span></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/user/&#123;uid&#125;&quot;)</span></span><br><span class="line">    User <span class="title function_">getUserById</span><span class="params">(<span class="meta">@PathVariable(&quot;uid&quot;)</span> <span class="type">int</span> uid)</span>;  <span class="comment">// 参数和返回值也保持一致</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>直接注入使用</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Resource</span></span><br><span class="line">UserClient userClient;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> UserBorrowDetail <span class="title function_">getUserBorrowDetailByUid</span><span class="params">(<span class="type">int</span> uid)</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// RestTemplate方法</span></span><br><span class="line">    <span class="type">RestTemplate</span> <span class="variable">template</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">RestTemplate</span>();</span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> template.getForObject(<span class="string">&quot;http://userservice/user/&quot;</span>+uid, User.class);</span><br><span class="line">    <span class="comment">// OpenFeign方法，更直观的方法调用</span></span><br><span class="line">    <span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> userClient.getUserById(uid);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="请求携带token"><a class="markdownIt-Anchor" href="#请求携带token"></a> 请求携带token</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FeignConfig</span> <span class="keyword">implements</span> <span class="title class_">RequestInterceptor</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">apply</span><span class="params">(RequestTemplate requestTemplate)</span> &#123;</span><br><span class="line">        <span class="type">ServletRequestAttributes</span> <span class="variable">attributes</span> <span class="operator">=</span> (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();</span><br><span class="line">        <span class="type">HttpServletRequest</span> <span class="variable">request</span> <span class="operator">=</span> attributes.getRequest();</span><br><span class="line">        requestTemplate.header(<span class="string">&quot;token&quot;</span>, request.getHeader(<span class="string">&quot;token&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@FeignClient(value = &quot;SomeService&quot;, configuration = FeignConfig.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">SomeService</span> &#123;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/nginx%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/nginx%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">nginx使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-14 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-14T00:00:00+08:00">2025-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-28 15:09:14" itemprop="dateModified" datetime="2025-04-28T15:09:14+08:00">2025-04-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="新增配置"><a class="markdownIt-Anchor" href="#新增配置"></a> 新增配置</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/nginx/sites-available/yourdomain.conf</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">符号链接</span></span><br><span class="line">sudo ln -s /etc/nginx/sites-available/yourdomain.conf /etc/nginx/sites-enabled/</span><br></pre></td></tr></table></figure>
+<h1 id="port2domain"><a class="markdownIt-Anchor" href="#port2domain"></a> port2domain</h1>
+<h2 id="后端服务"><a class="markdownIt-Anchor" href="#后端服务"></a> 后端服务</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name yourdomain.com www.yourdomain.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:9000;  # 项目运行的端口</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # 日志配置（可选）</span><br><span class="line">    error_log /var/log/nginx/yourdomain.error.log;</span><br><span class="line">    access_log /var/log/nginx/yourdomain.access.log;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="启用"><a class="markdownIt-Anchor" href="#启用"></a> 启用</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo nginx -t  # 检查配置是否正确</span><br><span class="line">sudo nginx -s reload</span><br></pre></td></tr></table></figure>
+<h2 id="前端打包文件"><a class="markdownIt-Anchor" href="#前端打包文件"></a> 前端打包文件</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    root /var/www/railcloud/dist;</span><br><span class="line">    index index.html;</span><br><span class="line">    try_files $uri $uri/ /index.html; # 支持SPA路由</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="启用-2"><a class="markdownIt-Anchor" href="#启用-2"></a> 启用</h3>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">③ 设置正确权限</span></span><br><span class="line">sudo chown -R www-data:www-data /var/www/railcloud</span><br><span class="line">sudo chmod -R 755 /var/www/railcloud</span><br><span class="line"></span><br><span class="line">sudo nginx -t &amp;&amp; nginx -s reload</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -216,7 +593,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-27 21:00:56" itemprop="dateModified" datetime="2025-04-27T21:00:56+08:00">2025-04-27</time>
+      <time title="修改时间：2025-04-28 11:09:45" itemprop="dateModified" datetime="2025-04-28T11:09:45+08:00">2025-04-28</time>
     </span>
 
   
@@ -241,7 +618,7 @@
 <p>0信任：不要期待网络服务器按照理想情况运行。</p>
 </blockquote>
 <p>使用Redission自动为锁续命，可以解决上述问题。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">lockKey</span> <span class="operator">=</span> req.getTrainDate() + <span class="string">&quot;-&quot;</span> + req.getTrainCode();</span><br><span class="line"><span class="type">RLock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    lock = redissonClient.getLock(lockKey);</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">tryLock</span> <span class="operator">=</span> lock.tryLock(<span class="number">0</span>, TimeUnit.SECONDS);</span><br><span class="line">    <span class="keyword">if</span> (!tryLock) &#123;</span><br><span class="line">        LOG.info(<span class="string">&quot;获取锁失败&quot;</span>);</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">BusinessException</span>(BusinessExceptionEnum.CONFIRM_ORDER_TICKET_COUNT_ERROR);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Business Code</span></span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    LOG.info(<span class="string">&quot;释放锁&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (lock != <span class="literal">null</span> &amp;&amp; lock.isHeldByCurrentThread()) &#123;</span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">lockKey</span> <span class="operator">=</span> req.getBusinessUniqueKey() + <span class="string">&quot;-&quot;</span> + req.getBusinessCode();</span><br><span class="line"><span class="type">RLock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    lock = redissonClient.getLock(lockKey);</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">tryLock</span> <span class="operator">=</span> lock.tryLock(<span class="number">0</span>, TimeUnit.SECONDS);</span><br><span class="line">    <span class="keyword">if</span> (!tryLock) &#123;</span><br><span class="line">        LOG.info(<span class="string">&quot;获取锁失败&quot;</span>);</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">BusinessException</span>(BusinessExceptionEnum.CONFIRM_ORDER_TICKET_COUNT_ERROR);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Business Code</span></span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    LOG.info(<span class="string">&quot;释放锁&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (lock != <span class="literal">null</span> &amp;&amp; lock.isHeldByCurrentThread()) &#123;</span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>锁设计原则：谁持有锁，谁才有资格释放锁。</p>
 </blockquote>
@@ -370,91 +747,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/nginx%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/nginx%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">nginx使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-04-14 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-14T00:00:00+08:00">2025-04-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-25 22:26:54" itemprop="dateModified" datetime="2025-04-25T22:26:54+08:00">2025-04-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="新增配置"><a class="markdownIt-Anchor" href="#新增配置"></a> 新增配置</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/nginx/sites-available/yourdomain.conf</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">符号链接</span></span><br><span class="line">sudo ln -s /etc/nginx/sites-available/yourdomain.conf /etc/nginx/sites-enabled/</span><br></pre></td></tr></table></figure>
-<h1 id="port2domain"><a class="markdownIt-Anchor" href="#port2domain"></a> port2domain</h1>
-<h2 id="后端服务"><a class="markdownIt-Anchor" href="#后端服务"></a> 后端服务</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line">    server_name yourdomain.com www.yourdomain.com;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        proxy_pass http://127.0.0.1:9000;  # 项目运行的端口</span><br><span class="line">        proxy_set_header Host $host;</span><br><span class="line">        proxy_set_header X-Real-IP $remote_addr;</span><br><span class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">        proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # 日志配置（可选）</span><br><span class="line">    error_log /var/log/nginx/yourdomain.error.log;</span><br><span class="line">    access_log /var/log/nginx/yourdomain.access.log;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="启用"><a class="markdownIt-Anchor" href="#启用"></a> 启用</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo nginx -t  # 检查配置是否正确</span><br><span class="line">sudo systemctl restart nginx</span><br></pre></td></tr></table></figure>
-<h2 id="前端打包文件"><a class="markdownIt-Anchor" href="#前端打包文件"></a> 前端打包文件</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    root /var/www/railcloud/dist;</span><br><span class="line">    index index.html;</span><br><span class="line">    try_files $uri $uri/ /index.html; # 支持SPA路由</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="启用-2"><a class="markdownIt-Anchor" href="#启用-2"></a> 启用</h3>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">③ 设置正确权限</span></span><br><span class="line">sudo chown -R www-data:www-data /var/www/railcloud</span><br><span class="line">sudo chmod -R 755 /var/www/railcloud</span><br><span class="line"></span><br><span class="line">sudo nginx -t &amp;&amp; sudo systemctl reload nginx</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -1031,173 +1323,6 @@ Debian官方软件源：官网/mirror/list</li>
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Maven使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-16T00:00:00+08:00">2025-01-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-15 10:24:14" itemprop="dateModified" datetime="2025-04-15T10:24:14+08:00">2025-04-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="微服务"><a class="markdownIt-Anchor" href="#微服务"></a> 微服务</h1>
-<p>非单体项目，可以用下面的脚本启动微服务。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取服务名称和额外参数</span></span><br><span class="line">SERVICE_NAME=$1</span><br><span class="line">shift  # 移除第一个参数（服务名），将剩余参数保存到 $@</span><br><span class="line">EXTRA_ARGS=&quot;$@&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否输入服务名称</span></span><br><span class="line">if [ -z &quot;$SERVICE_NAME&quot; ]; then</span><br><span class="line">  echo &quot;Usage: ./run.sh &lt;servicename|all&gt; [additional_maven_args]&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">定义运行单个服务的函数</span></span><br><span class="line">run_service() &#123;</span><br><span class="line">  local service=$1</span><br><span class="line">  local args=$2</span><br><span class="line">  echo &quot;Building and running $service with args: $args...&quot;</span><br><span class="line">  mvn clean install -pl $service -am</span><br><span class="line">  if [ &quot;$service&quot; == &quot;gateway/&quot; ]; then</span><br><span class="line">    echo &quot;Gateway starting...&quot;</span><br><span class="line">    mvn spring-boot:run -pl $service -Dreactor.netty.http.server.accessLogEnabled=true $args</span><br><span class="line">  else</span><br><span class="line">    mvn spring-boot:run -pl $service $args</span><br><span class="line">  fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果输入 <span class="string">&quot;all&quot;</span>，运行所有服务（默认不传参）</span></span><br><span class="line">if [ &quot;$SERVICE_NAME&quot; == &quot;all&quot; ]; then</span><br><span class="line">  echo &quot;Building and running all services...&quot;</span><br><span class="line">  mvn clean install -pl &quot;!generator&quot;</span><br><span class="line">  for module in $(mvn help:evaluate -Dexpression=project.modules -q -DforceStdout | sed -e &#x27;s/&lt;[^&gt;]*&gt;//g&#x27; -e &#x27;s/\s*//g&#x27; | tr &#x27;,&#x27; &#x27;\n&#x27;); do</span><br><span class="line">    if [ &quot;$module&quot; != &quot;generator&quot; ]; then</span><br><span class="line">      echo &quot;Running $module...&quot;</span><br><span class="line">      mvn spring-boot:run -pl $module</span><br><span class="line">    fi</span><br><span class="line">  done</span><br><span class="line">else</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">运行指定的单个服务，并传递额外参数</span></span><br><span class="line">  run_service $SERVICE_NAME &quot;$EXTRA_ARGS&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p>核心命令是这一条：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn spring-boot:run -pl $your_service</span><br></pre></td></tr></table></figure>
-<p>想要增加JVM参数，指定端口可以加上</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-Dspring-boot.run.arguments=--server.port=$your_port</span><br></pre></td></tr></table></figure>
-<h1 id="全局换源"><a class="markdownIt-Anchor" href="#全局换源"></a> 全局换源</h1>
-<p>找到 <code>settings.xml</code> 文件：</p>
-<ul>
-<li>全局配置：位于 Maven 安装目录的 <code>conf</code> 文件夹下（例如<code>/usr/local/maven/conf/settings.xml</code>）。</li>
-<li>用户配置：位于用户主目录下的 .m2 文件夹中（例如<code>~/.m2/settings.xml</code>）。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;settings&gt;</span><br><span class="line">  &lt;!-- 其他配置 --&gt;</span><br><span class="line">  &lt;mirrors&gt;</span><br><span class="line">    &lt;!-- 阿里云 Maven 镜像 --&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">      &lt;id&gt;aliyun-maven&lt;/id&gt;</span><br><span class="line">      &lt;name&gt;阿里云公共仓库&lt;/name&gt;</span><br><span class="line">      &lt;url&gt;https://maven.aliyun.com/repository/public&lt;/url&gt;</span><br><span class="line">      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;!-- 指定替换中央仓库 --&gt;</span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">    &lt;!-- 华为云 Maven 镜像 --&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">      &lt;id&gt;huaweicloud&lt;/id&gt;</span><br><span class="line">      &lt;name&gt;华为云 Maven&lt;/name&gt;</span><br><span class="line">      &lt;url&gt;https://mirrors.huaweicloud.com/repository/maven/&lt;/url&gt;</span><br><span class="line">      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">  &lt;/mirrors&gt;</span><br><span class="line">  &lt;!-- 其他配置 --&gt;</span><br><span class="line">&lt;/settings&gt;</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/scp%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/scp%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">scp使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-12-25 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-25T00:00:00+08:00">2024-12-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-14 20:24:12" itemprop="dateModified" datetime="2025-04-14T20:24:12+08:00">2025-04-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="上传文件"><a class="markdownIt-Anchor" href="#上传文件"></a> 上传文件</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp ./upload/path/file.postfix user@host.com:/path/to/file</span><br><span class="line">scp -P &lt;port&gt; -i &lt;key&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">文件夹</span></span><br><span class="line">scp -r ./upload/path/folder user@host.com:/path/to/folder</span><br></pre></td></tr></table></figure>
-<h1 id="下载文件"><a class="markdownIt-Anchor" href="#下载文件"></a> 下载文件</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp user@host.com:/path/to/file.postfix ./download/path</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">文件夹</span></span><br><span class="line">scp -r user@host.com:/path/to/folader ./download/path</span><br></pre></td></tr></table></figure>
       
     </div>
 
