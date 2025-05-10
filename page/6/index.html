@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,106 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">Django动态网页 Python项目</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-03T00:00:00+08:00">2024-03-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-15 14:47:41" itemprop="dateModified" datetime="2024-08-15T14:47:41+08:00">2024-08-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="00-规范"><a class="markdownIt-Anchor" href="#00-规范"></a> 0.0 规范</h1>
+<p>我要编写一个名为“学习笔记”的 Web 应用程序,让用户能够记录感兴趣的主题,并在学习每个主题的过程中添加日志条目。“学习笔记”的主页对这个网站进行描述,并邀请用户注册或登录。用户登录后,可以创建新主题、添加新条目以及阅读既有的条目。</p>
+<p>目录 ll_project 包含 4 个文件, 其中最重要的是 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a>、<a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 和 <a target="_blank" rel="noopener" href="http://wsgi.py">wsgi.py</a>。文件 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a> 指定 Django 如何与系统交互以及如何管理项目。<br />
+在开发项目的过程中,我们将修改其中的一些设置,并添加一些设置。<br />
+文件 <a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 告诉 Django,应创建哪些网页来响应浏览器请求。<br />
+文件 <a target="_blank" rel="noopener" href="http://wsgi.py">wsgi.py</a> 帮助 Django 提供它创建的文件,名称是 web server gateway interface(Web 服务器网关接口)的首字母缩写。</p>
+<h1 id="10-创建环境"><a class="markdownIt-Anchor" href="#10-创建环境"></a> 1.0 创建环境</h1>
+<h2 id="11-创建虚拟环境"><a class="markdownIt-Anchor" href="#11-创建虚拟环境"></a> 1.1 创建虚拟环境</h2>
+<p>在独立的项目文件夹下运行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m venv ll_env</span><br><span class="line"></span><br><span class="line">python -m ensurepip --default-pip <span class="comment"># 重装pip</span></span><br></pre></td></tr></table></figure>
+<p>将会创造一个<code>ll_env</code>文件夹<br />
+可以使用下面的命令激活虚拟环境。激活虚拟环境后，安装的模组将只在虚拟环境中生效，而不干扰到电脑上Python的模组</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ll_env/bin/activate <span class="comment"># Linux系统</span></span><br><span class="line"><span class="built_in">source</span> ll_env/Scripts/activate <span class="comment"># Windows系统</span></span><br><span class="line"></span><br><span class="line">(ll_env)</span><br><span class="line">work_directory$ <span class="comment"># 命令提示符前会显示(ll_env)</span></span><br></pre></td></tr></table></figure>
+<p>使用<code>deactive</code>取消激活虚拟环境</p>
+<h2 id="12-安装配置django"><a class="markdownIt-Anchor" href="#12-安装配置django"></a> 1.2 安装配置Django</h2>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install --upgrade pip <span class="comment"># 更新pip</span></span><br><span class="line">pip install django <span class="comment"># 安装Django</span></span><br><span class="line">django-admin startproject ll_project . <span class="comment"># 初始化Django</span></span><br><span class="line">python manage.py migrate <span class="comment"># 生成数据库</span></span><br><span class="line">python manage.py runserver <span class="comment"># 生成预览，可以在本地8000端口看到网页</span></span><br></pre></td></tr></table></figure>
+<pre><code>Django手册： https://docs.djangoproject.com/en/4.1/ref/models/fields/
+</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1008,117 +1108,6 @@ tags: Data Center, Linux, Open Source
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line"><span class="section">%.o: %.c # 所有.o/.c结尾的文件</span></span><br></pre></td></tr></table></figure>
 <h1 id="变量"><a class="markdownIt-Anchor" href="#变量"></a> 变量</h1>
 <figure class="highlight makefile"><table><tr><td class="code"><pre><span class="line">txt = Hello World</span><br><span class="line"><span class="section">test:</span></span><br><span class="line">    @echo <span class="variable">$(txt)</span> <span class="comment"># 变量放在$()中，@表示不打印直接执行</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">ICS 计算机系统</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-12-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-12-09T00:00:00+08:00">2023-12-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-09 15:14:32" itemprop="dateModified" datetime="2024-04-09T15:14:32+08:00">2024-04-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="第一阶段-程序的表示-转换与链接"><a class="markdownIt-Anchor" href="#第一阶段-程序的表示-转换与链接"></a> 第一阶段 程序的表示、转换与链接</h1>
-<pre><code>参考MOOC：NJU-1001625001
-</code></pre>
-<h2 id="10-计算机系统概述"><a class="markdownIt-Anchor" href="#10-计算机系统概述"></a> 1.0 计算机系统概述</h2>
-<h3 id="13-程序开发和执行过程"><a class="markdownIt-Anchor" href="#13-程序开发和执行过程"></a> 1.3 程序开发和执行过程</h3>
-<ol>
-<li>hello.c程序用ascii文本表示</li>
-<li>首先.c文件预处理为.i文件（把预处理指令翻译过来），然后.i文件编译成.s文件（汇编程序文本）,接着.s文件汇编成.o文件（二进制），与printf等函数的.o文件共同连接成可执行文件（二进制）</li>
-<li>高级语言编写程序所需环境：（1）语言处理程序； （2）语言处理系统； （3）语言运行时的系统； （4）操作系统内核； （5）操作系统； （6）指令集体系结构； （7）人机接口</li>
-</ol>
-<h3 id="14-计算机系统层次结构"><a class="markdownIt-Anchor" href="#14-计算机系统层次结构"></a> 1.4 计算机系统层次结构</h3>
-<ul>
-<li>过程式语言：如何做； 非过程化语言：做什么；语言发展是不断抽象的过程</li>
-<li>应用-&gt;算法-&gt;语言-&gt;操作系统-&gt;(软件)ISA指令集（硬件）-&gt;微体系、功能部件、电路和器件<br />
-非预期结果是硬件层次造成的。上层是下层的抽象，下层是上层的实现，底层为上层提供支撑环境</li>
-<li>题目：由机器语言编程的早期计算机系统中，没有ISA这一层次（F）；一直都有ISA，因此<strong>ISA是计算机体系层次中最重要的层次</strong>。<br />
-<strong>ISA， Instruction Set Architecture（结构）规定了如何使用硬件，是可以执行的指令的集合</strong>，包括指令格式、操作种类及操作数的类型的规定…<br />
-<strong>没有ISA，软件无法使用计算机硬件，一台计算机就不能成为“通用”计算机</strong></li>
-<li>计算机组成必须能够实现ISA规定的功能；同一种ISA可以由不同的计算机（硬件）组成，如乘法指令用ALU或乘法器都可以实现</li>
-<li>题目：有没有乘法指令是ISA考虑的问题，如何实现乘法指令是微体系结构考虑的问题</li>
-</ul>
-<h3 id="15-计算机系统基础学习目标"><a class="markdownIt-Anchor" href="#15-计算机系统基础学习目标"></a> 1.5 计算机系统基础学习目标</h3>
-<ul>
-<li>编写高效程序必须了解计算机底层结构</li>
-<li>必须掌握并行程序设计技术和工具</li>
-<li>课程目标：理解计算机如何生成和运行可执行文件</li>
-<li>涉及层次：C语言设计层，ISA和汇编层，微体系结构和硬件层</li>
-<li>第一部分 程序表示与转换；第二部分 执行控制流</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 

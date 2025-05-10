@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="代理 public static void main(String[] args) &#123;    Payment payment &#x3D; new Payment(&quot;AliPay&quot;);    Pay proxy &#x3D; ProxyUtil.createProxy(payment);    proxy.pay(amount);&#125;class Payment implemen">
+    <meta name="description" content="代理  代理对象通过invoke，实现类与非核心功能的解耦。  public static void main(String[] args) &#123;    Payment payment &#x3D; new Payment(&quot;AliPay&quot;);    Pay proxy &#x3D; ProxyUtil.createProxy(payment);    proxy.pay(amount)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Advanced Java">
 <meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
-<meta property="og:description" content="代理 public static void main(String[] args) &#123;    Payment payment &#x3D; new Payment(&quot;AliPay&quot;);    Pay proxy &#x3D; ProxyUtil.createProxy(payment);    proxy.pay(amount);&#125;class Payment implemen">
+<meta property="og:description" content="代理  代理对象通过invoke，实现类与非核心功能的解耦。  public static void main(String[] args) &#123;    Payment payment &#x3D; new Payment(&quot;AliPay&quot;);    Pay proxy &#x3D; ProxyUtil.createProxy(payment);    proxy.pay(amount)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-05-06T09:05:57.334Z">
+<meta property="article:modified_time" content="2025-05-10T02:24:42.710Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="知识">
 <meta name="twitter:card" content="summary">
@@ -154,7 +154,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -223,7 +223,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-05-06 17:05:57" itemprop="dateModified" datetime="2025-05-06T17:05:57+08:00">2025-05-06</time>
+      <time title="修改时间：2025-05-10 10:24:42" itemprop="dateModified" datetime="2025-05-10T10:24:42+08:00">2025-05-10</time>
     </span>
 
   
@@ -236,6 +236,9 @@
     
     
     <div class="post-body" itemprop="articleBody"><h1 id="代理"><a class="markdownIt-Anchor" href="#代理"></a> 代理</h1>
+<blockquote>
+<p>代理对象通过<code>invoke</code>，实现类与非核心功能的解耦。</p>
+</blockquote>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">Payment</span> <span class="variable">payment</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Payment</span>(<span class="string">&quot;AliPay&quot;</span>);</span><br><span class="line">    <span class="type">Pay</span> <span class="variable">proxy</span> <span class="operator">=</span> ProxyUtil.createProxy(payment);</span><br><span class="line"></span><br><span class="line">    proxy.pay(amount);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Payment</span> <span class="keyword">implements</span> <span class="title class_">Pay</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Overide</span></span><br><span class="line">    <span class="keyword">public</span> payResp <span class="title function_">pay</span><span class="params">(BigDecimal payAmount)</span> &#123;</span><br><span class="line">        <span class="comment">// Payment Business...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Pay</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> payResp <span class="title function_">pay</span><span class="params">(BigDecimal payAmount)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ProxyUtils</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Pay <span class="title function_">createProxy</span><span class="params">(Payment payment)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (Pay) Proxy.newProxyInstance(</span><br><span class="line">            ProxyUtil.class.getClassLoader(),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123; Pay.class &#125;,</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">InvocationHandler</span>() &#123;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Overide</span></span><br><span class="line">                <span class="keyword">public</span> Object <span class="title function_">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">                    <span class="comment">// Payment Environment Init...</span></span><br><span class="line">                    <span class="comment">// Payment Safe Guard...</span></span><br><span class="line">                    <span class="keyword">return</span> method.invoke(payment, args);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="反射"><a class="markdownIt-Anchor" href="#反射"></a> 反射</h1>
 <blockquote>

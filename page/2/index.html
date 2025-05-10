@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-count">64</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,154 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Shell终端使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-15 17:11:04" itemprop="dateModified" datetime="2025-04-15T17:11:04+08:00">2025-04-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="shortcuts-快捷键"><a class="markdownIt-Anchor" href="#shortcuts-快捷键"></a> Shortcuts 快捷键</h1>
+<ul>
+<li><code>CTRL+N|P</code> 下、上一条命令</li>
+<li><code>CTRL+A|E</code> 跳到行首、行尾</li>
+<li><code>ALT+F|B</code> 或 <code>CTRL+←|→</code> 下、上一个单词（右ALT开始使用~）</li>
+<li><code>CTRL+W</code> 删除前面的单词</li>
+<li><code>CTRL+D|H</code> 删除一个字符（D向后删除=Delete，H向前删除=Backspace）</li>
+<li><code>CTRL+U</code> 删除整行</li>
+<li><code>CTRL+R</code> 搜索整行，Esc退出</li>
+</ul>
+<h1 id="proxy"><a class="markdownIt-Anchor" href="#proxy"></a> Proxy</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">export https_proxy=http://host:port;</span><br><span class="line">export http_proxy=http://host:port;</span><br><span class="line">export all_proxy=socks5://host:port;</span><br></pre></td></tr></table></figure>
+<h1 id="bash-prompt-string配置"><a class="markdownIt-Anchor" href="#bash-prompt-string配置"></a> Bash prompt string配置</h1>
+<blockquote>
+<p>使用Windows CMD比使用MinTTY更快！</p>
+</blockquote>
+<ul>
+<li>PS(prompt string): 是命令行的默认显示文本，如：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">username@hostname /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
+<ul>
+<li>可以在<code>~/.bash_profile</code>或<code>.bashrc</code>中修改默认显示（Windows Git Bash是<code>git-prompt.sh</code>）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Windows Git Bash默认配置，其中\007前面的$TITLEPREFIX和$PWD是标签栏的内容，git_ps1会显示git工作分支</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;\[\e]0;$TITLEPREFIX:$PWD\007\]\n\[\e[32m\]\u@\h \[\e[35m\]$MSYSTEM \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &#x27;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@hostname MINGW /work_directory</span><br><span class="line">$ </span><br><span class="line"></span><br><span class="line"><span class="comment"># 简洁配置，将\h换成了指定文本，保留了命令行前的换行，将标签名改为当前目录</span></span><br><span class="line"><span class="comment"># 注意，使用单引号才有动态解析效果</span></span><br><span class="line"><span class="built_in">export</span> PS1=<span class="string">&#x27;\[\e]0;\W\007\] \n\[\e[32m\]\u@Host \[\e[33m\]\w\[\e[36m\]`__git_ps1`\[\e[0m\]\n$ &#x27;</span> </span><br><span class="line"><span class="comment"># 显示效果</span></span><br><span class="line">username@Host /work_directory</span><br><span class="line">$ </span><br></pre></td></tr></table></figure>
+<ul>
+<li>Windows虚拟环境后不会换行：设置<code>venv/Scripts/activate</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -z <span class="string">&quot;<span class="variable">$&#123;VIRTUAL_ENV_DISABLE_PROMPT-&#125;</span>&quot;</span> ] ; <span class="keyword">then</span></span><br><span class="line">    _OLD_VIRTUAL_PS1=<span class="string">&quot;<span class="variable">$&#123;PS1-&#125;</span>&quot;</span></span><br><span class="line">    PS1=<span class="string">&quot;\n(<span class="variable">$&#123;VIRTUAL_ENV_PROMPT&#125;</span>) <span class="variable">$&#123;PS1-&#125;</span>&quot;</span> <span class="comment"># 添加换行符</span></span><br><span class="line">    <span class="built_in">export</span> PS1</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>MSYS2显示git prompt</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># etc/profile.d/git-prompt.sh</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -f /etc/profile.d/git-sdk.sh</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        TITLEPREFIX=SDK-<span class="variable">$&#123;MSYSTEM#MINGW&#125;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        TITLEPREFIX=<span class="variable">$MSYSTEM</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -f ~/.config/git/git-prompt.sh</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        . ~/.config/git/git-prompt.sh</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        PS1=<span class="string">&#x27;\[\033]0;$TITLEPREFIX:$PWD\007\]&#x27;</span> <span class="comment"># set window title</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\n&#x27;</span>                 <span class="comment"># new line</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[32m\]&#x27;</span>       <span class="comment"># change to green</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\u@\h &#x27;</span>             <span class="comment"># user@host&lt;space&gt;</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[35m\]&#x27;</span>       <span class="comment"># change to purple</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;$MSYSTEM &#x27;</span>          <span class="comment"># show MSYSTEM</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[33m\]&#x27;</span>       <span class="comment"># change to brownish yellow</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\w&#x27;</span>                 <span class="comment"># current working directory</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$WINELOADERNOEXEC</span>&quot;</span></span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">                GIT_EXEC_PATH=<span class="string">&quot;<span class="subst">$(git --exec-path 2&gt;/dev/null)</span>&quot;</span></span><br><span class="line">                COMPLETION_PATH=<span class="string">&quot;<span class="variable">$&#123;GIT_EXEC_PATH%/libexec/git-core&#125;</span>&quot;</span></span><br><span class="line">                COMPLETION_PATH=<span class="string">&quot;<span class="variable">$&#123;COMPLETION_PATH%/lib/git-core&#125;</span>&quot;</span></span><br><span class="line">                COMPLETION_PATH=<span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/share/git/completion&quot;</span></span><br><span class="line">                <span class="keyword">if</span> <span class="built_in">test</span> -f <span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/git-prompt.sh&quot;</span></span><br><span class="line">                <span class="keyword">then</span></span><br><span class="line">                        . <span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/git-completion.bash&quot;</span></span><br><span class="line">                        . <span class="string">&quot;<span class="variable">$COMPLETION_PATH</span>/git-prompt.sh&quot;</span></span><br><span class="line">                        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[36m\]&#x27;</span>  <span class="comment"># change color to cyan</span></span><br><span class="line">                        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;`__git_ps1`&#x27;</span>   <span class="comment"># bash function</span></span><br><span class="line">                <span class="keyword">fi</span></span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\[\033[0m\]&#x27;</span>        <span class="comment"># change color</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;\n&#x27;</span>                 <span class="comment"># new line</span></span><br><span class="line">        PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span><span class="string">&#x27;$ &#x27;</span>                 <span class="comment"># prompt: always $</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"> </span><br><span class="line">MSYS2_PS1=<span class="string">&quot;<span class="variable">$PS1</span>&quot;</span>               <span class="comment"># for detection by MSYS2 SDK&#x27;s bash.basrc</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># Evaluate all user-specific Bash completion scripts (if any)</span></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">test</span> -z <span class="string">&quot;<span class="variable">$WINELOADERNOEXEC</span>&quot;</span></span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$HOME</span>&quot;</span>/bash_completion.d/*.bash</span><br><span class="line">        <span class="keyword">do</span></span><br><span class="line">                <span class="comment"># Handle absence of any scripts (or the folder) gracefully</span></span><br><span class="line">                <span class="built_in">test</span> ! -f <span class="string">&quot;<span class="variable">$c</span>&quot;</span> ||</span><br><span class="line">                . <span class="string">&quot;<span class="variable">$c</span>&quot;</span></span><br><span class="line">        <span class="keyword">done</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ~/.bashrc || ~/.bash_profile</span></span><br><span class="line"><span class="built_in">shopt</span> -q login_shell || . /etc/profile.d/git-prompt.sh</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">syntax</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\u</td>
+<td>username</td>
+</tr>
+<tr>
+<td style="text-align:center">\h</td>
+<td>hostname</td>
+</tr>
+<tr>
+<td style="text-align:center">\e</td>
+<td>set colors</td>
+</tr>
+<tr>
+<td style="text-align:center">\w</td>
+<td>work directory</td>
+</tr>
+<tr>
+<td style="text-align:center">\W</td>
+<td>current diretory</td>
+</tr>
+<tr>
+<td style="text-align:center">\n</td>
+<td>line feed</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1146,132 +1294,6 @@ CAS算法不是加锁，而是通过比较来判断对象是否已被修改，�
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">git使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-16 09:45:57" itemprop="dateModified" datetime="2025-03-16T09:45:57+08:00">2025-03-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="00-代码合并流程"><a class="markdownIt-Anchor" href="#00-代码合并流程"></a> 0.0 代码合并流程</h1>
-<ol>
-<li>在各自的分支<code>self</code>上进行开发</li>
-<li>切换到<code>develop</code>分支，<code>git pull --rebase</code>同步最新代码</li>
-</ol>
-<blockquote>
-<p>不要使用Git Pull<br />
-<code>git pull</code>会创建一个新的<code>merge commit</code>，这样提交历史不是一条清晰的线，包含无意义的分支合并，非常混乱。<br />
-而<code>git pull --rebase</code>会解决这个问题，这个命令首先把你的<code>commit</code>放到一边，拉取最新分支状态，最后为你自动变基到最新状态。<br />
-如果遇到合并冲突，使用<code>git rebase --abort</code>撤回<code>rebase</code>，然后使用<code>git pull</code>或者使用交互式变基。</p>
-</blockquote>
-<ol start="3">
-<li>切换到自己的分支<code>self</code>，<code>git rebase develop</code>对齐代码合并冲突</li>
-</ol>
-<blockquote>
-<p>分支是临时的，完成了分支的职责后，就删除此分支。不要重复用分支，而是从主分支再创建一条特性分支。</p>
-</blockquote>
-<h1 id="10-第一件事git-config"><a class="markdownIt-Anchor" href="#10-第一件事git-config"></a> 1.0 第一件事git config</h1>
-<ul>
-<li><code>git config --list --show-origin</code>查看所有git配置以及所在文件</li>
-<li>使用<code>git config --global</code>可以设置git的基本信息（如用户名、邮箱），使用<code>--unset</code>取消设置
-<ol>
-<li>配置你的名称、邮箱以及编辑器</li>
-</ol>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;191220000-Zhang San&quot;</span> </span><br><span class="line"><span class="comment"># 全局设置名称</span></span><br><span class="line">git config --global user.email <span class="string">&quot;zhang3@email.com&quot;</span></span><br><span class="line">git config --global core.editor vim</span><br><span class="line"></span><br><span class="line"><span class="comment"># instead of</span></span><br><span class="line">git config --global url.git@github.com:.insteadOf https://github.com/</span><br><span class="line"><span class="comment"># alias</span></span><br><span class="line">git config --global alias.cin <span class="string">&quot;commit --amend --no-edit&quot;</span></span><br></pre></td></tr></table></figure>
-<h1 id="20-初始化仓库"><a class="markdownIt-Anchor" href="#20-初始化仓库"></a> 2.0 初始化仓库</h1>
-<ol>
-<li>本地仓库：<code>git init</code>创建一个新的 git 仓库，其数据会存放在一个名为 <code>.git</code> 的目录下<br />
-删除仓库：删除 .git 文件夹</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add &lt;文件名字，*表示全部&gt;</span><br><span class="line"><span class="comment"># 提交到暂存区，并附上注释</span></span><br><span class="line">git commit -m <span class="string">&#x27;initial project version&#x27;</span> </span><br><span class="line"><span class="comment"># 修改最近的一次提交</span></span><br><span class="line">git commit --ammend</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>远程仓库：<code>git clone</code>克隆远端仓库</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看remote</span></span><br><span class="line">git remote -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加remote</span></span><br><span class="line">git remote add origin project_repository_url.git</span><br><span class="line"><span class="comment"># 设置push分支为自己的仓库</span></span><br><span class="line">git remote set-url --add --push origin your_repository_url.git</span><br><span class="line"></span><br><span class="line">git <span class="built_in">clone</span> &lt;网址&gt; &lt;仓库存放文件夹名&gt;</span><br><span class="line"><span class="comment"># 使用http克隆</span></span><br></pre></td></tr></table></figure>
-<h1 id="配置ssh"><a class="markdownIt-Anchor" href="#配置ssh"></a> 配置SSH</h1>
-<blockquote>
-<p>不推荐dsa和rsa，推荐ed25519</p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-keygen -t ed25519 -C &quot;your_email@email.com&quot;</span><br></pre></td></tr></table></figure>
-<h1 id="tag"><a class="markdownIt-Anchor" href="#tag"></a> Tag</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git tag v0.0.version</span><br><span class="line">git tag -a v0.version -m &quot;Your Comments to the version&quot;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/git%E4%BD%BF%E7%94%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
