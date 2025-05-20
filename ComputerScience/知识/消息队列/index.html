@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono+Light:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="消息队列3大目标  异步 在生产者-消费者速度不匹配的情况下，使用异步可以减少等待，提高效率。  解耦 多个生产者可以通过消息队列管道集合成1条链路；也可以将1个生产者的消息负载均衡给多个消费者（只发送1条消息给MQ，MQ广播多份）。  削峰（生产者-消费者速度不同步） 由于队列本身是一条管道，拥有一定容量，因此可以削峰填谷，解决一些瞬时高并发流量。  消息队列的关键问题  C 系统一致性 A系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="消息队列">
+<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/index.html">
+<meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="消息队列3大目标  异步 在生产者-消费者速度不匹配的情况下，使用异步可以减少等待，提高效率。  解耦 多个生产者可以通过消息队列管道集合成1条链路；也可以将1个生产者的消息负载均衡给多个消费者（只发送1条消息给MQ，MQ广播多份）。  削峰（生产者-消费者速度不同步） 由于队列本身是一条管道，拥有一定容量，因此可以削峰填谷，解决一些瞬时高并发流量。  消息队列的关键问题  C 系统一致性 A系">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-05-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-13T12:46:33.620Z">
+<meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="知识">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/","path":"ComputerScience/知识/消息队列/","title":"消息队列"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>消息队列 | SMULET's BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="SMULET's BLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SMULET's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-技术链"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>技术链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-知识库"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>知识库</a></li><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%973%E5%A4%A7%E7%9B%AE%E6%A0%87"><span class="nav-text"> 消息队列3大目标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5"><span class="nav-text"> 异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E8%80%A6"><span class="nav-text"> 解耦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8A%E5%B3%B0%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%80%9F%E5%BA%A6%E4%B8%8D%E5%90%8C%E6%AD%A5"><span class="nav-text"> 削峰（生产者-消费者速度不同步）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E7%9A%84%E5%85%B3%E9%94%AE%E9%97%AE%E9%A2%98"><span class="nav-text"> 消息队列的关键问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#c-%E7%B3%BB%E7%BB%9F%E4%B8%80%E8%87%B4%E6%80%A7"><span class="nav-text"> C 系统一致性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#a-%E7%B3%BB%E7%BB%9F%E5%8F%AF%E7%94%A8%E6%80%A7"><span class="nav-text"> A 系统可用性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%A4%8D%E6%9D%82%E5%BA%A6"><span class="nav-text"> 系统复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%82%E7%AD%89%E6%80%A7"><span class="nav-text"> 幂等性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text"> 解决方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#message-queue%E4%BA%A7%E5%93%81"><span class="nav-text"> Message Queue产品</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="nav-text"> 消息队列工作方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rocketmq%E9%9B%86%E7%BE%A4"><span class="nav-text"> RocketMQ集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dledger%E9%AB%98%E5%8F%AF%E7%94%A8%E9%9B%86%E7%BE%A4"><span class="nav-text"> Dledger高可用集群</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E5%8F%91%E9%80%81%E6%96%B9%E5%BC%8F"><span class="nav-text"> 三种发送方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E5%90%91%E5%8F%91%E9%80%81"><span class="nav-text"> 单向发送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E5%8F%91%E9%80%81"><span class="nav-text"> 同步发送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%82%E6%AD%A5%E5%8F%91%E9%80%81"><span class="nav-text"> 异步发送</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8D%E6%B6%88%E8%B4%B9%E6%96%B9%E5%BC%8F"><span class="nav-text"> 两种消费方式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#consumer%E6%8B%89%E5%8F%96"><span class="nav-text"> Consumer拉取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#broker%E6%8E%A8%E9%80%81"><span class="nav-text"> Broker推送</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E7%B1%BB%E5%9E%8B"><span class="nav-text"> 消息类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E6%B6%88%E6%81%AF"><span class="nav-text"> 顺序消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%BF%E6%92%AD%E6%B6%88%E6%81%AF"><span class="nav-text"> 广播消息</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SIMULEITE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="消息队列 | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          消息队列
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-12 00:00:00" itemprop="dateCreated datePublished" datetime="2025-05-12T00:00:00+08:00">2025-05-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-13 20:46:33" itemprop="dateModified" datetime="2025-05-13T20:46:33+08:00">2025-05-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="消息队列3大目标"><a class="markdownIt-Anchor" href="#消息队列3大目标"></a> 消息队列3大目标</h1>
+<h2 id="异步"><a class="markdownIt-Anchor" href="#异步"></a> 异步</h2>
+<p>在生产者-消费者速度不匹配的情况下，使用异步可以减少等待，提高效率。</p>
+<h2 id="解耦"><a class="markdownIt-Anchor" href="#解耦"></a> 解耦</h2>
+<p>多个生产者可以通过消息队列管道集合成1条链路；也可以将1个生产者的消息负载均衡给多个消费者（只发送1条消息给MQ，MQ广播多份）。</p>
+<h2 id="削峰生产者-消费者速度不同步"><a class="markdownIt-Anchor" href="#削峰生产者-消费者速度不同步"></a> 削峰（生产者-消费者速度不同步）</h2>
+<p>由于队列本身是一条管道，拥有一定容量，因此可以削峰填谷，解决一些瞬时高并发流量。</p>
+<h1 id="消息队列的关键问题"><a class="markdownIt-Anchor" href="#消息队列的关键问题"></a> 消息队列的关键问题</h1>
+<h2 id="c-系统一致性"><a class="markdownIt-Anchor" href="#c-系统一致性"></a> C 系统一致性</h2>
+<p>A系统通过MQ将消息发送给B、C完成后续业务，B成功而C失败，这时如何保证一致性？</p>
+<h2 id="a-系统可用性"><a class="markdownIt-Anchor" href="#a-系统可用性"></a> A 系统可用性</h2>
+<p>MQ宕机，依赖MQ管道的服务就不可用。MQ应该有高可用性和稳定性，不应该成为系统薄弱环节。</p>
+<h2 id="系统复杂度"><a class="markdownIt-Anchor" href="#系统复杂度"></a> 系统复杂度</h2>
+<ul>
+<li>如何保证消费不丢失？</li>
+<li>如何避免重复调用？</li>
+<li>如何保证消息顺序？</li>
+</ul>
+<h2 id="幂等性"><a class="markdownIt-Anchor" href="#幂等性"></a> 幂等性</h2>
+<p>如果重复消费，确保多次消费和1次消费的结果相同。</p>
+<ul>
+<li>发送消息重复：发送后，网络断开，没收到ACK，导致重复发送</li>
+<li>消费消息重复：Consumer收到消息并处理完成，但是由于网络问题，Consumer应答没有发送到Broker；Broker遵从<strong>至少消费一次原则</strong>，重新发送。</li>
+<li>Rebalance消息重复：Consumer Group的Consumer数量发生变化，触发Rebalance，此时Consumer可能会收到曾经被消费过的消息。</li>
+</ul>
+<h3 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h3>
+<h1 id="message-queue产品"><a class="markdownIt-Anchor" href="#message-queue产品"></a> Message Queue产品</h1>
+<table>
+<thead>
+<tr>
+<th>产品</th>
+<th>优势</th>
+<th>劣势</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kafaka</td>
+<td>吞吐量大、性能高、集群高可用</td>
+<td>丢数据、功能单一</td>
+<td>MapReduce大数据采集、日志分析</td>
+</tr>
+<tr>
+<td>RabbitMQ</td>
+<td>消息可靠、功能全面</td>
+<td>erlang语言不容易定制，吞吐量较低</td>
+<td>小规模服务调用</td>
+</tr>
+<tr>
+<td>Pulsar</td>
+<td>Bookeeper，消息可靠性高</td>
+<td>使用较少、生态有差距</td>
+<td>大规模服务调用</td>
+</tr>
+<tr>
+<td>RocketMQ</td>
+<td>高吞吐、高性能、高可用。Java语言容易定制。</td>
+<td>Java服务加载慢</td>
+<td>功能全面，尤其适合金融、电商、互联网场景</td>
+</tr>
+</tbody>
+</table>
+<h1 id="消息队列工作方式"><a class="markdownIt-Anchor" href="#消息队列工作方式"></a> 消息队列工作方式</h1>
+<p>RocketMQ和Kafka都使用Topic，每个Topic的内容会分发到多个管道（Partition或MessageQueue）。而Kafka在Topic过多的情况下，吞吐量会严重下降；RocketMQ解决了这个问题。</p>
+<h1 id="rocketmq集群"><a class="markdownIt-Anchor" href="#rocketmq集群"></a> RocketMQ集群</h1>
+<p>在RocketMQ集群中，多台NameSrv是平等的，而Broker会组成多个主-从结构。<br />
+Slave只负责备份，只有Master(brokerId=0)才会发送消息。<br />
+然而主从结构的Slave，由于brokerId不为0，不会自动切换为Master，需要人工介入。</p>
+<h2 id="dledger高可用集群"><a class="markdownIt-Anchor" href="#dledger高可用集群"></a> Dledger高可用集群</h2>
+<p>Dleger是一种Raft算法，实现了Leader选举。<br />
+Dledger会从Followers中自动选举Leader，从而保证高可用。</p>
+<h1 id="三种发送方式"><a class="markdownIt-Anchor" href="#三种发送方式"></a> 三种发送方式</h1>
+<h2 id="单向发送"><a class="markdownIt-Anchor" href="#单向发送"></a> 单向发送</h2>
+<p>Producer只发送消息、不处理ACK；MQ也不发送ACK。消息可靠性没有保障。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回值为null，不处理ACK。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendOneWay</span><span class="params">(Message msg)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    msg.setTopic(withNamespace(msg.getTopic()));</span><br><span class="line">    <span class="built_in">this</span>.defaultMQProducerImpl.sendOneWay(msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="同步发送"><a class="markdownIt-Anchor" href="#同步发送"></a> 同步发送</h2>
+<p>Producer等待MQ ACK，才继续操作。同步发送可能会发生阻塞。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> SendResult <span class="title function_">sendResult</span><span class="params">(</span></span><br><span class="line"><span class="params">        Collection&lt;Message&gt; msgs)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.defaultMQProducerImpl.send(batch(msgs));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="异步发送"><a class="markdownIt-Anchor" href="#异步发送"></a> 异步发送</h2>
+<p>Producer不等待MQ ACK（异步ACK，也能保证不丢失消息），直接发送消息。<br />
+但是异步发送也有代价，我们不能发送完立刻<code>producer.shutdown()</code>，而需要设置一段延迟，使producer能够捕捉Exception并重发消息。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// send方法本身没有返回值，不会阻塞；但是能够处理Exception</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">send</span><span class="params">(Message msg, </span></span><br><span class="line"><span class="params">                 SendCallBack sendCallBack)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    msg.setTopic(withNamespace(msg.getTopic()));</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.getAutoBatch() &amp;&amp; !(msg <span class="keyword">instanceof</span> MessageBatch)) &#123;</span><br><span class="line">            sendByAccumulator(msg, <span class="literal">null</span>, sendCallBack);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sendDirect(msg, <span class="literal">null</span>, sendCallBack);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">        sendCallBack.onException(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">producer.send(msg, <span class="keyword">new</span> <span class="title class_">SendCallBack</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onSuccess</span><span class="params">(SendResult sendResult)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onException</span><span class="params">(Throwable e)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="两种消费方式"><a class="markdownIt-Anchor" href="#两种消费方式"></a> 两种消费方式</h1>
+<h2 id="consumer拉取"><a class="markdownIt-Anchor" href="#consumer拉取"></a> Consumer拉取</h2>
+<p>Consumer维护一个轮询拉取，Broker收到拉取请求后发送消息。</p>
+<h2 id="broker推送"><a class="markdownIt-Anchor" href="#broker推送"></a> Broker推送</h2>
+<p><strong>一般只用推模式</strong>，因为Consumer需要轮询（即使Broker不一定有消息），会消耗部分资源。</p>
+<h1 id="消息类型"><a class="markdownIt-Anchor" href="#消息类型"></a> 消息类型</h1>
+<h2 id="顺序消息"><a class="markdownIt-Anchor" href="#顺序消息"></a> 顺序消息</h2>
+<p>局部有序，实际上是序号相同的消息发送到同一个队列管道，然后消费者从一个管道中拿消息，从而保证有序性。</p>
+<h2 id="广播消息"><a class="markdownIt-Anchor" href="#广播消息"></a> 广播消息</h2>
+<p>正常情况下，多个Consumer是负载均衡模式，一条消息只会发到其中一个Consumer消费；而在广播模式下，所有的Consumer都会收到消息。<br />
+在代码层面，正常情况下<strong>服务端统一</strong>维护消费者位点；而在广播模式下<strong>客户端本地</strong><code>.rocket_offsets</code>维护消费者位点</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%9F%A5%E8%AF%86/" rel="tag"># 知识</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/" rel="prev" title="Advanced Java">
+                  <i class="fa fa-angle-left"></i> Advanced Java
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/AI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" rel="next" title="AI专栏">
+                  AI专栏 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa-solid fa-pen-nib"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SIMULEITE</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

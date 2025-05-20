@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,365 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/MarsCode%20%E9%94%99%E9%A2%98%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/MarsCode%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">MarsCode 错题本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-19 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-19T00:00:00+08:00">2025-01-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-02-21 22:14:04" itemprop="dateModified" datetime="2025-02-21T22:14:04+08:00">2025-02-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="51-和的逆运算"><a class="markdownIt-Anchor" href="#51-和的逆运算"></a> 51 和的逆运算</h1>
+<p>#全排列<br />
+这题在给定的和<strong>不重复</strong>的情况下很简单：</p>
+<ol>
+<li>首先升序排序好数组sums，生成答案数组<code>nums[n]</code>。</li>
+<li><code>nums[0] + nums[1]</code> 必然等于<code>sums[0]</code>（最小值），<code>nums[0] + nums[2]</code> 必然等于<code>sums[1]</code>（次小值）, … , <code>nums[n-2] + nums[n-1]</code> 必然等于<code>sums[lastIndex]</code>（最大值）。</li>
+<li>可以反向推测出<code>nums[0] = (sums[0] + sums[1] - sums[n-1]) / 2</code>，论证看下方：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nums[n] = &#123;a, b, c, d, e&#125; 从小到大排列</span><br><span class="line">a + b = sums[0] (1) // 最小</span><br><span class="line">a + c = sums[1] (2)</span><br><span class="line">a + d = sums[2]</span><br><span class="line">a + e = sums[3]</span><br><span class="line">b + c = sums[4] (3)</span><br><span class="line">...</span><br><span class="line">(1) + (2) = 2a + (3)</span><br><span class="line">2a = sums[0] + sums[1] - sums[n-1] = (1) + (2) - (3)</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>得出了<code>nums[0]</code>，其他数字都可以用<code>nums[i] = sums[i-1] - nums[0]</code>推出来</li>
+</ol>
+<p>但是给定的和重复的情况下，上面的第2条就不成立了。例如测试用例3：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/MarsCode%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/JavaWeb%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/JavaWeb%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">JavaWeb笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-28 00:00:00" itemprop="dateCreated datePublished" datetime="2024-11-28T00:00:00+08:00">2024-11-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-08 10:02:19" itemprop="dateModified" datetime="2025-01-08T10:02:19+08:00">2025-01-08</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="tomcat"><a class="markdownIt-Anchor" href="#tomcat"></a> Tomcat</h1>
+<h2 id="jre报错"><a class="markdownIt-Anchor" href="#jre报错"></a> JRE报错</h2>
+<p>一般教程会让我们配置<code>JAVA_HOME</code>和<code>JRE_HOME</code>，然后启动Tomcat；<br />
+然而，在JDK9以后，就不默认包含JRE了。<br />
+此时，我们使用命令</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jlink --module-path jmods --add-modules java.desktop --output jre</span><br></pre></td></tr></table></figure>
+<p>生成一个JRE后，启动Tomcat，就会报错：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">WARNING: Unknown module: java.rmi specified to --add-opens</span><br><span class="line">Exception in thread &quot;main&quot; java.lang.NoClassDefFoundError: java/util/logging/Logger</span><br><span class="line">    at org.apache.juli.logging.DirectJDKLog.&lt;init&gt;(DirectJDKLog.java:61)</span><br><span class="line">    at org.apache.juli.logging.DirectJDKLog.getInstance(DirectJDKLog.java:181)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:133)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getInstance(LogFactory.java:156)</span><br><span class="line">    at org.apache.juli.logging.LogFactory.getLog(LogFactory.java:211)</span><br><span class="line">    at org.apache.catalina.startup.Bootstrap.&lt;clinit&gt;(Bootstrap.java:49)</span><br><span class="line">Caused by: java.lang.ClassNotFoundException: java.util.logging.Logger</span><br><span class="line">    at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)</span><br><span class="line">    at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)</span><br><span class="line">    at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)</span><br><span class="line">    ... 6 more</span><br></pre></td></tr></table></figure>
+<p>这时候，只需要把jre文件和<code>JRE_HOME</code>环境变量删除，Tomcat就能正常启动</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/JavaWeb%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Mybatis%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Mybatis%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Mybatis使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-11-23 00:00:00" itemprop="dateCreated datePublished" datetime="2024-11-23T00:00:00+08:00">2024-11-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-05 10:09:08" itemprop="dateModified" datetime="2025-01-05T10:09:08+08:00">2025-01-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="mybatis-configxml"><a class="markdownIt-Anchor" href="#mybatis-configxml"></a> mybatis-config.xml</h1>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">configuration</span></span></span><br><span class="line"><span class="meta">  <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Config 3.0//EN&quot;</span></span></span><br><span class="line"><span class="meta">  <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">&quot;development&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">&quot;development&quot;</span>&gt;</span> <span class="comment">&lt;!-- 设置环境 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">&quot;JDBC&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;POOLED&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driver&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;驱动类（含包名）&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;数据库连接URL&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;用户名&#125;&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;密码&#125;&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="util"><a class="markdownIt-Anchor" href="#util"></a> Util</h1>
+<p>一般只需要创建一次，所以创建一个工具类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MybatisUtil</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在类加载时就进行创建</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> SqlSessionFactory sqlSessionFactory;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            sqlSessionFactory = <span class="keyword">new</span> <span class="title class_">SqlSessionFactoryBuilder</span>().build(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(<span class="string">&quot;mybatis-config.xml&quot;</span>));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取一个新的会话</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> autoCommit 是否开启自动提交（跟JDBC是一样的，如果不自动提交，则会变成事务操作）</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> SqlSession对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> SqlSession <span class="title function_">getSession</span><span class="params">(<span class="type">boolean</span> autoCommit)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> sqlSessionFactory.openSession(autoCommit);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Mybatis%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/" class="post-title-link" itemprop="url">SpringBoot常用框架</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-24 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-24T00:00:00+08:00">2024-12-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-05 10:06:15" itemprop="dateModified" datetime="2025-01-05T10:06:15+08:00">2025-01-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="springboot-mail-邮箱验证码"><a class="markdownIt-Anchor" href="#springboot-mail-邮箱验证码"></a> SpringBoot Mail 邮箱验证码</h1>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-mail<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">mail:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="string">your.SMTP.host</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">your_server_email@email.com</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">your_passowrd</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Resource</span></span><br><span class="line">JavaMailSender sender;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PostMapping(&quot;/verification-email&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">sendVerificationEmail</span><span class="params">(<span class="meta">@RequestParam</span> String targetEmail,</span></span><br><span class="line"><span class="params">                                    HttpSession session)</span> &#123;</span><br><span class="line">        <span class="type">SimpleMailMessage</span> <span class="variable">message</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleMailMessage</span>();</span><br><span class="line">        message.setSubject(EMAIL_TITLE);</span><br><span class="line">        <span class="type">int</span> <span class="variable">vCode</span> <span class="operator">=</span> getVerificationCode();</span><br><span class="line">        session.setAttribute(<span class="string">&quot;vcode&quot;</span>, vCode);</span><br><span class="line">        session.setAttribute(<span class="string">&quot;uemail&quot;</span>, email);</span><br><span class="line"></span><br><span class="line">        message.setText(EMAIL_CONTEXT + code);</span><br><span class="line">        message.setTo(targetEmail);</span><br><span class="line">        message.setFrom(EMAIL_SERVEREMAIL); <span class="comment">// 与配置文件中的保持一致</span></span><br><span class="line"></span><br><span class="line">        sender.send(message);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;发送成功&quot;</span>; <span class="comment">// 前端弹窗可以接受此参数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PostMapping(&quot;/register&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">register</span><span class="params">(<span class="meta">@RequestParam</span> String username,</span></span><br><span class="line"><span class="params">                       <span class="meta">@RequestParam</span> String email,</span></span><br><span class="line"><span class="params">                       <span class="meta">@RequestParam</span> String code,</span></span><br><span class="line"><span class="params">                       <span class="meta">@RequestParam</span> String password,</span></span><br><span class="line"><span class="params">                       HttpSession session)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">sessionCode</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;vcode&quot;</span>).toString;</span><br><span class="line">    <span class="type">String</span> <span class="variable">sessionEmail</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;uemail&quot;</span>).toString;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (sessionCode == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;验证码为空&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!sessionCode.equals(code)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;验证码错误！&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!sessionEmail.equals(email)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;请获取验证码&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -850,392 +1209,6 @@
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Deep%20Reading/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Deep%20Reading/" class="post-title-link" itemprop="url">Deep Reading</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-01-10 00:00:00" itemprop="dateCreated datePublished" datetime="2024-01-10T00:00:00+08:00">2024-01-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-11-15 09:02:10" itemprop="dateModified" datetime="2024-11-15T09:02:10+08:00">2024-11-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>“When in doubt go to the library.” – J.K.Rowling</p>
-</blockquote>
-<h1 id="catalog"><a class="markdownIt-Anchor" href="#catalog"></a> Catalog</h1>
-<p><a href="#article1">Article1: What Are You Going to Do With That？</a></p>
-<h1 id="a-idarticle1what-are-you-going-to-do-with-thata"><a class="markdownIt-Anchor" href="#a-idarticle1what-are-you-going-to-do-with-thata"></a> <a id="article1">What Are You Going to Do With That？</a></h1>
-<pre><code>William Deresiewicz（《国家》杂志撰稿人和《新共和》杂志编辑）在斯坦福大学的演讲
-</code></pre>
-<p>The question my title poses, of course, is the one that is classically aimed at humanities majors. What practical value could there possibly be in studying literature or art or philosophy? So you must be wondering why I’m bothering to raise it here, at Stanford, this renowned citadel of science and technology. What doubt can there be that the world will offer you many opportunities to use your degree?</p>
-<p>（学习文学、艺术或哲学能有什么用呢？所以你肯定纳闷，我为什么在在以科技堡垒而闻名的斯坦福提出这个问题呢？在大学学位给人带来众多机会的问题上还有什么可怀疑的吗？）</p>
-<p>But that’s not the question I’m asking. By “do” I don’t mean a job, and by “that” I don’t mean your major. We are more than our jobs, and education is more than a major. Education is more than college, more even than the totality of your formal schooling, from kindergarten through graduate school. By “What are you going to do,” I mean, what kind of life are you going to lead? And by “that,” I mean everything in your training, formal and informal, that has brought you to be sitting here today, and everything you’re going to be doing for the rest of the time that you’re in school.</p>
-<p>（但那不是我提出的问题。这里的“做”并不是指工作，“那”并不是指你的专业。我们不仅仅是要个工作，教育不仅仅是学一门专业。教育也不仅仅是上大学，甚至也不仅是从幼儿园到研究生院的正规学校教育。我说的“你要做什么”的意思是你要过什么样的生活？我所说的“那”指的是你得到的正规或非正规的任何训练， 那些把你送到这里来的东西，你在学校的剩余时间里将要做的任何事。）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E6%8C%87%E5%8D%97/Deep%20Reading/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Hexo%E5%8D%9A%E5%AE%A2%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">Hexo博客教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-10-12 10:45:05" itemprop="dateModified" datetime="2024-10-12T10:45:05+08:00">2024-10-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="笔记"><a class="markdownIt-Anchor" href="#笔记"></a> 笔记</h1>
-<h2 id="命令"><a class="markdownIt-Anchor" href="#命令"></a> 命令</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;postName&quot;</span> <span class="comment"># 新建文章</span></span><br><span class="line">hexo new page <span class="string">&quot;pageName&quot;</span> <span class="comment"># 新建页面</span></span><br><span class="line">hexo generate <span class="comment"># 生成静态页面至public目录</span></span><br><span class="line">hexo server <span class="comment"># 开启预览访问端口（默认端口4000，&#x27;ctrl + c&#x27;关闭server）</span></span><br><span class="line">hexo deploy <span class="comment"># 部署到GitHub</span></span><br><span class="line">hexo <span class="built_in">help</span>  <span class="comment"># 查看帮助</span></span><br><span class="line">hexo version  <span class="comment"># 查看Hexo的版本</span></span><br></pre></td></tr></table></figure>
-<h1 id="按文章更新时间排序"><a class="markdownIt-Anchor" href="#按文章更新时间排序"></a> 按文章更新时间排序</h1>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Home page setting</span></span><br><span class="line"><span class="comment"># path: Root path for your blogs index page. (default = &#x27;&#x27;)</span></span><br><span class="line"><span class="comment"># per_page: Posts displayed per page. (0 = disable pagination)</span></span><br><span class="line"><span class="comment"># order_by: Posts order. (Order by date descending by default)</span></span><br><span class="line"><span class="attr">index_generator:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">&#x27;&#x27;</span></span><br><span class="line">  <span class="attr">per_page:</span> <span class="number">10</span></span><br><span class="line">  <span class="attr">order_by:</span> <span class="string">-updated</span> <span class="comment"># 默认是-date</span></span><br></pre></td></tr></table></figure>
-<h2 id="背景设置"><a class="markdownIt-Anchor" href="#背景设置"></a> 背景设置</h2>
-<p>把你挑选的背景图片命名为：background.jpg，放在blog\themes\next\source\images里，在blog\themes\next\source\css_custom文件的custom.styl首部添加</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">background</span>:<span class="built_in">url</span>(<span class="string">/images/background.jpg</span>);</span><br><span class="line">  <span class="attribute">background-attachment</span>: fixed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="符号链接"><a class="markdownIt-Anchor" href="#符号链接"></a> <a href="../%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0##%E5%AE%9E%E7%94%A8%E6%96%B9%E6%B3%95">符号链接</a></h2>
-<figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"># Windows，有些文件需要文件名相同才能打开</span><br><span class="line"># -d 目录符号链接</span><br><span class="line">mklink /d C:\file\<span class="built_in">path</span>\Target C:\file\<span class="built_in">path</span>\Source</span><br></pre></td></tr></table></figure>
-<h2 id="安装主题"><a class="markdownIt-Anchor" href="#安装主题"></a> 安装主题</h2>
-<ol>
-<li>npm安装在modules下</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> hexo-site</span><br><span class="line">npm install hexo-theme-next</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>git clone安装</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> hexo-site</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span><br><span class="line"><span class="comment"># Upgrade</span></span><br><span class="line"><span class="built_in">cd</span> themes/next</span><br><span class="line">git pull origin master</span><br><span class="line"><span class="comment"># Configuration</span></span><br><span class="line"><span class="built_in">cp</span> themes/next/_config.yml _config.next.yml</span><br></pre></td></tr></table></figure>
-<h1 id="hexo"><a class="markdownIt-Anchor" href="#hexo"></a> Hexo</h1>
-<h2 id="我的配置"><a class="markdownIt-Anchor" href="#我的配置"></a> 我的配置</h2>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 设置英文字体</span></span><br><span class="line"><span class="attr">global:</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">Source</span> <span class="string">Serif</span> <span class="string">Pro</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># layout\_partials\head\head.njk 设置中文字体</span></span><br><span class="line">&#123;&#123; <span class="string">next_font()</span> &#125;&#125;</span><br><span class="line">&#123;&#123; <span class="string">next_vendors(&#x27;fontawesome&#x27;)</span> &#125;&#125;</span><br><span class="line"><span class="string">&lt;link</span> <span class="string">href=&quot;https://fonts.googleapis.com/css?family=Noto+Serif+SC&amp;display=swap&quot;</span> <span class="string">rel=&quot;stylesheet&quot;&gt;</span></span><br><span class="line"><span class="comment"># source\css\_variables\base.styl 添加中文字体</span></span><br><span class="line"><span class="string">$font-family-chinese</span> <span class="string">=</span> <span class="string">&quot;Noto Serif SC&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">codes:</span></span><br><span class="line">    <span class="attr">family:</span> <span class="string">IBM</span> <span class="string">Plex</span> <span class="string">Mono</span></span><br><span class="line"></span><br><span class="line"><span class="attr">codeblock:</span></span><br><span class="line">  <span class="attr">theme:</span></span><br><span class="line">    <span class="attr">light:</span> <span class="string">stackoverflow-light</span></span><br></pre></td></tr></table></figure>
-<hr />
-<h1 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h1>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init blogFolderName</span><br><span class="line"><span class="built_in">cd</span> blog</span><br><span class="line">npm install</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/CS61B%20sp18/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/CS61B%20sp18/" class="post-title-link" itemprop="url">CS61B sp18</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-08-21 00:00:00" itemprop="dateCreated datePublished" datetime="2024-08-21T00:00:00+08:00">2024-08-21</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-30 11:01:12" itemprop="dateModified" datetime="2024-09-30T11:01:12+08:00">2024-09-30</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="gradescope-autograder"><a class="markdownIt-Anchor" href="#gradescope-autograder"></a> Gradescope Autograder</h1>
-<h2 id="spring-2018"><a class="markdownIt-Anchor" href="#spring-2018"></a> <a target="_blank" rel="noopener" href="https://sp18.datastructur.es/">Spring 2018</a></h2>
-<p>44个Assn，偏向数据结构<br />
-邀请码：<code>MNXYKX</code><br />
-学校：<code>UC Berkeley</code><br />
-直接输入，不要选择<code>2U-UC Berkeley</code>，否则将提示<code>COURSE ENTRY CODE IS INVALID</code></p>
-<h2 id="spring-2021"><a class="markdownIt-Anchor" href="#spring-2021"></a> <a target="_blank" rel="noopener" href="https://sp21.datastructur.es/">Spring 2021</a></h2>
-<p>19个Assn，偏向软件工程<br />
-邀请码：<code>MB7ZPY</code></p>
-<h1 id="文章收录"><a class="markdownIt-Anchor" href="#文章收录"></a> 文章收录</h1>
-<p><a target="_blank" rel="noopener" href="https://mathwithbaddrawings.com/2015/04/08/the-math-ceiling-wheres-your-cognitive-breaking-point/">The Law of the Broken Futon</a> 浮沙筑高台法则</p>
-<blockquote>
-<p>“Since I’m fine now, can’t I add that missing piece later, when it’s actually needed?” Sometimes, yes. But it’s much harder.<br />
-Adding the missing piece later means waiting until the damage is already underway, and hellishly difficult to undo.</p>
-</blockquote>
-<p><a target="_blank" rel="noopener" href="https://henrikwarne.com/2014/09/04/a-response-to-why-most-unit-testing-is-waste/">A Response to “Why Most Unit Testing is Waste”</a></p>
-<blockquote>
-<p>(Unit Tests) They are based on <em>programmers’ fantasies about how the function should work</em>. But programmers break down requirements into smaller components all the time – this is how you program. Sometimes there are misunderstandings, but that is the exception, not the rule, in my opinion.</p>
-</blockquote>
-<h1 id="21-mystery-of-java-restore"><a class="markdownIt-Anchor" href="#21-mystery-of-java-restore"></a> 2.1 Mystery of Java Restore</h1>
-<blockquote>
-<p>When instantiate an Object, <code>obj = new Object()</code>, <code>obj</code> <strong>stores the address</strong> of the Object, not the specific data struction.</p>
-</blockquote>
-<p>(That is why all type of variables create memory boxes of 64 bits. It is just the memory of the address.)</p>
-<p>Therefore, When we use <code>obj2 = obj</code>, Java simply copy the addr of <code>obj</code> and assign it to <code>obj2</code> (They are pointing to the same Object), that is why when we change <code>obj2.weight</code> it effects <code>obj.weight</code> too.</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/CS61B%20sp18/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/DNS%20Over%20Https/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/DNS%20Over%20Https/" class="post-title-link" itemprop="url">DNS Over Https</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-09-10 00:00:00 / 修改时间：19:25:58" itemprop="dateCreated datePublished" datetime="2024-09-10T00:00:00+08:00">2024-09-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="windows"><a class="markdownIt-Anchor" href="#windows"></a> Windows</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">模板</span></span><br><span class="line">netsh dns add encryption server=&lt;IP Address&gt; dohtemplate=&lt;DOH Template&gt; autoupgrade=yes udpfallback=no</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">腾讯</span></span><br><span class="line">netsh dns add encryption server=1.12.12.12 dohtemplate=https://doh.pub/dns-query autoupgrade=yes udpfallback=no</span><br><span class="line"></span><br><span class="line">netsh dns add encryption server=120.53.53.53 dohtemplate=https://doh.360.cn/dns-query autoupgrade=yes udpfallback=no</span><br></pre></td></tr></table></figure>
-<p>查看DoH模板：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">netsh dns show encryption</span></span><br><span class="line"></span><br><span class="line">223.5.5.5 加密设置</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">DNS-over-HTTPS 模板     : https://dns.alidns.com/dns-query</span><br><span class="line">自动升级                : yes</span><br><span class="line">UDP 回退                : no</span><br></pre></td></tr></table></figure>
       
     </div>
 

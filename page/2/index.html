@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,403 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">ssh使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-14 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-14T00:00:00+08:00">2025-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-25 14:34:47" itemprop="dateModified" datetime="2025-04-25T14:34:47+08:00">2025-04-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="ssh登录"><a class="markdownIt-Anchor" href="#ssh登录"></a> ssh登录</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="ssh端口映射"><a class="markdownIt-Anchor" href="#ssh端口映射"></a> ssh端口映射</h1>
+<p>可以用于不保留端口的情况下，远程连接数据库等。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -N -L &lt;local_port&gt;:localhost:&lt;remote_port&gt; &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt; </span><br></pre></td></tr></table></figure>
+<h2 id="脚本批量映射"><a class="markdownIt-Anchor" href="#脚本批量映射"></a> 脚本批量映射</h2>
+<p>需要注意，Nacos有gRPC，除了8848端口外，9848端口也要一起开放。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Port Mapping</span></span><br><span class="line">PORTS=(</span><br><span class="line">    &quot;ulocalport:localhost:uremoteport&quot;</span><br><span class="line">    # MySQL</span><br><span class="line">    &quot;53306:localhost:3306&quot;</span><br><span class="line">    # Nacos</span><br><span class="line">    &quot;58848:localhost:8848&quot;</span><br><span class="line">    &quot;59848:localhost:9848&quot;</span><br><span class="line">    # Redis</span><br><span class="line">    &quot;56379:localhost:6379&quot;</span><br><span class="line">    # RocketMQ namesrv</span><br><span class="line">    &quot;59876:localhost:9876&quot;</span><br><span class="line">    # RocketMQ broker</span><br><span class="line">    &quot;510911:localhost:10911&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ARGS=()</span><br><span class="line">for port in &quot;$&#123;PORTS[@]&#125;&quot;; do</span><br><span class="line">    ARGS+=(-L &quot;$port&quot;)</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">ssh -o ServerAliveInterval=60 -N &quot;$&#123;ARGS[@]&#125;&quot; &lt;username&gt;@&lt;remote_ip&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="密钥登录"><a class="markdownIt-Anchor" href="#密钥登录"></a> 密钥登录</h1>
+<ol>
+<li>首先在本地生成一份密钥，然后将公钥上传到remote的<code>~/.ssh/authorized_keys</code></li>
+<li>修改remote<code>/etc/ssh/sshd_config</code></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新端口</span></span><br><span class="line">Port 22</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启用密钥认证</span></span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">禁用密码登录</span></span><br><span class="line">PasswordAuthentication no</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">允许Root登录但禁止密码验证</span></span><br><span class="line">PermitRootLogin prohibit-password</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>重启ssh</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Ubuntu/Debian</span></span><br><span class="line">sudo systemctl restart ssh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">CentOS/RHEL</span></span><br><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/ThreadPool%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/ThreadPool%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="post-title-link" itemprop="url">ThreadPool线程池</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-10 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-10T00:00:00+08:00">2025-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-24 16:58:31" itemprop="dateModified" datetime="2025-04-24T16:58:31+08:00">2025-04-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="线程资源通过线程池提供"><a class="markdownIt-Anchor" href="#线程资源通过线程池提供"></a> 线程资源通过线程池提供</h1>
+<p>线程池可以减少创建、销毁线程的开销，解决资源不足问题。<br />
+如果手动创建线程，容易造成系统存在大量同类线程而导致内存耗尽、过度切换问题。</p>
+<h1 id="不使用executors"><a class="markdownIt-Anchor" href="#不使用executors"></a> 不使用Executors</h1>
+<p><code>Executors.newFixedThreadPool()</code> 固定大小线程池<br />
+<code>Executors.newSingleThreadExecutor()</code> 单线程池<br />
+<code>Executors.newCachedThreadPool()</code> 动态线程池</p>
+<blockquote>
+<p>Executors底层仍然使用<code>new</code>来创建线程，容易造成OOM。</p>
+</blockquote>
+<h2 id="自己调用threadpoolexecutor"><a class="markdownIt-Anchor" href="#自己调用threadpoolexecutor"></a> 自己调用ThreadPoolExecutor</h2>
+<p>推荐的方法使，直接自己调用<code>new ThreadPoolExecutor</code>来创建线程池，设置自己的参数</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">ThreadPoolExecutor</span><span class="params">(</span></span><br><span class="line"><span class="params">    <span class="meta">@Range(from = 0, to = Integer.MAX_VALUE)</span> <span class="type">int</span>  corePoolSize,</span></span><br><span class="line"><span class="params">    <span class="meta">@Range(from = 1, to = Integer.MAX_VALUE)</span> <span class="type">int</span>  maximumPoolSize,</span></span><br><span class="line"><span class="params">    <span class="meta">@Range(from = 0, to = Long.MAX_VALUE)</span>    <span class="type">long</span> keepAliveTime,</span></span><br><span class="line"><span class="params">    <span class="meta">@NotNull</span> TimeUnit unit,</span></span><br><span class="line"><span class="params">    <span class="meta">@NotNull</span> BlockingQueue&lt;Runnable&gt; workQueue,</span></span><br><span class="line"><span class="params">    <span class="meta">@NotNull</span> ThreadFactory threadFactory,</span></span><br><span class="line"><span class="params">    <span class="meta">@NotNull</span> RejectedExecutionHandler handler</span></span><br><span class="line"><span class="params">)</span> &#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Example</span></span><br><span class="line"><span class="type">ThreadPoolExecutor</span> <span class="variable">threadPool</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>(</span><br><span class="line">    <span class="number">5</span>,</span><br><span class="line">    <span class="number">10</span>,</span><br><span class="line">    <span class="number">0L</span>,</span><br><span class="line">    TimeUnit.SECONDS,</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">ArrayBlockingQueue</span>&lt;Runnable&gt;(<span class="number">10</span>), <span class="comment">// 10为容量</span></span><br><span class="line">    Executors.defaultThreadFactory(),</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>.AbortPolicy()</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><code>corePoolSize</code> 核心线程数量。<br />
+<code>maximumPoolSize</code> 最大线程数量（核心 + 临时）。只有核心线程满了，而且阻塞队列也满了，才会创建临时线程。<br />
+<code>keepAliveTime</code> 临时线程的空闲存活时间。<br />
+<code>threadFactory</code> 线程工厂，即以什么方式创建线程。<br />
+<code>handler</code> 核心线程、阻塞队列、临时线程都满了，触发拒绝策略。</p>
+<p><code>Executors</code>的问题在于，它指定的阻塞队列大小是<code>Integer.MAX_VALUE</code>，会导致内存溢出；而<code>Executors.newCachedThreadPool()</code>更是指定了<code>maximumPoolSize</code>为<code>Integer.MAX_VALUE</code>。</p>
+<h2 id="拒绝策略如何保证线程不丢"><a class="markdownIt-Anchor" href="#拒绝策略如何保证线程不丢"></a> 拒绝策略，如何保证线程不丢</h2>
+<p>使用直接拒绝<code>AbortPolicy</code>策略，线程会丢失。此时可以使用</p>
+<ul>
+<li><code>CallerRunsPolicy</code> 直接在主线程同步执行（可能会阻塞主线程）</li>
+<li><code>DiscardOldestPolicy</code> 将队列头部删除，新线程尾部入队（保证新任务优先级）</li>
+<li><code>DiscardPolicy</code> 可以自己拓展，例如将任务放到redis、rocketmq中</li>
+</ul>
+<h2 id="threadpool工作流程"><a class="markdownIt-Anchor" href="#threadpool工作流程"></a> ThreadPool工作流程</h2>
+<p>当前线程数没有达到<code>corePoolSize</code>之前，每个新任务都会触发创建新线程；<br />
+达到以后，才会放到阻塞队列里，等待线程任务执行完成，分发任务给核心线程。<br />
+阻塞队列满了，才会创建临时线程执行任务。</p>
+<h1 id="threadpool如何初始化"><a class="markdownIt-Anchor" href="#threadpool如何初始化"></a> ThreadPool如何初始化？</h1>
+<p>供参考的经验值：</p>
+<ul>
+<li>CPU密集任务（如数据统计、排序）：<br />
+核心线程 = 最大线程 = 核心数 + 1<br />
+减少上下文切换开销</li>
+<li>IO密集任务：<br />
+核心线程 = 核心数 * 2；最大线程 = 核心数 * 4</li>
+</ul>
+<h1 id="动态线程池"><a class="markdownIt-Anchor" href="#动态线程池"></a> 动态线程池</h1>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/pandoc%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/pandoc%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">pandoc使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-04-23 00:00:00 / 修改时间：20:53:06" itemprop="dateCreated datePublished" datetime="2025-04-23T00:00:00+08:00">2025-04-23</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="文本格式转换"><a class="markdownIt-Anchor" href="#文本格式转换"></a> 文本格式转换</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pandoc --from markdown --to docx source.md -o dest.docx</span><br><span class="line">pandoc -f markdown source.md -t docx -o dest.docx</span><br><span class="line">pandoc source.md -o dest.docx --ignore-args # 忽略参数</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意</strong>：为了最佳转换效果，markdown文件每行后都要空行</p>
+</blockquote>
+<h1 id="md2epub"><a class="markdownIt-Anchor" href="#md2epub"></a> md2epub</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">首先把所有的md文件列出来</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 递归查找所有 .md 文件（排除 README.md 和 SUMMARY.md）</span></span></span><br><span class="line">find . -name &quot;*.md&quot; ! -name &quot;README.md&quot; ! -name &quot;SUMMARY.md&quot; | sort &gt; filelist.txt</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 然后编辑 `filelist.txt`，确保文件顺序正确（例如按 `SUMMARY.md` 的目录结构排序）。</span></span></span><br><span class="line"></span><br><span class="line">pandoc --standalone --toc \</span><br><span class="line">--metadata title=&quot;MIT6.824 分布式系统&quot; \</span><br><span class="line">--metadata author=&quot;Robert Morris&quot; \</span><br><span class="line">-o output.epub $(cat filelist.txt) </span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>注意</strong>：对于gitbook，pandoc可能不能正确处理路径，推荐使用honkit。</p>
+</blockquote>
+<h2 id="honkit"><a class="markdownIt-Anchor" href="#honkit"></a> honkit</h2>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// book.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MIT6.824 分布式系统&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Robert Morris&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;hints&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;pluginsConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;hints&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;info&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fa fa-info-circle&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;warning&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fa fa-exclamation-triangle&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装honkit</span></span><br><span class="line">npm install honkit --save-dev</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">需要calibre转换</span></span><br><span class="line">ebook-convert --version</span><br><span class="line"></span><br><span class="line">npm init -y</span><br><span class="line">npx honkit epub ./ ./mybook.epub</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">tmux使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-25T00:00:00+08:00">2023-11-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-20 09:47:02" itemprop="dateModified" datetime="2025-04-20T09:47:02+08:00">2025-04-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <pre><code>参考教程： https://www.ruanyifeng.com/blog/2019/10/tmux.html
+</code></pre>
+<ul>
+<li>tmux使会话与窗口解绑，一个窗口<code>source .bashrc</code>更新了，另一个窗口可能没有</li>
+</ul>
+<ul>
+<li><strong><code>ctrl+b</code> 前缀键</strong><br />
+<code>%</code>  分成左右两栏<br />
+<code>&quot;</code>  分成上下两栏<br />
+<code>up</code>  选择上边的窗口<br />
+<code>[</code> 查看历史记录</li>
+</ul>
+<h1 id="窗口"><a class="markdownIt-Anchor" href="#窗口"></a> 窗口</h1>
+<ul>
+<li><code>&lt;C-d&gt;</code> <strong>删除窗口</strong></li>
+</ul>
+<ul>
+<li><code>&lt;C-b&gt; z</code> <strong>最大化/最小化一个窗口</strong></li>
+<li><code>&lt;C-b&gt; c</code> 创建一个新的窗口，使用 <code>&lt;C-d&gt;</code>关闭</li>
+<li><code>&lt;C-b&gt; N</code> 跳转到第 <em>N</em> 个窗口，注意每个窗口都是有编号的</li>
+<li><code>&lt;C-b&gt; p</code> 切换到前一个窗口</li>
+<li><code>&lt;C-b&gt; n</code> 切换到下一个窗口</li>
+<li><code>&lt;C-b&gt; w</code> 列出当前所有窗口</li>
+</ul>
+<h1 id="tmux-path-双向绑定"><a class="markdownIt-Anchor" href="#tmux-path-双向绑定"></a> Tmux-Path 双向绑定</h1>
+<p>使用tmux会存在一个问题：在1个窗口设置了环境变量，在其他窗口并不会生效。<br />
+下面的脚本会帮助我们解决问题，它将tmux白名单内的全局变量值自动同步到Shell环境变量。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -862,443 +1259,6 @@
 <li>STFW：比百度更高效的办法</li>
 </ul>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/JUC%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">JUC并发编程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-22 00:00:00" itemprop="dateCreated datePublished" datetime="2025-03-22T00:00:00+08:00">2025-03-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-25 20:12:16" itemprop="dateModified" datetime="2025-03-25T20:12:16+08:00">2025-03-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="java多线程"><a class="markdownIt-Anchor" href="#java多线程"></a> Java多线程</h1>
-<p>回顾：操作系统的<a href="obsidian://open?vault=Obsidian%20Vault&amp;file=ComputerScience%2F%E7%9F%A5%E8%AF%86%2FOS%20%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">进程</a>概念。进程的问题：上下文切换开销。为了解决这个问题，出现了线程。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> (() -&gt; &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    System.out.pirntln(<span class="string">&quot;Sub Thread&quot;</span>);</span><br><span class="line">&#125;);</span><br><span class="line">thread.start();</span><br><span class="line">System.out.println(<span class="string">&quot;Main Thread&quot;</span>);</span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Main Thread # 主线程先输出结果，说明两个线程同时运行！</span><br><span class="line">Sub Thread</span><br></pre></td></tr></table></figure>
-<h2 id="线程优先级"><a class="markdownIt-Anchor" href="#线程优先级"></a> 线程优先级</h2>
-<p>Java使用抢占式调度，有以下三种优先级</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">MIN_PRIORITY</span><br><span class="line">MAX_PRIORITY</span><br><span class="line">NOM_PRIORITY</span><br></pre></td></tr></table></figure>
-<h2 id="线程同步"><a class="markdownIt-Anchor" href="#线程同步"></a> 线程同步</h2>
-<p>共享内存会出现缓存一致性问题，因此需要<strong>线程锁</strong>机制保证数据安全性（原子性）。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">synchronized</span> <span class="comment">// 悲观锁</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">synchronized</span> (Class.class / <span class="built_in">this</span>) &#123; ... &#125; <span class="comment">// 类锁</span></span><br><span class="line"><span class="keyword">synchronized</span> (<span class="keyword">new</span> <span class="title class_">Class</span>() / instanceOfClass) &#123; ... &#125; <span class="comment">// 实例锁</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">operation</span><span class="params">()</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
-<h1 id="锁"><a class="markdownIt-Anchor" href="#锁"></a> 锁</h1>
-<p><code>synchronized</code>使用的锁存储在Java对象头中。</p>
-<h3 id="重量级锁"><a class="markdownIt-Anchor" href="#重量级锁"></a> 重量级锁</h3>
-<p>JDK6以前，<code>synchronized</code>被称为重量级锁。因为Java的线程是映射在OS原生线程上，上下文切换成本高；直到JDK6以后才优化了锁的实现。<br />
-简单来说，每个等待锁都会被封装成ObjectWaiter对象，分为三个区域</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">direction: right</span><br><span class="line">Entry Set -&gt; The Owner</span><br><span class="line">The Owner &lt;-&gt; Wait Set</span><br></pre></td></tr></table></figure>
-<p>Entry Set会排队，直到它成为The Owner，享有资源。当The Owner调用<code>wait()</code>方法，就会挂起进入Wait Set，直到<code>wait()</code>所等待的操作完成。<br />
-但是每个线程占用同步代码块的时间并不长，完全不需要挂起又唤醒。<br />
-因此，可以使用<strong>自旋锁</strong></p>
-<h3 id="自旋锁"><a class="markdownIt-Anchor" href="#自旋锁"></a> 自旋锁</h3>
-<p>调用<code>wait()</code>，自旋锁并不是被挂起，而是无限循环是否能够获取锁；当等待时间太长，会恢复重量锁机制。<br />
-JDK6以后，自旋时间是动态变化的。如果某个线程经常自旋失败，它会直接使用重量级锁；反之，则会延长自旋时间。</p>
-<h2 id="轻量级锁"><a class="markdownIt-Anchor" href="#轻量级锁"></a> 轻量级锁</h2>
-<p>JDK6后，为了减少获得和释放锁的消耗，引入了轻量级锁。<br />
-轻量级锁的设计目标是，在无竞争状态下减少重量级锁带来的性能消耗（切换内核态、线程阻塞引发线程切换）。</p>
-<blockquote>
-<p>如果只有一个线程占用资源，那就不要加锁、解锁。<br />
-轻量级锁需要向系统申请互斥量。</p>
-</blockquote>
-<h3 id="cas算法"><a class="markdownIt-Anchor" href="#cas算法"></a> CAS算法</h3>
-<p>Compare and Swap<br />
-CAS算法不是加锁，而是通过比较来判断对象是否已被修改，如果没有直接替换；如果被修改，那么修改失败。</p>
-<p>轻量级锁就是使用CAS算法，如果CAS失败，那么进入重量级锁状态。</p>
-<h2 id="偏向锁"><a class="markdownIt-Anchor" href="#偏向锁"></a> 偏向锁</h2>
-<p>Biased Locking<br />
-<code>-XX:UserBiasLock</code><br />
-当只有一个线程反复访问同步代码块，JVM直接让该线程获取锁，避免不必要的不同步操作。<br />
-根据对象头底层数据结构，如果对象调用过<code>hashCode()</code>通过哈希值来检查一致性，那么对象头就没有空间存放ThreadId了（JVM通过这个id判断是否频繁访问），此时该线程只能使用轻量级锁。</p>
-<h2 id="锁消除和锁粗化"><a class="markdownIt-Anchor" href="#锁消除和锁粗化"></a> 锁消除和锁粗化</h2>
-<p>如果在运行过程中，根本没有出现资源竞争，那就会直接把锁消除掉。<br />
-如果某个资源频繁地开锁解锁（比如在循环内部<code>synchronized</code>），JVM会把锁的范围放大，避免加锁解锁的开销。</p>
-<h1 id="java-memory-model"><a class="markdownIt-Anchor" href="#java-memory-model"></a> Java Memory Model</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Java Thread 1 &lt;-&gt; Working Memory 1 &lt;-&gt; Save/Load Operation </span><br><span class="line">Java Thread 2 &lt;-&gt; Working Memory 2 &lt;-&gt; Save/Load Operation </span><br><span class="line">Java Thread 3 &lt;-&gt; Working Memory 3 &lt;-&gt; Save/Load Operation </span><br><span class="line">Save/Load Operation &lt;-&gt; Main Memory</span><br></pre></td></tr></table></figure>
-<p>JMM内存模型中有以下规定：</p>
-<ol>
-<li>所有变量存储在主内存</li>
-<li>每条线程有自己的工作内存，不能直接操作主内存</li>
-<li>不同线程间互相隔离，要传递内容，必须通过主内存</li>
-</ol>
-<h1 id="volatile"><a class="markdownIt-Anchor" href="#volatile"></a> volatile</h1>
-<p><code>volatile</code>的最大作用是保证变量<strong>可见性</strong>，即发生修改后强制刷新到主内存中，使其他线程的缓存失效；相当于通知了其他线程要更新变量为最新版本。<br />
-注意，<code>volatile</code>不能保证原子性。</p>
-<h1 id="lockcondition"><a class="markdownIt-Anchor" href="#lockcondition"></a> Lock&amp;Condition</h1>
-<p>Lock用法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Lock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>(); <span class="comment">// 可重入锁</span></span><br><span class="line"><span class="type">Runnable</span> <span class="variable">action</span> <span class="operator">=</span> () -&gt; &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">100000</span>; i += <span class="number">1</span>) &#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        i += <span class="number">1</span>; <span class="comment">// 保证同一时刻只有一个线程操作i</span></span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(action).start();</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(action).start();</span><br></pre></td></tr></table></figure>
-<p>Condition用法：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Condition</span> <span class="variable">cond</span> <span class="operator">=</span> lock.newCondition();</span><br><span class="line"></span><br><span class="line"><span class="type">Thread</span> <span class="variable">thread1</span> <span class="operator">=</span> () -&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">    cond.await(); <span class="comment">// 等待</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">Thread</span> <span class="variable">thread2</span> <span class="operator">=</span> () -&gt; &#123;</span><br><span class="line">    ...</span><br><span class="line">    cond.signal(); <span class="comment">// 唤醒await线程</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(thread1).start();</span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Thread</span>(thread2).start();</span><br></pre></td></tr></table></figure>
-<h2 id="leetcode-1114-顺序打印123"><a class="markdownIt-Anchor" href="#leetcode-1114-顺序打印123"></a> LeetCode 1114 顺序打印123</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Foo</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">Lock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">Condition</span> <span class="variable">cond1</span> <span class="operator">=</span> lock.newCondition();</span><br><span class="line">    <span class="keyword">private</span> <span class="type">Condition</span> <span class="variable">cond2</span> <span class="operator">=</span> lock.newCondition();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="type">int</span> <span class="variable">state</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Foo</span><span class="params">()</span> &#123; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">first</span><span class="params">(Runnable printFirst)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// printFirst.run() outputs &quot;first&quot;. Do not change or remove this line.</span></span><br><span class="line">            printFirst.run();</span><br><span class="line">            state = <span class="number">1</span>;</span><br><span class="line">            cond1.signal();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">second</span><span class="params">(Runnable printSecond)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (state != <span class="number">1</span>) &#123;</span><br><span class="line">                cond1.await();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// printSecond.run() outputs &quot;second&quot;. Do not change or remove this line.</span></span><br><span class="line">            printSecond.run();</span><br><span class="line">            state = <span class="number">2</span>;</span><br><span class="line">            cond2.signal();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">third</span><span class="params">(Runnable printThird)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (state != <span class="number">2</span>) &#123;</span><br><span class="line">                cond2.await();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// printThird.run() outputs &quot;third&quot;. Do not change or remove this line.</span></span><br><span class="line">            printThird.run();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="可重入锁"><a class="markdownIt-Anchor" href="#可重入锁"></a> 可重入锁</h2>
-<p>Re-entrant-Lock<br />
-这种锁可以多次加锁，同时也要多次解锁才算真的解锁了。</p>
-<blockquote>
-<p>可重入锁是一种排他锁，其他线程必须等锁释放了才可以获取到锁。</p>
-</blockquote>
-<h3 id="公平锁与非公平锁"><a class="markdownIt-Anchor" href="#公平锁与非公平锁"></a> 公平锁与非公平锁</h3>
-<ul>
-<li>公平锁：按照申请锁的时间去获得锁，会进入队列排队</li>
-<li>非公平：抢占式获取锁</li>
-</ul>
-<h2 id="读写锁"><a class="markdownIt-Anchor" href="#读写锁"></a> 读写锁</h2>
-<blockquote>
-<p>读写锁在同一时刻，可以让多个线程获取到锁。</p>
-</blockquote>
-<ul>
-<li>读锁：没有线程占用<strong>写锁</strong>的情况下，同一时间可以有多个线程加读锁。</li>
-<li>写锁：没有线程占用<strong>读锁</strong>的情况下，只有一个线程可以加写锁。</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Lock</span> <span class="variable">reEntLock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLockReadWriteLock</span>();</span><br><span class="line">reEntLock.readLock().lock();</span><br><span class="line">reEntLock.writeLock().lock();</span><br></pre></td></tr></table></figure>
-<h2 id="锁降级-锁升级"><a class="markdownIt-Anchor" href="#锁降级-锁升级"></a> 锁降级、锁升级</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">reEntLock.writeLock().lock();</span><br><span class="line"><span class="comment">// 先加写锁，后加读锁，降级</span></span><br><span class="line">reEntLock.readLock().lock();</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="comment">// 然后释放写锁，只留下读锁，锁降级</span></span><br><span class="line">reEntLock.writeLock().unlock();</span><br></pre></td></tr></table></figure>
-<h2 id="aqs实现"><a class="markdownIt-Anchor" href="#aqs实现"></a> AQS实现</h2>
-<p>Abstract Queued Synchronizer<br />
-在AQS中，一个线程获取锁后，其他线程进入等待队列。<br />
-等待队列由双向链表实现。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">算法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-20 08:47:06" itemprop="dateModified" datetime="2025-03-20T08:47:06+08:00">2025-03-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <ul>
-<li><strong>复杂度分析</strong>：数据结构和算法的评价维度与方法。时间复杂度、空间复杂度的推算方法、常见类型、示例等。</li>
-<li><strong>数据结构</strong>：基本数据类型，数据结构的分类方法。数组、链表、栈、队列、哈希表、树、堆、图等数据结构的定义、优缺点、常用操作、常见类型、典型应用、实现方法等。</li>
-<li><strong>算法</strong>：搜索、排序、分治、回溯、动态规划、贪心等算法的定义、优缺点、效率、应用场景、解题步骤、示例题目等。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">蓝桥杯 错题本</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-03-19 00:00:00 / 修改时间：18:48:35" itemprop="dateCreated datePublished" datetime="2025-03-19T00:00:00+08:00">2025-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="3513-岛屿个数"><a class="markdownIt-Anchor" href="#3513-岛屿个数"></a> 3513 岛屿个数</h1>
-<p>#外岛数量 #bfs</p>
-<h2 id="杰克船长算法"><a class="markdownIt-Anchor" href="#杰克船长算法"></a> 杰克船长算法</h2>
-<blockquote>
-<p>杰克船长在公海上游荡，每发现一处岛屿，他就会绕着岛走一圈，并把这个岛标记到地图上。</p>
-</blockquote>
-<p>这个问题的解决方法就在这里：我们<strong>一定</strong>要有一片完全连通的公海，只有在公海上遇到岛屿，才标记岛屿数量；绝不踏入内海。</p>
-<p>可是测试用例是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5 5</span><br><span class="line">01111</span><br><span class="line">11001</span><br><span class="line">10101</span><br><span class="line">10001</span><br><span class="line">11111</span><br></pre></td></tr></table></figure>
-<p>这个测试用例，只有<code>(0, 0)</code>是公海，怎么办呢？<br />
-我们用一圈公海把测试用例包围起来：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">processInput</span><span class="params">(Scanner sc)</span> &#123;</span><br><span class="line">    M = sc.nextInt();</span><br><span class="line">    N = sc.nextInt();</span><br><span class="line">    sc.nextLine();</span><br><span class="line">    map = <span class="keyword">new</span> <span class="title class_">int</span>[M + <span class="number">2</span>][N + <span class="number">2</span>]; <span class="comment">// 注意+2，多一圈&#x27;0&#x27;表示公海</span></span><br><span class="line">    visitedSea = <span class="keyword">new</span> <span class="title class_">boolean</span>[M + <span class="number">2</span>][N + <span class="number">2</span>];</span><br><span class="line">    visitedIsland = <span class="keyword">new</span> <span class="title class_">boolean</span>[M + <span class="number">2</span>][N + <span class="number">2</span>];</span><br><span class="line">    cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">1</span>; x &lt;= M; x += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> sc.nextLine();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> <span class="number">1</span>; y &lt;= N; y += <span class="number">1</span>) &#123;</span><br><span class="line">            map[x][y] = line.charAt(y - <span class="number">1</span>) - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">LeetCode100 错题本</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-01T00:00:00+08:00">2024-10-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-16 15:04:45" itemprop="dateModified" datetime="2025-03-16T15:04:45+08:00">2025-03-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
-<h1 id="字母异位词"><a class="markdownIt-Anchor" href="#字母异位词"></a> 字母异位词</h1>
-<p>排序每一个单词，就知道是不是异位词。</p>
-<h2 id="两数之和"><a class="markdownIt-Anchor" href="#两数之和"></a> 两数之和</h2>
-<p>从数组中，找到<code>nums[i] + nums[j] == target</code>，并返回<code>&#123; i, j &#125;</code>。<br />
-思路是双重循环，遍历每一个元素，求和是否为target。<br />
-然而，双重循环需要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的复杂度。因此，可以使用一张表，使用<code>containsKey</code>方法识别是否存在当前i的<code>target - nums[i]</code>，即可减少一重循环。</p>
-<h3 id="关键思想"><a class="markdownIt-Anchor" href="#关键思想"></a> 关键思想</h3>
-<p>用Map高效率查找，减少一重循环。</p>
-<h2 id="最长连续序列"><a class="markdownIt-Anchor" href="#最长连续序列"></a> 最长连续序列</h2>
-<p>从乱序数组中，找到最长连续（数组中不一定连续）的序列。要求<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。<br />
-首先用数组的值存入哈希表，然后遍历数组，判断<code>map.constains(curNum++)</code>。<br />
-然而，即使这样还是效率不够高。</p>
-<p>优化</p>
-<ol>
-<li>中间值不进入循环，序列开始值才进入，使用<code>!contains(curNum - 1)</code>判断是否为序列开始值</li>
-<li>去重，不要哈希表，不需要键值对，使用哈希Set，只存储值。</li>
-</ol>
-<h3 id="关键思想-2"><a class="markdownIt-Anchor" href="#关键思想-2"></a> 关键思想</h3>
-<p>去重；不处理中间值</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 

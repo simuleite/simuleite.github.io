@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">64</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,555 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/AI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/AI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">AI专栏</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-05-20 00:00:00 / 修改时间：16:03:44" itemprop="dateCreated datePublished" datetime="2025-05-20T00:00:00+08:00">2025-05-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="mcp"><a class="markdownIt-Anchor" href="#mcp"></a> MCP</h1>
+<h2 id="rag的局限性"><a class="markdownIt-Anchor" href="#rag的局限性"></a> RAG的局限性</h2>
+<p>对于AI来说，RAG仅仅是外部知识库，AI只起到一个总结效果。而总结的效果取决于向量相似度匹配，可能遗漏关键信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">direction: right</span><br><span class="line">结构化数据 -&gt; 文本块</span><br><span class="line">非结构化数据 -&gt; 文本块</span><br><span class="line"></span><br><span class="line">文本块 -&gt; 向量数据库 -&gt; 检索文本块 -&gt; 生成最终响应</span><br></pre></td></tr></table></figure>
+<ul>
+<li>生成内容不完整：RAG处理的是文本的切片，因此无法看到整篇文档信息。</li>
+<li>RAG无法判断需要多少切片才能解决问题。</li>
+<li>多轮检索能力弱。</li>
+</ul>
+<h2 id="mcp基础"><a class="markdownIt-Anchor" href="#mcp基础"></a> MCP基础</h2>
+<h2 id="function-calling"><a class="markdownIt-Anchor" href="#function-calling"></a> Function Calling</h2>
+<p>Coze的Agent就是基于Function Calling思路封装的。</p>
+<blockquote>
+<p>不过Function Calling成本比较高，需要模型经过专门训练微调才能稳定支持。</p>
+</blockquote>
+<p>这导致有些模型不支持某些插件的调用（例如Trae只有选择Sonnet、GPT等模型才可以处理图片）。</p>
+<blockquote>
+<p>另外，Function Calling不是一项标准，许多模型的实现细节不一样。</p>
+</blockquote>
+<h2 id="model-context-protocol"><a class="markdownIt-Anchor" href="#model-context-protocol"></a> Model Context Protocol</h2>
+<p>MCP是一项标准<strong>协议</strong>，简单来说就是通用的接口，使AI-外部工具/数据源交互标准化、可复用。</p>
+<p>Claude Desktop、Cursor这样的工具在内部实现MCP Client，这个Client通过MCP协议与MCP Server（由服务提供公司自己开发，实现访问数据、浏览器、本地文件等功能，最终通过MCP返回标准格式）交互，最终在MCP Host上展示。</p>
+<h2 id="mcp-传输方式"><a class="markdownIt-Anchor" href="#mcp-传输方式"></a> MCP 传输方式</h2>
+<p>STDIO，本地环境<br />
+SSE，并发量不高，单向通信<br />
+Streamable HTTP，高并发，需要维护长连接</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>Function Calling</th>
+<th>Model Context Portocol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>协议</td>
+<td>私有协议</td>
+<td>开放协议</td>
+</tr>
+<tr>
+<td>场景</td>
+<td>单次函数调用</td>
+<td>多工具协同 + 数据交互</td>
+</tr>
+<tr>
+<td>接入方式</td>
+<td>函数直接接入</td>
+<td>需要MCP Server + MCP Client</td>
+</tr>
+<tr>
+<td>耦合度</td>
+<td>工具与模型绑定</td>
+<td>工具开发与Agent开发解耦</td>
+</tr>
+<tr>
+<td>调用方式</td>
+<td>API</td>
+<td>Stdio/SSE</td>
+</tr>
+</tbody>
+</table>
+<h2 id="mcp五大能力"><a class="markdownIt-Anchor" href="#mcp五大能力"></a> MCP五大能力</h2>
+<ul>
+<li>Tools：提供功能，使LLM能与外部系统交互</li>
+<li>Resources：提供内容和数据，为LLM和Client提供上下文</li>
+<li>Prompts：提供Prompt模板，引导LLM交互</li>
+<li>Sampling：Server借助Client向LLM发起完成请求，实现复杂功能。</li>
+<li>Roots：Client为Server提供一些资源地址，使Server知道去哪里获取资源。</li>
+</ul>
+<h2 id="mcp-server"><a class="markdownIt-Anchor" href="#mcp-server"></a> MCP Server</h2>
+<p>基本功能</p>
+<ul>
+<li>文件、数据访问。如File System MCP Server</li>
+<li>Web自动化：操作浏览器，如Puppeteer MCP Server</li>
+<li>三方工具集成。如高德地图MCP Server<br />
+<a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/servers">MCP Server集合（官方）</a><br />
+<a target="_blank" rel="noopener" href="https://mcp.so/">MCP.so</a><br />
+<a target="_blank" rel="noopener" href="https://mcpmarket.cn/">MCP Market</a><br />
+​Cherry Stdio可以自动安装MCP Server，但是Windsurf就需要手动安装。</li>
+</ul>
+<h2 id="场景mcp-数据库更好的rag"><a class="markdownIt-Anchor" href="#场景mcp-数据库更好的rag"></a> 场景：MCP + 数据库，更好的RAG</h2>
+<p>可以通过MCP使LLM接入数据库，无须手动调用sql接口。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;mcpServers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;mongodb&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npx&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="string">&quot;mcp-mongo-server&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;mongodb://site:port/your_table?authSource=admin&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;mcpServers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;mongodb&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npx&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="comment">// 自动安装</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;-y&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;@modelcontextprotocol/server-filesystem&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;~/Downloads&quot;</span></span><br><span class="line">      <span class="punctuation">]</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>通过这种方式，可以比简单地将数据库内容放到知识库中实现更好的效果。</p>
+<h2 id="缺点"><a class="markdownIt-Anchor" href="#缺点"></a> 缺点</h2>
+<p>MCP会真的调用sql，如果让AI检索大量数据，会消耗大量token，阻塞MCP Client。</p>
+<blockquote>
+<p>许多MCP Client依靠大量系统提示词来实现与MCP的通信，使用MCP，token消耗一定增加。</p>
+</blockquote>
+<h1 id="向量数据库"><a class="markdownIt-Anchor" href="#向量数据库"></a> 向量数据库</h1>
+<p>向量数据库专门存储和查询向量，核心就是相似度查询。<br />
+向量数据的特点是单条数据维度高、存储空间占用大。<br />
+向量检索只能做到相似查找，返回前K条数据。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">chunk: &#123;</span><br><span class="line">    &quot;&#123;text0: content...&#125;\n&#123;text1: content...&#125;&quot;</span><br><span class="line">&#125;</span><br><span class="line">vector: &#123;</span><br><span class="line">    &quot;&#123;\n text0: content...\n vector:[0.23xx, 0.24xx]\n &#125;\n &#123;\n text1: content...\nvector:[0.25xx, 0.26xx]\n&#125;&quot;</span><br><span class="line">&#125;</span><br><span class="line">知识库文本 -&gt; chunk: split</span><br><span class="line">chunk -&gt; vector: Embedding</span><br><span class="line">chunk -&gt; 向量模型</span><br><span class="line">vector -&gt; 向量数据库: insert</span><br><span class="line"></span><br><span class="line">向量模型 -&gt; vector</span><br><span class="line">向量模型 -&gt; 向量数据库</span><br><span class="line">向量模型 -&gt; LLM: Question</span><br><span class="line"></span><br><span class="line">用户 -&gt; 向量模型: Question</span><br><span class="line">LLM -&gt; 用户: Answer</span><br></pre></td></tr></table></figure>
+<ol>
+<li>文本向量化（分词、分chunk，通过向量模型转化为向量）。</li>
+<li>将向量化数据和原始文本一起存储到向量数据库。</li>
+<li>向量模型检索向量数据库，并传参给LLM回复。</li>
+</ol>
+<h2 id="为什么分块"><a class="markdownIt-Anchor" href="#为什么分块"></a> 为什么分块</h2>
+<p>首先大模型输入有限制，其次文本分块，只检索关键文本，可以减少token消耗。</p>
+<h2 id="建立向量索引"><a class="markdownIt-Anchor" href="#建立向量索引"></a> 建立向量索引</h2>
+<p>想要加速向量搜索速度就需要向量索引。</p>
+<h3 id="flat索引"><a class="markdownIt-Anchor" href="#flat索引"></a> FLAT索引</h3>
+<p>将向量以列表形式存储，不压缩和聚类。简单但是效率低。</p>
+<h3 id="倒排文件索引无聚类"><a class="markdownIt-Anchor" href="#倒排文件索引无聚类"></a> 倒排文件索引（无聚类）</h3>
+<p>IVF, Inverted File Index</p>
+<ul>
+<li>单词词典：以文档文本单词作为主键（也就是说是唯一的），每个单词关联一个或多个文档ID。</li>
+<li>倒排列表：记录每个单词存储在哪些文档中，以及单词在文档中的位置。</li>
+</ul>
+<h4 id="ivf聚类索引"><a class="markdownIt-Anchor" href="#ivf聚类索引"></a> IVF聚类索引</h4>
+<p>IVF将原始数据划分为多个簇，为每个簇建立倒排索引，从而加快检索效率。<br />
+IVF_FLAT：聚类倒排+Flat结构，适合高精度，性能不高。<br />
+PQ, Produce Quantizer，乘积量化，通过向量分割与量化<br />
+IVF_PQ：通过乘积量化压缩向量，加速搜索</p>
+<h3 id="kd树索引"><a class="markdownIt-Anchor" href="#kd树索引"></a> KD树索引</h3>
+<p>二叉树结构，存储多维向量数据。按照层级组织数据从而实现高效的向量搜索。</p>
+<h3 id="ball树索引"><a class="markdownIt-Anchor" href="#ball树索引"></a> Ball树索引</h3>
+<p>非平衡树结构，类似于球形。</p>
+<h3 id="hnsw索引"><a class="markdownIt-Anchor" href="#hnsw索引"></a> HNSW索引</h3>
+<p>Hierarchical Navigable Small World<br />
+图结构，通过分层图加速效率。在每一层将向量连接成图，查询时从高层图到低层图，直到找到最近邻。<br />
+HNSW在召回率和索引性能之间有较好的平衡。</p>
+<h3 id="locality-sensitive-hashing"><a class="markdownIt-Anchor" href="#locality-sensitive-hashing"></a> Locality Sensitive Hashing</h3>
+<p>LSH将相似向量映射到同一个桶来加速检索。适合高维稀疏向量数据。</p>
+<h2 id="向量库"><a class="markdownIt-Anchor" href="#向量库"></a> 向量库</h2>
+<p>向量库存储静态数据。向量库只存储Embeddeing向量嵌入，不存储Embedding关联对象（因此不需要修改）。</p>
+<ul>
+<li>FAISS</li>
+<li>HNSWLib</li>
+<li>ANNOY</li>
+</ul>
+<h2 id="相似度"><a class="markdownIt-Anchor" href="#相似度"></a> 相似度</h2>
+<h3 id="欧几里得距离"><a class="markdownIt-Anchor" href="#欧几里得距离"></a> 欧几里得距离</h3>
+<p>欧式算法通过<strong>距离</strong>来匹配相似度<br />
+欧式算法可以反映向量绝对距离，适合需要量化数据的场景。<br />
+例如推荐系统，需要的不仅仅是历史行为，还要历史数据的数值。</p>
+<p>二维欧式距离<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>=</mo><msqrt><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo>−</mo><msub><mi>x</mi><mn>1</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><msub><mi>y</mi><mn>2</mn></msub><mo>−</mo><msub><mi>y</mi><mn>1</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.30499999999999994em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.935em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-2.8950000000000005em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119c34,79.3,68.167,
+158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120c340,-704.7,510.7,-1060.3,512,-1067
+c4.7,-7.3,11,-11,19,-11H40000v40H1012.3s-271.3,567,-271.3,567c-38.7,80.7,-84,
+175,-136,283c-52,108,-89.167,185.3,-111.5,232c-22.3,46.7,-33.8,70.3,-34.5,71
+c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1s-109,-253,-109,-253c-72.7,-168,-109.3,
+-252,-110,-252c-10.7,8,-22,16.7,-34,26c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26
+s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.30499999999999994em;"><span></span></span></span></span></span></span></span></span><br />
+三维<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>=</mo><msqrt><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo>−</mo><msub><mi>x</mi><mn>1</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><msub><mi>y</mi><mn>2</mn></msub><mo>−</mo><msub><mi>y</mi><mn>1</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><msub><mi>z</mi><mn>2</mn></msub><mo>−</mo><msub><mi>z</mi><mn>1</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.30499999999999994em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.935em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.04398em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.04398em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-2.8950000000000005em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119c34,79.3,68.167,
+158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120c340,-704.7,510.7,-1060.3,512,-1067
+c4.7,-7.3,11,-11,19,-11H40000v40H1012.3s-271.3,567,-271.3,567c-38.7,80.7,-84,
+175,-136,283c-52,108,-89.167,185.3,-111.5,232c-22.3,46.7,-33.8,70.3,-34.5,71
+c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1s-109,-253,-109,-253c-72.7,-168,-109.3,
+-252,-110,-252c-10.7,8,-22,16.7,-34,26c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26
+s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.30499999999999994em;"><span></span></span></span></span></span></span></span></span><br />
+依此类推…</p>
+<h3 id="余弦相似度"><a class="markdownIt-Anchor" href="#余弦相似度"></a> 余弦相似度</h3>
+<p>余弦相似度通过<strong>角度</strong>匹配相似度<br />
+很明显，余弦相似度只关注角度，适合高维相似度检索，如语义搜索、文档分类<br />
+余弦相似度范围从-1到1，1表示完全相似0度、0表示垂直90度、-1表示完全相反180度</p>
+<p>向量点积除以向量模长<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>c</mi><mi>o</mi><mi>s</mi><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>A</mi><mo>⋅</mo><mi>B</mi></mrow><mrow><mi mathvariant="normal">∣</mi><mover accent="true"><mi>A</mi><mo>⃗</mo></mover><mi mathvariant="normal">∣</mi><mo>⋅</mo><mi mathvariant="normal">∣</mi><mover accent="true"><mi>B</mi><mo>⃗</mo></mover><mi mathvariant="normal">∣</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">cos(\theta) = \frac{A \cdot B} {|\vec A| \cdot |\vec B|}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.5337619999999998em;vertical-align:-0.6614309999999999em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.513569em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∣</span><span class="mord accent mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663299999999999em;"><span style="top:-2.714em;"><span class="pstrut" style="height:2.714em;"></span><span class="mord mathdefault mtight">A</span></span><span style="top:-2.96633em;"><span class="pstrut" style="height:2.714em;"></span><span class="accent-body" style="left:-0.09660999999999997em;"><span class="overlay mtight" style="height:0.714em;width:0.471em;"><svg width='0.471em' height='0.714em' style='width:0.471em' viewBox='0 0 471 714' preserveAspectRatio='xMinYMin'><path d='M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z'/></svg></span></span></span></span></span></span></span><span class="mord mtight">∣</span><span class="mbin mtight">⋅</span><span class="mord mtight">∣</span><span class="mord accent mtight"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663299999999999em;"><span style="top:-2.714em;"><span class="pstrut" style="height:2.714em;"></span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span><span style="top:-2.96633em;"><span class="pstrut" style="height:2.714em;"></span><span class="accent-body" style="left:-0.15216em;"><span class="overlay mtight" style="height:0.714em;width:0.471em;"><svg width='0.471em' height='0.714em' style='width:0.471em' viewBox='0 0 471 714' preserveAspectRatio='xMinYMin'><path d='M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z'/></svg></span></span></span></span></span></span></span><span class="mord mtight">∣</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">A</span><span class="mbin mtight">⋅</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.6614309999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><br />
+高维算法<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo><mo separator="true">;</mo><mi>B</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>b</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>b</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A = (a_1, a_2, ..., a_n); B = (b_1, b_2, ..., b_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>⋅</mo><mi>B</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><msub><mi>b</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub><msub><mi>b</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A \cdot B = (a_1b_1, a_2b_2, ..., a_nb_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mover accent="true"><mi>A</mi><mo>⃗</mo></mover><mi mathvariant="normal">∣</mi><mo>⋅</mo><mi mathvariant="normal">∣</mi><mover accent="true"><mi>B</mi><mo>⃗</mo></mover><mi mathvariant="normal">∣</mi><mo>=</mo><msqrt><mrow><msubsup><mi>a</mi><mn>1</mn><mn>2</mn></msubsup><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><msubsup><mi>a</mi><mi>n</mi><mn>2</mn></msubsup></mrow></msqrt><mo>⋅</mo><msqrt><mrow><msubsup><mi>b</mi><mn>1</mn><mn>2</mn></msubsup><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><msubsup><mi>b</mi><mi>n</mi><mn>2</mn></msubsup></mrow></msqrt></mrow><annotation encoding="application/x-tex">|\vec A| \cdot |\vec B| = \sqrt{a_1^2 + ... + a_n^2} \cdot \sqrt{b_1^2 + ... + b_n^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.21633em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663299999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault">A</span></span><span style="top:-3.25233em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.09660999999999997em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg width='0.471em' height='0.714em' style='width:0.471em' viewBox='0 0 471 714' preserveAspectRatio='xMinYMin'><path d='M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z'/></svg></span></span></span></span></span></span></span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.21633em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663299999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span><span style="top:-3.25233em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.15216em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg width='0.471em' height='0.714em' style='width:0.471em' viewBox='0 0 471 714' preserveAspectRatio='xMinYMin'><path d='M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z'/></svg></span></span></span></span></span></span></span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.2902em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9498em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959080000000001em;"><span style="top:-2.433692em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span><span style="top:-3.0448000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.26630799999999993em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.9098em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119c34,79.3,68.167,
+158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120c340,-704.7,510.7,-1060.3,512,-1067
+c4.7,-7.3,11,-11,19,-11H40000v40H1012.3s-271.3,567,-271.3,567c-38.7,80.7,-84,
+175,-136,283c-52,108,-89.167,185.3,-111.5,232c-22.3,46.7,-33.8,70.3,-34.5,71
+c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1s-109,-253,-109,-253c-72.7,-168,-109.3,
+-252,-110,-252c-10.7,8,-22,16.7,-34,26c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26
+s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2902em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.2902em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9498em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7959080000000001em;"><span style="top:-2.433692em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span><span style="top:-3.0448000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.26630799999999993em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span></span></span><span style="top:-2.9098em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119c34,79.3,68.167,
+158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120c340,-704.7,510.7,-1060.3,512,-1067
+c4.7,-7.3,11,-11,19,-11H40000v40H1012.3s-271.3,567,-271.3,567c-38.7,80.7,-84,
+175,-136,283c-52,108,-89.167,185.3,-111.5,232c-22.3,46.7,-33.8,70.3,-34.5,71
+c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1s-109,-253,-109,-253c-72.7,-168,-109.3,
+-252,-110,-252c-10.7,8,-22,16.7,-34,26c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26
+s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2902em;"><span></span></span></span></span></span></span></span></span></p>
+<h3 id="点积相似度投影"><a class="markdownIt-Anchor" href="#点积相似度投影"></a> 点积相似度（投影）</h3>
+<p>不除以模长，与角度无关；对长度敏感，两个向量长度不同，方向相同，点积会受影响。<br />
+点积正数，两个向量正相关；点积为0，无线性相关；点积负数，两个向量负相关<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>⋅</mo><mi>B</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><msub><mi>b</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub><msub><mi>b</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A \cdot B = (a_1b_1, a_2b_2, ..., a_nb_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">消息队列</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-12 00:00:00" itemprop="dateCreated datePublished" datetime="2025-05-12T00:00:00+08:00">2025-05-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-13 20:46:33" itemprop="dateModified" datetime="2025-05-13T20:46:33+08:00">2025-05-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="消息队列3大目标"><a class="markdownIt-Anchor" href="#消息队列3大目标"></a> 消息队列3大目标</h1>
+<h2 id="异步"><a class="markdownIt-Anchor" href="#异步"></a> 异步</h2>
+<p>在生产者-消费者速度不匹配的情况下，使用异步可以减少等待，提高效率。</p>
+<h2 id="解耦"><a class="markdownIt-Anchor" href="#解耦"></a> 解耦</h2>
+<p>多个生产者可以通过消息队列管道集合成1条链路；也可以将1个生产者的消息负载均衡给多个消费者（只发送1条消息给MQ，MQ广播多份）。</p>
+<h2 id="削峰生产者-消费者速度不同步"><a class="markdownIt-Anchor" href="#削峰生产者-消费者速度不同步"></a> 削峰（生产者-消费者速度不同步）</h2>
+<p>由于队列本身是一条管道，拥有一定容量，因此可以削峰填谷，解决一些瞬时高并发流量。</p>
+<h1 id="消息队列的关键问题"><a class="markdownIt-Anchor" href="#消息队列的关键问题"></a> 消息队列的关键问题</h1>
+<h2 id="c-系统一致性"><a class="markdownIt-Anchor" href="#c-系统一致性"></a> C 系统一致性</h2>
+<p>A系统通过MQ将消息发送给B、C完成后续业务，B成功而C失败，这时如何保证一致性？</p>
+<h2 id="a-系统可用性"><a class="markdownIt-Anchor" href="#a-系统可用性"></a> A 系统可用性</h2>
+<p>MQ宕机，依赖MQ管道的服务就不可用。MQ应该有高可用性和稳定性，不应该成为系统薄弱环节。</p>
+<h2 id="系统复杂度"><a class="markdownIt-Anchor" href="#系统复杂度"></a> 系统复杂度</h2>
+<ul>
+<li>如何保证消费不丢失？</li>
+<li>如何避免重复调用？</li>
+<li>如何保证消息顺序？</li>
+</ul>
+<h2 id="幂等性"><a class="markdownIt-Anchor" href="#幂等性"></a> 幂等性</h2>
+<p>如果重复消费，确保多次消费和1次消费的结果相同。</p>
+<ul>
+<li>发送消息重复：发送后，网络断开，没收到ACK，导致重复发送</li>
+<li>消费消息重复：Consumer收到消息并处理完成，但是由于网络问题，Consumer应答没有发送到Broker；Broker遵从<strong>至少消费一次原则</strong>，重新发送。</li>
+<li>Rebalance消息重复：Consumer Group的Consumer数量发生变化，触发Rebalance，此时Consumer可能会收到曾经被消费过的消息。</li>
+</ul>
+<h3 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h3>
+<h1 id="message-queue产品"><a class="markdownIt-Anchor" href="#message-queue产品"></a> Message Queue产品</h1>
+<table>
+<thead>
+<tr>
+<th>产品</th>
+<th>优势</th>
+<th>劣势</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kafaka</td>
+<td>吞吐量大、性能高、集群高可用</td>
+<td>丢数据、功能单一</td>
+<td>MapReduce大数据采集、日志分析</td>
+</tr>
+<tr>
+<td>RabbitMQ</td>
+<td>消息可靠、功能全面</td>
+<td>erlang语言不容易定制，吞吐量较低</td>
+<td>小规模服务调用</td>
+</tr>
+<tr>
+<td>Pulsar</td>
+<td>Bookeeper，消息可靠性高</td>
+<td>使用较少、生态有差距</td>
+<td>大规模服务调用</td>
+</tr>
+<tr>
+<td>RocketMQ</td>
+<td>高吞吐、高性能、高可用。Java语言容易定制。</td>
+<td>Java服务加载慢</td>
+<td>功能全面，尤其适合金融、电商、互联网场景</td>
+</tr>
+</tbody>
+</table>
+<h1 id="消息队列工作方式"><a class="markdownIt-Anchor" href="#消息队列工作方式"></a> 消息队列工作方式</h1>
+<p>RocketMQ和Kafka都使用Topic，每个Topic的内容会分发到多个管道（Partition或MessageQueue）。而Kafka在Topic过多的情况下，吞吐量会严重下降；RocketMQ解决了这个问题。</p>
+<h1 id="rocketmq集群"><a class="markdownIt-Anchor" href="#rocketmq集群"></a> RocketMQ集群</h1>
+<p>在RocketMQ集群中，多台NameSrv是平等的，而Broker会组成多个主-从结构。<br />
+Slave只负责备份，只有Master(brokerId=0)才会发送消息。<br />
+然而主从结构的Slave，由于brokerId不为0，不会自动切换为Master，需要人工介入。</p>
+<h2 id="dledger高可用集群"><a class="markdownIt-Anchor" href="#dledger高可用集群"></a> Dledger高可用集群</h2>
+<p>Dleger是一种Raft算法，实现了Leader选举。<br />
+Dledger会从Followers中自动选举Leader，从而保证高可用。</p>
+<h1 id="三种发送方式"><a class="markdownIt-Anchor" href="#三种发送方式"></a> 三种发送方式</h1>
+<h2 id="单向发送"><a class="markdownIt-Anchor" href="#单向发送"></a> 单向发送</h2>
+<p>Producer只发送消息、不处理ACK；MQ也不发送ACK。消息可靠性没有保障。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回值为null，不处理ACK。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendOneWay</span><span class="params">(Message msg)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    msg.setTopic(withNamespace(msg.getTopic()));</span><br><span class="line">    <span class="built_in">this</span>.defaultMQProducerImpl.sendOneWay(msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="同步发送"><a class="markdownIt-Anchor" href="#同步发送"></a> 同步发送</h2>
+<p>Producer等待MQ ACK，才继续操作。同步发送可能会发生阻塞。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> SendResult <span class="title function_">sendResult</span><span class="params">(</span></span><br><span class="line"><span class="params">        Collection&lt;Message&gt; msgs)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.defaultMQProducerImpl.send(batch(msgs));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="异步发送"><a class="markdownIt-Anchor" href="#异步发送"></a> 异步发送</h2>
+<p>Producer不等待MQ ACK（异步ACK，也能保证不丢失消息），直接发送消息。<br />
+但是异步发送也有代价，我们不能发送完立刻<code>producer.shutdown()</code>，而需要设置一段延迟，使producer能够捕捉Exception并重发消息。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// send方法本身没有返回值，不会阻塞；但是能够处理Exception</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">send</span><span class="params">(Message msg, </span></span><br><span class="line"><span class="params">                 SendCallBack sendCallBack)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    msg.setTopic(withNamespace(msg.getTopic()));</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.getAutoBatch() &amp;&amp; !(msg <span class="keyword">instanceof</span> MessageBatch)) &#123;</span><br><span class="line">            sendByAccumulator(msg, <span class="literal">null</span>, sendCallBack);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sendDirect(msg, <span class="literal">null</span>, sendCallBack);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">        sendCallBack.onException(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">producer.send(msg, <span class="keyword">new</span> <span class="title class_">SendCallBack</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onSuccess</span><span class="params">(SendResult sendResult)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onException</span><span class="params">(Throwable e)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="两种消费方式"><a class="markdownIt-Anchor" href="#两种消费方式"></a> 两种消费方式</h1>
+<h2 id="consumer拉取"><a class="markdownIt-Anchor" href="#consumer拉取"></a> Consumer拉取</h2>
+<p>Consumer维护一个轮询拉取，Broker收到拉取请求后发送消息。</p>
+<h2 id="broker推送"><a class="markdownIt-Anchor" href="#broker推送"></a> Broker推送</h2>
+<p><strong>一般只用推模式</strong>，因为Consumer需要轮询（即使Broker不一定有消息），会消耗部分资源。</p>
+<h1 id="消息类型"><a class="markdownIt-Anchor" href="#消息类型"></a> 消息类型</h1>
+<h2 id="顺序消息"><a class="markdownIt-Anchor" href="#顺序消息"></a> 顺序消息</h2>
+<p>局部有序，实际上是序号相同的消息发送到同一个队列管道，然后消费者从一个管道中拿消息，从而保证有序性。</p>
+<h2 id="广播消息"><a class="markdownIt-Anchor" href="#广播消息"></a> 广播消息</h2>
+<p>正常情况下，多个Consumer是负载均衡模式，一条消息只会发到其中一个Consumer消费；而在广播模式下，所有的Consumer都会收到消息。<br />
+在代码层面，正常情况下<strong>服务端统一</strong>维护消费者位点；而在广播模式下<strong>客户端本地</strong><code>.rocket_offsets</code>维护消费者位点</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Spring%E6%A0%B8%E5%BF%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/Spring%E6%A0%B8%E5%BF%83/" class="post-title-link" itemprop="url">Spring核心</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2025-03-15T00:00:00+08:00">2025-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-11 16:53:23" itemprop="dateModified" datetime="2025-05-11T16:53:23+08:00">2025-05-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="spring核心思想"><a class="markdownIt-Anchor" href="#spring核心思想"></a> Spring核心思想</h1>
+<p>Spring的核心是为Class创建代理对象实现一些AOP切面操作，从而支持方便的注解、事务、自动注入等功能。<br />
+为了创建代理对象，需要将对象创建移交给Spring完成，因此需要IoC容器。</p>
+<h1 id="ioc"><a class="markdownIt-Anchor" href="#ioc"></a> IoC</h1>
+<p>Inversion of Control<br />
+Spring通过控制反转，将对象创建交给IoC容器完成。<br />
+IoC容器实际上就是一个工厂，通过读取xml配置文件，使用反射创建对象。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userDao&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.site.UserDao&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UserFactory</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> UserDao <span class="title function_">getDao</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">classValue</span> <span class="operator">=</span> context.getProperty(<span class="string">&quot;userDao&quot;</span>);</span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> Class.forName(classValue);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们的Dao文件路径改变时，只需要修改xml配置一处即可完成全部修改。<br />
+如果只用工厂模式，那需要导入很多包，也不直观。因此使用xml与反射，将工厂方法与配置解耦。</p>
+<ul>
+<li>BeanFactory：IoC容器基本使用，Spring内部使用<br />
+对象懒创建</li>
+<li>ApplicationContext：BeanFactory子接口，暴露给开发者使用<br />
+加载配置就会创建对象</li>
+</ul>
+<h1 id="bean生命周期"><a class="markdownIt-Anchor" href="#bean生命周期"></a> Bean生命周期</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">类class -&gt; 无参构造方法 -&gt; 普通对象 -&gt; 依赖注入 -&gt; &quot;@PostConstruct&quot; -&gt; 初始化 -&gt; AOP -&gt; 代理对象 -&gt; Bean</span><br></pre></td></tr></table></figure>
+<h1 id="spring-framework"><a class="markdownIt-Anchor" href="#spring-framework"></a> Spring Framework</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">AnnotationConfigApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> </span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(AppConfig.class);</span><br><span class="line"><span class="comment">// resource/application.xml</span></span><br><span class="line"><span class="type">ClassPathXmlApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> </span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;application.xml&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="type">UserService</span> <span class="variable">userService</span> <span class="operator">=</span> (UserService) context.getBean(<span class="string">&quot;userService&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="dependency-injection"><a class="markdownIt-Anchor" href="#dependency-injection"></a> Dependency Injection</h2>
+<p>Spring首先是调用对象自身的构造方法创建对象，然后通过<strong>依赖注入</strong>（@Autowired属性赋值）来得到Bean</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (Field field: userService.getClass().getFields()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (field.isAnnotationPresent(Autowired.class)) &#123;</span><br><span class="line">        field.set(userService, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="postconstruct"><a class="markdownIt-Anchor" href="#postconstruct"></a> PostConstruct</h3>
+<p>这个注解可以让Spring在初始化时调用此方法，从而实现一些初始化操作（如从数据库查询信息映射到实体类）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@PostContruct</span></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (Method method: userService.getClass().getMethods()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (method.isAnnotationPresent(PostConstruct.class)) &#123;</span><br><span class="line">        method.invoke(userService, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="aop"><a class="markdownIt-Anchor" href="#aop"></a> AOP</h3>
+<p>AOP后，得到一个代理对象，然后Spring会在代理对象内部增加一个属性<code>UserService target</code>，并将经过依赖注入的普通对象赋值给target，然后调用<code>target.method()</code>，从而保留对象的所有Field的同时，可以通过代理在切面上做一些额外操作。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -988,288 +1537,6 @@ Debian官方软件源：官网/mirror/list</li>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">ssh使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-04-14 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-14T00:00:00+08:00">2025-04-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-25 14:34:47" itemprop="dateModified" datetime="2025-04-25T14:34:47+08:00">2025-04-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="ssh登录"><a class="markdownIt-Anchor" href="#ssh登录"></a> ssh登录</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="ssh端口映射"><a class="markdownIt-Anchor" href="#ssh端口映射"></a> ssh端口映射</h1>
-<p>可以用于不保留端口的情况下，远程连接数据库等。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -N -L &lt;local_port&gt;:localhost:&lt;remote_port&gt; &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt; </span><br></pre></td></tr></table></figure>
-<h2 id="脚本批量映射"><a class="markdownIt-Anchor" href="#脚本批量映射"></a> 脚本批量映射</h2>
-<p>需要注意，Nacos有gRPC，除了8848端口外，9848端口也要一起开放。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Port Mapping</span></span><br><span class="line">PORTS=(</span><br><span class="line">    &quot;ulocalport:localhost:uremoteport&quot;</span><br><span class="line">    # MySQL</span><br><span class="line">    &quot;53306:localhost:3306&quot;</span><br><span class="line">    # Nacos</span><br><span class="line">    &quot;58848:localhost:8848&quot;</span><br><span class="line">    &quot;59848:localhost:9848&quot;</span><br><span class="line">    # Redis</span><br><span class="line">    &quot;56379:localhost:6379&quot;</span><br><span class="line">    # RocketMQ namesrv</span><br><span class="line">    &quot;59876:localhost:9876&quot;</span><br><span class="line">    # RocketMQ broker</span><br><span class="line">    &quot;510911:localhost:10911&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ARGS=()</span><br><span class="line">for port in &quot;$&#123;PORTS[@]&#125;&quot;; do</span><br><span class="line">    ARGS+=(-L &quot;$port&quot;)</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">ssh -o ServerAliveInterval=60 -N &quot;$&#123;ARGS[@]&#125;&quot; &lt;username&gt;@&lt;remote_ip&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="密钥登录"><a class="markdownIt-Anchor" href="#密钥登录"></a> 密钥登录</h1>
-<ol>
-<li>首先在本地生成一份密钥，然后将公钥上传到remote的<code>~/.ssh/authorized_keys</code></li>
-<li>修改remote<code>/etc/ssh/sshd_config</code></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新端口</span></span><br><span class="line">Port 22</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启用密钥认证</span></span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">禁用密码登录</span></span><br><span class="line">PasswordAuthentication no</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">允许Root登录但禁止密码验证</span></span><br><span class="line">PermitRootLogin prohibit-password</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>重启ssh</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Ubuntu/Debian</span></span><br><span class="line">sudo systemctl restart ssh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">CentOS/RHEL</span></span><br><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/pandoc%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/pandoc%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">pandoc使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-04-23 00:00:00 / 修改时间：20:53:06" itemprop="dateCreated datePublished" datetime="2025-04-23T00:00:00+08:00">2025-04-23</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="文本格式转换"><a class="markdownIt-Anchor" href="#文本格式转换"></a> 文本格式转换</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pandoc --from markdown --to docx source.md -o dest.docx</span><br><span class="line">pandoc -f markdown source.md -t docx -o dest.docx</span><br><span class="line">pandoc source.md -o dest.docx --ignore-args # 忽略参数</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意</strong>：为了最佳转换效果，markdown文件每行后都要空行</p>
-</blockquote>
-<h1 id="md2epub"><a class="markdownIt-Anchor" href="#md2epub"></a> md2epub</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">首先把所有的md文件列出来</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 递归查找所有 .md 文件（排除 README.md 和 SUMMARY.md）</span></span></span><br><span class="line">find . -name &quot;*.md&quot; ! -name &quot;README.md&quot; ! -name &quot;SUMMARY.md&quot; | sort &gt; filelist.txt</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 然后编辑 `filelist.txt`，确保文件顺序正确（例如按 `SUMMARY.md` 的目录结构排序）。</span></span></span><br><span class="line"></span><br><span class="line">pandoc --standalone --toc \</span><br><span class="line">--metadata title=&quot;MIT6.824 分布式系统&quot; \</span><br><span class="line">--metadata author=&quot;Robert Morris&quot; \</span><br><span class="line">-o output.epub $(cat filelist.txt) </span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意</strong>：对于gitbook，pandoc可能不能正确处理路径，推荐使用honkit。</p>
-</blockquote>
-<h2 id="honkit"><a class="markdownIt-Anchor" href="#honkit"></a> honkit</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// book.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MIT6.824 分布式系统&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Robert Morris&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;hints&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;pluginsConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;hints&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;info&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fa fa-info-circle&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;warning&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fa fa-exclamation-triangle&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装honkit</span></span><br><span class="line">npm install honkit --save-dev</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">需要calibre转换</span></span><br><span class="line">ebook-convert --version</span><br><span class="line"></span><br><span class="line">npm init -y</span><br><span class="line">npx honkit epub ./ ./mybook.epub</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">tmux使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-25T00:00:00+08:00">2023-11-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-20 09:47:02" itemprop="dateModified" datetime="2025-04-20T09:47:02+08:00">2025-04-20</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <pre><code>参考教程： https://www.ruanyifeng.com/blog/2019/10/tmux.html
-</code></pre>
-<ul>
-<li>tmux使会话与窗口解绑，一个窗口<code>source .bashrc</code>更新了，另一个窗口可能没有</li>
-</ul>
-<ul>
-<li><strong><code>ctrl+b</code> 前缀键</strong><br />
-<code>%</code>  分成左右两栏<br />
-<code>&quot;</code>  分成上下两栏<br />
-<code>up</code>  选择上边的窗口<br />
-<code>[</code> 查看历史记录</li>
-</ul>
-<h1 id="窗口"><a class="markdownIt-Anchor" href="#窗口"></a> 窗口</h1>
-<ul>
-<li><code>&lt;C-d&gt;</code> <strong>删除窗口</strong></li>
-</ul>
-<ul>
-<li><code>&lt;C-b&gt; z</code> <strong>最大化/最小化一个窗口</strong></li>
-<li><code>&lt;C-b&gt; c</code> 创建一个新的窗口，使用 <code>&lt;C-d&gt;</code>关闭</li>
-<li><code>&lt;C-b&gt; N</code> 跳转到第 <em>N</em> 个窗口，注意每个窗口都是有编号的</li>
-<li><code>&lt;C-b&gt; p</code> 切换到前一个窗口</li>
-<li><code>&lt;C-b&gt; n</code> 切换到下一个窗口</li>
-<li><code>&lt;C-b&gt; w</code> 列出当前所有窗口</li>
-</ul>
-<h1 id="tmux-path-双向绑定"><a class="markdownIt-Anchor" href="#tmux-path-双向绑定"></a> Tmux-Path 双向绑定</h1>
-<p>使用tmux会存在一个问题：在1个窗口设置了环境变量，在其他窗口并不会生效。<br />
-下面的脚本会帮助我们解决问题，它将tmux白名单内的全局变量值自动同步到Shell环境变量。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/tmux%E4%BD%BF%E7%94%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

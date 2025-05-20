@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:300,300italic,400,400italic,700,700italic%7CLato:300,300italic,400,400italic,700,700italic%7CIBM+Plex+Mono+Light:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha256-5eIC48iZUHmSlSUz9XtjRyK2mzQkHScZY1WdMaoz74E=" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Spring核心思想 Spring的核心是为Class创建代理对象实现一些AOP切面操作，从而支持方便的注解、事务、自动注入等功能。 为了创建代理对象，需要将对象创建移交给Spring完成，因此需要IoC容器。  IoC Inversion of Control Spring通过控制反转，将对象创建交给IoC容器完成。 IoC容器实际上就是一个工厂，通过读取xml配置文件，使用反射创建对象。 &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring核心">
+<meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Spring%E6%A0%B8%E5%BF%83/index.html">
+<meta property="og:site_name" content="SMULET&#39;s BLOG">
+<meta property="og:description" content="Spring核心思想 Spring的核心是为Class创建代理对象实现一些AOP切面操作，从而支持方便的注解、事务、自动注入等功能。 为了创建代理对象，需要将对象创建移交给Spring完成，因此需要IoC容器。  IoC Inversion of Control Spring通过控制反转，将对象创建交给IoC容器完成。 IoC容器实际上就是一个工厂，通过读取xml配置文件，使用反射创建对象。 &amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-05-11T08:53:23.195Z">
+<meta property="article:author" content="SIMULEITE">
+<meta property="article:tag" content="知识">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Spring%E6%A0%B8%E5%BF%83/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Spring%E6%A0%B8%E5%BF%83/","path":"ComputerScience/知识/Spring核心/","title":"Spring核心"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Spring核心 | SMULET's BLOG</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="SMULET's BLOG" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SMULET's BLOG</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-技术链"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>技术链</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-知识库"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>知识库</a></li><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#spring%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="nav-text"> Spring核心思想</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ioc"><span class="nav-text"> IoC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bean%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-text"> Bean生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#spring-framework"><span class="nav-text"> Spring Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#dependency-injection"><span class="nav-text"> Dependency Injection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#postconstruct"><span class="nav-text"> PostConstruct</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#aop"><span class="nav-text"> AOP</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SIMULEITE</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Spring%E6%A0%B8%E5%BF%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Spring核心 | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Spring核心
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2025-03-15T00:00:00+08:00">2025-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-11 16:53:23" itemprop="dateModified" datetime="2025-05-11T16:53:23+08:00">2025-05-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="spring核心思想"><a class="markdownIt-Anchor" href="#spring核心思想"></a> Spring核心思想</h1>
+<p>Spring的核心是为Class创建代理对象实现一些AOP切面操作，从而支持方便的注解、事务、自动注入等功能。<br />
+为了创建代理对象，需要将对象创建移交给Spring完成，因此需要IoC容器。</p>
+<h1 id="ioc"><a class="markdownIt-Anchor" href="#ioc"></a> IoC</h1>
+<p>Inversion of Control<br />
+Spring通过控制反转，将对象创建交给IoC容器完成。<br />
+IoC容器实际上就是一个工厂，通过读取xml配置文件，使用反射创建对象。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userDao&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.site.UserDao&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UserFactory</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> UserDao <span class="title function_">getDao</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">classValue</span> <span class="operator">=</span> context.getProperty(<span class="string">&quot;userDao&quot;</span>);</span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> Class.forName(classValue);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们的Dao文件路径改变时，只需要修改xml配置一处即可完成全部修改。<br />
+如果只用工厂模式，那需要导入很多包，也不直观。因此使用xml与反射，将工厂方法与配置解耦。</p>
+<ul>
+<li>BeanFactory：IoC容器基本使用，Spring内部使用<br />
+对象懒创建</li>
+<li>ApplicationContext：BeanFactory子接口，暴露给开发者使用<br />
+加载配置就会创建对象</li>
+</ul>
+<h1 id="bean生命周期"><a class="markdownIt-Anchor" href="#bean生命周期"></a> Bean生命周期</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">类class -&gt; 无参构造方法 -&gt; 普通对象 -&gt; 依赖注入 -&gt; &quot;@PostConstruct&quot; -&gt; 初始化 -&gt; AOP -&gt; 代理对象 -&gt; Bean</span><br></pre></td></tr></table></figure>
+<h1 id="spring-framework"><a class="markdownIt-Anchor" href="#spring-framework"></a> Spring Framework</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">AnnotationConfigApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> </span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(AppConfig.class);</span><br><span class="line"><span class="comment">// resource/application.xml</span></span><br><span class="line"><span class="type">ClassPathXmlApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> </span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;application.xml&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="type">UserService</span> <span class="variable">userService</span> <span class="operator">=</span> (UserService) context.getBean(<span class="string">&quot;userService&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="dependency-injection"><a class="markdownIt-Anchor" href="#dependency-injection"></a> Dependency Injection</h2>
+<p>Spring首先是调用对象自身的构造方法创建对象，然后通过<strong>依赖注入</strong>（@Autowired属性赋值）来得到Bean</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (Field field: userService.getClass().getFields()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (field.isAnnotationPresent(Autowired.class)) &#123;</span><br><span class="line">        field.set(userService, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="postconstruct"><a class="markdownIt-Anchor" href="#postconstruct"></a> PostConstruct</h3>
+<p>这个注解可以让Spring在初始化时调用此方法，从而实现一些初始化操作（如从数据库查询信息映射到实体类）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@PostContruct</span></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (Method method: userService.getClass().getMethods()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (method.isAnnotationPresent(PostConstruct.class)) &#123;</span><br><span class="line">        method.invoke(userService, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="aop"><a class="markdownIt-Anchor" href="#aop"></a> AOP</h3>
+<p>AOP后，得到一个代理对象，然后Spring会在代理对象内部增加一个属性<code>UserService target</code>，并将经过依赖注入的普通对象赋值给target，然后调用<code>target.method()</code>，从而保留对象的所有Field的同时，可以通过代理在切面上做一些额外操作。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%9F%A5%E8%AF%86/" rel="tag"># 知识</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/JVM%E5%8E%9F%E7%90%86/" rel="prev" title="JVM原理">
+                  <i class="fa fa-angle-left"></i> JVM原理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/" rel="next" title="蓝桥杯 错题本">
+                  蓝桥杯 错题本 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa-solid fa-pen-nib"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">SIMULEITE</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
