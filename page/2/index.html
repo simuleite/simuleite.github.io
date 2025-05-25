@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-count">69</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,367 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Redis使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-10-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-27T00:00:00+08:00">2024-10-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-28 11:09:45" itemprop="dateModified" datetime="2025-04-28T11:09:45+08:00">2025-04-28</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="分布式锁"><a class="markdownIt-Anchor" href="#分布式锁"></a> 分布式锁</h1>
+<h2 id="redission"><a class="markdownIt-Anchor" href="#redission"></a> Redission</h2>
+<p>使用原生Redis设置锁的问题：</p>
+<ol>
+<li>服务器拿到锁后宕机，锁不能释放，导致阻塞。<br />
+设置锁失效时间可以解决上面的问题，但是会导致新的问题：</li>
+<li>设置锁失效时间，在服务器负载过高的时候，会发生锁失效业务还没完成的情况，导致业务代码不互斥。</li>
+</ol>
+<blockquote>
+<p>0信任：不要期待网络服务器按照理想情况运行。</p>
+</blockquote>
+<p>使用Redission自动为锁续命，可以解决上述问题。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">lockKey</span> <span class="operator">=</span> req.getBusinessUniqueKey() + <span class="string">&quot;-&quot;</span> + req.getBusinessCode();</span><br><span class="line"><span class="type">RLock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    lock = redissonClient.getLock(lockKey);</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">tryLock</span> <span class="operator">=</span> lock.tryLock(<span class="number">0</span>, TimeUnit.SECONDS);</span><br><span class="line">    <span class="keyword">if</span> (!tryLock) &#123;</span><br><span class="line">        LOG.info(<span class="string">&quot;获取锁失败&quot;</span>);</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">BusinessException</span>(BusinessExceptionEnum.CONFIRM_ORDER_TICKET_COUNT_ERROR);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Business Code</span></span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    LOG.info(<span class="string">&quot;释放锁&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (lock != <span class="literal">null</span> &amp;&amp; lock.isHeldByCurrentThread()) &#123;</span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>锁设计原则：谁持有锁，谁才有资格释放锁。</p>
+</blockquote>
+<p>不过，使用这个方案有问题：Redis Master加锁后宕机，新的Master没有同步到加锁的数据，就会存在多把锁。<br />
+这时我们需要引入ZooKeeper保持强一致性；或者可以使用RedLock，即集群半数以上机器加锁成功，才是真的加锁成功。<br />
+然而，这两种方法都会带来性能开销。</p>
+<blockquote>
+<p>对于难以解决的棘手问题，应该思考如何避免问题发生。</p>
+</blockquote>
+<h2 id="高性能分布式锁分段锁"><a class="markdownIt-Anchor" href="#高性能分布式锁分段锁"></a> 高性能分布式锁：分段锁</h2>
+<p>针对不同段进行加锁，这样就能允许多把锁存在，从而获得一定并发性能。</p>
+<h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
+<h2 id="general"><a class="markdownIt-Anchor" href="#general"></a> General</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 返回给定模式的keys</span><br><span class="line">KEYS patter</span><br><span class="line">KEYS * # 返回全部</span><br><span class="line">KEYS set* # 返回set开头的keys</span><br><span class="line">EXISTS key</span><br><span class="line">TYPE key</span><br><span class="line">DEL key</span><br></pre></td></tr></table></figure>
+<h2 id="string"><a class="markdownIt-Anchor" href="#string"></a> String</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET key value</span><br><span class="line">GET key</span><br><span class="line"># Set Extend Time</span><br><span class="line">SETEX key seconds value</span><br><span class="line"># Set When Key Not Exist</span><br><span class="line">SETNX key value</span><br></pre></td></tr></table></figure>
+<h2 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HSET key field value</span><br><span class="line">HGET key field</span><br><span class="line">HDEL key field</span><br><span class="line"># Get All Fields</span><br><span class="line">HKEYS key</span><br><span class="line"># Get All Values</span><br><span class="line">HVALS key</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    key[key]</span><br><span class="line">    item[</span><br><span class="line">    field1: value1</span><br><span class="line">    field2: value2</span><br><span class="line">    ]</span><br><span class="line">    key --&gt; item</span><br></pre></td></tr></table></figure>
+<h2 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LPUSH key value1 value2</span><br><span class="line"># Get Key From Start To Stop</span><br><span class="line">LRANGE key start stop</span><br><span class="line"># Right POP</span><br><span class="line">RPOP key</span><br><span class="line"># List Length</span><br><span class="line">LLEN key</span><br></pre></td></tr></table></figure>
+<h3 id="典型场景"><a class="markdownIt-Anchor" href="#典型场景"></a> 典型场景</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/JVM%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/JVM%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">JVM原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-02 00:00:00" itemprop="dateCreated datePublished" datetime="2025-03-02T00:00:00+08:00">2025-03-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-25 22:32:31" itemprop="dateModified" datetime="2025-04-25T22:32:31+08:00">2025-04-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="程序如何装载"><a class="markdownIt-Anchor" href="#程序如何装载"></a> 程序如何装载</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Main\.java, Minor\.java -&gt; jar包.java Main\.main(): 编译打包</span><br><span class="line">jar包.java Main\.main() -&gt; 验证: 加载</span><br><span class="line">jar包.java Main\.main() -&gt; Minor\.class: 使用</span><br><span class="line">Minor\.class -&gt; JVM: 加载</span><br><span class="line">验证 -&gt; 准备 -&gt; 解析 -&gt; 初始化 -&gt; JVM</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>加载：从磁盘加载到内存。（懒加载，用到类才加载，如main方法或new对象）<br />
+验证：验证字节码是否正确、是否可识别。<br />
+准备：初始化静态（static，不包括常量）变量、赋初值（默认值）。<br />
+解析：符号引用 -&gt; 直接引用。静态方法（如main） -&gt; 指向数据所在内存的指针。这是静态链接，在类加载期间完成；而动态链接在程序运行期间完成。<br />
+初始化：为静态变量赋值，执行静态代码块。</p>
+<h1 id="类加载器"><a class="markdownIt-Anchor" href="#类加载器"></a> 类加载器</h1>
+<p>加载过程由类加载器实现，有几种类加载器：</p>
+<ol>
+<li>引导类加载器（C++）：JRE核心lib的jar类包</li>
+<li>扩展类加载器：JRE拓展lib(ext)jar类包</li>
+<li>应用程序类加载器：ClassPath路径下的类包（自己编写的类）</li>
+<li>其他加载器：加载自定义路径下的类包</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java com\.site\.jvm\.Math\.class -&gt; java\.exe调用底层jvm\.dll创建Java虚拟机 -&gt; 创建引导类加载器实例</span><br><span class="line">创建引导类加载器实例 -&gt; sum\.misc\.Launcher\.getLauncher(): C++调用Java代码，创建JVM启动器实例，这个实例负责创建其他类加载器</span><br><span class="line">sum\.misc\.Launcher\.getLauncher() -&gt; launcher\.getClassLoader(): 获取运行类自己的加载器ClassLoader（AppClassLoader实例）</span><br><span class="line">launcher\.getClassLoader() -&gt; classLoader\.loadClass(&quot;com\.site\.jvm\.Math&quot;):调用loadClass加载即将要运行的类</span><br><span class="line">classLoader\.loadClass(&quot;com\.site\.jvm\.Math&quot;) -&gt; Math\.main(): 加载完成后，JVM执行Math.main()</span><br><span class="line">创建引导类加载器实例 -&gt; Math\.main(): C++发起调用 </span><br><span class="line">Math\.main()-&gt; JVM销毁: Java程序运行结束</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/JVM%E5%8E%9F%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Linux笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-25 20:12:13" itemprop="dateModified" datetime="2025-04-25T20:12:13+08:00">2025-04-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="基本配置"><a class="markdownIt-Anchor" href="#基本配置"></a> 基本配置</h1>
+<ol>
+<li>sudo权限: 修改<code>/etc/sudoers</code>，或者root<code>adduser &lt;username&gt; sudo</code>并重启</li>
+<li>apt软件包管理系统换源：<code>/etc/apt/sources.list</code>修改软件发布源<br />
+<code>deb http://站点/目录名/stretch版本名 main contrib non-free三类软件包</code><br />
+Debian官方软件源：官网/mirror/list</li>
+<li><code>/usr/share/doc</code> 有安装软件的信息</li>
+</ol>
+<h1 id="10-命令篇"><a class="markdownIt-Anchor" href="#10-命令篇"></a> 1.0 命令篇</h1>
+<h2 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h2>
+<pre><code>参考资料 https://missing-semester-cn.github.io/2020/course-shell/
+</code></pre>
+<ul>
+<li>
+<p>关机、重启<br />
+<code>shutdown</code><br />
+<code>-h now</code> halt，挂起，相当于 <code>halt</code><br />
+<code>-r now</code> reboot，重启<br />
+<code>poweroff</code><br />
+<code>reboot</code></p>
+</li>
+<li>
+<p>手册<br />
+<code>man</code> 命令</p>
+</li>
+<li>
+<p>导航<br />
+<code>pwd 显示当前所在目录</code><br />
+<code>cd</code> 进入文件夹  <code>'..'</code> 上级目录   <code>'.'</code>当前目录   <code>'/'</code>开头的是绝对路径`</p>
+</li>
+<li>
+<p>查看文件<br />
+<code>ls</code> 列出所有文件<br />
+<code>ls -l</code> 查看文件权限信息</p>
+</li>
+<li>
+<p>创建文件夹<br />
+<code>mkdir</code> 文件夹名<br />
+<code>rmdir</code> 删除文件夹</p>
+</li>
+<li>
+<p>没有vim的时候如何创建、编辑、查看文件<br />
+<code>touch 文件</code> 创建文件<br />
+<code>echo 文本 &gt; 文件</code>  echo+重定向输入文件（会把原来内容覆盖）<br />
+<code>echo 文本 &gt;&gt; 文件</code> 追加输入（在原来内容的结尾另起一行输入）<br />
+<code>cat 文件</code> 查看文件<br />
+除了使用<code>cat</code>看文件，还有<code>tac</code>（从最后一行开始显示），<code>more, less</code>（可以翻页，好用）</p>
+</li>
+</ul>
+<ul>
+<li>
+<p>压缩<br />
+压缩一整个目录，使用 <code>tar</code><br />
+压缩单个文件 <code>bzip2 gzip（-d解压）</code><br />
+<code>tar -cvf 目标名 文件名</code> 压缩 ， <code>tar -xvf</code>解压</p>
+</li>
+<li>
+<p>查找<br />
+<code>grep</code> 用法 <code>grep &quot;word&quot; filename</code></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep <span class="string">&quot;string&quot;</span> * <span class="comment"># 在所有文件中搜索string</span></span><br><span class="line">grep -r <span class="string">&quot;string&quot;</span> <span class="comment"># 递归搜索</span></span><br></pre></td></tr></table></figure>
+<pre><code>`find`用法 `find filename`
+</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -867,398 +1228,6 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp ./upload/path/file.postfix user@host.com:/path/to/file</span><br><span class="line">scp -P &lt;port&gt; -i &lt;key&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">文件夹</span></span><br><span class="line">scp -r ./upload/path/folder user@host.com:/path/to/folder</span><br></pre></td></tr></table></figure>
 <h1 id="下载文件"><a class="markdownIt-Anchor" href="#下载文件"></a> 下载文件</h1>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">scp user@host.com:/path/to/file.postfix ./download/path</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">文件夹</span></span><br><span class="line">scp -r user@host.com:/path/to/folader ./download/path</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">vim基本操作</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-14 10:38:28" itemprop="dateModified" datetime="2025-04-14T10:38:28+08:00">2025-04-14</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
-<ul>
-<li><code>gg=G</code>：代码格式化</li>
-<li><code>GX, GF</code>：打开链接/文件</li>
-<li><code>:%y *</code>：复制全部到系统剪贴板</li>
-<li><code>&lt;C-o&gt;, &lt;C-i&gt;</code>：回到前一个/后一个位置（例如，打开文件默认在第一行，<code>&lt;C-o&gt;</code>回到上次编辑位置）。<strong>注意这个操作是跨文件的</strong>。</li>
-<li><code>`0</code>：返回上次位置</li>
-<li>词：<code>w</code>（下一个词），<code>b</code>（词初），<code>e</code>（词尾）</li>
-<li>行：<code>0</code>（行初），<code>^</code>（第一个非空格字符），<code>$</code>（行尾）</li>
-<li>文件：<code>gg</code>（文件头），<code>G</code>（文件尾）</li>
-<li>搜索:<code>/&#123;正则表达式&#125;</code>,<code>n</code>/<code>N</code>用于导航匹配</li>
-<li><code>x</code>删除字符（等同于<code>dl</code>）</li>
-<li><code>:s</code>(substitute)替换字符（等同于<code>xi</code>）
-<ul>
-<li>替换命令<code>:&#123;作用范围&#125;s/&#123;目标文本&#125;/&#123;替换文本&#125;/&#123;替换标志&#125;</code></li>
-<li><code>:%s/s_content/o_content/gc</code> 全局替换，附带确认提示</li>
-</ul>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Sign</th>
-<th>Range</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>%</td>
-<td>整个文件</td>
-</tr>
-<tr>
-<td>.</td>
-<td>当前行</td>
-</tr>
-<tr>
-<td>$</td>
-<td>最后一行</td>
-</tr>
-<tr>
-<td>,n</td>
-<td>当前行到n行</td>
-</tr>
-<tr>
-<td>n,</td>
-<td>n行到当前行</td>
-</tr>
-<tr>
-<td>+n</td>
-<td>当前行后n行</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>可视化模式 + 操作
-<ul>
-<li>选中文字,<code>d</code>删除（剪切） 或者<code>c</code>改变</li>
-</ul>
-</li>
-<li><code>u</code>撤销，<code>&lt;C-r&gt;</code>重做</li>
-<li><code>y</code>复制 / “yank” （其他一些命令比如<code>d</code>也会复制）</li>
-<li><code>p</code>粘贴
-<ul>
-<li><code>+p</code> 粘贴系统剪贴板</li>
-</ul>
-</li>
-<li><strong>更多值得学习的</strong>:
-<ul>
-<li><code>:&lt;line&gt;</code> 跳到line行，相当于<code>&lt;line&gt;G</code></li>
-<li><code>~</code>改变字符的大小写</li>
-<li><code>3w</code>向前移动三个词</li>
-<li><code>A</code>（大写）可以迅速定位到行尾进行修改</li>
-<li><code>:!python prog.py</code> 使用！直接运行shell命令</li>
-</ul>
-</li>
-<li><code>%</code>匹配括号</li>
-</ul>
-<h2 id="change"><a class="markdownIt-Anchor" href="#change"></a> Change</h2>
-<p><code>ce</code> 替换一个单词<br />
-<code>cs&quot;'</code> 把当前词块的&quot;全部替换成’</p>
-<h2 id="多行操作"><a class="markdownIt-Anchor" href="#多行操作"></a> 多行操作</h2>
-<p><code>&lt;C-v&gt;</code> 选中多行，<code>Shift + i</code>输入后<code>Esc</code>，即可多行同步输入</p>
-<h2 id="esc-map"><a class="markdownIt-Anchor" href="#esc-map"></a> Esc Map</h2>
-<p>Vim和NeoVim内置了<code>&lt;C-[&gt;</code>作为<code>&lt;Esc&gt;</code>的映射；<br />
-还可以通过<code>&lt;A-&gt;</code>Alt加上任何键（Meta键）的方式触发<code>&lt;Esc&gt;-</code>。</p>
-<h1 id="宏"><a class="markdownIt-Anchor" href="#宏"></a> 宏</h1>
-<h2 id="录制宏"><a class="markdownIt-Anchor" href="#录制宏"></a> 录制宏</h2>
-<p>命令模式下，</p>
-<ol>
-<li>按<code>q&lt;marcoName&gt;</code>进行录制，<code>&lt;marcoName&gt;</code>是宏的名字，例如<code>qa</code></li>
-<li>执行一系列操作后，再次按<code>q</code>结束录制</li>
-</ol>
-<h2 id="使用宏"><a class="markdownIt-Anchor" href="#使用宏"></a> 使用宏</h2>
-<p>命令模式下，使用<code>@&lt;marcoName&gt;</code>即可执行；使用<code>5@&lt;marcoName&gt;</code>可以重复执行宏</p>
-<h1 id="文件操作"><a class="markdownIt-Anchor" href="#文件操作"></a> 文件操作</h1>
-<ul>
-<li><code>:e filename</code>切换到filename文件</li>
-<li><code>:bn/bp</code>切换到下/上个文件</li>
-<li><code>&lt;C-x&gt;&lt;C-f&gt;</code> 自动补全路径</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/vim%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">mysql使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-07-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-27T00:00:00+08:00">2024-07-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-13 13:45:37" itemprop="dateModified" datetime="2025-04-13T13:45:37+08:00">2025-04-13</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h1>
-<h2 id="原子性-atomicity"><a class="markdownIt-Anchor" href="#原子性-atomicity"></a> 原子性 Atomicity</h2>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">BUSINESS</span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">1</span></span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">2</span></span><br><span class="line"><span class="keyword">COMMIT</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>原子性：事务操作要么同时发生，要么同时失败，不存在中间情况</p>
-</blockquote>
-<p>通过Undo Log回滚实现</p>
-<h2 id="一致性-consistency"><a class="markdownIt-Anchor" href="#一致性-consistency"></a> 一致性 Consistency</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">账户500元 -&gt; 扣除1000元 -&gt; 账户-500元</span><br><span class="line">-- 非法操作</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>一致性：每个操作都必须是合法的，账户信息应该从一个有效状态到另一个有效状态。</p>
-</blockquote>
-<h2 id="隔离性-isolation"><a class="markdownIt-Anchor" href="#隔离性-isolation"></a> 隔离性 Isolation</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">商户1转账500元 -&gt; 余额更新为500元</span><br><span class="line">商户2转账500元 -&gt; 余额更新为500元</span><br><span class="line">-- 没有隔离性</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>隔离性：两个操作对同一个账户并发操作时，应该表现为不相互影响类似串行的操作。</p>
-</blockquote>
-<h2 id="持久性-durability"><a class="markdownIt-Anchor" href="#持久性-durability"></a> 持久性 Durability</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">转账500元到余额 --服务器宕机--&gt; 余额0元</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>持久性：操作更新成功后，更新的结果应该永久地保留下来，不会因为宕机等问题而丢失。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E6%8C%87%E5%8D%97/Github%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="post-title-link" itemprop="url">Github使用指南</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-12 15:49:15" itemprop="dateModified" datetime="2025-04-12T15:49:15+08:00">2025-04-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="git配置"><a class="markdownIt-Anchor" href="#git配置"></a> Git配置</h1>
-<p><a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/896954117292416">远程仓库 - 廖雪峰的官方网站 (liaoxuefeng.com)</a></p>
-<ol>
-<li>创建ssh key，在c盘用户目录.git文件夹中<br />
-<code>ssh-keygen -t ed25519 -C &quot;youremail@example.com&quot;</code><br />
-<code>ssh-keygen -l -f ~/.ssh/id_rsa</code> 可以查看秘钥的配置信息，包括邮箱</li>
-<li>在GitHub账号设置页面，添加ssh key，复制<code>.ssh/id_rsa.pub</code>的信息，点击创建即可</li>
-<li>测试是否成功：<code>ssh -T git@github.com</code><br />
-注意：如果测试不成功，可能是反向代理的问题</li>
-</ol>
-<h1 id="github-远程仓库"><a class="markdownIt-Anchor" href="#github-远程仓库"></a> Github 远程仓库</h1>
-<ol>
-<li>在github上新建一个仓库</li>
-<li><code>git remote add origin git@github.com:github账号名称/仓库名称.git</code> 关联仓库，origin是远程库的名字</li>
-<li><code>git push -u origin master</code>把本地库内容（master分支）推送到远程库（oringin），<code>-u</code> 参数表示会把本地master分支和远程master分支关联起来，方便后面简化命令</li>
-</ol>
-<ul>
-<li><code>git remote set-url origin &lt;URL&gt;</code>更改仓库地址</li>
-</ul>
-<h1 id="github-trending-热门软件"><a class="markdownIt-Anchor" href="#github-trending-热门软件"></a> github trending 热门软件</h1>
-<ul>
-<li>项目含金量 stars 1k+</li>
-<li>fork 拷贝项目到自己的仓库</li>
-<li>pull request 合并分支</li>
-</ul>
-<h1 id="nju"><a class="markdownIt-Anchor" href="#nju"></a> NJU</h1>
-<ul>
-<li>学习编程语言如C、Rust</li>
-<li>精选精读论文</li>
-<li>STFW：比百度更高效的办法</li>
-</ul>
-
       
     </div>
 

@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-count">69</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -180,7 +180,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/AI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Hertz%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/AI%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">AI专栏</a>
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Hertz%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Hertz使用</a>
         </h2>
 
         <div class="post-meta-container">
@@ -208,9 +208,636 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-05-20 00:00:00 / 修改时间：16:03:44" itemprop="dateCreated datePublished" datetime="2025-05-20T00:00:00+08:00">2025-05-20</time>
+      <time title="创建时间：2025-05-20 00:00:00" itemprop="dateCreated datePublished" datetime="2025-05-20T00:00:00+08:00">2025-05-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-24 20:19:37" itemprop="dateModified" datetime="2025-05-24T20:19:37+08:00">2025-05-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="hello-world"><a class="markdownIt-Anchor" href="#hello-world"></a> Hello World</h1>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    h := server.Default()</span><br><span class="line"></span><br><span class="line">    h.GET(<span class="string">&quot;/hello&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(c context.Context, ctx *app.RequestContext)</span></span> &#123;</span><br><span class="line">        ctx.Data(consts.StatusOK, consts.MIMETextPlain, []<span class="type">byte</span>(<span class="string">&quot;Hello World!&quot;</span>))</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    h.Spin()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">go run main.go</span></span><br></pre></td></tr></table></figure>
+<h1 id="idl"><a class="markdownIt-Anchor" href="#idl"></a> IDL</h1>
+<p>Thrift</p>
+<figure class="highlight thrift"><table><tr><td class="code"><pre><span class="line"># echo.thrift</span><br><span class="line"><span class="keyword">namespace</span> go api</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Request</span> </span>&#123;</span><br><span class="line">    <span class="number">1</span>: <span class="type">string</span> message</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Response</span> </span>&#123;</span><br><span class="line">    <span class="number">1</span>: <span class="type">string</span> message</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">service</span> <span class="title">Echo</span> </span>&#123;</span><br><span class="line">    Response echo(<span class="number">1</span>: Request req)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>CloudweGo代码生成</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">go install github.com/cloudwego/thriftgo@latest</span><br><span class="line"></span><br><span class="line">mkdir -p demo/demo_thrift</span><br><span class="line">cd demo/demo_thrift</span><br><span class="line">cwgo server --type RPC \</span><br><span class="line">--module demo/demo_thrift \</span><br><span class="line">--service demo_thrift \</span><br><span class="line">--idl ../../echo.thrift</span><br></pre></td></tr></table></figure>
+<p>Protobuf</p>
+<figure class="highlight proto"><table><tr><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> pbapi;</span><br><span class="line"></span><br><span class="line"><span class="keyword">option</span> go_package = <span class="string">&quot;/pbapi&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">Request</span> &#123;</span><br><span class="line">    <span class="type">string</span> msg = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">Response</span> &#123;</span><br><span class="line">    <span class="type">string</span> msg = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">service </span><span class="title class_">EchoService</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">rpc</span> Echo (Request) <span class="keyword">returns</span> (Response) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>CloudweGo代码生成</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir -p demo/demo_proto</span><br><span class="line">cd demo/demo_proto</span><br><span class="line"></span><br><span class="line">cwgo server -I ../../idl</span><br><span class="line">--type RPC \</span><br><span class="line">--module demo/demo_proto \</span><br><span class="line">--service demo_proto \</span><br><span class="line">--idl ../../echo.thrift</span><br></pre></td></tr></table></figure>
+<h2 id="makefile自动cwgo代码生成"><a class="markdownIt-Anchor" href="#makefile自动cwgo代码生成"></a> MakeFile自动cwgo代码生成</h2>
+<figure class="highlight make"><table><tr><td class="code"><pre><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: gen-demo-proto</span></span><br><span class="line"><span class="section">gen-demo-proto:</span></span><br><span class="line">    @cd demo/demo_proto &amp;&amp; cwgo server -I ../../idl --type RPC --module demo/demo_proto --service demo_proto --idl ../../echo.thrift</span><br></pre></td></tr></table></figure>
+<h1 id="consul服务注册-发现"><a class="markdownIt-Anchor" href="#consul服务注册-发现"></a> Consul服务注册、发现</h1>
+<p>服务注册用于为服务集群提供统一接口，自动处理集群loadbalance和宕机</p>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="comment">// r, err := consul.NewConsulRegister(&quot;localhost:8500&quot;)</span></span><br><span class="line">r, err := consul.NewConsulRegister(conf.Getconf().Registry.RegistryAddress[<span class="number">0</span>])</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">    log.Fatal(err)</span><br><span class="line">&#125;</span><br><span class="line">opts = <span class="built_in">append</span>(opts, server.WithRegistry(r))</span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">consul:</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">8500</span><span class="string">:8500</span></span><br></pre></td></tr></table></figure>
+<h1 id="gorm操作数据库"><a class="markdownIt-Anchor" href="#gorm操作数据库"></a> Gorm操作数据库</h1>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> model</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;gorm.io/gorm&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">    gorm.Model</span><br><span class="line">    Email <span class="type">string</span> <span class="string">`gorm:&quot;uniqueIndex;type:varchar(128) not null&quot;`</span></span><br><span class="line">    Password <span class="type">string</span> <span class="string">`gorm:&quot;type:varchar(64) not null&quot;`</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="新增页面"><a class="markdownIt-Anchor" href="#新增页面"></a> 新增页面</h1>
+<ul>
+<li>路由</li>
+<li>Hertz生成IDL接口代码</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/" class="post-title-link" itemprop="url">Advanced Java</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-28 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-28T00:00:00+08:00">2025-04-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-22 15:39:00" itemprop="dateModified" datetime="2025-05-22T15:39:00+08:00">2025-05-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="代理"><a class="markdownIt-Anchor" href="#代理"></a> 代理</h1>
+<blockquote>
+<p>代理对象通过<code>invoke</code>，实现类与非核心功能的解耦。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">Payment</span> <span class="variable">payment</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Payment</span>(<span class="string">&quot;AliPay&quot;</span>);</span><br><span class="line">    <span class="type">Pay</span> <span class="variable">proxy</span> <span class="operator">=</span> ProxyUtil.createProxy(payment);</span><br><span class="line"></span><br><span class="line">    proxy.pay(amount);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Payment</span> <span class="keyword">implements</span> <span class="title class_">Pay</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Overide</span></span><br><span class="line">    <span class="keyword">public</span> payResp <span class="title function_">pay</span><span class="params">(BigDecimal payAmount)</span> &#123;</span><br><span class="line">        <span class="comment">// Payment Business...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Pay</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> payResp <span class="title function_">pay</span><span class="params">(BigDecimal payAmount)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ProxyUtils</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Pay <span class="title function_">createProxy</span><span class="params">(Payment payment)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (Pay) Proxy.newProxyInstance(</span><br><span class="line">            ProxyUtil.class.getClassLoader(),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123; Pay.class &#125;,</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">InvocationHandler</span>() &#123;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Overide</span></span><br><span class="line">                <span class="keyword">public</span> Object <span class="title function_">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">                    <span class="comment">// Payment Environment Init...</span></span><br><span class="line">                    <span class="comment">// Payment Safe Guard...</span></span><br><span class="line">                    <span class="keyword">return</span> method.invoke(payment, args);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="反射"><a class="markdownIt-Anchor" href="#反射"></a> 反射</h1>
+<blockquote>
+<p>反射允许对成员变量、成员方法、构造方法信息进行编程访问。</p>
+</blockquote>
+<p>例如，IDE的智能补全、参数提示，就是使用反射实现。</p>
+<h2 id="class字节码获取"><a class="markdownIt-Anchor" href="#class字节码获取"></a> Class字节码获取</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class clazz;</span><br><span class="line">clazz = Class.forName(<span class="string">&quot;com.yourpackage.TargetClass&quot;</span>);</span><br><span class="line"><span class="comment">// 参数</span></span><br><span class="line">clazz = TargetClass.class;</span><br><span class="line"><span class="comment">// 有实例时</span></span><br><span class="line">clazz = instance.getClass();</span><br></pre></td></tr></table></figure>
+<h2 id="场景"><a class="markdownIt-Anchor" href="#场景"></a> 场景</h2>
+<p>反射可以与配置文件结合，从而动态地创建对象。例如<code>application.yml</code>里数据库的配置、端口号等。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Properties</span> <span class="variable">prop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line"><span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(ROOT + <span class="string">&quot;src/main/resources/application.properties&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">dataSourceUrl</span> <span class="operator">=</span> (String) perp.get(<span class="string">&quot;dataSource&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">dbName</span> <span class="operator">=</span> (String) extractDbName(dataSourceUrl);</span><br><span class="line"></span><br><span class="line"><span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> Class.forName(dbName);</span><br><span class="line"><span class="type">Constructor</span> <span class="variable">con</span> <span class="operator">=</span> clazz.getDeclaredConstructor();</span><br><span class="line"><span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> con.newInstance();</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h1 id="hashmap"><a class="markdownIt-Anchor" href="#hashmap"></a> HashMap</h1>
+<h2 id="jdk17"><a class="markdownIt-Anchor" href="#jdk17"></a> jdk1.7</h2>
+<blockquote>
+<p>jdk1.7的HashMap数据结构是：数组 + 单向链表</p>
+</blockquote>
+<p>当哈希后，得到的数组槽位已经存放了其他元素，这时候就需要运用指针在同一个槽位存放多个元素。</p>
+<h2 id="头插法"><a class="markdownIt-Anchor" href="#头插法"></a> 头插法</h2>
+<p>jdk1.7使用的方法是头插法，这样就不需要遍历到链表尾部再插入，性能高。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">createEntry</span><span class="params">(<span class="type">int</span> hash, K key, V value, <span class="type">int</span> bucketIdx)</span> &#123;</span><br><span class="line">    Entry&lt;K, V&gt; e = table[bucketIdx];</span><br><span class="line">    <span class="comment">// 这里使用头插法，在槽位头部插入新元素，并指向e，成为新的槽位引用</span></span><br><span class="line">    table[bucketIdx] = <span class="keyword">new</span> <span class="title class_">Entry</span>&lt;&gt;(hash, key, value, e); </span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">Entry</span><span class="params">(<span class="type">int</span> h, K k, V v, Entry&lt;K, V&gt; n)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.value = v;</span><br><span class="line">    <span class="built_in">this</span>.next = n;</span><br><span class="line">    <span class="built_in">this</span>.key = k;</span><br><span class="line">    <span class="built_in">this</span>.hash = h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方法需要最终更新槽位指向新插入的节点，否则单向链表找不到新插入的元素。</p>
+<h2 id="利用2次方机器特性"><a class="markdownIt-Anchor" href="#利用2次方机器特性"></a> 利用2次方机器特性</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">MQ消息队列</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-12 00:00:00" itemprop="dateCreated datePublished" datetime="2025-05-12T00:00:00+08:00">2025-05-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-22 15:33:24" itemprop="dateModified" datetime="2025-05-22T15:33:24+08:00">2025-05-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="消息队列3大目标"><a class="markdownIt-Anchor" href="#消息队列3大目标"></a> 消息队列3大目标</h1>
+<h2 id="异步"><a class="markdownIt-Anchor" href="#异步"></a> 异步</h2>
+<p>在生产者-消费者速度不匹配的情况下，使用异步可以减少等待，提高效率。</p>
+<h2 id="解耦"><a class="markdownIt-Anchor" href="#解耦"></a> 解耦</h2>
+<p>多个生产者可以通过消息队列管道集合成1条链路；也可以将1个生产者的消息负载均衡给多个消费者（只发送1条消息给MQ，MQ广播多份）。例如，增加了一个数据分析业务，这时候不需要修改业务代码，只需要配置MQ发送相应消息到大数据系统Server即可。<br />
+同时，生产者只需要关心将消息发送给MQ，无需关心后续处理（消费者挂了怎么办）；MQ会负责和消费者通信。</p>
+<h2 id="削峰生产者-消费者速度不同步"><a class="markdownIt-Anchor" href="#削峰生产者-消费者速度不同步"></a> 削峰（生产者-消费者速度不同步）</h2>
+<p>由于队列本身是一条管道，拥有一定容量，因此可以削峰填谷，解决一些瞬时高并发流量。</p>
+<h1 id="消息队列的关键问题"><a class="markdownIt-Anchor" href="#消息队列的关键问题"></a> 消息队列的关键问题</h1>
+<h2 id="c-系统一致性"><a class="markdownIt-Anchor" href="#c-系统一致性"></a> C 系统一致性</h2>
+<p>A系统通过MQ将消息发送给B、C完成后续业务，B成功而C失败，这时如何保证一致性？</p>
+<h2 id="a-系统可用性"><a class="markdownIt-Anchor" href="#a-系统可用性"></a> A 系统可用性</h2>
+<p>MQ宕机，依赖MQ管道的服务就不可用。MQ应该有高可用性和稳定性，不应该成为系统薄弱环节。<br />
+因此需要MQ集群，这时候又需要新的中间层NameSrv来管理维护MQ集群。</p>
+<h2 id="系统复杂度"><a class="markdownIt-Anchor" href="#系统复杂度"></a> 系统复杂度</h2>
+<ul>
+<li>如何保证消费不丢失？</li>
+<li>如何避免重复消费？</li>
+<li>如何保证消息顺序？</li>
+</ul>
+<h2 id="幂等性"><a class="markdownIt-Anchor" href="#幂等性"></a> 幂等性</h2>
+<blockquote>
+<p>多次消费结果相当于只消费一次。</p>
+</blockquote>
+<p>可以用业务id作为消息key，对key校验有没有消费过。<br />
+如果重复消费，确保多次消费和1次消费的结果相同。</p>
+<ul>
+<li>发送消息重复：发送后，网络断开，没收到ACK，导致重复发送</li>
+<li>消费消息重复：Consumer收到消息并处理完成，但是由于网络问题，Consumer应答没有发送到Broker；Broker遵从<strong>至少消费一次原则</strong>，重新发送。</li>
+<li>Rebalance消息重复：Consumer Group的Consumer数量发生变化，触发Rebalance，此时Consumer可能会收到曾经被消费过的消息。</li>
+</ul>
+<h3 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h3>
+<h1 id="message-queue产品"><a class="markdownIt-Anchor" href="#message-queue产品"></a> Message Queue产品</h1>
+<table>
+<thead>
+<tr>
+<th>产品</th>
+<th>优势</th>
+<th>劣势</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kafaka</td>
+<td>吞吐量大、性能高、集群高可用</td>
+<td>丢数据、功能单一</td>
+<td>MapReduce大数据采集、日志分析</td>
+</tr>
+<tr>
+<td>RabbitMQ</td>
+<td>消息可靠、功能全面</td>
+<td>erlang语言不容易定制，吞吐量较低</td>
+<td>小规模服务调用</td>
+</tr>
+<tr>
+<td>Pulsar</td>
+<td>Bookeeper，消息可靠性高</td>
+<td>使用较少、生态有差距</td>
+<td>大规模服务调用</td>
+</tr>
+<tr>
+<td>RocketMQ</td>
+<td>高吞吐、高性能、高可用。Java语言容易定制。</td>
+<td>Java服务加载慢</td>
+<td>功能全面，尤其适合金融、电商、互联网场景</td>
+</tr>
+</tbody>
+</table>
+<h1 id="消息队列工作方式"><a class="markdownIt-Anchor" href="#消息队列工作方式"></a> 消息队列工作方式</h1>
+<p>RocketMQ和Kafka都使用Topic，每个Topic的内容会分发到多个管道（Partition或MessageQueue）。而Kafka在Topic过多的情况下，吞吐量会严重下降；RocketMQ解决了这个问题。</p>
+<h1 id="rocketmq集群"><a class="markdownIt-Anchor" href="#rocketmq集群"></a> RocketMQ集群</h1>
+<p>在RocketMQ集群中，多台NameSrv是平等的，而Broker会组成多个主-从结构。<br />
+Slave只负责备份，只有Master(brokerId=0)才会发送消息。<br />
+然而主从结构的Slave，由于brokerId不为0，不会自动切换为Master，需要人工介入。</p>
+<h2 id="dledger高可用集群"><a class="markdownIt-Anchor" href="#dledger高可用集群"></a> Dledger高可用集群</h2>
+<p>Dleger是一种Raft算法，实现了Leader选举。<br />
+Dledger会从Followers中自动选举Leader，从而保证高可用。</p>
+<h1 id="三种发送方式"><a class="markdownIt-Anchor" href="#三种发送方式"></a> 三种发送方式</h1>
+<h2 id="单向发送"><a class="markdownIt-Anchor" href="#单向发送"></a> 单向发送</h2>
+<p>Producer只发送消息、不处理ACK；MQ也不发送ACK。消息可靠性没有保障。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回值为null，不处理ACK。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendOneWay</span><span class="params">(Message msg)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    msg.setTopic(withNamespace(msg.getTopic()));</span><br><span class="line">    <span class="built_in">this</span>.defaultMQProducerImpl.sendOneWay(msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="同步发送"><a class="markdownIt-Anchor" href="#同步发送"></a> 同步发送</h2>
+<p>Producer等待MQ ACK，才继续操作。同步发送可能会发生阻塞。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> SendResult <span class="title function_">sendResult</span><span class="params">(</span></span><br><span class="line"><span class="params">        Collection&lt;Message&gt; msgs)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.defaultMQProducerImpl.send(batch(msgs));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="异步发送"><a class="markdownIt-Anchor" href="#异步发送"></a> 异步发送</h2>
+<p>Producer不等待MQ ACK（异步ACK，也能保证不丢失消息），直接发送消息。<br />
+但是异步发送也有代价，我们不能发送完立刻<code>producer.shutdown()</code>，而需要设置一段延迟，使producer能够捕捉Exception并重发消息。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// send方法本身没有返回值，不会阻塞；但是能够处理Exception</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">send</span><span class="params">(Message msg, </span></span><br><span class="line"><span class="params">                 SendCallBack sendCallBack)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    msg.setTopic(withNamespace(msg.getTopic()));</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.getAutoBatch() &amp;&amp; !(msg <span class="keyword">instanceof</span> MessageBatch)) &#123;</span><br><span class="line">            sendByAccumulator(msg, <span class="literal">null</span>, sendCallBack);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sendDirect(msg, <span class="literal">null</span>, sendCallBack);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">        sendCallBack.onException(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">producer.send(msg, <span class="keyword">new</span> <span class="title class_">SendCallBack</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onSuccess</span><span class="params">(SendResult sendResult)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onException</span><span class="params">(Throwable e)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="两种消费方式"><a class="markdownIt-Anchor" href="#两种消费方式"></a> 两种消费方式</h1>
+<h2 id="consumer拉取"><a class="markdownIt-Anchor" href="#consumer拉取"></a> Consumer拉取</h2>
+<p>Consumer维护一个轮询拉取，Broker收到拉取请求后发送消息。</p>
+<h2 id="broker推送"><a class="markdownIt-Anchor" href="#broker推送"></a> Broker推送</h2>
+<p><strong>一般只用推模式</strong>，因为Consumer需要轮询（即使Broker不一定有消息），会消耗部分资源。</p>
+<h1 id="消息类型"><a class="markdownIt-Anchor" href="#消息类型"></a> 消息类型</h1>
+<h2 id="顺序消息"><a class="markdownIt-Anchor" href="#顺序消息"></a> 顺序消息</h2>
+<p>局部有序，实际上是序号相同的消息发送到同一个队列管道，然后消费者从一个管道中拿消息，从而保证有序性。</p>
+<h2 id="广播消息"><a class="markdownIt-Anchor" href="#广播消息"></a> 广播消息</h2>
+<p>正常情况下，多个Consumer是负载均衡模式，一条消息只会发到其中一个Consumer消费；而在广播模式下，所有的Consumer都会收到消息。<br />
+在代码层面，正常情况下<strong>服务端统一</strong>维护消费者位点；而在广播模式下<strong>客户端本地</strong><code>.rocket_offsets</code>维护消费者位点</p>
+<h1 id="消息重试"><a class="markdownIt-Anchor" href="#消息重试"></a> 消息重试</h1>
+<h2 id="顺序消息-2"><a class="markdownIt-Anchor" href="#顺序消息-2"></a> 顺序消息</h2>
+<p>顺序消息要拿到ACK才会发送下一条消息，否则会重发消息</p>
+<h2 id="无序消息"><a class="markdownIt-Anchor" href="#无序消息"></a> 无序消息</h2>
+<p>为了保障无需消息的消费，MQ设置了一个消息重试间隔时间。如果没有回复，间隔10s-30s-1m-2m…来重发消息，最多重试16次（默认）。<br />
+如果达到重试上限还未消费，该消息称为<strong>死信消息</strong>。死信消息会进入<strong>死信队列</strong>。</p>
+<h3 id="死信队列"><a class="markdownIt-Anchor" href="#死信队列"></a> 死信队列</h3>
+<p>死信队列不归属于Topic、Consumer，而是归属于Group Id。<br />
+死信队列的消息不会被再次重复消费，有效期为3天，过期删除。<br />
+可以手工在监控平台里处理死信，获取messageId后自己处理。</p>
+<h2 id="重复消费"><a class="markdownIt-Anchor" href="#重复消费"></a> 重复消费</h2>
+<p>网络闪断（成功执行，MQ没收到ACK）、生产者宕机（成功发送到MQ，生产者没收到ACK）会引发重复消费。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/InnoDB%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/InnoDB%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">InnoDB原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-25 00:00:00" itemprop="dateCreated datePublished" datetime="2025-02-25T00:00:00+08:00">2025-02-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-22 09:50:19" itemprop="dateModified" datetime="2025-05-22T09:50:19+08:00">2025-05-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="mysql体系结构"><a class="markdownIt-Anchor" href="#mysql体系结构"></a> Mysql体系结构</h1>
+<h2 id="db与instance"><a class="markdownIt-Anchor" href="#db与instance"></a> DB与Instance</h2>
+<p>DB：数据库可以是ibd文件、放在内存的文件，是物理操作系统文件或其他形式文件类型的集合。<br />
+Instance：Mysql数据库由后台线程及一个共享内存区组成。</p>
+<blockquote>
+<p>数据库实例才是真正操作数据库文件的。在集群情况下，可能存在一个DB被多个Instance使用的情况。</p>
+</blockquote>
+<p>Mysql被设计为单进程多线程，在OS上的表现是一个进程。</p>
+<h2 id="插件式表存储引擎"><a class="markdownIt-Anchor" href="#插件式表存储引擎"></a> 插件式表存储引擎</h2>
+<blockquote>
+<p>存储引擎基于表，而不是DB。</p>
+</blockquote>
+<blockquote>
+<p>存储引擎对开发人员透明。</p>
+</blockquote>
+<h1 id="索引原理"><a class="markdownIt-Anchor" href="#索引原理"></a> 索引原理</h1>
+<p>MySQL使用的是B+树作为索引的数据结构</p>
+<blockquote>
+<p>B树是一个分支内<strong>按顺序</strong>存放多个节点数据的数据结构；而B+树在此基础上，在分支内只存储索引，只在叶子节点存储数据（这样每一层可以存储更多索引，减少层数），并且在叶节点之间用指针互相连接，提高访问效率。</p>
+</blockquote>
+<h2 id="索引分类"><a class="markdownIt-Anchor" href="#索引分类"></a> 索引分类</h2>
+<h2 id="数据结构"><a class="markdownIt-Anchor" href="#数据结构"></a> 数据结构</h2>
+<ul>
+<li>B+树索引</li>
+<li>哈希索引</li>
+<li>红黑树索引</li>
+</ul>
+<h2 id="功能"><a class="markdownIt-Anchor" href="#功能"></a> 功能</h2>
+<ul>
+<li>主键索引</li>
+<li>唯一索引</li>
+<li>普通索引（一般我们为优化sql建立的索引）</li>
+<li>全文索引</li>
+<li>联合索引</li>
+</ul>
+<h2 id="存储方式"><a class="markdownIt-Anchor" href="#存储方式"></a> 存储方式</h2>
+<ul>
+<li>聚簇索引</li>
+<li>非聚簇索引（索引与数据分开，需要回表）</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/InnoDB%E5%8E%9F%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">mysql使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-27T00:00:00+08:00">2024-07-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-22 09:46:45" itemprop="dateModified" datetime="2025-05-22T09:46:45+08:00">2025-05-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="事务"><a class="markdownIt-Anchor" href="#事务"></a> 事务</h1>
+<h2 id="原子性-atomicity"><a class="markdownIt-Anchor" href="#原子性-atomicity"></a> 原子性 Atomicity</h2>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">BUSINESS</span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">1</span></span><br><span class="line"><span class="keyword">sql</span>语句<span class="number">2</span></span><br><span class="line"><span class="keyword">COMMIT</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>原子性：事务操作要么同时发生，要么同时失败，不存在中间情况</p>
+</blockquote>
+<p>通过Undo Log回滚实现</p>
+<h2 id="一致性-consistency"><a class="markdownIt-Anchor" href="#一致性-consistency"></a> 一致性 Consistency</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">账户500元 -&gt; 扣除1000元 -&gt; 账户-500元</span><br><span class="line">-- 非法操作</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一致性：每个操作都必须是合法的，账户信息应该从一个有效状态到另一个有效状态。</p>
+</blockquote>
+<h2 id="隔离性-isolation"><a class="markdownIt-Anchor" href="#隔离性-isolation"></a> 隔离性 Isolation</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">商户1转账500元 -&gt; 余额更新为500元</span><br><span class="line">商户2转账500元 -&gt; 余额更新为500元</span><br><span class="line">-- 没有隔离性</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>隔离性：两个操作对同一个账户并发操作时，应该表现为不相互影响类似串行的操作。</p>
+</blockquote>
+<h2 id="持久性-durability"><a class="markdownIt-Anchor" href="#持久性-durability"></a> 持久性 Durability</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">转账500元到余额 --服务器宕机--&gt; 余额0元</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>持久性：操作更新成功后，更新的结果应该永久地保留下来，不会因为宕机等问题而丢失。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/mysql%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/AI%E4%B8%93%E6%A0%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/AI%E4%B8%93%E6%A0%8F/" class="post-title-link" itemprop="url">AI专栏</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-20 00:00:00" itemprop="dateCreated datePublished" datetime="2025-05-20T00:00:00+08:00">2025-05-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-21 09:48:44" itemprop="dateModified" datetime="2025-05-21T09:48:44+08:00">2025-05-21</time>
     </span>
 
   
@@ -370,16 +997,16 @@ c4.7,-7.3,11,-11,19,-11H40000v40H1012.3s-271.3,567,-271.3,567c-38.7,80.7,-84,
 175,-136,283c-52,108,-89.167,185.3,-111.5,232c-22.3,46.7,-33.8,70.3,-34.5,71
 c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1s-109,-253,-109,-253c-72.7,-168,-109.3,
 -252,-110,-252c-10.7,8,-22,16.7,-34,26c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26
-s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.30499999999999994em;"><span></span></span></span></span></span></span></span></span><br />
-三维<br />
+s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.30499999999999994em;"><span></span></span></span></span></span></span></span></span></p>
+<p>三维<br />
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>d</mi><mo>=</mo><msqrt><mrow><mo stretchy="false">(</mo><msub><mi>x</mi><mn>2</mn></msub><mo>−</mo><msub><mi>x</mi><mn>1</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><msub><mi>y</mi><mn>2</mn></msub><mo>−</mo><msub><mi>y</mi><mn>1</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mo stretchy="false">(</mo><msub><mi>z</mi><mn>2</mn></msub><mo>−</mo><msub><mi>z</mi><mn>1</mn></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2 + (z_2 - z_1)^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.30499999999999994em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.935em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.04398em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.04398em;">z</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.04398em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-2.8950000000000005em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119c34,79.3,68.167,
 158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120c340,-704.7,510.7,-1060.3,512,-1067
 c4.7,-7.3,11,-11,19,-11H40000v40H1012.3s-271.3,567,-271.3,567c-38.7,80.7,-84,
 175,-136,283c-52,108,-89.167,185.3,-111.5,232c-22.3,46.7,-33.8,70.3,-34.5,71
 c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1s-109,-253,-109,-253c-72.7,-168,-109.3,
 -252,-110,-252c-10.7,8,-22,16.7,-34,26c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26
-s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.30499999999999994em;"><span></span></span></span></span></span></span></span></span><br />
-依此类推…</p>
+s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.30499999999999994em;"><span></span></span></span></span></span></span></span></span></p>
+<p>依此类推…</p>
 <h3 id="余弦相似度"><a class="markdownIt-Anchor" href="#余弦相似度"></a> 余弦相似度</h3>
 <p>余弦相似度通过<strong>角度</strong>匹配相似度<br />
 很明显，余弦相似度只关注角度，适合高维相似度检索，如语义搜索、文档分类<br />
@@ -397,11 +1024,11 @@ c-16-25.333-24-45-24-59z'/></svg></span></span></span></span></span></span></spa
 -1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
 -7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
 H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
-c-16-25.333-24-45-24-59z'/></svg></span></span></span></span></span></span></span><span class="mord mtight">∣</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">A</span><span class="mbin mtight">⋅</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.6614309999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><br />
-高维算法<br />
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo><mo separator="true">;</mo><mi>B</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>b</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>b</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A = (a_1, a_2, ..., a_n); B = (b_1, b_2, ..., b_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><br />
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>⋅</mo><mi>B</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><msub><mi>b</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub><msub><mi>b</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A \cdot B = (a_1b_1, a_2b_2, ..., a_nb_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span><br />
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mover accent="true"><mi>A</mi><mo>⃗</mo></mover><mi mathvariant="normal">∣</mi><mo>⋅</mo><mi mathvariant="normal">∣</mi><mover accent="true"><mi>B</mi><mo>⃗</mo></mover><mi mathvariant="normal">∣</mi><mo>=</mo><msqrt><mrow><msubsup><mi>a</mi><mn>1</mn><mn>2</mn></msubsup><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><msubsup><mi>a</mi><mi>n</mi><mn>2</mn></msubsup></mrow></msqrt><mo>⋅</mo><msqrt><mrow><msubsup><mi>b</mi><mn>1</mn><mn>2</mn></msubsup><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><msubsup><mi>b</mi><mi>n</mi><mn>2</mn></msubsup></mrow></msqrt></mrow><annotation encoding="application/x-tex">|\vec A| \cdot |\vec B| = \sqrt{a_1^2 + ... + a_n^2} \cdot \sqrt{b_1^2 + ... + b_n^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.21633em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663299999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault">A</span></span><span style="top:-3.25233em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.09660999999999997em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg width='0.471em' height='0.714em' style='width:0.471em' viewBox='0 0 471 714' preserveAspectRatio='xMinYMin'><path d='M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+c-16-25.333-24-45-24-59z'/></svg></span></span></span></span></span></span></span><span class="mord mtight">∣</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">A</span><span class="mbin mtight">⋅</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.6614309999999999em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<p>高维算法<br />
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub><mo stretchy="false">)</mo><mo separator="true">;</mo><mi>B</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>b</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>b</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A = (a_1, a_2, ..., a_n); B = (b_1, b_2, ..., b_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>⋅</mo><mi>B</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><msub><mi>b</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub><msub><mi>b</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A \cdot B = (a_1b_1, a_2b_2, ..., a_nb_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mover accent="true"><mi>A</mi><mo>⃗</mo></mover><mi mathvariant="normal">∣</mi><mo>⋅</mo><mi mathvariant="normal">∣</mi><mover accent="true"><mi>B</mi><mo>⃗</mo></mover><mi mathvariant="normal">∣</mi><mo>=</mo><msqrt><mrow><msubsup><mi>a</mi><mn>1</mn><mn>2</mn></msubsup><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><msubsup><mi>a</mi><mi>n</mi><mn>2</mn></msubsup></mrow></msqrt><mo>⋅</mo><msqrt><mrow><msubsup><mi>b</mi><mn>1</mn><mn>2</mn></msubsup><mo>+</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>+</mo><msubsup><mi>b</mi><mi>n</mi><mn>2</mn></msubsup></mrow></msqrt></mrow><annotation encoding="application/x-tex">|\vec A| \cdot |\vec B| = \sqrt{a_1^2 + ... + a_n^2} \cdot \sqrt{b_1^2 + ... + b_n^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.21633em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663299999999999em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathdefault">A</span></span><span style="top:-3.25233em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.09660999999999997em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg width='0.471em' height='0.714em' style='width:0.471em' viewBox='0 0 471 714' preserveAspectRatio='xMinYMin'><path d='M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
 3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
 10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
 -1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
@@ -430,6 +1057,58 @@ s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></sp
 <p>不除以模长，与角度无关；对长度敏感，两个向量长度不同，方向相同，点积会受影响。<br />
 点积正数，两个向量正相关；点积为0，无线性相关；点积负数，两个向量负相关<br />
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>⋅</mo><mi>B</mi><mo>=</mo><mo stretchy="false">(</mo><msub><mi>a</mi><mn>1</mn></msub><msub><mi>b</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>a</mi><mn>2</mn></msub><msub><mi>b</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>a</mi><mi>n</mi></msub><msub><mi>b</mi><mi>n</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">A \cdot B = (a_1b_1, a_2b_2, ..., a_nb_n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault">b</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+<h1 id="高并发下大模型性能"><a class="markdownIt-Anchor" href="#高并发下大模型性能"></a> 高并发下大模型性能</h1>
+<ul>
+<li>首包延迟：用户首次接收到模型响应的时间，对于一些思考模型来说，可能会很长。</li>
+<li>模型并发能力：有的大模型/平台有并发数限制。</li>
+<li>输出超限：要计算token，看模型是否一次返回的内容过多，超出限制导致无效调用。<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></li>
+<li>兜底返回：调用模型有时时间太长，不确定模型有没有响应，最好设置一个超时重试时间。</li>
+<li>多线程：使用线程池来多线程批量请求。<br />
+批量请求是指凑齐token为512，确保批次张量维度一致。</li>
+</ul>
+<h1 id="隐私计算"><a class="markdownIt-Anchor" href="#隐私计算"></a> 隐私计算</h1>
+<h2 id="secretflow"><a class="markdownIt-Anchor" href="#secretflow"></a> SecretFlow</h2>
+<p>举个例子，A、B、C三个人想要知道他们的平均工资，但是又不希望透露隐私，他们可以这么做：</p>
+<h3 id="过程加密"><a class="markdownIt-Anchor" href="#过程加密"></a> 过程加密</h3>
+<h3 id="mpc"><a class="markdownIt-Anchor" href="#mpc"></a> MPC</h3>
+<p>Multi-Party Computation<br />
+MPC，多方安全计算：使用MPC三方分别加密自己的数据，其他人不能解密</p>
+<ul>
+<li><strong>秘密分享法（Secret Sharing）</strong>：把数据切片分发。</li>
+<li><strong>加密协议法</strong>：用加密算法让多方协作计算。</li>
+<li><strong>布尔电路/算数电路法</strong>：把整个计算过程拆成很多小步骤，每一步都用安全协议保护。</li>
+</ul>
+<h3 id="he"><a class="markdownIt-Anchor" href="#he"></a> HE</h3>
+<p>Homomorphic Encryption<br />
+HE，同态加密：使用加密数据运算，但是仍然能得出相同的加密后的结果</p>
+<p>普通加密只能保密，不能计算，但是同态加密专门设计成可以计算的加密算法，保证加密后运算的结果密文，解密后和明文计算结果一致。</p>
+<ul>
+<li>部分同态加密，<strong>只能</strong>加或者乘，如Paillier</li>
+<li>全同态加密，<strong>同时</strong>支持加和乘，如Gentry方案、CKKS</li>
+</ul>
+<h3 id="tee"><a class="markdownIt-Anchor" href="#tee"></a> TEE</h3>
+<p>Trusted Execution Environment<br />
+TEE，可信计算环境：计算过程放在一个可信的小黑盒里，不让外面看见</p>
+<p>TEE会在OS内部抽象出一个小黑盒，黑盒以外的部分，OS无法窥视黑盒的内容。<br />
+数据在TEE之外是加密的，在TEE之内才会解密运算。</p>
+<h4 id="如何保证计算结果正确"><a class="markdownIt-Anchor" href="#如何保证计算结果正确"></a> 如何保证计算结果正确</h4>
+<p>Remote Attestation<br />
+RA，远程认证：TEE启动会生成一份报告，包括TEE身份指纹、当前程序Hash、运行环境信息。根据Hash可以验证是不是同一份程序。</p>
+<h3 id="结果加密"><a class="markdownIt-Anchor" href="#结果加密"></a> 结果加密</h3>
+<h3 id="dp"><a class="markdownIt-Anchor" href="#dp"></a> DP</h3>
+<p>Differential Privacy<br />
+DP，差分隐私：在数据里随机加入噪音，让人类无法识别。在数据量庞大的时候，整体的噪音量是很小的，不影响计算结果。</p>
+<h3 id="fl"><a class="markdownIt-Anchor" href="#fl"></a> FL</h3>
+<p>Federated Learning<br />
+FL，多方想要统计一份数据，如果是把多方数据汇合到一处进行统计，那容易泄露隐私。<br />
+因此联邦学习是将初始模型分发给各方，各方在本地统计、训练，最终将训练成果反馈给总部。</p>
+<hr class="footnotes-sep" />
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>问小白就有这个问题 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
       
     </div>
@@ -456,7 +1135,7 @@ s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></sp
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Redis%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -474,7 +1153,7 @@ s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></sp
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">消息队列</a>
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/Redis%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">Redis原理</a>
         </h2>
 
         <div class="post-meta-container">
@@ -484,15 +1163,9 @@ s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></sp
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2025-05-12 00:00:00" itemprop="dateCreated datePublished" datetime="2025-05-12T00:00:00+08:00">2025-05-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-05-13 20:46:33" itemprop="dateModified" datetime="2025-05-13T20:46:33+08:00">2025-05-13</time>
+      <time title="创建时间：2025-05-20 00:00:00 / 修改时间：16:14:30" itemprop="dateCreated datePublished" datetime="2025-05-20T00:00:00+08:00">2025-05-20</time>
     </span>
 
   
@@ -505,100 +1178,87 @@ s76,-59,76,-59s76,-60,76,-60z M1001 80H40000v40H1012z'/></svg></span></span></sp
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="消息队列3大目标"><a class="markdownIt-Anchor" href="#消息队列3大目标"></a> 消息队列3大目标</h1>
-<h2 id="异步"><a class="markdownIt-Anchor" href="#异步"></a> 异步</h2>
-<p>在生产者-消费者速度不匹配的情况下，使用异步可以减少等待，提高效率。</p>
-<h2 id="解耦"><a class="markdownIt-Anchor" href="#解耦"></a> 解耦</h2>
-<p>多个生产者可以通过消息队列管道集合成1条链路；也可以将1个生产者的消息负载均衡给多个消费者（只发送1条消息给MQ，MQ广播多份）。</p>
-<h2 id="削峰生产者-消费者速度不同步"><a class="markdownIt-Anchor" href="#削峰生产者-消费者速度不同步"></a> 削峰（生产者-消费者速度不同步）</h2>
-<p>由于队列本身是一条管道，拥有一定容量，因此可以削峰填谷，解决一些瞬时高并发流量。</p>
-<h1 id="消息队列的关键问题"><a class="markdownIt-Anchor" href="#消息队列的关键问题"></a> 消息队列的关键问题</h1>
-<h2 id="c-系统一致性"><a class="markdownIt-Anchor" href="#c-系统一致性"></a> C 系统一致性</h2>
-<p>A系统通过MQ将消息发送给B、C完成后续业务，B成功而C失败，这时如何保证一致性？</p>
-<h2 id="a-系统可用性"><a class="markdownIt-Anchor" href="#a-系统可用性"></a> A 系统可用性</h2>
-<p>MQ宕机，依赖MQ管道的服务就不可用。MQ应该有高可用性和稳定性，不应该成为系统薄弱环节。</p>
-<h2 id="系统复杂度"><a class="markdownIt-Anchor" href="#系统复杂度"></a> 系统复杂度</h2>
+          <h1 id="单线程网络io-kv读写"><a class="markdownIt-Anchor" href="#单线程网络io-kv读写"></a> 单线程网络IO、KV读写</h1>
+<p>Redis的网络IO和KeyValue读写是由一个线程来完成的。<br />
+而Redis的持久化、异步删除、集群数据同步是额外的线程执行。</p>
+<p>也由于Redis是单线程的，所以要特别小心耗时的操作，这些操作会阻塞后续指令。</p>
+<blockquote>
+<p>简单来说就是处理事务一套、前台接待一套。不会因为前面办事导致人均等待时间太久。</p>
+</blockquote>
+<p>Redis使用IO多路复用（epoll），将连接信息、事件放到队列中，使其能够处理并发的客户端连接。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">socket: &#123;</span><br><span class="line">    s0</span><br><span class="line">    s1</span><br><span class="line">    s2</span><br><span class="line">    s3</span><br><span class="line">    &quot;...&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">IO多路复用: &#123;</span><br><span class="line">    s3 -&gt; s2 -&gt; s1 -&gt; s0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">事件处理器: &#123;</span><br><span class="line">    连接处理器</span><br><span class="line">    命令请求处理器</span><br><span class="line">    命令回复处理器</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">socket -&gt; IO多路复用 -&gt; 文件事件分派器 -&gt; 事件处理器</span><br></pre></td></tr></table></figure>
+<h1 id="详解get-key"><a class="markdownIt-Anchor" href="#详解get-key"></a> 详解GET key</h1>
+<p>Redis相当于HashMap，也由于Hash是无序的，因此<code>scan</code>这样的流式查询，在查改场景中，可能会漏扫中途插入到前面下标的元素。</p>
+<h1 id="redis持久化"><a class="markdownIt-Anchor" href="#redis持久化"></a> Redis持久化</h1>
+<h2 id="rdb-snapshot"><a class="markdownIt-Anchor" href="#rdb-snapshot"></a> RDB Snapshot</h2>
+<p>默认情况下，Redis将内存数据快照保存为<code>dump.rdb</code>，可以使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">save &lt;time_duration&gt; &lt;row_insertion&gt;</span><br></pre></td></tr></table></figure>
+<p>指示Redis多少秒内插入多少条数据后持久化到数据库<br />
+也可以直接用<code>save</code>和<code>bgsave</code>命令写入数据库</p>
+<h3 id="bgsave-异步持久化"><a class="markdownIt-Anchor" href="#bgsave-异步持久化"></a> bgsave 异步持久化</h3>
+<p>bgsave使用写时复制COW。bgsave从主线程fork出来，当主线程修改数据时，bgsave线程会将写入数据拷贝一份，然后写入rdb</p>
+<h2 id="append-only-file"><a class="markdownIt-Anchor" href="#append-only-file"></a> Append-Only File</h2>
+<p>快照不能做到完全持久，假如服务宕机，可能会丢失几条写入。<br />
+这时候我们直接做个命令日志AOF，将执行的修改指令写入<code>appendonly.aof</code>中</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">appendonly yes</span><br><span class="line">appendfilename &quot;appendonly.aof&quot;</span><br></pre></td></tr></table></figure>
+<p>aof有三种模式<code>appendfsync</code>：</p>
 <ul>
-<li>如何保证消费不丢失？</li>
-<li>如何避免重复调用？</li>
-<li>如何保证消息顺序？</li>
+<li>always：立刻写入磁盘</li>
+<li>everysec：每秒写一次</li>
+<li>no：交给OS调度<br />
+但是，由于aof是记录命令，需要执行时间，对于持久化大量数据比较耗时间。<br />
+对于连续操作（如自增）aof会优化为1条命令，可以用<code>bgrewriteaof</code>命令手动重写</li>
 </ul>
-<h2 id="幂等性"><a class="markdownIt-Anchor" href="#幂等性"></a> 幂等性</h2>
-<p>如果重复消费，确保多次消费和1次消费的结果相同。</p>
-<ul>
-<li>发送消息重复：发送后，网络断开，没收到ACK，导致重复发送</li>
-<li>消费消息重复：Consumer收到消息并处理完成，但是由于网络问题，Consumer应答没有发送到Broker；Broker遵从<strong>至少消费一次原则</strong>，重新发送。</li>
-<li>Rebalance消息重复：Consumer Group的Consumer数量发生变化，触发Rebalance，此时Consumer可能会收到曾经被消费过的消息。</li>
-</ul>
-<h3 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h3>
-<h1 id="message-queue产品"><a class="markdownIt-Anchor" href="#message-queue产品"></a> Message Queue产品</h1>
-<table>
-<thead>
-<tr>
-<th>产品</th>
-<th>优势</th>
-<th>劣势</th>
-<th>场景</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Kafaka</td>
-<td>吞吐量大、性能高、集群高可用</td>
-<td>丢数据、功能单一</td>
-<td>MapReduce大数据采集、日志分析</td>
-</tr>
-<tr>
-<td>RabbitMQ</td>
-<td>消息可靠、功能全面</td>
-<td>erlang语言不容易定制，吞吐量较低</td>
-<td>小规模服务调用</td>
-</tr>
-<tr>
-<td>Pulsar</td>
-<td>Bookeeper，消息可靠性高</td>
-<td>使用较少、生态有差距</td>
-<td>大规模服务调用</td>
-</tr>
-<tr>
-<td>RocketMQ</td>
-<td>高吞吐、高性能、高可用。Java语言容易定制。</td>
-<td>Java服务加载慢</td>
-<td>功能全面，尤其适合金融、电商、互联网场景</td>
-</tr>
-</tbody>
-</table>
-<h1 id="消息队列工作方式"><a class="markdownIt-Anchor" href="#消息队列工作方式"></a> 消息队列工作方式</h1>
-<p>RocketMQ和Kafka都使用Topic，每个Topic的内容会分发到多个管道（Partition或MessageQueue）。而Kafka在Topic过多的情况下，吞吐量会严重下降；RocketMQ解决了这个问题。</p>
-<h1 id="rocketmq集群"><a class="markdownIt-Anchor" href="#rocketmq集群"></a> RocketMQ集群</h1>
-<p>在RocketMQ集群中，多台NameSrv是平等的，而Broker会组成多个主-从结构。<br />
-Slave只负责备份，只有Master(brokerId=0)才会发送消息。<br />
-然而主从结构的Slave，由于brokerId不为0，不会自动切换为Master，需要人工介入。</p>
-<h2 id="dledger高可用集群"><a class="markdownIt-Anchor" href="#dledger高可用集群"></a> Dledger高可用集群</h2>
-<p>Dleger是一种Raft算法，实现了Leader选举。<br />
-Dledger会从Followers中自动选举Leader，从而保证高可用。</p>
-<h1 id="三种发送方式"><a class="markdownIt-Anchor" href="#三种发送方式"></a> 三种发送方式</h1>
-<h2 id="单向发送"><a class="markdownIt-Anchor" href="#单向发送"></a> 单向发送</h2>
-<p>Producer只发送消息、不处理ACK；MQ也不发送ACK。消息可靠性没有保障。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回值为null，不处理ACK。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendOneWay</span><span class="params">(Message msg)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    msg.setTopic(withNamespace(msg.getTopic()));</span><br><span class="line">    <span class="built_in">this</span>.defaultMQProducerImpl.sendOneWay(msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="同步发送"><a class="markdownIt-Anchor" href="#同步发送"></a> 同步发送</h2>
-<p>Producer等待MQ ACK，才继续操作。同步发送可能会发生阻塞。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> SendResult <span class="title function_">sendResult</span><span class="params">(</span></span><br><span class="line"><span class="params">        Collection&lt;Message&gt; msgs)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.defaultMQProducerImpl.send(batch(msgs));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="异步发送"><a class="markdownIt-Anchor" href="#异步发送"></a> 异步发送</h2>
-<p>Producer不等待MQ ACK（异步ACK，也能保证不丢失消息），直接发送消息。<br />
-但是异步发送也有代价，我们不能发送完立刻<code>producer.shutdown()</code>，而需要设置一段延迟，使producer能够捕捉Exception并重发消息。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// send方法本身没有返回值，不会阻塞；但是能够处理Exception</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">send</span><span class="params">(Message msg, </span></span><br><span class="line"><span class="params">                 SendCallBack sendCallBack)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    msg.setTopic(withNamespace(msg.getTopic()));</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.getAutoBatch() &amp;&amp; !(msg <span class="keyword">instanceof</span> MessageBatch)) &#123;</span><br><span class="line">            sendByAccumulator(msg, <span class="literal">null</span>, sendCallBack);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sendDirect(msg, <span class="literal">null</span>, sendCallBack);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">        sendCallBack.onException(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">producer.send(msg, <span class="keyword">new</span> <span class="title class_">SendCallBack</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onSuccess</span><span class="params">(SendResult sendResult)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onException</span><span class="params">(Throwable e)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="两种消费方式"><a class="markdownIt-Anchor" href="#两种消费方式"></a> 两种消费方式</h1>
-<h2 id="consumer拉取"><a class="markdownIt-Anchor" href="#consumer拉取"></a> Consumer拉取</h2>
-<p>Consumer维护一个轮询拉取，Broker收到拉取请求后发送消息。</p>
-<h2 id="broker推送"><a class="markdownIt-Anchor" href="#broker推送"></a> Broker推送</h2>
-<p><strong>一般只用推模式</strong>，因为Consumer需要轮询（即使Broker不一定有消息），会消耗部分资源。</p>
-<h1 id="消息类型"><a class="markdownIt-Anchor" href="#消息类型"></a> 消息类型</h1>
-<h2 id="顺序消息"><a class="markdownIt-Anchor" href="#顺序消息"></a> 顺序消息</h2>
-<p>局部有序，实际上是序号相同的消息发送到同一个队列管道，然后消费者从一个管道中拿消息，从而保证有序性。</p>
-<h2 id="广播消息"><a class="markdownIt-Anchor" href="#广播消息"></a> 广播消息</h2>
-<p>正常情况下，多个Consumer是负载均衡模式，一条消息只会发到其中一个Consumer消费；而在广播模式下，所有的Consumer都会收到消息。<br />
-在代码层面，正常情况下<strong>服务端统一</strong>维护消费者位点；而在广播模式下<strong>客户端本地</strong><code>.rocket_offsets</code>维护消费者位点</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 最小重构大小</span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br><span class="line"># 增长了100%，即128mb就重构</span><br><span class="line">auto-aof-rewrite-percentage 100</span><br></pre></td></tr></table></figure>
+<h2 id="redis4-混合持久化"><a class="markdownIt-Anchor" href="#redis4-混合持久化"></a> Redis4 混合持久化</h2>
+<p>由于Redis重启时优先使用aof恢复数据，rdb利用率不高。因此出现了混合持久化</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 必须同时开启aof</span><br><span class="line">aof-use-rdb-preamle yes</span><br><span class="line"># 可以直接把快照关掉，因为混合持久化都写在aof里面</span><br></pre></td></tr></table></figure>
+<p>开启后，当aof重写时，会直接写入rdb，将rdb快照和aof增量存储在一起。<br />
+于是Redis重启可以先读rdb，再执行增量aof恢复数据，提高效率。</p>
+<h1 id="redis主从"><a class="markdownIt-Anchor" href="#redis主从"></a> Redis主从</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># redis-&lt;your_port&gt;.conf</span><br><span class="line">pidfile /var/run/redis_&lt;your_port&gt;.pid</span><br><span class="line">logfile &quot;&lt;your_port&gt;.log&quot;</span><br><span class="line"># 数据存放目录</span><br><span class="line">dir /usr/local/redis/data/&lt;your_port&gt;</span><br><span class="line"></span><br><span class="line">### 主从复制</span><br><span class="line">replicaof &lt;main_redis_ip&gt; &lt;port&gt;</span><br><span class="line"># 从节点，只读</span><br><span class="line">replica-read-only yes</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 启动</span><br><span class="line"># 启动从节点</span><br><span class="line">redis-server redis-&lt;your_port&gt;.conf</span><br><span class="line"># 连接到从节点</span><br><span class="line">redis-cli -p &lt;minor_redis_port&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="主从原理"><a class="markdownIt-Anchor" href="#主从原理"></a> 主从原理</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">master: &#123;</span><br><span class="line">    rdb data</span><br><span class="line">    repl buffer</span><br><span class="line">&#125;</span><br><span class="line">slave</span><br><span class="line"></span><br><span class="line">slave -&gt; master: 1. psync全量复制同步数据（通过socket长连接）</span><br><span class="line">master.rdb data -&gt; master.rdb data: 2.1 收到psync命令，执行bgsave生成最新rdb快照</span><br><span class="line">master.repl buffer -&gt; master.repl buffer: 2.2 主节点将增量写语句更新到buffer</span><br><span class="line">master.rdb data -&gt; slave: 3. 发送rdb数据</span><br><span class="line">slave -&gt; slave: 4. 清空旧数据，加载主节点rdb</span><br><span class="line">master.repl buffer -&gt; slave: 5. 发送缓冲区写命令</span><br><span class="line">slave -&gt; slave: 6. 执行主节点buffer写命令</span><br><span class="line">master -&gt; slave: 7. 主节点通过socket长连接，持续发送写命令给从节点，保持数据一致</span><br></pre></td></tr></table></figure>
+<h2 id="断点续传"><a class="markdownIt-Anchor" href="#断点续传"></a> 断点续传</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">master: &#123;</span><br><span class="line">    repl backlog buffer</span><br><span class="line">&#125;</span><br><span class="line">slave</span><br><span class="line"></span><br><span class="line">slave -&gt; master: 1. 连接断开</span><br><span class="line">master.repl backlog buffer -&gt; master.repl backlog buffer: 2. 主节点增量写命令写入buffer</span><br><span class="line">slave -&gt; master: 3. 恢复socket长连接</span><br><span class="line">slave -&gt; master: 4. psync(offset)带偏移量</span><br><span class="line">master -&gt; slave: 5. 若offset在buffer中，断点以后的数据发送给从节点；否则，全量发送</span><br><span class="line">master -&gt; slave: 6. 持续发送buffer写命令，保持数据一致</span><br></pre></td></tr></table></figure>
+<p>如果存在很多从节点，那么主节点传输压力会比较大。可以采用树型架构，让从节点再给它的子节点传输数据。</p>
+<h1 id="哨兵高可用"><a class="markdownIt-Anchor" href="#哨兵高可用"></a> 哨兵高可用</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sentinel_cluster: &#123;</span><br><span class="line">    sentinel1 &lt;-&gt; sentinel2 &lt;-&gt; sentinel3 &lt;-&gt; sentinel1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">client -&gt; master &lt;-&gt; sentinel_cluster</span><br><span class="line">master -&gt; slave1</span><br><span class="line">master -&gt; slave2</span><br><span class="line">client -&gt; sentinel_cluster</span><br><span class="line">sentinel_cluster &lt;-&gt; slave1</span><br><span class="line">sentinel_cluster &lt;-&gt; slave2</span><br></pre></td></tr></table></figure>
+<p>哨兵会动态监听redis主节点，如果主节点挂了，哨兵会选择一个新redis示例作为主节点（通知给client端）</p>
+<h2 id="开启哨兵"><a class="markdownIt-Anchor" href="#开启哨兵"></a> 开启哨兵</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># sentinel.conf</span><br><span class="line"></span><br><span class="line">port 26379</span><br><span class="line">pidfile &lt;your_file&gt;</span><br><span class="line">logfile &lt;your_file&gt;</span><br><span class="line">dir &quot;&lt;your_dir&gt;&quot;</span><br><span class="line"></span><br><span class="line"># quorm是指多少个sentinel同时认为主节点挂了，才让master失效，一般设置为一半以上</span><br><span class="line">sentinel monitor mymaster &lt;redis_ip&gt; &lt;redis_port&gt; &lt;quorm&gt;</span><br></pre></td></tr></table></figure>
+<p>启动哨兵<code>./redis-sentinel sentinel.conf</code></p>
+<h1 id="redis-cluster"><a class="markdownIt-Anchor" href="#redis-cluster"></a> Redis Cluster</h1>
+<p>当哨兵集群选举新节点的时候，服务会宕机几秒钟。因此我们需要Cluster</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">client1 -&gt; RedisCluster</span><br><span class="line">client2 -&gt; RedisCluster</span><br><span class="line">RedisCluster: Hash slot: CRC16(key) % 16384</span><br><span class="line">RedisCluster -&gt; Redis集群</span><br><span class="line">Redis集群: &#123;</span><br><span class="line">    master1 -&gt; slave1-1</span><br><span class="line">    master1 -&gt; slave1-2</span><br><span class="line">    </span><br><span class="line">    master2 -&gt; slave2-1</span><br><span class="line">    master2 -&gt; slave2-2</span><br><span class="line">    </span><br><span class="line">    master3 -&gt; slave3-1</span><br><span class="line">    master3 -&gt; slave3-2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Cluster中，每个master数据是不重叠的，数据会被分片储存。通过Hash算法来决定存储数据到哪一个master节点。<br />
+使用Cluster，可以避免Redis服务完全宕机。<br />
+2的幂次取模小技巧：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi><mspace></mspace><mspace width="0.6666666666666666em"/><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mtext> </mtext><mtext> </mtext><msup><mn>2</mn><mi>n</mi></msup><mo>=</mo><mi>X</mi><mtext> &amp; </mtext><mo stretchy="false">(</mo><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \mod 2^n = X \text{ \&amp; } (2^n - 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:0.6666666666666666em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord text"><span class="mord"> &amp; </span></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+<h2 id="redis集群搭建"><a class="markdownIt-Anchor" href="#redis集群搭建"></a> Redis集群搭建</h2>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">redis-cluster/</span><br><span class="line">|-- 8000</span><br><span class="line">|   `-- redis.conf</span><br><span class="line">|-- 8010</span><br><span class="line">`-- 8020</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Redis配置</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># ...其他配置</span><br><span class="line"></span><br><span class="line">daemonize yes</span><br><span class="line">port 8000</span><br><span class="line">dir /path/to/redis-cluster/8000/</span><br><span class="line"># 启用集群</span><br><span class="line">cluster-enabled yes</span><br><span class="line">cluster-config-file nodes-8000.conf</span><br><span class="line">cluster-node-timeout 5000</span><br><span class="line"># 密码</span><br><span class="line">requirepass &lt;your_password&gt;</span><br><span class="line">masterauth &lt;your_auth_password&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>启动所有master和slave节点</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">redis-server /path/to/redis-cluster/80*/redis.conf</span><br><span class="line">ps aux | grep redis</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>开启集群</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">replicas表示节点的副本，配置为1，则1主1从</span></span><br><span class="line">redis-cli -a &lt;your_auth_password&gt; --cluster create --cluster-replicas 1 \</span><br><span class="line">localhost:8000 localhost:8001 localhost:8002 ...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，第二次启动集群后，就不需要这一步了。节点会自动读取<code>nodes-8000.conf</code>文件，恢复上次集群状态。</p>
+</blockquote>
+<ol start="4">
+<li>进入redis节点验证配置</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cluster info</span><br><span class="line">cluster nodes</span><br></pre></td></tr></table></figure>
+<h1 id="redission原理"><a class="markdownIt-Anchor" href="#redission原理"></a> Redission原理</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Thread1: &#123;</span><br><span class="line">    Redission</span><br><span class="line">&#125;</span><br><span class="line">Thread2: &#123;</span><br><span class="line">    Redission</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Thread1.Redission -&gt; Try Lock</span><br><span class="line">Try Lock -&gt; 守护线程: 加锁成功</span><br><span class="line">守护线程 -&gt; Redis(Master): lock，每隔10s检查线程是否仍持有锁。如果持有，则延长锁失效时间</span><br><span class="line"></span><br><span class="line">Thread2.Redission -&gt; Try Lock</span><br><span class="line">Try Lock -&gt; Thread2.Redission: 加锁失败，使用while自旋尝试加锁</span><br></pre></td></tr></table></figure>
+<p>Redission利用了Redis Lua脚本保证原子操作。</p>
 
       
     </div>
@@ -704,114 +1364,6 @@ IoC容器实际上就是一个工厂，通过读取xml配置文件，使用反�
 <h3 id="aop"><a class="markdownIt-Anchor" href="#aop"></a> AOP</h3>
 <p>AOP后，得到一个代理对象，然后Spring会在代理对象内部增加一个属性<code>UserService target</code>，并将经过依赖注入的普通对象赋值给target，然后调用<code>target.method()</code>，从而保留对象的所有Field的同时，可以通过代理在切面上做一些额外操作。</p>
 
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/" class="post-title-link" itemprop="url">Advanced Java</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-04-28 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-28T00:00:00+08:00">2025-04-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-05-10 10:24:42" itemprop="dateModified" datetime="2025-05-10T10:24:42+08:00">2025-05-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="代理"><a class="markdownIt-Anchor" href="#代理"></a> 代理</h1>
-<blockquote>
-<p>代理对象通过<code>invoke</code>，实现类与非核心功能的解耦。</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">Payment</span> <span class="variable">payment</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Payment</span>(<span class="string">&quot;AliPay&quot;</span>);</span><br><span class="line">    <span class="type">Pay</span> <span class="variable">proxy</span> <span class="operator">=</span> ProxyUtil.createProxy(payment);</span><br><span class="line"></span><br><span class="line">    proxy.pay(amount);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Payment</span> <span class="keyword">implements</span> <span class="title class_">Pay</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Overide</span></span><br><span class="line">    <span class="keyword">public</span> payResp <span class="title function_">pay</span><span class="params">(BigDecimal payAmount)</span> &#123;</span><br><span class="line">        <span class="comment">// Payment Business...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Pay</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> payResp <span class="title function_">pay</span><span class="params">(BigDecimal payAmount)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ProxyUtils</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Pay <span class="title function_">createProxy</span><span class="params">(Payment payment)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (Pay) Proxy.newProxyInstance(</span><br><span class="line">            ProxyUtil.class.getClassLoader(),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123; Pay.class &#125;,</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">InvocationHandler</span>() &#123;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Overide</span></span><br><span class="line">                <span class="keyword">public</span> Object <span class="title function_">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">                    <span class="comment">// Payment Environment Init...</span></span><br><span class="line">                    <span class="comment">// Payment Safe Guard...</span></span><br><span class="line">                    <span class="keyword">return</span> method.invoke(payment, args);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="反射"><a class="markdownIt-Anchor" href="#反射"></a> 反射</h1>
-<blockquote>
-<p>反射允许对成员变量、成员方法、构造方法信息进行编程访问。</p>
-</blockquote>
-<p>例如，IDE的智能补全、参数提示，就是使用反射实现。</p>
-<h2 id="class字节码获取"><a class="markdownIt-Anchor" href="#class字节码获取"></a> Class字节码获取</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class clazz;</span><br><span class="line">clazz = Class.forName(<span class="string">&quot;com.yourpackage.TargetClass&quot;</span>);</span><br><span class="line"><span class="comment">// 参数</span></span><br><span class="line">clazz = TargetClass.class;</span><br><span class="line"><span class="comment">// 有实例时</span></span><br><span class="line">clazz = instance.getClass();</span><br></pre></td></tr></table></figure>
-<h2 id="场景"><a class="markdownIt-Anchor" href="#场景"></a> 场景</h2>
-<p>反射可以与配置文件结合，从而动态地创建对象。例如<code>application.yml</code>里数据库的配置、端口号等。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Properties</span> <span class="variable">prop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line"><span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(ROOT + <span class="string">&quot;src/main/resources/application.properties&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">dataSourceUrl</span> <span class="operator">=</span> (String) perp.get(<span class="string">&quot;dataSource&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">dbName</span> <span class="operator">=</span> (String) extractDbName(dataSourceUrl);</span><br><span class="line"></span><br><span class="line"><span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> Class.forName(dbName);</span><br><span class="line"><span class="type">Constructor</span> <span class="variable">con</span> <span class="operator">=</span> clazz.getDeclaredConstructor();</span><br><span class="line"><span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> con.newInstance();</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<h1 id="hashmap"><a class="markdownIt-Anchor" href="#hashmap"></a> HashMap</h1>
-<h2 id="jdk17"><a class="markdownIt-Anchor" href="#jdk17"></a> jdk1.7</h2>
-<blockquote>
-<p>jdk1.7的HashMap数据结构是：数组 + 单向链表</p>
-</blockquote>
-<p>当哈希后，得到的数组槽位已经存放了其他元素，这时候就需要运用指针在同一个槽位存放多个元素。</p>
-<h2 id="头插法"><a class="markdownIt-Anchor" href="#头插法"></a> 头插法</h2>
-<p>jdk1.7使用的方法是头插法，这样就不需要遍历到链表尾部再插入，性能高。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">createEntry</span><span class="params">(<span class="type">int</span> hash, K key, V value, <span class="type">int</span> bucketIdx)</span> &#123;</span><br><span class="line">    Entry&lt;K, V&gt; e = table[bucketIdx];</span><br><span class="line">    <span class="comment">// 这里使用头插法，在槽位头部插入新元素，并指向e，成为新的槽位引用</span></span><br><span class="line">    table[bucketIdx] = <span class="keyword">new</span> <span class="title class_">Entry</span>&lt;&gt;(hash, key, value, e); </span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">Entry</span><span class="params">(<span class="type">int</span> h, K k, V v, Entry&lt;K, V&gt; n)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.value = v;</span><br><span class="line">    <span class="built_in">this</span>.next = n;</span><br><span class="line">    <span class="built_in">this</span>.key = k;</span><br><span class="line">    <span class="built_in">this</span>.hash = h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这种方法需要最终更新槽位指向新插入的节点，否则单向链表找不到新插入的元素。</p>
-<h2 id="利用2次方机器特性"><a class="markdownIt-Anchor" href="#利用2次方机器特性"></a> 利用2次方机器特性</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
@@ -1025,523 +1577,6 @@ IoC容器实际上就是一个工厂，通过读取xml配置文件，使用反�
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    root /var/www/railcloud/dist;</span><br><span class="line">    index index.html;</span><br><span class="line">    try_files $uri $uri/ /index.html; # 支持SPA路由</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="启用-2"><a class="markdownIt-Anchor" href="#启用-2"></a> 启用</h3>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">③ 设置正确权限</span></span><br><span class="line">sudo chown -R www-data:www-data /var/www/railcloud</span><br><span class="line">sudo chmod -R 755 /var/www/railcloud</span><br><span class="line"></span><br><span class="line">sudo nginx -t &amp;&amp; nginx -s reload</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Redis使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-27 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-27T00:00:00+08:00">2024-10-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-28 11:09:45" itemprop="dateModified" datetime="2025-04-28T11:09:45+08:00">2025-04-28</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="分布式锁"><a class="markdownIt-Anchor" href="#分布式锁"></a> 分布式锁</h1>
-<h2 id="redission"><a class="markdownIt-Anchor" href="#redission"></a> Redission</h2>
-<p>使用原生Redis设置锁的问题：</p>
-<ol>
-<li>服务器拿到锁后宕机，锁不能释放，导致阻塞。<br />
-设置锁失效时间可以解决上面的问题，但是会导致新的问题：</li>
-<li>设置锁失效时间，在服务器负载过高的时候，会发生锁失效业务还没完成的情况，导致业务代码不互斥。</li>
-</ol>
-<blockquote>
-<p>0信任：不要期待网络服务器按照理想情况运行。</p>
-</blockquote>
-<p>使用Redission自动为锁续命，可以解决上述问题。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">lockKey</span> <span class="operator">=</span> req.getBusinessUniqueKey() + <span class="string">&quot;-&quot;</span> + req.getBusinessCode();</span><br><span class="line"><span class="type">RLock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    lock = redissonClient.getLock(lockKey);</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">tryLock</span> <span class="operator">=</span> lock.tryLock(<span class="number">0</span>, TimeUnit.SECONDS);</span><br><span class="line">    <span class="keyword">if</span> (!tryLock) &#123;</span><br><span class="line">        LOG.info(<span class="string">&quot;获取锁失败&quot;</span>);</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">BusinessException</span>(BusinessExceptionEnum.CONFIRM_ORDER_TICKET_COUNT_ERROR);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Business Code</span></span><br><span class="line"></span><br><span class="line">&#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    LOG.info(<span class="string">&quot;释放锁&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (lock != <span class="literal">null</span> &amp;&amp; lock.isHeldByCurrentThread()) &#123;</span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>锁设计原则：谁持有锁，谁才有资格释放锁。</p>
-</blockquote>
-<p>不过，使用这个方案有问题：Redis Master加锁后宕机，新的Master没有同步到加锁的数据，就会存在多把锁。<br />
-这时我们需要引入ZooKeeper保持强一致性；或者可以使用RedLock，即集群半数以上机器加锁成功，才是真的加锁成功。<br />
-然而，这两种方法都会带来性能开销。</p>
-<blockquote>
-<p>对于难以解决的棘手问题，应该思考如何避免问题发生。</p>
-</blockquote>
-<h2 id="高性能分布式锁分段锁"><a class="markdownIt-Anchor" href="#高性能分布式锁分段锁"></a> 高性能分布式锁：分段锁</h2>
-<p>针对不同段进行加锁，这样就能允许多把锁存在，从而获得一定并发性能。</p>
-<h1 id="基本操作"><a class="markdownIt-Anchor" href="#基本操作"></a> 基本操作</h1>
-<h2 id="general"><a class="markdownIt-Anchor" href="#general"></a> General</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 返回给定模式的keys</span><br><span class="line">KEYS patter</span><br><span class="line">KEYS * # 返回全部</span><br><span class="line">KEYS set* # 返回set开头的keys</span><br><span class="line">EXISTS key</span><br><span class="line">TYPE key</span><br><span class="line">DEL key</span><br></pre></td></tr></table></figure>
-<h2 id="string"><a class="markdownIt-Anchor" href="#string"></a> String</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">SET key value</span><br><span class="line">GET key</span><br><span class="line"># Set Extend Time</span><br><span class="line">SETEX key seconds value</span><br><span class="line"># Set When Key Not Exist</span><br><span class="line">SETNX key value</span><br></pre></td></tr></table></figure>
-<h2 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">HSET key field value</span><br><span class="line">HGET key field</span><br><span class="line">HDEL key field</span><br><span class="line"># Get All Fields</span><br><span class="line">HKEYS key</span><br><span class="line"># Get All Values</span><br><span class="line">HVALS key</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart LR</span><br><span class="line">    key[key]</span><br><span class="line">    item[</span><br><span class="line">    field1: value1</span><br><span class="line">    field2: value2</span><br><span class="line">    ]</span><br><span class="line">    key --&gt; item</span><br></pre></td></tr></table></figure>
-<h2 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">LPUSH key value1 value2</span><br><span class="line"># Get Key From Start To Stop</span><br><span class="line">LRANGE key start stop</span><br><span class="line"># Right POP</span><br><span class="line">RPOP key</span><br><span class="line"># List Length</span><br><span class="line">LLEN key</span><br></pre></td></tr></table></figure>
-<h3 id="典型场景"><a class="markdownIt-Anchor" href="#典型场景"></a> 典型场景</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Redis%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Redis%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/Redis%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-28 19:58:01" itemprop="dateCreated datePublished" datetime="2025-03-28T19:58:01+08:00">2025-03-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-26 20:18:47" itemprop="dateModified" datetime="2025-04-26T20:18:47+08:00">2025-04-26</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="单线程网络io-kv读写"><a class="markdownIt-Anchor" href="#单线程网络io-kv读写"></a> 单线程网络IO、KV读写</h1>
-<p>Redis的网络IO和KeyValue读写是由一个线程来完成的。<br />
-而Redis的持久化、异步删除、集群数据同步是额外的线程执行。</p>
-<p>也由于Redis是单线程的，所以要特别小心耗时的操作，这些操作会阻塞后续指令。</p>
-<blockquote>
-<p>简单来说就是处理事务一套、前台接待一套。不会因为前面办事导致人均等待时间太久。</p>
-</blockquote>
-<p>Redis使用IO多路复用（epoll），将连接信息、事件放到队列中，使其能够处理并发的客户端连接。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">socket: &#123;</span><br><span class="line">    s0</span><br><span class="line">    s1</span><br><span class="line">    s2</span><br><span class="line">    s3</span><br><span class="line">    &quot;...&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">IO多路复用: &#123;</span><br><span class="line">    s3 -&gt; s2 -&gt; s1 -&gt; s0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">事件处理器: &#123;</span><br><span class="line">    连接处理器</span><br><span class="line">    命令请求处理器</span><br><span class="line">    命令回复处理器</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">socket -&gt; IO多路复用 -&gt; 文件事件分派器 -&gt; 事件处理器</span><br></pre></td></tr></table></figure>
-<h1 id="详解get-key"><a class="markdownIt-Anchor" href="#详解get-key"></a> 详解GET key</h1>
-<p>Redis相当于HashMap，也由于Hash是无序的，因此<code>scan</code>这样的流式查询，在查改场景中，可能会漏扫中途插入到前面下标的元素。</p>
-<h1 id="redis持久化"><a class="markdownIt-Anchor" href="#redis持久化"></a> Redis持久化</h1>
-<h2 id="rdb-snapshot"><a class="markdownIt-Anchor" href="#rdb-snapshot"></a> RDB Snapshot</h2>
-<p>默认情况下，Redis将内存数据快照保存为<code>dump.rdb</code>，可以使用</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">save &lt;time_duration&gt; &lt;row_insertion&gt;</span><br></pre></td></tr></table></figure>
-<p>指示Redis多少秒内插入多少条数据后持久化到数据库<br />
-也可以直接用<code>save</code>和<code>bgsave</code>命令写入数据库</p>
-<h3 id="bgsave-异步持久化"><a class="markdownIt-Anchor" href="#bgsave-异步持久化"></a> bgsave 异步持久化</h3>
-<p>bgsave使用写时复制COW。bgsave从主线程fork出来，当主线程修改数据时，bgsave线程会将写入数据拷贝一份，然后写入rdb</p>
-<h2 id="append-only-file"><a class="markdownIt-Anchor" href="#append-only-file"></a> Append-Only File</h2>
-<p>快照不能做到完全持久，假如服务宕机，可能会丢失几条写入。<br />
-这时候我们直接做个命令日志AOF，将执行的修改指令写入<code>appendonly.aof</code>中</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">appendonly yes</span><br><span class="line">appendfilename &quot;appendonly.aof&quot;</span><br></pre></td></tr></table></figure>
-<p>aof有三种模式<code>appendfsync</code>：</p>
-<ul>
-<li>always：立刻写入磁盘</li>
-<li>everysec：每秒写一次</li>
-<li>no：交给OS调度<br />
-但是，由于aof是记录命令，需要执行时间，对于持久化大量数据比较耗时间。<br />
-对于连续操作（如自增）aof会优化为1条命令，可以用<code>bgrewriteaof</code>命令手动重写</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 最小重构大小</span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br><span class="line"># 增长了100%，即128mb就重构</span><br><span class="line">auto-aof-rewrite-percentage 100</span><br></pre></td></tr></table></figure>
-<h2 id="redis4-混合持久化"><a class="markdownIt-Anchor" href="#redis4-混合持久化"></a> Redis4 混合持久化</h2>
-<p>由于Redis重启时优先使用aof恢复数据，rdb利用率不高。因此出现了混合持久化</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 必须同时开启aof</span><br><span class="line">aof-use-rdb-preamle yes</span><br><span class="line"># 可以直接把快照关掉，因为混合持久化都写在aof里面</span><br></pre></td></tr></table></figure>
-<p>开启后，当aof重写时，会直接写入rdb，将rdb快照和aof增量存储在一起。<br />
-于是Redis重启可以先读rdb，再执行增量aof恢复数据，提高效率。</p>
-<h1 id="redis主从"><a class="markdownIt-Anchor" href="#redis主从"></a> Redis主从</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># redis-&lt;your_port&gt;.conf</span><br><span class="line">pidfile /var/run/redis_&lt;your_port&gt;.pid</span><br><span class="line">logfile &quot;&lt;your_port&gt;.log&quot;</span><br><span class="line"># 数据存放目录</span><br><span class="line">dir /usr/local/redis/data/&lt;your_port&gt;</span><br><span class="line"></span><br><span class="line">### 主从复制</span><br><span class="line">replicaof &lt;main_redis_ip&gt; &lt;port&gt;</span><br><span class="line"># 从节点，只读</span><br><span class="line">replica-read-only yes</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 启动</span><br><span class="line"># 启动从节点</span><br><span class="line">redis-server redis-&lt;your_port&gt;.conf</span><br><span class="line"># 连接到从节点</span><br><span class="line">redis-cli -p &lt;minor_redis_port&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="主从原理"><a class="markdownIt-Anchor" href="#主从原理"></a> 主从原理</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">master: &#123;</span><br><span class="line">    rdb data</span><br><span class="line">    repl buffer</span><br><span class="line">&#125;</span><br><span class="line">slave</span><br><span class="line"></span><br><span class="line">slave -&gt; master: 1. psync全量复制同步数据（通过socket长连接）</span><br><span class="line">master.rdb data -&gt; master.rdb data: 2.1 收到psync命令，执行bgsave生成最新rdb快照</span><br><span class="line">master.repl buffer -&gt; master.repl buffer: 2.2 主节点将增量写语句更新到buffer</span><br><span class="line">master.rdb data -&gt; slave: 3. 发送rdb数据</span><br><span class="line">slave -&gt; slave: 4. 清空旧数据，加载主节点rdb</span><br><span class="line">master.repl buffer -&gt; slave: 5. 发送缓冲区写命令</span><br><span class="line">slave -&gt; slave: 6. 执行主节点buffer写命令</span><br><span class="line">master -&gt; slave: 7. 主节点通过socket长连接，持续发送写命令给从节点，保持数据一致</span><br></pre></td></tr></table></figure>
-<h2 id="断点续传"><a class="markdownIt-Anchor" href="#断点续传"></a> 断点续传</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">master: &#123;</span><br><span class="line">    repl backlog buffer</span><br><span class="line">&#125;</span><br><span class="line">slave</span><br><span class="line"></span><br><span class="line">slave -&gt; master: 1. 连接断开</span><br><span class="line">master.repl backlog buffer -&gt; master.repl backlog buffer: 2. 主节点增量写命令写入buffer</span><br><span class="line">slave -&gt; master: 3. 恢复socket长连接</span><br><span class="line">slave -&gt; master: 4. psync(offset)带偏移量</span><br><span class="line">master -&gt; slave: 5. 若offset在buffer中，断点以后的数据发送给从节点；否则，全量发送</span><br><span class="line">master -&gt; slave: 6. 持续发送buffer写命令，保持数据一致</span><br></pre></td></tr></table></figure>
-<p>如果存在很多从节点，那么主节点传输压力会比较大。可以采用树型架构，让从节点再给它的子节点传输数据。</p>
-<h1 id="哨兵高可用"><a class="markdownIt-Anchor" href="#哨兵高可用"></a> 哨兵高可用</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sentinel_cluster: &#123;</span><br><span class="line">    sentinel1 &lt;-&gt; sentinel2 &lt;-&gt; sentinel3 &lt;-&gt; sentinel1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">client -&gt; master &lt;-&gt; sentinel_cluster</span><br><span class="line">master -&gt; slave1</span><br><span class="line">master -&gt; slave2</span><br><span class="line">client -&gt; sentinel_cluster</span><br><span class="line">sentinel_cluster &lt;-&gt; slave1</span><br><span class="line">sentinel_cluster &lt;-&gt; slave2</span><br></pre></td></tr></table></figure>
-<p>哨兵会动态监听redis主节点，如果主节点挂了，哨兵会选择一个新redis示例作为主节点（通知给client端）</p>
-<h2 id="开启哨兵"><a class="markdownIt-Anchor" href="#开启哨兵"></a> 开启哨兵</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># sentinel.conf</span><br><span class="line"></span><br><span class="line">port 26379</span><br><span class="line">pidfile &lt;your_file&gt;</span><br><span class="line">logfile &lt;your_file&gt;</span><br><span class="line">dir &quot;&lt;your_dir&gt;&quot;</span><br><span class="line"></span><br><span class="line"># quorm是指多少个sentinel同时认为主节点挂了，才让master失效，一般设置为一半以上</span><br><span class="line">sentinel monitor mymaster &lt;redis_ip&gt; &lt;redis_port&gt; &lt;quorm&gt;</span><br></pre></td></tr></table></figure>
-<p>启动哨兵<code>./redis-sentinel sentinel.conf</code></p>
-<h1 id="redis-cluster"><a class="markdownIt-Anchor" href="#redis-cluster"></a> Redis Cluster</h1>
-<p>当哨兵集群选举新节点的时候，服务会宕机几秒钟。因此我们需要Cluster</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">client1 -&gt; RedisCluster</span><br><span class="line">client2 -&gt; RedisCluster</span><br><span class="line">RedisCluster: Hash slot: CRC16(key) % 16384</span><br><span class="line">RedisCluster -&gt; Redis集群</span><br><span class="line">Redis集群: &#123;</span><br><span class="line">    master1 -&gt; slave1-1</span><br><span class="line">    master1 -&gt; slave1-2</span><br><span class="line">    </span><br><span class="line">    master2 -&gt; slave2-1</span><br><span class="line">    master2 -&gt; slave2-2</span><br><span class="line">    </span><br><span class="line">    master3 -&gt; slave3-1</span><br><span class="line">    master3 -&gt; slave3-2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在Cluster中，每个master数据是不重叠的，数据会被分片储存。通过Hash算法来决定存储数据到哪一个master节点。<br />
-使用Cluster，可以避免Redis服务完全宕机。<br />
-2的幂次取模小技巧：</p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi><mspace></mspace><mspace width="0.6666666666666666em"/><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mtext> </mtext><mtext> </mtext><msup><mn>2</mn><mi>n</mi></msup><mo>=</mo><mi>X</mi><mtext> &amp; </mtext><mo stretchy="false">(</mo><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \mod 2^n = X \text{ \&amp; } (2^n - 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:0.6666666666666666em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord text"><span class="mord"> &amp; </span></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
-<h2 id="redis集群搭建"><a class="markdownIt-Anchor" href="#redis集群搭建"></a> Redis集群搭建</h2>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">redis-cluster/</span><br><span class="line">|-- 8000</span><br><span class="line">|   `-- redis.conf</span><br><span class="line">|-- 8010</span><br><span class="line">`-- 8020</span><br></pre></td></tr></table></figure>
-<ol>
-<li>Redis配置</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># ...其他配置</span><br><span class="line"></span><br><span class="line">daemonize yes</span><br><span class="line">port 8000</span><br><span class="line">dir /path/to/redis-cluster/8000/</span><br><span class="line"># 启用集群</span><br><span class="line">cluster-enabled yes</span><br><span class="line">cluster-config-file nodes-8000.conf</span><br><span class="line">cluster-node-timeout 5000</span><br><span class="line"># 密码</span><br><span class="line">requirepass &lt;your_password&gt;</span><br><span class="line">masterauth &lt;your_auth_password&gt;</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>启动所有master和slave节点</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">redis-server /path/to/redis-cluster/80*/redis.conf</span><br><span class="line">ps aux | grep redis</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>开启集群</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">replicas表示节点的副本，配置为1，则1主1从</span></span><br><span class="line">redis-cli -a &lt;your_auth_password&gt; --cluster create --cluster-replicas 1 \</span><br><span class="line">localhost:8000 localhost:8001 localhost:8002 ...</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意，第二次启动集群后，就不需要这一步了。节点会自动读取<code>nodes-8000.conf</code>文件，恢复上次集群状态。</p>
-</blockquote>
-<ol start="4">
-<li>进入redis节点验证配置</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cluster info</span><br><span class="line">cluster nodes</span><br></pre></td></tr></table></figure>
-<h1 id="redission原理"><a class="markdownIt-Anchor" href="#redission原理"></a> Redission原理</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Thread1: &#123;</span><br><span class="line">    Redission</span><br><span class="line">&#125;</span><br><span class="line">Thread2: &#123;</span><br><span class="line">    Redission</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Thread1.Redission -&gt; Try Lock</span><br><span class="line">Try Lock -&gt; 守护线程: 加锁成功</span><br><span class="line">守护线程 -&gt; Redis(Master): lock，每隔10s检查线程是否仍持有锁。如果持有，则延长锁失效时间</span><br><span class="line"></span><br><span class="line">Thread2.Redission -&gt; Try Lock</span><br><span class="line">Try Lock -&gt; Thread2.Redission: 加锁失败，使用while自旋尝试加锁</span><br></pre></td></tr></table></figure>
-<p>Redission利用了Redis Lua脚本保证原子操作。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/JVM%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/JVM%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">JVM原理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-02 00:00:00" itemprop="dateCreated datePublished" datetime="2025-03-02T00:00:00+08:00">2025-03-02</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-25 22:32:31" itemprop="dateModified" datetime="2025-04-25T22:32:31+08:00">2025-04-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="程序如何装载"><a class="markdownIt-Anchor" href="#程序如何装载"></a> 程序如何装载</h1>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Main\.java, Minor\.java -&gt; jar包.java Main\.main(): 编译打包</span><br><span class="line">jar包.java Main\.main() -&gt; 验证: 加载</span><br><span class="line">jar包.java Main\.main() -&gt; Minor\.class: 使用</span><br><span class="line">Minor\.class -&gt; JVM: 加载</span><br><span class="line">验证 -&gt; 准备 -&gt; 解析 -&gt; 初始化 -&gt; JVM</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>加载：从磁盘加载到内存。（懒加载，用到类才加载，如main方法或new对象）<br />
-验证：验证字节码是否正确、是否可识别。<br />
-准备：初始化静态（static，不包括常量）变量、赋初值（默认值）。<br />
-解析：符号引用 -&gt; 直接引用。静态方法（如main） -&gt; 指向数据所在内存的指针。这是静态链接，在类加载期间完成；而动态链接在程序运行期间完成。<br />
-初始化：为静态变量赋值，执行静态代码块。</p>
-<h1 id="类加载器"><a class="markdownIt-Anchor" href="#类加载器"></a> 类加载器</h1>
-<p>加载过程由类加载器实现，有几种类加载器：</p>
-<ol>
-<li>引导类加载器（C++）：JRE核心lib的jar类包</li>
-<li>扩展类加载器：JRE拓展lib(ext)jar类包</li>
-<li>应用程序类加载器：ClassPath路径下的类包（自己编写的类）</li>
-<li>其他加载器：加载自定义路径下的类包</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java com\.site\.jvm\.Math\.class -&gt; java\.exe调用底层jvm\.dll创建Java虚拟机 -&gt; 创建引导类加载器实例</span><br><span class="line">创建引导类加载器实例 -&gt; sum\.misc\.Launcher\.getLauncher(): C++调用Java代码，创建JVM启动器实例，这个实例负责创建其他类加载器</span><br><span class="line">sum\.misc\.Launcher\.getLauncher() -&gt; launcher\.getClassLoader(): 获取运行类自己的加载器ClassLoader（AppClassLoader实例）</span><br><span class="line">launcher\.getClassLoader() -&gt; classLoader\.loadClass(&quot;com\.site\.jvm\.Math&quot;):调用loadClass加载即将要运行的类</span><br><span class="line">classLoader\.loadClass(&quot;com\.site\.jvm\.Math&quot;) -&gt; Math\.main(): 加载完成后，JVM执行Math.main()</span><br><span class="line">创建引导类加载器实例 -&gt; Math\.main(): C++发起调用 </span><br><span class="line">Math\.main()-&gt; JVM销毁: Java程序运行结束</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/JVM%E5%8E%9F%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Linux笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-11-09 00:00:00" itemprop="dateCreated datePublished" datetime="2023-11-09T00:00:00+08:00">2023-11-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-25 20:12:13" itemprop="dateModified" datetime="2025-04-25T20:12:13+08:00">2025-04-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="基本配置"><a class="markdownIt-Anchor" href="#基本配置"></a> 基本配置</h1>
-<ol>
-<li>sudo权限: 修改<code>/etc/sudoers</code>，或者root<code>adduser &lt;username&gt; sudo</code>并重启</li>
-<li>apt软件包管理系统换源：<code>/etc/apt/sources.list</code>修改软件发布源<br />
-<code>deb http://站点/目录名/stretch版本名 main contrib non-free三类软件包</code><br />
-Debian官方软件源：官网/mirror/list</li>
-<li><code>/usr/share/doc</code> 有安装软件的信息</li>
-</ol>
-<h1 id="10-命令篇"><a class="markdownIt-Anchor" href="#10-命令篇"></a> 1.0 命令篇</h1>
-<h2 id="基本命令"><a class="markdownIt-Anchor" href="#基本命令"></a> 基本命令</h2>
-<pre><code>参考资料 https://missing-semester-cn.github.io/2020/course-shell/
-</code></pre>
-<ul>
-<li>
-<p>关机、重启<br />
-<code>shutdown</code><br />
-<code>-h now</code> halt，挂起，相当于 <code>halt</code><br />
-<code>-r now</code> reboot，重启<br />
-<code>poweroff</code><br />
-<code>reboot</code></p>
-</li>
-<li>
-<p>手册<br />
-<code>man</code> 命令</p>
-</li>
-<li>
-<p>导航<br />
-<code>pwd 显示当前所在目录</code><br />
-<code>cd</code> 进入文件夹  <code>'..'</code> 上级目录   <code>'.'</code>当前目录   <code>'/'</code>开头的是绝对路径`</p>
-</li>
-<li>
-<p>查看文件<br />
-<code>ls</code> 列出所有文件<br />
-<code>ls -l</code> 查看文件权限信息</p>
-</li>
-<li>
-<p>创建文件夹<br />
-<code>mkdir</code> 文件夹名<br />
-<code>rmdir</code> 删除文件夹</p>
-</li>
-<li>
-<p>没有vim的时候如何创建、编辑、查看文件<br />
-<code>touch 文件</code> 创建文件<br />
-<code>echo 文本 &gt; 文件</code>  echo+重定向输入文件（会把原来内容覆盖）<br />
-<code>echo 文本 &gt;&gt; 文件</code> 追加输入（在原来内容的结尾另起一行输入）<br />
-<code>cat 文件</code> 查看文件<br />
-除了使用<code>cat</code>看文件，还有<code>tac</code>（从最后一行开始显示），<code>more, less</code>（可以翻页，好用）</p>
-</li>
-</ul>
-<ul>
-<li>
-<p>压缩<br />
-压缩一整个目录，使用 <code>tar</code><br />
-压缩单个文件 <code>bzip2 gzip（-d解压）</code><br />
-<code>tar -cvf 目标名 文件名</code> 压缩 ， <code>tar -xvf</code>解压</p>
-</li>
-<li>
-<p>查找<br />
-<code>grep</code> 用法 <code>grep &quot;word&quot; filename</code></p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">grep <span class="string">&quot;string&quot;</span> * <span class="comment"># 在所有文件中搜索string</span></span><br><span class="line">grep -r <span class="string">&quot;string&quot;</span> <span class="comment"># 递归搜索</span></span><br></pre></td></tr></table></figure>
-<pre><code>`find`用法 `find filename`
-</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/Linux%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 
