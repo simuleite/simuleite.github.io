@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="文本格式转换 pandoc --from markdown --to docx source.md -o dest.docxpandoc -f markdown source.md -t docx -o dest.docxpandoc source.md -o dest.docx --ignore-args # 忽略参数  注意：为了最佳转换效果，markdown文件每行后都要空行   md2e">
+    <meta name="description" content="文本格式转换 pandoc --from markdown --to docx source.md -o dest.docxpandoc -f markdown source.md -t docx -o dest.docxpandoc source.md -o dest.docx --ignore-args # 忽略参数  注意：为了最佳转换效果，markdown文件每行后都要空行   模板 p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="pandoc使用">
 <meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/pandoc%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
-<meta property="og:description" content="文本格式转换 pandoc --from markdown --to docx source.md -o dest.docxpandoc -f markdown source.md -t docx -o dest.docxpandoc source.md -o dest.docx --ignore-args # 忽略参数  注意：为了最佳转换效果，markdown文件每行后都要空行   md2e">
+<meta property="og:description" content="文本格式转换 pandoc --from markdown --to docx source.md -o dest.docxpandoc -f markdown source.md -t docx -o dest.docxpandoc source.md -o dest.docx --ignore-args # 忽略参数  注意：为了最佳转换效果，markdown文件每行后都要空行   模板 p">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-04-22T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-04-23T12:53:06.389Z">
+<meta property="article:modified_time" content="2025-05-27T02:47:21.445Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="基本操作">
 <meta name="twitter:card" content="summary">
@@ -141,7 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="nav-text"> 文本格式转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#md2epub"><span class="nav-text"> md2epub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#honkit"><span class="nav-text"> honkit</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="nav-text"> 文本格式转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF"><span class="nav-text"> 模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#md2epub"><span class="nav-text"> md2epub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#honkit"><span class="nav-text"> honkit</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -154,7 +154,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">69</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -215,9 +215,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-04-23 00:00:00 / 修改时间：20:53:06" itemprop="dateCreated datePublished" datetime="2025-04-23T00:00:00+08:00">2025-04-23</time>
+      <time title="创建时间：2025-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-23T00:00:00+08:00">2025-04-23</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-27 10:47:21" itemprop="dateModified" datetime="2025-05-27T10:47:21+08:00">2025-05-27</time>
     </span>
 
   
@@ -234,6 +240,8 @@
 <blockquote>
 <p><strong>注意</strong>：为了最佳转换效果，markdown文件每行后都要空行</p>
 </blockquote>
+<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pandoc --reference-doc template.docx source.md -o dest.docx</span><br></pre></td></tr></table></figure>
 <h1 id="md2epub"><a class="markdownIt-Anchor" href="#md2epub"></a> md2epub</h1>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">首先把所有的md文件列出来</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 递归查找所有 .md 文件（排除 README.md 和 SUMMARY.md）</span></span></span><br><span class="line">find . -name &quot;*.md&quot; ! -name &quot;README.md&quot; ! -name &quot;SUMMARY.md&quot; | sort &gt; filelist.txt</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 然后编辑 `filelist.txt`，确保文件顺序正确（例如按 `SUMMARY.md` 的目录结构排序）。</span></span></span><br><span class="line"></span><br><span class="line">pandoc --standalone --toc \</span><br><span class="line">--metadata title=&quot;MIT6.824 分布式系统&quot; \</span><br><span class="line">--metadata author=&quot;Robert Morris&quot; \</span><br><span class="line">-o output.epub $(cat filelist.txt) </span><br></pre></td></tr></table></figure>
 <blockquote>
