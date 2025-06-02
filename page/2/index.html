@@ -180,6 +180,110 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Spring%E6%A0%B8%E5%BF%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/Spring%E6%A0%B8%E5%BF%83/" class="post-title-link" itemprop="url">Spring核心</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-03-15 00:00:00" itemprop="dateCreated datePublished" datetime="2025-03-15T00:00:00+08:00">2025-03-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-11 16:53:23" itemprop="dateModified" datetime="2025-05-11T16:53:23+08:00">2025-05-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="spring核心思想"><a class="markdownIt-Anchor" href="#spring核心思想"></a> Spring核心思想</h1>
+<p>Spring的核心是为Class创建代理对象实现一些AOP切面操作，从而支持方便的注解、事务、自动注入等功能。<br />
+为了创建代理对象，需要将对象创建移交给Spring完成，因此需要IoC容器。</p>
+<h1 id="ioc"><a class="markdownIt-Anchor" href="#ioc"></a> IoC</h1>
+<p>Inversion of Control<br />
+Spring通过控制反转，将对象创建交给IoC容器完成。<br />
+IoC容器实际上就是一个工厂，通过读取xml配置文件，使用反射创建对象。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;userDao&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.site.UserDao&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UserFactory</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> UserDao <span class="title function_">getDao</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">classValue</span> <span class="operator">=</span> context.getProperty(<span class="string">&quot;userDao&quot;</span>);</span><br><span class="line">        <span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> Class.forName(classValue);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们的Dao文件路径改变时，只需要修改xml配置一处即可完成全部修改。<br />
+如果只用工厂模式，那需要导入很多包，也不直观。因此使用xml与反射，将工厂方法与配置解耦。</p>
+<ul>
+<li>BeanFactory：IoC容器基本使用，Spring内部使用<br />
+对象懒创建</li>
+<li>ApplicationContext：BeanFactory子接口，暴露给开发者使用<br />
+加载配置就会创建对象</li>
+</ul>
+<h1 id="bean生命周期"><a class="markdownIt-Anchor" href="#bean生命周期"></a> Bean生命周期</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">类class -&gt; 无参构造方法 -&gt; 普通对象 -&gt; 依赖注入 -&gt; &quot;@PostConstruct&quot; -&gt; 初始化 -&gt; AOP -&gt; 代理对象 -&gt; Bean</span><br></pre></td></tr></table></figure>
+<h1 id="spring-framework"><a class="markdownIt-Anchor" href="#spring-framework"></a> Spring Framework</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">AnnotationConfigApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> </span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">AnnotationConfigApplicationContext</span>(AppConfig.class);</span><br><span class="line"><span class="comment">// resource/application.xml</span></span><br><span class="line"><span class="type">ClassPathXmlApplicationContext</span> <span class="variable">context</span> <span class="operator">=</span> </span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">ClassPathXmlApplicationContext</span>(<span class="string">&quot;application.xml&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="type">UserService</span> <span class="variable">userService</span> <span class="operator">=</span> (UserService) context.getBean(<span class="string">&quot;userService&quot;</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="dependency-injection"><a class="markdownIt-Anchor" href="#dependency-injection"></a> Dependency Injection</h2>
+<p>Spring首先是调用对象自身的构造方法创建对象，然后通过<strong>依赖注入</strong>（@Autowired属性赋值）来得到Bean</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (Field field: userService.getClass().getFields()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (field.isAnnotationPresent(Autowired.class)) &#123;</span><br><span class="line">        field.set(userService, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="postconstruct"><a class="markdownIt-Anchor" href="#postconstruct"></a> PostConstruct</h3>
+<p>这个注解可以让Spring在初始化时调用此方法，从而实现一些初始化操作（如从数据库查询信息映射到实体类）。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@PostContruct</span></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">init</span><span class="params">()</span> &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (Method method: userService.getClass().getMethods()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (method.isAnnotationPresent(PostConstruct.class)) &#123;</span><br><span class="line">        method.invoke(userService, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="aop"><a class="markdownIt-Anchor" href="#aop"></a> AOP</h3>
+<p>AOP后，得到一个代理对象，然后Spring会在代理对象内部增加一个属性<code>UserService target</code>，并将经过依赖注入的普通对象赋值给target，然后调用<code>target.method()</code>，从而保留对象的所有Field的同时，可以通过代理在切面上做一些额外操作。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E4%B8%AD%E9%97%B4%E4%BB%B6/Eureka%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1193,95 +1297,6 @@ Debian官方软件源：官网/mirror/list</li>
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Maven使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-16T00:00:00+08:00">2025-01-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-15 10:24:14" itemprop="dateModified" datetime="2025-04-15T10:24:14+08:00">2025-04-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="微服务"><a class="markdownIt-Anchor" href="#微服务"></a> 微服务</h1>
-<p>非单体项目，可以用下面的脚本启动微服务。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取服务名称和额外参数</span></span><br><span class="line">SERVICE_NAME=$1</span><br><span class="line">shift  # 移除第一个参数（服务名），将剩余参数保存到 $@</span><br><span class="line">EXTRA_ARGS=&quot;$@&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否输入服务名称</span></span><br><span class="line">if [ -z &quot;$SERVICE_NAME&quot; ]; then</span><br><span class="line">  echo &quot;Usage: ./run.sh &lt;servicename|all&gt; [additional_maven_args]&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">定义运行单个服务的函数</span></span><br><span class="line">run_service() &#123;</span><br><span class="line">  local service=$1</span><br><span class="line">  local args=$2</span><br><span class="line">  echo &quot;Building and running $service with args: $args...&quot;</span><br><span class="line">  mvn clean install -pl $service -am</span><br><span class="line">  if [ &quot;$service&quot; == &quot;gateway/&quot; ]; then</span><br><span class="line">    echo &quot;Gateway starting...&quot;</span><br><span class="line">    mvn spring-boot:run -pl $service -Dreactor.netty.http.server.accessLogEnabled=true $args</span><br><span class="line">  else</span><br><span class="line">    mvn spring-boot:run -pl $service $args</span><br><span class="line">  fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果输入 <span class="string">&quot;all&quot;</span>，运行所有服务（默认不传参）</span></span><br><span class="line">if [ &quot;$SERVICE_NAME&quot; == &quot;all&quot; ]; then</span><br><span class="line">  echo &quot;Building and running all services...&quot;</span><br><span class="line">  mvn clean install -pl &quot;!generator&quot;</span><br><span class="line">  for module in $(mvn help:evaluate -Dexpression=project.modules -q -DforceStdout | sed -e &#x27;s/&lt;[^&gt;]*&gt;//g&#x27; -e &#x27;s/\s*//g&#x27; | tr &#x27;,&#x27; &#x27;\n&#x27;); do</span><br><span class="line">    if [ &quot;$module&quot; != &quot;generator&quot; ]; then</span><br><span class="line">      echo &quot;Running $module...&quot;</span><br><span class="line">      mvn spring-boot:run -pl $module</span><br><span class="line">    fi</span><br><span class="line">  done</span><br><span class="line">else</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">运行指定的单个服务，并传递额外参数</span></span><br><span class="line">  run_service $SERVICE_NAME &quot;$EXTRA_ARGS&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p>核心命令是这一条：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn spring-boot:run -pl $your_service</span><br></pre></td></tr></table></figure>
-<p>想要增加JVM参数，指定端口可以加上</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-Dspring-boot.run.arguments=--server.port=$your_port</span><br></pre></td></tr></table></figure>
-<h1 id="全局换源"><a class="markdownIt-Anchor" href="#全局换源"></a> 全局换源</h1>
-<p>找到 <code>settings.xml</code> 文件：</p>
-<ul>
-<li>全局配置：位于 Maven 安装目录的 <code>conf</code> 文件夹下（例如<code>/usr/local/maven/conf/settings.xml</code>）。</li>
-<li>用户配置：位于用户主目录下的 .m2 文件夹中（例如<code>~/.m2/settings.xml</code>）。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;settings&gt;</span><br><span class="line">  &lt;!-- 其他配置 --&gt;</span><br><span class="line">  &lt;mirrors&gt;</span><br><span class="line">    &lt;!-- 阿里云 Maven 镜像 --&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">      &lt;id&gt;aliyun-maven&lt;/id&gt;</span><br><span class="line">      &lt;name&gt;阿里云公共仓库&lt;/name&gt;</span><br><span class="line">      &lt;url&gt;https://maven.aliyun.com/repository/public&lt;/url&gt;</span><br><span class="line">      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;!-- 指定替换中央仓库 --&gt;</span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">    &lt;!-- 华为云 Maven 镜像 --&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">      &lt;id&gt;huaweicloud&lt;/id&gt;</span><br><span class="line">      &lt;name&gt;华为云 Maven&lt;/name&gt;</span><br><span class="line">      &lt;url&gt;https://mirrors.huaweicloud.com/repository/maven/&lt;/url&gt;</span><br><span class="line">      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">  &lt;/mirrors&gt;</span><br><span class="line">  &lt;!-- 其他配置 --&gt;</span><br><span class="line">&lt;/settings&gt;</span><br></pre></td></tr></table></figure>
-
       
     </div>
 

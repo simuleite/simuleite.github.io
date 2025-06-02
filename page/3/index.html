@@ -180,6 +180,95 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Maven%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Maven使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2025-01-16T00:00:00+08:00">2025-01-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-15 10:24:14" itemprop="dateModified" datetime="2025-04-15T10:24:14+08:00">2025-04-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="微服务"><a class="markdownIt-Anchor" href="#微服务"></a> 微服务</h1>
+<p>非单体项目，可以用下面的脚本启动微服务。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取服务名称和额外参数</span></span><br><span class="line">SERVICE_NAME=$1</span><br><span class="line">shift  # 移除第一个参数（服务名），将剩余参数保存到 $@</span><br><span class="line">EXTRA_ARGS=&quot;$@&quot;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否输入服务名称</span></span><br><span class="line">if [ -z &quot;$SERVICE_NAME&quot; ]; then</span><br><span class="line">  echo &quot;Usage: ./run.sh &lt;servicename|all&gt; [additional_maven_args]&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">定义运行单个服务的函数</span></span><br><span class="line">run_service() &#123;</span><br><span class="line">  local service=$1</span><br><span class="line">  local args=$2</span><br><span class="line">  echo &quot;Building and running $service with args: $args...&quot;</span><br><span class="line">  mvn clean install -pl $service -am</span><br><span class="line">  if [ &quot;$service&quot; == &quot;gateway/&quot; ]; then</span><br><span class="line">    echo &quot;Gateway starting...&quot;</span><br><span class="line">    mvn spring-boot:run -pl $service -Dreactor.netty.http.server.accessLogEnabled=true $args</span><br><span class="line">  else</span><br><span class="line">    mvn spring-boot:run -pl $service $args</span><br><span class="line">  fi</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果输入 <span class="string">&quot;all&quot;</span>，运行所有服务（默认不传参）</span></span><br><span class="line">if [ &quot;$SERVICE_NAME&quot; == &quot;all&quot; ]; then</span><br><span class="line">  echo &quot;Building and running all services...&quot;</span><br><span class="line">  mvn clean install -pl &quot;!generator&quot;</span><br><span class="line">  for module in $(mvn help:evaluate -Dexpression=project.modules -q -DforceStdout | sed -e &#x27;s/&lt;[^&gt;]*&gt;//g&#x27; -e &#x27;s/\s*//g&#x27; | tr &#x27;,&#x27; &#x27;\n&#x27;); do</span><br><span class="line">    if [ &quot;$module&quot; != &quot;generator&quot; ]; then</span><br><span class="line">      echo &quot;Running $module...&quot;</span><br><span class="line">      mvn spring-boot:run -pl $module</span><br><span class="line">    fi</span><br><span class="line">  done</span><br><span class="line">else</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">运行指定的单个服务，并传递额外参数</span></span><br><span class="line">  run_service $SERVICE_NAME &quot;$EXTRA_ARGS&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>核心命令是这一条：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn spring-boot:run -pl $your_service</span><br></pre></td></tr></table></figure>
+<p>想要增加JVM参数，指定端口可以加上</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">-Dspring-boot.run.arguments=--server.port=$your_port</span><br></pre></td></tr></table></figure>
+<h1 id="全局换源"><a class="markdownIt-Anchor" href="#全局换源"></a> 全局换源</h1>
+<p>找到 <code>settings.xml</code> 文件：</p>
+<ul>
+<li>全局配置：位于 Maven 安装目录的 <code>conf</code> 文件夹下（例如<code>/usr/local/maven/conf/settings.xml</code>）。</li>
+<li>用户配置：位于用户主目录下的 .m2 文件夹中（例如<code>~/.m2/settings.xml</code>）。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;settings&gt;</span><br><span class="line">  &lt;!-- 其他配置 --&gt;</span><br><span class="line">  &lt;mirrors&gt;</span><br><span class="line">    &lt;!-- 阿里云 Maven 镜像 --&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">      &lt;id&gt;aliyun-maven&lt;/id&gt;</span><br><span class="line">      &lt;name&gt;阿里云公共仓库&lt;/name&gt;</span><br><span class="line">      &lt;url&gt;https://maven.aliyun.com/repository/public&lt;/url&gt;</span><br><span class="line">      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; &lt;!-- 指定替换中央仓库 --&gt;</span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">    &lt;!-- 华为云 Maven 镜像 --&gt;</span><br><span class="line">    &lt;mirror&gt;</span><br><span class="line">      &lt;id&gt;huaweicloud&lt;/id&gt;</span><br><span class="line">      &lt;name&gt;华为云 Maven&lt;/name&gt;</span><br><span class="line">      &lt;url&gt;https://mirrors.huaweicloud.com/repository/maven/&lt;/url&gt;</span><br><span class="line">      &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">  &lt;/mirrors&gt;</span><br><span class="line">  &lt;!-- 其他配置 --&gt;</span><br><span class="line">&lt;/settings&gt;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/scp%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -851,108 +940,6 @@ CAS算法不是加锁，而是通过比较来判断对象是否已被修改，�
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">LeetCode100 错题本</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-10-01 00:00:00" itemprop="dateCreated datePublished" datetime="2024-10-01T00:00:00+08:00">2024-10-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-16 15:04:45" itemprop="dateModified" datetime="2025-03-16T15:04:45+08:00">2025-03-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h1>
-<h1 id="字母异位词"><a class="markdownIt-Anchor" href="#字母异位词"></a> 字母异位词</h1>
-<p>排序每一个单词，就知道是不是异位词。</p>
-<h2 id="两数之和"><a class="markdownIt-Anchor" href="#两数之和"></a> 两数之和</h2>
-<p>从数组中，找到<code>nums[i] + nums[j] == target</code>，并返回<code>&#123; i, j &#125;</code>。<br />
-思路是双重循环，遍历每一个元素，求和是否为target。<br />
-然而，双重循环需要<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>N</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的复杂度。因此，可以使用一张表，使用<code>containsKey</code>方法识别是否存在当前i的<code>target - nums[i]</code>，即可减少一重循环。</p>
-<h3 id="关键思想"><a class="markdownIt-Anchor" href="#关键思想"></a> 关键思想</h3>
-<p>用Map高效率查找，减少一重循环。</p>
-<h2 id="最长连续序列"><a class="markdownIt-Anchor" href="#最长连续序列"></a> 最长连续序列</h2>
-<p>从乱序数组中，找到最长连续（数组中不一定连续）的序列。要求<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>N</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。<br />
-首先用数组的值存入哈希表，然后遍历数组，判断<code>map.constains(curNum++)</code>。<br />
-然而，即使这样还是效率不够高。</p>
-<p>优化</p>
-<ol>
-<li>中间值不进入循环，序列开始值才进入，使用<code>!contains(curNum - 1)</code>判断是否为序列开始值</li>
-<li>去重，不要哈希表，不需要键值对，使用哈希Set，只存储值。</li>
-</ol>
-<h3 id="关键思想-2"><a class="markdownIt-Anchor" href="#关键思想-2"></a> 关键思想</h3>
-<p>去重；不处理中间值</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/LeetCode100%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
