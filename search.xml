@@ -688,24 +688,14 @@ Value：拒绝BigKey，String &lt; 10KB、数据结构元素 &lt; 5k<br />
 </li>
 <li>继续下一条指令
 <ul>
-<li><code>step</code> 或  <code>si</code>（机器指令）</li>
+<li><code>step</code> 或 <code>si</code>（机器指令）</li>
 </ul>
 </li>
 <li>退出 <code>quit</code></li>
 </ol>
 <h1 id="10-cprograming"><a class="markdownIt-Anchor" href="#10-cprograming"></a> 1.0 Cprograming</h1>
 <p>原网址： <a href="https://www.cprogramming.com/gdb.html">https://www.cprogramming.com/gdb.html</a></p>
-<pre><code>gcc main.c -g -Wall -Werror -o main    启动编译
-gdb main    开始debug
-list 列出代码
-break 行    设置断点
-	info break    断点信息
-run   运行程序
-next或step  进行单步编译(next跳过函数)
-print &lt;value&gt;    打印变量的值
-continue    跳到下一个断点位置
-quit     退出
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gcc main.c -g -Wall -Werror -o main    启动编译</span><br><span class="line"></span><br><span class="line">gdb main    开始debug</span><br><span class="line">list 列出代码</span><br><span class="line">break 行    设置断点</span><br><span class="line">    info break    断点信息</span><br><span class="line">run   运行程序</span><br><span class="line">next或step  进行单步编译(next跳过函数)</span><br><span class="line">print &lt;value&gt;    打印变量的值</span><br><span class="line">continue    跳到下一个断点位置</span><br><span class="line">quit     退出</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
 <h1 id="20-linuxc一站式编程"><a class="markdownIt-Anchor" href="#20-linuxc一站式编程"></a> 2.0 LinuxC一站式编程</h1>
 <p>参考网址： <a href="https://docs.huihoo.com/c/linux-c-programming/ch10.html">https://docs.huihoo.com/c/linux-c-programming/ch10.html</a></p>
@@ -8843,6 +8833,33 @@ Machine不能直接执行Goroutine，而需要首先与Processor绑定，由Proc
 <h3 id="execute"><a class="markdownIt-Anchor" href="#execute"></a> execute()</h3>
 <figure class="highlight go"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">execute</span><span class="params">(gp *g, inheritTime <span class="type">bool</span>)</span></span> &#123;</span><br><span class="line">    _g_ := getg()</span><br><span class="line"></span><br><span class="line">    _g_.m.curg = gp</span><br><span class="line">    <span class="comment">// 映射Processor与Machine</span></span><br><span class="line">    gp.m = _g_.m</span><br><span class="line">    <span class="comment">// CAS切换状态</span></span><br><span class="line">    casgstatus(gp, _Grunnable, _Grunning)</span><br><span class="line">    gp.waitsince = <span class="number">0</span></span><br><span class="line">    gp.preempt = <span class="literal">false</span></span><br><span class="line">    gp.stackguard0 = gp.stack.lo + _StackGuard</span><br><span class="line">    <span class="keyword">if</span> !inheritTime &#123;</span><br><span class="line">        <span class="comment">// 更新调度次数</span></span><br><span class="line">        _g_.m.p.ptr().schedtick++</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 执行Goroutine任务</span></span><br><span class="line">    gogo(&amp;gp.sched)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="geohash"><a class="markdownIt-Anchor" href="#geohash"></a> GeoHash</h1>
+]]></content>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RPC</title>
+    <url>/ComputerScience/%E7%9F%A5%E8%AF%86/RPC/</url>
+    <content><![CDATA[<h1 id="remote-procedure-call"><a class="markdownIt-Anchor" href="#remote-procedure-call"></a> Remote Procedure Call</h1>
+<p>本地函数放到服务器运行，会出现若干问题：</p>
+<ol>
+<li>我怎么知道是哪个函数？Call Id<br />
+本地函数调用，可以直接用指针找到函数；但是远程过程调用不行。<br />
+因此我们需要分别在Client和Server维护一个“函数 &lt;-&gt; Call Id”的映射来确定所调用的函数。</li>
+<li>Client如何将参数传送到Server？序列化与反序列化<br />
+本地函数调用，参数会压入栈；然而在远程过程调用中，Client与Server是不同的进程、处理器、操作系统、大小端，而且链表、对象这样的数据内存不分配在一处，加上网络传输必须要有容错机制，不能通过内存传递参数。<br />
+因此我们需要使用网络传输，Client要将参数转换为字节流，传输到Server后，再反序列化还原为参数。<br />
+这里还会涉及到数据格式的问题，JSON（性能不高）、XML、Protobuf、Thrift都是数据格式。</li>
+<li>不使用内存，如何传输？网络传输<br />
+网络传输层需要将Call Id与字节流传输给Server，因此RPC基于传输层TCP协议，gRPC基于HTTP2协议（同样基于TCP）。</li>
+</ol>
+<blockquote>
+<p>早期的RPC不使用HTTP，是因为当时HTTP不能建立长连接，并且HTTP头部过长且不能压缩。HTTP2解决了上述问题。</p>
+</blockquote>
+<h1 id="一个http请求"><a class="markdownIt-Anchor" href="#一个http请求"></a> 一个HTTP请求</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:8080/add?a=1&amp;b=2</span><br><span class="line">&quot;Content-Type&quot;: &quot;application/json&quot;</span><br></pre></td></tr></table></figure>
+<p>这个请求指定了方法add、协议http、数据格式JSON</p>
 ]]></content>
       <tags>
         <tag>知识</tag>

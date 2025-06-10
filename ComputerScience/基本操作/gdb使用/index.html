@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"simuleite.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.21.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="NJU gdb六步走  启动gdb，加载可执行文件 设置断点 break main 入口处设置断点 启动程序 run （参数） 查看程序当然状态  info register (EIP): 显示所有寄存器（或只有EIP寄存器）的内容 栈：保存过程执行时的数据信息   继续下一条指令  step 或  si（机器指令）   退出 quit   1.0 Cprograming 原网址： https:">
+    <meta name="description" content="NJU gdb六步走  启动gdb，加载可执行文件 设置断点 break main 入口处设置断点 启动程序 run （参数） 查看程序当然状态  info register (EIP): 显示所有寄存器（或只有EIP寄存器）的内容 栈：保存过程执行时的数据信息   继续下一条指令  step 或 si（机器指令）   退出 quit   1.0 Cprograming 原网址： https:&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="gdb使用">
 <meta property="og:url" content="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/gdb%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="SMULET&#39;s BLOG">
-<meta property="og:description" content="NJU gdb六步走  启动gdb，加载可执行文件 设置断点 break main 入口处设置断点 启动程序 run （参数） 查看程序当然状态  info register (EIP): 显示所有寄存器（或只有EIP寄存器）的内容 栈：保存过程执行时的数据信息   继续下一条指令  step 或  si（机器指令）   退出 quit   1.0 Cprograming 原网址： https:">
+<meta property="og:description" content="NJU gdb六步走  启动gdb，加载可执行文件 设置断点 break main 入口处设置断点 启动程序 run （参数） 查看程序当然状态  info register (EIP): 显示所有寄存器（或只有EIP寄存器）的内容 栈：保存过程执行时的数据信息   继续下一条指令  step 或 si（机器指令）   退出 quit   1.0 Cprograming 原网址： https:&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-11-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-07-29T08:11:51.016Z">
+<meta property="article:modified_time" content="2025-06-09T02:10:18.156Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="基本操作">
 <meta name="twitter:card" content="summary">
@@ -154,7 +154,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">71</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -223,7 +223,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-07-29 16:11:51" itemprop="dateModified" datetime="2024-07-29T16:11:51+08:00">2024-07-29</time>
+      <time title="修改时间：2025-06-09 10:10:18" itemprop="dateModified" datetime="2025-06-09T10:10:18+08:00">2025-06-09</time>
     </span>
 
   
@@ -248,24 +248,14 @@
 </li>
 <li>继续下一条指令
 <ul>
-<li><code>step</code> 或  <code>si</code>（机器指令）</li>
+<li><code>step</code> 或 <code>si</code>（机器指令）</li>
 </ul>
 </li>
 <li>退出 <code>quit</code></li>
 </ol>
 <h1 id="10-cprograming"><a class="markdownIt-Anchor" href="#10-cprograming"></a> 1.0 Cprograming</h1>
 <p>原网址： <a target="_blank" rel="noopener" href="https://www.cprogramming.com/gdb.html">https://www.cprogramming.com/gdb.html</a></p>
-<pre><code>gcc main.c -g -Wall -Werror -o main    启动编译
-gdb main    开始debug
-list 列出代码
-break 行    设置断点
-	info break    断点信息
-run   运行程序
-next或step  进行单步编译(next跳过函数)
-print &lt;value&gt;    打印变量的值
-continue    跳到下一个断点位置
-quit     退出
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gcc main.c -g -Wall -Werror -o main    启动编译</span><br><span class="line"></span><br><span class="line">gdb main    开始debug</span><br><span class="line">list 列出代码</span><br><span class="line">break 行    设置断点</span><br><span class="line">    info break    断点信息</span><br><span class="line">run   运行程序</span><br><span class="line">next或step  进行单步编译(next跳过函数)</span><br><span class="line">print &lt;value&gt;    打印变量的值</span><br><span class="line">continue    跳到下一个断点位置</span><br><span class="line">quit     退出</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
 <h1 id="20-linuxc一站式编程"><a class="markdownIt-Anchor" href="#20-linuxc一站式编程"></a> 2.0 LinuxC一站式编程</h1>
 <p>参考网址： <a target="_blank" rel="noopener" href="https://docs.huihoo.com/c/linux-c-programming/ch10.html">https://docs.huihoo.com/c/linux-c-programming/ch10.html</a></p>
