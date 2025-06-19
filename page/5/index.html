@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,121 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/ThinkPHP%206/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/ThinkPHP%206/" class="post-title-link" itemprop="url">ThinkPHP 6</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-19 00:00:00" itemprop="dateCreated datePublished" datetime="2024-07-19T00:00:00+08:00">2024-07-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-15 13:53:41" itemprop="dateModified" datetime="2025-03-15T13:53:41+08:00">2025-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><a target="_blank" rel="noopener" href="https://www.kancloud.cn/manual/thinkphp6_0/1037479">ThinkPHP 6.0文档</a></p>
+<h1 id="composer安装"><a class="markdownIt-Anchor" href="#composer安装"></a> Composer安装</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer create-project topthink/think tp</span><br><span class="line"><span class="comment"># tp是应用根目录名称，可以修改</span></span><br></pre></td></tr></table></figure>
+<h1 id="访问"><a class="markdownIt-Anchor" href="#访问"></a> 访问</h1>
+<ol>
+<li><code>localhost/tp/public/</code> 首页</li>
+<li><code>首页/index.php/index</code> controller下的Index类</li>
+<li><code>首页/index.php/index/?s=hello/value</code> 调用controller下Index类的hello方法，并传入参数value(URL兼容模式)</li>
+<li><code>首页/index.php/hello_world</code> 调用controller下HelloWorld类</li>
+<li><code>首页/index.php/group.blog</code> 调用controller/group下的Blog类</li>
+</ol>
+<h1 id="输出数组"><a class="markdownIt-Anchor" href="#输出数组"></a> 输出数组</h1>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$data</span> = <span class="keyword">array</span>(<span class="string">&#x27;a&#x27;</span> =&gt; <span class="number">1</span>, <span class="string">&#x27;b&#x27;</span> =&gt; <span class="number">2</span>, <span class="string">&#x27;c&#x27;</span> =&gt; <span class="number">3</span>);</span><br><span class="line"><span class="keyword">return</span> <span class="title function_ invoke__">json</span>(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="开启调试"><a class="markdownIt-Anchor" href="#开启调试"></a> 开启调试</h1>
+<p>在应用根目录下新建.env文件</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">APP_DEBUG = true</span><br><span class="line"></span><br><span class="line">[APP]</span><br><span class="line">DEFAULT_TIMEZONE = Asia/Shanghai</span><br><span class="line"></span><br><span class="line">[DATABASE]</span><br><span class="line">TYPE = mysql</span><br><span class="line">HOSTNAME = 127.0.0.1</span><br><span class="line">DATABASE = test</span><br><span class="line">USERNAME = username</span><br><span class="line">PASSWORD = password</span><br><span class="line">HOSTPORT = 3306</span><br><span class="line">CHARSET = utf8</span><br><span class="line">DEBUG = true</span><br><span class="line"></span><br><span class="line">[LANG]</span><br><span class="line">default_lang = zh-cn</span><br></pre></td></tr></table></figure>
+<h1 id="数据库"><a class="markdownIt-Anchor" href="#数据库"></a> 数据库</h1>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="variable">$user</span> = <span class="title class_">Db</span>::<span class="title function_ invoke__">connect</span>(<span class="string">&#x27;mysql&#x27;</span>)-&gt;<span class="title function_ invoke__">table</span>(<span class="string">&#x27;tp_user&#x27;</span>)-&gt;<span class="title function_ invoke__">select</span>();</span><br><span class="line"><span class="comment">// 确定数据库和数据表</span></span><br><span class="line"><span class="keyword">return</span> <span class="title function_ invoke__">json</span>(<span class="variable">$user</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 或者有Model User</span></span><br><span class="line"><span class="variable">$user</span> = <span class="title class_">User</span>::<span class="title function_ invoke__">select</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="model"><a class="markdownIt-Anchor" href="#model"></a> Model</h2>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">namespace</span> <span class="title class_">app</span>\<span class="title class_">model</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">think</span>\<span class="title">Model</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">extends</span> <span class="title">Model</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$connection</span> = <span class="string">&#x27;databaseName&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="查询"><a class="markdownIt-Anchor" href="#查询"></a> 查询</h2>
+<p>Db::getLastSql();可以看上一条sql语句</p>
+<h4 id="一条数据"><a class="markdownIt-Anchor" href="#一条数据"></a> 一条数据</h4>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">table</span>(<span class="string">&#x27;tableName&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;fieldName&#x27;</span>, fieldValue)-&gt;<span class="title function_ invoke__">find</span>(); <span class="comment">// 查询不到返回null</span></span><br><span class="line"><span class="comment">// findFail在查询不到时抛出异常；findEmpty在查询不到时返回空数组</span></span><br></pre></td></tr></table></figure>
+<h3 id="整个表数据集"><a class="markdownIt-Anchor" href="#整个表数据集"></a> 整个表（数据集）</h3>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">table</span>(<span class="string">&#x27;tableName&#x27;</span>)-&gt;<span class="title function_ invoke__">select</span>();</span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;tableNameWithoutPrefix&#x27;</span>)-&gt;<span class="title function_ invoke__">select</span>();</span><br></pre></td></tr></table></figure>
+<h3 id="某条记录的字段值"><a class="markdownIt-Anchor" href="#某条记录的字段值"></a> 某条记录的字段值</h3>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;tableName&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="variable">$id</span>)-&gt;<span class="title function_ invoke__">value</span>(<span class="string">&#x27;field&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="一列键值对"><a class="markdownIt-Anchor" href="#一列键值对"></a> 一列（键值对）</h3>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;name&#x27;</span>)-&gt;<span class="title function_ invoke__">column</span>(<span class="string">&#x27;fieldAsValue&#x27;</span>, <span class="string">&#x27;fieldAsKey&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="插入"><a class="markdownIt-Anchor" href="#插入"></a> 插入</h2>
+<h3 id="一条数据-2"><a class="markdownIt-Anchor" href="#一条数据-2"></a> 一条数据</h3>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// strict 表示强行插入</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">strict</span>(<span class="literal">false</span>)-&gt;<span class="title function_ invoke__">insert</span>(<span class="variable">$data</span>);</span><br><span class="line"><span class="comment">// 有相同主键则替换</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">replace</span>()-&gt;<span class="title function_ invoke__">insert</span>(<span class="variable">$data</span>);</span><br><span class="line"><span class="comment">// 根据主键自动判断</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">save</span>(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="多条数据"><a class="markdownIt-Anchor" href="#多条数据"></a> 多条数据</h3>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">insertAll</span>(<span class="variable">$data</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="修改"><a class="markdownIt-Anchor" href="#修改"></a> 修改</h2>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="number">232</span>)</span><br><span class="line">                -&gt;<span class="title function_ invoke__">update</span>([ </span><br><span class="line">                  // 下面是SQL表达式</span><br><span class="line">                  <span class="string">&#x27;email&#x27;</span> =&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;UPPER(email)&#x27;</span>),</span><br><span class="line">                    <span class="string">&#x27;price&#x27;</span> =&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;price + 1&#x27;</span>),</span><br><span class="line">                  <span class="string">&#x27;status&#x27;</span>=&gt; <span class="title class_">Db</span>::<span class="title function_ invoke__">raw</span>(<span class="string">&#x27;status - 2&#x27;</span>)</span><br><span class="line">                ]);</span><br></pre></td></tr></table></figure>
+<h2 id="删除"><a class="markdownIt-Anchor" href="#删除"></a> 删除</h2>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 根据主键删除多条数据</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">delete</span>([<span class="number">48</span>,<span class="number">49</span>,<span class="number">50</span>]);</span><br><span class="line"><span class="comment">// 匹配删除</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">where</span>(<span class="string">&#x27;id&#x27;</span>, <span class="number">47</span>)-&gt;<span class="title function_ invoke__">delete</span>();</span><br><span class="line"><span class="comment">// 全部删除</span></span><br><span class="line"><span class="title class_">Db</span>::<span class="title function_ invoke__">name</span>(<span class="string">&#x27;user&#x27;</span>)-&gt;<span class="title function_ invoke__">delete</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">composer require topthink/think-view</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1042,111 +1157,6 @@ Here is some INFO.</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SecurityFilterChain <span class="title function_">filterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> http</span><br><span class="line">                <span class="comment">// 验证请求拦截和放行配置</span></span><br><span class="line">                .authorizeHttpRequests(auth -&gt; &#123;</span><br><span class="line">                    <span class="comment">// 将所有请求全部拦截，一律需要验证</span></span><br><span class="line">                    auth.anyRequest().authenticated();    </span><br><span class="line">                &#125;)</span><br><span class="line">                <span class="comment">// 表单登录相关配置</span></span><br><span class="line">                .formLogin(conf -&gt; &#123;</span><br><span class="line">                    conf.loginPage(<span class="string">&quot;/login&quot;</span>);   <span class="comment">// 将登录页设置为我们自己的登录页面</span></span><br><span class="line">                    conf.loginProcessingUrl(<span class="string">&quot;/doLogin&quot;</span>); <span class="comment">// 登录表单提交的地址，可以自定义</span></span><br><span class="line">                    conf.defaultSuccessUrl(<span class="string">&quot;/&quot;</span>);   <span class="comment">// 登录成功后跳转的页面</span></span><br><span class="line">                    conf.permitAll();    <span class="comment">// 将登录相关的地址放行，否则未登录的用户无法进入登录界面</span></span><br><span class="line">                      <span class="comment">// 用户名和密码的表单字段名称</span></span><br><span class="line">                    conf.usernameParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">                    conf.passwordParameter(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">                &#125;)</span><br><span class="line">                <span class="comment">// 退出登录</span></span><br><span class="line">                .logout(conf -&gt; &#123;</span><br><span class="line">                    ...</span><br><span class="line">                &#125;)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="记住密码"><a class="markdownIt-Anchor" href="#记住密码"></a> 记住密码</h1>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SecurityFilterChain <span class="title function_">filterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> http</span><br><span class="line">                .rememberMe(conf -&gt; &#123;</span><br><span class="line">                    conf.alwaysRemember(<span class="literal">false</span>);</span><br><span class="line">                &#125;)</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringMVC%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringMVC%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">SpringMVC笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-12-04 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-04T00:00:00+08:00">2024-12-04</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-04 10:49:51" itemprop="dateModified" datetime="2025-01-04T10:49:51+08:00">2025-01-04</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="mvc"><a class="markdownIt-Anchor" href="#mvc"></a> MVC</h1>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.0.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h1 id="controller"><a class="markdownIt-Anchor" href="#controller"></a> Controller</h1>
-<h2 id="页面"><a class="markdownIt-Anchor" href="#页面"></a> 页面</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span>   <span class="comment">//直接添加注解即可</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">HelloController</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/index&quot;)</span>   <span class="comment">//直接填写访问路径</span></span><br><span class="line">    <span class="keyword">public</span> ModelAndView <span class="title function_">index</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="type">ModelAndView</span> <span class="variable">modelAndView</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ModelAndView</span>(<span class="string">&quot;index&quot;</span>);</span><br><span class="line">        modelAndView.getModel().put(<span class="string">&quot;arg&quot;</span>, <span class="string">&quot;value&quot;</span>);   <span class="comment">//将name传递给Model</span></span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">          <span class="comment">//返回后会经过视图解析器进行处理</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;/index&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">index</span><span class="params">(Model model)</span>&#123;  <span class="comment">//这里不仅仅可以是Model，还可以是Map、ModelMap</span></span><br><span class="line">        model.addAttribute(<span class="string">&quot;arg&quot;</span>, <span class="string">&quot;value&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="重定向"><a class="markdownIt-Anchor" href="#重定向"></a> 重定向</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/index&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;redirect:page&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="请求转发"><a class="markdownIt-Anchor" href="#请求转发"></a> 请求转发</h2>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/index&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;forward:home&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="bean的web作用域"><a class="markdownIt-Anchor" href="#bean的web作用域"></a> Bean的Web作用域</h1>
-<p>Bean的作用域：</p>
-<ol>
-<li>Singleton</li>
-<li>Prototype</li>
-<li>Request HTTP请求产生新实例，结束后Bean消失</li>
-<li>Session 每一个会话</li>
-<li>Global Session</li>
-</ol>
-<h1 id="restful"><a class="markdownIt-Anchor" href="#restful"></a> RESTFul</h1>
-<blockquote>
-<p>一种设计风格。RESTful风格的设计允许将参数通过URL拼接传到服务端。</p>
-</blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:8080/mvc/index/13579</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(&quot;/index/&#123;str&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">index</span><span class="params">(<span class="meta">@PathVariable</span> String str)</span> &#123;</span><br><span class="line">    System.out.println(str);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;index&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="文件上传"><a class="markdownIt-Anchor" href="#文件上传"></a> 文件上传</h1>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MainInitializer</span> <span class="keyword">extends</span> <span class="title class_">AbstractAnnotationConfigDispatcherServletInitializer</span> &#123;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">customizeRegistration</span><span class="params">(ServletRegistration.Dynamic registration)</span> &#123;</span><br><span class="line">          <span class="comment">// 直接通过registration配置Multipart相关配置，必须配置临时上传路径，建议选择方便打开的</span></span><br><span class="line">        <span class="comment">// 同样可以设置其他属性：maxFileSize, maxRequestSize, fileSizeThreshold</span></span><br><span class="line">        registration.setMultipartConfig(<span class="keyword">new</span> <span class="title class_">MultipartConfigElement</span>(<span class="string">&quot;/path/to/save&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Controller模板</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping(value = &quot;/upload&quot;, method = RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">upload</span><span class="params">(<span class="meta">@RequestParam</span> MultipartFile file)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="type">File</span> <span class="variable">fileObj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;filename.png&quot;</span>);</span><br><span class="line">    file.transferTo(fileObj);</span><br><span class="line">    System.out.println(<span class="string">&quot;用户上传的文件已保存到：&quot;</span>+fileObj.getAbsolutePath());</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;文件上传成功！&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>前端模板</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">&quot;upload&quot;</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span> <span class="attr">name</span>=<span class="string">&quot;file&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
       
     </div>
 

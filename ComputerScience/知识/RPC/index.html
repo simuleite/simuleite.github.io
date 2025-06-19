@@ -28,7 +28,7 @@
 <meta property="og:description" content="Remote Procedure Call 本地函数放到服务器运行，会出现若干问题：  我怎么知道是哪个函数？Call Id 本地函数调用，可以直接用指针找到函数；但是远程过程调用不行。 因此我们需要分别在Client和Server维护一个“函数 &lt;-&gt; Call Id”的映射来确定所调用的函数。 Client如何将参数传送到Server？序列化与反序列化 本地函数调用，参数会压入栈">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-06-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-06-10T12:05:18.962Z">
+<meta property="article:modified_time" content="2025-06-18T07:12:51.799Z">
 <meta property="article:author" content="SIMULEITE">
 <meta property="article:tag" content="知识">
 <meta name="twitter:card" content="summary">
@@ -141,7 +141,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#remote-procedure-call"><span class="nav-text"> Remote Procedure Call</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%B8%AAhttp%E8%AF%B7%E6%B1%82"><span class="nav-text"> 一个HTTP请求</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#remote-procedure-call"><span class="nav-text"> Remote Procedure Call</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%B8%AAhttp%E8%AF%B7%E6%B1%82"><span class="nav-text"> 一个HTTP请求</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#grpc"><span class="nav-text"> gRPC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#protobuf"><span class="nav-text"> Protobuf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stream"><span class="nav-text"> Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#simple-rpc"><span class="nav-text"> Simple RPC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#server-side-streaming-rpc"><span class="nav-text"> Server-side streaming RPC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#client-side-streaming-rpc"><span class="nav-text"> Client-side streaming RPC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bidirectional-streaming-rpc"><span class="nav-text"> Bidirectional streaming RPC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#metadata"><span class="nav-text"> MetaData</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#interceptor"><span class="nav-text"> Interceptor</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -154,7 +154,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -215,9 +215,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-06-10 00:00:00 / 修改时间：20:05:18" itemprop="dateCreated datePublished" datetime="2025-06-10T00:00:00+08:00">2025-06-10</time>
+      <time title="创建时间：2025-06-10 00:00:00" itemprop="dateCreated datePublished" datetime="2025-06-10T00:00:00+08:00">2025-06-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-06-18 15:12:51" itemprop="dateModified" datetime="2025-06-18T15:12:51+08:00">2025-06-18</time>
     </span>
 
   
@@ -245,10 +251,39 @@
 <blockquote>
 <p>早期的RPC不使用HTTP，是因为当时HTTP不能建立长连接，并且HTTP头部过长且不能压缩。HTTP2解决了上述问题。</p>
 </blockquote>
-<h1 id="一个http请求"><a class="markdownIt-Anchor" href="#一个http请求"></a> 一个HTTP请求</h1>
+<h2 id="一个http请求"><a class="markdownIt-Anchor" href="#一个http请求"></a> 一个HTTP请求</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:8080/add?a=1&amp;b=2</span><br><span class="line">&quot;Content-Type&quot;: &quot;application/json&quot;</span><br></pre></td></tr></table></figure>
 <p>这个请求指定了方法add、协议http、数据格式JSON</p>
-
+<span id="more"></span>
+<h1 id="grpc"><a class="markdownIt-Anchor" href="#grpc"></a> gRPC</h1>
+<h2 id="protobuf"><a class="markdownIt-Anchor" href="#protobuf"></a> Protobuf</h2>
+<p>Protocol Buffer，性能优于XML、JSON。</p>
+<ul>
+<li>压缩性能、序列化、传输速度快</li>
+<li>向后兼容（不破坏旧接口）、加密性好（二进制）</li>
+<li>Protobuf需要专门的解析器；只有通过proto文件才能了解数据结构</li>
+</ul>
+<figure class="highlight protobuf"><table><tr><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">HelloReq</span> &#123;</span><br><span class="line">    <span class="keyword">message </span><span class="title class_">InnerReq</span> &#123;</span><br><span class="line">        <span class="type">string</span> name = <span class="number">1</span>;</span><br><span class="line">        <span class="type">string</span> url = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Gender gender = <span class="number">1</span>;</span><br><span class="line">    map&lt;<span class="type">string</span>, <span class="type">string</span>&gt; map = <span class="number">2</span>;</span><br><span class="line">    google.protobuf.Timestamp createTime = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">repeated</span> InnerReq req = <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// -I 路径； --go_out 生成go代码； plugins=grpc:. 使用grpc拓展，使用grpc拓展生成接口代码，放在当前目录下</span><br><span class="line">protoc -I . &lt;filename&gt;.proto --go_out=plugins=grpc:.</span><br></pre></td></tr></table></figure>
+<h2 id="stream"><a class="markdownIt-Anchor" href="#stream"></a> Stream</h2>
+<h3 id="simple-rpc"><a class="markdownIt-Anchor" href="#simple-rpc"></a> Simple RPC</h3>
+<p>Client和Server都建立短连接。</p>
+<h3 id="server-side-streaming-rpc"><a class="markdownIt-Anchor" href="#server-side-streaming-rpc"></a> Server-side streaming RPC</h3>
+<p>Client发送1次请求，Server返回一段连续的Stream。<br />
+例如，Client发送一个股票代码，Server连续发送实时的K线数据。</p>
+<figure class="highlight protobuf"><table><tr><td class="code"><pre><span class="line"><span class="keyword">service </span><span class="title class_">Greeter</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">rpc</span> GetStream(StreamReq) <span class="keyword">returns</span> (stream StreamResp)</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="client-side-streaming-rpc"><a class="markdownIt-Anchor" href="#client-side-streaming-rpc"></a> Client-side streaming RPC</h3>
+<p>与Server-side相反。<br />
+例如，Server向Client请求当前室温，物联网终端Client不断向Server发送实时室温。</p>
+<figure class="highlight protobuf"><table><tr><td class="code"><pre><span class="line"><span class="keyword">service </span><span class="title class_">Greeter</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">rpc</span> GetStream(stream StreamReq) <span class="keyword">returns</span> (StreamResp)</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="bidirectional-streaming-rpc"><a class="markdownIt-Anchor" href="#bidirectional-streaming-rpc"></a> Bidirectional streaming RPC</h3>
+<p>Client与Server都可以向对方发送数据流，即实时交互。例如Chat Bot。</p>
+<figure class="highlight protobuf"><table><tr><td class="code"><pre><span class="line"><span class="keyword">service </span><span class="title class_">Greeter</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">rpc</span> GetStream(stream StreamReq) <span class="keyword">returns</span> (stream StreamResp)</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="metadata"><a class="markdownIt-Anchor" href="#metadata"></a> MetaData</h2>
+<p>gRPC和HTTP一样，可以携带一些MetaData</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">:authority [localhost:port]</span><br><span class="line">content-type [application/grpc]</span><br><span class="line">user-agent [grpc-gp/version]</span><br><span class="line"></span><br><span class="line">data [your_data]</span><br></pre></td></tr></table></figure>
+<h1 id="interceptor"><a class="markdownIt-Anchor" href="#interceptor"></a> Interceptor</h1>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">interceptorCust := <span class="function"><span class="keyword">func</span><span class="params">(ctx context.Context, req Interface&#123;&#125;, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler)</span></span> (resp Interface&#123;&#125;, err <span class="type">error</span>) &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;接收到新请求: &quot;</span>, req)</span><br><span class="line">    start := time.Now()</span><br><span class="line"></span><br><span class="line">    res, err := handler(ctx, req)</span><br><span class="line"></span><br><span class="line">    fmt.Println(<span class="string">&quot;请求完成，耗时: &quot;</span>, time.Since(start))</span><br><span class="line">    <span class="keyword">return</span> res, err</span><br><span class="line">&#125;</span><br><span class="line">opt := grpc.UnaryInterceptor(interceptorCust)</span><br><span class="line">g := grpc.NewServer(opt)</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -269,6 +304,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E6%85%A2sql%E4%BC%98%E5%8C%96/" rel="next" title="慢sql优化">
+                  慢sql优化 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>

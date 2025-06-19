@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -208,9 +208,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-06-10 00:00:00 / 修改时间：20:05:18" itemprop="dateCreated datePublished" datetime="2025-06-10T00:00:00+08:00">2025-06-10</time>
+      <time title="创建时间：2025-06-10 00:00:00" itemprop="dateCreated datePublished" datetime="2025-06-10T00:00:00+08:00">2025-06-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-06-18 15:12:51" itemprop="dateModified" datetime="2025-06-18T15:12:51+08:00">2025-06-18</time>
     </span>
 
   
@@ -239,9 +245,278 @@
 <blockquote>
 <p>早期的RPC不使用HTTP，是因为当时HTTP不能建立长连接，并且HTTP头部过长且不能压缩。HTTP2解决了上述问题。</p>
 </blockquote>
-<h1 id="一个http请求"><a class="markdownIt-Anchor" href="#一个http请求"></a> 一个HTTP请求</h1>
+<h2 id="一个http请求"><a class="markdownIt-Anchor" href="#一个http请求"></a> 一个HTTP请求</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:8080/add?a=1&amp;b=2</span><br><span class="line">&quot;Content-Type&quot;: &quot;application/json&quot;</span><br></pre></td></tr></table></figure>
 <p>这个请求指定了方法add、协议http、数据格式JSON</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/RPC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/%E6%85%A2sql%E4%BC%98%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E6%85%A2sql%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">慢sql优化</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-06-13 00:00:00 / 修改时间：09:59:27" itemprop="dateCreated datePublished" datetime="2025-06-13T00:00:00+08:00">2025-06-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="数据分页优化"><a class="markdownIt-Anchor" href="#数据分页优化"></a> 数据分页优化</h1>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> your_table <span class="keyword">where</span> type <span class="operator">=</span> ? limit <span class="keyword">start</span>, <span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<p><code>limit</code>的分页方式是查出select的所有数据，然后舍弃<code>start</code>之前的数据。因此对于大数据量，性能很低。</p>
+<h2 id="优化方案"><a class="markdownIt-Anchor" href="#优化方案"></a> 优化方案</h2>
+<h3 id="偏移id"><a class="markdownIt-Anchor" href="#偏移id"></a> 偏移ID</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 深分页慢sql，51sec</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> ename<span class="operator">=</span><span class="string">&#x27;svZLER&#x27;</span> limit <span class="number">1000000</span>, <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 使用id回表优化查询，44sec</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> id <span class="keyword">in</span> (<span class="keyword">select</span> id <span class="keyword">from</span> emp <span class="keyword">where</span> ename<span class="operator">=</span><span class="string">&#x27;eMxdWz&#x27;</span>) limit <span class="number">1000000</span>, <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 子查询使用二级索引深分页，然后回表，37sec</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">inner</span> <span class="keyword">join</span> (<span class="keyword">select</span> id <span class="keyword">from</span> emp <span class="keyword">where</span> ename<span class="operator">=</span><span class="string">&#x27;eMxdWz&#x27;</span> limit <span class="number">1000000</span>, <span class="number">10</span>) b <span class="keyword">using</span>(id) ;</span><br><span class="line"><span class="comment">-- b using(id) 相当于 on b.id = emp.id</span></span><br></pre></td></tr></table></figure>
+<h3 id="分段查询"><a class="markdownIt-Anchor" href="#分段查询"></a> 分段查询</h3>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">MQ消息队列</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-12 00:00:00" itemprop="dateCreated datePublished" datetime="2025-05-12T00:00:00+08:00">2025-05-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-06-11 10:03:55" itemprop="dateModified" datetime="2025-06-11T10:03:55+08:00">2025-06-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="消息队列3大目标"><a class="markdownIt-Anchor" href="#消息队列3大目标"></a> 消息队列3大目标</h1>
+<h2 id="异步"><a class="markdownIt-Anchor" href="#异步"></a> 异步</h2>
+<p>在生产者-消费者速度不匹配的情况下，使用异步可以减少等待，提高效率。</p>
+<h2 id="解耦"><a class="markdownIt-Anchor" href="#解耦"></a> 解耦</h2>
+<p>多个生产者可以通过消息队列管道集合成1条链路；也可以将1个生产者的消息负载均衡给多个消费者（只发送1条消息给MQ，MQ广播多份）。例如，增加了一个数据分析业务，这时候不需要修改业务代码，只需要配置MQ发送相应消息到大数据系统Server即可。<br />
+同时，生产者只需要关心将消息发送给MQ，无需关心后续处理（消费者挂了怎么办）；MQ会负责和消费者通信。</p>
+<h2 id="削峰生产者-消费者速度不同步"><a class="markdownIt-Anchor" href="#削峰生产者-消费者速度不同步"></a> 削峰（生产者-消费者速度不同步）</h2>
+<p>由于队列本身是一条管道，拥有一定容量，因此可以削峰填谷，解决一些瞬时高并发流量。</p>
+<h1 id="消息队列的关键问题"><a class="markdownIt-Anchor" href="#消息队列的关键问题"></a> 消息队列的关键问题</h1>
+<h2 id="c-系统一致性"><a class="markdownIt-Anchor" href="#c-系统一致性"></a> C 系统一致性</h2>
+<p>A系统通过MQ将消息发送给B、C完成后续业务，B成功而C失败，这时如何保证一致性？</p>
+<h2 id="a-系统可用性"><a class="markdownIt-Anchor" href="#a-系统可用性"></a> A 系统可用性</h2>
+<p>MQ宕机，依赖MQ管道的服务就不可用。MQ应该有高可用性和稳定性，不应该成为系统薄弱环节。<br />
+因此需要MQ集群，这时候又需要新的中间层NameSrv来管理维护MQ集群。</p>
+<h2 id="系统复杂度"><a class="markdownIt-Anchor" href="#系统复杂度"></a> 系统复杂度</h2>
+<ul>
+<li>如何保证消费不丢失？</li>
+<li>如何避免重复消费？</li>
+<li>如何保证消息顺序？</li>
+</ul>
+<h2 id="幂等性"><a class="markdownIt-Anchor" href="#幂等性"></a> 幂等性</h2>
+<blockquote>
+<p>多次消费结果相当于只消费一次。</p>
+</blockquote>
+<p>可以用业务id作为消息key，对key校验有没有消费过。<br />
+如果重复消费，确保多次消费和1次消费的结果相同。</p>
+<ul>
+<li>发送消息重复：发送后，网络断开，没收到ACK，导致重复发送</li>
+<li>消费消息重复：Consumer收到消息并处理完成，但是由于网络问题，Consumer应答没有发送到Broker；Broker遵从<strong>至少消费一次原则</strong>，重新发送。</li>
+<li>Rebalance消息重复：Consumer Group的Consumer数量发生变化，触发Rebalance，此时Consumer可能会收到曾经被消费过的消息。</li>
+</ul>
+<h1 id="message-queue产品"><a class="markdownIt-Anchor" href="#message-queue产品"></a> Message Queue产品</h1>
+<table>
+<thead>
+<tr>
+<th>产品</th>
+<th>优势</th>
+<th>劣势</th>
+<th>场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kafaka</td>
+<td>吞吐量大、性能高、集群高可用</td>
+<td>丢数据、功能单一</td>
+<td>MapReduce大数据采集、日志分析</td>
+</tr>
+<tr>
+<td>RabbitMQ</td>
+<td>消息可靠、功能全面</td>
+<td>erlang语言不容易定制，吞吐量较低</td>
+<td>小规模服务调用</td>
+</tr>
+<tr>
+<td>Pulsar</td>
+<td>Bookeeper，消息可靠性高</td>
+<td>使用较少、生态有差距</td>
+<td>大规模服务调用</td>
+</tr>
+<tr>
+<td>RocketMQ</td>
+<td>高吞吐、高性能、高可用。Java语言容易定制。</td>
+<td>Java服务加载慢</td>
+<td>功能全面，尤其适合金融、电商、互联网场景</td>
+</tr>
+</tbody>
+</table>
+<h1 id="消息队列工作方式"><a class="markdownIt-Anchor" href="#消息队列工作方式"></a> 消息队列工作方式</h1>
+<p>RocketMQ和Kafka都使用Topic，每个Topic的内容会分发到多个管道（Partition或MessageQueue）。而Kafka在Topic过多的情况下，吞吐量会严重下降；RocketMQ解决了这个问题。</p>
+<h1 id="rocketmq集群"><a class="markdownIt-Anchor" href="#rocketmq集群"></a> RocketMQ集群</h1>
+<p>在RocketMQ集群中，多台NameSrv是平等的，而Broker会组成多个主-从结构。<br />
+Slave只负责备份，只有Master(brokerId=0)才会发送消息。<br />
+然而主从结构的Slave，由于brokerId不为0，不会自动切换为Master，需要人工介入。</p>
+<h2 id="dledger高可用集群"><a class="markdownIt-Anchor" href="#dledger高可用集群"></a> Dledger高可用集群</h2>
+<p>Dleger是一种Raft算法，实现了Leader选举。<br />
+Dledger会从Followers中自动选举Leader，从而保证高可用。</p>
+<h1 id="三种发送方式"><a class="markdownIt-Anchor" href="#三种发送方式"></a> 三种发送方式</h1>
+<h2 id="单向发送"><a class="markdownIt-Anchor" href="#单向发送"></a> 单向发送</h2>
+<p>Producer只发送消息、不处理ACK；MQ也不发送ACK。消息可靠性没有保障。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回值为null，不处理ACK。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendOneWay</span><span class="params">(Message msg)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    msg.setTopic(withNamespace(msg.getTopic()));</span><br><span class="line">    <span class="built_in">this</span>.defaultMQProducerImpl.sendOneWay(msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="同步发送"><a class="markdownIt-Anchor" href="#同步发送"></a> 同步发送</h2>
+<p>Producer等待MQ ACK，才继续操作。同步发送可能会发生阻塞。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> SendResult <span class="title function_">sendResult</span><span class="params">(</span></span><br><span class="line"><span class="params">        Collection&lt;Message&gt; msgs)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.defaultMQProducerImpl.send(batch(msgs));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="异步发送"><a class="markdownIt-Anchor" href="#异步发送"></a> 异步发送</h2>
+<p>Producer不等待MQ ACK（异步ACK，也能保证不丢失消息），直接发送消息。<br />
+但是异步发送也有代价，我们不能发送完立刻<code>producer.shutdown()</code>，而需要设置一段延迟，使producer能够捕捉Exception并重发消息。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// send方法本身没有返回值，不会阻塞；但是能够处理Exception</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">send</span><span class="params">(Message msg, </span></span><br><span class="line"><span class="params">                 SendCallBack sendCallBack)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    msg.setTopic(withNamespace(msg.getTopic()));</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.getAutoBatch() &amp;&amp; !(msg <span class="keyword">instanceof</span> MessageBatch)) &#123;</span><br><span class="line">            sendByAccumulator(msg, <span class="literal">null</span>, sendCallBack);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sendDirect(msg, <span class="literal">null</span>, sendCallBack);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">        sendCallBack.onException(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">producer.send(msg, <span class="keyword">new</span> <span class="title class_">SendCallBack</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onSuccess</span><span class="params">(SendResult sendResult)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onException</span><span class="params">(Throwable e)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h1 id="两种消费方式"><a class="markdownIt-Anchor" href="#两种消费方式"></a> 两种消费方式</h1>
+<h2 id="consumer拉取"><a class="markdownIt-Anchor" href="#consumer拉取"></a> Consumer拉取</h2>
+<p>Consumer维护一个轮询拉取，Broker收到拉取请求后发送消息。</p>
+<h2 id="broker推送"><a class="markdownIt-Anchor" href="#broker推送"></a> Broker推送</h2>
+<p><strong>一般只用推模式</strong>，因为Consumer需要轮询（即使Broker不一定有消息），会消耗部分资源。</p>
+<h1 id="消息类型"><a class="markdownIt-Anchor" href="#消息类型"></a> 消息类型</h1>
+<h2 id="顺序消息"><a class="markdownIt-Anchor" href="#顺序消息"></a> 顺序消息</h2>
+<p>局部有序，实际上是序号相同的消息发送到同一个队列管道，然后消费者从一个管道中拿消息，从而保证有序性。</p>
+<h2 id="广播消息"><a class="markdownIt-Anchor" href="#广播消息"></a> 广播消息</h2>
+<p>正常情况下，多个Consumer是负载均衡模式，一条消息只会发到其中一个Consumer消费；而在广播模式下，所有的Consumer都会收到消息。<br />
+在代码层面，正常情况下<strong>服务端统一</strong>维护消费者位点；而在广播模式下<strong>客户端本地</strong><code>.rocket_offsets</code>维护消费者位点</p>
+<h1 id="消息重试"><a class="markdownIt-Anchor" href="#消息重试"></a> 消息重试</h1>
+<h2 id="顺序消息-2"><a class="markdownIt-Anchor" href="#顺序消息-2"></a> 顺序消息</h2>
+<p>顺序消息要拿到ACK才会发送下一条消息，否则会重发消息</p>
+<h2 id="无序消息"><a class="markdownIt-Anchor" href="#无序消息"></a> 无序消息</h2>
+<p>为了保障无需消息的消费，MQ设置了一个消息重试间隔时间。如果没有回复，间隔10s-30s-1m-2m…来重发消息，最多重试16次（默认）。<br />
+如果达到重试上限还未消费，该消息称为<strong>死信消息</strong>。死信消息会进入<strong>死信队列</strong>。</p>
+<h3 id="死信队列"><a class="markdownIt-Anchor" href="#死信队列"></a> 死信队列</h3>
+<p>死信队列不归属于Topic、Consumer，而是归属于Group Id。<br />
+死信队列的消息不会被再次重复消费，有效期为3天，过期删除。<br />
+可以手工在监控平台里处理死信，获取messageId后自己处理。</p>
+<h2 id="重复消费"><a class="markdownIt-Anchor" href="#重复消费"></a> 重复消费</h2>
+<p>网络闪断（成功执行，MQ没收到ACK）、生产者宕机（成功发送到MQ，生产者没收到ACK）会引发重复消费。</p>
 
       
     </div>
@@ -998,315 +1273,6 @@ Streamable HTTP，高并发，需要维护长连接</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/MQ%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">MQ消息队列</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-05-12 00:00:00" itemprop="dateCreated datePublished" datetime="2025-05-12T00:00:00+08:00">2025-05-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-05-22 15:33:24" itemprop="dateModified" datetime="2025-05-22T15:33:24+08:00">2025-05-22</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="消息队列3大目标"><a class="markdownIt-Anchor" href="#消息队列3大目标"></a> 消息队列3大目标</h1>
-<h2 id="异步"><a class="markdownIt-Anchor" href="#异步"></a> 异步</h2>
-<p>在生产者-消费者速度不匹配的情况下，使用异步可以减少等待，提高效率。</p>
-<h2 id="解耦"><a class="markdownIt-Anchor" href="#解耦"></a> 解耦</h2>
-<p>多个生产者可以通过消息队列管道集合成1条链路；也可以将1个生产者的消息负载均衡给多个消费者（只发送1条消息给MQ，MQ广播多份）。例如，增加了一个数据分析业务，这时候不需要修改业务代码，只需要配置MQ发送相应消息到大数据系统Server即可。<br />
-同时，生产者只需要关心将消息发送给MQ，无需关心后续处理（消费者挂了怎么办）；MQ会负责和消费者通信。</p>
-<h2 id="削峰生产者-消费者速度不同步"><a class="markdownIt-Anchor" href="#削峰生产者-消费者速度不同步"></a> 削峰（生产者-消费者速度不同步）</h2>
-<p>由于队列本身是一条管道，拥有一定容量，因此可以削峰填谷，解决一些瞬时高并发流量。</p>
-<h1 id="消息队列的关键问题"><a class="markdownIt-Anchor" href="#消息队列的关键问题"></a> 消息队列的关键问题</h1>
-<h2 id="c-系统一致性"><a class="markdownIt-Anchor" href="#c-系统一致性"></a> C 系统一致性</h2>
-<p>A系统通过MQ将消息发送给B、C完成后续业务，B成功而C失败，这时如何保证一致性？</p>
-<h2 id="a-系统可用性"><a class="markdownIt-Anchor" href="#a-系统可用性"></a> A 系统可用性</h2>
-<p>MQ宕机，依赖MQ管道的服务就不可用。MQ应该有高可用性和稳定性，不应该成为系统薄弱环节。<br />
-因此需要MQ集群，这时候又需要新的中间层NameSrv来管理维护MQ集群。</p>
-<h2 id="系统复杂度"><a class="markdownIt-Anchor" href="#系统复杂度"></a> 系统复杂度</h2>
-<ul>
-<li>如何保证消费不丢失？</li>
-<li>如何避免重复消费？</li>
-<li>如何保证消息顺序？</li>
-</ul>
-<h2 id="幂等性"><a class="markdownIt-Anchor" href="#幂等性"></a> 幂等性</h2>
-<blockquote>
-<p>多次消费结果相当于只消费一次。</p>
-</blockquote>
-<p>可以用业务id作为消息key，对key校验有没有消费过。<br />
-如果重复消费，确保多次消费和1次消费的结果相同。</p>
-<ul>
-<li>发送消息重复：发送后，网络断开，没收到ACK，导致重复发送</li>
-<li>消费消息重复：Consumer收到消息并处理完成，但是由于网络问题，Consumer应答没有发送到Broker；Broker遵从<strong>至少消费一次原则</strong>，重新发送。</li>
-<li>Rebalance消息重复：Consumer Group的Consumer数量发生变化，触发Rebalance，此时Consumer可能会收到曾经被消费过的消息。</li>
-</ul>
-<h3 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h3>
-<h1 id="message-queue产品"><a class="markdownIt-Anchor" href="#message-queue产品"></a> Message Queue产品</h1>
-<table>
-<thead>
-<tr>
-<th>产品</th>
-<th>优势</th>
-<th>劣势</th>
-<th>场景</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Kafaka</td>
-<td>吞吐量大、性能高、集群高可用</td>
-<td>丢数据、功能单一</td>
-<td>MapReduce大数据采集、日志分析</td>
-</tr>
-<tr>
-<td>RabbitMQ</td>
-<td>消息可靠、功能全面</td>
-<td>erlang语言不容易定制，吞吐量较低</td>
-<td>小规模服务调用</td>
-</tr>
-<tr>
-<td>Pulsar</td>
-<td>Bookeeper，消息可靠性高</td>
-<td>使用较少、生态有差距</td>
-<td>大规模服务调用</td>
-</tr>
-<tr>
-<td>RocketMQ</td>
-<td>高吞吐、高性能、高可用。Java语言容易定制。</td>
-<td>Java服务加载慢</td>
-<td>功能全面，尤其适合金融、电商、互联网场景</td>
-</tr>
-</tbody>
-</table>
-<h1 id="消息队列工作方式"><a class="markdownIt-Anchor" href="#消息队列工作方式"></a> 消息队列工作方式</h1>
-<p>RocketMQ和Kafka都使用Topic，每个Topic的内容会分发到多个管道（Partition或MessageQueue）。而Kafka在Topic过多的情况下，吞吐量会严重下降；RocketMQ解决了这个问题。</p>
-<h1 id="rocketmq集群"><a class="markdownIt-Anchor" href="#rocketmq集群"></a> RocketMQ集群</h1>
-<p>在RocketMQ集群中，多台NameSrv是平等的，而Broker会组成多个主-从结构。<br />
-Slave只负责备份，只有Master(brokerId=0)才会发送消息。<br />
-然而主从结构的Slave，由于brokerId不为0，不会自动切换为Master，需要人工介入。</p>
-<h2 id="dledger高可用集群"><a class="markdownIt-Anchor" href="#dledger高可用集群"></a> Dledger高可用集群</h2>
-<p>Dleger是一种Raft算法，实现了Leader选举。<br />
-Dledger会从Followers中自动选举Leader，从而保证高可用。</p>
-<h1 id="三种发送方式"><a class="markdownIt-Anchor" href="#三种发送方式"></a> 三种发送方式</h1>
-<h2 id="单向发送"><a class="markdownIt-Anchor" href="#单向发送"></a> 单向发送</h2>
-<p>Producer只发送消息、不处理ACK；MQ也不发送ACK。消息可靠性没有保障。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 返回值为null，不处理ACK。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">sendOneWay</span><span class="params">(Message msg)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    msg.setTopic(withNamespace(msg.getTopic()));</span><br><span class="line">    <span class="built_in">this</span>.defaultMQProducerImpl.sendOneWay(msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="同步发送"><a class="markdownIt-Anchor" href="#同步发送"></a> 同步发送</h2>
-<p>Producer等待MQ ACK，才继续操作。同步发送可能会发生阻塞。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> SendResult <span class="title function_">sendResult</span><span class="params">(</span></span><br><span class="line"><span class="params">        Collection&lt;Message&gt; msgs)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.defaultMQProducerImpl.send(batch(msgs));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="异步发送"><a class="markdownIt-Anchor" href="#异步发送"></a> 异步发送</h2>
-<p>Producer不等待MQ ACK（异步ACK，也能保证不丢失消息），直接发送消息。<br />
-但是异步发送也有代价，我们不能发送完立刻<code>producer.shutdown()</code>，而需要设置一段延迟，使producer能够捕捉Exception并重发消息。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// send方法本身没有返回值，不会阻塞；但是能够处理Exception</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">send</span><span class="params">(Message msg, </span></span><br><span class="line"><span class="params">                 SendCallBack sendCallBack)</span> <span class="keyword">throws</span> ...Exception &#123;</span><br><span class="line">    msg.setTopic(withNamespace(msg.getTopic()));</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.getAutoBatch() &amp;&amp; !(msg <span class="keyword">instanceof</span> MessageBatch)) &#123;</span><br><span class="line">            sendByAccumulator(msg, <span class="literal">null</span>, sendCallBack);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            sendDirect(msg, <span class="literal">null</span>, sendCallBack);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (Throwable e) &#123;</span><br><span class="line">        sendCallBack.onException(e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">producer.send(msg, <span class="keyword">new</span> <span class="title class_">SendCallBack</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onSuccess</span><span class="params">(SendResult sendResult)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onException</span><span class="params">(Throwable e)</span> &#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h1 id="两种消费方式"><a class="markdownIt-Anchor" href="#两种消费方式"></a> 两种消费方式</h1>
-<h2 id="consumer拉取"><a class="markdownIt-Anchor" href="#consumer拉取"></a> Consumer拉取</h2>
-<p>Consumer维护一个轮询拉取，Broker收到拉取请求后发送消息。</p>
-<h2 id="broker推送"><a class="markdownIt-Anchor" href="#broker推送"></a> Broker推送</h2>
-<p><strong>一般只用推模式</strong>，因为Consumer需要轮询（即使Broker不一定有消息），会消耗部分资源。</p>
-<h1 id="消息类型"><a class="markdownIt-Anchor" href="#消息类型"></a> 消息类型</h1>
-<h2 id="顺序消息"><a class="markdownIt-Anchor" href="#顺序消息"></a> 顺序消息</h2>
-<p>局部有序，实际上是序号相同的消息发送到同一个队列管道，然后消费者从一个管道中拿消息，从而保证有序性。</p>
-<h2 id="广播消息"><a class="markdownIt-Anchor" href="#广播消息"></a> 广播消息</h2>
-<p>正常情况下，多个Consumer是负载均衡模式，一条消息只会发到其中一个Consumer消费；而在广播模式下，所有的Consumer都会收到消息。<br />
-在代码层面，正常情况下<strong>服务端统一</strong>维护消费者位点；而在广播模式下<strong>客户端本地</strong><code>.rocket_offsets</code>维护消费者位点</p>
-<h1 id="消息重试"><a class="markdownIt-Anchor" href="#消息重试"></a> 消息重试</h1>
-<h2 id="顺序消息-2"><a class="markdownIt-Anchor" href="#顺序消息-2"></a> 顺序消息</h2>
-<p>顺序消息要拿到ACK才会发送下一条消息，否则会重发消息</p>
-<h2 id="无序消息"><a class="markdownIt-Anchor" href="#无序消息"></a> 无序消息</h2>
-<p>为了保障无需消息的消费，MQ设置了一个消息重试间隔时间。如果没有回复，间隔10s-30s-1m-2m…来重发消息，最多重试16次（默认）。<br />
-如果达到重试上限还未消费，该消息称为<strong>死信消息</strong>。死信消息会进入<strong>死信队列</strong>。</p>
-<h3 id="死信队列"><a class="markdownIt-Anchor" href="#死信队列"></a> 死信队列</h3>
-<p>死信队列不归属于Topic、Consumer，而是归属于Group Id。<br />
-死信队列的消息不会被再次重复消费，有效期为3天，过期删除。<br />
-可以手工在监控平台里处理死信，获取messageId后自己处理。</p>
-<h2 id="重复消费"><a class="markdownIt-Anchor" href="#重复消费"></a> 重复消费</h2>
-<p>网络闪断（成功执行，MQ没收到ACK）、生产者宕机（成功发送到MQ，生产者没收到ACK）会引发重复消费。</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/InnoDB%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/InnoDB%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">InnoDB原理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-02-25 00:00:00" itemprop="dateCreated datePublished" datetime="2025-02-25T00:00:00+08:00">2025-02-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-05-22 09:50:19" itemprop="dateModified" datetime="2025-05-22T09:50:19+08:00">2025-05-22</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="mysql体系结构"><a class="markdownIt-Anchor" href="#mysql体系结构"></a> Mysql体系结构</h1>
-<h2 id="db与instance"><a class="markdownIt-Anchor" href="#db与instance"></a> DB与Instance</h2>
-<p>DB：数据库可以是ibd文件、放在内存的文件，是物理操作系统文件或其他形式文件类型的集合。<br />
-Instance：Mysql数据库由后台线程及一个共享内存区组成。</p>
-<blockquote>
-<p>数据库实例才是真正操作数据库文件的。在集群情况下，可能存在一个DB被多个Instance使用的情况。</p>
-</blockquote>
-<p>Mysql被设计为单进程多线程，在OS上的表现是一个进程。</p>
-<h2 id="插件式表存储引擎"><a class="markdownIt-Anchor" href="#插件式表存储引擎"></a> 插件式表存储引擎</h2>
-<blockquote>
-<p>存储引擎基于表，而不是DB。</p>
-</blockquote>
-<blockquote>
-<p>存储引擎对开发人员透明。</p>
-</blockquote>
-<h1 id="索引原理"><a class="markdownIt-Anchor" href="#索引原理"></a> 索引原理</h1>
-<p>MySQL使用的是B+树作为索引的数据结构</p>
-<blockquote>
-<p>B树是一个分支内<strong>按顺序</strong>存放多个节点数据的数据结构；而B+树在此基础上，在分支内只存储索引，只在叶子节点存储数据（这样每一层可以存储更多索引，减少层数），并且在叶节点之间用指针互相连接，提高访问效率。</p>
-</blockquote>
-<h2 id="索引分类"><a class="markdownIt-Anchor" href="#索引分类"></a> 索引分类</h2>
-<h2 id="数据结构"><a class="markdownIt-Anchor" href="#数据结构"></a> 数据结构</h2>
-<ul>
-<li>B+树索引</li>
-<li>哈希索引</li>
-<li>红黑树索引</li>
-</ul>
-<h2 id="功能"><a class="markdownIt-Anchor" href="#功能"></a> 功能</h2>
-<ul>
-<li>主键索引</li>
-<li>唯一索引</li>
-<li>普通索引（一般我们为优化sql建立的索引）</li>
-<li>全文索引</li>
-<li>联合索引</li>
-</ul>
-<h2 id="存储方式"><a class="markdownIt-Anchor" href="#存储方式"></a> 存储方式</h2>
-<ul>
-<li>聚簇索引</li>
-<li>非聚簇索引（索引与数据分开，需要回表）</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/InnoDB%E5%8E%9F%E7%90%86/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

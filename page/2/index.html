@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">71</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,128 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/InnoDB%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/InnoDB%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">InnoDB原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-02-25 00:00:00" itemprop="dateCreated datePublished" datetime="2025-02-25T00:00:00+08:00">2025-02-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-22 09:50:19" itemprop="dateModified" datetime="2025-05-22T09:50:19+08:00">2025-05-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="mysql体系结构"><a class="markdownIt-Anchor" href="#mysql体系结构"></a> Mysql体系结构</h1>
+<h2 id="db与instance"><a class="markdownIt-Anchor" href="#db与instance"></a> DB与Instance</h2>
+<p>DB：数据库可以是ibd文件、放在内存的文件，是物理操作系统文件或其他形式文件类型的集合。<br />
+Instance：Mysql数据库由后台线程及一个共享内存区组成。</p>
+<blockquote>
+<p>数据库实例才是真正操作数据库文件的。在集群情况下，可能存在一个DB被多个Instance使用的情况。</p>
+</blockquote>
+<p>Mysql被设计为单进程多线程，在OS上的表现是一个进程。</p>
+<h2 id="插件式表存储引擎"><a class="markdownIt-Anchor" href="#插件式表存储引擎"></a> 插件式表存储引擎</h2>
+<blockquote>
+<p>存储引擎基于表，而不是DB。</p>
+</blockquote>
+<blockquote>
+<p>存储引擎对开发人员透明。</p>
+</blockquote>
+<h1 id="索引原理"><a class="markdownIt-Anchor" href="#索引原理"></a> 索引原理</h1>
+<p>MySQL使用的是B+树作为索引的数据结构</p>
+<blockquote>
+<p>B树是一个分支内<strong>按顺序</strong>存放多个节点数据的数据结构；而B+树在此基础上，在分支内只存储索引，只在叶子节点存储数据（这样每一层可以存储更多索引，减少层数），并且在叶节点之间用指针互相连接，提高访问效率。</p>
+</blockquote>
+<h2 id="索引分类"><a class="markdownIt-Anchor" href="#索引分类"></a> 索引分类</h2>
+<h2 id="数据结构"><a class="markdownIt-Anchor" href="#数据结构"></a> 数据结构</h2>
+<ul>
+<li>B+树索引</li>
+<li>哈希索引</li>
+<li>红黑树索引</li>
+</ul>
+<h2 id="功能"><a class="markdownIt-Anchor" href="#功能"></a> 功能</h2>
+<ul>
+<li>主键索引</li>
+<li>唯一索引</li>
+<li>普通索引（一般我们为优化sql建立的索引）</li>
+<li>全文索引</li>
+<li>联合索引</li>
+</ul>
+<h2 id="存储方式"><a class="markdownIt-Anchor" href="#存储方式"></a> 存储方式</h2>
+<ul>
+<li>聚簇索引</li>
+<li>非聚簇索引（索引与数据分开，需要回表）</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/InnoDB%E5%8E%9F%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1179,121 +1301,6 @@ Debian官方软件源：官网/mirror/list</li>
 <li>重启ssh</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Ubuntu/Debian</span></span><br><span class="line">sudo systemctl restart ssh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">CentOS/RHEL</span></span><br><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/ThreadPool%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/ThreadPool%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="post-title-link" itemprop="url">ThreadPool线程池</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-04-10 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-10T00:00:00+08:00">2025-04-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-24 16:58:31" itemprop="dateModified" datetime="2025-04-24T16:58:31+08:00">2025-04-24</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="线程资源通过线程池提供"><a class="markdownIt-Anchor" href="#线程资源通过线程池提供"></a> 线程资源通过线程池提供</h1>
-<p>线程池可以减少创建、销毁线程的开销，解决资源不足问题。<br />
-如果手动创建线程，容易造成系统存在大量同类线程而导致内存耗尽、过度切换问题。</p>
-<h1 id="不使用executors"><a class="markdownIt-Anchor" href="#不使用executors"></a> 不使用Executors</h1>
-<p><code>Executors.newFixedThreadPool()</code> 固定大小线程池<br />
-<code>Executors.newSingleThreadExecutor()</code> 单线程池<br />
-<code>Executors.newCachedThreadPool()</code> 动态线程池</p>
-<blockquote>
-<p>Executors底层仍然使用<code>new</code>来创建线程，容易造成OOM。</p>
-</blockquote>
-<h2 id="自己调用threadpoolexecutor"><a class="markdownIt-Anchor" href="#自己调用threadpoolexecutor"></a> 自己调用ThreadPoolExecutor</h2>
-<p>推荐的方法使，直接自己调用<code>new ThreadPoolExecutor</code>来创建线程池，设置自己的参数</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">ThreadPoolExecutor</span><span class="params">(</span></span><br><span class="line"><span class="params">    <span class="meta">@Range(from = 0, to = Integer.MAX_VALUE)</span> <span class="type">int</span>  corePoolSize,</span></span><br><span class="line"><span class="params">    <span class="meta">@Range(from = 1, to = Integer.MAX_VALUE)</span> <span class="type">int</span>  maximumPoolSize,</span></span><br><span class="line"><span class="params">    <span class="meta">@Range(from = 0, to = Long.MAX_VALUE)</span>    <span class="type">long</span> keepAliveTime,</span></span><br><span class="line"><span class="params">    <span class="meta">@NotNull</span> TimeUnit unit,</span></span><br><span class="line"><span class="params">    <span class="meta">@NotNull</span> BlockingQueue&lt;Runnable&gt; workQueue,</span></span><br><span class="line"><span class="params">    <span class="meta">@NotNull</span> ThreadFactory threadFactory,</span></span><br><span class="line"><span class="params">    <span class="meta">@NotNull</span> RejectedExecutionHandler handler</span></span><br><span class="line"><span class="params">)</span> &#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Example</span></span><br><span class="line"><span class="type">ThreadPoolExecutor</span> <span class="variable">threadPool</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>(</span><br><span class="line">    <span class="number">5</span>,</span><br><span class="line">    <span class="number">10</span>,</span><br><span class="line">    <span class="number">0L</span>,</span><br><span class="line">    TimeUnit.SECONDS,</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">ArrayBlockingQueue</span>&lt;Runnable&gt;(<span class="number">10</span>), <span class="comment">// 10为容量</span></span><br><span class="line">    Executors.defaultThreadFactory(),</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">ThreadPoolExecutor</span>.AbortPolicy()</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p><code>corePoolSize</code> 核心线程数量。<br />
-<code>maximumPoolSize</code> 最大线程数量（核心 + 临时）。只有核心线程满了，而且阻塞队列也满了，才会创建临时线程。<br />
-<code>keepAliveTime</code> 临时线程的空闲存活时间。<br />
-<code>threadFactory</code> 线程工厂，即以什么方式创建线程。<br />
-<code>handler</code> 核心线程、阻塞队列、临时线程都满了，触发拒绝策略。</p>
-<p><code>Executors</code>的问题在于，它指定的阻塞队列大小是<code>Integer.MAX_VALUE</code>，会导致内存溢出；而<code>Executors.newCachedThreadPool()</code>更是指定了<code>maximumPoolSize</code>为<code>Integer.MAX_VALUE</code>。</p>
-<h2 id="拒绝策略如何保证线程不丢"><a class="markdownIt-Anchor" href="#拒绝策略如何保证线程不丢"></a> 拒绝策略，如何保证线程不丢</h2>
-<p>使用直接拒绝<code>AbortPolicy</code>策略，线程会丢失。此时可以使用</p>
-<ul>
-<li><code>CallerRunsPolicy</code> 直接在主线程同步执行（可能会阻塞主线程）</li>
-<li><code>DiscardOldestPolicy</code> 将队列头部删除，新线程尾部入队（保证新任务优先级）</li>
-<li><code>DiscardPolicy</code> 可以自己拓展，例如将任务放到redis、rocketmq中</li>
-</ul>
-<h2 id="threadpool工作流程"><a class="markdownIt-Anchor" href="#threadpool工作流程"></a> ThreadPool工作流程</h2>
-<p>当前线程数没有达到<code>corePoolSize</code>之前，每个新任务都会触发创建新线程；<br />
-达到以后，才会放到阻塞队列里，等待线程任务执行完成，分发任务给核心线程。<br />
-阻塞队列满了，才会创建临时线程执行任务。</p>
-<h1 id="threadpool如何初始化"><a class="markdownIt-Anchor" href="#threadpool如何初始化"></a> ThreadPool如何初始化？</h1>
-<p>供参考的经验值：</p>
-<ul>
-<li>CPU密集任务（如数据统计、排序）：<br />
-核心线程 = 最大线程 = 核心数 + 1<br />
-减少上下文切换开销</li>
-<li>IO密集任务：<br />
-核心线程 = 核心数 * 2；最大线程 = 核心数 * 4</li>
-</ul>
-<h1 id="动态线程池"><a class="markdownIt-Anchor" href="#动态线程池"></a> 动态线程池</h1>
-
       
     </div>
 

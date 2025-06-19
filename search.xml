@@ -8665,7 +8665,6 @@ FL，多方想要统计一份数据，如果是把多方数据汇合到一处进
 <li>消费消息重复：Consumer收到消息并处理完成，但是由于网络问题，Consumer应答没有发送到Broker；Broker遵从<strong>至少消费一次原则</strong>，重新发送。</li>
 <li>Rebalance消息重复：Consumer Group的Consumer数量发生变化，触发Rebalance，此时Consumer可能会收到曾经被消费过的消息。</li>
 </ul>
-<h3 id="解决方案"><a class="markdownIt-Anchor" href="#解决方案"></a> 解决方案</h3>
 <h1 id="message-queue产品"><a class="markdownIt-Anchor" href="#message-queue产品"></a> Message Queue产品</h1>
 <table>
 <thead>
@@ -8857,9 +8856,53 @@ Machine不能直接执行Goroutine，而需要首先与Processor绑定，由Proc
 <blockquote>
 <p>早期的RPC不使用HTTP，是因为当时HTTP不能建立长连接，并且HTTP头部过长且不能压缩。HTTP2解决了上述问题。</p>
 </blockquote>
-<h1 id="一个http请求"><a class="markdownIt-Anchor" href="#一个http请求"></a> 一个HTTP请求</h1>
+<h2 id="一个http请求"><a class="markdownIt-Anchor" href="#一个http请求"></a> 一个HTTP请求</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">http://localhost:8080/add?a=1&amp;b=2</span><br><span class="line">&quot;Content-Type&quot;: &quot;application/json&quot;</span><br></pre></td></tr></table></figure>
 <p>这个请求指定了方法add、协议http、数据格式JSON</p>
+<span id="more"></span>
+<h1 id="grpc"><a class="markdownIt-Anchor" href="#grpc"></a> gRPC</h1>
+<h2 id="protobuf"><a class="markdownIt-Anchor" href="#protobuf"></a> Protobuf</h2>
+<p>Protocol Buffer，性能优于XML、JSON。</p>
+<ul>
+<li>压缩性能、序列化、传输速度快</li>
+<li>向后兼容（不破坏旧接口）、加密性好（二进制）</li>
+<li>Protobuf需要专门的解析器；只有通过proto文件才能了解数据结构</li>
+</ul>
+<figure class="highlight protobuf"><table><tr><td class="code"><pre><span class="line"><span class="keyword">message </span><span class="title class_">HelloReq</span> &#123;</span><br><span class="line">    <span class="keyword">message </span><span class="title class_">InnerReq</span> &#123;</span><br><span class="line">        <span class="type">string</span> name = <span class="number">1</span>;</span><br><span class="line">        <span class="type">string</span> url = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    Gender gender = <span class="number">1</span>;</span><br><span class="line">    map&lt;<span class="type">string</span>, <span class="type">string</span>&gt; map = <span class="number">2</span>;</span><br><span class="line">    google.protobuf.Timestamp createTime = <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">repeated</span> InnerReq req = <span class="number">4</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">// -I 路径； --go_out 生成go代码； plugins=grpc:. 使用grpc拓展，使用grpc拓展生成接口代码，放在当前目录下</span><br><span class="line">protoc -I . &lt;filename&gt;.proto --go_out=plugins=grpc:.</span><br></pre></td></tr></table></figure>
+<h2 id="stream"><a class="markdownIt-Anchor" href="#stream"></a> Stream</h2>
+<h3 id="simple-rpc"><a class="markdownIt-Anchor" href="#simple-rpc"></a> Simple RPC</h3>
+<p>Client和Server都建立短连接。</p>
+<h3 id="server-side-streaming-rpc"><a class="markdownIt-Anchor" href="#server-side-streaming-rpc"></a> Server-side streaming RPC</h3>
+<p>Client发送1次请求，Server返回一段连续的Stream。<br />
+例如，Client发送一个股票代码，Server连续发送实时的K线数据。</p>
+<figure class="highlight protobuf"><table><tr><td class="code"><pre><span class="line"><span class="keyword">service </span><span class="title class_">Greeter</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">rpc</span> GetStream(StreamReq) <span class="keyword">returns</span> (stream StreamResp)</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="client-side-streaming-rpc"><a class="markdownIt-Anchor" href="#client-side-streaming-rpc"></a> Client-side streaming RPC</h3>
+<p>与Server-side相反。<br />
+例如，Server向Client请求当前室温，物联网终端Client不断向Server发送实时室温。</p>
+<figure class="highlight protobuf"><table><tr><td class="code"><pre><span class="line"><span class="keyword">service </span><span class="title class_">Greeter</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">rpc</span> GetStream(stream StreamReq) <span class="keyword">returns</span> (StreamResp)</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="bidirectional-streaming-rpc"><a class="markdownIt-Anchor" href="#bidirectional-streaming-rpc"></a> Bidirectional streaming RPC</h3>
+<p>Client与Server都可以向对方发送数据流，即实时交互。例如Chat Bot。</p>
+<figure class="highlight protobuf"><table><tr><td class="code"><pre><span class="line"><span class="keyword">service </span><span class="title class_">Greeter</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">rpc</span> GetStream(stream StreamReq) <span class="keyword">returns</span> (stream StreamResp)</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="metadata"><a class="markdownIt-Anchor" href="#metadata"></a> MetaData</h2>
+<p>gRPC和HTTP一样，可以携带一些MetaData</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">:authority [localhost:port]</span><br><span class="line">content-type [application/grpc]</span><br><span class="line">user-agent [grpc-gp/version]</span><br><span class="line"></span><br><span class="line">data [your_data]</span><br></pre></td></tr></table></figure>
+<h1 id="interceptor"><a class="markdownIt-Anchor" href="#interceptor"></a> Interceptor</h1>
+<figure class="highlight go"><table><tr><td class="code"><pre><span class="line">interceptorCust := <span class="function"><span class="keyword">func</span><span class="params">(ctx context.Context, req Interface&#123;&#125;, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler)</span></span> (resp Interface&#123;&#125;, err <span class="type">error</span>) &#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;接收到新请求: &quot;</span>, req)</span><br><span class="line">    start := time.Now()</span><br><span class="line"></span><br><span class="line">    res, err := handler(ctx, req)</span><br><span class="line"></span><br><span class="line">    fmt.Println(<span class="string">&quot;请求完成，耗时: &quot;</span>, time.Since(start))</span><br><span class="line">    <span class="keyword">return</span> res, err</span><br><span class="line">&#125;</span><br><span class="line">opt := grpc.UnaryInterceptor(interceptorCust)</span><br><span class="line">g := grpc.NewServer(opt)</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>慢sql优化</title>
+    <url>/ComputerScience/%E7%9F%A5%E8%AF%86/%E6%85%A2sql%E4%BC%98%E5%8C%96/</url>
+    <content><![CDATA[<h1 id="数据分页优化"><a class="markdownIt-Anchor" href="#数据分页优化"></a> 数据分页优化</h1>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> your_table <span class="keyword">where</span> type <span class="operator">=</span> ? limit <span class="keyword">start</span>, <span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<p><code>limit</code>的分页方式是查出select的所有数据，然后舍弃<code>start</code>之前的数据。因此对于大数据量，性能很低。</p>
+<h2 id="优化方案"><a class="markdownIt-Anchor" href="#优化方案"></a> 优化方案</h2>
+<h3 id="偏移id"><a class="markdownIt-Anchor" href="#偏移id"></a> 偏移ID</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 深分页慢sql，51sec</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> ename<span class="operator">=</span><span class="string">&#x27;svZLER&#x27;</span> limit <span class="number">1000000</span>, <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 使用id回表优化查询，44sec</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">where</span> id <span class="keyword">in</span> (<span class="keyword">select</span> id <span class="keyword">from</span> emp <span class="keyword">where</span> ename<span class="operator">=</span><span class="string">&#x27;eMxdWz&#x27;</span>) limit <span class="number">1000000</span>, <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 子查询使用二级索引深分页，然后回表，37sec</span></span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> emp <span class="keyword">inner</span> <span class="keyword">join</span> (<span class="keyword">select</span> id <span class="keyword">from</span> emp <span class="keyword">where</span> ename<span class="operator">=</span><span class="string">&#x27;eMxdWz&#x27;</span> limit <span class="number">1000000</span>, <span class="number">10</span>) b <span class="keyword">using</span>(id) ;</span><br><span class="line"><span class="comment">-- b using(id) 相当于 on b.id = emp.id</span></span><br></pre></td></tr></table></figure>
+<h3 id="分段查询"><a class="markdownIt-Anchor" href="#分段查询"></a> 分段查询</h3>
 ]]></content>
       <tags>
         <tag>知识</tag>
