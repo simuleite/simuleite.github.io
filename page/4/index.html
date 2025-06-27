@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,94 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">蓝桥杯 错题本</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-03-19 00:00:00 / 修改时间：18:48:35" itemprop="dateCreated datePublished" datetime="2025-03-19T00:00:00+08:00">2025-03-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="3513-岛屿个数"><a class="markdownIt-Anchor" href="#3513-岛屿个数"></a> 3513 岛屿个数</h1>
+<p>#外岛数量 #bfs</p>
+<h2 id="杰克船长算法"><a class="markdownIt-Anchor" href="#杰克船长算法"></a> 杰克船长算法</h2>
+<blockquote>
+<p>杰克船长在公海上游荡，每发现一处岛屿，他就会绕着岛走一圈，并把这个岛标记到地图上。</p>
+</blockquote>
+<p>这个问题的解决方法就在这里：我们<strong>一定</strong>要有一片完全连通的公海，只有在公海上遇到岛屿，才标记岛屿数量；绝不踏入内海。</p>
+<p>可是测试用例是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5 5</span><br><span class="line">01111</span><br><span class="line">11001</span><br><span class="line">10101</span><br><span class="line">10001</span><br><span class="line">11111</span><br></pre></td></tr></table></figure>
+<p>这个测试用例，只有<code>(0, 0)</code>是公海，怎么办呢？<br />
+我们用一圈公海把测试用例包围起来：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">processInput</span><span class="params">(Scanner sc)</span> &#123;</span><br><span class="line">    M = sc.nextInt();</span><br><span class="line">    N = sc.nextInt();</span><br><span class="line">    sc.nextLine();</span><br><span class="line">    map = <span class="keyword">new</span> <span class="title class_">int</span>[M + <span class="number">2</span>][N + <span class="number">2</span>]; <span class="comment">// 注意+2，多一圈&#x27;0&#x27;表示公海</span></span><br><span class="line">    visitedSea = <span class="keyword">new</span> <span class="title class_">boolean</span>[M + <span class="number">2</span>][N + <span class="number">2</span>];</span><br><span class="line">    visitedIsland = <span class="keyword">new</span> <span class="title class_">boolean</span>[M + <span class="number">2</span>][N + <span class="number">2</span>];</span><br><span class="line">    cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">1</span>; x &lt;= M; x += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> sc.nextLine();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> <span class="number">1</span>; y &lt;= N; y += <span class="number">1</span>) &#123;</span><br><span class="line">            map[x][y] = line.charAt(y - <span class="number">1</span>) - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1094,104 +1182,6 @@ As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-m
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS5%20PA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/" class="post-title-link" itemprop="url">ICS PA实验课</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-02-09 00:00:00" itemprop="dateCreated datePublished" datetime="2024-02-09T00:00:00+08:00">2024-02-09</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-15 13:53:58" itemprop="dateModified" datetime="2025-03-15T13:53:58+08:00">2025-03-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="tips"><a class="markdownIt-Anchor" href="#tips"></a> Tips</h1>
-<ul>
-<li>参考资料：<a target="_blank" rel="noopener" href="https://note.tonycrane.cc/cs/system/pa/">https://note.tonycrane.cc/cs/system/pa/</a></li>
-</ul>
-<ol>
-<li>使用反向代理时，<code>git</code>相关命令会出问题</li>
-<li>实验前，创建新分支<code>pa号</code>，在其中做修改，完成以后合并pa到master中，并转回master分支</li>
-</ol>
-<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
-<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line"><span class="section"># PA</span></span><br><span class="line"><span class="section">## notification</span></span><br><span class="line"><span class="bullet">-</span> </span><br><span class="line"><span class="section">## difficulties</span></span><br><span class="line"><span class="bullet">1.</span> </span><br><span class="line"><span class="section">## summary</span></span><br></pre></td></tr></table></figure>
-<h1 id="pa0"><a class="markdownIt-Anchor" href="#pa0"></a> PA0</h1>
-<h2 id="notification"><a class="markdownIt-Anchor" href="#notification"></a> notification</h2>
-<ul>
-<li>全程使用git</li>
-<li><code>git commit --allow-empty</code>可以使git空（无更改的）提交</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS%20PA%E5%AE%9E%E9%AA%8C%E8%AF%BE/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

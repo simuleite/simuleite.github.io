@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,114 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/" class="post-title-link" itemprop="url">Advanced Java</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-28 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-28T00:00:00+08:00">2025-04-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-22 15:39:00" itemprop="dateModified" datetime="2025-05-22T15:39:00+08:00">2025-05-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="代理"><a class="markdownIt-Anchor" href="#代理"></a> 代理</h1>
+<blockquote>
+<p>代理对象通过<code>invoke</code>，实现类与非核心功能的解耦。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">Payment</span> <span class="variable">payment</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Payment</span>(<span class="string">&quot;AliPay&quot;</span>);</span><br><span class="line">    <span class="type">Pay</span> <span class="variable">proxy</span> <span class="operator">=</span> ProxyUtil.createProxy(payment);</span><br><span class="line"></span><br><span class="line">    proxy.pay(amount);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Payment</span> <span class="keyword">implements</span> <span class="title class_">Pay</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Overide</span></span><br><span class="line">    <span class="keyword">public</span> payResp <span class="title function_">pay</span><span class="params">(BigDecimal payAmount)</span> &#123;</span><br><span class="line">        <span class="comment">// Payment Business...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Pay</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">abstract</span> payResp <span class="title function_">pay</span><span class="params">(BigDecimal payAmount)</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ProxyUtils</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Pay <span class="title function_">createProxy</span><span class="params">(Payment payment)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> (Pay) Proxy.newProxyInstance(</span><br><span class="line">            ProxyUtil.class.getClassLoader(),</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123; Pay.class &#125;,</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">InvocationHandler</span>() &#123;</span><br><span class="line"></span><br><span class="line">                <span class="meta">@Overide</span></span><br><span class="line">                <span class="keyword">public</span> Object <span class="title function_">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">                    <span class="comment">// Payment Environment Init...</span></span><br><span class="line">                    <span class="comment">// Payment Safe Guard...</span></span><br><span class="line">                    <span class="keyword">return</span> method.invoke(payment, args);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="反射"><a class="markdownIt-Anchor" href="#反射"></a> 反射</h1>
+<blockquote>
+<p>反射允许对成员变量、成员方法、构造方法信息进行编程访问。</p>
+</blockquote>
+<p>例如，IDE的智能补全、参数提示，就是使用反射实现。</p>
+<h2 id="class字节码获取"><a class="markdownIt-Anchor" href="#class字节码获取"></a> Class字节码获取</h2>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class clazz;</span><br><span class="line">clazz = Class.forName(<span class="string">&quot;com.yourpackage.TargetClass&quot;</span>);</span><br><span class="line"><span class="comment">// 参数</span></span><br><span class="line">clazz = TargetClass.class;</span><br><span class="line"><span class="comment">// 有实例时</span></span><br><span class="line">clazz = instance.getClass();</span><br></pre></td></tr></table></figure>
+<h2 id="场景"><a class="markdownIt-Anchor" href="#场景"></a> 场景</h2>
+<p>反射可以与配置文件结合，从而动态地创建对象。例如<code>application.yml</code>里数据库的配置、端口号等。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Properties</span> <span class="variable">prop</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line"><span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(ROOT + <span class="string">&quot;src/main/resources/application.properties&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">dataSourceUrl</span> <span class="operator">=</span> (String) perp.get(<span class="string">&quot;dataSource&quot;</span>);</span><br><span class="line"><span class="type">String</span> <span class="variable">dbName</span> <span class="operator">=</span> (String) extractDbName(dataSourceUrl);</span><br><span class="line"></span><br><span class="line"><span class="type">Class</span> <span class="variable">clazz</span> <span class="operator">=</span> Class.forName(dbName);</span><br><span class="line"><span class="type">Constructor</span> <span class="variable">con</span> <span class="operator">=</span> clazz.getDeclaredConstructor();</span><br><span class="line"><span class="type">Object</span> <span class="variable">o</span> <span class="operator">=</span> con.newInstance();</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h1 id="hashmap"><a class="markdownIt-Anchor" href="#hashmap"></a> HashMap</h1>
+<h2 id="jdk17"><a class="markdownIt-Anchor" href="#jdk17"></a> jdk1.7</h2>
+<blockquote>
+<p>jdk1.7的HashMap数据结构是：数组 + 单向链表</p>
+</blockquote>
+<p>当哈希后，得到的数组槽位已经存放了其他元素，这时候就需要运用指针在同一个槽位存放多个元素。</p>
+<h2 id="头插法"><a class="markdownIt-Anchor" href="#头插法"></a> 头插法</h2>
+<p>jdk1.7使用的方法是头插法，这样就不需要遍历到链表尾部再插入，性能高。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">createEntry</span><span class="params">(<span class="type">int</span> hash, K key, V value, <span class="type">int</span> bucketIdx)</span> &#123;</span><br><span class="line">    Entry&lt;K, V&gt; e = table[bucketIdx];</span><br><span class="line">    <span class="comment">// 这里使用头插法，在槽位头部插入新元素，并指向e，成为新的槽位引用</span></span><br><span class="line">    table[bucketIdx] = <span class="keyword">new</span> <span class="title class_">Entry</span>&lt;&gt;(hash, key, value, e); </span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="title function_">Entry</span><span class="params">(<span class="type">int</span> h, K k, V v, Entry&lt;K, V&gt; n)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.value = v;</span><br><span class="line">    <span class="built_in">this</span>.next = n;</span><br><span class="line">    <span class="built_in">this</span>.key = k;</span><br><span class="line">    <span class="built_in">this</span>.hash = h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种方法需要最终更新槽位指向新插入的节点，否则单向链表找不到新插入的元素。</p>
+<h2 id="利用2次方机器特性"><a class="markdownIt-Anchor" href="#利用2次方机器特性"></a> 利用2次方机器特性</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/Advanced%20Java/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1209,98 +1317,6 @@ Debian官方软件源：官网/mirror/list</li>
             </div>
           <!--/noindex-->
         
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">ssh使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-04-14 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-14T00:00:00+08:00">2025-04-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-04-25 14:34:47" itemprop="dateModified" datetime="2025-04-25T14:34:47+08:00">2025-04-25</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="ssh登录"><a class="markdownIt-Anchor" href="#ssh登录"></a> ssh登录</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="ssh端口映射"><a class="markdownIt-Anchor" href="#ssh端口映射"></a> ssh端口映射</h1>
-<p>可以用于不保留端口的情况下，远程连接数据库等。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -N -L &lt;local_port&gt;:localhost:&lt;remote_port&gt; &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt; </span><br></pre></td></tr></table></figure>
-<h2 id="脚本批量映射"><a class="markdownIt-Anchor" href="#脚本批量映射"></a> 脚本批量映射</h2>
-<p>需要注意，Nacos有gRPC，除了8848端口外，9848端口也要一起开放。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Port Mapping</span></span><br><span class="line">PORTS=(</span><br><span class="line">    &quot;ulocalport:localhost:uremoteport&quot;</span><br><span class="line">    # MySQL</span><br><span class="line">    &quot;53306:localhost:3306&quot;</span><br><span class="line">    # Nacos</span><br><span class="line">    &quot;58848:localhost:8848&quot;</span><br><span class="line">    &quot;59848:localhost:9848&quot;</span><br><span class="line">    # Redis</span><br><span class="line">    &quot;56379:localhost:6379&quot;</span><br><span class="line">    # RocketMQ namesrv</span><br><span class="line">    &quot;59876:localhost:9876&quot;</span><br><span class="line">    # RocketMQ broker</span><br><span class="line">    &quot;510911:localhost:10911&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ARGS=()</span><br><span class="line">for port in &quot;$&#123;PORTS[@]&#125;&quot;; do</span><br><span class="line">    ARGS+=(-L &quot;$port&quot;)</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">ssh -o ServerAliveInterval=60 -N &quot;$&#123;ARGS[@]&#125;&quot; &lt;username&gt;@&lt;remote_ip&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="密钥登录"><a class="markdownIt-Anchor" href="#密钥登录"></a> 密钥登录</h1>
-<ol>
-<li>首先在本地生成一份密钥，然后将公钥上传到remote的<code>~/.ssh/authorized_keys</code></li>
-<li>修改remote<code>/etc/ssh/sshd_config</code></li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新端口</span></span><br><span class="line">Port 22</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启用密钥认证</span></span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">禁用密码登录</span></span><br><span class="line">PasswordAuthentication no</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">允许Root登录但禁止密码验证</span></span><br><span class="line">PermitRootLogin prohibit-password</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>重启ssh</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Ubuntu/Debian</span></span><br><span class="line">sudo systemctl restart ssh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">CentOS/RHEL</span></span><br><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure>
       
     </div>
 

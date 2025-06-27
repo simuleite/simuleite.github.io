@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,110 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringSecurity%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringSecurity%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">SpringSecurity笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-05 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-05T00:00:00+08:00">2024-12-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-01-04 10:49:55" itemprop="dateModified" datetime="2025-01-04T10:49:55+08:00">2025-01-04</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="spring-security-初始化"><a class="markdownIt-Anchor" href="#spring-security-初始化"></a> Spring Security 初始化</h1>
+<ol>
+<li>导入依赖</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.security<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-security-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.security<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-security-config<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.1.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建<code>SecurityInitializer</code></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.init</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityInitializer</span> <span class="keyword">extends</span> <span class="title class_">AbstractSecurityWebApplicationInitializer</span> &#123;</span><br><span class="line">    <span class="comment">//不用重写任何内容</span></span><br><span class="line">      <span class="comment">//这里实际上会自动注册一个Filter，SpringSecurity底层就是依靠N个过滤器实现的，我们之后再探讨</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>创建配置类</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.example.config</span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span>   <span class="comment">//开启WebSecurity相关功能</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li><code>MainInitializer</code>添加配置文件</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Class</span>[]&#123;MainConfiguration.class, SecurityConfiguration.class&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="post表单认证"><a class="markdownIt-Anchor" href="#post表单认证"></a> Post表单认证</h1>
+<p>在POST请求中需要携带页面中的csrfToken，否则一律进行拦截操作</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">th:id</span>=<span class="string">&quot;$&#123;_csrf.getParameterName()&#125;&quot;</span> <span class="attr">th:value</span>=<span class="string">&quot;$&#123;_csrf.token&#125;&quot;</span> <span class="attr">hidden</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h1 id="密码加密"><a class="markdownIt-Anchor" href="#密码加密"></a> 密码加密</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line">    </span><br><span class="line">      <span class="comment">//将BCryptPasswordEncoder直接注册为Bean，Security会自动进行选择</span></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> PasswordEncoder <span class="title function_">passwordEncoder</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">BCryptPasswordEncoder</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">encoder.encode(yourPassword);</span><br></pre></td></tr></table></figure>
+<h1 id="关闭csfr"><a class="markdownIt-Anchor" href="#关闭csfr"></a> 关闭CSFR</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SecurityFilterChain <span class="title function_">filterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> http</span><br><span class="line">                .csfr(conf -&gt; &#123;</span><br><span class="line">                    <span class="comment">// 关闭CSFR</span></span><br><span class="line">                    conf.disable();</span><br><span class="line">                &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="自定义登录页"><a class="markdownIt-Anchor" href="#自定义登录页"></a> 自定义登录页</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SecurityFilterChain <span class="title function_">filterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> http</span><br><span class="line">                <span class="comment">// 验证请求拦截和放行配置</span></span><br><span class="line">                .authorizeHttpRequests(auth -&gt; &#123;</span><br><span class="line">                    <span class="comment">// 将所有请求全部拦截，一律需要验证</span></span><br><span class="line">                    auth.anyRequest().authenticated();    </span><br><span class="line">                &#125;)</span><br><span class="line">                <span class="comment">// 表单登录相关配置</span></span><br><span class="line">                .formLogin(conf -&gt; &#123;</span><br><span class="line">                    conf.loginPage(<span class="string">&quot;/login&quot;</span>);   <span class="comment">// 将登录页设置为我们自己的登录页面</span></span><br><span class="line">                    conf.loginProcessingUrl(<span class="string">&quot;/doLogin&quot;</span>); <span class="comment">// 登录表单提交的地址，可以自定义</span></span><br><span class="line">                    conf.defaultSuccessUrl(<span class="string">&quot;/&quot;</span>);   <span class="comment">// 登录成功后跳转的页面</span></span><br><span class="line">                    conf.permitAll();    <span class="comment">// 将登录相关的地址放行，否则未登录的用户无法进入登录界面</span></span><br><span class="line">                      <span class="comment">// 用户名和密码的表单字段名称</span></span><br><span class="line">                    conf.usernameParameter(<span class="string">&quot;username&quot;</span>);</span><br><span class="line">                    conf.passwordParameter(<span class="string">&quot;password&quot;</span>);</span><br><span class="line">                &#125;)</span><br><span class="line">                <span class="comment">// 退出登录</span></span><br><span class="line">                .logout(conf -&gt; &#123;</span><br><span class="line">                    ...</span><br><span class="line">                &#125;)</span><br><span class="line">                .build();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="记住密码"><a class="markdownIt-Anchor" href="#记住密码"></a> 记住密码</h1>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSecurity</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SecurityConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> SecurityFilterChain <span class="title function_">filterChain</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="keyword">return</span> http</span><br><span class="line">                .rememberMe(conf -&gt; &#123;</span><br><span class="line">                    conf.alwaysRemember(<span class="literal">false</span>);</span><br><span class="line">                &#125;)</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1132,106 +1236,6 @@ Adding the missing piece later means waiting until the damage is already underwa
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">模板</span></span><br><span class="line">netsh dns add encryption server=&lt;IP Address&gt; dohtemplate=&lt;DOH Template&gt; autoupgrade=yes udpfallback=no</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">腾讯</span></span><br><span class="line">netsh dns add encryption server=1.12.12.12 dohtemplate=https://doh.pub/dns-query autoupgrade=yes udpfallback=no</span><br><span class="line"></span><br><span class="line">netsh dns add encryption server=120.53.53.53 dohtemplate=https://doh.360.cn/dns-query autoupgrade=yes udpfallback=no</span><br></pre></td></tr></table></figure>
 <p>查看DoH模板：</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">netsh dns show encryption</span></span><br><span class="line"></span><br><span class="line">223.5.5.5 加密设置</span><br><span class="line">----------------------------------------------------------------------</span><br><span class="line">DNS-over-HTTPS 模板     : https://dns.alidns.com/dns-query</span><br><span class="line">自动升级                : yes</span><br><span class="line">UDP 回退                : no</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">Django动态网页 Python项目</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-03-03 00:00:00" itemprop="dateCreated datePublished" datetime="2024-03-03T00:00:00+08:00">2024-03-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-15 14:47:41" itemprop="dateModified" datetime="2024-08-15T14:47:41+08:00">2024-08-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="00-规范"><a class="markdownIt-Anchor" href="#00-规范"></a> 0.0 规范</h1>
-<p>我要编写一个名为“学习笔记”的 Web 应用程序,让用户能够记录感兴趣的主题,并在学习每个主题的过程中添加日志条目。“学习笔记”的主页对这个网站进行描述,并邀请用户注册或登录。用户登录后,可以创建新主题、添加新条目以及阅读既有的条目。</p>
-<p>目录 ll_project 包含 4 个文件, 其中最重要的是 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a>、<a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 和 <a target="_blank" rel="noopener" href="http://wsgi.py">wsgi.py</a>。文件 <a target="_blank" rel="noopener" href="http://settings.py">settings.py</a> 指定 Django 如何与系统交互以及如何管理项目。<br />
-在开发项目的过程中,我们将修改其中的一些设置,并添加一些设置。<br />
-文件 <a target="_blank" rel="noopener" href="http://urls.py">urls.py</a> 告诉 Django,应创建哪些网页来响应浏览器请求。<br />
-文件 <a target="_blank" rel="noopener" href="http://wsgi.py">wsgi.py</a> 帮助 Django 提供它创建的文件,名称是 web server gateway interface(Web 服务器网关接口)的首字母缩写。</p>
-<h1 id="10-创建环境"><a class="markdownIt-Anchor" href="#10-创建环境"></a> 1.0 创建环境</h1>
-<h2 id="11-创建虚拟环境"><a class="markdownIt-Anchor" href="#11-创建虚拟环境"></a> 1.1 创建虚拟环境</h2>
-<p>在独立的项目文件夹下运行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m venv ll_env</span><br><span class="line"></span><br><span class="line">python -m ensurepip --default-pip <span class="comment"># 重装pip</span></span><br></pre></td></tr></table></figure>
-<p>将会创造一个<code>ll_env</code>文件夹<br />
-可以使用下面的命令激活虚拟环境。激活虚拟环境后，安装的模组将只在虚拟环境中生效，而不干扰到电脑上Python的模组</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> ll_env/bin/activate <span class="comment"># Linux系统</span></span><br><span class="line"><span class="built_in">source</span> ll_env/Scripts/activate <span class="comment"># Windows系统</span></span><br><span class="line"></span><br><span class="line">(ll_env)</span><br><span class="line">work_directory$ <span class="comment"># 命令提示符前会显示(ll_env)</span></span><br></pre></td></tr></table></figure>
-<p>使用<code>deactive</code>取消激活虚拟环境</p>
-<h2 id="12-安装配置django"><a class="markdownIt-Anchor" href="#12-安装配置django"></a> 1.2 安装配置Django</h2>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">pip install --upgrade pip <span class="comment"># 更新pip</span></span><br><span class="line">pip install django <span class="comment"># 安装Django</span></span><br><span class="line">django-admin startproject ll_project . <span class="comment"># 初始化Django</span></span><br><span class="line">python manage.py migrate <span class="comment"># 生成数据库</span></span><br><span class="line">python manage.py runserver <span class="comment"># 生成预览，可以在本地8000端口看到网页</span></span><br></pre></td></tr></table></figure>
-<pre><code>Django手册： https://docs.djangoproject.com/en/4.1/ref/models/fields/
-</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E9%A1%B9%E7%9B%AE/Django%E5%8A%A8%E6%80%81%E7%BD%91%E9%A1%B5%20Python%E9%A1%B9%E7%9B%AE/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
       
     </div>
 

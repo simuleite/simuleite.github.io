@@ -8922,4 +8922,115 @@ Machine不能直接执行Goroutine，而需要首先与Processor绑定，由Proc
         <tag>知识</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Multi-Agents</title>
+    <url>/ComputerScience/%E7%9F%A5%E8%AF%86/Multi-Agents/</url>
+    <content><![CDATA[<h1 id="dont-build-multi-agents"><a class="markdownIt-Anchor" href="#dont-build-multi-agents"></a> Don’t Build Multi-Agents</h1>
+<p><a href="https://cognition.ai/blog/dont-build-multi-agents">Cognition</a><br />
+构建长期运行的AI智能体系统，需要解决“可靠性”问题：</p>
+<ol>
+<li>上下文丢失、过长</li>
+<li>状态混乱</li>
+<li>错误累积</li>
+</ol>
+<p>例如，Multi-Agent思路需要构建规划Agent、解释Agent、执行Agent、SOP Agent。<br />
+然而，如果仅仅使用两个独立Agent，其生成结果会更加独立、隔绝，而不是相关联。<br />
+整体大于局部。局部的完整性不能保证整体的一致性。</p>
+<h2 id="shared-data"><a class="markdownIt-Anchor" href="#shared-data"></a> Shared Data</h2>
+<blockquote>
+<p>Principle 1: Share context, and share full agent traces, not just individual messages.</p>
+</blockquote>
+<p>我们希望通过共享上下文解决一致性问题，但是不行。<br />
+Agent1和Agent2都是基于自己对Shared Data的理解工作，而不知道对方在做什么。<br />
+因此我们需要共享Traces，让一个Agent（例如解释Agent）对另一个Agent（例如执行Agent）进行Revision校正。<br />
+可是，只有垂直矫正，水平的Agent（多个执行Agents）之间仍然不知道对方在做什么。</p>
+<h2 id="actions-mean-desisons"><a class="markdownIt-Anchor" href="#actions-mean-desisons"></a> Actions mean desisons</h2>
+<blockquote>
+<p>Principle 2: Actions carry implicit decisions, and conflicting decisions carry bad results.</p>
+</blockquote>
+<p>每个Agent的行为都必须基于同样的预期结果，而不能基于不清楚、有歧义的预期结果；否则整体很难保持风格统一。</p>
+<h2 id="single-threaded-linear-agent"><a class="markdownIt-Anchor" href="#single-threaded-linear-agent"></a> Single-threaded Linear Agent</h2>
+<p>鉴于上面两条，作者选择使用单Agent线性解决问题。<br />
+然而，这样做容易产生<code>context windows overflow</code>上下文溢出（因为线性Agent其实就是不断附带上一次的上下文进行下一次chat）。<br />
+我们引入总结压缩LLM解决上下文问题。</p>
+<h2 id="claude-code设计模式"><a class="markdownIt-Anchor" href="#claude-code设计模式"></a> Claude Code设计模式</h2>
+<p>Calude Code的智能体有两个特点：</p>
+<ol>
+<li>主Agent与子Agent不会并行运行</li>
+<li>子Agent只回答简单问题，而不会编写代码<br />
+这样做有几个优点</li>
+</ol>
+<ul>
+<li>避免上下文冲突：子Agent不包括主Agent的上下文，只回答清晰、具体的问题。</li>
+<li>节省上下文：子Agent的操作也不保存在主Agent的上下文中。他们是解耦合的。</li>
+</ul>
+<h2 id="how-we-built-our-multi-agent-research-system"><a class="markdownIt-Anchor" href="#how-we-built-our-multi-agent-research-system"></a> How we built our multi-agent research system</h2>
+<p><a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">How we built our multi-agent research system</a><br />
+三种AI模式：</p>
+<ol>
+<li>Chat AI</li>
+<li>Single Agent</li>
+<li>Multiple Agents<br />
+Multi-Agents的优势在于回答开放、不确定的问题。传统的单Agent不适合研究，而多Agent并行搜索，最终总结出来的信息压缩性更强。</li>
+</ol>
+<blockquote>
+<p>The essence of search is compression.</p>
+</blockquote>
+<p>Anthropic团队区分了两种模式：</p>
+<ol>
+<li>垂直模式：容易并行处理的任务，Leader Agent与多个Sub Agent交互</li>
+<li>水平模式：不容易并行的任务、需要上下文共享的任务、Agent依赖强的任务，如编程，Leader Agent一步一步执行Sub stage</li>
+</ol>
+<p>Agent模式的token使用量是Chat模式的4倍；而Multi-Agent则是Chat模式的15倍。<br />
+Multi-Agent让token用量增加，因此更可能解决问题。同时也带来的高成本。</p>
+<h2 id="prompt-engineering"><a class="markdownIt-Anchor" href="#prompt-engineering"></a> Prompt Engineering</h2>
+<ol>
+<li>Think like your agents.</li>
+<li>Teach the orchestartor how to delegate.<br />
+例如，子问题如何划分？怎么确定它就是任务的最小可执行单元？<br />
+可以使用 明确预期结果-example输出格式-可用资源tools-任务边界不要做什么 这一套指令。</li>
+<li>Scale effort to query complexity.<br />
+为prompt嵌入scaling rules，明确指出简单-中等-复杂任务分别分配多少subagents。这一条主要是做减法，对简单任务指定少agent，节省成本。</li>
+<li>Tool design and selection are critical.<br />
+Tool Description要够好，否则Agent可能不会调用需要的MCP工具。</li>
+<li>Let agents improve themselves.<br />
+使用tool-testing agent，让agent改进失败的prompt和流程、重写工具描述等。</li>
+<li>Start wide, then narrow down.<br />
+这一条是因为Agent自己的搜索词写的比较AI，太长了，返回的结果很少。需要提示AI使用宽泛的提示词，然后再窄化范围精确搜索。</li>
+<li>Guide the thinking process.<br />
+这一步是打印日志，让AI把思考过程打成标记、大纲、ToDoList，这样方便修改。</li>
+<li>Parallel tool calling transforms speed and performance.<br />
+主Agent平行分派任务给子Agent；子Agent并行调用Tools。</li>
+</ol>
+<h2 id="eval-agents"><a class="markdownIt-Anchor" href="#eval-agents"></a> Eval Agents</h2>
+<p>Multi-Agents的过程可能每一次都不同，因此不能使用传统的评估方法。</p>
+<ol>
+<li>小样本评估。不要等到测试用例足够多才开始测试，边测试边修改效果更好。</li>
+<li>LLM评估。给出判断标准（事实/引用准确性、完整性、来源质量、多余/无效工具调用…），让LLM量化评估（0.0~1.0打分）</li>
+<li>人工检查遗漏。如AI是不是只使用SEO靠前的，而不是权威的网站。</li>
+</ol>
+<p>需要注意，Multi-Agents会产生涌现(Emergent Behaviors)，对Leader Agent的改动会影响Sub Agent。</p>
+<p>Multi-Agent框架最好考虑下面几个方面：</p>
+<ol>
+<li>工作分工（规划、解释、执行、自愈、总结）</li>
+<li>问题如何分割成子问题（确定可执行标准）</li>
+<li>效率（时间预期、工具调用次数限制、Scaling rules）</li>
+</ol>
+<h2 id="production-challenges"><a class="markdownIt-Anchor" href="#production-challenges"></a> Production challenges</h2>
+<ol>
+<li>Agent有状态，重构Agent影响很大，最好加上自愈Agent、错误处理系统。<br />
+此外还可以加上check point，一步一步来，失败了从这一步开始重新生成；而不是丢失上下文从头开始。</li>
+<li>Agent的错误是“复利”的，前面错了会导致最后错得离谱。</li>
+</ol>
+<h3 id="debugging"><a class="markdownIt-Anchor" href="#debugging"></a> Debugging</h3>
+<p>监控Agent的决策模式和交互结构，做到生产级追踪，更能系统性诊断和解决问题。</p>
+<h3 id="deploy"><a class="markdownIt-Anchor" href="#deploy"></a> Deploy</h3>
+<p>使用彩虹部署。旧会话分配到旧机器上，逐渐分配流量到新机器上，渐进替代，减少prompt改动的影响。</p>
+<h3 id="sync-and-block"><a class="markdownIt-Anchor" href="#sync-and-block"></a> Sync and Block</h3>
+<p>Leader Agent并行地分配任务给Sub tasks，但是实际上是以最后一个执行完的Sub Agent为准进行信息交互。这会造成等待与阻塞。但是如果Sub Agent分别处理每一个Sub Agent，又会出现上下文不共享的问题，局部扰乱整体。</p>
+]]></content>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
 </search>

@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-count">73</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,98 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/ssh%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">ssh使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-04-14 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-14T00:00:00+08:00">2025-04-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-04-25 14:34:47" itemprop="dateModified" datetime="2025-04-25T14:34:47+08:00">2025-04-25</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="ssh登录"><a class="markdownIt-Anchor" href="#ssh登录"></a> ssh登录</h1>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="ssh端口映射"><a class="markdownIt-Anchor" href="#ssh端口映射"></a> ssh端口映射</h1>
+<p>可以用于不保留端口的情况下，远程连接数据库等。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh -N -L &lt;local_port&gt;:localhost:&lt;remote_port&gt; &lt;user_name&gt;@&lt;remote_ip&gt; -p &lt;remote_port&gt; -i &lt;your_key&gt; </span><br></pre></td></tr></table></figure>
+<h2 id="脚本批量映射"><a class="markdownIt-Anchor" href="#脚本批量映射"></a> 脚本批量映射</h2>
+<p>需要注意，Nacos有gRPC，除了8848端口外，9848端口也要一起开放。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Port Mapping</span></span><br><span class="line">PORTS=(</span><br><span class="line">    &quot;ulocalport:localhost:uremoteport&quot;</span><br><span class="line">    # MySQL</span><br><span class="line">    &quot;53306:localhost:3306&quot;</span><br><span class="line">    # Nacos</span><br><span class="line">    &quot;58848:localhost:8848&quot;</span><br><span class="line">    &quot;59848:localhost:9848&quot;</span><br><span class="line">    # Redis</span><br><span class="line">    &quot;56379:localhost:6379&quot;</span><br><span class="line">    # RocketMQ namesrv</span><br><span class="line">    &quot;59876:localhost:9876&quot;</span><br><span class="line">    # RocketMQ broker</span><br><span class="line">    &quot;510911:localhost:10911&quot;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">ARGS=()</span><br><span class="line">for port in &quot;$&#123;PORTS[@]&#125;&quot;; do</span><br><span class="line">    ARGS+=(-L &quot;$port&quot;)</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">ssh -o ServerAliveInterval=60 -N &quot;$&#123;ARGS[@]&#125;&quot; &lt;username&gt;@&lt;remote_ip&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="密钥登录"><a class="markdownIt-Anchor" href="#密钥登录"></a> 密钥登录</h1>
+<ol>
+<li>首先在本地生成一份密钥，然后将公钥上传到remote的<code>~/.ssh/authorized_keys</code></li>
+<li>修改remote<code>/etc/ssh/sshd_config</code></li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新端口</span></span><br><span class="line">Port 22</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启用密钥认证</span></span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">禁用密码登录</span></span><br><span class="line">PasswordAuthentication no</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">允许Root登录但禁止密码验证</span></span><br><span class="line">PermitRootLogin prohibit-password</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>重启ssh</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Ubuntu/Debian</span></span><br><span class="line">sudo systemctl restart ssh</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">CentOS/RHEL</span></span><br><span class="line">sudo systemctl restart sshd</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1224,94 +1316,6 @@ CAS算法不是加锁，而是通过比较来判断对象是否已被修改，�
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/%E7%AE%97%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/" class="post-title-link" itemprop="url">蓝桥杯 错题本</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-03-19 00:00:00 / 修改时间：18:48:35" itemprop="dateCreated datePublished" datetime="2025-03-19T00:00:00+08:00">2025-03-19</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="3513-岛屿个数"><a class="markdownIt-Anchor" href="#3513-岛屿个数"></a> 3513 岛屿个数</h1>
-<p>#外岛数量 #bfs</p>
-<h2 id="杰克船长算法"><a class="markdownIt-Anchor" href="#杰克船长算法"></a> 杰克船长算法</h2>
-<blockquote>
-<p>杰克船长在公海上游荡，每发现一处岛屿，他就会绕着岛走一圈，并把这个岛标记到地图上。</p>
-</blockquote>
-<p>这个问题的解决方法就在这里：我们<strong>一定</strong>要有一片完全连通的公海，只有在公海上遇到岛屿，才标记岛屿数量；绝不踏入内海。</p>
-<p>可是测试用例是这样的：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">5 5</span><br><span class="line">01111</span><br><span class="line">11001</span><br><span class="line">10101</span><br><span class="line">10001</span><br><span class="line">11111</span><br></pre></td></tr></table></figure>
-<p>这个测试用例，只有<code>(0, 0)</code>是公海，怎么办呢？<br />
-我们用一圈公海把测试用例包围起来：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">processInput</span><span class="params">(Scanner sc)</span> &#123;</span><br><span class="line">    M = sc.nextInt();</span><br><span class="line">    N = sc.nextInt();</span><br><span class="line">    sc.nextLine();</span><br><span class="line">    map = <span class="keyword">new</span> <span class="title class_">int</span>[M + <span class="number">2</span>][N + <span class="number">2</span>]; <span class="comment">// 注意+2，多一圈&#x27;0&#x27;表示公海</span></span><br><span class="line">    visitedSea = <span class="keyword">new</span> <span class="title class_">boolean</span>[M + <span class="number">2</span>][N + <span class="number">2</span>];</span><br><span class="line">    visitedIsland = <span class="keyword">new</span> <span class="title class_">boolean</span>[M + <span class="number">2</span>][N + <span class="number">2</span>];</span><br><span class="line">    cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">x</span> <span class="operator">=</span> <span class="number">1</span>; x &lt;= M; x += <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">line</span> <span class="operator">=</span> sc.nextLine();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> <span class="number">1</span>; y &lt;= N; y += <span class="number">1</span>) &#123;</span><br><span class="line">            map[x][y] = line.charAt(y - <span class="number">1</span>) - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E9%94%99%E9%A2%98%E6%9C%AC/%E8%93%9D%E6%A1%A5%E6%9D%AF%20%E9%94%99%E9%A2%98%E6%9C%AC/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
