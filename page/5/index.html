@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,143 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS5%20PA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS5%20PA/" class="post-title-link" itemprop="url">ICS5 PA</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2024-05-30T00:00:00+08:00">2024-05-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-15 13:54:10" itemprop="dateModified" datetime="2025-03-15T13:54:10+08:00">2025-03-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="pa1-1-24530"><a class="markdownIt-Anchor" href="#pa1-1-24530"></a> PA1-1 24.5.30</h1>
+<p>又开始了ICS之旅，这次又给自己下了一个难度，找到了汪亮老师讲解的ICS 5！</p>
+<h2 id="target"><a class="markdownIt-Anchor" href="#target"></a> target</h2>
+<p>第一课的目标是修正一个register错误声明</p>
+<h2 id="insteresting"><a class="markdownIt-Anchor" href="#insteresting"></a> insteresting</h2>
+<ul>
+<li>中途网易源Bad Gateway 502了，更换清华源，学会了<code>:%s/163/tuna/g</code>非常爽！</li>
+<li>又学了几个<a href="../%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Shell%E7%BB%88%E7%AB%AF%E4%BD%BF%E7%94%A8">终端快捷键</a></li>
+<li>想到了用 <code>ccache</code> 加速我的PA</li>
+</ul>
+<h2 id="problems"><a class="markdownIt-Anchor" href="#problems"></a> problems</h2>
+<ol>
+<li><code>union</code> 和 <code>struct</code> 的区别？<br />
+<code>unioin</code> 在同一个内存空间中存储不同的数据类型。<br />
+<code>struct</code> 则是同时存储不同的数据类型。</li>
+<li>为什么要用 <code>union</code>？阅读i386手册<br />
+2.3.1 General Registers<br />
+As <a target="_blank" rel="noopener" href="https://nju-projectn.github.io/i386-manual/s02_03.htm#fig2-5">Figure 2-5</a> shows, the low-order word of each of these eight registers has a separate name and can be treated as a unit. This feature is useful for handling 16-bit data items and for compatibility with the 8086 and 80286 processors. The word registers are named AX, BX, CX, DX, BP, SP, SI, and DI.<br />
+对于CPU来说，可以把AH AX AL看成单独的单元，拆分成小块。所以它们是共用关系。</li>
+</ol>
+<h1 id="pa1-2-alu-2465"><a class="markdownIt-Anchor" href="#pa1-2-alu-2465"></a> PA1-2 ALU 24.6.5</h1>
+<h2 id="target-2"><a class="markdownIt-Anchor" href="#target-2"></a> target</h2>
+<p>实现ALU中的各类运算，包括设置标志位</p>
+<h2 id="knowledge"><a class="markdownIt-Anchor" href="#knowledge"></a> knowledge</h2>
+<h3 id="appendix-c"><a class="markdownIt-Anchor" href="#appendix-c"></a> Appendix C</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CF</td>
+<td>Carry Flag ── Set on high-order bit carry or borrow; cleared otherwise.</td>
+</tr>
+<tr>
+<td>PF</td>
+<td>Parity Flag ── Set if low-order eight bits of result contain an even number of 1 bits; cleared otherwise.</td>
+</tr>
+<tr>
+<td>ZF</td>
+<td>Zero Flag ── Set if result is zero; cleared otherwise.</td>
+</tr>
+<tr>
+<td>SF</td>
+<td>Sign Flag ── Set equal to high-order bit of result (0 is positive, 1 if negative).</td>
+</tr>
+<tr>
+<td>OF<br></td>
+<td>Overflow Flag ── Set if result is too large a positive number or too small a negative number (excluding sign-bit) to fit in destination operand; cleared otherwise.</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/ComputerScience/%E8%AF%BE%E7%A8%8B/ICS5%20PA/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1060,92 +1197,6 @@ Here is some INFO.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/Mybatis%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/" class="post-title-link" itemprop="url">SpringBoot常用框架</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-12-24 00:00:00" itemprop="dateCreated datePublished" datetime="2024-12-24T00:00:00+08:00">2024-12-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-01-05 10:06:15" itemprop="dateModified" datetime="2025-01-05T10:06:15+08:00">2025-01-05</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="springboot-mail-邮箱验证码"><a class="markdownIt-Anchor" href="#springboot-mail-邮箱验证码"></a> SpringBoot Mail 邮箱验证码</h1>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-mail<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">mail:</span></span><br><span class="line">    <span class="attr">host:</span> <span class="string">your.SMTP.host</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">your_server_email@email.com</span></span><br><span class="line">    <span class="attr">password:</span> <span class="string">your_passowrd</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Resource</span></span><br><span class="line">JavaMailSender sender;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PostMapping(&quot;/verification-email&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">sendVerificationEmail</span><span class="params">(<span class="meta">@RequestParam</span> String targetEmail,</span></span><br><span class="line"><span class="params">                                    HttpSession session)</span> &#123;</span><br><span class="line">        <span class="type">SimpleMailMessage</span> <span class="variable">message</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SimpleMailMessage</span>();</span><br><span class="line">        message.setSubject(EMAIL_TITLE);</span><br><span class="line">        <span class="type">int</span> <span class="variable">vCode</span> <span class="operator">=</span> getVerificationCode();</span><br><span class="line">        session.setAttribute(<span class="string">&quot;vcode&quot;</span>, vCode);</span><br><span class="line">        session.setAttribute(<span class="string">&quot;uemail&quot;</span>, email);</span><br><span class="line"></span><br><span class="line">        message.setText(EMAIL_CONTEXT + code);</span><br><span class="line">        message.setTo(targetEmail);</span><br><span class="line">        message.setFrom(EMAIL_SERVEREMAIL); <span class="comment">// 与配置文件中的保持一致</span></span><br><span class="line"></span><br><span class="line">        sender.send(message);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;发送成功&quot;</span>; <span class="comment">// 前端弹窗可以接受此参数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@PostMapping(&quot;/register&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">register</span><span class="params">(<span class="meta">@RequestParam</span> String username,</span></span><br><span class="line"><span class="params">                       <span class="meta">@RequestParam</span> String email,</span></span><br><span class="line"><span class="params">                       <span class="meta">@RequestParam</span> String code,</span></span><br><span class="line"><span class="params">                       <span class="meta">@RequestParam</span> String password,</span></span><br><span class="line"><span class="params">                       HttpSession session)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">sessionCode</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;vcode&quot;</span>).toString;</span><br><span class="line">    <span class="type">String</span> <span class="variable">sessionEmail</span> <span class="operator">=</span> session.getAttribute(<span class="string">&quot;uemail&quot;</span>).toString;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (sessionCode == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;验证码为空&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!sessionCode.equals(code)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;验证码错误！&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!sessionEmail.equals(email)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;请获取验证码&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%AC%94%E8%AE%B0/%E6%A1%86%E6%9E%B6/Spring/SpringBoot%E5%B8%B8%E7%94%A8%E6%A1%86%E6%9E%B6/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

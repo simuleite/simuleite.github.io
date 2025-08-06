@@ -8152,7 +8152,18 @@ rehash的结果要么和原来相同；要么是原来的位置+高位</p>
   <entry>
     <title>Redis原理</title>
     <url>/ComputerScience/%E7%9F%A5%E8%AF%86/Redis%E5%8E%9F%E7%90%86/</url>
-    <content><![CDATA[<h1 id="单线程网络io-kv读写"><a class="markdownIt-Anchor" href="#单线程网络io-kv读写"></a> 单线程网络IO、KV读写</h1>
+    <content><![CDATA[<h1 id="跳表"><a class="markdownIt-Anchor" href="#跳表"></a> 跳表</h1>
+<p>ZSet的实现方式有跳表、压缩列表。</p>
+<ul>
+<li>压缩列表：比较方便地搜索头节点和尾节点。数量&lt;128，所有元素长度&lt;64B时使用。</li>
+<li>跳表：就是链表二分搜索的数据结构。多级链表，最高级链接的节点最稀疏。可以从高到低寻找，加快效率。</li>
+</ul>
+<blockquote>
+<p>同样，跳表对范围查询支持较好，二分找到开头，然后遍历即可。</p>
+</blockquote>
+<h2 id="redis为什么不用b树mysql为什么不用跳表"><a class="markdownIt-Anchor" href="#redis为什么不用b树mysql为什么不用跳表"></a> Redis为什么不用b+树？MySQL为什么不用跳表？</h2>
+<p>这个问题在于 Redis是直接操作内存的并不需要磁盘io而MySQL需要去读取io，所以mysql要使用b+树的方式减少磁盘io，B+树的原理是 叶子节点存储数据，非叶子节点存储索引，每次读取磁盘页时就会读取一整个节点,每个叶子节点还有指向前后节点的指针，为的是最大限度的降低磁盘的IO;因为数据在内存中读取耗费的时间是从磁盘的IO读取的百万分之一 而Redis是 内存中读取数据，不涉及IO，因此使用了跳表，跳表明显是更快更简单的方式。</p>
+<h1 id="单线程网络io-kv读写"><a class="markdownIt-Anchor" href="#单线程网络io-kv读写"></a> 单线程网络IO、KV读写</h1>
 <p>Redis的网络IO和KeyValue读写是由一个线程来完成的。<br />
 而Redis的持久化、异步删除、集群数据同步是额外的线程执行。</p>
 <p>也由于Redis是单线程的，所以要特别小心耗时的操作，这些操作会阻塞后续指令。</p>
@@ -8964,7 +8975,7 @@ Agent1和Agent2都是基于自己对Shared Data的理解工作，而不知道对
 <li>避免上下文冲突：子Agent不包括主Agent的上下文，只回答清晰、具体的问题。</li>
 <li>节省上下文：子Agent的操作也不保存在主Agent的上下文中。他们是解耦合的。</li>
 </ul>
-<h2 id="how-we-built-our-multi-agent-research-system"><a class="markdownIt-Anchor" href="#how-we-built-our-multi-agent-research-system"></a> How we built our multi-agent research system</h2>
+<h1 id="how-we-built-our-multi-agent-research-system"><a class="markdownIt-Anchor" href="#how-we-built-our-multi-agent-research-system"></a> How we built our multi-agent research system</h1>
 <p><a href="https://www.anthropic.com/engineering/built-multi-agent-research-system">How we built our multi-agent research system</a><br />
 三种AI模式：</p>
 <ol>
@@ -9029,6 +9040,24 @@ Tool Description要够好，否则Agent可能不会调用需要的MCP工具。</
 <h3 id="sync-and-block"><a class="markdownIt-Anchor" href="#sync-and-block"></a> Sync and Block</h3>
 <p>Leader Agent并行地分配任务给Sub tasks，但是实际上是以最后一个执行完的Sub Agent为准进行信息交互。这会造成等待与阻塞。但是如果Sub Agent分别处理每一个Sub Agent，又会出现上下文不共享的问题，局部扰乱整体。</p>
 ]]></content>
+      <tags>
+        <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LangGraph</title>
+    <url>/ComputerScience/%E7%9F%A5%E8%AF%86/LangGraph/</url>
+    <content><![CDATA[<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">source venv/bin/activate</span><br><span class="line">pip install langgraph python-dotenv openai</span><br></pre></td></tr></table></figure>
+<h1 id="langgraph-demo"><a class="markdownIt-Anchor" href="#langgraph-demo"></a> LangGraph Demo</h1>
+<h2 id="10-state"><a class="markdownIt-Anchor" href="#10-state"></a> 1.0 State</h2>
+<p>State就是AI流转的全局变量</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InputState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    question: <span class="built_in">str</span></span><br><span class="line">    llm_answer: <span class="type">Optional</span>[<span class="built_in">str</span>] <span class="comment"># None or str</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OutputState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    answer: <span class="built_in">str</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OverallState</span>(InputState, OutputState):</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h2 id="20-node"><a class="markdownIt-Anchor" href="#20-node"></a> 2.0 Node</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">llm_node</span>(<span class="params">state: InputeState</span>):</span><br><span class="line">    msg = [</span><br><span class="line">        (<span class="string">&quot;system&quot;</span>, readMd(<span class="string">&quot;system.md&quot;</span>)),</span><br><span class="line">        (<span class="string">&quot;human&quot;</span>, state[<span class="string">&quot;question&quot;</span>])</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    llm = ChatOpenAI(model=<span class="string">&quot;gpt-4o&quot;</span>)</span><br><span class="line"></span><br><span class="line">    resp = llm.invoke(msg)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;answer&quot;</span>: resp.content&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="30-graph-compile"><a class="markdownIt-Anchor" href="#30-graph-compile"></a> 3.0 Graph Compile</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">builder = StateGraph(OverallState, <span class="built_in">input</span>=InputState, output=OutputState)</span><br><span class="line"></span><br><span class="line">builder.add_node(<span class="string">&quot;llm&quot;</span>, llm_node)</span><br><span class="line">builder.add_edge(START, <span class="string">&quot;llm&quot;</span>)</span><br><span class="line">builder.add_edge(<span class="string">&quot;llm&quot;</span>, END)</span><br><span class="line"></span><br><span class="line">graph = builder.<span class="built_in">compile</span>()</span><br></pre></td></tr></table></figure>
+<h1 id="draw-graph"><a class="markdownIt-Anchor" href="#draw-graph"></a> Draw Graph</h1>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">display(Image(graph.get_graph(xray=<span class="literal">True</span>).draw_mermaid_png()))</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>知识</tag>
       </tags>

@@ -148,7 +148,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,6 +171,252 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/LangGraph/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/LangGraph/" class="post-title-link" itemprop="url">LangGraph</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-08-06 00:00:00 / 修改时间：09:12:54" itemprop="dateCreated datePublished" datetime="2025-08-06T00:00:00+08:00">2025-08-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">source venv/bin/activate</span><br><span class="line">pip install langgraph python-dotenv openai</span><br></pre></td></tr></table></figure>
+<h1 id="langgraph-demo"><a class="markdownIt-Anchor" href="#langgraph-demo"></a> LangGraph Demo</h1>
+<h2 id="10-state"><a class="markdownIt-Anchor" href="#10-state"></a> 1.0 State</h2>
+<p>State就是AI流转的全局变量</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">InputState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    question: <span class="built_in">str</span></span><br><span class="line">    llm_answer: <span class="type">Optional</span>[<span class="built_in">str</span>] <span class="comment"># None or str</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OutputState</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    answer: <span class="built_in">str</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">OverallState</span>(InputState, OutputState):</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h2 id="20-node"><a class="markdownIt-Anchor" href="#20-node"></a> 2.0 Node</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">llm_node</span>(<span class="params">state: InputeState</span>):</span><br><span class="line">    msg = [</span><br><span class="line">        (<span class="string">&quot;system&quot;</span>, readMd(<span class="string">&quot;system.md&quot;</span>)),</span><br><span class="line">        (<span class="string">&quot;human&quot;</span>, state[<span class="string">&quot;question&quot;</span>])</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    llm = ChatOpenAI(model=<span class="string">&quot;gpt-4o&quot;</span>)</span><br><span class="line"></span><br><span class="line">    resp = llm.invoke(msg)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;answer&quot;</span>: resp.content&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="30-graph-compile"><a class="markdownIt-Anchor" href="#30-graph-compile"></a> 3.0 Graph Compile</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">builder = StateGraph(OverallState, <span class="built_in">input</span>=InputState, output=OutputState)</span><br><span class="line"></span><br><span class="line">builder.add_node(<span class="string">&quot;llm&quot;</span>, llm_node)</span><br><span class="line">builder.add_edge(START, <span class="string">&quot;llm&quot;</span>)</span><br><span class="line">builder.add_edge(<span class="string">&quot;llm&quot;</span>, END)</span><br><span class="line"></span><br><span class="line">graph = builder.<span class="built_in">compile</span>()</span><br></pre></td></tr></table></figure>
+<h1 id="draw-graph"><a class="markdownIt-Anchor" href="#draw-graph"></a> Draw Graph</h1>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">display(Image(graph.get_graph(xray=<span class="literal">True</span>).draw_mermaid_png()))</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/Redis%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SIMULEITE">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SMULET's BLOG">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/Redis%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">Redis原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2025-05-20 00:00:00" itemprop="dateCreated datePublished" datetime="2025-05-20T00:00:00+08:00">2025-05-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-07-10 08:52:55" itemprop="dateModified" datetime="2025-07-10T08:52:55+08:00">2025-07-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="跳表"><a class="markdownIt-Anchor" href="#跳表"></a> 跳表</h1>
+<p>ZSet的实现方式有跳表、压缩列表。</p>
+<ul>
+<li>压缩列表：比较方便地搜索头节点和尾节点。数量&lt;128，所有元素长度&lt;64B时使用。</li>
+<li>跳表：就是链表二分搜索的数据结构。多级链表，最高级链接的节点最稀疏。可以从高到低寻找，加快效率。</li>
+</ul>
+<blockquote>
+<p>同样，跳表对范围查询支持较好，二分找到开头，然后遍历即可。</p>
+</blockquote>
+<h2 id="redis为什么不用b树mysql为什么不用跳表"><a class="markdownIt-Anchor" href="#redis为什么不用b树mysql为什么不用跳表"></a> Redis为什么不用b+树？MySQL为什么不用跳表？</h2>
+<p>这个问题在于 Redis是直接操作内存的并不需要磁盘io而MySQL需要去读取io，所以mysql要使用b+树的方式减少磁盘io，B+树的原理是 叶子节点存储数据，非叶子节点存储索引，每次读取磁盘页时就会读取一整个节点,每个叶子节点还有指向前后节点的指针，为的是最大限度的降低磁盘的IO;因为数据在内存中读取耗费的时间是从磁盘的IO读取的百万分之一 而Redis是 内存中读取数据，不涉及IO，因此使用了跳表，跳表明显是更快更简单的方式。</p>
+<h1 id="单线程网络io-kv读写"><a class="markdownIt-Anchor" href="#单线程网络io-kv读写"></a> 单线程网络IO、KV读写</h1>
+<p>Redis的网络IO和KeyValue读写是由一个线程来完成的。<br />
+而Redis的持久化、异步删除、集群数据同步是额外的线程执行。</p>
+<p>也由于Redis是单线程的，所以要特别小心耗时的操作，这些操作会阻塞后续指令。</p>
+<blockquote>
+<p>简单来说就是处理事务一套、前台接待一套。不会因为前面办事导致人均等待时间太久。</p>
+</blockquote>
+<p>Redis使用IO多路复用（epoll），将连接信息、事件放到队列中，使其能够处理并发的客户端连接。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">socket: &#123;</span><br><span class="line">    s0</span><br><span class="line">    s1</span><br><span class="line">    s2</span><br><span class="line">    s3</span><br><span class="line">    &quot;...&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">IO多路复用: &#123;</span><br><span class="line">    s3 -&gt; s2 -&gt; s1 -&gt; s0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">事件处理器: &#123;</span><br><span class="line">    连接处理器</span><br><span class="line">    命令请求处理器</span><br><span class="line">    命令回复处理器</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">socket -&gt; IO多路复用 -&gt; 文件事件分派器 -&gt; 事件处理器</span><br></pre></td></tr></table></figure>
+<h1 id="详解get-key"><a class="markdownIt-Anchor" href="#详解get-key"></a> 详解GET key</h1>
+<p>Redis相当于HashMap，也由于Hash是无序的，因此<code>scan</code>这样的流式查询，在查改场景中，可能会漏扫中途插入到前面下标的元素。</p>
+<h1 id="redis持久化"><a class="markdownIt-Anchor" href="#redis持久化"></a> Redis持久化</h1>
+<h2 id="rdb-snapshot"><a class="markdownIt-Anchor" href="#rdb-snapshot"></a> RDB Snapshot</h2>
+<p>默认情况下，Redis将内存数据快照保存为<code>dump.rdb</code>，可以使用</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">save &lt;time_duration&gt; &lt;row_insertion&gt;</span><br></pre></td></tr></table></figure>
+<p>指示Redis多少秒内插入多少条数据后持久化到数据库<br />
+也可以直接用<code>save</code>和<code>bgsave</code>命令写入数据库</p>
+<h3 id="bgsave-异步持久化"><a class="markdownIt-Anchor" href="#bgsave-异步持久化"></a> bgsave 异步持久化</h3>
+<p>bgsave使用写时复制COW。bgsave从主线程fork出来，当主线程修改数据时，bgsave线程会将写入数据拷贝一份，然后写入rdb</p>
+<h2 id="append-only-file"><a class="markdownIt-Anchor" href="#append-only-file"></a> Append-Only File</h2>
+<p>快照不能做到完全持久，假如服务宕机，可能会丢失几条写入。<br />
+这时候我们直接做个命令日志AOF，将执行的修改指令写入<code>appendonly.aof</code>中</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">appendonly yes</span><br><span class="line">appendfilename &quot;appendonly.aof&quot;</span><br></pre></td></tr></table></figure>
+<p>aof有三种模式<code>appendfsync</code>：</p>
+<ul>
+<li>always：立刻写入磁盘</li>
+<li>everysec：每秒写一次</li>
+<li>no：交给OS调度<br />
+但是，由于aof是记录命令，需要执行时间，对于持久化大量数据比较耗时间。<br />
+对于连续操作（如自增）aof会优化为1条命令，可以用<code>bgrewriteaof</code>命令手动重写</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 最小重构大小</span><br><span class="line">auto-aof-rewrite-min-size 64mb</span><br><span class="line"># 增长了100%，即128mb就重构</span><br><span class="line">auto-aof-rewrite-percentage 100</span><br></pre></td></tr></table></figure>
+<h2 id="redis4-混合持久化"><a class="markdownIt-Anchor" href="#redis4-混合持久化"></a> Redis4 混合持久化</h2>
+<p>由于Redis重启时优先使用aof恢复数据，rdb利用率不高。因此出现了混合持久化</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 必须同时开启aof</span><br><span class="line">aof-use-rdb-preamle yes</span><br><span class="line"># 可以直接把快照关掉，因为混合持久化都写在aof里面</span><br></pre></td></tr></table></figure>
+<p>开启后，当aof重写时，会直接写入rdb，将rdb快照和aof增量存储在一起。<br />
+于是Redis重启可以先读rdb，再执行增量aof恢复数据，提高效率。</p>
+<h1 id="redis主从"><a class="markdownIt-Anchor" href="#redis主从"></a> Redis主从</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># redis-&lt;your_port&gt;.conf</span><br><span class="line">pidfile /var/run/redis_&lt;your_port&gt;.pid</span><br><span class="line">logfile &quot;&lt;your_port&gt;.log&quot;</span><br><span class="line"># 数据存放目录</span><br><span class="line">dir /usr/local/redis/data/&lt;your_port&gt;</span><br><span class="line"></span><br><span class="line">### 主从复制</span><br><span class="line">replicaof &lt;main_redis_ip&gt; &lt;port&gt;</span><br><span class="line"># 从节点，只读</span><br><span class="line">replica-read-only yes</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 启动</span><br><span class="line"># 启动从节点</span><br><span class="line">redis-server redis-&lt;your_port&gt;.conf</span><br><span class="line"># 连接到从节点</span><br><span class="line">redis-cli -p &lt;minor_redis_port&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="主从原理"><a class="markdownIt-Anchor" href="#主从原理"></a> 主从原理</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">master: &#123;</span><br><span class="line">    rdb data</span><br><span class="line">    repl buffer</span><br><span class="line">&#125;</span><br><span class="line">slave</span><br><span class="line"></span><br><span class="line">slave -&gt; master: 1. psync全量复制同步数据（通过socket长连接）</span><br><span class="line">master.rdb data -&gt; master.rdb data: 2.1 收到psync命令，执行bgsave生成最新rdb快照</span><br><span class="line">master.repl buffer -&gt; master.repl buffer: 2.2 主节点将增量写语句更新到buffer</span><br><span class="line">master.rdb data -&gt; slave: 3. 发送rdb数据</span><br><span class="line">slave -&gt; slave: 4. 清空旧数据，加载主节点rdb</span><br><span class="line">master.repl buffer -&gt; slave: 5. 发送缓冲区写命令</span><br><span class="line">slave -&gt; slave: 6. 执行主节点buffer写命令</span><br><span class="line">master -&gt; slave: 7. 主节点通过socket长连接，持续发送写命令给从节点，保持数据一致</span><br></pre></td></tr></table></figure>
+<h2 id="断点续传"><a class="markdownIt-Anchor" href="#断点续传"></a> 断点续传</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">master: &#123;</span><br><span class="line">    repl backlog buffer</span><br><span class="line">&#125;</span><br><span class="line">slave</span><br><span class="line"></span><br><span class="line">slave -&gt; master: 1. 连接断开</span><br><span class="line">master.repl backlog buffer -&gt; master.repl backlog buffer: 2. 主节点增量写命令写入buffer</span><br><span class="line">slave -&gt; master: 3. 恢复socket长连接</span><br><span class="line">slave -&gt; master: 4. psync(offset)带偏移量</span><br><span class="line">master -&gt; slave: 5. 若offset在buffer中，断点以后的数据发送给从节点；否则，全量发送</span><br><span class="line">master -&gt; slave: 6. 持续发送buffer写命令，保持数据一致</span><br></pre></td></tr></table></figure>
+<p>如果存在很多从节点，那么主节点传输压力会比较大。可以采用树型架构，让从节点再给它的子节点传输数据。</p>
+<h1 id="哨兵高可用"><a class="markdownIt-Anchor" href="#哨兵高可用"></a> 哨兵高可用</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sentinel_cluster: &#123;</span><br><span class="line">    sentinel1 &lt;-&gt; sentinel2 &lt;-&gt; sentinel3 &lt;-&gt; sentinel1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">client -&gt; master &lt;-&gt; sentinel_cluster</span><br><span class="line">master -&gt; slave1</span><br><span class="line">master -&gt; slave2</span><br><span class="line">client -&gt; sentinel_cluster</span><br><span class="line">sentinel_cluster &lt;-&gt; slave1</span><br><span class="line">sentinel_cluster &lt;-&gt; slave2</span><br></pre></td></tr></table></figure>
+<p>哨兵会动态监听redis主节点，如果主节点挂了，哨兵会选择一个新redis示例作为主节点（通知给client端）</p>
+<h2 id="开启哨兵"><a class="markdownIt-Anchor" href="#开启哨兵"></a> 开启哨兵</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># sentinel.conf</span><br><span class="line"></span><br><span class="line">port 26379</span><br><span class="line">pidfile &lt;your_file&gt;</span><br><span class="line">logfile &lt;your_file&gt;</span><br><span class="line">dir &quot;&lt;your_dir&gt;&quot;</span><br><span class="line"></span><br><span class="line"># quorm是指多少个sentinel同时认为主节点挂了，才让master失效，一般设置为一半以上</span><br><span class="line">sentinel monitor mymaster &lt;redis_ip&gt; &lt;redis_port&gt; &lt;quorm&gt;</span><br></pre></td></tr></table></figure>
+<p>启动哨兵<code>./redis-sentinel sentinel.conf</code></p>
+<h1 id="redis-cluster"><a class="markdownIt-Anchor" href="#redis-cluster"></a> Redis Cluster</h1>
+<p>当哨兵集群选举新节点的时候，服务会宕机几秒钟。因此我们需要Cluster</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">client1 -&gt; RedisCluster</span><br><span class="line">client2 -&gt; RedisCluster</span><br><span class="line">RedisCluster: Hash slot: CRC16(key) % 16384</span><br><span class="line">RedisCluster -&gt; Redis集群</span><br><span class="line">Redis集群: &#123;</span><br><span class="line">    master1 -&gt; slave1-1</span><br><span class="line">    master1 -&gt; slave1-2</span><br><span class="line">    </span><br><span class="line">    master2 -&gt; slave2-1</span><br><span class="line">    master2 -&gt; slave2-2</span><br><span class="line">    </span><br><span class="line">    master3 -&gt; slave3-1</span><br><span class="line">    master3 -&gt; slave3-2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在Cluster中，每个master数据是不重叠的，数据会被分片储存。通过Hash算法来决定存储数据到哪一个master节点。<br />
+使用Cluster，可以避免Redis服务完全宕机。<br />
+2的幂次取模小技巧：</p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi><mspace></mspace><mspace width="0.6666666666666666em"/><mrow><mi mathvariant="normal">m</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">d</mi></mrow><mtext> </mtext><mtext> </mtext><msup><mn>2</mn><mi>n</mi></msup><mo>=</mo><mi>X</mi><mtext> &amp; </mtext><mo stretchy="false">(</mo><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">X \mod 2^n = X \text{ \&amp; } (2^n - 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mspace allowbreak"></span><span class="mspace" style="margin-right:0.6666666666666666em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">m</span><span class="mord mathrm">o</span><span class="mord mathrm">d</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mord text"><span class="mord"> &amp; </span></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.664392em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+<h2 id="redis集群搭建"><a class="markdownIt-Anchor" href="#redis集群搭建"></a> Redis集群搭建</h2>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">redis-cluster/</span><br><span class="line">|-- 8000</span><br><span class="line">|   `-- redis.conf</span><br><span class="line">|-- 8010</span><br><span class="line">`-- 8020</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Redis配置</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># ...其他配置</span><br><span class="line"></span><br><span class="line">daemonize yes</span><br><span class="line">port 8000</span><br><span class="line">dir /path/to/redis-cluster/8000/</span><br><span class="line"># 启用集群</span><br><span class="line">cluster-enabled yes</span><br><span class="line">cluster-config-file nodes-8000.conf</span><br><span class="line">cluster-node-timeout 5000</span><br><span class="line"># 密码</span><br><span class="line">requirepass &lt;your_password&gt;</span><br><span class="line">masterauth &lt;your_auth_password&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>启动所有master和slave节点</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">redis-server /path/to/redis-cluster/80*/redis.conf</span><br><span class="line">ps aux | grep redis</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>开启集群</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">replicas表示节点的副本，配置为1，则1主1从</span></span><br><span class="line">redis-cli -a &lt;your_auth_password&gt; --cluster create --cluster-replicas 1 \</span><br><span class="line">localhost:8000 localhost:8001 localhost:8002 ...</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，第二次启动集群后，就不需要这一步了。节点会自动读取<code>nodes-8000.conf</code>文件，恢复上次集群状态。</p>
+</blockquote>
+<ol start="4">
+<li>进入redis节点验证配置</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cluster info</span><br><span class="line">cluster nodes</span><br></pre></td></tr></table></figure>
+<h1 id="redission原理"><a class="markdownIt-Anchor" href="#redission原理"></a> Redission原理</h1>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Thread1: &#123;</span><br><span class="line">    Redission</span><br><span class="line">&#125;</span><br><span class="line">Thread2: &#123;</span><br><span class="line">    Redission</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Thread1.Redission -&gt; Try Lock</span><br><span class="line">Try Lock -&gt; 守护线程: 加锁成功</span><br><span class="line">守护线程 -&gt; Redis(Master): lock，每隔10s检查线程是否仍持有锁。如果持有，则延长锁失效时间</span><br><span class="line"></span><br><span class="line">Thread2.Redission -&gt; Try Lock</span><br><span class="line">Try Lock -&gt; Thread2.Redission: 加锁失败，使用while自旋尝试加锁</span><br></pre></td></tr></table></figure>
+<p>Redission利用了Redis Lua脚本保证原子操作。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -208,9 +454,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-06-27 00:00:00 / 修改时间：17:42:03" itemprop="dateCreated datePublished" datetime="2025-06-27T00:00:00+08:00">2025-06-27</time>
+      <time title="创建时间：2025-06-27 00:00:00" itemprop="dateCreated datePublished" datetime="2025-06-27T00:00:00+08:00">2025-06-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-06-28 10:02:41" itemprop="dateModified" datetime="2025-06-28T10:02:41+08:00">2025-06-28</time>
     </span>
 
   
@@ -262,7 +514,7 @@ Agent1和Agent2都是基于自己对Shared Data的理解工作，而不知道对
 <li>避免上下文冲突：子Agent不包括主Agent的上下文，只回答清晰、具体的问题。</li>
 <li>节省上下文：子Agent的操作也不保存在主Agent的上下文中。他们是解耦合的。</li>
 </ul>
-<h2 id="how-we-built-our-multi-agent-research-system"><a class="markdownIt-Anchor" href="#how-we-built-our-multi-agent-research-system"></a> How we built our multi-agent research system</h2>
+<h1 id="how-we-built-our-multi-agent-research-system"><a class="markdownIt-Anchor" href="#how-we-built-our-multi-agent-research-system"></a> How we built our multi-agent research system</h1>
 <p><a target="_blank" rel="noopener" href="https://www.anthropic.com/engineering/built-multi-agent-research-system">How we built our multi-agent research system</a><br />
 三种AI模式：</p>
 <ol>
@@ -1109,239 +1361,6 @@ GMP有一个全局队列存储Goroutine；不过实际上Processor都会优先�
 <li>Hertz生成IDL接口代码</li>
 </ul>
 <figure class="highlight proto"><table><tr><td class="code"><pre><span class="line">syntax = <span class="string">&quot;proto3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> pbapi;</span><br><span class="line"></span><br><span class="line"><span class="keyword">option</span> go_package = <span class="string">&quot;/pbapi&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">Request</span> &#123;</span><br><span class="line">    <span class="type">string</span> msg = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">message </span><span class="title class_">Response</span> &#123;</span><br><span class="line">    <span class="type">string</span> msg = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">service </span><span class="title class_">EchoService</span> &#123;</span><br><span class="line">    <span class="function"><span class="keyword">rpc</span> Echo (Request) <span class="keyword">returns</span> (Response) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E7%9F%A5%E8%AF%86/AI%E4%B8%93%E6%A0%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E7%9F%A5%E8%AF%86/AI%E4%B8%93%E6%A0%8F/" class="post-title-link" itemprop="url">AI专栏</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-05-20 00:00:00" itemprop="dateCreated datePublished" datetime="2025-05-20T00:00:00+08:00">2025-05-20</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-05-29 11:06:41" itemprop="dateModified" datetime="2025-05-29T11:06:41+08:00">2025-05-29</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="mcp"><a class="markdownIt-Anchor" href="#mcp"></a> MCP</h1>
-<h2 id="rag的局限性"><a class="markdownIt-Anchor" href="#rag的局限性"></a> RAG的局限性</h2>
-<p>对于AI来说，RAG仅仅是外部知识库，AI只起到一个总结效果。而总结的效果取决于向量相似度匹配，可能遗漏关键信息。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">direction: right</span><br><span class="line">结构化数据 -&gt; 文本块</span><br><span class="line">非结构化数据 -&gt; 文本块</span><br><span class="line"></span><br><span class="line">文本块 -&gt; 向量数据库 -&gt; 检索文本块 -&gt; 生成最终响应</span><br></pre></td></tr></table></figure>
-<ul>
-<li>生成内容不完整：RAG处理的是文本的切片，因此无法看到整篇文档信息。</li>
-<li>RAG无法判断需要多少切片才能解决问题。</li>
-<li>多轮检索能力弱。</li>
-</ul>
-<h2 id="mcp基础"><a class="markdownIt-Anchor" href="#mcp基础"></a> MCP基础</h2>
-<h2 id="function-calling"><a class="markdownIt-Anchor" href="#function-calling"></a> Function Calling</h2>
-<p>Coze的Agent就是基于Function Calling思路封装的。</p>
-<blockquote>
-<p>不过Function Calling成本比较高，需要模型经过专门训练微调才能稳定支持。</p>
-</blockquote>
-<p>这导致有些模型不支持某些插件的调用（例如Trae只有选择Sonnet、GPT等模型才可以处理图片）。</p>
-<blockquote>
-<p>另外，Function Calling不是一项标准，许多模型的实现细节不一样。</p>
-</blockquote>
-<h2 id="model-context-protocol"><a class="markdownIt-Anchor" href="#model-context-protocol"></a> Model Context Protocol</h2>
-<p>MCP是一项标准<strong>协议</strong>，简单来说就是通用的接口，使AI-外部工具/数据源交互标准化、可复用。</p>
-<p>Claude Desktop、Cursor这样的工具在内部实现MCP Client，这个Client通过MCP协议与MCP Server（由服务提供公司自己开发，实现访问数据、浏览器、本地文件等功能，最终通过MCP返回标准格式）交互，最终在MCP Host上展示。</p>
-<h2 id="mcp-传输方式"><a class="markdownIt-Anchor" href="#mcp-传输方式"></a> MCP 传输方式</h2>
-<p>STDIO，本地环境<br />
-SSE，并发量不高，单向通信<br />
-Streamable HTTP，高并发，需要维护长连接</p>
-<table>
-<thead>
-<tr>
-<th>指标</th>
-<th>Function Calling</th>
-<th>Model Context Portocol</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>协议</td>
-<td>私有协议</td>
-<td>开放协议</td>
-</tr>
-<tr>
-<td>场景</td>
-<td>单次函数调用</td>
-<td>多工具协同 + 数据交互</td>
-</tr>
-<tr>
-<td>接入方式</td>
-<td>函数直接接入</td>
-<td>需要MCP Server + MCP Client</td>
-</tr>
-<tr>
-<td>耦合度</td>
-<td>工具与模型绑定</td>
-<td>工具开发与Agent开发解耦</td>
-</tr>
-<tr>
-<td>调用方式</td>
-<td>API</td>
-<td>Stdio/SSE</td>
-</tr>
-</tbody>
-</table>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/ComputerScience/%E7%9F%A5%E8%AF%86/AI%E4%B8%93%E6%A0%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://simuleite.github.io/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/pandoc%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="SIMULEITE">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SMULET's BLOG">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/ComputerScience/%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/pandoc%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">pandoc使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2025-04-23T00:00:00+08:00">2025-04-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-05-27 10:47:21" itemprop="dateModified" datetime="2025-05-27T10:47:21+08:00">2025-05-27</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="文本格式转换"><a class="markdownIt-Anchor" href="#文本格式转换"></a> 文本格式转换</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pandoc --from markdown --to docx source.md -o dest.docx</span><br><span class="line">pandoc -f markdown source.md -t docx -o dest.docx</span><br><span class="line">pandoc source.md -o dest.docx --ignore-args # 忽略参数</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意</strong>：为了最佳转换效果，markdown文件每行后都要空行</p>
-</blockquote>
-<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pandoc --reference-doc template.docx source.md -o dest.docx</span><br></pre></td></tr></table></figure>
-<h1 id="md2epub"><a class="markdownIt-Anchor" href="#md2epub"></a> md2epub</h1>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">首先把所有的md文件列出来</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 递归查找所有 .md 文件（排除 README.md 和 SUMMARY.md）</span></span></span><br><span class="line">find . -name &quot;*.md&quot; ! -name &quot;README.md&quot; ! -name &quot;SUMMARY.md&quot; | sort &gt; filelist.txt</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="comment"># 然后编辑 `filelist.txt`，确保文件顺序正确（例如按 `SUMMARY.md` 的目录结构排序）。</span></span></span><br><span class="line"></span><br><span class="line">pandoc --standalone --toc \</span><br><span class="line">--metadata title=&quot;MIT6.824 分布式系统&quot; \</span><br><span class="line">--metadata author=&quot;Robert Morris&quot; \</span><br><span class="line">-o output.epub $(cat filelist.txt) </span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>注意</strong>：对于gitbook，pandoc可能不能正确处理路径，推荐使用honkit。</p>
-</blockquote>
-<h2 id="honkit"><a class="markdownIt-Anchor" href="#honkit"></a> honkit</h2>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="comment">// book.json</span></span><br><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;MIT6.824 分布式系统&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Robert Morris&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;hints&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;pluginsConfig&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;hints&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;info&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fa fa-info-circle&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;warning&quot;</span><span class="punctuation">:</span> <span class="string">&quot;fa fa-exclamation-triangle&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装honkit</span></span><br><span class="line">npm install honkit --save-dev</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">需要calibre转换</span></span><br><span class="line">ebook-convert --version</span><br><span class="line"></span><br><span class="line">npm init -y</span><br><span class="line">npx honkit epub ./ ./mybook.epub</span><br></pre></td></tr></table></figure>
       
     </div>
 
