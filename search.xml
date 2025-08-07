@@ -8756,6 +8756,38 @@ Dledger会从Followers中自动选举Leader，从而保证高可用。</p>
 可以手工在监控平台里处理死信，获取messageId后自己处理。</p>
 <h2 id="重复消费"><a class="markdownIt-Anchor" href="#重复消费"></a> 重复消费</h2>
 <p>网络闪断（成功执行，MQ没收到ACK）、生产者宕机（成功发送到MQ，生产者没收到ACK）会引发重复消费。</p>
+<h1 id="什么是消息事务"><a class="markdownIt-Anchor" href="#什么是消息事务"></a> 什么是消息事务</h1>
+<p>消息事务基于消息队列的两阶段提交，将本地事务和发放消息放在了一个分布式事务里。保证原子性。<br />
+用法：将一个分布式事务拆分成一个消息事务（A系统本地操作+发消息）+ B系统本地操作。<br />
+B系统操作由消息驱动。只要消息事务成功，那么A操作一定成功；这时B系统收到消息执行本地操作，如果本地操作失败，消息会重新投放，直到B操作成功。</p>
+<p>上面的方法满足BASE：B基本A可用；S软状态；E最终一致性<br />
+BASE是对于CAP中的AP系统的拓展。牺牲强一致性来保证Available和Performance。<br />
+满足BASE的事务称为“柔性事务”</p>
+<h2 id="什么是exactly-once"><a class="markdownIt-Anchor" href="#什么是exactly-once"></a> 什么是Exactly Once</h2>
+<h2 id="at-least-once"><a class="markdownIt-Anchor" href="#at-least-once"></a> At Least Once</h2>
+<p>Producer接受Broker ACK来确保信息成功写入Topic。<br />
+如果Producer接收ACK超时、或Broker出错时，会重复发送消息。</p>
+<p>但是如果Broker已经写入Topic，但是没有来得及发送ACK或ACK超时，Producer重新发送的消息会第二次写入Topic，导致最终Consumer收到重复消息。</p>
+<h2 id="at-most-once"><a class="markdownIt-Anchor" href="#at-most-once"></a> At Most Once</h2>
+<p>Producer接收ACK超时，或Broker出错时没有重复发消息，会导致消息丢失，没有写入Topic，也没有被Consumer消费。<br />
+有些时候我们为了避免重复消费，允许这种情况发生。</p>
+<h2 id="exactly-once"><a class="markdownIt-Anchor" href="#exactly-once"></a> Exactly Once</h2>
+<p>Exactly Once是说，即使重复发送了消息，Consumer只消费一次。需要消息队列Serv、Producer、Consumer协同才能实现。</p>
+<h2 id="rocketmq事务消息"><a class="markdownIt-Anchor" href="#rocketmq事务消息"></a> RocketMQ事务消息</h2>
+<ol>
+<li>MQ开启一个事务Topic</li>
+<li>事务中第一个执行的服务发送1.5条消息（0.5是因为，这条消息在事务提交前，对Consumer不可见）</li>
+<li>1.5发送成功后，发送0.5消息的服务开始本地事务；并决定事务提交/回滚。<br />
+RocketMQ保证最终一致性</li>
+</ol>
+<h3 id="如何做到写入消息但是对用户不可见呢"><a class="markdownIt-Anchor" href="#如何做到写入消息但是对用户不可见呢"></a> 如何做到写入消息但是对用户不可见呢？</h3>
+<p>0.5消息，备份原消息Topic和MQ，然后改变Topic为HALF_TOPIC，由于Consumer没有订阅这个Topic，所以无法消费。<br />
+然后RocketMQ开始定时任务，从HALF_TOPIC中拉取消息消费，并决定提交事务还是回滚。</p>
+<h2 id="kafka幂等"><a class="markdownIt-Anchor" href="#kafka幂等"></a> Kafka幂等</h2>
+<p>Kafka不确定是否成功发送，就一直重试，Broker保证只消费一次。</p>
+<h3 id="幂等producer"><a class="markdownIt-Anchor" href="#幂等producer"></a> 幂等Producer</h3>
+<p>Kafka为了保证幂等性，引入ProducerID和SequenceNumber。<br />
+<code>new_seq = old_seq+1: 正常消息； new_seq &lt;= old_seq : 重复消息； new_seq &gt; old_seq+1: 消息丢失；</code></p>
 ]]></content>
       <tags>
         <tag>知识</tag>
@@ -9056,8 +9088,16 @@ Tool Description要够好，否则Agent可能不会调用需要的MCP工具。</
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">llm_node</span>(<span class="params">state: InputeState</span>):</span><br><span class="line">    msg = [</span><br><span class="line">        (<span class="string">&quot;system&quot;</span>, readMd(<span class="string">&quot;system.md&quot;</span>)),</span><br><span class="line">        (<span class="string">&quot;human&quot;</span>, state[<span class="string">&quot;question&quot;</span>])</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    llm = ChatOpenAI(model=<span class="string">&quot;gpt-4o&quot;</span>)</span><br><span class="line"></span><br><span class="line">    resp = llm.invoke(msg)</span><br><span class="line">    <span class="keyword">return</span> &#123;<span class="string">&quot;answer&quot;</span>: resp.content&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="30-graph-compile"><a class="markdownIt-Anchor" href="#30-graph-compile"></a> 3.0 Graph Compile</h2>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">builder = StateGraph(OverallState, <span class="built_in">input</span>=InputState, output=OutputState)</span><br><span class="line"></span><br><span class="line">builder.add_node(<span class="string">&quot;llm&quot;</span>, llm_node)</span><br><span class="line">builder.add_edge(START, <span class="string">&quot;llm&quot;</span>)</span><br><span class="line">builder.add_edge(<span class="string">&quot;llm&quot;</span>, END)</span><br><span class="line"></span><br><span class="line">graph = builder.<span class="built_in">compile</span>()</span><br></pre></td></tr></table></figure>
-<h1 id="draw-graph"><a class="markdownIt-Anchor" href="#draw-graph"></a> Draw Graph</h1>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">display(Image(graph.get_graph(xray=<span class="literal">True</span>).draw_mermaid_png()))</span><br></pre></td></tr></table></figure>]]></content>
+<h2 id="draw-graph"><a class="markdownIt-Anchor" href="#draw-graph"></a> Draw Graph</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">display(Image(graph.get_graph(xray=<span class="literal">True</span>).draw_mermaid_png()))</span><br></pre></td></tr></table></figure>
+<h2 id="messages-history"><a class="markdownIt-Anchor" href="#messages-history"></a> Messages History</h2>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">State</span>(<span class="title class_ inherited__">TypedDict</span>):</span><br><span class="line">    msgs: Annotated[<span class="built_in">list</span>, operator.add]</span><br></pre></td></tr></table></figure>
+<h1 id="messagegraph"><a class="markdownIt-Anchor" href="#messagegraph"></a> MessageGraph</h1>
+<p>使用Reducer追加消息，但是可以对已有消息做更新、合并、删除操作（Context Engine）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MessageGraph</span>(<span class="title class_ inherited__">StateGraph</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        <span class="built_in">super</span>().__init__(Annotated[<span class="built_in">list</span>[AnyMessage], add_message])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">builder = MessageGraph()</span><br><span class="line"><span class="comment"># ...</span></span><br><span class="line">graph = builder.<span class="built_in">compile</span>()</span><br><span class="line"></span><br><span class="line">msgs2 = [HumanMessage(content=<span class="string">&quot;xxx&quot;</span>, <span class="built_in">id</span>=msg1.<span class="built_in">id</span>)]</span><br><span class="line"><span class="comment"># ID相同，覆盖消息</span></span><br><span class="line">add_messages(msgs1, msgs2)</span><br></pre></td></tr></table></figure>
+<h1 id="structured-output"><a class="markdownIt-Anchor" href="#structured-output"></a> Structured Output</h1>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">UserInfo</span>(<span class="title class_ inherited__">BaseModel</span>):</span><br><span class="line">    name: <span class="built_in">str</span> = Field(description=<span class="string">&quot;The name of the user&quot;</span>)</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Runnable对象</span></span><br><span class="line">structured_llm = llm.with_structured_output(UserInfo)</span><br><span class="line"></span><br><span class="line"><span class="comment"># UserInfo对象</span></span><br><span class="line">resp = structured_llm.invoke(msg)</span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>知识</tag>
       </tags>
