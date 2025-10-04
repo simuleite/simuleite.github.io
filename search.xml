@@ -9116,9 +9116,60 @@ Tool Description要够好，否则Agent可能不会调用需要的MCP工具。</
 <h2 id="call_model"><a class="markdownIt-Anchor" href="#call_model"></a> call_model</h2>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">call_model</span>(<span class="params">state: State, config: RunnableConfig</span>):</span><br><span class="line">    msgs = state[<span class="string">&quot;messages&quot;</span>]</span><br><span class="line">    resp = <span class="keyword">await</span> model.invoke(msgs, config)</span><br><span class="line">        <span class="keyword">return</span> &#123;<span class="string">&quot;messages&quot;</span>: resp&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="stream-output"><a class="markdownIt-Anchor" href="#stream-output"></a> Stream Output</h1>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">print_stream</span>(<span class="params">stream</span>):</span><br><span class="line">    <span class="keyword">for</span> sub_stream <span class="keyword">in</span> stream:</span><br><span class="line">        <span class="built_in">print</span>(sub_stream)</span><br></pre></td></tr></table></figure>]]></content>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">print_stream</span>(<span class="params">stream</span>):</span><br><span class="line">    <span class="keyword">for</span> sub_stream <span class="keyword">in</span> stream:</span><br><span class="line">        <span class="built_in">print</span>(sub_stream)</span><br></pre></td></tr></table></figure>
+<h1 id="mcp"><a class="markdownIt-Anchor" href="#mcp"></a> MCP</h1>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;mcpServers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;tool_name&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;npx&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;your_arg&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;transport&quot;</span><span class="punctuation">:</span> <span class="string">&quot;stdio&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Configuration</span>()</span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">load_servers</span>(<span class="params">file_path: <span class="built_in">str</span> = <span class="string">&quot;servers_config.json&quot;</span></span>) -&gt; <span class="type">Dict</span>[<span class="built_in">str</span>, <span class="type">Any</span>]:</span><br><span class="line">        <span class="keyword">with</span> <span class="built_in">open</span>(file_path, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;utf-8&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">            <span class="keyword">return</span> json.load(f).get(<span class="string">&quot;mcpServers&quot;</span>, &#123;&#125;)</span><br><span class="line"></span><br><span class="line">cfg = Configuration()</span><br><span class="line">servers_cfg = Configuration.load_servers()</span><br><span class="line">mcp_client = MultiServerMCPClient(servers_cfg)</span><br><span class="line">tools = <span class="keyword">await</span> mcp_client.get_tools()</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       <tags>
         <tag>知识</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MoE</title>
+    <url>/ComputerScience/%E7%AC%94%E8%AE%B0/LLM/MoE/</url>
+    <content><![CDATA[<h1 id="什么是moe"><a class="markdownIt-Anchor" href="#什么是moe"></a> 什么是MoE</h1>
+<p>Mixture of Experts<br />
+MoE使用Sparse，MLP替换FFN</p>
+<h1 id="为什么moe"><a class="markdownIt-Anchor" href="#为什么moe"></a> 为什么MoE</h1>
+<p>不可能三角：Performance、Cost、Size。</p>
+<h2 id="成本-性能"><a class="markdownIt-Anchor" href="#成本-性能"></a> 成本-性能</h2>
+<p>传统的Dense模型，想要Scale Up，提升Size，一定会带动Computation提升，从而导致Cost太大。<br />
+Moe将Performance、Size解耦，Scale Up提升Size，但是Computation不会变化。（只激活部分Expert）</p>
+<h2 id="单一职责knowledge"><a class="markdownIt-Anchor" href="#单一职责knowledge"></a> 单一职责Knowledge</h2>
+<p>传统模型，Knowledge存储在FFN；MoE将不同领域知识放在不同的Expert里面，有专业化区分，单一职责。<br />
+参数量更大，也使MoE模型可以存储更多Knowledge。</p>
+<h2 id="sparse"><a class="markdownIt-Anchor" href="#sparse"></a> Sparse</h2>
+<p>CNN本质就是引入Sparse。Sparse引领Machine Learning/Deep Learning发展。<br />
+Sparse做的事是捕捉信息的low-dimension pattern，提升learning efficiency。（这也是CNN性能好于MLP的原因）</p>
+<h1 id="moe比dense好在哪"><a class="markdownIt-Anchor" href="#moe比dense好在哪"></a> MoE比Dense好在哪？</h1>
+<ol>
+<li>MoE在总参量一样的情况下，都比同样参数的Dense要好（激活参数、总参数都是）</li>
+<li>MoE训练时间更短：更低的Training、Validation Loss</li>
+</ol>
+<h1 id="deepseek-moe"><a class="markdownIt-Anchor" href="#deepseek-moe"></a> DeepSeek MoE</h1>
+<h2 id="fine-grain-expert"><a class="markdownIt-Anchor" href="#fine-grain-expert"></a> Fine-Grain Expert</h2>
+<p>把比较大的Expert分成多个小Experts</p>
+<h2 id="shared-expert"><a class="markdownIt-Anchor" href="#shared-expert"></a> Shared Expert</h2>
+<p>所有输入都会经过Shared Expert，不依赖Router</p>
+<h2 id="效果验证"><a class="markdownIt-Anchor" href="#效果验证"></a> 效果验证</h2>
+<p>从8-32，有提升；但是从32-64，几乎没有；Experts有一个Sweet Point</p>
+<p>而Shared Expert其实没有什么用，属于人的错误先验假设</p>
+<h1 id="训练时token分类"><a class="markdownIt-Anchor" href="#训练时token分类"></a> 训练时Token分类</h1>
+<h2 id="token-choice"><a class="markdownIt-Anchor" href="#token-choice"></a> Token Choice</h2>
+<p>根据每个Token做Router选择专家；<br />
+存在LoadBalance问题，被集中分配到某些Expert身上。<br />
+也就是说，有些Expert没有被充分训练</p>
+<h2 id="expert-choice"><a class="markdownIt-Anchor" href="#expert-choice"></a> Expert Choice</h2>
+<p>反过来，从Expert的角度分配Token；<br />
+存在Token Dropping，有些Token没有被选择到；<br />
+在Inference时，因为AutoRegressive，无法看到后面的Token，这个方法会有问题。解决方法是增加一个MLP中间层。</p>
+<p>目前，Token Choice表现还是好一点</p>
+<h1 id="moe的困难"><a class="markdownIt-Anchor" href="#moe的困难"></a> MoE的困难</h1>
+<h2 id="sparse训练困难training-instability"><a class="markdownIt-Anchor" href="#sparse训练困难training-instability"></a> Sparse训练困难：Training Instability</h2>
+<p>训练不稳定，容易Loss崩溃</p>
+]]></content>
+      <tags>
+        <tag>LLM</tag>
       </tags>
   </entry>
 </search>
